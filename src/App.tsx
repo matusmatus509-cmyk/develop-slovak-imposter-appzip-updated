@@ -23,6 +23,9 @@ import DrawingSetup from "./screens/drawing/Setup";
 import DrawingCanvas from "./screens/drawing/Canvas";
 import DrawingVote from "./screens/drawing/Vote";
 import DrawingResult from "./screens/drawing/Result";
+import SlovnaRosada from "./screens/minigames/SlovnaRosada";
+import SlovnyPingPong from "./screens/minigames/SlovnyPingPong";
+import HadajKtoSom from "./screens/minigames/HadajKtoSom";
 
 const DEFAULT_SETTINGS: GameSettings = {
   playerNames: ["Hráč 1", "Hráč 2", "Hráč 3", "Hráč 4"],
@@ -265,6 +268,15 @@ export default function App() {
           onHome={() => setScreen("home")}
         />
       );
+
+    case "slovnarosada":
+      return <SlovnaRosada onBack={() => setScreen("home")} />;
+
+    case "pingpong":
+      return <SlovnyPingPong onBack={() => setScreen("home")} />;
+
+    case "hadajktosom":
+      return <HadajKtoSom onBack={() => setScreen("home")} />;
 
     default:
       return <Home onNavigate={setScreen} />;

@@ -13,7 +13,10 @@ export type Screen =
   | "drawing-reveal"
   | "drawing-canvas"
   | "drawing-vote"
-  | "drawing-result";
+  | "drawing-result"
+  | "slovnarosada"
+  | "pingpong"
+  | "hadajktosom";
 
 export interface CategoryDef {
   id: string;

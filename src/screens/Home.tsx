@@ -47,6 +47,27 @@ const CARDS: GameCard[] = [
     icon: "🎨",
     gradient: "from-violet-500 to-cyan-500",
   },
+  {
+    screen: "slovnarosada",
+    title: "Slovná rošáda",
+    subtitle: "Každý opisuje svoje slovo — ale rošádnik má iné",
+    icon: "🃏",
+    gradient: "from-purple-500 to-indigo-600",
+  },
+  {
+    screen: "pingpong",
+    title: "Slovný ping pong",
+    subtitle: "Striedajte slová z kategórie, kým niekto nezaváha",
+    icon: "🏓",
+    gradient: "from-green-500 to-emerald-600",
+  },
+  {
+    screen: "hadajktosom",
+    title: "Hádaj kto som",
+    subtitle: "Drž telefón na čele a pýtaj sa na áno/nie",
+    icon: "🎭",
+    gradient: "from-cyan-500 to-blue-600",
+  },
 ];
 
 export default function Home({
