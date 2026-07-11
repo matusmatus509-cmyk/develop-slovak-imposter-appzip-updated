@@ -253,16 +253,37 @@ function PlayingScreen({
     return () => clearTimeout(id);
   }, [timeLeft, finishRound]);
 
-  // Device orientation — beta: tilt up = negative, tilt down = positive
+  // Device orientation with hysteresis:
+  // Phone must return to neutral zone before another tilt can trigger.
+  // TRIGGER at ±50°, NEUTRAL zone within ±20° — prevents accidental repeated fires.
   useEffect(() => {
-    const THRESHOLD = 30;
+    const TRIGGER = 50;   // degrees past this = action fires
+    const NEUTRAL = 20;   // degrees — must return inside this to re-arm
+
+    // "neutral" = armed and waiting, "up" / "down" = already fired, waiting to reset
+    type Zone = "neutral" | "up" | "down";
+    let zone: Zone = "neutral";
 
     function handleOrientation(e: DeviceOrientationEvent) {
-      if (doneRef.current || tiltLocked.current) return;
+      if (doneRef.current) return;
       const beta = e.beta;
       if (beta === null) return;
-      if (beta < -THRESHOLD) handleCorrect();
-      else if (beta > THRESHOLD) handleSkip();
+
+      if (zone === "neutral") {
+        // Only fire from neutral zone
+        if (beta < -TRIGGER) {
+          zone = "up";
+          handleCorrect();
+        } else if (beta > TRIGGER) {
+          zone = "down";
+          handleSkip();
+        }
+      } else {
+        // Must fully return to neutral before re-arming
+        if (Math.abs(beta) < NEUTRAL) {
+          zone = "neutral";
+        }
+      }
     }
 
     // Request permission on iOS 13+
