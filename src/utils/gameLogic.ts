@@ -25,25 +25,18 @@ export function generateRound(
   const category = pickRandom(pool);
 
   const used = usedWords[category.id] ?? [];
-  let candidates = category.words.filter((w) => !used.includes(w));
+  let candidates = category.wordPairs.filter((p) => !used.includes(p.word));
   let nextUsedForCategory = used;
 
   if (candidates.length === 0) {
-    candidates = category.words;
+    candidates = category.wordPairs;
     nextUsedForCategory = [];
   }
 
-  const word = pickRandom(candidates);
+  const pair = pickRandom(candidates);
   const updatedUsed = settings.noRepeatWords
-    ? { ...usedWords, [category.id]: [...nextUsedForCategory, word] }
+    ? { ...usedWords, [category.id]: [...nextUsedForCategory, pair.word] }
     : usedWords;
-
-  // decoy hint word from a different category
-  const decoyCategoryPool = categories.filter((c) => c.id !== category.id);
-  const decoyCategory = pickRandom(
-    decoyCategoryPool.length > 0 ? decoyCategoryPool : categories
-  );
-  const hintWord = pickRandom(decoyCategory.words);
 
   const playerCount = settings.playerNames.length;
   const impostorCount = Math.min(
@@ -56,12 +49,12 @@ export function generateRound(
 
   return {
     assignment: {
-      word,
+      word: pair.word,
       categoryId: category.id,
       categoryName: category.name,
       categoryIcon: category.icon,
       impostorIndexes,
-      hintWord,
+      hintWord: pair.hint,
     },
     usedWords: updatedUsed,
   };

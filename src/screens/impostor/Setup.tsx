@@ -177,7 +177,7 @@ export default function Setup({
             checked={hintsEnabled}
             onChange={setHintsEnabled}
             label="Nápoveda pre podvodníka"
-            description="Podvodník dostane zavádzajúcu nápovedu a kategóriu"
+            description="Podvodník dostane nápovedu zo svojej kategórie, ktorú použije v prvom kole"
           />
           <Toggle
             checked={noRepeatWords}

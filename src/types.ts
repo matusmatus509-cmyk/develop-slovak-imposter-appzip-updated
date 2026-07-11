@@ -14,7 +14,7 @@ export interface CategoryDef {
   id: string;
   name: string;
   icon: string;
-  words: string[];
+  wordPairs: { word: string; hint: string }[];
 }
 
 export interface GameSettings {
