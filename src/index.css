@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: #0b0a1a;
+}
+
+h1, h2 {
+  font-family: "Baloo 2", "Inter", system-ui, sans-serif;
+}
+
