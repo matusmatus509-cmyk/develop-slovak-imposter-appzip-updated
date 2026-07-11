@@ -15,6 +15,7 @@ export default function Reveal({
 }) {
   const [seen, setSeen] = useState<Set<number>>(new Set());
   const [viewing, setViewing] = useState<number | null>(null);
+  const [starter, setStarter] = useState<number | null>(null);
 
   const allSeen = seen.size === settings.playerNames.length;
 
@@ -25,7 +26,11 @@ export default function Reveal({
 
   function handleDoneViewing() {
     if (viewing === null) return;
-    setSeen((prev) => new Set([...prev, viewing]));
+    const newSeen = new Set([...seen, viewing]);
+    setSeen(newSeen);
+    if (newSeen.size === settings.playerNames.length && starter === null) {
+      setStarter(Math.floor(Math.random() * settings.playerNames.length));
+    }
     setViewing(null);
   }
 
@@ -185,10 +190,21 @@ export default function Reveal({
         </div>
       </div>
 
-      {allSeen && (
-        <Button fullWidth onClick={onDone} className="mt-4">
-          Začať diskusiu 💬
-        </Button>
+      {allSeen && starter !== null && (
+        <div className="mt-4 flex flex-col gap-3">
+          <div className="flex flex-col items-center gap-2 rounded-3xl border border-amber-500/30 bg-amber-950/30 px-6 py-5 text-center">
+            <span className="text-3xl">🎲</span>
+            <p className="text-xs font-bold uppercase tracking-widest text-amber-400/70">
+              Losovanie — kto začína
+            </p>
+            <p className="text-2xl font-black text-amber-300">
+              {settings.playerNames[starter]}
+            </p>
+          </div>
+          <Button fullWidth onClick={onDone}>
+            Začať diskusiu 💬
+          </Button>
+        </div>
       )}
     </Shell>
   );
