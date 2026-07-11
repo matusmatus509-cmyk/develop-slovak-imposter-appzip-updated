@@ -102,16 +102,22 @@ export default function Reveal({
                       <span className="mt-3 inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/60">
                         {assignment.categoryIcon} {assignment.categoryName}
                       </span>
+                      <p className="mt-3 text-xs leading-relaxed text-white/50">
+                        Znáš nápovedu. Použi ju ako svoju prvú asociáciu v
+                        kole.
+                      </p>
                     </div>
                   ) : (
-                    <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/60">
-                      {assignment.categoryIcon} {assignment.categoryName}
-                    </span>
+                    <>
+                      <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/60">
+                        {assignment.categoryIcon} {assignment.categoryName}
+                      </span>
+                      <p className="text-xs leading-relaxed text-white/50">
+                        Nepoznáš tajné slovo. Počúvaj ostatných a snaž sa
+                        zapadnúť, aby ťa neodhalili.
+                      </p>
+                    </>
                   )}
-                  <p className="text-xs leading-relaxed text-white/50">
-                    Nepoznáš tajné slovo. Počúvaj ostatných a snaž sa
-                    zapadnúť, aby ťa neodhalili.
-                  </p>
                 </>
               ) : (
                 <>
