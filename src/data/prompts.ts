@@ -117,9 +117,9 @@ export const DARES: string[] = [
   "Nechaj ostatných napísať tvoj stav na sociálnu sieť — nevieš čo napíšu.",
   "Pošli smiešnu grimasu priateľovi bez akéhokoľvek vysvetlenia.",
   "Nechaj hráča vpravo od teba, nech ti nakreslí fúzy fixkou alebo perom.",
-  "Pošli správu niekomu z kontaktov: „Musím ti niečo povedať..." a nič viac.",
+  "Pošli správu niekomu z kontaktov: 'Musím ti niečo povedať...' a nič viac.",
   "Zavolaj pizzérii a opýtaj sa, či predávajú sushi.",
-  "Napíš niekomu z rodiny: „Práve som vyhrala/vyhral milión eur." a nič viac.",
+  "Napíš niekomu z rodiny: 'Práve som vyhrala/vyhral milión eur.' a nič viac.",
   "Povedz každému v miestnosti jeden kompliment — musí byť úprimný.",
   "Nechaj skupinu, nech ti na 5 minút vyberie nový účes pomocou toho, čo je v miestnosti.",
 
