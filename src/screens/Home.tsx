@@ -40,6 +40,13 @@ const CARDS: GameCard[] = [
     icon: "🤔",
     gradient: "from-amber-500 to-rose-600",
   },
+  {
+    screen: "drawing-setup",
+    title: "Kreslenie Podvodníka",
+    subtitle: "Každý kreslí — ale jeden nepozná tajné slovo",
+    icon: "🎨",
+    gradient: "from-violet-500 to-cyan-500",
+  },
 ];
 
 export default function Home({

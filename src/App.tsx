@@ -19,6 +19,10 @@ import History from "./screens/impostor/History";
 import TruthOrDare from "./screens/minigames/TruthOrDare";
 import NeverHaveIEver from "./screens/minigames/NeverHaveIEver";
 import WouldYouRather from "./screens/minigames/WouldYouRather";
+import DrawingSetup from "./screens/drawing/Setup";
+import DrawingCanvas from "./screens/drawing/Canvas";
+import DrawingVote from "./screens/drawing/Vote";
+import DrawingResult from "./screens/drawing/Result";
 
 const DEFAULT_SETTINGS: GameSettings = {
   playerNames: ["Hráč 1", "Hráč 2", "Hráč 3", "Hráč 4"],
@@ -27,6 +31,7 @@ const DEFAULT_SETTINGS: GameSettings = {
   hintsEnabled: true,
   noRepeatWords: true,
   timerSeconds: 90,
+  strokesPerPlayer: 3,
 };
 
 export default function App() {
@@ -48,6 +53,15 @@ export default function App() {
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [votedIndex, setVotedIndex] = useState<number | null>(null);
 
+  // Drawing game state
+  const [drawingSettings, setDrawingSettings] = useLocalStorage<GameSettings>(
+    "drawing-settings",
+    DEFAULT_SETTINGS
+  );
+  const [drawingAssignment, setDrawingAssignment] =
+    useState<RoundAssignment | null>(null);
+  const [drawingVotedIndex, setDrawingVotedIndex] = useState<number | null>(null);
+
   function startNewRound(currentSettings: GameSettings) {
     const { assignment: newAssignment, usedWords: newUsed } = generateRound(
       currentSettings,
@@ -64,6 +78,24 @@ export default function App() {
   function handleStartSetup(newSettings: GameSettings) {
     setSettings(newSettings);
     startNewRound(newSettings);
+  }
+
+  function startDrawingRound(s: GameSettings) {
+    const { assignment: a, usedWords: newUsed } = generateRound(s, CATEGORIES, usedWords);
+    setDrawingAssignment(a);
+    setUsedWords(newUsed);
+    setDrawingVotedIndex(null);
+    setScreen("drawing-reveal");
+  }
+
+  function handleDrawingSetupStart(s: GameSettings) {
+    setDrawingSettings(s);
+    startDrawingRound(s);
+  }
+
+  function handleDrawingVote(voted: number | null) {
+    setDrawingVotedIndex(voted);
+    setScreen("drawing-result");
   }
 
   function handleVoteConfirm(voted: number | null) {
@@ -172,6 +204,67 @@ export default function App() {
 
     case "would-you-rather":
       return <WouldYouRather onBack={() => setScreen("home")} />;
+
+    case "drawing-setup":
+      return (
+        <DrawingSetup
+          initial={drawingSettings}
+          onBack={() => setScreen("home")}
+          onStart={handleDrawingSetupStart}
+        />
+      );
+
+    case "drawing-reveal":
+      if (!drawingAssignment) {
+        setScreen("drawing-setup");
+        return null;
+      }
+      return (
+        <Reveal
+          settings={drawingSettings}
+          assignment={drawingAssignment}
+          onExit={() => setScreen("home")}
+          onDone={() => setScreen("drawing-canvas")}
+        />
+      );
+
+    case "drawing-canvas":
+      if (!drawingAssignment) {
+        setScreen("drawing-setup");
+        return null;
+      }
+      return (
+        <DrawingCanvas
+          settings={drawingSettings}
+          assignment={drawingAssignment}
+          onExit={() => setScreen("home")}
+          onVote={() => setScreen("drawing-vote")}
+        />
+      );
+
+    case "drawing-vote":
+      return (
+        <DrawingVote
+          settings={drawingSettings}
+          onExit={() => setScreen("home")}
+          onConfirm={handleDrawingVote}
+        />
+      );
+
+    case "drawing-result":
+      if (!drawingAssignment) {
+        setScreen("home");
+        return null;
+      }
+      return (
+        <DrawingResult
+          settings={drawingSettings}
+          assignment={drawingAssignment}
+          votedIndex={drawingVotedIndex}
+          onNewRound={() => startDrawingRound(drawingSettings)}
+          onHome={() => setScreen("home")}
+        />
+      );
 
     default:
       return <Home onNavigate={setScreen} />;

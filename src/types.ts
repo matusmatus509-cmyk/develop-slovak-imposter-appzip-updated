@@ -8,7 +8,12 @@ export type Screen =
   | "impostor-history"
   | "truth-or-dare"
   | "would-you-rather"
-  | "never-have-i-ever";
+  | "never-have-i-ever"
+  | "drawing-setup"
+  | "drawing-reveal"
+  | "drawing-canvas"
+  | "drawing-vote"
+  | "drawing-result";
 
 export interface CategoryDef {
   id: string;
@@ -24,6 +29,7 @@ export interface GameSettings {
   hintsEnabled: boolean;
   noRepeatWords: boolean;
   timerSeconds: number; // 0 = bez časovača
+  strokesPerPlayer: number; // used by drawing game
 }
 
 export interface RoundAssignment {
