@@ -129,7 +129,7 @@ export const DARES: string[] = [
   "Drž oči zatvorené 2 minúty, kým skupina ticho mení niečo v miestnosti — hádaj čo.",
   "Hovor iba v otázkach nasledujúce celé kolo.",
   "Nehovor počas nasledujúcich 3 minút ani slovo.",
-  "Odpovedaj na každú otázku skupiny iba „Možno." nasledujúce kolo.",
+  "Odpovedaj na každú otázku skupiny iba 'Možno.' nasledujúce kolo.",
   "Nesmej sa a netváry sa veselo nasledujúce 2 kolá.",
 
   // --- Kreativita ---
@@ -138,7 +138,7 @@ export const DARES: string[] = [
   "Nakresli portrét hráča vpravo od teba bez toho, aby si zdvihol/a pero — max 30 sekúnd.",
   "Vymysli slogan pre produkt, ktorý skupina vymyslí.",
   "Zahraj charades na tému film, seriál alebo kniha — skupina ti zadá.",
-  "Povedz päť rôznych spôsobov, ako povedať „milujem ťa" bez toho, aby si použil/a tieto slová.",
+  "Povedz päť rôznych spôsobov, ako povedať 'milujem ťa' bez toho, aby si použil/a tieto slová.",
   "Improvizuj krátky stand-up o svojom pracovnom/školskom dni.",
 
   // --- Skupinové ---
@@ -179,7 +179,7 @@ export const NEVER_HAVE_I_EVER: string[] = [
   "Nikdy som nikdy... som odmietol/a niekoho, kto ma pozval na rande.",
   "Nikdy som nikdy... som bol/a na slepom rande.",
   "Nikdy som nikdy... som staloval/a ex na sociálnych sieťach.",
-  "Nikdy som nikdy... som mal/a „kamaráta s výhodami".",
+  "Nikdy som nikdy... som mal/a 'kamaráta s výhodami'.",
   "Nikdy som nikdy... som napísal/a ľúbostný list.",
 
   // --- Trápne situácie ---
