@@ -1,22 +1,24 @@
-import { useState } from "react";
-import {
-  CHARACTER_CATEGORIES,
-  type CharacterCategory,
-} from "../../data/characters";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { CHARACTER_CATEGORIES } from "../../data/characters";
 import { Button, Shell, TopBar } from "../../components/ui";
 
-// ─── Types ───────────────────────────────────────────────────────────────────
+// ─── Types ────────────────────────────────────────────────────────────────────
 
-type Phase = "setup" | "assign" | "cover" | "play" | "result";
+type Phase = "setup" | "who-starts" | "playing" | "round-result" | "final-result";
 
-interface PlayerAssignment {
+interface PlayerScore {
   name: string;
-  character: string;
-  guessed: boolean;
-  guessOrder: number | null;
+  correct: number;
+  skipped: number;
+  played: boolean;
 }
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
+interface Card {
+  word: string;
+  categoryName: string;
+}
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -27,41 +29,48 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-function buildAssignments(
-  names: string[],
-  cat: CharacterCategory
-): PlayerAssignment[] {
-  const chars = shuffle(cat.characters);
-  return names.map((name, i) => ({
-    name,
-    character: chars[i % chars.length],
-    guessed: false,
-    guessOrder: null,
-  }));
+function buildDeck(catIds: string[]): Card[] {
+  const cats = CHARACTER_CATEGORIES.filter((c) => catIds.includes(c.id));
+  const cards: Card[] = [];
+  for (const cat of cats) {
+    for (const ch of cat.characters) {
+      cards.push({ word: ch, categoryName: cat.name });
+    }
+  }
+  return shuffle(cards);
 }
 
-// ─── Setup ────────────────────────────────────────────────────────────────────
+// ─── Setup Screen ─────────────────────────────────────────────────────────────
 
 function SetupScreen({
   onBack,
   onStart,
 }: {
   onBack: () => void;
-  onStart: (names: string[], catId: string) => void;
+  onStart: (names: string[], catIds: string[], timerSeconds: number) => void;
 }) {
-  const [count, setCount] = useState(4);
-  const [names, setNames] = useState<string[]>(
+  const [count, setCount] = useState(3);
+  const [names, setNames] = useState(
     Array.from({ length: 8 }, (_, i) => `Hráč ${i + 1}`)
   );
-  const [selectedCat, setSelectedCat] = useState(CHARACTER_CATEGORIES[0].id);
+  const [selectedCats, setSelectedCats] = useState([CHARACTER_CATEGORIES[0].id]);
+  const [timer, setTimer] = useState(60);
 
-  function updateName(i: number, val: string) {
-    setNames((prev) => prev.map((n, idx) => (idx === i ? val : n)));
+  function toggleCat(id: string) {
+    setSelectedCats((prev) =>
+      prev.includes(id)
+        ? prev.length > 1
+          ? prev.filter((c) => c !== id)
+          : prev
+        : [...prev, id]
+    );
   }
 
   function start() {
-    const trimmed = names.slice(0, count).map((n) => n.trim() || `Hráč ${n}`);
-    onStart(trimmed, selectedCat);
+    const trimmedNames = names
+      .slice(0, count)
+      .map((n, i) => n.trim() || `Hráč ${i + 1}`);
+    onStart(trimmedNames, selectedCats, timer);
   }
 
   return (
@@ -69,9 +78,10 @@ function SetupScreen({
       <TopBar title="Hádaj kto som" onBack={onBack} />
 
       <div className="mb-5 rounded-3xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-sm text-white/70 leading-relaxed">
-        Každý dostane <strong className="text-white">tajnú osobu/postavu</strong>.
-        Drž telefón na čele — ostatní vidia koho si! Pýtaj sa otázky na
-        „áno/nie" a uhádni, kto si.
+        Drž telefón naplocho. Ostatní nakláňajú mobil{" "}
+        <strong className="text-white">hore = uhádnuté ✓</strong>,{" "}
+        <strong className="text-white">dole = preskočiť ✗</strong>.
+        Daj čo najviac za čas!
       </div>
 
       {/* Category */}
@@ -83,15 +93,40 @@ function SetupScreen({
           {CHARACTER_CATEGORIES.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => setSelectedCat(cat.id)}
+              onClick={() => toggleCat(cat.id)}
               className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition active:scale-[0.98] ${
-                selectedCat === cat.id
+                selectedCats.includes(cat.id)
                   ? "border-cyan-400/60 bg-cyan-500/20"
                   : "border-white/10 bg-white/5"
               }`}
             >
               <span className="text-2xl">{cat.icon}</span>
-              <span className="font-bold">{cat.name}</span>
+              <span className="font-bold flex-1">{cat.name}</span>
+              {selectedCats.includes(cat.id) && (
+                <span className="text-cyan-400 font-bold">✓</span>
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Timer */}
+      <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 p-4">
+        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
+          Čas na kolo
+        </p>
+        <div className="flex gap-2">
+          {[30, 45, 60, 90, 120].map((t) => (
+            <button
+              key={t}
+              onClick={() => setTimer(t)}
+              className={`flex-1 rounded-2xl border py-3 text-sm font-bold transition active:scale-95 ${
+                timer === t
+                  ? "border-cyan-400/60 bg-cyan-500/30 text-cyan-300"
+                  : "border-white/10 bg-white/5 text-white/50"
+              }`}
+            >
+              {t}s
             </button>
           ))}
         </div>
@@ -125,332 +160,411 @@ function SetupScreen({
           <input
             key={i}
             value={names[i]}
-            onChange={(e) => updateName(i, e.target.value)}
+            onChange={(e) =>
+              setNames((prev) =>
+                prev.map((n, idx) => (idx === i ? e.target.value : n))
+              )
+            }
             placeholder={`Hráč ${i + 1}`}
-            className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-cyan-400/60 focus:bg-white/10"
+            className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-cyan-400/60"
           />
         ))}
       </div>
 
       <Button fullWidth onClick={start}>
-        🎭 Prideliť postavy
+        🎭 Začať hru
       </Button>
     </Shell>
   );
 }
 
-// ─── Main Component ───────────────────────────────────────────────────────────
+// ─── Playing Screen ───────────────────────────────────────────────────────────
+
+function PlayingScreen({
+  deck,
+  timerSeconds,
+  onDone,
+}: {
+  deck: Card[];
+  timerSeconds: number;
+  onDone: (correct: number, skipped: number) => void;
+}) {
+  const [cardIdx, setCardIdx] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(timerSeconds);
+  const [flash, setFlash] = useState<"correct" | "wrong" | null>(null);
+
+  // Use refs so event handlers always see fresh values
+  const correctRef = useRef(0);
+  const skippedRef = useRef(0);
+  const tiltLocked = useRef(false);
+  const doneRef = useRef(false);
+
+  const card = deck[cardIdx];
+
+  const finishRound = useCallback(() => {
+    if (doneRef.current) return;
+    doneRef.current = true;
+    onDone(correctRef.current, skippedRef.current);
+  }, [onDone]);
+
+  const handleCorrect = useCallback(() => {
+    if (doneRef.current || tiltLocked.current) return;
+    tiltLocked.current = true;
+    correctRef.current += 1;
+    setFlash("correct");
+    setTimeout(() => {
+      setFlash(null);
+      setCardIdx((i) => {
+        if (i + 1 >= deck.length) {
+          finishRound();
+          return i;
+        }
+        return i + 1;
+      });
+      tiltLocked.current = false;
+    }, 600);
+  }, [deck.length, finishRound]);
+
+  const handleSkip = useCallback(() => {
+    if (doneRef.current || tiltLocked.current) return;
+    tiltLocked.current = true;
+    skippedRef.current += 1;
+    setFlash("wrong");
+    setTimeout(() => {
+      setFlash(null);
+      setCardIdx((i) => {
+        if (i + 1 >= deck.length) {
+          finishRound();
+          return i;
+        }
+        return i + 1;
+      });
+      tiltLocked.current = false;
+    }, 600);
+  }, [deck.length, finishRound]);
+
+  // Timer countdown
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      finishRound();
+      return;
+    }
+    const id = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
+    return () => clearTimeout(id);
+  }, [timeLeft, finishRound]);
+
+  // Device orientation — beta: tilt up = negative, tilt down = positive
+  useEffect(() => {
+    const THRESHOLD = 30;
+
+    function handleOrientation(e: DeviceOrientationEvent) {
+      if (doneRef.current || tiltLocked.current) return;
+      const beta = e.beta;
+      if (beta === null) return;
+      if (beta < -THRESHOLD) handleCorrect();
+      else if (beta > THRESHOLD) handleSkip();
+    }
+
+    // Request permission on iOS 13+
+    const evt = DeviceOrientationEvent as unknown as {
+      requestPermission?: () => Promise<string>;
+    };
+    if (typeof evt.requestPermission === "function") {
+      evt.requestPermission().then((state) => {
+        if (state === "granted") {
+          window.addEventListener("deviceorientation", handleOrientation);
+        }
+      });
+    } else {
+      window.addEventListener("deviceorientation", handleOrientation);
+    }
+
+    return () => window.removeEventListener("deviceorientation", handleOrientation);
+  }, [handleCorrect, handleSkip]);
+
+  const timePercent = (timeLeft / timerSeconds) * 100;
+  const isWarning = timeLeft <= 10;
+
+  return (
+    <div
+      className="fixed inset-0 bg-black overflow-hidden select-none"
+      style={{ touchAction: "none" }}
+    >
+      {/* Flash feedback overlay */}
+      {flash && (
+        <div
+          className={`absolute inset-0 z-40 flex items-center justify-center transition-opacity duration-300 ${
+            flash === "correct" ? "bg-green-500/50" : "bg-red-500/50"
+          }`}
+        >
+          <span className="text-white text-9xl font-black" style={{ transform: "rotate(-90deg)" }}>
+            {flash === "correct" ? "✓" : "✗"}
+          </span>
+        </div>
+      )}
+
+      {/* Landscape content — CSS rotation trick */}
+      <div
+        className="absolute flex flex-col items-center justify-center"
+        style={{
+          width: "100vh",
+          height: "100vw",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%) rotate(-90deg)",
+        }}
+      >
+        {/* Tap zone — upper half = correct */}
+        <button
+          className="absolute top-0 left-0 right-0 z-10 opacity-0"
+          style={{ height: "45%" }}
+          onClick={handleCorrect}
+        />
+        {/* Tap zone — lower half = skip */}
+        <button
+          className="absolute bottom-0 left-0 right-0 z-10 opacity-0"
+          style={{ height: "45%" }}
+          onClick={handleSkip}
+        />
+
+        {/* Category label — left of landscape */}
+        <div className="absolute left-6 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+          <p className="text-xs font-bold tracking-widest text-white/30 uppercase">
+            {card?.categoryName ?? ""}
+          </p>
+        </div>
+
+        {/* Timer — right of landscape */}
+        <div className="absolute right-6 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+          <p
+            className={`text-2xl font-black tabular-nums ${
+              isWarning ? "text-red-400" : "text-white/50"
+            }`}
+          >
+            {timeLeft}s
+          </p>
+        </div>
+
+        {/* Tilt hints */}
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center gap-0.5 opacity-20">
+          <span className="text-white text-xs font-black">▲</span>
+          <span className="text-white text-[10px] font-bold tracking-wider">UHÁDNUTÉ</span>
+        </div>
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center gap-0.5 opacity-20">
+          <span className="text-white text-[10px] font-bold tracking-wider">PRESKOČIŤ</span>
+          <span className="text-white text-xs font-black">▼</span>
+        </div>
+
+        {/* Main word */}
+        <div className="z-20 px-24 text-center pointer-events-none">
+          <p
+            className="font-black text-white leading-tight"
+            style={{ fontSize: "clamp(2.2rem, 9vmax, 5rem)" }}
+          >
+            {card?.word ?? ""}
+          </p>
+        </div>
+      </div>
+
+      {/* Timer bar at bottom of portrait screen */}
+      <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-white/10 z-50">
+        <div
+          className={`h-full transition-all duration-1000 ease-linear ${
+            isWarning ? "bg-red-500" : "bg-cyan-400"
+          }`}
+          style={{ width: `${timePercent}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+// ─── Main ─────────────────────────────────────────────────────────────────────
 
 export default function HadajKtoSom({ onBack }: { onBack: () => void }) {
   const [phase, setPhase] = useState<Phase>("setup");
-  const [assignments, setAssignments] = useState<PlayerAssignment[]>([]);
-  const [assignIdx, setAssignIdx] = useState(0); // which player is currently seeing others' char
-  const [showChar, setShowChar] = useState(false); // is the character visible on screen
-  const [guessCount, setGuessCount] = useState(0);
-  const [focusedPlayer, setFocusedPlayer] = useState<number | null>(null);
+  const [players, setPlayers] = useState<PlayerScore[]>([]);
+  const [currentDeck, setCurrentDeck] = useState<Card[]>([]);
+  const [currentPlayer, setCurrentPlayer] = useState(0);
+  const [timerSeconds, setTimerSeconds] = useState(60);
+  const [allCatIds, setAllCatIds] = useState<string[]>([CHARACTER_CATEGORIES[0].id]);
 
-  function startGame(names: string[], catId: string) {
-    const cat =
-      CHARACTER_CATEGORIES.find((c) => c.id === catId) ??
-      CHARACTER_CATEGORIES[0];
-    setAssignments(buildAssignments(names, cat));
-    setAssignIdx(0);
-    setShowChar(false);
-    setGuessCount(0);
-    setFocusedPlayer(null);
-    setPhase("assign");
+  function handleSetupStart(names: string[], catIds: string[], timer: number) {
+    setAllCatIds(catIds);
+    setTimerSeconds(timer);
+    setPlayers(names.map((name) => ({ name, correct: 0, skipped: 0, played: false })));
+    setCurrentPlayer(0);
+    setPhase("who-starts");
   }
 
-  // The current player during assignment phase
-  const assigningPlayer = assignments[assignIdx];
-  // What the current player's character looks like to OTHERS
-  // (others hold the phone and see THIS screen; current player must NOT look)
-  // After seeing, cover screen, then next player
-
-  function handleShowCharacter() {
-    setShowChar(true);
+  function startPlaying() {
+    setCurrentDeck(buildDeck(allCatIds));
+    setPhase("playing");
   }
 
-  function handleCharacterSeen() {
-    // Move to cover between players
-    setShowChar(false);
-    if (assignIdx < assignments.length - 1) {
-      setPhase("cover");
-    } else {
-      setPhase("play");
-    }
-  }
-
-  function handleCoverNext() {
-    setAssignIdx((i) => i + 1);
-    setShowChar(false);
-    setPhase("assign");
-  }
-
-  function markGuessed(i: number) {
-    const newCount = guessCount + 1;
-    setGuessCount(newCount);
-    setAssignments((prev) =>
-      prev.map((a, idx) =>
-        idx === i ? { ...a, guessed: true, guessOrder: newCount } : a
+  function handleRoundDone(correct: number, skipped: number) {
+    setPlayers((prev) =>
+      prev.map((p, i) =>
+        i === currentPlayer ? { ...p, correct, skipped, played: true } : p
       )
     );
-    setFocusedPlayer(null);
-    if (newCount >= assignments.length) {
-      setPhase("result");
+    setPhase("round-result");
+  }
+
+  function handleNext() {
+    const next = currentPlayer + 1;
+    if (next >= players.length) {
+      setPhase("final-result");
+    } else {
+      setCurrentPlayer(next);
+      setPhase("who-starts");
     }
   }
 
-  function resetGame() {
-    setAssignments(buildAssignments(assignments.map((a) => a.name), CHARACTER_CATEGORIES.find((c) =>
-      c.characters.includes(assignments[0]?.character)
-    ) ?? CHARACTER_CATEGORIES[0]));
-    setAssignIdx(0);
-    setShowChar(false);
-    setGuessCount(0);
-    setFocusedPlayer(null);
-    setPhase("assign");
-  }
-
-  // ── Render ─────────────────────────────────────────────────────────────────
-
+  // ── Setup ─────────────────────────────────────────────────────────────────
   if (phase === "setup") {
-    return <SetupScreen onBack={onBack} onStart={startGame} />;
+    return <SetupScreen onBack={onBack} onStart={handleSetupStart} />;
   }
 
-  // Assignment phase: show current player's character to others
-  if (phase === "assign" && assigningPlayer) {
-    return (
-      <Shell>
-        <TopBar title="Prideľovanie postáv" onBack={() => setPhase("setup")} />
-        <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-          <div className="text-sm font-bold uppercase tracking-widest text-white/40">
-            Hráč {assignIdx + 1} z {assignments.length}
-          </div>
-          <div className="text-3xl font-black">{assigningPlayer.name}</div>
-          <p className="text-sm text-white/50 max-w-xs">
-            <strong className="text-white">{assigningPlayer.name}</strong>, drž
-            telefón na čele — ostatní vidia tvoju postavu. Ty sa NEPOZERAJ!
-          </p>
-
-          {!showChar ? (
-            <button
-              onClick={handleShowCharacter}
-              className="flex h-44 w-full max-w-xs flex-col items-center justify-center gap-3 rounded-3xl border-2 border-dashed border-cyan-400/40 bg-cyan-500/10 active:scale-95 transition"
-            >
-              <span className="text-5xl">🎭</span>
-              <span className="text-base font-bold text-cyan-300">
-                Ostatní: klepnite pre zobrazenie
-              </span>
-            </button>
-          ) : (
-            <>
-              {/* Big character display — others read this */}
-              <div className="w-full max-w-xs rounded-3xl border-2 border-cyan-400/40 bg-cyan-500/15 p-8">
-                <p className="mb-2 text-xs uppercase tracking-widest text-cyan-400">
-                  Postava hráča {assigningPlayer.name}
-                </p>
-                <p className="text-4xl font-black leading-tight text-white">
-                  {assigningPlayer.character}
-                </p>
-                <p className="mt-4 text-sm text-white/50">
-                  Zapamätajte si ju! Hráč nesmie vidieť obrazovku.
-                </p>
-              </div>
-              <Button fullWidth onClick={handleCharacterSeen}>
-                Všetci videli ✓
-              </Button>
-            </>
-          )}
-        </div>
-      </Shell>
-    );
-  }
-
-  if (phase === "cover") {
-    const nextPlayer = assignments[assignIdx + 1];
+  // ── Who starts ────────────────────────────────────────────────────────────
+  if (phase === "who-starts") {
+    const p = players[currentPlayer];
+    const isFirst = currentPlayer === 0;
     return (
       <Shell>
         <TopBar title="Hádaj kto som" onBack={() => setPhase("setup")} />
         <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-          <div className="text-6xl">🙈</div>
-          <h2 className="text-2xl font-black">Zakry obrazovku!</h2>
-          <p className="text-white/60">
-            Odovzdaj telefón hráčovi{" "}
-            <strong className="text-white">{nextPlayer?.name}</strong>
+          <div className="text-6xl">🎭</div>
+          <p className="text-sm font-bold uppercase tracking-widest text-white/40">
+            {isFirst ? "Začína" : "Na rade je"}
           </p>
-          <Button fullWidth onClick={handleCoverNext}>
-            Som pripravený/á →
+          <h2 className="text-5xl font-black">{p?.name}</h2>
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-4 text-sm text-white/60 max-w-xs leading-relaxed">
+            <p className="mb-1 font-bold text-white">Ako hrať:</p>
+            <p>
+              Ostatní nakláňajú telefón <strong className="text-green-400">hore</strong> keď hráč uhádne,{" "}
+              <strong className="text-red-400">dole</strong> keď nevie.
+              Alebo klepnite na hornú/dolnú časť obrazovky.
+            </p>
+          </div>
+          <Button fullWidth onClick={startPlaying}>
+            🚀 Začať!
           </Button>
         </div>
       </Shell>
     );
   }
 
-  if (phase === "play") {
-    const remaining = assignments.filter((a) => !a.guessed);
-    const guessed = assignments.filter((a) => a.guessed);
+  // ── Playing ───────────────────────────────────────────────────────────────
+  if (phase === "playing") {
+    return (
+      <PlayingScreen
+        deck={currentDeck}
+        timerSeconds={timerSeconds}
+        onDone={handleRoundDone}
+      />
+    );
+  }
+
+  // ── Round result ──────────────────────────────────────────────────────────
+  if (phase === "round-result") {
+    const p = players[currentPlayer];
+    const isLast = currentPlayer >= players.length - 1;
+    const nextName = !isLast ? players[currentPlayer + 1]?.name : null;
 
     return (
       <Shell>
-        <TopBar title="Hádaj kto som" onBack={onBack} />
+        <TopBar title="Výsledok kola" />
+        <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
+          <div className="text-6xl">⏱️</div>
+          <h2 className="text-3xl font-black">{p?.name}</h2>
 
-        <div className="mb-4 rounded-3xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-sm text-white/70">
-          Každý sa pýta skupiny otázky na <strong className="text-white">áno/nie</strong>{" "}
-          a snaží sa uhádnuť, kto je. Keď niekto správne uhádne, klepnite jeho meno.
-        </div>
-
-        {/* Still guessing */}
-        {remaining.length > 0 && (
-          <div className="mb-4">
-            <p className="mb-2 text-xs uppercase tracking-widest text-white/40">
-              Ešte neuhádli
-            </p>
-            <div className="flex flex-col gap-2">
-              {remaining.map((p, i) => {
-                const idx = assignments.findIndex((a) => a.name === p.name);
-                const focused = focusedPlayer === idx;
-                return (
-                  <div key={idx}>
-                    <button
-                      onClick={() =>
-                        setFocusedPlayer(focused ? null : idx)
-                      }
-                      className={`w-full flex items-center gap-4 rounded-3xl border p-4 text-left active:scale-[0.98] transition ${
-                        focused
-                          ? "border-cyan-400/40 bg-cyan-500/15"
-                          : "border-white/10 bg-white/5"
-                      }`}
-                    >
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-cyan-500/20 text-xl font-black text-cyan-300">
-                        {p.name.charAt(0).toUpperCase()}
-                      </div>
-                      <span className="flex-1 text-lg font-bold">{p.name}</span>
-                      <span className="text-white/30">›</span>
-                    </button>
-                    {focused && (
-                      <div className="mt-1 ml-4 flex gap-2">
-                        <button
-                          onClick={() => markGuessed(idx)}
-                          className="flex-1 rounded-2xl border border-green-500/30 bg-green-500/15 py-3 text-sm font-bold text-green-300 active:scale-95"
-                        >
-                          ✅ Uhádol/a!
-                        </button>
-                        <button
-                          onClick={() => setFocusedPlayer(null)}
-                          className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/50 active:scale-95"
-                        >
-                          Zrušiť
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+          <div className="flex gap-4 w-full max-w-xs justify-center">
+            <div className="flex-1 rounded-3xl border border-green-500/30 bg-green-500/10 py-5">
+              <div className="text-5xl font-black text-green-400">{p?.correct ?? 0}</div>
+              <div className="text-xs uppercase tracking-widest text-white/40 mt-1">
+                Uhádnuté
+              </div>
+            </div>
+            <div className="flex-1 rounded-3xl border border-red-500/30 bg-red-500/10 py-5">
+              <div className="text-5xl font-black text-red-400">{p?.skipped ?? 0}</div>
+              <div className="text-xs uppercase tracking-widest text-white/40 mt-1">
+                Preskočené
+              </div>
             </div>
           </div>
-        )}
 
-        {/* Already guessed */}
-        {guessed.length > 0 && (
-          <div>
-            <p className="mb-2 text-xs uppercase tracking-widest text-white/40">
-              Uhádli
-            </p>
-            <div className="flex flex-col gap-2">
-              {guessed
-                .sort((a, b) => (a.guessOrder ?? 0) - (b.guessOrder ?? 0))
-                .map((p) => (
-                  <div
-                    key={p.name}
-                    className="flex items-center gap-4 rounded-3xl border border-green-500/20 bg-green-500/10 px-4 py-3"
-                  >
-                    <span className="text-green-400 text-xl">
-                      {p.guessOrder === 1
-                        ? "🥇"
-                        : p.guessOrder === 2
-                        ? "🥈"
-                        : p.guessOrder === 3
-                        ? "🥉"
-                        : "✅"}
-                    </span>
-                    <span className="flex-1 font-bold">{p.name}</span>
-                    <span className="text-sm text-white/50">{p.character}</span>
-                  </div>
-                ))}
-            </div>
-          </div>
-        )}
-
-        <div className="mt-6">
-          <Button fullWidth variant="secondary" onClick={() => setPhase("result")}>
-            Ukončiť hru
+          <Button fullWidth onClick={handleNext}>
+            {isLast
+              ? "🏆 Zobraziť výsledky"
+              : `➡️ Ďalší: ${nextName}`}
           </Button>
         </div>
       </Shell>
     );
   }
 
-  if (phase === "result") {
-    const sorted = [...assignments].sort(
-      (a, b) => (a.guessOrder ?? 999) - (b.guessOrder ?? 999)
-    );
+  // ── Final result ──────────────────────────────────────────────────────────
+  if (phase === "final-result") {
+    const sorted = [...players].sort((a, b) => b.correct - a.correct);
+    const winner = sorted[0];
+
     return (
       <Shell>
-        <TopBar title="Výsledok" onBack={() => setPhase("setup")} />
-        <div className="flex flex-1 flex-col gap-6">
-          <div className="text-center pt-4">
-            <div className="text-5xl mb-3">🎭</div>
-            <h2 className="text-2xl font-black">Koniec hry!</h2>
+        <TopBar title="Koniec hry" />
+        <div className="flex flex-1 flex-col gap-5 pt-2">
+          <div className="text-center">
+            <div className="text-5xl mb-3">🏆</div>
+            <h2 className="text-2xl font-black">Koniec!</h2>
+            {winner && (
+              <p className="text-white/50 text-sm mt-1">
+                Vyhráva{" "}
+                <strong className="text-white">{winner.name}</strong> s{" "}
+                {winner.correct}{" "}
+                {winner.correct === 1 ? "bodom" : winner.correct < 5 ? "bodmi" : "bodmi"}!
+              </p>
+            )}
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-4">
-            <p className="mb-3 text-xs uppercase tracking-widest text-white/40">
-              Poradie uhádnutia
-            </p>
-            <div className="flex flex-col gap-3">
-              {sorted.map((p, rank) => (
-                <div
-                  key={p.name}
-                  className={`flex items-center gap-4 rounded-2xl px-4 py-3 ${
-                    p.guessed
-                      ? "border border-green-500/20 bg-green-500/10"
-                      : "border border-white/5 bg-white/5 opacity-50"
-                  }`}
-                >
-                  <span className="text-xl w-8 text-center">
-                    {p.guessed
-                      ? rank === 0
-                        ? "🥇"
-                        : rank === 1
-                        ? "🥈"
-                        : rank === 2
-                        ? "🥉"
-                        : `${rank + 1}.`
-                      : "❓"}
-                  </span>
-                  <div className="flex-1">
-                    <div className="font-bold">{p.name}</div>
-                    <div className="text-sm text-white/50">{p.character}</div>
-                  </div>
-                  {p.guessed ? (
-                    <span className="text-xs text-green-400">Uhádol ✓</span>
-                  ) : (
-                    <span className="text-xs text-white/30">Neuhádol</span>
-                  )}
-                </div>
-              ))}
-            </div>
+          <div className="flex flex-col gap-2">
+            {sorted.map((p, rank) => (
+              <div
+                key={p.name}
+                className={`flex items-center gap-4 rounded-2xl px-4 py-3 border ${
+                  rank === 0
+                    ? "border-yellow-500/40 bg-yellow-500/10"
+                    : "border-white/10 bg-white/5"
+                }`}
+              >
+                <span className="text-xl w-8 text-center">
+                  {rank === 0 ? "🥇" : rank === 1 ? "🥈" : rank === 2 ? "🥉" : `${rank + 1}.`}
+                </span>
+                <span className="flex-1 font-bold">{p.name}</span>
+                <span className="text-green-400 font-black text-xl">{p.correct}</span>
+                <span className="text-white/30 text-sm">
+                  /{p.correct + p.skipped}
+                </span>
+              </div>
+            ))}
           </div>
 
-          <div className="flex gap-3">
-            <Button fullWidth onClick={resetGame}>
-              🔄 Nová hra
+          <div className="flex gap-3 mt-2">
+            <Button
+              fullWidth
+              onClick={() => {
+                setCurrentPlayer(0);
+                setPhase("who-starts");
+              }}
+            >
+              🔄 Hrať znova
             </Button>
-            <Button fullWidth variant="ghost" onClick={onBack}>
-              Domov
+            <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
+              Nastavenia
             </Button>
           </div>
+          <Button fullWidth variant="ghost" onClick={onBack}>
+            Domov
+          </Button>
         </div>
       </Shell>
     );
