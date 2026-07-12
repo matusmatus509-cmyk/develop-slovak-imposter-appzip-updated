@@ -1,440 +1,445 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { CATEGORIES } from "../../data/categories";
+import { useState, useEffect, useRef } from "react";
 import { Button, Shell, TopBar } from "../../components/ui";
 
-// ─── Types ───────────────────────────────────────────────────────────────────
+// ─── Constants ────────────────────────────────────────────────────────────────
 
-type Phase = "setup" | "game" | "eliminated" | "winner";
+// Slovak letters suitable for word categories
+const LETTERS = [
+  "A","B","C","D","E","F","G","H","I","J","K","L","M",
+  "N","O","P","R","S","T","U","V","Z",
+];
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
+function pickLetter(exclude?: string) {
+  const pool = exclude ? LETTERS.filter((l) => l !== exclude) : LETTERS;
+  return pool[Math.floor(Math.random() * pool.length)];
 }
 
-// ─── Setup ────────────────────────────────────────────────────────────────────
+// Colors
+const COLOR_TOP = "#e85577";    // Player 1 — red/pink
+const COLOR_TOP_DARK = "#9e2a40";
+const COLOR_BOT = "#6b70d8";    // Player 2 — blue/purple
+const COLOR_BOT_DARK = "#3a3e8a";
+
+// ─── Setup Screen ─────────────────────────────────────────────────────────────
 
 function SetupScreen({
   onBack,
   onStart,
 }: {
   onBack: () => void;
-  onStart: (names: string[], timePerWord: number, lives: number) => void;
+  onStart: (name1: string, name2: string, secsToEdge: number) => void;
 }) {
-  const [count, setCount] = useState(4);
-  const [names, setNames] = useState<string[]>(
-    Array.from({ length: 8 }, (_, i) => `Hráč ${i + 1}`)
-  );
-  const [timePerWord, setTimePerWord] = useState(5);
-  const [lives, setLives] = useState(3);
-
-  function updateName(i: number, val: string) {
-    setNames((prev) => prev.map((n, idx) => (idx === i ? val : n)));
-  }
-
-  function start() {
-    const trimmed = names.slice(0, count).map((n) => n.trim() || `Hráč ${n}`);
-    onStart(trimmed, timePerWord, lives);
-  }
+  const [name1, setName1] = useState("Hráč 1");
+  const [name2, setName2] = useState("Hráč 2");
+  const [speed, setSpeed] = useState(4); // seconds for ball to reach edge from centre
 
   return (
     <Shell>
-      <TopBar title="Slovny Ping Pong" onBack={onBack} />
+      <TopBar title="Slovný Ping Pong" onBack={onBack} />
 
       <div className="mb-5 rounded-3xl border border-green-500/20 bg-green-500/10 p-4 text-sm text-white/70 leading-relaxed">
-        Zavolajte kategóriu a hráči striedavo čo najrýchlejšie
-        hovoria <strong className="text-white">slová z tej kategórie</strong>.
-        Nestihneš, zopakovanie alebo chyba = strata života. Posledný ostáva víťaz!
+        Telefón položte na stôl. Každý sedí na svojej strane.
+        Hovorte slová na danú písmeno a{" "}
+        <strong className="text-white">klepnite na svoju polovicu</strong> po každom slove.
+        Čiara sa pohybuje smerom k vám — kto nestihne, prehráva!
       </div>
 
-      {/* Player count */}
+      {/* Player 1 */}
       <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 p-4">
-        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
-          Počet hráčov
+        <p className="mb-2 text-xs font-bold uppercase tracking-widest text-white/40">
+          Hráč 1 (horná strana — ružová)
         </p>
-        <div className="flex gap-2 flex-wrap">
-          {[2, 3, 4, 5, 6, 7, 8].map((n) => (
-            <button
-              key={n}
-              onClick={() => setCount(n)}
-              className={`h-10 w-10 rounded-2xl text-sm font-bold border transition active:scale-95 ${
-                count === n
-                  ? "border-green-400/60 bg-green-500/30 text-green-300"
-                  : "border-white/10 bg-white/5 text-white/50"
-              }`}
-            >
-              {n}
-            </button>
-          ))}
-        </div>
+        <input
+          value={name1}
+          onChange={(e) => setName1(e.target.value)}
+          placeholder="Hráč 1"
+          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-pink-400/60"
+        />
       </div>
 
-      {/* Names */}
-      <div className="mb-4 flex flex-col gap-2">
-        {Array.from({ length: count }, (_, i) => (
-          <input
-            key={i}
-            value={names[i]}
-            onChange={(e) => updateName(i, e.target.value)}
-            placeholder={`Hráč ${i + 1}`}
-            className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-green-400/60 focus:bg-white/10"
-          />
-        ))}
-      </div>
-
-      {/* Timer */}
+      {/* Player 2 */}
       <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 p-4">
+        <p className="mb-2 text-xs font-bold uppercase tracking-widest text-white/40">
+          Hráč 2 (dolná strana — modrá)
+        </p>
+        <input
+          value={name2}
+          onChange={(e) => setName2(e.target.value)}
+          placeholder="Hráč 2"
+          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-blue-400/60"
+        />
+      </div>
+
+      {/* Speed */}
+      <div className="mb-8 rounded-3xl border border-white/10 bg-white/5 p-4">
         <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
-          Čas na slovo
+          Rýchlosť
         </p>
         <div className="flex gap-2">
-          {[3, 5, 7, 10].map((t) => (
+          {[
+            { label: "Pomaly", val: 6 },
+            { label: "Stredne", val: 4 },
+            { label: "Rýchlo", val: 2.5 },
+            { label: "Šialene", val: 1.5 },
+          ].map((opt) => (
             <button
-              key={t}
-              onClick={() => setTimePerWord(t)}
-              className={`flex-1 rounded-2xl py-2.5 text-sm font-bold border transition active:scale-95 ${
-                timePerWord === t
+              key={opt.val}
+              onClick={() => setSpeed(opt.val)}
+              className={`flex-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 ${
+                speed === opt.val
                   ? "border-green-400/60 bg-green-500/30 text-green-300"
                   : "border-white/10 bg-white/5 text-white/50"
               }`}
             >
-              {t}s
+              {opt.label}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Lives */}
-      <div className="mb-6 rounded-3xl border border-white/10 bg-white/5 p-4">
-        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
-          Životy na hráča
-        </p>
-        <div className="flex gap-2">
-          {[1, 2, 3, 5].map((l) => (
-            <button
-              key={l}
-              onClick={() => setLives(l)}
-              className={`flex-1 rounded-2xl py-2.5 text-sm font-bold border transition active:scale-95 ${
-                lives === l
-                  ? "border-green-400/60 bg-green-500/30 text-green-300"
-                  : "border-white/10 bg-white/5 text-white/50"
-              }`}
-            >
-              {"❤️".repeat(l)}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <Button fullWidth onClick={start}>
-        🏓 Začať ping pong
+      <Button fullWidth onClick={() => onStart(name1.trim() || "Hráč 1", name2.trim() || "Hráč 2", speed)}>
+        🏓 Hrať!
       </Button>
     </Shell>
   );
 }
 
-// ─── Main Component ───────────────────────────────────────────────────────────
+// ─── Game Screen ──────────────────────────────────────────────────────────────
 
-export default function SlovnyPingPong({ onBack }: { onBack: () => void }) {
-  const [phase, setPhase] = useState<Phase>("setup");
-  const [playerNames, setPlayerNames] = useState<string[]>([]);
-  const [lives, setLivesState] = useState<number[]>([]);
-  const [maxLives, setMaxLives] = useState(3);
-  const [timePerWord, setTimePerWordState] = useState(5);
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(5);
-  const [category, setCategory] = useState(CATEGORIES[0]);
-  const [saidWords, setSaidWords] = useState<string[]>([]);
-  const [eliminatedName, setEliminatedName] = useState("");
-  const [winnerName, setWinnerName] = useState("");
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const [timerActive, setTimerActive] = useState(false);
+function GameScreen({
+  name1,
+  name2,
+  secsToEdge,
+  onBack,
+}: {
+  name1: string;
+  name2: string;
+  secsToEdge: number;
+  onBack: () => void;
+}) {
+  // ballY: 0 = top edge, 1 = bottom edge. Start in middle.
+  const [ballY, setBallY] = useState(0.5);
+  const [letter, setLetter] = useState(() => pickLetter());
+  // active = 0 → ball moves toward TOP (player 1 must answer)
+  // active = 1 → ball moves toward BOTTOM (player 2 must answer)
+  const [active, setActive] = useState<0 | 1>(() => (Math.random() < 0.5 ? 0 : 1));
+  const [result, setResult] = useState<{ loser: 0 | 1 } | null>(null);
 
-  const activePlayers = playerNames
-    .map((name, i) => ({ name, lives: lives[i], idx: i }))
-    .filter((p) => p.lives > 0);
+  // Refs for animation loop (avoid stale closures)
+  const ballYRef = useRef(0.5);
+  const activeRef = useRef<0 | 1>(active);
+  const gameOverRef = useRef(false);
+  const rafRef = useRef<number>(0);
+  const lastTsRef = useRef<number>(0);
+  const startTsRef = useRef<number>(0);
 
-  // Move to next active player
-  const nextActivePlayer = useCallback(
-    (fromIdx: number, currentLives: number[]) => {
-      const active = playerNames
-        .map((_, i) => i)
-        .filter((i) => currentLives[i] > 0);
-      if (active.length <= 1) {
-        const winnerId = active[0] ?? 0;
-        setWinnerName(playerNames[winnerId] ?? "");
-        setPhase("winner");
-        return;
-      }
-      const pos = active.indexOf(fromIdx);
-      const nextPos = (pos + 1) % active.length;
-      setCurrentIdx(active[nextPos]);
-      setTimeLeft(timePerWord);
-      setTimerActive(true);
-    },
-    [playerNames, timePerWord]
-  );
+  // BASE speed: fraction/sec so ball travels 0.5 in secsToEdge seconds
+  const baseSpeed = 0.5 / secsToEdge;
 
-  function loseLife(idx: number) {
-    const newLives = lives.map((l, i) => (i === idx ? l - 1 : l));
-    setLivesState(newLives);
-    setTimerActive(false);
-
-    if (newLives[idx] === 0) {
-      setEliminatedName(playerNames[idx]);
-      setPhase("eliminated");
-      // Check if only 1 left
-      const remaining = newLives.filter((l) => l > 0);
-      if (remaining.length <= 1) {
-        const winnerId = newLives.findIndex((l) => l > 0);
-        setWinnerName(playerNames[winnerId >= 0 ? winnerId : 0]);
-        setTimeout(() => setPhase("winner"), 1500);
-        return;
-      }
-      // resume after showing elimination
-      setTimeout(() => {
-        setPhase("game");
-        nextActivePlayer(idx, newLives);
-      }, 2000);
-    } else {
-      nextActivePlayer(idx, newLives);
-    }
-  }
-
-  // Timer countdown
+  // Keep activeRef in sync when we setActive from outside the loop
   useEffect(() => {
-    if (!timerActive || phase !== "game") return;
-    timerRef.current = setInterval(() => {
-      setTimeLeft((t) => {
-        if (t <= 1) {
-          clearInterval(timerRef.current!);
-          setTimerActive(false);
-          loseLife(currentIdx);
-          return 0;
-        }
-        return t - 1;
-      });
-    }, 1000);
-    return () => clearInterval(timerRef.current!);
-  }, [timerActive, currentIdx, phase]);
+    activeRef.current = active;
+  }, [active]);
 
-  function startGame(names: string[], time: number, startLives: number) {
-    const cat = CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)];
-    setPlayerNames(names);
-    setLivesState(Array(names.length).fill(startLives));
-    setMaxLives(startLives);
-    setTimePerWordState(time);
-    setCurrentIdx(0);
-    setTimeLeft(time);
-    setCategory(cat);
-    setSaidWords([]);
-    setTimerActive(true);
-    setPhase("game");
+  // Animation loop
+  useEffect(() => {
+    gameOverRef.current = false;
+    ballYRef.current = 0.5;
+    lastTsRef.current = 0;
+    startTsRef.current = 0;
+
+    function tick(ts: number) {
+      if (gameOverRef.current) return;
+
+      if (!startTsRef.current) startTsRef.current = ts;
+      const dt = lastTsRef.current ? (ts - lastTsRef.current) / 1000 : 0;
+      lastTsRef.current = ts;
+
+      // Gradually speed up: +1.5% per second elapsed
+      const elapsed = (ts - startTsRef.current) / 1000;
+      const speed = baseSpeed * (1 + elapsed * 0.015);
+
+      // Direction: active=0 moves toward top (negative), active=1 toward bottom (positive)
+      const dir = activeRef.current === 0 ? -1 : 1;
+      let newY = ballYRef.current + dir * speed * dt;
+
+      if (newY <= 0) {
+        newY = 0;
+        gameOverRef.current = true;
+        ballYRef.current = newY;
+        setBallY(newY);
+        setResult({ loser: 0 }); // top player (0) lost
+        return;
+      }
+      if (newY >= 1) {
+        newY = 1;
+        gameOverRef.current = true;
+        ballYRef.current = newY;
+        setBallY(newY);
+        setResult({ loser: 1 }); // bottom player (1) lost
+        return;
+      }
+
+      ballYRef.current = newY;
+      setBallY(newY);
+      rafRef.current = requestAnimationFrame(tick);
+    }
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [baseSpeed]); // only restarts when speed setting changes
+
+  function handleTap(side: 0 | 1) {
+    if (gameOverRef.current) return;
+    // Only active player (under pressure) can tap to bounce
+    if (side !== activeRef.current) return;
+    const other: 0 | 1 = side === 0 ? 1 : 0;
+    activeRef.current = other;
+    setActive(other);
   }
 
-  function handleWordOk() {
-    if (phase !== "game") return;
-    clearInterval(timerRef.current!);
-    setTimerActive(false);
-    setSaidWords((w) => [...w]);
-    nextActivePlayer(currentIdx, lives);
+  function restart() {
+    const newLetter = pickLetter(letter);
+    const newActive: 0 | 1 = Math.random() < 0.5 ? 0 : 1;
+    setLetter(newLetter);
+    setActive(newActive);
+    setResult(null);
+    setResult(null);
+    // Reset refs and restart animation by remounting effect
+    gameOverRef.current = false;
+    ballYRef.current = 0.5;
+    activeRef.current = newActive;
+    setBallY(0.5);
+    // trigger animation restart
+    lastTsRef.current = 0;
+    startTsRef.current = 0;
+    rafRef.current = requestAnimationFrame(function tick(ts) {
+      if (gameOverRef.current) return;
+      if (!startTsRef.current) startTsRef.current = ts;
+      const dt = lastTsRef.current ? (ts - lastTsRef.current) / 1000 : 0;
+      lastTsRef.current = ts;
+      const elapsed = (ts - startTsRef.current) / 1000;
+      const speed = baseSpeed * (1 + elapsed * 0.015);
+      const dir = activeRef.current === 0 ? -1 : 1;
+      let newY = ballYRef.current + dir * speed * dt;
+      if (newY <= 0) {
+        newY = 0; gameOverRef.current = true; ballYRef.current = newY;
+        setBallY(newY); setResult({ loser: 0 }); return;
+      }
+      if (newY >= 1) {
+        newY = 1; gameOverRef.current = true; ballYRef.current = newY;
+        setBallY(newY); setResult({ loser: 1 }); return;
+      }
+      ballYRef.current = newY; setBallY(newY);
+      rafRef.current = requestAnimationFrame(tick);
+    });
   }
 
-  function handleCheat() {
-    // Opponent challenges — current player loses a life
-    clearInterval(timerRef.current!);
-    setTimerActive(false);
-    loseLife(currentIdx);
-  }
+  const topPct = ballY * 100; // top half height %
+  const botPct = (1 - ballY) * 100; // bottom half height %
+  const isTopActive = active === 0;
 
-  function handleNewCategory() {
-    const cats = CATEGORIES.filter((c) => c.id !== category.id);
-    setCategory(cats[Math.floor(Math.random() * cats.length)]);
-    setSaidWords([]);
-    setTimeLeft(timePerWord);
-    setTimerActive(true);
-  }
+  return (
+    <div
+      className="fixed inset-0 overflow-hidden"
+      style={{ touchAction: "none", userSelect: "none" }}
+    >
+      {/* ── TOP HALF — Player 1 ── */}
+      <div
+        className="absolute left-0 right-0 top-0 flex items-center justify-center overflow-hidden"
+        style={{
+          height: `${topPct}%`,
+          backgroundColor: COLOR_TOP,
+          cursor: isTopActive ? "pointer" : "default",
+        }}
+        onPointerDown={() => handleTap(0)}
+      >
+        {/* Darker danger zone near the line (bottom of top half) */}
+        <div
+          className="absolute bottom-0 left-0 right-0"
+          style={{
+            height: "clamp(24px, 8%, 60px)",
+            backgroundColor: COLOR_TOP_DARK,
+          }}
+        />
 
-  // ── Render ─────────────────────────────────────────────────────────────────
-
-  if (phase === "setup") {
-    return <SetupScreen onBack={onBack} onStart={startGame} />;
-  }
-
-  const currentPlayer = playerNames[currentIdx] ?? "";
-  const progress = timeLeft / timePerWord;
-
-  if (phase === "game" || phase === "eliminated") {
-    return (
-      <Shell>
-        <TopBar title="Slovný Ping Pong" onBack={onBack} />
-
-        {/* Category banner */}
-        <div className="mb-4 rounded-3xl border border-green-500/30 bg-green-500/10 p-4 text-center">
-          <p className="text-xs uppercase tracking-widest text-white/40 mb-1">
-            Kategória
-          </p>
-          <p className="text-2xl font-black">
-            {category.icon} {category.name}
-          </p>
-          <button
-            onClick={handleNewCategory}
-            className="mt-2 text-xs text-green-400/70 underline"
+        {/* Content — rotated 180° so Player 1 reads from the top */}
+        <div
+          className="relative z-10 flex flex-col items-center justify-center gap-2 text-center"
+          style={{ transform: "rotate(180deg)", pointerEvents: "none" }}
+        >
+          <p
+            className="font-black text-white/90 tracking-tight leading-none"
+            style={{ fontSize: "clamp(1.4rem, 5vw, 2.2rem)" }}
           >
-            Zmeniť kategóriu
-          </button>
-        </div>
-
-        {/* Lives scoreboard */}
-        <div className="mb-4 flex flex-wrap gap-2">
-          {playerNames.map((name, i) => (
-            <div
-              key={i}
-              className={`flex-1 min-w-[80px] rounded-2xl border px-3 py-2 text-center text-xs ${
-                lives[i] === 0
-                  ? "border-white/5 bg-white/5 opacity-40"
-                  : i === currentIdx
-                  ? "border-green-400/40 bg-green-500/15"
-                  : "border-white/10 bg-white/5"
-              }`}
+            {name1}
+          </p>
+          <div
+            className="rounded-2xl px-4 py-2"
+            style={{ backgroundColor: "rgba(0,0,0,0.20)" }}
+          >
+            <p
+              className="font-black text-white leading-none"
+              style={{ fontSize: "clamp(2rem, 9vw, 3.5rem)" }}
             >
-              <div className="font-bold text-white truncate">{name}</div>
-              <div className="mt-0.5">
-                {Array(maxLives)
-                  .fill(0)
-                  .map((_, li) => (
-                    <span key={li} className={li < lives[i] ? "text-red-400" : "opacity-20"}>
-                      ❤️
-                    </span>
-                  ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Current player + timer */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-6 text-center">
-          {phase === "eliminated" ? (
-            <div className="text-center">
-              <div className="text-5xl mb-3">💀</div>
-              <p className="text-2xl font-black text-red-400">{eliminatedName}</p>
-              <p className="text-white/50 mt-1">vypadol/a!</p>
-            </div>
-          ) : (
-            <>
-              <p className="text-xs uppercase tracking-widest text-white/40">
-                Na rade
-              </p>
-              <p className="text-4xl font-black">{currentPlayer}</p>
-
-              {/* Circular timer */}
-              <div className="relative flex h-32 w-32 items-center justify-center">
-                <svg className="absolute inset-0 -rotate-90" viewBox="0 0 100 100">
-                  <circle
-                    cx="50" cy="50" r="44"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.08)"
-                    strokeWidth="8"
-                  />
-                  <circle
-                    cx="50" cy="50" r="44"
-                    fill="none"
-                    stroke={progress > 0.4 ? "#4ade80" : progress > 0.2 ? "#facc15" : "#f87171"}
-                    strokeWidth="8"
-                    strokeDasharray={`${2 * Math.PI * 44}`}
-                    strokeDashoffset={`${2 * Math.PI * 44 * (1 - progress)}`}
-                    strokeLinecap="round"
-                    style={{ transition: "stroke-dashoffset 0.9s linear, stroke 0.3s" }}
-                  />
-                </svg>
-                <span className="text-4xl font-black">{timeLeft}</span>
-              </div>
-
-              {/* Actions */}
-              <div className="flex w-full gap-3">
-                <button
-                  onClick={handleCheat}
-                  className="flex-1 rounded-2xl border border-red-500/30 bg-red-500/10 py-4 text-sm font-bold text-red-400 active:scale-95 transition"
-                >
-                  ❌ Chyba / Zopakovanie
-                </button>
-                <button
-                  onClick={handleWordOk}
-                  className="flex-1 rounded-2xl border border-green-500/30 bg-green-500/20 py-4 text-sm font-bold text-green-300 active:scale-95 transition"
-                >
-                  ✅ Slovo OK
-                </button>
-              </div>
-              <p className="text-xs text-white/30">
-                Stlač ✅ po každom platnom slove hráča
-              </p>
-            </>
+              Slová na{" "}
+              <span className="underline decoration-4 underline-offset-4">{letter}</span>
+            </p>
+          </div>
+          {isTopActive && (
+            <p className="text-white/70 font-bold text-sm animate-pulse">
+              ↓ KLEPNI PO KAŽDOM SLOVE ↓
+            </p>
           )}
         </div>
-      </Shell>
-    );
-  }
+      </div>
 
-  if (phase === "winner") {
-    return (
-      <Shell>
-        <TopBar title="Slovný Ping Pong" onBack={onBack} />
-        <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-          <div className="text-6xl">🏆</div>
-          <h2 className="text-3xl font-black">{winnerName}</h2>
-          <p className="text-white/60">vyhral/a slovný ping pong!</p>
+      {/* ── DIVIDING LINE ── */}
+      <div
+        className="absolute left-0 right-0 z-20 flex items-center"
+        style={{
+          top: `${topPct}%`,
+          transform: "translateY(-50%)",
+          height: "4px",
+          pointerEvents: "none",
+        }}
+      >
+        {/* Dashed white line */}
+        <div
+          className="w-full"
+          style={{
+            height: "4px",
+            backgroundImage:
+              "repeating-linear-gradient(90deg, white 0px, white 20px, transparent 20px, transparent 32px)",
+          }}
+        />
+      </div>
 
-          <div className="w-full rounded-3xl border border-white/10 bg-white/5 p-4">
-            <p className="mb-3 text-xs uppercase tracking-widest text-white/40">
-              Konečné poradie
-            </p>
-            {playerNames
-              .map((name, i) => ({ name, lives: lives[i] }))
-              .sort((a, b) => b.lives - a.lives)
-              .map((p, rank) => (
-                <div
-                  key={p.name}
-                  className="flex items-center justify-between py-2"
-                >
-                  <span className="font-bold">
-                    {rank === 0 ? "🥇 " : rank === 1 ? "🥈 " : rank === 2 ? "🥉 " : `${rank + 1}. `}
-                    {p.name}
-                  </span>
-                  <span className="text-sm text-white/50">
-                    {Array(maxLives)
-                      .fill(0)
-                      .map((_, li) => (
-                        <span key={li} className={li < p.lives ? "text-red-400" : "opacity-20"}>
-                          ❤️
-                        </span>
-                      ))}
-                  </span>
-                </div>
-              ))}
-          </div>
+      {/* ── BOTTOM HALF — Player 2 ── */}
+      <div
+        className="absolute left-0 right-0 bottom-0 flex items-center justify-center overflow-hidden"
+        style={{
+          height: `${botPct}%`,
+          backgroundColor: COLOR_BOT,
+          cursor: !isTopActive ? "pointer" : "default",
+        }}
+        onPointerDown={() => handleTap(1)}
+      >
+        {/* Darker danger zone near the line (top of bottom half) */}
+        <div
+          className="absolute top-0 left-0 right-0"
+          style={{
+            height: "clamp(24px, 8%, 60px)",
+            backgroundColor: COLOR_BOT_DARK,
+          }}
+        />
 
-          <div className="flex w-full gap-3">
-            <Button
-              fullWidth
-              onClick={() =>
-                startGame(playerNames, timePerWord, maxLives)
-              }
+        {/* Content */}
+        <div
+          className="relative z-10 flex flex-col items-center justify-center gap-2 text-center"
+          style={{ pointerEvents: "none" }}
+        >
+          <p
+            className="font-black text-white/90 tracking-tight leading-none"
+            style={{ fontSize: "clamp(1.4rem, 5vw, 2.2rem)" }}
+          >
+            {name2}
+          </p>
+          <div
+            className="rounded-2xl px-4 py-2"
+            style={{ backgroundColor: "rgba(0,0,0,0.20)" }}
+          >
+            <p
+              className="font-black text-white leading-none"
+              style={{ fontSize: "clamp(2rem, 9vw, 3.5rem)" }}
             >
-              🔄 Nová hra
-            </Button>
-            <Button fullWidth variant="ghost" onClick={onBack}>
-              Domov
-            </Button>
+              Slová na{" "}
+              <span className="underline decoration-4 underline-offset-4">{letter}</span>
+            </p>
+          </div>
+          {!isTopActive && (
+            <p className="text-white/70 font-bold text-sm animate-pulse">
+              ↑ KLEPNI PO KAŽDOM SLOVE ↑
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* ── RESULT OVERLAY ── */}
+      {result && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/75">
+          <div className="mx-6 flex flex-col items-center gap-5 rounded-3xl border border-white/15 bg-white/10 p-8 text-center backdrop-blur-md">
+            <div className="text-6xl">🏆</div>
+            <div>
+              <p className="text-lg font-bold text-white/60 mb-1">Vyhráva</p>
+              <p className="text-4xl font-black text-white">
+                {result.loser === 0 ? name2 : name1}
+              </p>
+            </div>
+            <p className="text-sm text-white/50">
+              {result.loser === 0 ? name1 : name2} nestihol/a!
+            </p>
+            <div className="flex w-full gap-3">
+              <button
+                onClick={restart}
+                className="flex-1 rounded-2xl bg-white/20 py-3.5 font-bold text-white active:scale-95 transition"
+              >
+                🔄 Znova
+              </button>
+              <button
+                onClick={onBack}
+                className="flex-1 rounded-2xl border border-white/20 py-3.5 font-bold text-white/70 active:scale-95 transition"
+              >
+                Domov
+              </button>
+            </div>
           </div>
         </div>
-      </Shell>
+      )}
+
+      {/* ── EXIT BUTTON (small, top-right corner) ── */}
+      {!result && (
+        <button
+          className="absolute right-4 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/30 text-white/50 active:scale-95"
+          style={{ top: `calc(${topPct}% - 18px)` }}
+          onPointerDown={(e) => { e.stopPropagation(); onBack(); }}
+        >
+          ✕
+        </button>
+      )}
+    </div>
+  );
+}
+
+// ─── Main ─────────────────────────────────────────────────────────────────────
+
+export default function SlovnyPingPong({ onBack }: { onBack: () => void }) {
+  const [gameKey, setGameKey] = useState(0);
+  const [gameParams, setGameParams] = useState<{
+    name1: string;
+    name2: string;
+    secsToEdge: number;
+  } | null>(null);
+
+  if (!gameParams) {
+    return (
+      <SetupScreen
+        onBack={onBack}
+        onStart={(name1, name2, secs) => {
+          setGameParams({ name1, name2, secsToEdge: secs });
+          setGameKey((k) => k + 1);
+        }}
+      />
     );
   }
 
-  return null;
+  return (
+    <GameScreen
+      key={gameKey}
+      name1={gameParams.name1}
+      name2={gameParams.name2}
+      secsToEdge={gameParams.secsToEdge}
+      onBack={onBack}
+    />
+  );
 }
