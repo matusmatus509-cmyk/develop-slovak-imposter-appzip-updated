@@ -22,7 +22,7 @@ export default function DrawingCanvas({
   const canvasWrapRef = useRef<HTMLDivElement>(null);
   const isDrawingRef = useRef(false);
   const lastPosRef = useRef<{ x: number; y: number } | null>(null);
-  // Snapshot of canvas before current player started drawing (for undo)
+  // Snapshot before current player's stroke (for undo)
   const committedRef = useRef<ImageData | null>(null);
 
   const n = settings.playerNames.length;
@@ -30,8 +30,8 @@ export default function DrawingCanvas({
   const totalTurns = n * strokesPerPlayer;
 
   const [turn, setTurn] = useState(0);
-  // show cover overlay between turns so next player can take the phone
-  const [showCover, setShowCover] = useState(true);
+  // true once the current player has lifted the pen after drawing
+  const [strokeDone, setStrokeDone] = useState(false);
 
   const currentPlayer = turn % n;
   const isLastTurn = turn >= totalTurns - 1;
@@ -41,7 +41,7 @@ export default function DrawingCanvas({
   const nextPlayer = (turn + 1) % n;
   const nextName = settings.playerNames[nextPlayer];
 
-  // ── Init canvas ──────────────────────────────────────────────────
+  // ── Init canvas (only once) ───────────────────────────────────────
   useEffect(() => {
     const canvas = canvasRef.current;
     const wrap = canvasWrapRef.current;
@@ -51,11 +51,10 @@ export default function DrawingCanvas({
     const ctx = canvas.getContext("2d")!;
     ctx.fillStyle = "#f8f7f2";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    // Save blank state as initial committed snapshot
     committedRef.current = ctx.getImageData(0, 0, canvas.width, canvas.height);
   }, []);
 
-  // ── Pointer helpers ──────────────────────────────────────────────
+  // ── Pointer helpers ───────────────────────────────────────────────
   function getPos(e: React.PointerEvent<HTMLCanvasElement>) {
     const canvas = canvasRef.current!;
     const rect = canvas.getBoundingClientRect();
@@ -66,12 +65,16 @@ export default function DrawingCanvas({
   }
 
   function handlePointerDown(e: React.PointerEvent<HTMLCanvasElement>) {
-    if (showCover) return;
+    // Block if stroke already done this turn
+    if (strokeDone) return;
     e.currentTarget.setPointerCapture(e.pointerId);
+    // Save snapshot before stroke starts
+    const canvas = canvasRef.current!;
+    const ctx = canvas.getContext("2d")!;
+    committedRef.current = ctx.getImageData(0, 0, canvas.width, canvas.height);
     isDrawingRef.current = true;
     const pos = getPos(e);
     lastPosRef.current = pos;
-    const ctx = canvasRef.current!.getContext("2d")!;
     ctx.beginPath();
     ctx.arc(pos.x, pos.y, 3, 0, Math.PI * 2);
     ctx.fillStyle = color;
@@ -79,7 +82,7 @@ export default function DrawingCanvas({
   }
 
   function handlePointerMove(e: React.PointerEvent<HTMLCanvasElement>) {
-    if (!isDrawingRef.current || !lastPosRef.current || showCover) return;
+    if (!isDrawingRef.current || !lastPosRef.current || strokeDone) return;
     const ctx = canvasRef.current!.getContext("2d")!;
     const pos = getPos(e);
     ctx.beginPath();
@@ -94,101 +97,34 @@ export default function DrawingCanvas({
   }
 
   function handlePointerUp() {
-    isDrawingRef.current = false;
-    lastPosRef.current = null;
+    if (isDrawingRef.current) {
+      isDrawingRef.current = false;
+      lastPosRef.current = null;
+      // Mark stroke as done — player can't draw more this turn
+      setStrokeDone(true);
+    }
   }
 
-  // ── Actions ──────────────────────────────────────────────────────
+  // ── Trash: undo current stroke ────────────────────────────────────
   function handleTrash() {
     const canvas = canvasRef.current;
     if (!canvas || !committedRef.current) return;
     const ctx = canvas.getContext("2d")!;
     ctx.putImageData(committedRef.current, 0, 0);
+    setStrokeDone(false);
   }
 
+  // ── Next player ───────────────────────────────────────────────────
   function handleNextPlayer() {
-    // Commit current canvas state before advancing
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext("2d")!;
-      committedRef.current = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    }
     if (isLastTurn) {
       onVote();
     } else {
       setTurn((t) => t + 1);
-      setShowCover(true);
+      setStrokeDone(false);
     }
   }
 
-  function handleStartDrawing() {
-    // Save snapshot at start of this player's turn (before they draw anything)
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext("2d")!;
-      committedRef.current = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    }
-    setShowCover(false);
-  }
-
-  // ── Cover overlay (pass phone) ───────────────────────────────────
-  if (showCover) {
-    return (
-      <div
-        className="fixed inset-0 flex flex-col items-center justify-center gap-6 px-6 text-center"
-        style={{ background: "linear-gradient(160deg, #0d1f0d 0%, #162716 100%)" }}
-      >
-        {/* X button */}
-        <button
-          onClick={onExit}
-          className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 text-lg"
-        >
-          ✕
-        </button>
-
-        {/* Avatar */}
-        <div
-          className="flex h-24 w-24 items-center justify-center rounded-full text-3xl font-black"
-          style={{
-            backgroundColor: color + "22",
-            color,
-            boxShadow: `0 0 0 4px ${color}, 0 0 24px 8px ${color}55`,
-          }}
-        >
-          {name.slice(0, 2).toUpperCase()}
-        </div>
-
-        {/* Name */}
-        <div>
-          <p className="text-xs font-bold uppercase tracking-widest text-white/40">
-            Odovzdaj telefón hráčovi
-          </p>
-          <h1
-            className="mt-2 text-3xl font-black uppercase tracking-wide"
-            style={{ color }}
-          >
-            {name}
-          </h1>
-        </div>
-
-        {/* Round info */}
-        <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-2.5 text-xs text-white/50">
-          Kolo {Math.floor(turn / n) + 1} z {strokesPerPlayer}
-        </div>
-
-        {/* Start button */}
-        <button
-          onClick={handleStartDrawing}
-          className="w-full max-w-xs rounded-2xl py-4 text-base font-black uppercase tracking-wide text-white"
-          style={{ background: `linear-gradient(135deg, ${color}bb, ${color})` }}
-        >
-          Začať kresliť ✏️
-        </button>
-      </div>
-    );
-  }
-
-  // ── Drawing UI ───────────────────────────────────────────────────
+  // ── Drawing UI ────────────────────────────────────────────────────
   return (
     <div
       className="fixed inset-0 flex flex-col overflow-hidden"
@@ -223,6 +159,11 @@ export default function DrawingCanvas({
         >
           NA RADE JE {name.toUpperCase()}
         </p>
+
+        {/* Status */}
+        <p className="mt-1 text-xs text-white/40">
+          {strokeDone ? "Ťah hotový — odovzdaj telefón" : "Nakresli jeden ťah"}
+        </p>
       </div>
 
       {/* ── Canvas ── */}
@@ -238,7 +179,7 @@ export default function DrawingCanvas({
             display: "block",
             touchAction: "none",
             userSelect: "none",
-            cursor: "crosshair",
+            cursor: strokeDone ? "default" : "crosshair",
           }}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
@@ -246,7 +187,7 @@ export default function DrawingCanvas({
           onPointerLeave={handlePointerUp}
         />
 
-        {/* Color legend top-right of canvas */}
+        {/* Color legend top-right */}
         <div className="absolute right-3 top-3 flex flex-col gap-1.5">
           {settings.playerNames.map((pName, i) => (
             <div key={i} className="flex items-center gap-1.5">
@@ -266,18 +207,20 @@ export default function DrawingCanvas({
         <div className="flex gap-3">
           <button
             onClick={handleNextPlayer}
-            className="flex-1 rounded-2xl py-4 text-sm font-black text-white"
+            disabled={!strokeDone}
+            className="flex-1 rounded-2xl py-4 text-sm font-black text-white disabled:opacity-30 transition-opacity"
             style={{ background: "rgba(0,0,0,0.55)", border: "1px solid rgba(255,255,255,0.12)" }}
           >
             {isLastTurn ? "Hotovo ✓" : `Ďalší hráč → ${nextName}`}
           </button>
 
-          {/* Trash */}
+          {/* Trash: undo current stroke */}
           <button
             onClick={handleTrash}
-            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-xl"
+            disabled={!strokeDone}
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-xl disabled:opacity-30 transition-opacity"
             style={{ background: "#7c1a1a", border: "1px solid rgba(255,255,255,0.1)" }}
-            title="Vymazať môj ťah"
+            title="Zrušiť môj ťah"
           >
             🗑
           </button>
