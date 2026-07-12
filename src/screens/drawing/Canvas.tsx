@@ -1,18 +1,15 @@
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect } from "react";
 import type { GameSettings, RoundAssignment } from "../../types";
-import { Background, Button } from "../../components/ui";
 
 const PLAYER_COLORS = [
-  "#f97316", "#a855f7", "#06b6d4", "#22c55e",
-  "#f43f5e", "#eab308", "#3b82f6", "#ec4899",
-  "#14b8a6", "#8b5cf6", "#ef4444", "#84cc16",
+  "#ef4444", "#f97316", "#eab308", "#22c55e",
+  "#06b6d4", "#a855f7", "#ec4899", "#3b82f6",
+  "#14b8a6", "#8b5cf6", "#f43f5e", "#84cc16",
 ];
-
-type Phase = "cover" | "playing" | "done";
 
 export default function DrawingCanvas({
   settings,
-  assignment,
+  assignment: _assignment,
   onExit,
   onVote,
 }: {
@@ -25,26 +22,26 @@ export default function DrawingCanvas({
   const canvasWrapRef = useRef<HTMLDivElement>(null);
   const isDrawingRef = useRef(false);
   const lastPosRef = useRef<{ x: number; y: number } | null>(null);
+  // Snapshot of canvas before current player started drawing (for undo)
+  const committedRef = useRef<ImageData | null>(null);
 
   const n = settings.playerNames.length;
   const strokesPerPlayer = settings.strokesPerPlayer ?? 3;
   const totalTurns = n * strokesPerPlayer;
 
-  // turn goes 0 → totalTurns-1; after last stroke → done
   const [turn, setTurn] = useState(0);
-  const [phase, setPhase] = useState<Phase>("cover");
+  // show cover overlay between turns so next player can take the phone
+  const [showCover, setShowCover] = useState(true);
 
   const currentPlayer = turn % n;
-  const currentRound = Math.floor(turn / n) + 1; // 1-based round
-  const nextTurn = turn + 1;
-  const nextPlayer = nextTurn % n;
-  const isLastTurn = turn === totalTurns - 1;
+  const isLastTurn = turn >= totalTurns - 1;
 
   const color = PLAYER_COLORS[currentPlayer % PLAYER_COLORS.length];
   const name = settings.playerNames[currentPlayer];
+  const nextPlayer = (turn + 1) % n;
   const nextName = settings.playerNames[nextPlayer];
 
-  // Init canvas to full container size
+  // ── Init canvas ──────────────────────────────────────────────────
   useEffect(() => {
     const canvas = canvasRef.current;
     const wrap = canvasWrapRef.current;
@@ -52,10 +49,13 @@ export default function DrawingCanvas({
     canvas.width = wrap.clientWidth;
     canvas.height = wrap.clientHeight;
     const ctx = canvas.getContext("2d")!;
-    ctx.fillStyle = "#f0effa";
+    ctx.fillStyle = "#f8f7f2";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Save blank state as initial committed snapshot
+    committedRef.current = ctx.getImageData(0, 0, canvas.width, canvas.height);
   }, []);
 
+  // ── Pointer helpers ──────────────────────────────────────────────
   function getPos(e: React.PointerEvent<HTMLCanvasElement>) {
     const canvas = canvasRef.current!;
     const rect = canvas.getBoundingClientRect();
@@ -66,7 +66,7 @@ export default function DrawingCanvas({
   }
 
   function handlePointerDown(e: React.PointerEvent<HTMLCanvasElement>) {
-    if (phase !== "playing") return;
+    if (showCover) return;
     e.currentTarget.setPointerCapture(e.pointerId);
     isDrawingRef.current = true;
     const pos = getPos(e);
@@ -79,7 +79,7 @@ export default function DrawingCanvas({
   }
 
   function handlePointerMove(e: React.PointerEvent<HTMLCanvasElement>) {
-    if (!isDrawingRef.current || !lastPosRef.current || phase !== "playing") return;
+    if (!isDrawingRef.current || !lastPosRef.current || showCover) return;
     const ctx = canvasRef.current!.getContext("2d")!;
     const pos = getPos(e);
     ctx.beginPath();
@@ -94,87 +94,143 @@ export default function DrawingCanvas({
   }
 
   function handlePointerUp() {
-    if (!isDrawingRef.current) return;
     isDrawingRef.current = false;
     lastPosRef.current = null;
+  }
 
+  // ── Actions ──────────────────────────────────────────────────────
+  function handleTrash() {
+    const canvas = canvasRef.current;
+    if (!canvas || !committedRef.current) return;
+    const ctx = canvas.getContext("2d")!;
+    ctx.putImageData(committedRef.current, 0, 0);
+  }
+
+  function handleNextPlayer() {
+    // Commit current canvas state before advancing
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const ctx = canvas.getContext("2d")!;
+      committedRef.current = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    }
     if (isLastTurn) {
-      setPhase("done");
+      onVote();
     } else {
       setTurn((t) => t + 1);
-      setPhase("cover");
+      setShowCover(true);
     }
   }
 
-  // Stroke progress dots for current player
-  const playerStrokesDone = Math.floor(turn / n); // complete rounds done
-  const strokesRemaining = strokesPerPlayer - playerStrokesDone; // incl. current
+  function handleStartDrawing() {
+    // Save snapshot at start of this player's turn (before they draw anything)
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const ctx = canvas.getContext("2d")!;
+      committedRef.current = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    }
+    setShowCover(false);
+  }
 
-  return (
-    <div className="fixed inset-0 flex flex-col overflow-hidden bg-[#0b0a1a]">
-      <Background />
-
-      {/* ── HUD ── */}
-      <div className="relative z-10 flex shrink-0 items-center justify-between gap-3 border-b border-white/10 bg-black/30 px-4 py-3 backdrop-blur-sm">
-        {/* Back */}
+  // ── Cover overlay (pass phone) ───────────────────────────────────
+  if (showCover) {
+    return (
+      <div
+        className="fixed inset-0 flex flex-col items-center justify-center gap-6 px-6 text-center"
+        style={{ background: "linear-gradient(160deg, #0d1f0d 0%, #162716 100%)" }}
+      >
+        {/* X button */}
         <button
           onClick={onExit}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-sm"
+          className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 text-lg"
         >
-          ←
+          ✕
         </button>
 
-        {/* Current player */}
-        <div className="flex flex-1 items-center gap-2 overflow-hidden">
-          <span
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-black"
-            style={{ backgroundColor: color + "33", color }}
+        {/* Avatar */}
+        <div
+          className="flex h-24 w-24 items-center justify-center rounded-full text-3xl font-black"
+          style={{
+            backgroundColor: color + "22",
+            color,
+            boxShadow: `0 0 0 4px ${color}, 0 0 24px 8px ${color}55`,
+          }}
+        >
+          {name.slice(0, 2).toUpperCase()}
+        </div>
+
+        {/* Name */}
+        <div>
+          <p className="text-xs font-bold uppercase tracking-widest text-white/40">
+            Odovzdaj telefón hráčovi
+          </p>
+          <h1
+            className="mt-2 text-3xl font-black uppercase tracking-wide"
+            style={{ color }}
           >
-            {name.slice(0, 2).toUpperCase()}
-          </span>
-          <span className="truncate text-sm font-black" style={{ color }}>
             {name}
-          </span>
+          </h1>
         </div>
 
-        {/* Round / stroke counter */}
-        <div className="flex shrink-0 flex-col items-end gap-0.5">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">
-            Kolo {currentRound}/{strokesPerPlayer}
-          </span>
-          <div className="flex items-center gap-1">
-            {Array.from({ length: n }).map((_, i) => (
-              <span
-                key={i}
-                className="h-2 w-2 rounded-full transition-all"
-                style={{
-                  backgroundColor:
-                    i === currentPlayer && phase === "playing"
-                      ? color
-                      : i < currentPlayer || (phase !== "cover" && i <= currentPlayer)
-                      ? PLAYER_COLORS[i % PLAYER_COLORS.length] + "88"
-                      : "rgba(255,255,255,0.15)",
-                }}
-              />
-            ))}
-          </div>
+        {/* Round info */}
+        <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-2.5 text-xs text-white/50">
+          Kolo {Math.floor(turn / n) + 1} z {strokesPerPlayer}
         </div>
 
-        {/* Color legend button */}
-        <div className="ml-1 flex shrink-0 flex-wrap gap-1">
-          {settings.playerNames.map((_, i) => (
-            <span
-              key={i}
-              className="h-2.5 w-2.5 rounded-full"
-              style={{ backgroundColor: PLAYER_COLORS[i % PLAYER_COLORS.length] }}
-              title={settings.playerNames[i]}
-            />
-          ))}
+        {/* Start button */}
+        <button
+          onClick={handleStartDrawing}
+          className="w-full max-w-xs rounded-2xl py-4 text-base font-black uppercase tracking-wide text-white"
+          style={{ background: `linear-gradient(135deg, ${color}bb, ${color})` }}
+        >
+          Začať kresliť ✏️
+        </button>
+      </div>
+    );
+  }
+
+  // ── Drawing UI ───────────────────────────────────────────────────
+  return (
+    <div
+      className="fixed inset-0 flex flex-col overflow-hidden"
+      style={{ background: "linear-gradient(160deg, #0d1f0d 0%, #162716 100%)" }}
+    >
+      {/* ── Top: X + player info ── */}
+      <div className="relative z-10 flex shrink-0 flex-col items-center pt-5 pb-3 px-5">
+        {/* X */}
+        <button
+          onClick={onExit}
+          className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 text-lg"
+        >
+          ✕
+        </button>
+
+        {/* Avatar */}
+        <div
+          className="mb-3 flex h-20 w-20 items-center justify-center rounded-full text-2xl font-black"
+          style={{
+            backgroundColor: color + "22",
+            color,
+            boxShadow: `0 0 0 3px ${color}, 0 0 20px 6px ${color}55`,
+          }}
+        >
+          {name.slice(0, 2).toUpperCase()}
         </div>
+
+        {/* Player name */}
+        <p
+          className="text-sm font-black uppercase tracking-widest"
+          style={{ color }}
+        >
+          NA RADE JE {name.toUpperCase()}
+        </p>
       </div>
 
-      {/* ── Canvas area ── */}
-      <div ref={canvasWrapRef} className="relative flex-1 overflow-hidden">
+      {/* ── Canvas ── */}
+      <div
+        ref={canvasWrapRef}
+        className="relative mx-4 flex-1 overflow-hidden rounded-3xl shadow-2xl"
+        style={{ background: "#f8f7f2" }}
+      >
         <canvas
           ref={canvasRef}
           className="absolute inset-0 h-full w-full"
@@ -182,7 +238,7 @@ export default function DrawingCanvas({
             display: "block",
             touchAction: "none",
             userSelect: "none",
-            cursor: phase === "playing" ? "crosshair" : "default",
+            cursor: "crosshair",
           }}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
@@ -190,86 +246,52 @@ export default function DrawingCanvas({
           onPointerLeave={handlePointerUp}
         />
 
-        {/* ── Pass-phone cover overlay ── */}
-        {phase === "cover" && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-[#0b0a1a]/95 px-6 text-center">
-            <div
-              className="flex h-20 w-20 items-center justify-center rounded-full text-2xl font-black"
-              style={{ backgroundColor: color + "33", color }}
-            >
-              {name.slice(0, 2).toUpperCase()}
+        {/* Color legend top-right of canvas */}
+        <div className="absolute right-3 top-3 flex flex-col gap-1.5">
+          {settings.playerNames.map((pName, i) => (
+            <div key={i} className="flex items-center gap-1.5">
+              <span
+                className="h-3 w-3 rounded-full shadow-sm"
+                style={{ backgroundColor: PLAYER_COLORS[i % PLAYER_COLORS.length] }}
+              />
+              <span className="text-[9px] font-bold text-black/40">{pName}</span>
             </div>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/40">
-                Na rade je
-              </p>
-              <h1 className="mt-1 text-3xl font-black" style={{ color }}>
-                {name}
-              </h1>
-              <p className="mt-2 text-sm text-white/50">
-                Odovzdaj telefón hráčovi{" "}
-                <span className="font-bold text-white">{name}</span>.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs text-white/50">
-              ✏️ Kolo {currentRound} z {strokesPerPlayer} · 1 ťah
-            </div>
-            <Button
-              onClick={() => setPhase("playing")}
-              className="w-full max-w-xs"
-              style={{
-                background: `linear-gradient(135deg, ${color}bb, ${color})`,
-              }}
-            >
-              Začať kresliť ✏️
-            </Button>
-          </div>
-        )}
-
-        {/* ── Done overlay ── */}
-        {phase === "done" && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-[#0b0a1a]/80 px-6 text-center backdrop-blur-sm">
-            <div className="text-6xl">🎨</div>
-            <div>
-              <h1 className="text-2xl font-black">Všetci nakreslili!</h1>
-              <p className="mt-2 text-sm text-white/50">
-                Prediskutujte obrázok a hlasujte kto je podvodník.
-              </p>
-            </div>
-            <Button onClick={onVote} className="w-full max-w-xs">
-              Hlasovať 🗳️
-            </Button>
-          </div>
-        )}
+          ))}
+        </div>
       </div>
 
-      {/* ── Bottom bar (only while playing) ── */}
-      {phase === "playing" && (
-        <div className="relative z-10 shrink-0 border-t border-white/10 bg-black/30 px-4 py-2 backdrop-blur-sm">
-          <div className="flex items-center justify-between text-xs text-white/50">
-            <span>
-              Kreslíš 1 ťah — potom odovzdaj telefón
-              {!isLastTurn && (
-                <>
-                  {" "}
-                  hráčovi{" "}
-                  <span
-                    className="font-bold"
-                    style={{
-                      color: PLAYER_COLORS[nextPlayer % PLAYER_COLORS.length],
-                    }}
-                  >
-                    {nextName}
-                  </span>
-                </>
-              )}
-            </span>
-            <span className="font-bold text-white/70">
-              {turn + 1}/{totalTurns}
-            </span>
-          </div>
+      {/* ── Bottom buttons ── */}
+      <div className="relative z-10 shrink-0 px-4 pb-6 pt-3 space-y-3">
+        {/* Row: Ďalší hráč + Trash */}
+        <div className="flex gap-3">
+          <button
+            onClick={handleNextPlayer}
+            className="flex-1 rounded-2xl py-4 text-sm font-black text-white"
+            style={{ background: "rgba(0,0,0,0.55)", border: "1px solid rgba(255,255,255,0.12)" }}
+          >
+            {isLastTurn ? "Hotovo ✓" : `Ďalší hráč → ${nextName}`}
+          </button>
+
+          {/* Trash */}
+          <button
+            onClick={handleTrash}
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-xl"
+            style={{ background: "#7c1a1a", border: "1px solid rgba(255,255,255,0.1)" }}
+            title="Vymazať môj ťah"
+          >
+            🗑
+          </button>
         </div>
-      )}
+
+        {/* Reveal impostor */}
+        <button
+          onClick={onVote}
+          className="w-full rounded-2xl py-4 text-sm font-black text-white/90"
+          style={{ background: "rgba(0,0,0,0.55)", border: "1px solid rgba(255,255,255,0.12)" }}
+        >
+          Odhalit Podvodníka 🔍
+        </button>
+      </div>
     </div>
   );
 }
