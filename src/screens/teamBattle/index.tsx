@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   generateBattleRounds,
   shuffle,
-  PANTOMIMA_WORDS,
   SARADY_WORDS,
   TEAM_CHARACTERS,
   QUIZ_QUESTIONS,
@@ -31,7 +30,6 @@ type Phase =
 const TURN_BASED: GameType[] = ["pantomima", "sarady", "hadajktosom"];
 
 function wordsForGame(game: GameType): string[] {
-  if (game === "pantomima") return shuffle(PANTOMIMA_WORDS);
   if (game === "sarady") return shuffle(SARADY_WORDS);
   if (game === "hadajktosom") return shuffle(TEAM_CHARACTERS);
   return [];
