@@ -50,9 +50,12 @@ export default function TimedWords({
   const [flash, setFlash] = useState<"ok" | "skip" | null>(null);
   const [roundScore, setRoundScore] = useState(0);
 
-  // Pantomíma: each team picks exactly one difficulty for their whole turn.
+  // Pantomíma: each team picks exactly one difficulty for their whole turn,
+  // and acts out ONE word — skipping just swaps the word (same difficulty),
+  // it doesn't end the turn. First skip is free, every skip after that is -1.
   const [difficulty, setDifficulty] = useState<PantomimaDifficulty | null>(null);
   const [pantomimaWords, setPantomimaWords] = useState<string[]>([]);
+  const [skipCount, setSkipCount] = useState(0);
 
   const [a, b] = TEAM_COLORS;
   const color = teamIdx === 0 ? a : b;
@@ -66,6 +69,9 @@ export default function TimedWords({
   const teamWords = isPantomima ? pantomimaWords : sharedTeamWords;
   const currentWord = teamWords[wordIdx] ?? "—";
   const pointsPerWord = isPantomima && difficulty ? PANTOMIMA_DIFFICULTY_POINTS[difficulty] : 1;
+  // First skip is free, every skip after that costs 1 point.
+  const skipPenalty = Math.max(0, skipCount - 1);
+  const pendingPantomimaScore = Math.max(0, pointsPerWord - skipPenalty);
 
   function handlePickDifficulty(d: PantomimaDifficulty) {
     setDifficulty(d);
@@ -79,6 +85,7 @@ export default function TimedWords({
     setDifficulty(null);
     setPantomimaWords([]);
     setWordIdx(0);
+    setSkipCount(0);
     setTimeLeft(timeSeconds);
     setFlash(null);
     doneRef.current = false;
@@ -91,17 +98,31 @@ export default function TimedWords({
     if (timeLeft <= 0) {
       if (!doneRef.current) {
         doneRef.current = true;
-        setRoundScore(correctRef.current * pointsPerWord);
+        // Pantomíma: time ran out before the word was guessed — no points.
+        setRoundScore(isPantomima ? 0 : correctRef.current * pointsPerWord);
         setSubPhase("team-done");
       }
       return;
     }
     const id = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
     return () => clearTimeout(id);
-  }, [subPhase, timeLeft, pointsPerWord]);
+  }, [subPhase, timeLeft, pointsPerWord, isPantomima]);
 
   function handleCorrect() {
     if (doneRef.current) return;
+
+    if (isPantomima) {
+      // Pantomíma: only one word per turn — a correct guess ends the turn.
+      doneRef.current = true;
+      setFlash("ok");
+      setTimeout(() => {
+        setFlash(null);
+        setRoundScore(pendingPantomimaScore);
+        setSubPhase("team-done");
+      }, 500);
+      return;
+    }
+
     correctRef.current += 1;
     setFlash("ok");
     setTimeout(() => {
@@ -118,6 +139,24 @@ export default function TimedWords({
 
   function handleSkip() {
     if (doneRef.current) return;
+
+    if (isPantomima) {
+      // Skipping just swaps the word (same difficulty) — the turn keeps going.
+      if (wordIdx + 1 >= teamWords.length) {
+        doneRef.current = true;
+        setRoundScore(0);
+        setSubPhase("team-done");
+        return;
+      }
+      setFlash("skip");
+      setSkipCount((c) => c + 1);
+      setTimeout(() => {
+        setFlash(null);
+        setWordIdx((i) => i + 1);
+      }, 400);
+      return;
+    }
+
     setFlash("skip");
     setTimeout(() => {
       setFlash(null);
@@ -281,10 +320,10 @@ export default function TimedWords({
           </div>
           <div className="text-right">
             <p className="text-xs text-white/30 uppercase tracking-widest">
-              {isPantomima ? "Body" : "Uhádnuté"}
+              {isPantomima ? "Za slovo" : "Uhádnuté"}
             </p>
             <p className="text-3xl font-black text-white">
-              {isPantomima ? correctRef.current * pointsPerWord : correctRef.current}
+              {isPantomima ? pendingPantomimaScore : correctRef.current}
             </p>
           </div>
         </div>
@@ -299,9 +338,17 @@ export default function TimedWords({
 
         {/* Word */}
         <div className="flex-1 flex flex-col items-center justify-center px-8 text-center gap-4">
-          <p className="text-xs font-bold uppercase tracking-widest text-white/30">
-            Slovo {wordIdx + 1} / {teamWords.length}
-          </p>
+          {isPantomima ? (
+            <p className="text-xs font-bold uppercase tracking-widest text-white/30">
+              {skipCount === 0
+                ? "Uhádni toto slovo"
+                : `Preskočené: ${skipCount}× (−${skipPenalty} b)`}
+            </p>
+          ) : (
+            <p className="text-xs font-bold uppercase tracking-widest text-white/30">
+              Slovo {wordIdx + 1} / {teamWords.length}
+            </p>
+          )}
           <p
             className="font-black text-white leading-tight"
             style={{ fontSize: "clamp(2rem, 10vw, 4rem)" }}
@@ -323,7 +370,11 @@ export default function TimedWords({
             className="flex-1 rounded-2xl py-5 text-base font-black text-white/70"
             style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}
           >
-            ⏭ Preskočiť
+            {isPantomima
+              ? skipCount === 0
+                ? "⏭ Preskočiť (zadarmo)"
+                : "⏭ Preskočiť (−1 b)"
+              : "⏭ Preskočiť"}
           </button>
           <button
             onClick={handleCorrect}
@@ -359,7 +410,8 @@ export default function TimedWords({
         </p>
         {isPantomima && difficulty && (
           <p className="text-xs text-white/30 mt-1">
-            {correctRef.current} × {PANTOMIMA_DIFFICULTY_LABELS[difficulty]} ({PANTOMIMA_DIFFICULTY_POINTS[difficulty]} b)
+            {PANTOMIMA_DIFFICULTY_LABELS[difficulty]} ({PANTOMIMA_DIFFICULTY_POINTS[difficulty]} b)
+            {skipCount > 0 && ` − preskočenia: ${skipCount}× (−${skipPenalty} b)`}
           </p>
         )}
       </div>
