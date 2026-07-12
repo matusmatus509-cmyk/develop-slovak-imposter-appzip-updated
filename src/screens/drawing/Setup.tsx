@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { CATEGORIES } from "../../data/categories";
+import { DRAWING_CATEGORIES } from "../../data/drawingCategories";
 import type { GameSettings } from "../../types";
-import { Button, Chip, Shell, Stepper, Toggle, TopBar } from "../../components/ui";
+import { Button, Chip, Shell, Stepper, TopBar } from "../../components/ui";
 import { maxImpostorsFor } from "../../utils/gameLogic";
 
 export default function DrawingSetup({
@@ -14,9 +14,13 @@ export default function DrawingSetup({
   onStart: (settings: GameSettings) => void;
 }) {
   const [players, setPlayers] = useState<string[]>(initial.playerNames);
-  const [categoryIds, setCategoryIds] = useState<string[]>(initial.categoryIds);
+  const [categoryIds, setCategoryIds] = useState<string[]>(
+    // seed with drawing category ids if initial has none of them
+    initial.categoryIds.some((id) => id.startsWith("draw-"))
+      ? initial.categoryIds
+      : DRAWING_CATEGORIES.map((c) => c.id)
+  );
   const [impostorCount, setImpostorCount] = useState(initial.impostorCount);
-  const [hintsEnabled, setHintsEnabled] = useState(initial.hintsEnabled);
   const [strokesPerPlayer, setStrokesPerPlayer] = useState(
     initial.strokesPerPlayer ?? 3
   );
@@ -52,7 +56,7 @@ export default function DrawingSetup({
       playerNames: players.map((p) => p.trim() || "Hráč"),
       categoryIds,
       impostorCount: Math.min(impostorCount, maxImpostors),
-      hintsEnabled,
+      hintsEnabled: false,
       noRepeatWords: initial.noRepeatWords,
       timerSeconds: initial.timerSeconds,
       strokesPerPlayer,
@@ -143,7 +147,7 @@ export default function DrawingSetup({
             Kategórie slov
           </h2>
           <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map((cat) => (
+            {DRAWING_CATEGORIES.map((cat) => (
               <Chip
                 key={cat.id}
                 active={categoryIds.includes(cat.id)}
@@ -154,16 +158,6 @@ export default function DrawingSetup({
               </Chip>
             ))}
           </div>
-        </section>
-
-        {/* Toggles */}
-        <section>
-          <Toggle
-            checked={hintsEnabled}
-            onChange={setHintsEnabled}
-            label="Nápoveda pre podvodníka"
-            description="Podvodník dostane nápovedu zo svojej kategórie"
-          />
         </section>
       </div>
 

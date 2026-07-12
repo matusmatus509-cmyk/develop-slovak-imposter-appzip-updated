@@ -6,6 +6,7 @@ import type {
   Screen,
 } from "./types";
 import { CATEGORIES } from "./data/categories";
+import { DRAWING_CATEGORIES } from "./data/drawingCategories";
 import { generateRound } from "./utils/gameLogic";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
@@ -84,7 +85,7 @@ export default function App() {
   }
 
   function startDrawingRound(s: GameSettings) {
-    const { assignment: a, usedWords: newUsed } = generateRound(s, CATEGORIES, usedWords);
+    const { assignment: a, usedWords: newUsed } = generateRound(s, DRAWING_CATEGORIES, usedWords);
     setDrawingAssignment(a);
     setUsedWords(newUsed);
     setDrawingVotedIndex(null);
