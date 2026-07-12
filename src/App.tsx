@@ -30,6 +30,7 @@ import HadajKtoSom from "./screens/minigames/HadajKtoSom";
 import IbaNepravda from "./screens/minigames/IbaNepravda";
 import KtoDostaneBombu from "./screens/minigames/KtoDostaneBombu";
 import HadajEmoji from "./screens/minigames/HadajEmoji";
+import TeamBattle from "./screens/teamBattle";
 
 const DEFAULT_SETTINGS: GameSettings = {
   playerNames: ["Hráč 1", "Hráč 2", "Hráč 3", "Hráč 4"],
@@ -290,6 +291,9 @@ export default function App() {
 
     case "hadajemoji":
       return <HadajEmoji onBack={() => setScreen("home")} />;
+
+    case "teambattle":
+      return <TeamBattle onHome={() => setScreen("home")} />;
 
     default:
       return <Home onNavigate={setScreen} />;

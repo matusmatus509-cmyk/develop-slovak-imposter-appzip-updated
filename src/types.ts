@@ -19,7 +19,8 @@ export type Screen =
   | "hadajktosom"
   | "ibanepravda"
   | "ktodostanebombu"
-  | "hadajemoji";
+  | "hadajemoji"
+  | "teambattle";
 
 export interface CategoryDef {
   id: string;

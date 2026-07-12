@@ -12,6 +12,14 @@ interface GameCard {
 
 const CARDS: GameCard[] = [
   {
+    screen: "teambattle",
+    title: "Tímová párty bitka",
+    subtitle: "Dva tímy súperia v pantomíme, šarádach, kvíze a ďalších minihierach",
+    icon: "⚔️",
+    gradient: "from-purple-600 via-violet-500 to-indigo-600",
+    big: true,
+  },
+  {
     screen: "impostor-setup",
     title: "Podvodník",
     subtitle: "Nájdi podvodníka v skupine skôr, než nájde tajné slovo on teba",
