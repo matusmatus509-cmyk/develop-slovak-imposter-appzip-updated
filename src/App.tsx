@@ -27,6 +27,9 @@ import DrawingResult from "./screens/drawing/Result";
 import SlovnaRosada from "./screens/minigames/SlovnaRosada";
 import SlovnyPingPong from "./screens/minigames/SlovnyPingPong";
 import HadajKtoSom from "./screens/minigames/HadajKtoSom";
+import IbaNepravda from "./screens/minigames/IbaNepravda";
+import KtoDostaneBombu from "./screens/minigames/KtoDostaneBombu";
+import HadajEmoji from "./screens/minigames/HadajEmoji";
 
 const DEFAULT_SETTINGS: GameSettings = {
   playerNames: ["Hráč 1", "Hráč 2", "Hráč 3", "Hráč 4"],
@@ -278,6 +281,15 @@ export default function App() {
 
     case "hadajktosom":
       return <HadajKtoSom onBack={() => setScreen("home")} />;
+
+    case "ibanepravda":
+      return <IbaNepravda onBack={() => setScreen("home")} />;
+
+    case "ktodostanebombu":
+      return <KtoDostaneBombu onBack={() => setScreen("home")} />;
+
+    case "hadajemoji":
+      return <HadajEmoji onBack={() => setScreen("home")} />;
 
     default:
       return <Home onNavigate={setScreen} />;

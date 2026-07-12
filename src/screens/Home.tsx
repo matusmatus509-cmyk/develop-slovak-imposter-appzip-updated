@@ -68,6 +68,27 @@ const CARDS: GameCard[] = [
     icon: "🎭",
     gradient: "from-cyan-500 to-blue-600",
   },
+  {
+    screen: "ibanepravda",
+    title: "Iba nepravda",
+    subtitle: "Na každú otázku musíš odpovedať klamstvom",
+    icon: "🤥",
+    gradient: "from-rose-500 to-pink-600",
+  },
+  {
+    screen: "ktodostanebombu",
+    title: "Kto dostane bombu",
+    subtitle: "Tikajúca bomba — podávajte rýchlo, nech nevybuchne u vás",
+    icon: "💣",
+    gradient: "from-orange-600 to-red-600",
+  },
+  {
+    screen: "hadajemoji",
+    title: "Hádaj emoji",
+    subtitle: "Uhádni čo sa skrýva za kombináciou emoji",
+    icon: "🤔",
+    gradient: "from-amber-400 to-yellow-500",
+  },
 ];
 
 export default function Home({

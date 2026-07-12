@@ -16,7 +16,10 @@ export type Screen =
   | "drawing-result"
   | "slovnarosada"
   | "pingpong"
-  | "hadajktosom";
+  | "hadajktosom"
+  | "ibanepravda"
+  | "ktodostanebombu"
+  | "hadajemoji";
 
 export interface CategoryDef {
   id: string;
