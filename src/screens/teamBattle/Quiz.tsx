@@ -5,7 +5,7 @@ import { TEAM_COLORS } from "../../data/teamBattle";
 type QuizPhase =
   | { t: "question" }
   | { t: "buzzed"; who: 0 | 1 }
-  | { t: "second-chance"; who: 0 | 1 } // other team gets chance
+  | { t: "second-chance"; who: 0 | 1 }
   | { t: "done" };
 
 const QUESTIONS_PER_ROUND = 5;
@@ -40,11 +40,9 @@ export default function TeamQuiz({
 
   function markWrong(who: 0 | 1) {
     if (phase.t === "buzzed") {
-      // Give other team a chance
       const other = who === 0 ? 1 : 0;
       setPhase({ t: "second-chance", who: other });
     } else {
-      // second-chance also wrong → no point
       nextQuestion(scores);
     }
   }
@@ -77,11 +75,15 @@ export default function TeamQuiz({
     >
       {/* Score bar */}
       <div className="shrink-0 flex items-center justify-between px-5 py-4">
-        {([0, 1] as const).map((idx) => (
+        {([0, 1] as const).map((idx, i) => (
           <div
             key={idx}
-            className="flex items-center gap-2 rounded-2xl px-4 py-2 font-black"
-            style={{ background: `${idx === 0 ? a : b}20`, border: `1px solid ${idx === 0 ? a : b}40` }}
+            className="flex items-center gap-2 rounded-2xl px-4 py-2 font-black transition-all"
+            style={{
+              background: `${idx === 0 ? a : b}20`,
+              border: `1px solid ${idx === 0 ? a : b}40`,
+              animation: `slideUp 0.5s ease-out ${i * 0.1}s both`,
+            }}
           >
             <span style={{ color: idx === 0 ? a : b }}>{idx === 0 ? "🔵" : "🔴"}</span>
             <span className="text-white text-lg">{scores[idx]}</span>
@@ -98,8 +100,13 @@ export default function TeamQuiz({
           {q.category}
         </p>
         <div
-          className="w-full rounded-3xl border p-8 text-center transition-all duration-300"
-          style={{ background: bgColor, borderColor }}
+          className="w-full rounded-3xl border p-8 text-center transition-all duration-300 glass"
+          style={{
+            background: bgColor,
+            borderColor,
+            animation: "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both",
+          }}
+          key={qIdx}
         >
           <p
             className="font-black text-white leading-snug"
@@ -108,18 +115,19 @@ export default function TeamQuiz({
             {q.question}
           </p>
 
-          {/* Show answer after buzzing */}
           {phase.t !== "question" && (
-            <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 px-5 py-3">
+            <div
+              className="mt-6 rounded-2xl border border-white/10 bg-white/5 px-5 py-3"
+              style={{ animation: "slideUp 0.4s ease-out" }}
+            >
               <p className="text-xs text-white/30 uppercase tracking-widest mb-1">Odpoveď</p>
               <p className="text-lg font-black text-green-400">{q.answer}</p>
             </div>
           )}
         </div>
 
-        {/* Second-chance notice */}
         {phase.t === "second-chance" && (
-          <p className="text-sm font-bold text-white/50">
+          <p className="text-sm font-bold text-white/50" style={{ animation: "fadeIn 0.3s ease-out" }}>
             Šanca pre{" "}
             <span style={{ color: phase.who === 0 ? a : b }}>{teamNames[phase.who]}</span>
           </p>
@@ -128,14 +136,13 @@ export default function TeamQuiz({
 
       {/* Buttons */}
       <div className="shrink-0 px-4 pb-6 pt-2 space-y-3">
-        {/* Buzzer buttons (question phase) */}
         {phase.t === "question" && (
           <div className="flex gap-3">
             {([0, 1] as const).map((idx) => (
               <button
                 key={idx}
                 onClick={() => buzz(idx)}
-                className="flex-1 rounded-2xl py-7 text-xl font-black text-white active:scale-[0.97] transition shadow-lg"
+                className="flex-1 rounded-2xl py-7 text-xl font-black text-white active:scale-[0.97] transition shadow-lg hover:brightness-110"
                 style={{
                   background: idx === 0 ? a : b,
                   boxShadow: `0 0 24px ${(idx === 0 ? a : b)}55`,
@@ -148,7 +155,6 @@ export default function TeamQuiz({
           </div>
         )}
 
-        {/* Judge buttons (after buzz) */}
         {(phase.t === "buzzed" || phase.t === "second-chance") && (
           <>
             <p className="text-center text-sm text-white/50">
@@ -160,14 +166,14 @@ export default function TeamQuiz({
             <div className="flex gap-3">
               <button
                 onClick={() => markWrong(activeTeam!)}
-                className="flex-1 rounded-2xl py-5 text-lg font-black text-white"
+                className="flex-1 rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition"
                 style={{ background: "#7c1a1a" }}
               >
                 ❌ Chyba
               </button>
               <button
                 onClick={() => markCorrect(activeTeam!)}
-                className="flex-1 rounded-2xl py-5 text-lg font-black text-white"
+                className="flex-1 rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition"
                 style={{ background: "#166534" }}
               >
                 ✅ Správne

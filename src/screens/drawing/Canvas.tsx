@@ -22,7 +22,6 @@ export default function DrawingCanvas({
   const canvasWrapRef = useRef<HTMLDivElement>(null);
   const isDrawingRef = useRef(false);
   const lastPosRef = useRef<{ x: number; y: number } | null>(null);
-  // Snapshot before current player's stroke (for undo)
   const committedRef = useRef<ImageData | null>(null);
 
   const n = settings.playerNames.length;
@@ -30,7 +29,6 @@ export default function DrawingCanvas({
   const totalTurns = n * strokesPerPlayer;
 
   const [turn, setTurn] = useState(0);
-  // true once the current player has lifted the pen after drawing
   const [strokeDone, setStrokeDone] = useState(false);
 
   const currentPlayer = turn % n;
@@ -41,7 +39,6 @@ export default function DrawingCanvas({
   const nextPlayer = (turn + 1) % n;
   const nextName = settings.playerNames[nextPlayer];
 
-  // ── Init canvas (only once) ───────────────────────────────────────
   useEffect(() => {
     const canvas = canvasRef.current;
     const wrap = canvasWrapRef.current;
@@ -54,7 +51,6 @@ export default function DrawingCanvas({
     committedRef.current = ctx.getImageData(0, 0, canvas.width, canvas.height);
   }, []);
 
-  // ── Pointer helpers ───────────────────────────────────────────────
   function getPos(e: React.PointerEvent<HTMLCanvasElement>) {
     const canvas = canvasRef.current!;
     const rect = canvas.getBoundingClientRect();
@@ -65,10 +61,8 @@ export default function DrawingCanvas({
   }
 
   function handlePointerDown(e: React.PointerEvent<HTMLCanvasElement>) {
-    // Block if stroke already done this turn
     if (strokeDone) return;
     e.currentTarget.setPointerCapture(e.pointerId);
-    // Save snapshot before stroke starts
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;
     committedRef.current = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -100,12 +94,10 @@ export default function DrawingCanvas({
     if (isDrawingRef.current) {
       isDrawingRef.current = false;
       lastPosRef.current = null;
-      // Mark stroke as done — player can't draw more this turn
       setStrokeDone(true);
     }
   }
 
-  // ── Trash: undo current stroke ────────────────────────────────────
   function handleTrash() {
     const canvas = canvasRef.current;
     if (!canvas || !committedRef.current) return;
@@ -114,7 +106,6 @@ export default function DrawingCanvas({
     setStrokeDone(false);
   }
 
-  // ── Next player ───────────────────────────────────────────────────
   function handleNextPlayer() {
     if (isLastTurn) {
       onVote();
@@ -124,35 +115,33 @@ export default function DrawingCanvas({
     }
   }
 
-  // ── Drawing UI ────────────────────────────────────────────────────
   return (
     <div
       className="fixed inset-0 flex flex-col overflow-hidden"
       style={{ background: "linear-gradient(160deg, #0d1f0d 0%, #162716 100%)" }}
     >
-      {/* ── Top: X + player info ── */}
+      {/* ── Top: exit + player info ── */}
       <div className="relative z-10 flex shrink-0 flex-col items-center pt-5 pb-3 px-5">
-        {/* X */}
         <button
           onClick={onExit}
-          className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 text-lg"
+          className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 text-lg transition hover:bg-white/20 active:scale-90"
         >
           ✕
         </button>
 
-        {/* Avatar */}
         <div
-          className="mb-3 flex h-20 w-20 items-center justify-center rounded-full text-2xl font-black"
+          className="mb-3 flex h-20 w-20 items-center justify-center rounded-full text-2xl font-black transition-all"
+          key={currentPlayer}
           style={{
             backgroundColor: color + "22",
             color,
             boxShadow: `0 0 0 3px ${color}, 0 0 20px 6px ${color}55`,
+            animation: "popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both",
           }}
         >
           {name.slice(0, 2).toUpperCase()}
         </div>
 
-        {/* Player name */}
         <p
           className="text-sm font-black uppercase tracking-widest"
           style={{ color }}
@@ -160,7 +149,6 @@ export default function DrawingCanvas({
           NA RADE JE {name.toUpperCase()}
         </p>
 
-        {/* Status */}
         <p className="mt-1 text-xs text-white/40">
           {strokeDone ? "Ťah hotový — odovzdaj telefón" : "Nakresli jeden ťah"}
         </p>
@@ -169,8 +157,8 @@ export default function DrawingCanvas({
       {/* ── Canvas ── */}
       <div
         ref={canvasWrapRef}
-        className="relative mx-4 flex-1 overflow-hidden rounded-3xl shadow-2xl"
-        style={{ background: "#f8f7f2" }}
+        className="relative mx-4 flex-1 overflow-hidden rounded-3xl shadow-2xl shadow-black/40 transition-shadow"
+        style={{ background: "#f8f7f2", animation: "scaleIn 0.5s ease-out" }}
       >
         <canvas
           ref={canvasRef}
@@ -187,7 +175,6 @@ export default function DrawingCanvas({
           onPointerLeave={handlePointerUp}
         />
 
-        {/* Color legend top-right */}
         <div className="absolute right-3 top-3 flex flex-col gap-1.5">
           {settings.playerNames.map((pName, i) => (
             <div key={i} className="flex items-center gap-1.5">
@@ -195,7 +182,7 @@ export default function DrawingCanvas({
                 className="h-3 w-3 rounded-full shadow-sm"
                 style={{ backgroundColor: PLAYER_COLORS[i % PLAYER_COLORS.length] }}
               />
-              <span className="text-[9px] font-bold text-black/40">{pName}</span>
+              <span className="text-[9px] font-bold text-black/35">{pName}</span>
             </div>
           ))}
         </div>
@@ -203,22 +190,20 @@ export default function DrawingCanvas({
 
       {/* ── Bottom buttons ── */}
       <div className="relative z-10 shrink-0 px-4 pb-6 pt-3 space-y-3">
-        {/* Row: Ďalší hráč + Trash */}
         <div className="flex gap-3">
           <button
             onClick={handleNextPlayer}
             disabled={!strokeDone}
-            className="flex-1 rounded-2xl py-4 text-sm font-black text-white disabled:opacity-30 transition-opacity"
+            className="flex-1 rounded-2xl py-4 text-sm font-black text-white disabled:opacity-30 transition-all active:scale-95 backdrop-blur-sm"
             style={{ background: "rgba(0,0,0,0.55)", border: "1px solid rgba(255,255,255,0.12)" }}
           >
             {isLastTurn ? "Hotovo ✓" : `Ďalší hráč → ${nextName}`}
           </button>
 
-          {/* Trash: undo current stroke */}
           <button
             onClick={handleTrash}
             disabled={!strokeDone}
-            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-xl disabled:opacity-30 transition-opacity"
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-xl disabled:opacity-30 transition-all active:scale-90 hover:brightness-110"
             style={{ background: "#7c1a1a", border: "1px solid rgba(255,255,255,0.1)" }}
             title="Zrušiť môj ťah"
           >
@@ -226,13 +211,12 @@ export default function DrawingCanvas({
           </button>
         </div>
 
-        {/* Reveal impostor */}
         <button
           onClick={onVote}
-          className="w-full rounded-2xl py-4 text-sm font-black text-white/90"
+          className="w-full rounded-2xl py-4 text-sm font-black text-white/90 active:scale-95 transition-all backdrop-blur-sm"
           style={{ background: "rgba(0,0,0,0.55)", border: "1px solid rgba(255,255,255,0.12)" }}
         >
-          Odhalit Podvodníka 🔍
+          Odhaliť Podvodníka 🔍
         </button>
       </div>
     </div>

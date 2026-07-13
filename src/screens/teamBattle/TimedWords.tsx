@@ -5,6 +5,9 @@ import {
   PANTOMIMA_WORDS_BY_DIFFICULTY,
   PANTOMIMA_DIFFICULTY_POINTS,
   PANTOMIMA_DIFFICULTY_LABELS,
+  SARADY_WORDS_BY_DIFFICULTY,
+  SARADY_DIFFICULTY_POINTS,
+  SARADY_DIFFICULTY_LABELS,
 } from "../../data/teamBattle";
 import { shuffle } from "../../data/teamBattle";
 
@@ -39,10 +42,12 @@ export default function TimedWords({
   onDone: (scores: [number, number]) => void;
 }) {
   const isPantomima = mode === "pantomima";
+  const isSarady = mode === "sarady";
+  const hasDifficulty = isPantomima || isSarady;
 
   const [teamIdx, setTeamIdx] = useState<0 | 1>(0);
   const [subPhase, setSubPhase] = useState<SubPhase>(
-    isPantomima ? "select-difficulty" : "ready"
+    hasDifficulty ? "select-difficulty" : "ready"
   );
   const [wordIdx, setWordIdx] = useState(0);
   const [timeLeft, setTimeLeft] = useState(timeSeconds);
@@ -50,11 +55,9 @@ export default function TimedWords({
   const [flash, setFlash] = useState<"ok" | "skip" | null>(null);
   const [roundScore, setRoundScore] = useState(0);
 
-  // Pantomíma: each team picks exactly one difficulty for their whole turn,
-  // and acts out ONE word — skipping just swaps the word (same difficulty),
-  // it doesn't end the turn. First skip is free, every skip after that is -1.
   const [difficulty, setDifficulty] = useState<PantomimaDifficulty | null>(null);
   const [pantomimaWords, setPantomimaWords] = useState<string[]>([]);
+  const [saradyWords, setSaradyWords] = useState<string[]>([]);
   const [skipCount, setSkipCount] = useState(0);
 
   const [a, b] = TEAM_COLORS;
@@ -63,42 +66,44 @@ export default function TimedWords({
   const doneRef = useRef(false);
   const correctRef = useRef(0);
 
-  // Split words between two teams (non-pantomima modes share one shuffled list)
   const half = Math.ceil(words.length / 2);
   const sharedTeamWords = teamIdx === 0 ? words.slice(0, half) : words.slice(half);
-  const teamWords = isPantomima ? pantomimaWords : sharedTeamWords;
+  const teamWords = isPantomima ? pantomimaWords : isSarady ? saradyWords : sharedTeamWords;
   const currentWord = teamWords[wordIdx] ?? "—";
-  const pointsPerWord = isPantomima && difficulty ? PANTOMIMA_DIFFICULTY_POINTS[difficulty] : 1;
-  // First skip is free, every skip after that costs 1 point.
+  const pointsPerWord = isPantomima && difficulty
+    ? PANTOMIMA_DIFFICULTY_POINTS[difficulty]
+    : 1;
   const skipPenalty = Math.max(0, skipCount - 1);
   const pendingPantomimaScore = Math.max(0, pointsPerWord - skipPenalty);
 
   function handlePickDifficulty(d: PantomimaDifficulty) {
     setDifficulty(d);
-    setPantomimaWords(shuffle(PANTOMIMA_WORDS_BY_DIFFICULTY[d]));
+    if (isSarady) {
+      setSaradyWords(shuffle(SARADY_WORDS_BY_DIFFICULTY[d]));
+    } else {
+      setPantomimaWords(shuffle(PANTOMIMA_WORDS_BY_DIFFICULTY[d]));
+    }
     setSubPhase("ready");
   }
 
-  // Reset state when team changes
   useEffect(() => {
-    setSubPhase(isPantomima ? "select-difficulty" : "ready");
+    setSubPhase(hasDifficulty ? "select-difficulty" : "ready");
     setDifficulty(null);
     setPantomimaWords([]);
+    setSaradyWords([]);
     setWordIdx(0);
     setSkipCount(0);
     setTimeLeft(timeSeconds);
     setFlash(null);
     doneRef.current = false;
     correctRef.current = 0;
-  }, [teamIdx, timeSeconds, isPantomima]);
+  }, [teamIdx, timeSeconds, hasDifficulty]);
 
-  // Timer
   useEffect(() => {
     if (subPhase !== "playing") return;
     if (timeLeft <= 0) {
       if (!doneRef.current) {
         doneRef.current = true;
-        // Pantomíma: time ran out before the word was guessed — no points.
         setRoundScore(isPantomima ? 0 : correctRef.current * pointsPerWord);
         setSubPhase("team-done");
       }
@@ -106,13 +111,11 @@ export default function TimedWords({
     }
     const id = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
     return () => clearTimeout(id);
-  }, [subPhase, timeLeft, pointsPerWord, isPantomima]);
+  }, [subPhase, timeLeft, pointsPerWord, isPantomima, isSarady]);
 
   function handleCorrect() {
     if (doneRef.current) return;
-
     if (isPantomima) {
-      // Pantomíma: only one word per turn — a correct guess ends the turn.
       doneRef.current = true;
       setFlash("ok");
       setTimeout(() => {
@@ -122,7 +125,21 @@ export default function TimedWords({
       }, 500);
       return;
     }
-
+    if (isSarady) {
+      correctRef.current += 1;
+      setFlash("ok");
+      setTimeout(() => {
+        setFlash(null);
+        if (wordIdx + 1 >= teamWords.length) {
+          doneRef.current = true;
+          setRoundScore(correctRef.current * pointsPerWord);
+          setSubPhase("team-done");
+        } else {
+          setWordIdx((i) => i + 1);
+        }
+      }, 500);
+      return;
+    }
     correctRef.current += 1;
     setFlash("ok");
     setTimeout(() => {
@@ -139,9 +156,7 @@ export default function TimedWords({
 
   function handleSkip() {
     if (doneRef.current) return;
-
     if (isPantomima) {
-      // Skipping just swaps the word (same difficulty) — the turn keeps going.
       if (wordIdx + 1 >= teamWords.length) {
         doneRef.current = true;
         setRoundScore(0);
@@ -156,7 +171,6 @@ export default function TimedWords({
       }, 400);
       return;
     }
-
     setFlash("skip");
     setTimeout(() => {
       setFlash(null);
@@ -174,7 +188,6 @@ export default function TimedWords({
     const newScores: [number, number] = [...scores] as [number, number];
     newScores[teamIdx] = roundScore;
     setScores(newScores);
-
     if (teamIdx === 0) {
       setTeamIdx(1);
     } else {
@@ -185,7 +198,6 @@ export default function TimedWords({
   const timePercent = (timeLeft / timeSeconds) * 100;
   const isWarning = timeLeft <= 10;
 
-  // ── Select difficulty (pantomíma only, one pick per turn) ───────────────────
   if (subPhase === "select-difficulty") {
     return (
       <div
@@ -194,12 +206,12 @@ export default function TimedWords({
       >
         <div
           className="flex h-24 w-24 items-center justify-center rounded-full text-4xl font-black text-white"
-          style={{ background: color, boxShadow: `0 0 40px ${color}60` }}
+          style={{ background: color, boxShadow: `0 0 40px ${color}80`, animation: "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1)" }}
         >
           {teamIdx === 0 ? "A" : "B"}
         </div>
 
-        <div>
+        <div style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}>
           <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-1">
             {teamIdx === 0 ? "Prvý ide" : "Teraz ide"}
           </p>
@@ -208,35 +220,40 @@ export default function TimedWords({
           </h2>
         </div>
 
-        <div>
+        <div style={{ animation: "fadeIn 0.5s ease-out 0.2s both" }}>
           <p className="text-sm text-white/60 mb-1">Vyberte si obtiažnosť pre celý svoj ťah</p>
           <p className="text-xs text-white/30">Iba jedna voľba na ťah — nedá sa zmeniť</p>
+          {isSarady && (
+            <p className="text-xs text-white/40 mt-2">Ľahké = jednoduché slová, Ťažké = frázy</p>
+          )}
         </div>
 
         <div className="flex w-full max-w-xs flex-col gap-3">
-          {DIFFICULTY_ORDER.map((d) => (
+          {DIFFICULTY_ORDER.map((d, i) => (
             <button
               key={d}
               onClick={() => handlePickDifficulty(d)}
-              className="w-full rounded-2xl py-4 text-lg font-black text-white flex items-center justify-between px-6"
-              style={{ background: DIFFICULTY_COLORS[d] }}
+              className="w-full rounded-2xl py-4 text-lg font-black text-white flex items-center justify-between px-6 transition-all hover:scale-[1.02] active:scale-95 hover:shadow-lg"
+              style={{
+                background: DIFFICULTY_COLORS[d],
+                animation: `scaleIn 0.4s ease-out ${0.3 + i * 0.1}s both`,
+              }}
             >
-              <span>{PANTOMIMA_DIFFICULTY_LABELS[d]}</span>
-              <span className="text-sm font-bold opacity-90">{PANTOMIMA_DIFFICULTY_POINTS[d]} b / slovo</span>
+              <span>{isSarady ? SARADY_DIFFICULTY_LABELS[d] : PANTOMIMA_DIFFICULTY_LABELS[d]}</span>
+              <span className="text-sm font-bold opacity-90">{isSarady ? `${SARADY_DIFFICULTY_POINTS[d]} b / slovo` : `${PANTOMIMA_DIFFICULTY_POINTS[d]} b / slovo`}</span>
             </button>
           ))}
         </div>
 
         {teamIdx === 1 && (
           <p className="text-xs text-white/30">
-            {teamNames[0]} získal {scores[0]} {scores[0] === 1 ? "bod" : "body"}
+            {teamNames[0]} získal {scores[0]} {scores[0] === 1 ? "bod" : scores[0] < 5 ? "body" : "bodov"}
           </p>
         )}
       </div>
     );
   }
 
-  // ── Ready ──────────────────────────────────────────────────────────────────
   if (subPhase === "ready") {
     return (
       <div
@@ -245,12 +262,12 @@ export default function TimedWords({
       >
         <div
           className="flex h-24 w-24 items-center justify-center rounded-full text-4xl font-black text-white"
-          style={{ background: color, boxShadow: `0 0 40px ${color}60` }}
+          style={{ background: color, boxShadow: `0 0 40px ${color}60`, animation: "ring 2s ease-in-out infinite" }}
         >
           {teamIdx === 0 ? "A" : "B"}
         </div>
 
-        <div>
+        <div style={{ animation: "fadeIn 0.5s ease-out 0.1s both" }}>
           <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-1">
             {teamIdx === 0 ? "Prvý ide" : "Teraz ide"}
           </p>
@@ -259,30 +276,31 @@ export default function TimedWords({
           </h2>
         </div>
 
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-white/60 leading-relaxed max-w-xs">
+        <div className="glass rounded-3xl p-5 text-sm text-white/60 leading-relaxed max-w-xs" style={{ animation: "scaleIn 0.4s ease-out 0.2s both" }}>
           {MODE_INST[mode]}
         </div>
 
-        {isPantomima && difficulty && (
+        {hasDifficulty && difficulty && (
           <div
-            className="rounded-2xl px-5 py-2 text-sm font-black text-white"
-            style={{ background: DIFFICULTY_COLORS[difficulty] }}
+            className="rounded-2xl px-5 py-2 text-sm font-black text-white shadow-lg"
+            style={{ background: DIFFICULTY_COLORS[difficulty], animation: "popIn 0.4s", boxShadow: `0 4px 16px ${DIFFICULTY_COLORS[difficulty]}55` }}
           >
-            {PANTOMIMA_DIFFICULTY_LABELS[difficulty]} • {PANTOMIMA_DIFFICULTY_POINTS[difficulty]} b / slovo
+            {isSarady
+              ? `${SARADY_DIFFICULTY_LABELS[difficulty]} • ${SARADY_DIFFICULTY_POINTS[difficulty]} b / slovo`
+              : `${PANTOMIMA_DIFFICULTY_LABELS[difficulty]} • ${PANTOMIMA_DIFFICULTY_POINTS[difficulty]} b / slovo`}
           </div>
         )}
 
         {teamIdx === 1 && (
           <p className="text-xs text-white/30">
-            {teamNames[0]} získal {scores[0]}{" "}
-            {isPantomima ? (scores[0] === 1 ? "bod" : "body") : (scores[0] === 1 ? "slovo" : "slov")}
+            {teamNames[0]} získal {scores[0]} {scores[0] === 1 ? "bod" : scores[0] < 5 ? "body" : "bodov"}
           </p>
         )}
 
         <button
           onClick={() => setSubPhase("playing")}
-          className="w-full max-w-xs rounded-2xl py-5 text-lg font-black uppercase tracking-wide text-white"
-          style={{ background: color }}
+          className="w-full max-w-xs rounded-2xl py-5 text-lg font-black uppercase tracking-wide text-white transition-all hover:scale-[1.02] active:scale-95"
+          style={{ background: color, animation: "slideUp 0.5s ease-out 0.3s both", boxShadow: `0 4px 24px ${color}55` }}
         >
           Štart ⏱
         </button>
@@ -290,35 +308,26 @@ export default function TimedWords({
     );
   }
 
-  // ── Playing ────────────────────────────────────────────────────────────────
   if (subPhase === "playing") {
     return (
-      <div
-        className="fixed inset-0 flex flex-col"
-        style={{ background: "#0a0a14" }}
-      >
-        {/* Flash overlay */}
+      <div className="fixed inset-0 flex flex-col" style={{ background: "#0a0a14" }}>
         {flash && (
           <div
             className="absolute inset-0 z-50 flex items-center justify-center pointer-events-none"
-            style={{ background: flash === "ok" ? "rgba(34,197,94,0.35)" : "rgba(239,68,68,0.25)" }}
+            style={{ background: flash === "ok" ? "rgba(34,197,94,0.35)" : "rgba(239,68,68,0.25)", animation: "fadeIn 0.15s ease-out both" }}
           >
-            <span className="text-8xl font-black text-white">
+            <span className="text-8xl font-black text-white" style={{ animation: "popIn 0.3s cubic-bezier(0.34,1.56,0.64,1)" }}>
               {flash === "ok" ? "✓" : "✗"}
             </span>
           </div>
         )}
 
-        {/* Top bar */}
-        <div
-          className="shrink-0 flex items-center justify-between px-5 py-4"
-          style={{ borderBottom: `2px solid ${color}40` }}
-        >
-          <div>
+        <div className="shrink-0 flex items-center justify-between px-5 py-4" style={{ borderBottom: `2px solid ${color}40` }}>
+          <div style={{ animation: "fadeIn 0.4s ease-out" }}>
             <p className="text-xs font-bold uppercase tracking-widest text-white/30">Na rade</p>
             <p className="text-lg font-black" style={{ color }}>{teamNames[teamIdx]}</p>
           </div>
-          <div className="text-right">
+          <div className="text-right" style={{ animation: "fadeIn 0.4s ease-out" }}>
             <p className="text-xs text-white/30 uppercase tracking-widest">
               {isPantomima ? "Za slovo" : "Uhádnuté"}
             </p>
@@ -328,7 +337,6 @@ export default function TimedWords({
           </div>
         </div>
 
-        {/* Timer */}
         <div className="shrink-0 h-2 bg-white/10">
           <div
             className="h-full transition-all duration-1000 ease-linear"
@@ -336,7 +344,6 @@ export default function TimedWords({
           />
         </div>
 
-        {/* Word */}
         <div className="flex-1 flex flex-col items-center justify-center px-8 text-center gap-4">
           {isPantomima ? (
             <p className="text-xs font-bold uppercase tracking-widest text-white/30">
@@ -346,29 +353,31 @@ export default function TimedWords({
             </p>
           ) : (
             <p className="text-xs font-bold uppercase tracking-widest text-white/30">
-              Slovo {wordIdx + 1} / {teamWords.length}
+              {isSarady ? (
+                <>{SARADY_DIFFICULTY_LABELS[difficulty ?? "lahke"]} • Slovo {wordIdx + 1} / {teamWords.length}</>
+              ) : (
+                <>Slovo {wordIdx + 1} / {teamWords.length}</>
+              )}
             </p>
           )}
           <p
             className="font-black text-white leading-tight"
-            style={{ fontSize: "clamp(2rem, 10vw, 4rem)" }}
+            style={{ fontSize: "clamp(2rem, 10vw, 4rem)", animation: "popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both" }}
           >
             {currentWord}
           </p>
           <p
             className="text-5xl font-black tabular-nums"
-            style={{ color: isWarning ? "#ef4444" : color }}
+            style={{ color: isWarning ? "#ef4444" : color, animation: isWarning ? "ring 1s ease-in-out infinite" : undefined }}
           >
             {timeLeft}s
           </p>
         </div>
 
-        {/* Action buttons */}
         <div className="shrink-0 flex gap-3 px-4 pb-8 pt-3">
           <button
             onClick={handleSkip}
-            className="flex-1 rounded-2xl py-5 text-base font-black text-white/70"
-            style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}
+            className="flex-1 rounded-2xl py-5 text-base font-black text-white/70 glass active:scale-95 transition"
           >
             {isPantomima
               ? skipCount === 0
@@ -378,7 +387,7 @@ export default function TimedWords({
           </button>
           <button
             onClick={handleCorrect}
-            className="flex-1 rounded-2xl py-5 text-base font-black text-white"
+            className="flex-1 rounded-2xl py-5 text-base font-black text-white active:scale-95 transition"
             style={{ background: "#16a34a" }}
           >
             ✅ Uhádnuté!
@@ -388,29 +397,35 @@ export default function TimedWords({
     );
   }
 
-  // ── Team done ──────────────────────────────────────────────────────────────
   return (
     <div
       className="fixed inset-0 flex flex-col items-center justify-center gap-7 px-6 text-center"
       style={{ background: "linear-gradient(160deg, #0b0a1a 0%, #1a0a2e 100%)" }}
     >
-      <div className="text-5xl">⏰</div>
-      <div>
+      <div className="text-5xl" style={{ animation: "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1)" }}>⏰</div>
+      <div style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}>
         <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-1">Výsledok</p>
         <h2 className="text-3xl font-black" style={{ color }}>{teamNames[teamIdx]}</h2>
       </div>
 
       <div
         className="rounded-3xl p-8 text-center"
-        style={{ background: `${color}15`, border: `2px solid ${color}40` }}
+        style={{
+          background: `${color}15`,
+          border: `2px solid ${color}40`,
+          animation: "scaleIn 0.5s ease-out 0.2s both",
+          boxShadow: `0 8px 32px ${color}22`,
+        }}
       >
         <p className="text-7xl font-black text-white">{roundScore}</p>
         <p className="text-sm text-white/40 mt-2 uppercase tracking-widest">
           {isPantomima ? "bodov" : "uhádnutých slov"}
         </p>
-        {isPantomima && difficulty && (
+        {(isPantomima || isSarady) && difficulty && (
           <p className="text-xs text-white/30 mt-1">
-            {PANTOMIMA_DIFFICULTY_LABELS[difficulty]} ({PANTOMIMA_DIFFICULTY_POINTS[difficulty]} b)
+            {isSarady
+              ? `${SARADY_DIFFICULTY_LABELS[difficulty]} (${SARADY_DIFFICULTY_POINTS[difficulty]} b)`
+              : `${PANTOMIMA_DIFFICULTY_LABELS[difficulty]} (${PANTOMIMA_DIFFICULTY_POINTS[difficulty]} b)`}
             {skipCount > 0 && ` − preskočenia: ${skipCount}× (−${skipPenalty} b)`}
           </p>
         )}
@@ -418,8 +433,8 @@ export default function TimedWords({
 
       <button
         onClick={handleTeamDone}
-        className="w-full rounded-2xl py-5 text-base font-black text-white"
-        style={{ background: color }}
+        className="w-full rounded-2xl py-5 text-base font-black text-white active:scale-95 transition"
+        style={{ background: color, animation: "slideUp 0.5s ease-out 0.4s both", boxShadow: `0 4px 20px ${color}44` }}
       >
         {teamIdx === 0 ? `➡️ ${teamNames[1]} na rad!` : "🏁 Zobraziť výsledky"}
       </button>

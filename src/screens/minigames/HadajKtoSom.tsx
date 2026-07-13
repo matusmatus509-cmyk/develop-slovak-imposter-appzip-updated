@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { CHARACTER_CATEGORIES } from "../../data/characters";
 import { Button, Shell, TopBar } from "../../components/ui";
+import { Icons } from "../../components/icons";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -77,7 +78,10 @@ function SetupScreen({
     <Shell>
       <TopBar title="Hádaj kto som" onBack={onBack} />
 
-      <div className="mb-5 rounded-3xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-sm text-white/70 leading-relaxed">
+      <div
+        className="glass mb-5 rounded-3xl border-cyan-500/20 bg-cyan-500/10 p-4 text-sm text-white/70 leading-relaxed"
+        style={{ animation: "fadeIn 0.5s ease-out both" }}
+      >
         Drž telefón naplocho. Ostatní nakláňajú mobil{" "}
         <strong className="text-white">hore = uhádnuté ✓</strong>,{" "}
         <strong className="text-white">dole = preskočiť ✗</strong>.
@@ -85,20 +89,24 @@ function SetupScreen({
       </div>
 
       {/* Category */}
-      <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 p-4">
+      <div
+        className="glass mb-4 rounded-3xl p-4"
+        style={{ animation: "slideUp 0.5s ease-out 0.05s both" }}
+      >
         <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
           Kategória
         </p>
         <div className="flex flex-col gap-2">
-          {CHARACTER_CATEGORIES.map((cat) => (
+          {CHARACTER_CATEGORIES.map((cat, i) => (
             <button
               key={cat.id}
               onClick={() => toggleCat(cat.id)}
-              className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition active:scale-[0.98] ${
+              className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition active:scale-[0.98] hover:scale-[1.02] ${
                 selectedCats.includes(cat.id)
                   ? "border-cyan-400/60 bg-cyan-500/20"
                   : "border-white/10 bg-white/5"
               }`}
+              style={{ animation: `slideUp 0.4s ease-out ${0.1 + i * 0.05}s both` }}
             >
               <span className="text-2xl">{cat.icon}</span>
               <span className="font-bold flex-1">{cat.name}</span>
@@ -111,7 +119,10 @@ function SetupScreen({
       </div>
 
       {/* Timer */}
-      <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 p-4">
+      <div
+        className="glass mb-4 rounded-3xl p-4"
+        style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}
+      >
         <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
           Čas na kolo
         </p>
@@ -120,7 +131,7 @@ function SetupScreen({
             <button
               key={t}
               onClick={() => setTimer(t)}
-              className={`flex-1 rounded-2xl border py-3 text-sm font-bold transition active:scale-95 ${
+              className={`flex-1 rounded-2xl border py-3 text-sm font-bold transition active:scale-95 hover:scale-[1.02] ${
                 timer === t
                   ? "border-cyan-400/60 bg-cyan-500/30 text-cyan-300"
                   : "border-white/10 bg-white/5 text-white/50"
@@ -133,7 +144,10 @@ function SetupScreen({
       </div>
 
       {/* Player count */}
-      <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 p-4">
+      <div
+        className="glass mb-4 rounded-3xl p-4"
+        style={{ animation: "slideUp 0.5s ease-out 0.15s both" }}
+      >
         <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
           Počet hráčov
         </p>
@@ -142,7 +156,7 @@ function SetupScreen({
             <button
               key={n}
               onClick={() => setCount(n)}
-              className={`h-10 w-10 rounded-2xl text-sm font-bold border transition active:scale-95 ${
+              className={`h-10 w-10 rounded-2xl text-sm font-bold border transition active:scale-95 hover:scale-[1.02] ${
                 count === n
                   ? "border-cyan-400/60 bg-cyan-500/30 text-cyan-300"
                   : "border-white/10 bg-white/5 text-white/50"
@@ -167,11 +181,12 @@ function SetupScreen({
             }
             placeholder={`Hráč ${i + 1}`}
             className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-cyan-400/60"
+            style={{ animation: `slideUp 0.4s ease-out ${0.2 + i * 0.04}s both` }}
           />
         ))}
       </div>
 
-      <Button fullWidth onClick={start}>
+      <Button fullWidth onClick={start} className="hover:scale-[1.02] active:scale-95">
         🎭 Začať hru
       </Button>
     </Shell>
@@ -264,7 +279,7 @@ function PlayingScreen({
     type Zone = "neutral" | "up" | "down";
     let zone: Zone = "neutral";
 
-    function handleOrientation(e: DeviceOrientationEvent) {
+    const handleOrientation = (e: DeviceOrientationEvent) => {
       if (doneRef.current) return;
       const beta = e.beta;
       if (beta === null) return;
@@ -284,7 +299,7 @@ function PlayingScreen({
           zone = "neutral";
         }
       }
-    }
+    };
 
     // Request permission on iOS 13+
     const evt = DeviceOrientationEvent as unknown as {
@@ -317,8 +332,12 @@ function PlayingScreen({
           className={`absolute inset-0 z-40 flex items-center justify-center transition-opacity duration-300 ${
             flash === "correct" ? "bg-green-500/50" : "bg-red-500/50"
           }`}
+          style={{ animation: "fadeIn 0.15s ease-out both" }}
         >
-          <span className="text-white text-9xl font-black" style={{ transform: "rotate(-90deg)" }}>
+          <span
+            className="text-white text-9xl font-black"
+            style={{ transform: "rotate(-90deg)", animation: "popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both" }}
+          >
             {flash === "correct" ? "✓" : "✗"}
           </span>
         </div>
@@ -380,7 +399,11 @@ function PlayingScreen({
         <div className="z-20 px-24 text-center pointer-events-none">
           <p
             className="font-black text-white leading-tight"
-            style={{ fontSize: "clamp(2.2rem, 9vmax, 5rem)" }}
+            style={{
+              fontSize: "clamp(2.2rem, 9vmax, 5rem)",
+              animation: "popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both",
+            }}
+            key={cardIdx}
           >
             {card?.word ?? ""}
           </p>
@@ -455,12 +478,28 @@ export default function HadajKtoSom({ onBack }: { onBack: () => void }) {
       <Shell>
         <TopBar title="Hádaj kto som" onBack={() => setPhase("setup")} />
         <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-          <div className="text-6xl">🎭</div>
-          <p className="text-sm font-bold uppercase tracking-widest text-white/40">
+          <div
+            className="flex h-24 w-24 items-center justify-center rounded-3xl bg-gradient-to-br from-cyan-500/20 to-fuchsia-500/20"
+            style={{ animation: "float 3s ease-in-out infinite" }}
+          >
+            <Icons.mask size={56} className="text-cyan-300" />
+          </div>
+          <p
+            className="text-sm font-bold uppercase tracking-widest text-white/40"
+            style={{ animation: "fadeIn 0.5s ease-out 0.1s both" }}
+          >
             {isFirst ? "Začína" : "Na rade je"}
           </p>
-          <h2 className="text-5xl font-black">{p?.name}</h2>
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-4 text-sm text-white/60 max-w-xs leading-relaxed">
+          <h2
+            className="text-gradient text-5xl font-black"
+            style={{ animation: "slideUp 0.5s ease-out 0.15s both" }}
+          >
+            {p?.name}
+          </h2>
+          <div
+            className="glass rounded-3xl p-4 text-sm text-white/60 max-w-xs leading-relaxed"
+            style={{ animation: "slideUp 0.5s ease-out 0.25s both" }}
+          >
             <p className="mb-1 font-bold text-white">Ako hrať:</p>
             <p>
               Ostatní nakláňajú telefón <strong className="text-green-400">hore</strong> keď hráč uhádne,{" "}
@@ -497,17 +536,33 @@ export default function HadajKtoSom({ onBack }: { onBack: () => void }) {
       <Shell>
         <TopBar title="Výsledok kola" />
         <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-          <div className="text-6xl">⏱️</div>
-          <h2 className="text-3xl font-black">{p?.name}</h2>
+          <div
+            className="flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20"
+            style={{ animation: "popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both" }}
+          >
+            <Icons.timer size={44} className="text-cyan-300" />
+          </div>
+          <h2
+            className="text-gradient text-3xl font-black"
+            style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}
+          >
+            {p?.name}
+          </h2>
 
           <div className="flex gap-4 w-full max-w-xs justify-center">
-            <div className="flex-1 rounded-3xl border border-green-500/30 bg-green-500/10 py-5">
+            <div
+              className="glass flex-1 rounded-3xl border-green-500/30 bg-green-500/10 py-5"
+              style={{ animation: "slideUp 0.5s ease-out 0.15s both" }}
+            >
               <div className="text-5xl font-black text-green-400">{p?.correct ?? 0}</div>
               <div className="text-xs uppercase tracking-widest text-white/40 mt-1">
                 Uhádnuté
               </div>
             </div>
-            <div className="flex-1 rounded-3xl border border-red-500/30 bg-red-500/10 py-5">
+            <div
+              className="glass flex-1 rounded-3xl border-red-500/30 bg-red-500/10 py-5"
+              style={{ animation: "slideUp 0.5s ease-out 0.25s both" }}
+            >
               <div className="text-5xl font-black text-red-400">{p?.skipped ?? 0}</div>
               <div className="text-xs uppercase tracking-widest text-white/40 mt-1">
                 Preskočené
@@ -534,9 +589,14 @@ export default function HadajKtoSom({ onBack }: { onBack: () => void }) {
       <Shell>
         <TopBar title="Koniec hry" />
         <div className="flex flex-1 flex-col gap-5 pt-2">
-          <div className="text-center">
-            <div className="text-5xl mb-3">🏆</div>
-            <h2 className="text-2xl font-black">Koniec!</h2>
+          <div className="text-center" style={{ animation: "fadeIn 0.5s ease-out both" }}>
+            <div
+              className="flex h-20 w-20 mx-auto mb-3 items-center justify-center rounded-3xl bg-gradient-to-br from-yellow-500/30 to-orange-500/20"
+              style={{ animation: "tada 0.8s ease-out 0.1s both" }}
+            >
+              <Icons.trophy size={48} className="text-yellow-300" />
+            </div>
+            <h2 className="text-gradient text-2xl font-black">Koniec!</h2>
             {winner && (
               <p className="text-white/50 text-sm mt-1">
                 Vyhráva{" "}
@@ -551,11 +611,12 @@ export default function HadajKtoSom({ onBack }: { onBack: () => void }) {
             {sorted.map((p, rank) => (
               <div
                 key={p.name}
-                className={`flex items-center gap-4 rounded-2xl px-4 py-3 border ${
+                className={`glass flex items-center gap-4 rounded-2xl px-4 py-3 ${
                   rank === 0
                     ? "border-yellow-500/40 bg-yellow-500/10"
-                    : "border-white/10 bg-white/5"
+                    : ""
                 }`}
+                style={{ animation: `slideUp 0.5s ease-out ${0.1 + rank * 0.08}s both` }}
               >
                 <span className="text-xl w-8 text-center">
                   {rank === 0 ? "🥇" : rank === 1 ? "🥈" : rank === 2 ? "🥉" : `${rank + 1}.`}

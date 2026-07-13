@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { Button, Shell, TopBar } from "../../components/ui";
+import { Icons } from "../../components/icons";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 // Slovak letters suitable for word categories
 const LETTERS = [
-  "A","B","C","D","E","F","G","H","I","J","K","L","M",
-  "N","O","P","R","S","T","U","V","Z",
+  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+  "N", "O", "P", "R", "S", "T", "U", "V", "Z",
 ];
 
 function pickLetter(exclude?: string) {
@@ -39,7 +40,7 @@ function SetupScreen({
 
       <div className="mb-5 rounded-3xl border border-green-500/20 bg-green-500/10 p-4 text-sm text-white/70 leading-relaxed">
         Telefón položte na stôl. Každý sedí na svojej strane.
-        Hovorte slová na danú písmeno a{" "}
+        Hovorte slová na dané písmeno a{" "}
         <strong className="text-white">klepnite na svoju polovicu</strong> po každom slove.
         Čiara sa pohybuje smerom k vám — kto nestihne, prehráva!
       </div>
@@ -204,7 +205,6 @@ function GameScreen({
     setLetter(newLetter);
     setActive(newActive);
     setResult(null);
-    setResult(null);
     // Reset refs and restart animation by remounting effect
     gameOverRef.current = false;
     ballYRef.current = 0.5;
@@ -223,12 +223,10 @@ function GameScreen({
       const dir = activeRef.current === 0 ? -1 : 1;
       let newY = ballYRef.current + dir * speed * dt;
       if (newY <= 0) {
-        newY = 0; gameOverRef.current = true; ballYRef.current = newY;
-        setBallY(newY); setResult({ loser: 0 }); return;
+        newY = 0; gameOverRef.current = true; ballYRef.current = newY; setBallY(newY); setResult({ loser: 0 }); return;
       }
       if (newY >= 1) {
-        newY = 1; gameOverRef.current = true; ballYRef.current = newY;
-        setBallY(newY); setResult({ loser: 1 }); return;
+        newY = 1; gameOverRef.current = true; ballYRef.current = newY; setBallY(newY); setResult({ loser: 1 }); return;
       }
       ballYRef.current = newY; setBallY(newY);
       rafRef.current = requestAnimationFrame(tick);

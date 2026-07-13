@@ -21,15 +21,22 @@ export default function History({
     <Shell>
       <TopBar title="Zhrnutie" onBack={onBack} />
 
-      <div className="mb-6 text-center">
-        <div className="mx-auto mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-2xl">
+      <div className="mb-6 text-center" style={{ animation: "fadeIn 0.5s ease-out" }}>
+        <div
+          className="mx-auto mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-white/8 text-2xl"
+          style={{ animation: "float 3s ease-in-out infinite" }}
+        >
           🕘
         </div>
-        <h1 className="text-2xl font-black">História odohraných kôl</h1>
+        <h1 className="text-2xl font-black">Histéria odohraných kôl</h1>
       </div>
 
+      {/* Stats grid */}
       <div className="mb-6 grid grid-cols-2 gap-3">
-        <div className="rounded-2xl border border-sky-500/20 bg-sky-500/10 p-4 text-center">
+        <div
+          className="rounded-2xl border border-sky-500/20 bg-sky-500/10 p-4 text-center"
+          style={{ animation: "scaleIn 0.4s ease-out both" }}
+        >
           <div className="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-full bg-sky-500/20 text-lg">
             ⏱️
           </div>
@@ -38,7 +45,10 @@ export default function History({
           </p>
           <p className="mt-1 text-xl font-black">{formatTime(totalTime)}</p>
         </div>
-        <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4 text-center">
+        <div
+          className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4 text-center"
+          style={{ animation: "scaleIn 0.4s ease-out 0.1s both" }}
+        >
           <div className="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500/20 text-lg">
             🏆
           </div>
@@ -55,15 +65,19 @@ export default function History({
 
       <div className="flex-1 space-y-3 overflow-y-auto pb-4">
         {sorted.length === 0 && (
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center text-sm text-white/40">
+          <div
+            className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center text-sm text-white/40"
+            style={{ animation: "fadeIn 0.5s ease-out" }}
+          >
             Zatiaľ ste neodohrali žiadne kolo. Spustite hru Podvodník a
             výsledky sa tu zobrazia!
           </div>
         )}
-        {sorted.map((round) => (
+        {sorted.map((round, i) => (
           <div
             key={round.id}
             className="rounded-2xl border border-white/10 bg-white/5 p-4"
+            style={{ animation: `slideUp 0.4s ease-out ${i * 40}ms both` }}
           >
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3">

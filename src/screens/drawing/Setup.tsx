@@ -3,6 +3,7 @@ import { DRAWING_CATEGORIES } from "../../data/drawingCategories";
 import type { GameSettings } from "../../types";
 import { Button, Chip, Shell, Stepper, TopBar } from "../../components/ui";
 import { maxImpostorsFor } from "../../utils/gameLogic";
+import { cn } from "../../utils/designTokens";
 
 export default function DrawingSetup({
   initial,
@@ -69,7 +70,7 @@ export default function DrawingSetup({
 
       <div className="flex-1 space-y-7 overflow-y-auto pb-4">
         {/* Players */}
-        <section>
+        <section style={{ animation: "slideUp 0.4s ease-out both" }}>
           <div className="mb-3 flex items-center justify-between">
             <h2 className="text-sm font-bold uppercase tracking-wide text-white/70">
               Hráči ({players.length})
@@ -77,7 +78,7 @@ export default function DrawingSetup({
             <button
               onClick={addPlayer}
               disabled={players.length >= 12}
-              className="rounded-xl bg-white/10 px-3 py-1.5 text-xs font-bold disabled:opacity-30"
+              className="rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500 px-3 py-1.5 text-xs font-black text-white shadow-lg shadow-violet-500/30 transition-transform duration-200 hover:scale-[1.02] active:scale-95 disabled:opacity-30 disabled:hover:scale-100"
             >
               + Pridať
             </button>
@@ -86,9 +87,16 @@ export default function DrawingSetup({
             {players.map((name, i) => (
               <div
                 key={i}
-                className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2"
+                className={cn(
+                  "glass flex items-center gap-2 rounded-2xl px-3 py-2",
+                  "transition-all duration-200 hover:bg-white/10"
+                )}
+                style={{
+                  animation: `slideUp 0.4s ease-out both`,
+                  animationDelay: `${i * 50}ms`,
+                }}
               >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-cyan-500 text-xs font-bold">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-cyan-500 text-xs font-black text-white shadow-md shadow-violet-500/30">
                   {i + 1}
                 </span>
                 <input
@@ -101,7 +109,7 @@ export default function DrawingSetup({
                 <button
                   onClick={() => removePlayer(i)}
                   disabled={players.length <= 3}
-                  className="text-white/30 disabled:opacity-20"
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-white/5 text-white/40 transition-all duration-200 hover:scale-110 hover:bg-red-500/20 hover:text-red-300 disabled:opacity-20 disabled:hover:scale-100"
                 >
                   ✕
                 </button>
@@ -114,7 +122,13 @@ export default function DrawingSetup({
         </section>
 
         {/* Strokes per player */}
-        <section className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5">
+        <section
+          className={cn(
+            "glass flex items-center justify-between rounded-2xl px-4 py-3.5",
+            "transition-all duration-200"
+          )}
+          style={{ animation: "slideUp 0.4s ease-out 100ms both" }}
+        >
           <div>
             <p className="text-sm font-bold">Ťahy na hráča</p>
             <p className="text-xs text-white/50">Každý hráč nakreslí toľko ťahov</p>
@@ -128,7 +142,13 @@ export default function DrawingSetup({
         </section>
 
         {/* Impostor count */}
-        <section className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5">
+        <section
+          className={cn(
+            "glass flex items-center justify-between rounded-2xl px-4 py-3.5",
+            "transition-all duration-200"
+          )}
+          style={{ animation: "slideUp 0.4s ease-out 150ms both" }}
+        >
           <div>
             <p className="text-sm font-bold">Počet podvodníkov</p>
             <p className="text-xs text-white/50">Max {maxImpostors} pri tomto počte hráčov</p>
@@ -142,26 +162,38 @@ export default function DrawingSetup({
         </section>
 
         {/* Categories */}
-        <section>
+        <section style={{ animation: "slideUp 0.4s ease-out 200ms both" }}>
           <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-white/70">
             Kategórie slov
           </h2>
           <div className="flex flex-wrap gap-2">
-            {DRAWING_CATEGORIES.map((cat) => (
-              <Chip
+            {DRAWING_CATEGORIES.map((cat, i) => (
+              <div
                 key={cat.id}
-                active={categoryIds.includes(cat.id)}
-                onClick={() => toggleCategory(cat.id)}
+                style={{
+                  animation: "popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both",
+                  animationDelay: `${200 + i * 40}ms`,
+                }}
               >
-                <span>{cat.icon}</span>
-                {cat.name}
-              </Chip>
+                <Chip
+                  active={categoryIds.includes(cat.id)}
+                  onClick={() => toggleCategory(cat.id)}
+                >
+                  <span>{cat.icon}</span>
+                  {cat.name}
+                </Chip>
+              </div>
             ))}
           </div>
         </section>
       </div>
 
-      <Button fullWidth onClick={handleStart} className="mt-4">
+      <Button
+        fullWidth
+        onClick={handleStart}
+        className="mt-4 transition-transform duration-200 hover:scale-[1.02] active:scale-95"
+        style={{ animation: "slideUp 0.5s ease-out 250ms both" }}
+      >
         Spustiť kreslenie 🎨
       </Button>
     </Shell>

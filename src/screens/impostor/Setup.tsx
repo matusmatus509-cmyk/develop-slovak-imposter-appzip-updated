@@ -2,6 +2,8 @@ import { useState } from "react";
 import { CATEGORIES } from "../../data/categories";
 import type { GameSettings } from "../../types";
 import { Button, Chip, Shell, Stepper, Toggle, TopBar } from "../../components/ui";
+import { Icons } from "../../components/icons";
+import { cn } from "../../utils/designTokens";
 import { maxImpostorsFor } from "../../utils/gameLogic";
 
 const TIMER_OPTIONS = [
@@ -108,7 +110,7 @@ export default function Setup({
                   disabled={players.length <= 3}
                   className="text-white/30 disabled:opacity-20"
                 >
-                  ✕
+                  <Icons.x size={18} />
                 </button>
               </div>
             ))}
@@ -126,16 +128,19 @@ export default function Setup({
             Kategórie slov
           </h2>
           <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map((cat) => (
-              <Chip
-                key={cat.id}
-                active={categoryIds.includes(cat.id)}
-                onClick={() => toggleCategory(cat.id)}
-              >
-                <span>{cat.icon}</span>
-                {cat.name}
-              </Chip>
-            ))}
+            {CATEGORIES.map((cat) => {
+              const IconComponent = Icons[cat.icon];
+              return (
+                <Chip
+                  key={cat.id}
+                  active={categoryIds.includes(cat.id)}
+                  onClick={() => toggleCategory(cat.id)}
+                >
+                  {IconComponent && <IconComponent size={18} />}
+                  {cat.name}
+                </Chip>
+              );
+            })}
           </div>
         </section>
 

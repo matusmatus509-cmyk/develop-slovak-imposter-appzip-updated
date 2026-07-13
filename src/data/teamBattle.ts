@@ -1,3 +1,5 @@
+import { CATEGORIES } from "./categories";
+
 // ── Pantomíma words (act it out, no speaking) ────────────────────────────────
 // Split into difficulty tiers — each tier is worth a different point value.
 export type PantomimaDifficulty = "lahke" | "stredne" | "tazke";
@@ -370,36 +372,43 @@ export const PANTOMIMA_WORDS_BY_DIFFICULTY: Record<PantomimaDifficulty, string[]
 };
 
 // ── Šarády words (describe it verbally, no derivatives) ──────────────────────
-export const SARADY_WORDS: string[] = [
-  // Jedlo a nápoje
-  "Bryndzové halušky", "Trdelník", "Zemiakové placky", "Štrúdľa",
-  "Čokoládová fontána", "Sushi", "Hamburger", "Smoothie",
-  "Limonáda", "Trhané mäso", "Fondue", "Crème brûlée",
-  // Miesta
-  "Tatranská lanovka", "Eiffelova veža", "Veľký Murál", "Machu Picchu",
-  "Bratislavský hrad", "Las Vegas", "Amazon prales", "Antarktída",
-  "Morské dno", "Vesmírna stanica", "Alhambra", "Niagara",
-  // Veci a koncepty
-  "Fotosyntéza", "Gravitácia", "Evolúcia", "Čierna diera",
-  "Sloboda", "Spravodlivosť", "Závisť", "Odvaha", "Lenivosť",
-  "Influencer", "Hashtag", "Streaming", "Umelá inteligencia",
-  "Kryptomena", "Blockchain", "Sociálne siete",
-  // Filmy a knihy
-  "Harry Potter", "Titanic", "Pán prsteňov", "Star Wars",
-  "Leví kráľ", "Ľadové kráľovstvo", "Jurský park", "Matrix",
-  "Avengers", "Forrest Gump", "Shrek", "Pirátske karibik",
-  // Slovensko
-  "Čičmany", "Vlkolínec", "Devínsky hrad", "Oravský hrad",
-  "Kriváň", "Gerlach", "Hrad Bojnice", "Demänovská jaskyňa",
-  // Zvieratá (tricky)
-  "Axolotl", "Platypus", "Narval", "Tardigrada", "Mantis garnela",
-  // Historické
-  "Kolumbus", "Napoleon", "Kleopatra", "Marco Polo",
-  "Vynález kolesa", "Prvý let na Mesiac", "Pád Berlínskeho múra",
-  // Moderné veci
-  "Zásoby papiera", "Karanténa", "Online schôdzka",
-  "Bezdrôtové slúchadlá", "Inteligentný domov",
-];
+// Now using the same difficulty-based word database from categories.ts
+
+export const SARADY_DIFFICULTY_POINTS: Record<string, number> = {
+  lahke: 1,
+  stredne: 1,
+  tazke: 1,
+};
+
+export const SARADY_DIFFICULTY_LABELS: Record<string, string> = {
+  lahke: "Ľahké",
+  stredne: "Stredné",
+  tazke: "Ťažké",
+};
+
+function getSaradyWords(difficulty: string): string[] {
+  const id = difficulty === "all" ? "" : `slova-${difficulty}`;
+  if (id === "") {
+    const all: string[] = [];
+    for (const cat of CATEGORIES) {
+      if (cat.id.startsWith("slova-")) {
+        for (const wp of cat.wordPairs) all.push(wp.word);
+      }
+    }
+    return all;
+  }
+  const cat = CATEGORIES.find((c) => c.id === id);
+  return cat ? cat.wordPairs.map((wp) => wp.word) : [];
+}
+
+export const SARADY_WORDS_BY_DIFFICULTY: Record<string, string[]> = {
+  lahke: getSaradyWords("lahke"),
+  stredne: getSaradyWords("stredne"),
+  tazke: getSaradyWords("tazke"),
+};
+
+// Keep the original SARADY_WORDS for backward compatibility (uses all difficulties)
+export const SARADY_WORDS: string[] = getSaradyWords("all");
 
 // ── Hádaj kto som words (characters for team mode) ───────────────────────────
 export const TEAM_CHARACTERS: string[] = [

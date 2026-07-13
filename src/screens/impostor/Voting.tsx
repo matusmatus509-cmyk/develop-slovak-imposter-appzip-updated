@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { GameSettings } from "../../types";
 import { Button, Shell, TopBar } from "../../components/ui";
+import { cn } from "../../utils/designTokens";
 
 export default function Voting({
   settings,
@@ -17,7 +18,7 @@ export default function Voting({
     <Shell>
       <TopBar title="Hlasovanie" onBack={onExit} />
 
-      <div className="mb-6 text-center">
+      <div className="mb-6 text-center" style={{ animation: "fadeIn 0.5s ease-out" }}>
         <h1 className="text-2xl font-black">Na koho hlasujete? 🗳️</h1>
         <p className="mt-2 text-sm text-white/50">
           Nahlas prediskutujte a vyberte hráča, ktorého skupina podozrieva z
@@ -30,13 +31,31 @@ export default function Voting({
           <button
             key={i}
             onClick={() => setSelected(i)}
-            className={`flex flex-col items-center gap-2 rounded-2xl border p-4 transition ${
+            className={cn(
+              "relative flex flex-col items-center gap-3 overflow-hidden rounded-2xl border p-5 transition-all active:scale-95",
               selected === i
-                ? "border-fuchsia-400/60 bg-gradient-to-br from-orange-500/20 to-fuchsia-600/20"
-                : "border-white/10 bg-white/5"
-            }`}
+                ? "border-fuchsia-400/70 bg-gradient-to-br from-orange-500/20 to-fuchsia-600/20 shadow-lg shadow-fuchsia-900/30"
+                : "border-white/10 bg-white/5 hover:bg-white/10"
+            )}
+            style={{ animation: `scaleIn 0.4s ease-out ${i * 50}ms both` }}
           >
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-fuchsia-600 text-lg font-bold">
+            {/* Selected indicator */}
+            {selected === i && (
+              <span
+                className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-fuchsia-500/40 text-white"
+                style={{ animation: "popIn 0.3s ease-out" }}
+              >
+                ✓
+              </span>
+            )}
+            <span
+              className={cn(
+                "flex h-14 w-14 items-center justify-center rounded-full text-lg font-black transition-transform",
+                selected === i
+                  ? "scale-110 bg-gradient-to-br from-orange-500 to-fuchsia-600 text-white shadow-lg"
+                  : "bg-gradient-to-br from-orange-500/30 to-fuchsia-600/30 text-white/80"
+              )}
+            >
               {name.charAt(0).toUpperCase()}
             </span>
             <span className="text-sm font-bold">{name}</span>

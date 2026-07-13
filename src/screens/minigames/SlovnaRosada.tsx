@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { CATEGORIES } from "../../data/categories";
 import { Button, Shell, TopBar } from "../../components/ui";
+import { Icons } from "../../components/icons";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -30,9 +31,12 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-function buildDeck(): Card[] {
+function buildDeck(difficulty: string): Card[] {
   const cards: Card[] = [];
-  for (const cat of CATEGORIES) {
+  const filtered = difficulty === "all"
+    ? CATEGORIES
+    : CATEGORIES.filter((c) => c.id === `slova-${difficulty}`);
+  for (const cat of filtered) {
     for (const wp of cat.wordPairs) {
       cards.push({ word: wp.word, category: cat.name, categoryIcon: cat.icon });
     }
@@ -47,27 +51,34 @@ function SetupScreen({
   onStart,
 }: {
   onBack: () => void;
-  onStart: (names: string[], timerSecs: number, maxSkips: number, teamMode: boolean) => void;
+  onStart: (names: string[], timerSecs: number, maxSkips: number, teamMode: boolean, difficulty: string) => void;
 }) {
   const [count, setCount] = useState(4);
   const [names, setNames] = useState(Array.from({ length: 8 }, (_, i) => `Hráč ${i + 1}`));
   const [timerSecs, setTimerSecs] = useState(60);
   const [maxSkips, setMaxSkips] = useState(3);
   const [teamMode, setTeamMode] = useState(false);
+  const [difficulty, setDifficulty] = useState("all");
 
   return (
     <Shell>
       <TopBar title="Slovné šarády" onBack={onBack} />
 
-      <div className="mb-5 rounded-3xl border border-purple-500/20 bg-purple-500/10 p-4 text-sm text-white/70 leading-relaxed">
+      <div
+        className="glass mb-5 rounded-3xl border-purple-500/20 bg-purple-500/10 p-4 text-sm text-white/70 leading-relaxed"
+        style={{ animation: "fadeIn 0.5s ease-out both" }}
+      >
         Vysvetluj slová bez toho, aby si ich povedal/a. Za každé uhádnuté slovo bod. Preskočiť môžeš obmedzený počet krát!
       </div>
 
       {/* Team mode */}
-      <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 p-4">
+      <div
+        className="glass mb-4 rounded-3xl p-4"
+        style={{ animation: "slideUp 0.5s ease-out 0.05s both" }}
+      >
         <button
           onClick={() => setTeamMode((v) => !v)}
-          className="flex w-full items-center justify-between"
+          className="flex w-full items-center justify-between active:scale-[0.98] transition"
         >
           <div>
             <p className="font-bold text-white">Tímový mód</p>
@@ -87,8 +98,41 @@ function SetupScreen({
         </button>
       </div>
 
+      {/* Difficulty */}
+      <div
+        className="glass mb-4 rounded-3xl p-4"
+        style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}
+      >
+        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
+          Obtiažnosť
+        </p>
+        <div className="flex gap-2">
+          {[
+            { key: "all", label: "Všetky", icon: "📦" },
+            { key: "lahke", label: "Ľahké", icon: "🟢" },
+            { key: "stredne", label: "Stredné", icon: "🟡" },
+            { key: "tazke", label: "Ťažké", icon: "🔴" },
+          ].map((d) => (
+            <button
+              key={d.key}
+              onClick={() => setDifficulty(d.key)}
+              className={`flex-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 hover:scale-[1.02] ${
+                difficulty === d.key
+                  ? "border-purple-400/60 bg-purple-500/30 text-purple-300"
+                  : "border-white/10 bg-white/5 text-white/50"
+              }`}
+            >
+              {d.icon} {d.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Player count */}
-      <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 p-4">
+      <div
+        className="glass mb-4 rounded-3xl p-4"
+        style={{ animation: "slideUp 0.5s ease-out 0.15s both" }}
+      >
         <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
           Počet hráčov
         </p>
@@ -97,7 +141,7 @@ function SetupScreen({
             <button
               key={n}
               onClick={() => setCount(n)}
-              className={`h-10 w-10 rounded-2xl text-sm font-bold border transition active:scale-95 ${
+              className={`h-10 w-10 rounded-2xl text-sm font-bold border transition active:scale-95 hover:scale-[1.02] ${
                 count === n
                   ? "border-purple-400/60 bg-purple-500/30 text-purple-300"
                   : "border-white/10 bg-white/5 text-white/50"
@@ -112,7 +156,11 @@ function SetupScreen({
       {/* Names */}
       <div className="mb-4 flex flex-col gap-2">
         {Array.from({ length: count }, (_, i) => (
-          <div key={i} className="flex items-center gap-2">
+          <div
+            key={i}
+            className="flex items-center gap-2"
+            style={{ animation: `slideUp 0.4s ease-out ${0.2 + i * 0.04}s both` }}
+          >
             {teamMode && (
               <span
                 className={`shrink-0 rounded-xl px-2.5 py-1 text-xs font-black ${
@@ -137,7 +185,10 @@ function SetupScreen({
       </div>
 
       {/* Timer */}
-      <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 p-4">
+      <div
+        className="glass mb-4 rounded-3xl p-4"
+        style={{ animation: "slideUp 0.5s ease-out 0.25s both" }}
+      >
         <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
           Čas na kolo
         </p>
@@ -146,7 +197,7 @@ function SetupScreen({
             <button
               key={t}
               onClick={() => setTimerSecs(t)}
-              className={`flex-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 ${
+              className={`flex-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 hover:scale-[1.02] ${
                 timerSecs === t
                   ? "border-purple-400/60 bg-purple-500/30 text-purple-300"
                   : "border-white/10 bg-white/5 text-white/50"
@@ -159,7 +210,10 @@ function SetupScreen({
       </div>
 
       {/* Max skips */}
-      <div className="mb-6 rounded-3xl border border-white/10 bg-white/5 p-4">
+      <div
+        className="glass mb-6 rounded-3xl p-4"
+        style={{ animation: "slideUp 0.5s ease-out 0.3s both" }}
+      >
         <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
           Max. preskočení za kolo
         </p>
@@ -168,7 +222,7 @@ function SetupScreen({
             <button
               key={s}
               onClick={() => setMaxSkips(s)}
-              className={`flex-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 ${
+              className={`flex-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 hover:scale-[1.02] ${
                 maxSkips === s
                   ? "border-purple-400/60 bg-purple-500/30 text-purple-300"
                   : "border-white/10 bg-white/5 text-white/50"
@@ -187,7 +241,8 @@ function SetupScreen({
             names.slice(0, count).map((n, i) => n.trim() || `Hráč ${i + 1}`),
             timerSecs,
             maxSkips,
-            teamMode
+            teamMode,
+            difficulty
           )
         }
       >
@@ -280,8 +335,9 @@ function PlayingScreen({
         {/* Timer pill */}
         <div
           className={`flex h-10 min-w-[72px] items-center justify-center rounded-full px-5 font-black text-lg transition-colors ${
-            isWarning ? "bg-red-500/80 text-white" : "bg-white/15 text-white"
+            isWarning ? "bg-red-500/80 text-white" : "glass text-white"
           }`}
+          style={isWarning ? { animation: "ring 1s ease-in-out infinite" } : undefined}
         >
           {timeLeft}s
         </div>
@@ -289,14 +345,17 @@ function PlayingScreen({
         {/* Exit */}
         <button
           onClick={finish}
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white/70 text-lg active:scale-90 transition"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white/70 text-lg active:scale-90 transition hover:scale-[1.05]"
         >
           ✕
         </button>
       </div>
 
       {/* Live score strip */}
-      <div className="flex items-center gap-3 mt-2">
+      <div
+        className="flex items-center gap-3 mt-2"
+        style={{ animation: "fadeIn 0.4s ease-out both" }}
+      >
         {teamMode && (
           <span
             className={`rounded-xl px-3 py-1 text-xs font-black ${
@@ -315,6 +374,7 @@ function PlayingScreen({
       {/* Card */}
       <div className="flex flex-1 items-center justify-center w-full px-8">
         <div
+          key={cardIdx}
           className={`w-full max-w-xs rounded-3xl bg-white p-8 text-center shadow-2xl transition-all duration-300 ${
             cardAnim === "correct"
               ? "translate-y-[-20px] opacity-0 scale-95"
@@ -322,6 +382,7 @@ function PlayingScreen({
               ? "translate-y-[20px] opacity-0 scale-95"
               : "translate-y-0 opacity-100 scale-100"
           }`}
+          style={{ animation: "popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both" }}
         >
           <p className="mb-3 text-xs font-bold uppercase tracking-widest text-gray-400">
             {card?.categoryIcon} {card?.category}
@@ -350,7 +411,7 @@ function PlayingScreen({
         <button
           onClick={handleSkip}
           disabled={!canSkip}
-          className={`flex h-20 w-20 flex-col items-center justify-center rounded-full transition active:scale-90 disabled:opacity-30 ${
+          className={`flex h-20 w-20 flex-col items-center justify-center rounded-full transition active:scale-90 disabled:opacity-30 hover:scale-[1.05] ${
             canSkip ? "bg-white/20" : "bg-white/10"
           }`}
         >
@@ -363,7 +424,7 @@ function PlayingScreen({
         {/* Correct */}
         <button
           onClick={handleCorrect}
-          className="flex h-20 w-20 items-center justify-center rounded-full bg-white/20 transition active:scale-90 active:bg-green-500/40"
+          className="flex h-20 w-20 items-center justify-center rounded-full bg-white/20 transition active:scale-90 active:bg-green-500/40 hover:scale-[1.05]"
         >
           <span className="text-4xl text-green-400">✓</span>
         </button>
@@ -381,15 +442,17 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
   const [timerSecs, setTimerSecs] = useState(60);
   const [maxSkips, setMaxSkips] = useState(3);
   const [teamMode, setTeamMode] = useState(false);
+  const [difficulty, setDifficulty] = useState("all");
   const [deck, setDeck] = useState<Card[]>([]);
   const [roundCorrect, setRoundCorrect] = useState(0);
   const [roundSkips, setRoundSkips] = useState(0);
 
-  function startGame(names: string[], timer: number, skips: number, teams: boolean) {
+  function startGame(names: string[], timer: number, skips: number, teams: boolean, diff: string) {
     setTimerSecs(timer);
     setMaxSkips(skips);
     setTeamMode(teams);
-    setDeck(buildDeck());
+    setDifficulty(diff);
+    setDeck(buildDeck(diff));
     setPlayers(
       names.map((name, i) => ({
         name,
@@ -419,7 +482,7 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
       setPhase("final-result");
     } else {
       setCurrentIdx(next);
-      setDeck(buildDeck()); // fresh shuffled deck for each player
+      setDeck(buildDeck(difficulty)); // fresh shuffled deck for each player
       setPhase("who-starts");
     }
   }
@@ -442,11 +505,24 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
       <Shell>
         <TopBar title="Slovné šarády" onBack={() => setPhase("setup")} />
         <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-          <div className="text-5xl">🎭</div>
-          <p className="text-sm font-bold uppercase tracking-widest text-white/40">
+          <div
+            className="flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-purple-500/20 to-fuchsia-500/20"
+            style={{ animation: "float 3s ease-in-out infinite" }}
+          >
+            <Icons.mask size={44} className="text-purple-300" />
+          </div>
+          <p
+            className="text-sm font-bold uppercase tracking-widest text-white/40"
+            style={{ animation: "fadeIn 0.5s ease-out 0.1s both" }}
+          >
             {isFirst ? "Začína" : "Na rade je"}
           </p>
-          <h2 className="text-4xl font-black">{current.name}</h2>
+          <h2
+            className="text-gradient text-4xl font-black"
+            style={{ animation: "slideUp 0.5s ease-out 0.15s both" }}
+          >
+            {current.name}
+          </h2>
           {teamLabel && (
             <span
               className={`rounded-2xl border px-4 py-1.5 text-sm font-bold ${
@@ -454,11 +530,15 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
                   ? "border-blue-500/40 bg-blue-500/20 text-blue-300"
                   : "border-orange-500/40 bg-orange-500/20 text-orange-300"
               }`}
+              style={{ animation: "popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both" }}
             >
               {teamLabel}
             </span>
           )}
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-4 text-sm text-white/60 max-w-xs leading-relaxed">
+          <div
+            className="glass rounded-3xl p-4 text-sm text-white/60 max-w-xs leading-relaxed"
+            style={{ animation: "slideUp 0.5s ease-out 0.25s both" }}
+          >
             Vysvetluj slová na kartách. Ostatní hádajú.{" "}
             <strong className="text-white">✓</strong> = uhádnuté,{" "}
             <strong className="text-white">↑</strong> = preskočiť
@@ -496,15 +576,31 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
       <Shell>
         <TopBar title="Výsledok kola" />
         <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-          <div className="text-5xl">⏱️</div>
-          <h2 className="text-3xl font-black">{current.name}</h2>
+          <div
+            className="flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-purple-500/20 to-fuchsia-500/20"
+            style={{ animation: "popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both" }}
+          >
+            <Icons.timer size={44} className="text-purple-300" />
+          </div>
+          <h2
+            className="text-gradient text-3xl font-black"
+            style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}
+          >
+            {current.name}
+          </h2>
 
           <div className="flex gap-4 w-full max-w-xs justify-center">
-            <div className="flex-1 rounded-3xl border border-green-500/30 bg-green-500/10 py-5">
+            <div
+              className="glass flex-1 rounded-3xl border-green-500/30 bg-green-500/10 py-5"
+              style={{ animation: "slideUp 0.5s ease-out 0.15s both" }}
+            >
               <div className="text-5xl font-black text-green-400">{roundCorrect}</div>
               <div className="text-xs uppercase tracking-widest text-white/40 mt-1">Uhádnuté</div>
             </div>
-            <div className="flex-1 rounded-3xl border border-white/10 bg-white/5 py-5">
+            <div
+              className="glass flex-1 rounded-3xl py-5"
+              style={{ animation: "slideUp 0.5s ease-out 0.25s both" }}
+            >
               <div className="text-5xl font-black text-white/50">{roundSkips}</div>
               <div className="text-xs uppercase tracking-widest text-white/40 mt-1">Preskočené</div>
             </div>
@@ -512,7 +608,10 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
 
           {/* Running scores */}
           {teamMode ? (
-            <div className="w-full max-w-xs rounded-3xl border border-white/10 bg-white/5 p-4">
+            <div
+              className="glass w-full max-w-xs rounded-3xl p-4"
+              style={{ animation: "slideUp 0.5s ease-out 0.3s both" }}
+            >
               <p className="mb-3 text-xs uppercase tracking-widest text-white/40">Skóre tímov</p>
               {[0, 1].map((t) => {
                 const teamScore = players.filter((p) => p.team === t).reduce((s, p) => s + p.score, 0);
@@ -527,7 +626,10 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
               })}
             </div>
           ) : (
-            <div className="w-full max-w-xs rounded-3xl border border-white/10 bg-white/5 p-4">
+            <div
+              className="glass w-full max-w-xs rounded-3xl p-4"
+              style={{ animation: "slideUp 0.5s ease-out 0.3s both" }}
+            >
               <p className="mb-3 text-xs uppercase tracking-widest text-white/40">Priebežné skóre</p>
               {[...players]
                 .slice(0, currentIdx + 1)
@@ -566,24 +668,30 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
         <Shell>
           <TopBar title="Koniec" />
           <div className="flex flex-1 flex-col gap-5 pt-2">
-            <div className="text-center">
-              <div className="text-5xl mb-3">🏆</div>
-              <h2 className="text-2xl font-black">
+            <div className="text-center" style={{ animation: "fadeIn 0.5s ease-out both" }}>
+              <div
+                className="flex h-20 w-20 mx-auto mb-3 items-center justify-center rounded-3xl bg-gradient-to-br from-yellow-500/30 to-orange-500/20"
+                style={{ animation: "tada 0.8s ease-out 0.1s both" }}
+              >
+                <Icons.trophy size={48} className="text-yellow-300" />
+              </div>
+              <h2 className="text-gradient text-2xl font-black">
                 Vyhráva Tím {winner.team + 1}!
               </h2>
               <p className="text-white/50 text-sm mt-1">{winner.score} bodov</p>
             </div>
 
-            {teamScores.map(({ team, score, players: tp }) => (
+            {teamScores.map(({ team, score, players: tp }, i) => (
               <div
                 key={team}
-                className={`rounded-3xl border p-4 ${
+                className={`glass rounded-3xl border p-4 ${
                   team === winner.team
                     ? team === 0
                       ? "border-blue-500/40 bg-blue-500/10"
                       : "border-orange-500/40 bg-orange-500/10"
-                    : "border-white/10 bg-white/5"
+                    : ""
                 }`}
+                style={{ animation: `slideUp 0.5s ease-out ${0.15 + i * 0.1}s both` }}
               >
                 <div className="flex items-center justify-between mb-3">
                   <span
@@ -605,7 +713,7 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
             ))}
 
             <div className="flex gap-3">
-              <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck()); setPhase("who-starts"); }}>
+              <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty)); setPhase("who-starts"); }}>
                 🔄 Znova
               </Button>
               <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
@@ -624,9 +732,14 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
       <Shell>
         <TopBar title="Koniec" />
         <div className="flex flex-1 flex-col gap-5 pt-2">
-          <div className="text-center">
-            <div className="text-5xl mb-3">🏆</div>
-            <h2 className="text-2xl font-black">Koniec!</h2>
+          <div className="text-center" style={{ animation: "fadeIn 0.5s ease-out both" }}>
+            <div
+              className="flex h-20 w-20 mx-auto mb-3 items-center justify-center rounded-3xl bg-gradient-to-br from-yellow-500/30 to-orange-500/20"
+              style={{ animation: "tada 0.8s ease-out 0.1s both" }}
+            >
+              <Icons.trophy size={48} className="text-yellow-300" />
+            </div>
+            <h2 className="text-gradient text-2xl font-black">Koniec!</h2>
             <p className="text-white/50 text-sm mt-1">
               Vyhráva <strong className="text-white">{sorted[0]?.name}</strong> s{" "}
               {sorted[0]?.score} bodmi!
@@ -637,11 +750,12 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
             {sorted.map((p, rank) => (
               <div
                 key={p.name}
-                className={`flex items-center gap-4 rounded-2xl px-4 py-3 border ${
+                className={`glass flex items-center gap-4 rounded-2xl px-4 py-3 ${
                   rank === 0
                     ? "border-yellow-500/40 bg-yellow-500/10"
-                    : "border-white/10 bg-white/5"
+                    : ""
                 }`}
+                style={{ animation: `slideUp 0.5s ease-out ${0.1 + rank * 0.08}s both` }}
               >
                 <span className="text-xl w-8 text-center">
                   {rank === 0 ? "🥇" : rank === 1 ? "🥈" : rank === 2 ? "🥉" : `${rank + 1}.`}
@@ -653,7 +767,7 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
           </div>
 
           <div className="flex gap-3">
-            <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck()); setPhase("who-starts"); }}>
+            <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty)); setPhase("who-starts"); }}>
               🔄 Znova
             </Button>
             <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
