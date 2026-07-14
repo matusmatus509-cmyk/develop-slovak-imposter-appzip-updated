@@ -432,6 +432,11 @@ export interface QuizQuestion {
   question: string;
   answer: string;
   category: string;
+  // Multiple-choice questions (A/B/C/D). When present, the quiz screen
+  // hides the answer texts as soon as a team buzzes in and only shows
+  // the four letters — the team must pick blind from memory.
+  options?: [string, string, string, string];
+  correctIndex?: 0 | 1 | 2 | 3;
 }
 
 export const QUIZ_QUESTIONS: QuizQuestion[] = [
@@ -490,6 +495,42 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
   { question: "Kde sa nachádza Bojnický zámok?", answer: "Bojnice (Trenčiansky kraj)", category: "🇸🇰 Slovensko" },
   { question: "Ako sa volá najvyšší štátny predstaviteľ Slovenska?", answer: "Prezident/ka", category: "🇸🇰 Slovensko" },
   { question: "Čo symbolizuje dvojitý kríž v slovenskom štátnom znaku?", answer: "Byzantský/apoštolský kríž — kresťanstvo", category: "🇸🇰 Slovensko" },
+
+  // ── Otázky s možnosťami (A, B, C, D) ──────────────────────────────────────
+  { question: "Ktorá farba vznikne zmiešaním modrej a žltej farby?", options: ["Zelená", "Fialová", "Oranžová", "Hnedá"], correctIndex: 0, answer: "Zelená", category: "🎨 Zaujímavosti" },
+  { question: "Ktoré zviera je považované za najrýchlejšieho suchozemského cicavca na svete?", options: ["Lev", "Gepard", "Antilopa", "Kôň"], correctIndex: 1, answer: "Gepard", category: "🐆 Zvieratá" },
+  { question: "Ako sa volá hlavná hrdinka v Disney rozprávke Ľadové kráľovstvo (Frozen), ktorá má magickú moc nad snehom a ľadom?", options: ["Anna", "Fiona", "Elsa", "Bella"], correctIndex: 2, answer: "Elsa", category: "🎬 Pop kultúra" },
+  { question: "Ktorá krajina je celosvetovo preslávená pôvodom jedál ako pizza a špagety?", options: ["Španielsko", "Taliansko", "Francúzsko", "Grécko"], correctIndex: 1, answer: "Taliansko", category: "🍝 Jedlo" },
+  { question: "Koľko dní má prestupný rok?", options: ["364", "365", "366", "367"], correctIndex: 2, answer: "366", category: "📅 Fakty" },
+  { question: "Ktorá planéta je najbližšie k Slnku?", options: ["Venuša", "Mars", "Merkúr", "Zem"], correctIndex: 2, answer: "Merkúr", category: "🔬 Veda" },
+  { question: "Ktorý slávny spevák bol celosvetovo známy ako „Kráľ popu“?", options: ["Elvis Presley", "Michael Jackson", "Freddie Mercury", "Prince"], correctIndex: 1, answer: "Michael Jackson", category: "🎬 Pop kultúra" },
+  { question: "Ako sa volá najväčší oceán na našej planéte?", options: ["Atlantický oceán", "Indický oceán", "Tichý oceán (Pacifik)", "Severný ľadový oceán"], correctIndex: 2, answer: "Tichý oceán (Pacifik)", category: "🌍 Geografia" },
+  { question: "Ktorý vták je známy tým, že kladie svoje vajcia do hniezd iných vtákov?", options: ["Kukučka", "Lastovička", "Bocian", "Sova"], correctIndex: 0, answer: "Kukučka", category: "🐦 Zvieratá" },
+  { question: "Koľko srdcí má chobotnica?", options: ["1", "2", "3", "Žiadne"], correctIndex: 2, answer: "3", category: "🐙 Zvieratá" },
+
+  // ── Otvorené otázky (bez možností) ────────────────────────────────────────
+  { question: "Ktorá svetoznáma hračka sa skladá z farebných plastových kociek, ktoré sa do seba spájajú, a pochádza z Dánska?", answer: "Lego", category: "🧸 Hračky" },
+  { question: "Koľko minút má jedna hodina?", answer: "60", category: "⏰ Fakty" },
+  { question: "Ako sa volá fiktívny žltý animovaný hrdina, ktorý žije v ananáse pod vodou na dne oceánu?", answer: "SpongeBob", category: "🎬 Pop kultúra" },
+  { question: "Ktoré ročné obdobie nasleduje na severnej pologuli hneď po zime?", answer: "Jar", category: "🌸 Príroda" },
+  { question: "Koľko kolies má klasický dvojkolesový bicykel?", answer: "2", category: "🚲 Fakty" },
+  { question: "Ako sa volá najbližšia hviezda k našej planéte Zem?", answer: "Slnko", category: "🔬 Veda" },
+  { question: "Ktorý svetoznámy umelec a vynálezca namaľoval slávny obraz Mona Lisa?", answer: "Leonardo da Vinci", category: "🎨 Umenie" },
+  { question: "Ktorý kontinent je najchladnejší, najsuchší a takmer celý pokrytý ľadom?", answer: "Antarktída", category: "🌍 Geografia" },
+  { question: "Ako sa volá najvyšší vrch (hora) na planéte Zem?", answer: "Mount Everest", category: "🌍 Geografia" },
+  { question: "Ktorý mliečny výrobok sa vyrába stĺkaním smotany a bežne si ho natierame na chlieb?", answer: "Maslo", category: "🧈 Jedlo" },
+
+  // ── Globálny mix pre všetky vekové kategórie (A, B, C, D) ─────────────────
+  { question: "Ako sa volá hlavný nepriateľ Harryho Pottera, ktorého meno sa väčšina čarodejníkov bojí vysloviť?", options: ["Voldemort", "Snape", "Malfoy", "Grindelwald"], correctIndex: 0, answer: "Voldemort", category: "📚 Kniha/Film" },
+  { question: "Ktorý orgán v ľudskom tele pumpuje krv a funguje ako motor celého tela?", options: ["Pľúca", "Mozog", "Žalúdok", "Srdce"], correctIndex: 3, answer: "Srdce", category: "🔬 Veda" },
+  { question: "Ako sa volá najznámejšia bábika na svete od spoločnosti Mattel, ktorá má aj svojho priateľa Kena?", options: ["Barbie", "Elsa", "Polly Pocket", "Jasmine"], correctIndex: 0, answer: "Barbie", category: "🧸 Hračky" },
+  { question: "Čo sa stane s vodou, keď jej teplota klesne pod 0 °C (bod mrazu)?", options: ["Začne sa variť", "Vyparí sa", "Zmení sa na ľad (zmrzne)", "Zmení farbu na modrú"], correctIndex: 2, answer: "Zmení sa na ľad (zmrzne)", category: "🔬 Veda" },
+  { question: "Ktoré ovocie je hlavnou surovinou na výrobu vína?", options: ["Jablká", "Hrozno", "Pomaranče", "Slivky"], correctIndex: 1, answer: "Hrozno", category: "🍇 Jedlo" },
+  { question: "Ktorá krajina darovala Spojeným štátom americkým ikonickú Sochu slobody, ktorá stojí v New Yorku?", options: ["Veľká Británia", "Francúzsko", "Taliansko", "Španielsko"], correctIndex: 1, answer: "Francúzsko", category: "📜 História" },
+  { question: "Ktorá sociálna sieť mala pred premenovaním na „X“ vo svojom logu modrého vtáčika?", options: ["Instagram", "Facebook", "Twitter", "TikTok"], correctIndex: 2, answer: "Twitter", category: "📱 Technológie" },
+  { question: "Ktorý hudobný nástroj má štandardne 88 čiernych a bielych klávesov?", options: ["Akordeón", "Klavír (krídlo)", "Syntetizátor", "Harfa"], correctIndex: 1, answer: "Klavír (krídlo)", category: "🎵 Hudba" },
+  { question: "Aké je chemické označenie (vzorec) pre čistú vodu?", options: ["CO2", "H2O", "NaCl", "O2"], correctIndex: 1, answer: "H2O", category: "🔬 Veda" },
+  { question: "Ako sa volá najznámejšia egyptská hrobka v tvare trojbokého ihlanu?", options: ["Chrám", "Koloseum", "Pyramída", "Zámok"], correctIndex: 2, answer: "Pyramída", category: "📜 História" },
 ];
 
 // ── Ping pong categories (team mode) ─────────────────────────────────────────

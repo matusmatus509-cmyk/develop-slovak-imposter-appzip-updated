@@ -6,7 +6,11 @@ type QuizPhase =
   | { t: "question" }
   | { t: "buzzed"; who: 0 | 1 }
   | { t: "second-chance"; who: 0 | 1 }
+  | { t: "selecting"; who: 0 | 1 }
+  | { t: "mc-result"; who: 0 | 1; selectedIndex: number; correct: boolean; scores: [number, number] }
   | { t: "done" };
+
+const LETTERS = ["A", "B", "C", "D"] as const;
 
 const QUESTIONS_PER_ROUND = 5;
 
@@ -28,7 +32,22 @@ export default function TeamQuiz({
 
   function buzz(who: 0 | 1) {
     if (phase.t !== "question") return;
-    setPhase({ t: "buzzed", who });
+    if (q.options) {
+      setPhase({ t: "selecting", who });
+    } else {
+      setPhase({ t: "buzzed", who });
+    }
+  }
+
+  function selectAnswer(selectedIndex: number) {
+    if (phase.t !== "selecting") return;
+    const { who } = phase;
+    const correct = selectedIndex === q.correctIndex;
+    const scorer = correct ? who : who === 0 ? 1 : 0;
+    const newScores: [number, number] = [...scores] as [number, number];
+    newScores[scorer] += 1;
+    setScores(newScores);
+    setPhase({ t: "mc-result", who, selectedIndex, correct, scores: newScores });
   }
 
   function markCorrect(who: 0 | 1) {
@@ -58,7 +77,13 @@ export default function TeamQuiz({
   }
 
   function getActiveTeam(): 0 | 1 | null {
-    if (phase.t === "buzzed" || phase.t === "second-chance") return phase.who;
+    if (
+      phase.t === "buzzed" ||
+      phase.t === "second-chance" ||
+      phase.t === "selecting" ||
+      phase.t === "mc-result"
+    )
+      return phase.who;
     return null;
   }
 
@@ -115,7 +140,71 @@ export default function TeamQuiz({
             {q.question}
           </p>
 
-          {phase.t !== "question" && (
+          {/* Multiple-choice: show option texts while everyone can still read them */}
+          {q.options && phase.t === "question" && (
+            <div className="mt-6 space-y-2 text-left" style={{ animation: "slideUp 0.4s ease-out" }}>
+              {q.options.map((opt, i) => (
+                <div
+                  key={i}
+                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 flex gap-3 items-baseline"
+                >
+                  <span className="font-black text-white/40">{LETTERS[i]}</span>
+                  <span className="text-white/80 font-semibold text-sm">{opt}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Multiple-choice: answers hidden as soon as a team buzzes in */}
+          {q.options && phase.t === "selecting" && (
+            <p
+              className="mt-6 text-sm font-bold text-white/40"
+              style={{ animation: "fadeIn 0.3s ease-out" }}
+            >
+              Možnosti sú skryté — vyberte písmeno naspamäť!
+            </p>
+          )}
+
+          {/* Multiple-choice: reveal result with correct/selected highlighting */}
+          {q.options && phase.t === "mc-result" && (
+            <div className="mt-6 space-y-2 text-left" style={{ animation: "slideUp 0.4s ease-out" }}>
+              {q.options.map((opt, i) => {
+                const isCorrect = i === q.correctIndex;
+                const isPicked = i === phase.selectedIndex;
+                return (
+                  <div
+                    key={i}
+                    className="rounded-xl border px-4 py-2.5 flex gap-3 items-baseline transition"
+                    style={{
+                      background: isCorrect
+                        ? "rgba(34,197,94,0.18)"
+                        : isPicked
+                        ? "rgba(239,68,68,0.18)"
+                        : "rgba(255,255,255,0.05)",
+                      borderColor: isCorrect
+                        ? "rgba(34,197,94,0.5)"
+                        : isPicked
+                        ? "rgba(239,68,68,0.5)"
+                        : "rgba(255,255,255,0.1)",
+                    }}
+                  >
+                    <span className="font-black text-white/60">{LETTERS[i]}</span>
+                    <span className="text-white font-semibold text-sm flex-1">{opt}</span>
+                    {isCorrect && <span>✅</span>}
+                    {isPicked && !isCorrect && <span>❌</span>}
+                  </div>
+                );
+              })}
+              <p className="text-center pt-2 font-black" style={{ color: phase.correct ? "#4ade80" : "#f87171" }}>
+                {phase.correct
+                  ? `+1 bod pre ${teamNames[phase.who]}!`
+                  : `Nesprávne! Bod ide pre ${teamNames[phase.who === 0 ? 1 : 0]}.`}
+              </p>
+            </div>
+          )}
+
+          {/* Open questions: reveal the plain-text answer once judged */}
+          {!q.options && phase.t !== "question" && (
             <div
               className="mt-6 rounded-2xl border border-white/10 bg-white/5 px-5 py-3"
               style={{ animation: "slideUp 0.4s ease-out" }}
@@ -130,6 +219,12 @@ export default function TeamQuiz({
           <p className="text-sm font-bold text-white/50" style={{ animation: "fadeIn 0.3s ease-out" }}>
             Šanca pre{" "}
             <span style={{ color: phase.who === 0 ? a : b }}>{teamNames[phase.who]}</span>
+          </p>
+        )}
+
+        {phase.t === "selecting" && (
+          <p className="text-sm font-bold" style={{ color: phase.who === 0 ? a : b, animation: "fadeIn 0.3s ease-out" }}>
+            Odpovedá: {teamNames[phase.who]}
           </p>
         )}
       </div>
@@ -153,6 +248,34 @@ export default function TeamQuiz({
               </button>
             ))}
           </div>
+        )}
+
+        {phase.t === "selecting" && (
+          <div className="grid grid-cols-4 gap-3">
+            {LETTERS.map((letter, i) => (
+              <button
+                key={letter}
+                onClick={() => selectAnswer(i)}
+                className="rounded-2xl py-7 text-2xl font-black text-white active:scale-95 transition shadow-lg hover:brightness-110"
+                style={{
+                  background: phase.who === 0 ? a : b,
+                  boxShadow: `0 0 20px ${(phase.who === 0 ? a : b)}55`,
+                }}
+              >
+                {letter}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {phase.t === "mc-result" && (
+          <button
+            onClick={() => nextQuestion(phase.scores)}
+            className="w-full rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition"
+            style={{ background: "linear-gradient(135deg, #7c3aed, #a855f7)" }}
+          >
+            Ďalšia otázka →
+          </button>
         )}
 
         {(phase.t === "buzzed" || phase.t === "second-chance") && (

@@ -25,6 +25,12 @@ npm run dev
 
 Runs on port 5000. Configured as the "Start application" workflow.
 
+## Quiz (Tímová párty bitka)
+
+`QUIZ_QUESTIONS` in `src/data/teamBattle.ts` holds both question types:
+- **Multiple-choice** (`options` + `correctIndex` set) — once a team buzzes in, `src/screens/teamBattle/Quiz.tsx` hides the answer texts and shows only the four letters (A/B/C/D); the team must pick from memory. Scoring is automatic: correct = point for that team, wrong = point for the opponent, no manual judging.
+- **Open-ended** (no `options`) — unchanged buzzer flow: a team buzzes, the host manually judges ✅/❌ with a second-chance for the other team on a wrong answer.
+
 ## Key files
 
 - `src/App.tsx` — main router / state
