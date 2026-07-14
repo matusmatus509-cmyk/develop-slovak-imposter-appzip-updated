@@ -9,7 +9,7 @@ export function Icon({ name, size = 24, className = "", style = {}, ...props }: 
   return <IconComponent size={size} className={className} style={style} {...props} />;
 }
 
-function createIcon(paths: string[], viewBox = "0 0 24 24") {
+function createIcon(paths: string[][], viewBox = "0 0 24 24") {
   return function Icon({ size = 24, className = "", style = {}, ...props }: IconProps) {
     return (
       <svg
@@ -25,7 +25,7 @@ function createIcon(paths: string[], viewBox = "0 0 24 24") {
         style={{ ...style, flexShrink: 0 }}
         {...props}
       >
-        {paths.map((d, i) => <path key={i} d={d} />)}
+        {paths.flat().map((d, i) => <path key={i} d={d} />)}
       </svg>
     );
   };
