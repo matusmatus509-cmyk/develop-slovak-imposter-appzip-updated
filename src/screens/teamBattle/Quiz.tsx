@@ -26,6 +26,7 @@ export default function TeamQuiz({
   const [qIdx, setQIdx] = useState(0);
   const [scores, setScores] = useState<[number, number]>([0, 0]);
   const [phase, setPhase] = useState<QuizPhase>({ t: "question" });
+  const [answerRevealed, setAnswerRevealed] = useState(false);
 
   const [a, b] = TEAM_COLORS;
   const q = questions[qIdx];
@@ -35,6 +36,7 @@ export default function TeamQuiz({
     if (q.options) {
       setPhase({ t: "selecting", who });
     } else {
+      setAnswerRevealed(false);
       setPhase({ t: "buzzed", who });
     }
   }
@@ -60,6 +62,7 @@ export default function TeamQuiz({
   function markWrong(who: 0 | 1) {
     if (phase.t === "buzzed") {
       const other = who === 0 ? 1 : 0;
+      setAnswerRevealed(false);
       setPhase({ t: "second-chance", who: other });
     } else {
       nextQuestion(scores);
@@ -68,6 +71,7 @@ export default function TeamQuiz({
 
   function nextQuestion(currentScores: [number, number]) {
     const next = qIdx + 1;
+    setAnswerRevealed(false);
     if (next >= QUESTIONS_PER_ROUND) {
       onDone(currentScores);
     } else {
@@ -203,8 +207,8 @@ export default function TeamQuiz({
             </div>
           )}
 
-          {/* Open questions: reveal the plain-text answer once judged */}
-          {!q.options && phase.t !== "question" && (
+          {/* Open questions: correct answer stays hidden until the host reveals it */}
+          {!q.options && (phase.t === "buzzed" || phase.t === "second-chance") && answerRevealed && (
             <div
               className="mt-6 rounded-2xl border border-white/10 bg-white/5 px-5 py-3"
               style={{ animation: "slideUp 0.4s ease-out" }}
@@ -286,22 +290,32 @@ export default function TeamQuiz({
                 {teamNames[activeTeam!]}
               </strong>
             </p>
-            <div className="flex gap-3">
+            {!answerRevealed ? (
               <button
-                onClick={() => markWrong(activeTeam!)}
-                className="flex-1 rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition"
-                style={{ background: "#7c1a1a" }}
+                onClick={() => setAnswerRevealed(true)}
+                className="w-full rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition"
+                style={{ background: "linear-gradient(135deg, #7c3aed, #a855f7)" }}
               >
-                ❌ Chyba
+                👁 Ukázať správnu odpoveď
               </button>
-              <button
-                onClick={() => markCorrect(activeTeam!)}
-                className="flex-1 rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition"
-                style={{ background: "#166534" }}
-              >
-                ✅ Správne
-              </button>
-            </div>
+            ) : (
+              <div className="flex gap-3">
+                <button
+                  onClick={() => markWrong(activeTeam!)}
+                  className="flex-1 rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition"
+                  style={{ background: "#7c1a1a" }}
+                >
+                  ❌ Chyba
+                </button>
+                <button
+                  onClick={() => markCorrect(activeTeam!)}
+                  className="flex-1 rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition"
+                  style={{ background: "#166534" }}
+                >
+                  ✅ Správne
+                </button>
+              </div>
+            )}
           </>
         )}
       </div>
