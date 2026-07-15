@@ -10,7 +10,7 @@ import {
   SARADY_DIFFICULTY_LABELS,
 } from "../../data/teamBattle";
 import { shuffle } from "../../data/teamBattle";
-import { useTiltGesture } from "../../hooks/useTiltGesture";
+import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
 
 type SubPhase = "select-difficulty" | "ready" | "playing" | "team-done";
 
@@ -307,7 +307,10 @@ export default function TimedWords({
         )}
 
         <button
-          onClick={() => setSubPhase("playing")}
+          onClick={async () => {
+            if (isHadajKtoSom) await requestTiltPermission();
+            setSubPhase("playing");
+          }}
           className="w-full max-w-xs rounded-2xl py-5 text-lg font-black uppercase tracking-wide text-white transition-all hover:scale-[1.02] active:scale-95"
           style={{ background: color, animation: "slideUp 0.5s ease-out 0.3s both", boxShadow: `0 4px 24px ${color}55` }}
         >

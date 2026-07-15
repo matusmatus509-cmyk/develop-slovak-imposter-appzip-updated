@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { CHARACTER_CATEGORIES } from "../../data/characters";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
-import { useTiltGesture } from "../../hooks/useTiltGesture";
+import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -400,7 +400,8 @@ export default function HadajKtoSom({ onBack }: { onBack: () => void }) {
     setPhase("who-starts");
   }
 
-  function startPlaying() {
+  async function startPlaying() {
+    await requestTiltPermission();
     setCurrentDeck(buildDeck(allCatIds));
     setPhase("playing");
   }
