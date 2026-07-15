@@ -562,8 +562,12 @@ export interface BattleRound {
 export const TEAM_COLORS: [string, string] = ["#3b82f6", "#ef4444"];
 export const TEAM_ICONS: [string, string] = ["🔵", "🔴"];
 
+// Quiz is reserved exclusively for the final round (a fitting climax), so it
+// is excluded from the regular rotation below — this guarantees it never
+// appears twice in the same session.
+const NON_FINAL_GAMES: GameType[] = ["pantomima", "sarady", "pingpong", "hadajktosom"];
+
 export function generateBattleRounds(count: number): BattleRound[] {
-  const games: GameType[] = ["pantomima", "sarady", "quiz", "pingpong", "hadajktosom"];
   const rounds: BattleRound[] = [];
 
   // Pick positions for special rounds (not first, not last)
@@ -572,7 +576,7 @@ export function generateBattleRounds(count: number): BattleRound[] {
 
   for (let i = 0; i < count; i++) {
     const isLast = i === count - 1;
-    const game: GameType = isLast ? "quiz" : games[i % games.length];
+    const game: GameType = isLast ? "quiz" : NON_FINAL_GAMES[i % NON_FINAL_GAMES.length];
 
     let special: RoundSpecial = "none";
     let multiplier = 1;

@@ -5,7 +5,6 @@ import {
   SARADY_WORDS,
   TEAM_CHARACTERS,
   QUIZ_QUESTIONS,
-  TEAM_PINGPONG_CATEGORIES,
   type BattleRound,
   type GameType,
 } from "../../data/teamBattle";
@@ -48,7 +47,6 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
   const [roundQuestions, setRoundQuestions] = useState(
     () => shuffle(QUIZ_QUESTIONS).slice(0, 5)
   );
-  const [roundCategory, setRoundCategory] = useState("");
 
   const currentRound = rounds[currentRoundIdx] ?? null;
 
@@ -75,9 +73,6 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
       setRoundWords(wordsForGame(r.game));
     } else if (r.game === "quiz") {
       setRoundQuestions(shuffle(QUIZ_QUESTIONS).slice(0, 5));
-    } else if (r.game === "pingpong") {
-      const cats = shuffle(TEAM_PINGPONG_CATEGORIES);
-      setRoundCategory(cats[0]);
     }
   }
 
@@ -161,7 +156,6 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
     if (game === "pingpong") {
       return (
         <PingPongTeam
-          category={roundCategory}
           teamNames={teamNames}
           onDone={handleRoundDone}
         />

@@ -5,7 +5,7 @@ const GAME_DESC: Record<string, string> = {
   pantomima: "Jeden hráč predvádza pohybom — bez slov. Tím hádá čo najviac za čas.",
   sarady: "Jeden hráč opisuje slovami — bez zakázaných výrazov. Tím hádá čo najviac.",
   quiz: "Kvízový buzzer! Prvý tím, ktorý stlačí tlačidlo, odpovedá.",
-  pingpong: "Tímy sa striedajú a hovoria slová z kategórie. Kto nevie, prehráva.",
+  pingpong: "Vyberte jedného hráča z každého tímu — pôjdu 1v1! Čiara sa pohybuje k tomu, kto je na rade. Hovorte slová na dané písmeno a klepnite po každom slove, inak prehráva.",
   hadajktosom: "Hráč drží telefón na čele. Tím mu pomáha iba áno/nie odpoveďami.",
 };
 

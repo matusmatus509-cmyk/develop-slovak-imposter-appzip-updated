@@ -1,67 +1,117 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { TEAM_COLORS } from "../../data/teamBattle";
 
-const WORD_TIME = 10;
+// Mirrors the standalone "Slovný Ping Pong" minigame exactly (same ball
+// physics, letters, speed ramp), just relabelled for two team
+// representatives who play 1v1 instead of two named individual players.
+
+const LETTERS = [
+  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+  "N", "O", "P", "R", "S", "T", "U", "V", "Z",
+];
+
+function pickLetter(exclude?: string) {
+  const pool = exclude ? LETTERS.filter((l) => l !== exclude) : LETTERS;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+// "Stredne" (medium) speed from the standalone minigame — seconds for the
+// ball to travel from centre to edge.
+const SECS_TO_EDGE = 4;
 
 export default function PingPongTeam({
-  category,
   teamNames,
   onDone,
 }: {
-  category: string;
   teamNames: [string, string];
   onDone: (scores: [number, number]) => void;
 }) {
-  const [current, setCurrent] = useState<0 | 1>(0);
-  const [wordCount, setWordCount] = useState<[number, number]>([0, 0]);
-  const [timeLeft, setTimeLeft] = useState(WORD_TIME);
   const [phase, setPhase] = useState<"ready" | "playing" | "done">("ready");
   const [winner, setWinner] = useState<0 | 1 | null>(null);
-  const [flash, setFlash] = useState<"ok" | "fail" | null>(null);
 
   const [a, b] = TEAM_COLORS;
-  const color = current === 0 ? a : b;
+  const colorTop = a;
+  const colorTopDark = "#1e3a6e";
+  const colorBot = b;
+  const colorBotDark = "#7c1a1a";
 
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // ballY: 0 = top edge, 1 = bottom edge. Start in middle.
+  const [ballY, setBallY] = useState(0.5);
+  const [letter] = useState(() => pickLetter());
+  // active = 0 → ball moves toward TOP (team 0 must answer)
+  // active = 1 → ball moves toward BOTTOM (team 1 must answer)
+  const [active, setActive] = useState<0 | 1>(() => (Math.random() < 0.5 ? 0 : 1));
 
-  function clearTimer() {
-    if (timerRef.current) clearTimeout(timerRef.current);
-  }
+  const ballYRef = useRef(0.5);
+  const activeRef = useRef<0 | 1>(active);
+  const gameOverRef = useRef(false);
+  const rafRef = useRef<number>(0);
+  const lastTsRef = useRef<number>(0);
+  const startTsRef = useRef<number>(0);
 
-  const handleFail = useCallback(() => {
-    clearTimer();
-    setFlash("fail");
-    const loser = current;
-    const win: 0 | 1 = loser === 0 ? 1 : 0;
-    setTimeout(() => {
-      setFlash(null);
-      setWinner(win);
-      setPhase("done");
-    }, 600);
-  }, [current]);
+  const baseSpeed = 0.5 / SECS_TO_EDGE;
 
-  const handleOk = useCallback(() => {
-    clearTimer();
-    setFlash("ok");
-    const newCounts: [number, number] = [...wordCount] as [number, number];
-    newCounts[current] += 1;
-    setWordCount(newCounts);
-    setTimeout(() => {
-      setFlash(null);
-      setCurrent((c) => (c === 0 ? 1 : 0));
-      setTimeLeft(WORD_TIME);
-    }, 400);
-  }, [current, wordCount]);
+  useEffect(() => {
+    activeRef.current = active;
+  }, [active]);
 
   useEffect(() => {
     if (phase !== "playing") return;
-    if (timeLeft <= 0) {
-      handleFail();
-      return;
+
+    gameOverRef.current = false;
+    ballYRef.current = 0.5;
+    lastTsRef.current = 0;
+    startTsRef.current = 0;
+
+    function tick(ts: number) {
+      if (gameOverRef.current) return;
+
+      if (!startTsRef.current) startTsRef.current = ts;
+      const dt = lastTsRef.current ? (ts - lastTsRef.current) / 1000 : 0;
+      lastTsRef.current = ts;
+
+      // Gradually speed up: +1.5% per second elapsed
+      const elapsed = (ts - startTsRef.current) / 1000;
+      const speed = baseSpeed * (1 + elapsed * 0.015);
+
+      const dir = activeRef.current === 0 ? -1 : 1;
+      let newY = ballYRef.current + dir * speed * dt;
+
+      if (newY <= 0) {
+        newY = 0;
+        gameOverRef.current = true;
+        ballYRef.current = newY;
+        setBallY(newY);
+        setWinner(1); // top team (0) lost
+        setPhase("done");
+        return;
+      }
+      if (newY >= 1) {
+        newY = 1;
+        gameOverRef.current = true;
+        ballYRef.current = newY;
+        setBallY(newY);
+        setWinner(0); // bottom team (1) lost
+        setPhase("done");
+        return;
+      }
+
+      ballYRef.current = newY;
+      setBallY(newY);
+      rafRef.current = requestAnimationFrame(tick);
     }
-    timerRef.current = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
-    return () => clearTimer();
-  }, [phase, timeLeft, handleFail]);
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [phase, baseSpeed]);
+
+  function handleTap(side: 0 | 1) {
+    if (gameOverRef.current) return;
+    if (side !== activeRef.current) return;
+    const other: 0 | 1 = side === 0 ? 1 : 0;
+    activeRef.current = other;
+    setActive(other);
+  }
 
   function buildResult(): [number, number] {
     if (winner === null) return [0, 0];
@@ -81,16 +131,16 @@ export default function PingPongTeam({
           <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-2">
             Slovný ping pong
           </p>
-          <h2 className="text-2xl font-black text-white mb-2">Kategória:</h2>
-          <p className="text-3xl font-black text-gradient">{category}</p>
+          <h2 className="text-2xl font-black text-white">1 v 1</h2>
         </div>
         <div
           className="glass rounded-3xl p-5 text-sm text-white/60 leading-relaxed max-w-xs"
           style={{ animation: "scaleIn 0.4s ease-out 0.2s both" }}
         >
-          Striedajte sa v hovorení slov z kategórie.
-          Máte <strong className="text-white">{WORD_TIME} sekúnd</strong> na každé slovo.
-          Kto nevie alebo zopakuje slovo — prehráva kolo!
+          Vyberte <strong className="text-white">jedného hráča z každého tímu</strong> — pôjdu proti sebe 1v1.
+          Telefón položte na stôl medzi vás. Hovorte slová na dané písmeno a{" "}
+          <strong className="text-white">klepnite na svoju polovicu</strong> po každom slove.
+          Čiara sa pohybuje smerom k vám — kto nestihne, prehráva kolo pre svoj tím!
         </div>
         <button
           onClick={() => setPhase("playing")}
@@ -117,22 +167,6 @@ export default function PingPongTeam({
             {winner !== null ? teamNames[winner] : "—"}
           </h2>
         </div>
-        <div className="flex gap-4 w-full max-w-xs">
-          {([0, 1] as const).map((idx) => (
-            <div
-              key={idx}
-              className="flex-1 rounded-2xl py-4 text-center transition"
-              style={{
-                background: `${idx === 0 ? a : b}${winner === idx ? "22" : "10"}`,
-                border: `1px solid ${idx === 0 ? a : b}${winner === idx ? "" : "30"}`,
-                animation: `scaleIn 0.4s ease-out ${0.2 + idx * 0.1}s both`,
-              }}
-            >
-              <p className="text-3xl font-black text-white">{wordCount[idx]}</p>
-              <p className="text-[10px] uppercase tracking-widest text-white/40 mt-1">{teamNames[idx]}</p>
-            </div>
-          ))}
-        </div>
         <button
           onClick={() => onDone(buildResult())}
           className="w-full max-w-xs rounded-2xl py-5 text-base font-black text-white active:scale-95 transition"
@@ -144,77 +178,103 @@ export default function PingPongTeam({
     );
   }
 
-  const timePercent = (timeLeft / WORD_TIME) * 100;
-  const isWarning = timeLeft <= 3;
+  const topPct = ballY * 100;
+  const botPct = (1 - ballY) * 100;
+  const isTopActive = active === 0;
 
   return (
-    <div className="fixed inset-0 flex flex-col" style={{ background: "#0a0a14" }}>
-      {flash && (
+    <div
+      className="fixed inset-0 overflow-hidden"
+      style={{ touchAction: "none", userSelect: "none" }}
+    >
+      {/* ── TOP HALF — Team A ── */}
+      <div
+        className="absolute left-0 right-0 top-0 flex items-center justify-center overflow-hidden"
+        style={{
+          height: `${topPct}%`,
+          backgroundColor: colorTop,
+          cursor: isTopActive ? "pointer" : "default",
+        }}
+        onPointerDown={() => handleTap(0)}
+      >
         <div
-          className="absolute inset-0 z-50 flex items-center justify-center pointer-events-none"
-          style={{ background: flash === "ok" ? "rgba(34,197,94,0.3)" : "rgba(239,68,68,0.35)", animation: "fadeIn 0.15s ease-out both" }}
-        >
-          <span className="text-8xl font-black text-white" style={{ animation: "popIn 0.3s cubic-bezier(0.34,1.56,0.64,1)" }}>{flash === "ok" ? "✓" : "✗"}</span>
-        </div>
-      )}
+          className="absolute bottom-0 left-0 right-0"
+          style={{ height: "clamp(24px, 8%, 60px)", backgroundColor: colorTopDark }}
+        />
 
-      <div className="h-2 bg-white/10">
         <div
-          className="h-full transition-all duration-1000 ease-linear"
-          style={{ width: `${timePercent}%`, background: isWarning ? "#ef4444" : color }}
+          className="relative z-10 flex flex-col items-center justify-center gap-2 text-center"
+          style={{ transform: "rotate(180deg)", pointerEvents: "none" }}
+        >
+          <p
+            className="font-black text-white/90 tracking-tight leading-none"
+            style={{ fontSize: "clamp(1.4rem, 5vw, 2.2rem)" }}
+          >
+            {teamNames[0]}
+          </p>
+          <div className="rounded-2xl px-4 py-2" style={{ backgroundColor: "rgba(0,0,0,0.20)" }}>
+            <p className="font-black text-white leading-none" style={{ fontSize: "clamp(2rem, 9vw, 3.5rem)" }}>
+              Slová na{" "}
+              <span className="underline decoration-4 underline-offset-4">{letter}</span>
+            </p>
+          </div>
+          {isTopActive && (
+            <p className="text-white/70 font-bold text-sm animate-pulse">
+              ↓ KLEPNI PO KAŽDOM SLOVE ↓
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* ── DIVIDING LINE ── */}
+      <div
+        className="absolute left-0 right-0 z-20 flex items-center"
+        style={{ top: `${topPct}%`, transform: "translateY(-50%)", height: "4px", pointerEvents: "none" }}
+      >
+        <div
+          className="w-full"
+          style={{
+            height: "4px",
+            backgroundImage:
+              "repeating-linear-gradient(90deg, white 0px, white 20px, transparent 20px, transparent 32px)",
+          }}
         />
       </div>
 
-      <div className="shrink-0 flex gap-3 px-5 py-4">
-        {([0, 1] as const).map((idx) => (
-          <div
-            key={idx}
-            className="flex-1 rounded-2xl px-4 py-2 text-center font-black transition-all"
-            style={{
-              background: idx === current ? `${idx === 0 ? a : b}25` : "rgba(255,255,255,0.05)",
-              border: `2px solid ${idx === current ? (idx === 0 ? a : b) : "transparent"}`,
-            }}
+      {/* ── BOTTOM HALF — Team B ── */}
+      <div
+        className="absolute left-0 right-0 bottom-0 flex items-center justify-center overflow-hidden"
+        style={{
+          height: `${botPct}%`,
+          backgroundColor: colorBot,
+          cursor: !isTopActive ? "pointer" : "default",
+        }}
+        onPointerDown={() => handleTap(1)}
+      >
+        <div
+          className="absolute top-0 left-0 right-0"
+          style={{ height: "clamp(24px, 8%, 60px)", backgroundColor: colorBotDark }}
+        />
+
+        <div className="relative z-10 flex flex-col items-center justify-center gap-2 text-center" style={{ pointerEvents: "none" }}>
+          <p
+            className="font-black text-white/90 tracking-tight leading-none"
+            style={{ fontSize: "clamp(1.4rem, 5vw, 2.2rem)" }}
           >
-            <span className="text-2xl text-white">{wordCount[idx]}</span>
-            <p className="text-[10px] uppercase tracking-widest mt-0.5" style={{ color: idx === 0 ? a : b }}>
-              {teamNames[idx]}
+            {teamNames[1]}
+          </p>
+          <div className="rounded-2xl px-4 py-2" style={{ backgroundColor: "rgba(0,0,0,0.20)" }}>
+            <p className="font-black text-white leading-none" style={{ fontSize: "clamp(2rem, 9vw, 3.5rem)" }}>
+              Slová na{" "}
+              <span className="underline decoration-4 underline-offset-4">{letter}</span>
             </p>
           </div>
-        ))}
-      </div>
-
-      <div className="flex-1 flex flex-col items-center justify-center px-6 text-center gap-4">
-        <p className="text-xs font-bold uppercase tracking-widest text-white/30">Hovorí</p>
-        <h2 className="text-3xl font-black" style={{ color }}>{teamNames[current]}</h2>
-
-        <p
-          className="text-6xl font-black tabular-nums"
-          style={{ color: isWarning ? "#ef4444" : color, animation: isWarning ? "ring 0.8s ease-in-out infinite" : undefined }}
-        >
-          {timeLeft}s
-        </p>
-
-        <div className="glass rounded-2xl px-5 py-3">
-          <p className="text-xs text-white/30 uppercase tracking-widest mb-1">Kategória</p>
-          <p className="text-lg font-black text-white">{category}</p>
+          {!isTopActive && (
+            <p className="text-white/70 font-bold text-sm animate-pulse">
+              ↑ KLEPNI PO KAŽDOM SLOVE ↑
+            </p>
+          )}
         </div>
-      </div>
-
-      <div className="shrink-0 flex gap-3 px-4 pb-8 pt-3">
-        <button
-          onClick={handleFail}
-          className="flex-1 rounded-2xl py-5 text-base font-black text-white active:scale-95 transition"
-          style={{ background: "#7c1a1a" }}
-        >
-          ❌ Nevie / Chyba
-        </button>
-        <button
-          onClick={handleOk}
-          className="flex-1 rounded-2xl py-5 text-base font-black text-white active:scale-95 transition"
-          style={{ background: "#166534" }}
-        >
-          ✅ Platné!
-        </button>
       </div>
     </div>
   );
