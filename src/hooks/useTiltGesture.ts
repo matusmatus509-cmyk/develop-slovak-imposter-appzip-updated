@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * Heads-up-style tilt gesture: tilt phone back/up → onUp(), tilt phone
@@ -20,29 +20,53 @@ export function useTiltGesture(
   onUp: () => void,
   onDown: () => void
 ) {
+  const onUpRef = useRef(onUp);
+  const onDownRef = useRef(onDown);
+
+  useEffect(() => {
+    onUpRef.current = onUp;
+    onDownRef.current = onDown;
+  }, [onUp, onDown]);
+
   useEffect(() => {
     if (!active) return;
     if (typeof window === "undefined" || typeof DeviceOrientationEvent === "undefined") {
       return;
     }
 
-    const TRIGGER = 50; // degrees past this = action fires
-    const NEUTRAL = 20; // degrees — must return inside this to re-arm
+    // Require a deep, deliberate tilt and hold it briefly. This filters out
+    // hand shake and small adjustments while the phone is on the forehead.
+    const TRIGGER = 70;
+    const NEUTRAL = 25;
+    const HOLD_MS = 180;
 
     type Zone = "neutral" | "up" | "down";
     let zone: Zone = "neutral";
+    let candidate: Exclude<Zone, "neutral"> | null = null;
+    let candidateSince = 0;
 
     const handleOrientation = (e: DeviceOrientationEvent) => {
       const beta = e.beta;
       if (beta === null) return;
 
       if (zone === "neutral") {
-        if (beta < -TRIGGER) {
-          zone = "up";
-          onUp();
-        } else if (beta > TRIGGER) {
-          zone = "down";
-          onDown();
+        const nextCandidate = beta < -TRIGGER ? "up" : beta > TRIGGER ? "down" : null;
+
+        if (nextCandidate === null) {
+          candidate = null;
+          candidateSince = 0;
+        } else if (candidate !== nextCandidate) {
+          candidate = nextCandidate;
+          candidateSince = performance.now();
+        } else if (performance.now() - candidateSince >= HOLD_MS) {
+          zone = nextCandidate;
+          candidate = null;
+          candidateSince = 0;
+          if (nextCandidate === "up") {
+            onUpRef.current();
+          } else {
+            onDownRef.current();
+          }
         }
       } else if (Math.abs(beta) < NEUTRAL) {
         zone = "neutral";
@@ -73,6 +97,5 @@ export function useTiltGesture(
       cancelled = true;
       window.removeEventListener("deviceorientation", handleOrientation);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active, onUp, onDown]);
+  }, [active]);
 }

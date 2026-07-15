@@ -117,6 +117,7 @@ export default function TimedWords({
 
   function handleCorrect() {
     if (doneRef.current) return;
+    if (isHadajKtoSom) navigator.vibrate?.(25);
     if (isPantomima) {
       doneRef.current = true;
       setFlash("ok");
@@ -158,6 +159,7 @@ export default function TimedWords({
 
   function handleSkip() {
     if (doneRef.current) return;
+    if (isHadajKtoSom) navigator.vibrate?.(25);
     if (isPantomima) {
       if (wordIdx + 1 >= teamWords.length) {
         doneRef.current = true;

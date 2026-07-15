@@ -226,6 +226,7 @@ function PlayingScreen({
   const handleCorrect = useCallback(() => {
     if (doneRef.current || tiltLocked.current) return;
     tiltLocked.current = true;
+    navigator.vibrate?.(25);
     correctRef.current += 1;
     setFlash("correct");
     setTimeout(() => {
@@ -244,6 +245,7 @@ function PlayingScreen({
   const handleSkip = useCallback(() => {
     if (doneRef.current || tiltLocked.current) return;
     tiltLocked.current = true;
+    navigator.vibrate?.(25);
     skippedRef.current += 1;
     setFlash("wrong");
     setTimeout(() => {
