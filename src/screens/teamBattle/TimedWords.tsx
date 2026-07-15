@@ -10,13 +10,14 @@ import {
   SARADY_DIFFICULTY_LABELS,
 } from "../../data/teamBattle";
 import { shuffle } from "../../data/teamBattle";
+import { useTiltGesture } from "../../hooks/useTiltGesture";
 
 type SubPhase = "select-difficulty" | "ready" | "playing" | "team-done";
 
 const MODE_INST: Record<GameType, string> = {
   pantomima: "Predvádzaj pohybom — bez slov! Ostatní hádajú.",
   sarady: "Opisuj slovami — bez odvodenín! Ostatní hádajú.",
-  hadajktosom: "Drž telefón na čele. Tím odpovedá len ÁNO / NIE.",
+  hadajktosom: "Drž telefón na čele. Tím odpovedá len ÁNO / NIE. Nakláňaj telefón nahor = uhádnuté, nadol = preskočiť.",
   quiz: "",
   pingpong: "",
 };
@@ -43,6 +44,7 @@ export default function TimedWords({
 }) {
   const isPantomima = mode === "pantomima";
   const isSarady = mode === "sarady";
+  const isHadajKtoSom = mode === "hadajktosom";
   const hasDifficulty = isPantomima || isSarady;
 
   const [teamIdx, setTeamIdx] = useState<0 | 1>(0);
@@ -183,6 +185,11 @@ export default function TimedWords({
       }
     }, 400);
   }
+
+  // "Hádaj kto som": tilt phone up = uhádnuté, down = preskočiť — same
+  // hysteresis mechanic as the standalone minigame, active only while the
+  // round is actually running so tilts elsewhere don't fire it by accident.
+  useTiltGesture(isHadajKtoSom && subPhase === "playing", handleCorrect, handleSkip);
 
   function handleTeamDone() {
     const newScores: [number, number] = [...scores] as [number, number];
@@ -372,6 +379,12 @@ export default function TimedWords({
           >
             {timeLeft}s
           </p>
+
+          {isHadajKtoSom && (
+            <p className="text-[11px] font-bold tracking-widest text-white/25 uppercase">
+              ▲ nakloniť nahor = uhádnuté · ▼ nadol = preskočiť
+            </p>
+          )}
         </div>
 
         <div className="shrink-0 flex gap-3 px-4 pb-8 pt-3">

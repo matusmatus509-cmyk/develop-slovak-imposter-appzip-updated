@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { CHARACTER_CATEGORIES } from "../../data/characters";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
+import { useTiltGesture } from "../../hooks/useTiltGesture";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -268,55 +269,11 @@ function PlayingScreen({
     return () => clearTimeout(id);
   }, [timeLeft, finishRound]);
 
-  // Device orientation with hysteresis:
-  // Phone must return to neutral zone before another tilt can trigger.
-  // TRIGGER at ±50°, NEUTRAL zone within ±20° — prevents accidental repeated fires.
-  useEffect(() => {
-    const TRIGGER = 50;   // degrees past this = action fires
-    const NEUTRAL = 20;   // degrees — must return inside this to re-arm
-
-    // "neutral" = armed and waiting, "up" / "down" = already fired, waiting to reset
-    type Zone = "neutral" | "up" | "down";
-    let zone: Zone = "neutral";
-
-    const handleOrientation = (e: DeviceOrientationEvent) => {
-      if (doneRef.current) return;
-      const beta = e.beta;
-      if (beta === null) return;
-
-      if (zone === "neutral") {
-        // Only fire from neutral zone
-        if (beta < -TRIGGER) {
-          zone = "up";
-          handleCorrect();
-        } else if (beta > TRIGGER) {
-          zone = "down";
-          handleSkip();
-        }
-      } else {
-        // Must fully return to neutral before re-arming
-        if (Math.abs(beta) < NEUTRAL) {
-          zone = "neutral";
-        }
-      }
-    };
-
-    // Request permission on iOS 13+
-    const evt = DeviceOrientationEvent as unknown as {
-      requestPermission?: () => Promise<string>;
-    };
-    if (typeof evt.requestPermission === "function") {
-      evt.requestPermission().then((state) => {
-        if (state === "granted") {
-          window.addEventListener("deviceorientation", handleOrientation);
-        }
-      });
-    } else {
-      window.addEventListener("deviceorientation", handleOrientation);
-    }
-
-    return () => window.removeEventListener("deviceorientation", handleOrientation);
-  }, [handleCorrect, handleSkip]);
+  // Tilt phone up = correct, down = skip. Shared hysteresis logic lives in
+  // useTiltGesture so both this minigame and the team-battle round behave
+  // identically and reliably. handleCorrect/handleSkip already guard on
+  // doneRef, so the listener can stay attached for the round's lifetime.
+  useTiltGesture(true, handleCorrect, handleSkip);
 
   const timePercent = (timeLeft / timerSeconds) * 100;
   const isWarning = timeLeft <= 10;
