@@ -302,7 +302,7 @@ export const WOULD_YOU_RATHER: { a: string; b: string }[] = [
 ];
 
 // ── Iba nepravda ─────────────────────────────────────────────────────────────
-export const ONLY_LIES: string[] = [
+const ONLY_LIES_BASE: string[] = [
   "Aký je tvoj obľúbený film?",
   "Čo si robil/a minulú sobotu večer?",
   "Aké je tvoje obľúbené jedlo?",
@@ -343,6 +343,44 @@ export const ONLY_LIES: string[] = [
   "Čo ti najviac chýba z detstva?",
   "Aká je tvoja tajná túžba?",
   "Čo ťa robí šťastným/šťastnou?",
+];
+
+const ONLY_LIES_TOPICS = [
+  "filmy", "seriály", "hudba", "cestovanie", "škola", "práca", "jedlo", "šport",
+  "domáce zvieratá", "móda", "technológie", "sociálne siete", "hry", "knihy",
+  "rodinné oslavy", "víkendy", "dovolenky", "detstvo", "budúcnosť", "sny",
+  "superhrdinovia", "vesmír", "príroda", "mesto", "domov", "kamaráti", "randenie",
+  "zimné dni", "letné dni", "narodeniny",
+];
+
+const ONLY_LIES_QUESTION_FORMS = [
+  (topic: string) => `Čo sa ti na téme ${topic} páči najviac?`,
+  (topic: string) => `Čo sa ti na téme ${topic} nepáči?`,
+  (topic: string) => `Čo by si pri téme ${topic} urobil/a inak?`,
+  (topic: string) => `Akú najvtipnejšiu vec spájaš s témou ${topic}?`,
+  (topic: string) => `Aký je tvoj tajný názor na tému ${topic}?`,
+  (topic: string) => `Čo by si si pri téme ${topic} nikdy nevybral/a?`,
+  (topic: string) => `Čo by si pri téme ${topic} odporučil/a ostatným?`,
+  (topic: string) => `Ktorú vec spojenú s témou ${topic} by si chcel/a skúsiť?`,
+  (topic: string) => `Akú chybu by si pri téme ${topic} najskôr spravil/a?`,
+  (topic: string) => `Čo je podľa teba pri téme ${topic} najdôležitejšie?`,
+  (topic: string) => `Čo by sa pri téme ${topic} stalo v dokonalom svete?`,
+  (topic: string) => `Akú prezývku by mala téma ${topic}?`,
+  (topic: string) => `Čo by si o téme ${topic} povedal/a cudzincovi?`,
+  (topic: string) => `Akú otázku o téme ${topic} by si položil/a expertovi?`,
+  (topic: string) => `Čo by si pri téme ${topic} kúpil/a za milión eur?`,
+  (topic: string) => `Čo by si o téme ${topic} nakrútil/a vo filme?`,
+  (topic: string) => `Čo by si v téme ${topic} zaradil/a na prvé miesto?`,
+  (topic: string) => `Akú superschopnosť by si chcel/a pri téme ${topic}?`,
+  (topic: string) => `Čo by bolo pri téme ${topic} úplne zakázané?`,
+  (topic: string) => `Čo by si o téme ${topic} napísal/a do denníka?`,
+];
+
+export const ONLY_LIES: string[] = [
+  ...ONLY_LIES_BASE,
+  ...ONLY_LIES_TOPICS.flatMap((topic) =>
+    ONLY_LIES_QUESTION_FORMS.map((createQuestion) => createQuestion(topic))
+  ),
 ];
 
 // ── Kto dostane bombu ─────────────────────────────────────────────────────────
