@@ -1,5 +1,7 @@
 export type Screen =
   | "home"
+  | "impostor-menu"
+  | "minigames-menu"
   | "impostor-setup"
   | "impostor-reveal"
   | "impostor-discussion"

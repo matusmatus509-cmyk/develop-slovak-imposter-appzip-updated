@@ -1,272 +1,110 @@
-import { useState, useEffect } from "react";
 import type { Screen } from "../types";
-import { Shell } from "../components/ui";
-import { Icons, type IconsType } from "../components/icons";
-import { cn } from "../utils/designTokens";
+import { Icons } from "../components/icons";
+import partyTableBackground from "../assets/party-table-bg.png";
 
-interface GameCard {
+const SECTIONS: Array<{
   screen: Screen;
+  eyebrow: string;
   title: string;
-  subtitle: string;
-  icon: keyof IconsType;
-  gradient: string;
+  description: string;
+  icon: "users" | "userCheck" | "gamepad";
+  accent: string;
   glow: string;
-  big?: boolean;
-}
-
-const CARDS: GameCard[] = [
+}> = [
   {
     screen: "teambattle",
-    title: "Tímová párty bitka",
-    subtitle: "Dva tímy súperia v pantomíme, šarádach, kvíze a ďalších minihierach",
+    eyebrow: "Tím proti tímu",
+    title: "Party mode",
+    description: "Veľká tímová hra na celý večer",
     icon: "users",
-    gradient: "from-purple-600 via-violet-500 to-indigo-600",
-    glow: "rgba(139, 92, 246, 0.4)",
-    big: true,
+    accent: "from-violet-500 to-indigo-500",
+    glow: "rgba(124, 58, 237, .38)",
   },
   {
-    screen: "impostor-setup",
-    title: "Podvodník",
-    subtitle: "Nájdi podvodníka v skupine skôr, než nájde tajné slovo on teba",
+    screen: "impostor-menu",
+    eyebrow: "Kto z vás klame?",
+    title: "Imposter",
+    description: "Klasická hra aj kreslenie",
     icon: "userCheck",
-    gradient: "from-orange-500 via-pink-500 to-fuchsia-600",
-    glow: "rgba(236, 72, 153, 0.4)",
-    big: true,
+    accent: "from-orange-400 to-rose-500",
+    glow: "rgba(244, 63, 94, .34)",
   },
   {
-    screen: "truth-or-dare",
-    title: "Pravda alebo výzva",
-    subtitle: "Klasika na každú párty",
-    icon: "target",
-    gradient: "from-sky-500 to-indigo-600",
-    glow: "rgba(99, 102, 241, 0.35)",
-  },
-  {
-    screen: "never-have-i-ever",
-    title: "Nikdy som nikdy",
-    subtitle: "Odhaľte tajomstvá skupiny",
-    icon: "wine",
-    gradient: "from-emerald-500 to-teal-600",
-    glow: "rgba(16, 185, 129, 0.35)",
-  },
-  {
-    screen: "would-you-rather",
-    title: "Radšej by som...",
-    subtitle: "Vyber si tú menej zlú možnosť",
-    icon: "brain",
-    gradient: "from-amber-500 to-rose-600",
-    glow: "rgba(244, 63, 94, 0.35)",
-  },
-  {
-    screen: "drawing-setup",
-    title: "Kreslenie Podvodníka",
-    subtitle: "Každý kreslí — ale jeden nepozná tajné slovo",
-    icon: "paintbrush",
-    gradient: "from-violet-500 to-cyan-500",
-    glow: "rgba(6, 182, 212, 0.35)",
-  },
-  {
-    screen: "slovnarosada",
-    title: "Slovná rošáda",
-    subtitle: "Každý opisuje svoje slovo — ale rošádnik má iné",
+    screen: "minigames-menu",
+    eyebrow: "Rýchle hry",
+    title: "Minihry",
+    description: "Krátke kolá pre každú partiu",
     icon: "gamepad",
-    gradient: "from-purple-500 to-indigo-600",
-    glow: "rgba(139, 92, 246, 0.35)",
-  },
-  {
-    screen: "pingpong",
-    title: "Slovný ping pong",
-    subtitle: "Striedajte slová z kategórie, kým niekto nezaváha",
-    icon: "rotateCcw",
-    gradient: "from-green-500 to-emerald-600",
-    glow: "rgba(16, 185, 129, 0.35)",
-  },
-  {
-    screen: "hadajktosom",
-    title: "Hádaj kto som",
-    subtitle: "Drž telefón na čele a pýtaj sa na áno/nie",
-    icon: "user",
-    gradient: "from-cyan-500 to-blue-600",
-    glow: "rgba(59, 130, 246, 0.35)",
-  },
-  {
-    screen: "ibanepravda",
-    title: "Iba nepravda",
-    subtitle: "Na každú otázku musíš odpovedať klamstvom",
-    icon: "messageSquare",
-    gradient: "from-rose-500 to-pink-600",
-    glow: "rgba(236, 72, 153, 0.35)",
-  },
-  {
-    screen: "ktodostanebombu",
-    title: "Kto dostane bombu",
-    subtitle: "Tikajúca bomba — podávajte rýchlo, nech nevybuchne u vás",
-    icon: "zap",
-    gradient: "from-orange-600 to-red-600",
-    glow: "rgba(239, 68, 68, 0.35)",
-  },
-  {
-    screen: "hadajemoji",
-    title: "Hádaj emoji",
-    subtitle: "Uhádni čo sa skrýva za kombináciou emoji",
-    icon: "smile",
-    gradient: "from-amber-400 to-yellow-500",
-    glow: "rgba(245, 158, 11, 0.35)",
+    accent: "from-cyan-400 to-teal-500",
+    glow: "rgba(6, 182, 212, .32)",
   },
 ];
 
-const Sparkles = Icons.sparkles;
-
-function GameCardComponent({ card, index, onClick }: { card: GameCard; index: number; onClick: () => void }) {
-  const [hovered, setHovered] = useState(false);
-  const [pressed, setPressed] = useState(false);
-  const IconComponent = Icons[card.icon];
-
-  return (
-    <button
-      onClick={onClick}
-      onMouseDown={() => setPressed(true)}
-      onMouseUp={() => setPressed(false)}
-      onMouseLeave={() => { setPressed(false); setHovered(false); }}
-      onMouseEnter={() => setHovered(true)}
-      className={cn(
-        "group relative overflow-hidden rounded-3xl p-[1.5px] text-left",
-        "bg-gradient-to-br",
-        card.gradient,
-        "shadow-xl transition-all duration-300",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0a1a]",
-        hovered && "scale-[1.03] shadow-2xl",
-        pressed && "scale-[0.97]",
-      )}
-      style={{
-        boxShadow: hovered ? `0 12px 40px -8px ${card.glow}` : `0 6px 20px -6px ${card.glow}`,
-        animation: `scaleIn 0.5s ease-out ${index * 60}ms both`,
-      }}
-    >
-      {/* Inner content */}
-      <div
-        className={cn(
-          "flex items-center gap-4 rounded-[22px] bg-[#12101f]/95 px-4 py-4",
-          "transition-opacity duration-300",
-          card.big ? "py-6" : "py-3.5",
-        )}
-      >
-        {/* Icon box */}
-        <div
-          className={cn(
-            "flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br shadow-lg",
-            card.gradient,
-            "transition-transform duration-300",
-            card.big ? "h-16 w-16" : "h-12 w-12",
-            hovered && "scale-110 rotate-3",
-            pressed && "scale-95",
-          )}
-        >
-          {IconComponent && <IconComponent size={card.big ? 30 : 24} className="text-white" />}
-        </div>
-
-        {/* Title + subtitle */}
-        <div className="flex-1 min-w-0 text-left">
-          <h2
-            className={cn(
-              "font-extrabold tracking-tight truncate text-white",
-              card.big ? "text-xl" : "text-base",
-            )}
-          >
-            {card.title}
-          </h2>
-          <p className="mt-0.5 text-xs leading-snug text-white/50 truncate font-medium">
-            {card.subtitle}
-          </p>
-        </div>
-
-        {/* Arrow */}
-        <div
-          className={cn(
-            "shrink-0 flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white/30",
-            "transition-all duration-300",
-            hovered && "bg-white/20 text-white scale-110",
-          )}
-        >
-          <Icons.chevronRight size={18} />
-        </div>
-      </div>
-
-      {/* Shine overlay on hover */}
-      {hovered && (
-        <div
-          className="pointer-events-none absolute inset-0 rounded-3xl opacity-20"
-          style={{
-            background: "linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%)",
-          }}
-        />
-      )}
-    </button>
-  );
-}
-
 export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => void }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
-
   return (
-    <Shell>
-      {/* Header */}
-      <div
-        className="mb-5 flex items-center justify-between"
-        style={{ animation: "fadeIn 0.6s ease-out" }}
-      >
-        <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-fuchsia-400/80">
-            Párty hry
-          </p>
-          <h1 className="mt-1 text-3xl font-black tracking-tight flex items-center gap-2">
-            <span className="text-gradient">Kto klame?</span>
-            <Sparkles size={26} className="text-fuchsia-400 animate-pulse" />
+    <main className="relative min-h-screen overflow-hidden bg-[#080b13] text-white">
+      <img
+        src={partyTableBackground}
+        alt=""
+        className="pointer-events-none fixed inset-0 h-full w-full object-cover opacity-55"
+      />
+      <div className="pointer-events-none fixed inset-0 bg-gradient-to-b from-[#080b13]/35 via-[#080b13]/70 to-[#080b13]" />
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_15%,rgba(255,255,255,.08),transparent_35%)]" />
+
+      <div className="relative mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-8 pt-8">
+        <header className="mb-8" style={{ animation: "slideUp .55s ease-out both" }}>
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/25 px-3 py-1.5 backdrop-blur-xl">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,.8)]" />
+            <span className="text-[10px] font-extrabold uppercase tracking-[.22em] text-white/65">Jeden mobil · celá partia</span>
+          </div>
+          <h1 className="max-w-[320px] text-[2.65rem] font-black leading-[.96] tracking-[-.055em]">
+            Vyberte si hru.<br />
+            <span className="text-white/45">Zábava začína.</span>
           </h1>
-        </div>
-        <button
-          onClick={() => onNavigate("impostor-history")}
-          aria-label="História hier"
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white/8 text-white/60 transition-all hover:bg-white/15 hover:text-white hover:scale-105 active:scale-95"
-        >
-          <Icons.history size={20} />
-        </button>
+          <p className="mt-4 max-w-xs text-sm font-medium leading-relaxed text-white/55">
+            Spoločenské hry pre kamarátov, rodinu aj párty. Bez registrácie a zbytočného nastavovania.
+          </p>
+        </header>
+
+        <section className="flex flex-1 flex-col justify-center gap-3.5" aria-label="Herné režimy">
+          {SECTIONS.map((section, index) => {
+            const Icon = Icons[section.icon];
+            return (
+              <button
+                key={section.screen}
+                type="button"
+                onClick={() => onNavigate(section.screen)}
+                className="group relative min-h-[126px] overflow-hidden rounded-[28px] border border-white/[.11] bg-[#121722]/88 p-5 text-left shadow-2xl backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-white/20 active:translate-y-0 active:scale-[.98]"
+                style={{
+                  animation: `slideUp .55s ease-out ${120 + index * 90}ms both`,
+                  boxShadow: `0 18px 45px -28px ${section.glow}`,
+                }}
+              >
+                <div className={`absolute inset-y-0 left-0 w-1 bg-gradient-to-b ${section.accent}`} />
+                <div className={`absolute -right-10 -top-14 h-36 w-36 rounded-full bg-gradient-to-br ${section.accent} opacity-[.12] blur-2xl transition-opacity duration-300 group-hover:opacity-25`} />
+                <div className="relative flex h-full items-center gap-4">
+                  <div className={`flex h-[68px] w-[68px] shrink-0 items-center justify-center rounded-[22px] bg-gradient-to-br ${section.accent} shadow-lg transition duration-300 group-hover:rotate-3 group-hover:scale-105`}>
+                    <Icon size={32} className="text-white" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] font-extrabold uppercase tracking-[.2em] text-white/40">{section.eyebrow}</p>
+                    <h2 className="mt-1 text-2xl font-black tracking-tight">{section.title}</h2>
+                    <p className="mt-1 text-xs font-medium text-white/50">{section.description}</p>
+                  </div>
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[.06] text-white/45 transition group-hover:translate-x-1 group-hover:bg-white/10 group-hover:text-white">
+                    <Icons.chevronRight size={20} />
+                  </span>
+                </div>
+              </button>
+            );
+          })}
+        </section>
+
+        <footer className="mt-7 flex items-center justify-center gap-2 text-[11px] font-semibold text-white/35" style={{ animation: "fadeIn 1s ease-out .5s both" }}>
+          <Icons.sparkles size={14} />
+          <span>Hrajte offline, kdekoľvek</span>
+        </footer>
       </div>
-
-      {/* Intro text */}
-      <p
-        className="mb-6 text-sm leading-relaxed text-white/55 max-w-xs"
-        style={{ animation: "fadeIn 0.8s ease-out" }}
-      >
-        Zábavné spoločenské hry pre partiu kamarátov. Jeden telefón, veľa smiechu.
-      </p>
-
-      {/* Cards list */}
-      <div className="flex flex-col gap-3.5">
-        {CARDS.map((card, index) => (
-          mounted && (
-            <GameCardComponent
-              key={card.screen}
-              card={card}
-              index={index}
-              onClick={() => onNavigate(card.screen)}
-            />
-          )
-        ))}
-      </div>
-
-      {/* Footer */}
-      <div
-        className="mt-8 rounded-2xl glass p-4 text-center text-xs text-white/35"
-        style={{ animation: "fadeIn 1s ease-out" }}
-      >
-        <span className="font-semibold">Hraj offline, kdekoľvek</span> — na výletoch, párty aj doma s rodinou. 🎉
-      </div>
-
-      {/* Floating decorative blobs */}
-      <div className="pointer-events-none fixed bottom-[-20px] right-[-20px] h-40 w-40 rounded-full bg-fuchsia-600/10 blur-3xl animate-float" />
-      <div className="pointer-events-none fixed top-1/2 left-[-40px] h-32 w-32 rounded-full bg-indigo-600/10 blur-3xl animate-float" style={{ animationDelay: "1.5s" }} />
-    </Shell>
+    </main>
   );
 }
