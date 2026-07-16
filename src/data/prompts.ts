@@ -1,4 +1,4 @@
-export const TRUTHS: string[] = [
+const TRUTHS_BASE: string[] = [
   // --- Trápne momenty ---
   "Aká je najtrápnejšia vec, ktorá sa ti kedy stala na verejnosti?",
   "Kedy si sa naposledy hanbil/a pred celou triedou alebo prácou?",
@@ -76,7 +76,7 @@ export const TRUTHS: string[] = [
   "Komu z prítomných by si povedal/a nepríjemnú pravdu, ak by si mal/a odvahu?",
 ];
 
-export const DARES: string[] = [
+const DARES_BASE: string[] = [
   // --- Fyzické výzvy ---
   "Zatancuj 30 sekúnd bez hudby.",
   "Predveď, ako chodí kačica, okolo celej miestnosti.",
@@ -149,7 +149,7 @@ export const DARES: string[] = [
   "Sprav selfie v najtrápnejšej póze a pošli ju do rodinnej skupiny.",
 ];
 
-export const NEVER_HAVE_I_EVER: string[] = [
+const NEVER_HAVE_I_EVER_BASE: string[] = [
   // --- Cestovanie a dobrodružstvo ---
   "Nikdy som nikdy... nepreletel/a lietadlom.",
   "Nikdy som nikdy... nebol/a sám/sama v cudzej krajine.",
@@ -227,7 +227,7 @@ export const NEVER_HAVE_I_EVER: string[] = [
   "Nikdy som nikdy... som zaplatil/a za niekoho účet bez toho, aby o tom vedel/a.",
 ];
 
-export const WOULD_YOU_RATHER: { a: string; b: string }[] = [
+const WOULD_YOU_RATHER_BASE: { a: string; b: string }[] = [
   // --- Superschopnosti ---
   { a: "vedieť lietať", b: "byť neviditeľný/á" },
   { a: "čítať myšlienky ostatných", b: "vidieť budúcnosť" },
@@ -302,6 +302,93 @@ export const WOULD_YOU_RATHER: { a: string; b: string }[] = [
 ];
 
 // ── Iba nepravda ─────────────────────────────────────────────────────────────
+// Rozsirene baliky pre tri party hry: 30 tem a 20 roznych foriem = 600 novych poloziek v kazdej hre.
+const PARTY_TOPICS = [
+  "cestovanie", "skola", "praca", "rodina", "kamarati", "hudba", "filmy", "serialy", "knihy", "hry",
+  "jedlo", "varenie", "sport", "priroda", "mesto", "domov", "technologie", "socialne siete", "detstvo", "vikend",
+  "dovolenka", "narodeniny", "zima", "leto", "zvierata", "moda", "nakupovanie", "buducnost", "vesmir", "superhrdinovia",
+];
+
+const TRUTH_FORMS = [
+  (topic: string) => `Co je tvoj najvacsi zazitok spojeny s temou ${topic}?`,
+  (topic: string) => `Co ta na teme ${topic} najviac tesi?`,
+  (topic: string) => `Co ta na teme ${topic} najviac irituje?`,
+  (topic: string) => `Aku trapnu spomienku mas na temu ${topic}?`,
+  (topic: string) => `Co by si o teme ${topic} najradsej nikomu nepovedal/a?`,
+  (topic: string) => `Kedy si naposledy urobil/a chybu pri teme ${topic}?`,
+  (topic: string) => `Co by si chcel/a pri teme ${topic} zmenit?`,
+  (topic: string) => `Aku radu o teme ${topic} si ignoroval/a?`,
+  (topic: string) => `Co si pri teme ${topic} predstieral/a, ze vies?`,
+  (topic: string) => `Co je tvoj tajny nazor na temu ${topic}?`,
+  (topic: string) => `Koho by si pri teme ${topic} poziadal/a o pomoc?`,
+  (topic: string) => `Co najvtipnejsie sa ti pri teme ${topic} stalo?`,
+  (topic: string) => `Aku vec o teme ${topic} by si chcel/a vediet lepsie?`,
+  (topic: string) => `Kedy si bol/a pri teme ${topic} najviac hrdy/a na seba?`,
+  (topic: string) => `Co by si pri teme ${topic} urobil/a uplne inak ako ostatni?`,
+  (topic: string) => `Aku malu loz si niekedy povedal/a o teme ${topic}?`,
+  (topic: string) => `Co ti pri teme ${topic} chyba najviac?`,
+  (topic: string) => `Co je pri teme ${topic} tvoj najvacsi strach?`,
+  (topic: string) => `Aku vec o teme ${topic} si naposledy ulahcil/a?`,
+  (topic: string) => `Co by si o teme ${topic} povedal/a svojmu mladsimu ja?`,
+];
+
+const DARE_ACTIONS = [
+  "predved kratku pantomimu", "vymysli reklamu", "zaspievaj dve vety piesne", "nakresli obrazok bez zdvihnutia pera",
+  "povedz trojriadkovu basen", "zahraj kratku scenu", "vymysli novy slogan", "opis to hlasom robota",
+  "predved to bez slov", "vymysli vtip", "zatancuj 15 sekund", "vymysli rap", "povedz tri asociacie",
+  "napodobni moderatora", "vymysli rozpravku", "vysvetli to ako odbornik", "zahraj to ako v nemom filme",
+  "povedz kompliment hracovi vlavo", "vymysli novu prezivku", "povedz jeden dovod, preco je to super",
+];
+
+const NEVER_ACTIONS = [
+  "som o tom klamal/a", "som sa pri tom stratil/a", "som to odkladal/a na neskor", "som sa pri tom velmi smial/a",
+  "som na to zabudol/a", "som to robil/a na poslednu chvilu", "som to pokazil/a pred ostatnymi", "som si to tajne uzil/a",
+  "som sa pri tom citil/a trapne", "som to skusil/a len zo zvedavosti", "som sa pri tom vyhovoril/a", "som o tom snival/a",
+  "som to urobil/a bez planu", "som sa pri tom pohadal/a", "som to tajil/a pred rodinou", "som sa pri tom hanbil/a",
+  "som to odporucil/a niekomu dalsiemu", "som to vzdal/a priskoro", "som sa pri tom citil/a ako expert", "som si prial/a, aby to nikto nevidel",
+];
+
+const RATHER_OPTIONS_A = [
+  "mat neobmedzeny rozpocet", "mat viac volneho casu", "byt v tom najlepsi/a", "vediet o tom vsetko",
+  "mat to kazdy den", "mat to iba raz za rok", "zazit to sam/a", "zazit to s najlepsimi kamaratmi",
+  "vratit sa v tom do minulosti", "preskocit to do buducnosti", "mat to vzdy dokonale", "mat to vzdy prekvapive",
+  "byt pri tom slavny/a", "byt pri tom uplne anonymny/a", "mat to zadarmo", "mat to hned teraz",
+  "mat pri tom stastie", "mat pri tom talent", "vybrat si presne podla seba", "nechat rozhodnut ostatnych",
+];
+
+const RATHER_OPTIONS_B = [
+  "mat v tom jeden dokonaly zazitok", "mat pri tom viac penazi", "byt v tom uplne pokojny/a", "vediet len to najdolezitejsie",
+  "mat to raz a nezabudnut na to", "mat to kazdy vikend", "zazit to s celou rodinou", "zazit to s cudzimi ludmi",
+  "vymysliet to uplne nanovo", "nechat to plynut bez planu", "mat to trochu chaoticke", "mat to vzdy rovnake",
+  "byt pri tom vtipny/a", "byt pri tom naozaj mudry/a", "mat to lacne ale nudne", "cakat na to cely rok",
+  "mat pri tom odvahu", "mat pri tom trpezlivost", "prisposobit sa ostatnym", "nechat rozhodnut nahodu",
+];
+
+export const TRUTHS: string[] = [
+  ...TRUTHS_BASE,
+  ...PARTY_TOPICS.flatMap((topic) => TRUTH_FORMS.map((form) => form(topic))),
+];
+
+export const DARES: string[] = [
+  ...DARES_BASE,
+  ...PARTY_TOPICS.flatMap((topic) => DARE_ACTIONS.map((action) => `${action} na temu ${topic}.`)),
+];
+
+export const NEVER_HAVE_I_EVER: string[] = [
+  ...NEVER_HAVE_I_EVER_BASE,
+  ...PARTY_TOPICS.flatMap((topic) => NEVER_ACTIONS.map((action) => `Nikdy som nikdy... ${action} pri teme ${topic}.`)),
+];
+
+export const WOULD_YOU_RATHER: { a: string; b: string }[] = [
+  ...WOULD_YOU_RATHER_BASE,
+  ...PARTY_TOPICS.flatMap((topic) =>
+    RATHER_OPTIONS_A.map((optionA, index) => ({
+      a: `${optionA} pri teme ${topic}`,
+      b: `${RATHER_OPTIONS_B[index]} pri teme ${topic}`,
+    }))
+  ),
+];
+
 const ONLY_LIES_BASE: string[] = [
   "Aký je tvoj obľúbený film?",
   "Čo si robil/a minulú sobotu večer?",
