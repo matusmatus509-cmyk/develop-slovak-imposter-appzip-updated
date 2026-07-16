@@ -6,7 +6,7 @@ export interface CharacterCategory {
 }
 
 // Karty su rozdelene podla typu, aby si hraci mohli vybrat tematicky balik.
-export const CHARACTER_CATEGORIES: CharacterCategory[] = [
+const CHARACTER_CATEGORIES_BASE: CharacterCategory[] = [
   {
     id: "world-personalities",
     name: "Svetove osobnosti",
@@ -174,5 +174,92 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
       "Krokodíl", "Hroch", "Nosorožec", "Zebra", "Vlk", "Medveď", "Líška", "Jaguár",
       "Gepard", "Leopard", "Puma", "Suriikata", "Kengura", "Lenivec",
     ],
+  },
+];
+
+const WORLD_ATHLETES_EXTRA = [
+  "Pelé", "Diego Maradona", "Zinedine Zidane", "David Beckham", "Ronaldinho", "Ronaldo Nazário", "Andrés Iniesta", "Xavi", "Luka Modrić", "Mohamed Salah",
+  "Karim Benzema", "Robert Lewandowski", "Vinícius Júnior", "Jude Bellingham", "Antoine Griezmann", "Kevin De Bruyne", "Virgil van Dijk", "Gianluigi Buffon", "Manuel Neuer", "Iker Casillas",
+  "Marta", "Alex Morgan", "Megan Rapinoe", "David Ortiz", "Babe Ruth", "Tom Brady", "Patrick Mahomes", "Aaron Rodgers", "Peyton Manning", "Joe Montana",
+  "Wayne Gretzky", "Sidney Crosby", "Alex Ovechkin", "Connor McDavid", "Jaromír Jágr", "Manny Pacquiao", "Floyd Mayweather", "Anthony Joshua", "Canelo Álvarez", "Oleksandr Usyk",
+  "Jannik Sinner", "Carlos Alcaraz", "Iga Świątek", "Naomi Osaka", "Venus Williams", "Steffi Graf", "Andre Agassi", "Björn Borg", "Martina Navrátilová", "Andy Murray",
+  "Eliud Kipchoge", "Mo Farah", "Yelena Isinbayeva", "Carl Lewis", "Jesse Owens", "Allyson Felix", "Sha'Carri Richardson", "Simone Manuel", "Mark Spitz", "Katie Ledecky",
+  "Sebastian Vettel", "Fernando Alonso", "Charles Leclerc", "Lando Norris", "Michael Schumacher", "Kimi Räikkönen", "Niki Lauda", "Ronda Rousey", "Khabib Nurmagomedov", "Jon Jones",
+  "Tony Hawk", "Kelly Slater", "Shaun White", "Lindsey Vonn", "Mikaela Shiffrin", "George Weah",
+];
+
+const WORLD_YOUTUBERS_EXTRA = [
+  "IShowSpeed", "Kai Cenat", "Vikkstar123", "Miniminter", "Zerkaa", "Behzinga", "W2S", "TBJZL", "Kwebbelkop", "Unspeakable",
+  "PrestonPlayz", "Technoblade", "Skeppy", "GeorgeNotFound", "Sapnap", "BadBoyHalo", "CaptainSparklez", "PopularMMOs", "ItsFunneh", "LDShadowLady",
+  "Aphmau", "StacyPlays", "Grian", "Mumbo Jumbo", "Ssundee", "TheOdd1sOut", "Jaiden Animations", "Domics", "Kurzgesagt", "Vsauce",
+  "Veritasium", "Mark Rober", "Nerdwriter", "HowToBasic", "Nelk", "Good Mythical Morning", "Rhett and Link", "Safiya Nygaard", "Tana Mongeau", "James Charles",
+  "Jeffree Star", "Bretman Rock", "Liza Koshy", "David Dobrik", "Zane Hijazi", "Lele Pons", "Miranda Sings", "Colleen Ballinger", "Philip DeFranco", "H3H3Productions",
+  "Mo Vlogs", "Faze Rug", "FaZe Banks", "RiceGum", "Ali-A", "Typical Gamer", "Lachlan", "Muselk", "Nick Eh 30", "SypherPK",
+  "CoryxKenshin", "Berleezy", "Kubz Scouts", "The Game Theorists", "MatPat", "Screen Junkies", "CinemaSins", "Joshua Weissman", "Binging with Babish", "Gordon Ramsay",
+  "Mrwhosetheboss", "Unbox Therapy", "Linus Tech Tips", "Austin Evans", "The Try Guys",
+];
+
+const SLOVAK_PERSONALITIES_EXTRA = [
+  "Mária Bartalos", "Mária Čírová", "Katarína Knechtová", "Nela Pocisková", "Celeste Buckingham", "Emma Drobná", "Mária Kolárová", "Veronika Strapková", "Lucia Barmošová", "Adela Vinczeová",
+  "Dara Rolins", "Rytmus", "Majk Spirit", "Kali", "Ego", "Separ", "Sima", "Ewa Farna", "Michaela Čobejová", "Zuzana Fialová",
+  "Zuzana Norisová", "Monika Hilmerová", "Diana Mórová", "Sväťo Malachovský", "Lukáš Latinák",
+  "Kamil Peteraj", "Jozef Banáš", "Matej Bel", "Mária Podhradská", "Peter Marcin", "Andrej Bičan", "Dano Dangl", "Mária Kráľovičová", "Jozef Bednárik",
+];
+
+const SLOVAK_ATHLETES_EXTRA = [
+  "Marek Mintál", "Róbert Vittek", "Martin Škrtel", "Vladimír Weiss", "Ondrej Duda", "Stanislav Lobotka", "Milan Škriniar", "Dávid Hancko", "Juraj Kucka", "Ján Ďurica",
+  "Martin Dúbravka", "Ján Mucha", "Kamil Kopúnek", "Dušan Tittel", "Jozef Adamec", "Ladislav Kubala", "Jozef Vengloš", "František Plánička", "Juraj Slafkovský", "Tomáš Tatar",
+  "Martin Pospíšil", "Martin Fehérváry", "Šimon Nemec", "Marek Hrivík", "Richard Pánik", "Branislav Mezei", "Andrej Sekera", "Marek Svatoš", "Jozef Stümpel", "Richard Zedník",
+  "Roman Čechmánek", "Ján Lašák", "Rastislav Staňa", "Jozef Golonka", "Vladimír Dzurilla", "Dárius Rusnák", "Igor Liba", "Zigmund Pálffy", "Miroslav Ihnačák", "Róbert Pál",
+  "Martina Moravcová", "Richard Nagy", "Tomáš Klobučník", "Katarína Remeňová", "Elena Kaliská", "Zuzana Rehák-Štefečeková", "Danka Barteková", "Jozef Gönci", "Michal Kováč", "Michal Čajkovský",
+  "Ivan Klement", "Ján Svorada", "Peter Velits", "Martin Velits", "Jozef Metelka", "Tibor Linka", "Denisa Baránková", "Boris Valábik", "Mário Lunter", "Richard Tóth",
+  "Lukáš Krpálek", "Attila Végh", "Ivan Buchinger", "Gábor Boráros", "Monika Chochlíková", "Alex Molčan", "Lukáš Lacko", "Karol Kučera", "Miloš Mečíř", "Dominik Hrbatý",
+  "Martin Kližan", "Viktória Kužmová", "Rebecca Šramková", "Jana Čepelová", "Michal Martikán", "Vladimír Országh",
+];
+
+function cards(id: string) {
+  return CHARACTER_CATEGORIES_BASE.find((category) => category.id === id)?.characters ?? [];
+}
+
+function uniqueCards(characters: string[]) {
+  return [...new Set(characters)];
+}
+
+export const CHARACTER_CATEGORIES: CharacterCategory[] = [
+  {
+    id: "world-personalities",
+    name: "Svetove osobnosti",
+    icon: "🌍",
+    characters: uniqueCards([...cards("world-personalities"), ...cards("world-actors"), ...cards("world-musicians"), ...cards("history-science")]),
+  },
+  {
+    id: "world-athletes",
+    name: "Svetovi sportovci",
+    icon: "🏅",
+    characters: uniqueCards([...cards("world-athletes"), ...WORLD_ATHLETES_EXTRA]),
+  },
+  {
+    id: "world-youtubers",
+    name: "Svetovi YouTuberi",
+    icon: "▶️",
+    characters: uniqueCards([...cards("world-youtubers"), ...WORLD_YOUTUBERS_EXTRA]),
+  },
+  {
+    id: "slovak-personalities",
+    name: "Slovenske osobnosti a herci",
+    icon: "🇸🇰",
+    characters: uniqueCards([...cards("slovak-personalities"), ...cards("slovak-actors"), ...cards("slovak-musicians"), ...SLOVAK_PERSONALITIES_EXTRA]),
+  },
+  {
+    id: "slovak-athletes",
+    name: "Slovenski sportovci",
+    icon: "🏒",
+    characters: uniqueCards([...cards("slovak-athletes"), ...SLOVAK_ATHLETES_EXTRA]),
+  },
+  {
+    id: "films-series",
+    name: "Filmy, serialy a zname postavy",
+    icon: "🎬",
+    characters: uniqueCards([...cards("movie-characters"), ...cards("films-series"), ...cards("fairy-tales"), ...cards("animals")]),
   },
 ];
