@@ -1,17 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
+import { PING_PONG_PROMPTS } from "../../data/pingPongPrompts";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-// Slovak letters suitable for word categories
-const LETTERS = [
-  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-  "N", "O", "P", "R", "S", "T", "U", "V", "Z",
-];
-
-function pickLetter(exclude?: string) {
-  const pool = exclude ? LETTERS.filter((l) => l !== exclude) : LETTERS;
+function pickPrompt(exclude?: string) {
+  const pool = exclude
+    ? PING_PONG_PROMPTS.filter((prompt) => prompt !== exclude)
+    : PING_PONG_PROMPTS;
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
@@ -120,7 +117,7 @@ function GameScreen({
 }) {
   // ballY: 0 = top edge, 1 = bottom edge. Start in middle.
   const [ballY, setBallY] = useState(0.5);
-  const [letter, setLetter] = useState(() => pickLetter());
+  const [prompt, setPrompt] = useState(() => pickPrompt());
   // active = 0 → ball moves toward TOP (player 1 must answer)
   // active = 1 → ball moves toward BOTTOM (player 2 must answer)
   const [active, setActive] = useState<0 | 1>(() => (Math.random() < 0.5 ? 0 : 1));
@@ -200,9 +197,9 @@ function GameScreen({
   }
 
   function restart() {
-    const newLetter = pickLetter(letter);
+    const newPrompt = pickPrompt(prompt);
     const newActive: 0 | 1 = Math.random() < 0.5 ? 0 : 1;
-    setLetter(newLetter);
+    setPrompt(newPrompt);
     setActive(newActive);
     setResult(null);
     // Reset refs and restart animation by remounting effect
@@ -277,11 +274,10 @@ function GameScreen({
             style={{ backgroundColor: "rgba(0,0,0,0.20)" }}
           >
             <p
-              className="font-black text-white leading-none"
-              style={{ fontSize: "clamp(2rem, 9vw, 3.5rem)" }}
+              className="max-w-[85vw] font-black leading-tight text-white"
+              style={{ fontSize: "clamp(1.2rem, 5.5vw, 2.6rem)" }}
             >
-              Slová na{" "}
-              <span className="underline decoration-4 underline-offset-4">{letter}</span>
+              {prompt}
             </p>
           </div>
           {isTopActive && (
@@ -348,11 +344,10 @@ function GameScreen({
             style={{ backgroundColor: "rgba(0,0,0,0.20)" }}
           >
             <p
-              className="font-black text-white leading-none"
-              style={{ fontSize: "clamp(2rem, 9vw, 3.5rem)" }}
+              className="max-w-[85vw] font-black leading-tight text-white"
+              style={{ fontSize: "clamp(1.2rem, 5.5vw, 2.6rem)" }}
             >
-              Slová na{" "}
-              <span className="underline decoration-4 underline-offset-4">{letter}</span>
+              {prompt}
             </p>
           </div>
           {!isTopActive && (
