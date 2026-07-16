@@ -471,7 +471,7 @@ export const ONLY_LIES: string[] = [
 ];
 
 // ── Kto dostane bombu ─────────────────────────────────────────────────────────
-export const BOMB_CATEGORIES: string[] = [
+const BOMB_CATEGORIES_BASE: string[] = [
   "Európske krajiny",
   "Zvieratá v zoo",
   "Veci v kuchyni",
@@ -515,6 +515,40 @@ export const BOMB_CATEGORIES: string[] = [
 ];
 
 // ── Hádaj emoji ───────────────────────────────────────────────────────────────
+const BOMB_CONTEXTS = [
+  "skola", "domov", "kuchyna", "kupelna", "zahrada", "priroda", "mesto", "dedina", "cestovanie", "dovolenka",
+  "leto", "zima", "Vianoce", "narodeniny", "party", "sport", "hudba", "filmy", "serialy", "knihy",
+  "hry", "technologie", "telefon", "auto", "vlak", "lietadlo", "more", "hory", "zoo", "vesmir",
+];
+
+const BOMB_CATEGORY_FORMS = [
+  (context: string) => `Veci spojene s ${context}`,
+  (context: string) => `Slova, ktore opisuju ${context}`,
+  (context: string) => `Predmety, ktore najdes v ${context}`,
+  (context: string) => `Zvuky spojene s ${context}`,
+  (context: string) => `Farby spojene s ${context}`,
+  (context: string) => `Vone spojene s ${context}`,
+  (context: string) => `Jedla spojene s ${context}`,
+  (context: string) => `Ludia spojeni s ${context}`,
+  (context: string) => `Miesta spojene s ${context}`,
+  (context: string) => `Cinnosti spojene s ${context}`,
+  (context: string) => `Oblecenie vhodne pre ${context}`,
+  (context: string) => `Doplnky spojene s ${context}`,
+  (context: string) => `Zvierata spojene s ${context}`,
+  (context: string) => `Filmy alebo postavy spojene s ${context}`,
+  (context: string) => `Povolania spojene s ${context}`,
+  (context: string) => `Slavne znacky spojene s ${context}`,
+  (context: string) => `Veci, ktore sa daju robit pri ${context}`,
+  (context: string) => `Veci, ktore si beries do ${context}`,
+  (context: string) => `Veci, ktore by mohli pokazit ${context}`,
+  (context: string) => `Veci, ktore robia ${context} lepsim`,
+];
+
+export const BOMB_CATEGORIES: string[] = [
+  ...BOMB_CATEGORIES_BASE,
+  ...BOMB_CONTEXTS.flatMap((context) => BOMB_CATEGORY_FORMS.map((form) => form(context))),
+];
+
 export const EMOJI_PUZZLES: { emoji: string; answer: string }[] = [
   { emoji: "🦁👑", answer: "Leví kráľ" },
   { emoji: "❄️👸", answer: "Ľadové kráľovstvo" },
