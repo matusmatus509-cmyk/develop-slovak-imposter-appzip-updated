@@ -9,6 +9,8 @@ export interface MenuGame {
   icon: keyof IconsType;
   color: string;
   badge?: string;
+  image?: string;
+  imagePosition?: string;
 }
 
 export default function GameMenu({
@@ -41,14 +43,25 @@ export default function GameMenu({
               key={game.screen}
               type="button"
               onClick={() => onNavigate(game.screen)}
-              className="group relative overflow-hidden rounded-[24px] border border-white/[.09] bg-white/[.045] p-4 text-left transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[.07] active:translate-y-0 active:scale-[.985]"
+              className="group relative min-h-[94px] overflow-hidden rounded-[24px] border border-white/[.11] bg-[#111824]/88 p-4 text-left shadow-xl shadow-black/15 backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20 active:translate-y-0 active:scale-[.985]"
               style={{ animation: `slideUp .45s ease-out ${70 + index * 55}ms both` }}
             >
+              {game.image && (
+                <>
+                  <img
+                    src={game.image}
+                    alt=""
+                    className="absolute inset-y-0 right-0 h-full w-[48%] object-cover opacity-48 saturate-[.82] transition duration-500 group-hover:scale-105 group-hover:opacity-62"
+                    style={{ objectPosition: game.imagePosition ?? "center" }}
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(90deg,#111824_0%,rgba(17,24,36,.98)_48%,rgba(17,24,36,.48)_100%)]" />
+                </>
+              )}
               <div className="relative flex items-center gap-4">
                 <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-[18px] bg-gradient-to-br ${game.color} shadow-lg transition duration-300 group-hover:scale-105`}>
                   <Icon size={27} className="text-white" />
                 </div>
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex-1 pr-2">
                   <div className="flex items-center gap-2">
                     <h2 className="truncate text-base font-extrabold tracking-tight">{game.title}</h2>
                     {game.badge && <span className="rounded-full bg-white/10 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-white/55">{game.badge}</span>}

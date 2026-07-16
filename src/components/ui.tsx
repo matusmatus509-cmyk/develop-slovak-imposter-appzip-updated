@@ -1,6 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode, SVGProps } from "react";
 import { Icons, type IconsType } from "./icons";
 import { designTokens, type ComponentStyles } from "../utils/designTokens";
+import appTexture from "../assets/app-texture.jpg";
 
 // ── Type Definitions ──────────────────────────────────────────────────
 
@@ -234,7 +235,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center font-bold transition-all",
+        "app-button inline-flex items-center justify-center font-bold transition-all duration-200",
         "active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0a1a]",
         fullWidth && "w-full",
@@ -427,11 +428,11 @@ export function TopBar({
   showBack = true,
 }: TopBarProps) {
   return (
-    <div className="mb-4 flex h-11 items-center justify-between">
+    <div className="relative z-30 mb-5 flex h-11 items-center justify-between">
       {showBack && onBack ? (
         <button
           onClick={onBack}
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-lg transition-colors hover:bg-white/15"
+          className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-[#151b27]/85 text-lg shadow-lg shadow-black/20 backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/15 active:translate-y-0 active:scale-95"
           aria-label="Späť"
         >
           <Icon name="chevronLeft" size={20} />
@@ -440,7 +441,7 @@ export function TopBar({
         <span className="w-10" />
       )}
       {title && (
-        <span className="text-sm font-bold uppercase tracking-wider text-white/70">
+        <span className="rounded-full border border-white/[.08] bg-black/15 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[.16em] text-white/65 backdrop-blur-lg">
           {title}
         </span>
       )}
@@ -453,24 +454,19 @@ export function TopBar({
 
 function Background() {
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0b0a1a]">
-      <div className="absolute -top-32 -left-24 h-96 w-96 rounded-full bg-fuchsia-600/30 blur-[100px]" />
-      <div className="absolute top-1/3 -right-24 h-96 w-96 rounded-full bg-indigo-600/30 blur-[100px]" />
-      <div className="absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-orange-500/20 blur-[110px]" />
-      <div
-        className="absolute inset-0 opacity-30"
-        style={{
-          backgroundImage: "radial-gradient(rgba(255,255,255,0.5) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
-        }}
-      />
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#080d16]">
+      <img src={appTexture} alt="" className="absolute inset-0 h-full w-full object-cover opacity-80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#080d16]/5 via-[#080d16]/25 to-[#080d16]/65" />
+      <div className="absolute -top-36 -left-28 h-80 w-80 rounded-full bg-violet-600/12 blur-[110px]" />
+      <div className="absolute top-[38%] -right-28 h-80 w-80 rounded-full bg-cyan-600/10 blur-[115px]" />
+      <div className="absolute -bottom-32 left-1/4 h-72 w-72 rounded-full bg-orange-500/10 blur-[110px]" />
     </div>
   );
 }
 
 export function Shell({ children, className = "", noBackground = false }: ShellProps) {
   return (
-    <div className={cn("relative min-h-screen w-full text-white", className)}>
+    <div className={cn("relative min-h-screen w-full bg-transparent text-white", className)}>
       {!noBackground && <Background />}
       <div className="mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-8 pt-6">
         {children}
@@ -559,11 +555,11 @@ export function Card({
   return (
     <div
       className={cn(
-        "backdrop-blur-md",
-        variant === "base" && "border border-white/10 bg-white/5",
-        variant === "elevated" && "border border-white/15 bg-white/5 shadow-xl shadow-black/30",
-        variant === "outlined" && "border border-white/15 bg-transparent",
-        variant === "gradient" && "border border-transparent bg-gradient-to-br from-white/10 to-white/5",
+        "backdrop-blur-xl transition-all duration-200",
+        variant === "base" && "border border-white/10 bg-[#111824]/78 shadow-lg shadow-black/15",
+        variant === "elevated" && "border border-white/15 bg-[#141b28]/88 shadow-xl shadow-black/30",
+        variant === "outlined" && "border border-white/15 bg-[#0d131e]/35",
+        variant === "gradient" && "border border-transparent bg-gradient-to-br from-white/10 to-white/5 shadow-xl shadow-black/20",
         onClick && "cursor-pointer active:scale-[0.98]",
         className
       )}
