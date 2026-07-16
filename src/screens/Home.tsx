@@ -1,6 +1,9 @@
 import type { Screen } from "../types";
 import { Icons } from "../components/icons";
 import partyTableBackground from "../assets/party-table-bg.png";
+import partyModeArt from "../assets/party-mode-card.jpg";
+import imposterArt from "../assets/imposter-card.jpg";
+import minigamesArt from "../assets/minigames-card.jpg";
 
 const SECTIONS: Array<{
   screen: Screen;
@@ -8,6 +11,7 @@ const SECTIONS: Array<{
   title: string;
   description: string;
   icon: "users" | "userCheck" | "gamepad";
+  image: string;
   accent: string;
   glow: string;
 }> = [
@@ -17,6 +21,7 @@ const SECTIONS: Array<{
     title: "Party mode",
     description: "Veľká tímová hra na celý večer",
     icon: "users",
+    image: partyModeArt,
     accent: "from-violet-500 to-indigo-500",
     glow: "rgba(124, 58, 237, .38)",
   },
@@ -26,6 +31,7 @@ const SECTIONS: Array<{
     title: "Imposter",
     description: "Klasická hra aj kreslenie",
     icon: "userCheck",
+    image: imposterArt,
     accent: "from-orange-400 to-rose-500",
     glow: "rgba(244, 63, 94, .34)",
   },
@@ -35,6 +41,7 @@ const SECTIONS: Array<{
     title: "Minihry",
     description: "Krátke kolá pre každú partiu",
     icon: "gamepad",
+    image: minigamesArt,
     accent: "from-cyan-400 to-teal-500",
     glow: "rgba(6, 182, 212, .32)",
   },
@@ -74,24 +81,32 @@ export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => v
                 key={section.screen}
                 type="button"
                 onClick={() => onNavigate(section.screen)}
-                className="group relative min-h-[126px] overflow-hidden rounded-[28px] border border-white/[.11] bg-[#121722]/88 p-5 text-left shadow-2xl backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-white/20 active:translate-y-0 active:scale-[.98]"
+                className="group relative min-h-[142px] overflow-hidden rounded-[28px] border border-white/[.13] bg-[#111722] text-left shadow-2xl transition duration-300 hover:-translate-y-1 hover:border-white/25 active:translate-y-0 active:scale-[.98]"
                 style={{
                   animation: `slideUp .55s ease-out ${120 + index * 90}ms both`,
                   boxShadow: `0 18px 45px -28px ${section.glow}`,
                 }}
               >
+                <img
+                  src={section.image}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover object-center opacity-80 saturate-[.9] transition duration-500 group-hover:scale-[1.035] group-hover:opacity-90"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,#101620_0%,rgba(16,22,32,.97)_34%,rgba(16,22,32,.68)_61%,rgba(16,22,32,.1)_100%)]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b1019]/75 via-transparent to-white/[.03]" />
                 <div className={`absolute inset-y-0 left-0 w-1 bg-gradient-to-b ${section.accent}`} />
-                <div className={`absolute -right-10 -top-14 h-36 w-36 rounded-full bg-gradient-to-br ${section.accent} opacity-[.12] blur-2xl transition-opacity duration-300 group-hover:opacity-25`} />
-                <div className="relative flex h-full items-center gap-4">
-                  <div className={`flex h-[68px] w-[68px] shrink-0 items-center justify-center rounded-[22px] bg-gradient-to-br ${section.accent} shadow-lg transition duration-300 group-hover:rotate-3 group-hover:scale-105`}>
-                    <Icon size={32} className="text-white" />
+                <div className="relative flex min-h-[142px] items-center p-5">
+                  <div className="w-[68%] min-w-0">
+                    <div className="mb-2.5 flex items-center gap-2">
+                      <span className={`flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br ${section.accent} shadow-lg`}>
+                        <Icon size={17} className="text-white" />
+                      </span>
+                      <p className="text-[9px] font-extrabold uppercase tracking-[.18em] text-white/55">{section.eyebrow}</p>
+                    </div>
+                    <h2 className="text-[1.65rem] font-black leading-none tracking-[-.035em] drop-shadow-md">{section.title}</h2>
+                    <p className="mt-2 text-[11px] font-semibold leading-snug text-white/58">{section.description}</p>
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-[10px] font-extrabold uppercase tracking-[.2em] text-white/40">{section.eyebrow}</p>
-                    <h2 className="mt-1 text-2xl font-black tracking-tight">{section.title}</h2>
-                    <p className="mt-1 text-xs font-medium text-white/50">{section.description}</p>
-                  </div>
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[.06] text-white/45 transition group-hover:translate-x-1 group-hover:bg-white/10 group-hover:text-white">
+                  <span className="absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white/65 shadow-lg backdrop-blur-md transition group-hover:translate-x-1 group-hover:bg-white/15 group-hover:text-white">
                     <Icons.chevronRight size={20} />
                   </span>
                 </div>
