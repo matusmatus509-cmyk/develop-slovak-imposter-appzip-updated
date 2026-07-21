@@ -32,6 +32,7 @@ import IbaNepravda from "./screens/minigames/IbaNepravda";
 import KtoDostaneBombu from "./screens/minigames/KtoDostaneBombu";
 import HadajEmoji from "./screens/minigames/HadajEmoji";
 import TeamBattle from "./screens/teamBattle";
+import TeamQuickGame from "./screens/minigames/TeamQuickGame";
 import GameWelcome, { GAME_WELCOMES } from "./components/GameWelcome";
 
 const IMPOSTOR_GAMES: MenuGame[] = [
@@ -69,6 +70,11 @@ const MINIGAMES: MenuGame[] = [
   { screen: "ibanepravda", title: "Iba nepravda", description: "Odpovedajte rýchlo, ale nikdy pravdivo.", icon: "messageSquare", color: "from-rose-500 to-pink-600" },
   { screen: "ktodostanebombu", title: "Kto dostane bombu", description: "Hovorte slová a podajte mobil skôr, než vybuchne.", icon: "zap", color: "from-orange-500 to-red-600" },
   { screen: "hadajemoji", title: "Hádaj emoji", description: "Uhádnite filmy, postavy, videohry či osobnosti z emoji.", icon: "smile", color: "from-amber-400 to-yellow-500" },
+  { screen: "zakazane", title: "Zakázané slovo", description: "Vysvetľujte bez štyroch zakázaných výrazov.", icon: "messageSquare", color: "from-rose-500 to-red-700", badge: "Nové" },
+  { screen: "pesnicka", title: "Uhádni pesničku", description: "Hmkaním predveďte známe slovenské aj svetové skladby.", icon: "headphones", color: "from-violet-500 to-fuchsia-700", badge: "Nové" },
+  { screen: "zvuk", title: "Uhádni zvuk", description: "Počúvajte tajné zvuky a predbiehajte sa na bzučiaku.", icon: "bell", color: "from-cyan-500 to-blue-700", badge: "Nové" },
+  { screen: "pismeno", title: "Slovo na písmeno", description: "Kategória, písmeno a iba päť sekúnd na odpoveď.", icon: "tag", color: "from-amber-400 to-orange-600", badge: "Nové" },
+  { screen: "patzadesat", title: "5 za 10", description: "Vymenujte päť odpovedí za desať sekúnd.", icon: "timer", color: "from-emerald-400 to-green-700", badge: "Nové" },
 ];
 
 const DEFAULT_SETTINGS: GameSettings = {
@@ -383,6 +389,21 @@ export default function App() {
 
     case "hadajemoji":
       return <HadajEmoji onBack={() => setScreen("minigames-menu")} />;
+
+    case "zakazane":
+      return <TeamQuickGame game="zakazane" onBack={() => setScreen("minigames-menu")} />;
+
+    case "pesnicka":
+      return <TeamQuickGame game="pesnicka" onBack={() => setScreen("minigames-menu")} />;
+
+    case "zvuk":
+      return <TeamQuickGame game="zvuk" onBack={() => setScreen("minigames-menu")} />;
+
+    case "pismeno":
+      return <TeamQuickGame game="pismeno" onBack={() => setScreen("minigames-menu")} />;
+
+    case "patzadesat":
+      return <TeamQuickGame game="patzadesat" onBack={() => setScreen("minigames-menu")} />;
 
     case "teambattle":
       return <TeamBattle onHome={() => setScreen("home")} />;

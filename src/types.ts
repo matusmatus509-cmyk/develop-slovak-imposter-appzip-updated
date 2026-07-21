@@ -22,6 +22,11 @@ export type Screen =
   | "ibanepravda"
   | "ktodostanebombu"
   | "hadajemoji"
+  | "zakazane"
+  | "pesnicka"
+  | "zvuk"
+  | "pismeno"
+  | "patzadesat"
   | "teambattle";
 
 export interface CategoryDef {

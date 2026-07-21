@@ -8,6 +8,11 @@ import {
 } from "../../data/teamBattle";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import gameArt from "../../assets/game-art-sprite.jpg";
+import forbiddenArt from "../../assets/party-forbidden.svg";
+import songArt from "../../assets/party-song.svg";
+import soundArt from "../../assets/party-sound.svg";
+import letterArt from "../../assets/party-letter.svg";
+import fiveTenArt from "../../assets/party-five-ten.svg";
 
 const ALL_GAMES: GameType[] = [
   "pantomima", "sarady", "zakazane", "pesnicka", "zvuk",
@@ -25,6 +30,13 @@ const GAME_ART: Record<GameType, string> = {
   hadajktosom: "33.333% 50%",
   quiz: "0% 0%",
   pingpong: "0% 50%",
+};
+const CUSTOM_GAME_ART: Partial<Record<GameType, string>> = {
+  zakazane: forbiddenArt,
+  pesnicka: songArt,
+  zvuk: soundArt,
+  pismeno: letterArt,
+  patzadesat: fiveTenArt,
 };
 
 export default function TeamBattleSetup({
@@ -226,7 +238,11 @@ export default function TeamBattleSetup({
                     >
                       <span
                         className={`absolute inset-0 bg-no-repeat transition duration-500 ${selected ? "scale-110" : "opacity-55 grayscale-[.25]"}`}
-                        style={{ backgroundImage: `url(${gameArt})`, backgroundSize: "400% 300%", backgroundPosition: GAME_ART[game] }}
+                        style={{
+                          backgroundImage: `url(${CUSTOM_GAME_ART[game] ?? gameArt})`,
+                          backgroundSize: CUSTOM_GAME_ART[game] ? "cover" : "400% 300%",
+                          backgroundPosition: CUSTOM_GAME_ART[game] ? "center" : GAME_ART[game],
+                        }}
                       />
                       <span className={`absolute inset-0 bg-gradient-to-t ${selected ? "from-cyan-950/95 via-slate-950/35" : "from-[#080b13] via-[#080b13]/45"} to-black/5`} />
                       {selected && (

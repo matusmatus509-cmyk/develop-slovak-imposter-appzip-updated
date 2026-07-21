@@ -1,6 +1,11 @@
 import type { CSSProperties } from "react";
 import type { Screen } from "../types";
 import gameArt from "../assets/game-art-sprite.jpg";
+import forbiddenArt from "../assets/party-forbidden.svg";
+import songArt from "../assets/party-song.svg";
+import soundArt from "../assets/party-sound.svg";
+import letterArt from "../assets/party-letter.svg";
+import fiveTenArt from "../assets/party-five-ten.svg";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -14,6 +19,7 @@ export interface GameWelcomeConfig {
   accentSoft: string;
   deep: string;
   artPosition: string;
+  art?: string;
 }
 
 export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
@@ -161,6 +167,71 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     deep: "#160d31",
     artPosition: "100% 100%",
   },
+  zakazane: {
+    eyebrow: "Vysvetľuj opatrne",
+    title: "Zakázané slovo",
+    description: "Opisuj hlavné slovo bez použitia štyroch zakázaných výrazov a získaj čo najviac bodov.",
+    rule: "Zakázané sú aj odvodené tvary slov",
+    players: "4+ hráči",
+    duration: "60 s/tím",
+    accent: "#fb7185",
+    accentSoft: "rgba(251,113,133,.24)",
+    deep: "#2b0d18",
+    artPosition: "center",
+    art: forbiddenArt,
+  },
+  pesnicka: {
+    eyebrow: "Melódia bez textu",
+    title: "Uhádni pesničku",
+    description: "Jeden hráč hmkaním predvádza známe skladby a jeho tím háda čo najviac názvov.",
+    rule: "Hmkanie áno, slová ani názov nie",
+    players: "4+ hráči",
+    duration: "60 s/tím",
+    accent: "#a78bfa",
+    accentSoft: "rgba(167,139,250,.24)",
+    deep: "#1c1039",
+    artPosition: "center",
+    art: songArt,
+  },
+  zvuk: {
+    eyebrow: "Počúvaj a bzuč",
+    title: "Uhádni zvuk",
+    description: "Aplikácia prehrá tajný zvuk. Tím, ktorý ho spozná prvý, stlačí bzučiak a odpovedá.",
+    rule: "Najprv bzučiak, potom odpoveď",
+    players: "4+ hráči",
+    duration: "10 zvukov",
+    accent: "#22d3ee",
+    accentSoft: "rgba(34,211,238,.22)",
+    deep: "#062630",
+    artPosition: "center",
+    art: soundArt,
+  },
+  pismeno: {
+    eyebrow: "Päť sekúnd na slovo",
+    title: "Slovo na písmeno",
+    description: "Dostaneš kategóriu a písmeno. Odpovedz skôr, než čas vyprší a bod získa súper.",
+    rule: "Jedna platná odpoveď do 5 sekúnd",
+    players: "4+ hráči",
+    duration: "10 výziev",
+    accent: "#fbbf24",
+    accentSoft: "rgba(251,191,36,.23)",
+    deep: "#2b1d05",
+    artPosition: "center",
+    art: letterArt,
+  },
+  patzadesat: {
+    eyebrow: "Päť odpovedí. Desať sekúnd.",
+    title: "5 za 10",
+    description: "Vymenuj päť vecí zo zadanej témy do desiatich sekúnd a získaj dva body pre tím.",
+    rule: "Všetkých päť odpovedí znamená +2 body",
+    players: "4+ hráči",
+    duration: "6 výziev",
+    accent: "#34d399",
+    accentSoft: "rgba(52,211,153,.22)",
+    deep: "#06271c",
+    artPosition: "center",
+    art: fiveTenArt,
+  },
 };
 
 export default function GameWelcome({
@@ -190,8 +261,8 @@ export default function GameWelcome({
           <div
             className="absolute inset-0 scale-[1.04] bg-no-repeat"
             style={{
-              backgroundImage: `url(${gameArt})`,
-              backgroundSize: "400% 300%",
+              backgroundImage: `url(${config.art ?? gameArt})`,
+              backgroundSize: config.art ? "cover" : "400% 300%",
               backgroundPosition: config.artPosition,
             }}
           />
