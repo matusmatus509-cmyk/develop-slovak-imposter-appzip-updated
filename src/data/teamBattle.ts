@@ -386,19 +386,29 @@ export const SARADY_DIFFICULTY_LABELS: Record<string, string> = {
   tazke: "Ťažké",
 };
 
+export const SARADY_CATEGORY_IDS_BY_DIFFICULTY: Record<string, string[]> = {
+  lahke: [
+    "skola", "domacnost", "jedlo", "zvierata", "sport",
+    "doprava", "oblecenie", "veci",
+  ],
+  stredne: [
+    "priroda", "technologie", "povolania", "telo", "filmy",
+    "hudba", "mesta", "internet", "nahodne",
+  ],
+  tazke: ["abstraktne", "veda", "historia"],
+};
+
 function getSaradyWords(difficulty: string): string[] {
-  const id = difficulty === "all" ? "" : `slova-${difficulty}`;
-  if (id === "") {
-    const all: string[] = [];
-    for (const cat of CATEGORIES) {
-      if (cat.id.startsWith("slova-")) {
-        for (const wp of cat.wordPairs) all.push(wp.word);
-      }
-    }
-    return all;
-  }
-  const cat = CATEGORIES.find((c) => c.id === id);
-  return cat ? cat.wordPairs.map((wp) => wp.word) : [];
+  const categoryIds = difficulty === "all"
+    ? new Set(CATEGORIES.map((category) => category.id))
+    : new Set(SARADY_CATEGORY_IDS_BY_DIFFICULTY[difficulty] ?? []);
+
+  return Array.from(new Set(
+    CATEGORIES
+      .filter((category) => categoryIds.has(category.id))
+      .flatMap((category) => category.wordPairs.map(({ word }) => word.trim()))
+      .filter(Boolean),
+  ));
 }
 
 export const SARADY_WORDS_BY_DIFFICULTY: Record<string, string[]> = {

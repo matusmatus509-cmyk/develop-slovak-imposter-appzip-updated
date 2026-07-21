@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { CATEGORIES } from "../../data/categories";
+import { SARADY_CATEGORY_IDS_BY_DIFFICULTY } from "../../data/teamBattle";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 
@@ -33,15 +34,24 @@ function shuffle<T>(arr: T[]): T[] {
 
 function buildDeck(difficulty: string): Card[] {
   const cards: Card[] = [];
+  const requestedIds = new Set(SARADY_CATEGORY_IDS_BY_DIFFICULTY[difficulty] ?? []);
   const filtered = difficulty === "all"
     ? CATEGORIES
-    : CATEGORIES.filter((c) => c.id === `slova-${difficulty}`);
+    : CATEGORIES.filter((category) => requestedIds.has(category.id));
   for (const cat of filtered) {
     for (const wp of cat.wordPairs) {
       cards.push({ word: wp.word, category: cat.name, categoryIcon: cat.icon });
     }
   }
-  return shuffle(cards);
+  // A future database rename must never start a round with a blank card.
+  const fallback = cards.length > 0
+    ? cards
+    : CATEGORIES.flatMap((category) => category.wordPairs.map(({ word }) => ({
+        word,
+        category: category.name,
+        categoryIcon: category.icon,
+      })));
+  return shuffle(fallback);
 }
 
 // ─── Setup Screen ─────────────────────────────────────────────────────────────
@@ -278,6 +288,7 @@ function PlayingScreen({
   const correctRef = useRef(0);
   const skipsRef = useRef(0);
   const doneRef = useRef(false);
+  const actionLockedRef = useRef(false);
 
   const card = deck[cardIdx];
 
@@ -295,27 +306,30 @@ function PlayingScreen({
   });
 
   function advance(type: "correct" | "skip") {
-    if (doneRef.current) return;
+    if (doneRef.current || actionLockedRef.current) return false;
+    actionLockedRef.current = true;
     setCardAnim(type);
     setTimeout(() => {
       setCardAnim("idle");
       const nextIdx = cardIdx + 1;
       if (nextIdx >= deck.length) { finish(); return; }
       setCardIdx(nextIdx);
+      actionLockedRef.current = false;
     }, 300);
+    return true;
   }
 
   function handleCorrect() {
+    if (!advance("correct")) return;
     correctRef.current += 1;
     setCorrect((c) => c + 1);
-    advance("correct");
   }
 
   function handleSkip() {
     if (skipsUsed >= maxSkips && maxSkips !== 99) return;
+    if (!advance("skip")) return;
     skipsRef.current += 1;
     setSkipsUsed((s) => s + 1);
-    advance("skip");
   }
 
   const canSkip = maxSkips === 99 || skipsUsed < maxSkips;

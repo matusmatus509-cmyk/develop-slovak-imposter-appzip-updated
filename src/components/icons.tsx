@@ -523,3 +523,5 @@ export const Icons = {
   hourglass: Hourglass,
   calendar: Calendar,
 } as const;
+
+export type IconsType = typeof Icons;

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { Button, Shell, TopBar } from "../../components/ui";
-import { Icons } from "../../components/icons";
 import { PING_PONG_PROMPTS } from "../../data/pingPongPrompts";
 
 // ─── Constants ────────────────────────────────────────────────────────────────

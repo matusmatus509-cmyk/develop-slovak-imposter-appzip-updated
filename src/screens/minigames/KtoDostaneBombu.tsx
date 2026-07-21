@@ -18,21 +18,26 @@ export default function KtoDostaneBombu({ onBack }: { onBack: () => void }) {
   const [phase, setPhase] = useState<Phase>("ready");
   const [category, setCategory] = useState<string>(() => pickRandom(BOMB_CATEGORIES));
   const [pulse, setPulse] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const explosionRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const speedOneRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const speedTwoRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pulseRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   function clearTimers() {
-    if (timerRef.current) clearTimeout(timerRef.current);
+    if (explosionRef.current) clearTimeout(explosionRef.current);
+    if (speedOneRef.current) clearTimeout(speedOneRef.current);
+    if (speedTwoRef.current) clearTimeout(speedTwoRef.current);
     if (pulseRef.current) clearInterval(pulseRef.current);
+    explosionRef.current = null;
+    speedOneRef.current = null;
+    speedTwoRef.current = null;
+    pulseRef.current = null;
   }
 
   function startBomb() {
+    clearTimers();
     setPhase("ticking");
     const duration = (30 + Math.floor(Math.random() * 61)) * 1000;
-    timerRef.current = setTimeout(() => {
-      setPhase("exploded");
-      clearInterval(pulseRef.current!);
-    }, duration);
 
     let interval = 1000;
     function schedulePulse() {
@@ -42,23 +47,23 @@ export default function KtoDostaneBombu({ onBack }: { onBack: () => void }) {
     }
     schedulePulse();
 
-    const speed1 = setTimeout(() => {
-      clearInterval(pulseRef.current!);
+    speedOneRef.current = setTimeout(() => {
+      if (pulseRef.current) clearInterval(pulseRef.current);
       interval = 600;
       schedulePulse();
     }, 20000);
 
-    const speed2 = setTimeout(() => {
-      clearInterval(pulseRef.current!);
+    speedTwoRef.current = setTimeout(() => {
+      if (pulseRef.current) clearInterval(pulseRef.current);
       interval = 350;
       schedulePulse();
     }, 50000);
 
-    timerRef.current = setTimeout(() => {
+    explosionRef.current = setTimeout(() => {
+      clearTimers();
       setPhase("exploded");
-      clearInterval(pulseRef.current!);
-      clearTimeout(speed1);
-      clearTimeout(speed2);
+      setPulse(false);
+      navigator.vibrate?.([120, 60, 180]);
     }, duration);
   }
 

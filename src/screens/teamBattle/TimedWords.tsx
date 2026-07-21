@@ -67,6 +67,7 @@ export default function TimedWords({
 
   const doneRef = useRef(false);
   const correctRef = useRef(0);
+  const actionLockedRef = useRef(false);
 
   const half = Math.ceil(words.length / 2);
   const sharedTeamWords = teamIdx === 0 ? words.slice(0, half) : words.slice(half);
@@ -99,6 +100,7 @@ export default function TimedWords({
     setFlash(null);
     doneRef.current = false;
     correctRef.current = 0;
+    actionLockedRef.current = false;
   }, [teamIdx, timeSeconds, hasDifficulty]);
 
   useEffect(() => {
@@ -116,7 +118,8 @@ export default function TimedWords({
   }, [subPhase, timeLeft, pointsPerWord, isPantomima, isSarady]);
 
   function handleCorrect() {
-    if (doneRef.current) return;
+    if (doneRef.current || actionLockedRef.current) return;
+    actionLockedRef.current = true;
     if (isHadajKtoSom) navigator.vibrate?.(25);
     if (isPantomima) {
       doneRef.current = true;
@@ -139,6 +142,7 @@ export default function TimedWords({
           setSubPhase("team-done");
         } else {
           setWordIdx((i) => i + 1);
+          actionLockedRef.current = false;
         }
       }, 500);
       return;
@@ -153,12 +157,14 @@ export default function TimedWords({
         setSubPhase("team-done");
       } else {
         setWordIdx((i) => i + 1);
+        actionLockedRef.current = false;
       }
     }, 500);
   }
 
   function handleSkip() {
-    if (doneRef.current) return;
+    if (doneRef.current || actionLockedRef.current) return;
+    actionLockedRef.current = true;
     if (isHadajKtoSom) navigator.vibrate?.(25);
     if (isPantomima) {
       if (wordIdx + 1 >= teamWords.length) {
@@ -172,6 +178,7 @@ export default function TimedWords({
       setTimeout(() => {
         setFlash(null);
         setWordIdx((i) => i + 1);
+        actionLockedRef.current = false;
       }, 400);
       return;
     }
@@ -184,6 +191,7 @@ export default function TimedWords({
         setSubPhase("team-done");
       } else {
         setWordIdx((i) => i + 1);
+        actionLockedRef.current = false;
       }
     }, 400);
   }

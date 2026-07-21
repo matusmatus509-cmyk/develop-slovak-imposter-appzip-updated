@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, ReactNode, SVGProps } from "react";
 import { Icons, type IconsType } from "./icons";
-import { designTokens, type ComponentStyles } from "../utils/designTokens";
+import { designTokens } from "../utils/designTokens";
 import appTexture from "../assets/app-texture.jpg";
 
 // ── Type Definitions ──────────────────────────────────────────────────
@@ -143,7 +143,7 @@ interface ToastProps {
 
 // ── Helper ────────────────────────────────────────────────────────────
 
-const { cn, componentStyles, colors, transitions, spacing, borderRadius, typography, shadows, createAnimation } = designTokens;
+const { cn, componentStyles, colors, spacing, borderRadius, typography } = designTokens;
 
 function Icon({ name, size = 24, className = "", ...props }: IconProps & { name: IconName }) {
   const IconComponent = Icons[name];
@@ -550,8 +550,6 @@ export function Card({
   className = "",
   onClick,
 }: CardProps) {
-  const styles = componentStyles.card[variant];
-  
   return (
     <div
       className={cn(
@@ -835,7 +833,7 @@ export function Tooltip({
   delay = 200,
 }: TooltipProps) {
   const [visible, setVisible] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const show = () => {
     timeoutRef.current = setTimeout(() => setVisible(true), delay);

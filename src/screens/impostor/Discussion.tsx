@@ -18,6 +18,16 @@ export default function Discussion({
   const [elapsed, setElapsed] = useState(0);
   const finishedRef = useRef(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const finishTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function finish(time: number) {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    if (finishTimeoutRef.current) clearTimeout(finishTimeoutRef.current);
+    finishTimeoutRef.current = null;
+    onFinish(time);
+  }
 
   useEffect(() => {
     if (!hasTimer) {
@@ -32,9 +42,11 @@ export default function Discussion({
       setRemaining((r) => {
         if (r <= 1) {
           if (intervalRef.current) clearInterval(intervalRef.current);
-          if (!finishedRef.current) {
-            finishedRef.current = true;
-            setTimeout(() => onFinish(settings.timerSeconds), 300);
+          if (!finishedRef.current && !finishTimeoutRef.current) {
+            finishTimeoutRef.current = setTimeout(
+              () => finish(settings.timerSeconds),
+              300,
+            );
           }
           return 0;
         }
@@ -43,7 +55,13 @@ export default function Discussion({
       setElapsed((e) => e + 1);
     }, 1000);
     intervalRef.current = interval;
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      if (finishTimeoutRef.current) {
+        clearTimeout(finishTimeoutRef.current);
+        finishTimeoutRef.current = null;
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paused, hasTimer]);
 
@@ -135,7 +153,7 @@ export default function Discussion({
         </button>
       </div>
 
-      <Button fullWidth variant="secondary" onClick={() => onFinish(elapsed)}>
+      <Button fullWidth variant="secondary" onClick={() => finish(elapsed)}>
         Prejsť na hlasovanie 🗳️
       </Button>
     </Shell>

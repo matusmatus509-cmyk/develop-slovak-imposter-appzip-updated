@@ -3,7 +3,6 @@ import { CATEGORIES } from "../../data/categories";
 import type { GameSettings } from "../../types";
 import { Button, Chip, Shell, Stepper, Toggle, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
-import { cn } from "../../utils/designTokens";
 import { maxImpostorsFor } from "../../utils/gameLogic";
 
 const TIMER_OPTIONS = [
@@ -67,6 +66,7 @@ export default function Setup({
       hintsEnabled,
       noRepeatWords,
       timerSeconds,
+      strokesPerPlayer: initial.strokesPerPlayer,
     });
   }
 
@@ -129,14 +129,13 @@ export default function Setup({
           </h2>
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map((cat) => {
-              const IconComponent = Icons[cat.icon];
               return (
                 <Chip
                   key={cat.id}
                   active={categoryIds.includes(cat.id)}
                   onClick={() => toggleCategory(cat.id)}
                 >
-                  {IconComponent && <IconComponent size={18} />}
+                  <span aria-hidden="true">{cat.icon}</span>
                   {cat.name}
                 </Chip>
               );
