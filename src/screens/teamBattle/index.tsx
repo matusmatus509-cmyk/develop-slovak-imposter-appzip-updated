@@ -52,9 +52,9 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
 
   // ── Handlers ──────────────────────────────────────────────────────────────
 
-  function handleSetupStart(names: [string, string], roundCount: number) {
+  function handleSetupStart(names: [string, string], selectedGames: GameType[]) {
     setTeamNames(names);
-    setRounds(generateBattleRounds(roundCount));
+    setRounds(generateBattleRounds(selectedGames));
     setCurrentRoundIdx(0);
     setTotalScores([0, 0]);
     setRoundScores([0, 0]);

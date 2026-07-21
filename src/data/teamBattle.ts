@@ -554,7 +554,13 @@ export const TEAM_ICONS: [string, string] = ["🔵", "🔴"];
 // appears twice in the same session.
 const NON_FINAL_GAMES: GameType[] = ["pantomima", "sarady", "pingpong", "hadajktosom"];
 
-export function generateBattleRounds(count: number): BattleRound[] {
+export function generateBattleRounds(selection: number | GameType[]): BattleRound[] {
+  const games: GameType[] = Array.isArray(selection)
+    ? [...selection]
+    : Array.from({ length: selection }, (_, index) =>
+        index === selection - 1 ? "quiz" : NON_FINAL_GAMES[index % NON_FINAL_GAMES.length]
+      );
+  const count = games.length;
   const rounds: BattleRound[] = [];
 
   // Pick positions for special rounds (not first, not last)
@@ -563,7 +569,7 @@ export function generateBattleRounds(count: number): BattleRound[] {
 
   for (let i = 0; i < count; i++) {
     const isLast = i === count - 1;
-    const game: GameType = isLast ? "quiz" : NON_FINAL_GAMES[i % NON_FINAL_GAMES.length];
+    const game = games[i];
 
     let special: RoundSpecial = "none";
     let multiplier = 1;

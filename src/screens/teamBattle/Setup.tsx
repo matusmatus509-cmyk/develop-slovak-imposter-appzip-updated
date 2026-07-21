@@ -1,17 +1,26 @@
 import { useState } from "react";
 import { Icons } from "../../components/icons";
-import { TEAM_COLORS } from "../../data/teamBattle";
+import {
+  GAME_ICONS,
+  GAME_LABELS,
+  TEAM_COLORS,
+  type GameType,
+} from "../../data/teamBattle";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
+
+const ALL_GAMES: GameType[] = ["pantomima", "sarady", "hadajktosom", "quiz", "pingpong"];
+const DEFAULT_ORDER: GameType[] = ["pantomima", "sarady", "hadajktosom", "pingpong", "quiz"];
+const MAX_ROUNDS = 15;
 
 export default function TeamBattleSetup({
   onBack,
   onStart,
 }: {
   onBack: () => void;
-  onStart: (teamNames: [string, string], rounds: number) => void;
+  onStart: (teamNames: [string, string], games: GameType[]) => void;
 }) {
   const [names, setNames] = useState<[string, string]>(["Tím A", "Tím B"]);
-  const [rounds, setRounds] = useState(5);
+  const [gameOrder, setGameOrder] = useState<GameType[]>(DEFAULT_ORDER);
   const [blue, red] = TEAM_COLORS;
 
   function setName(index: 0 | 1, value: string) {
@@ -21,6 +30,26 @@ export default function TeamBattleSetup({
       return next;
     });
   }
+
+  function addGame(game: GameType) {
+    setGameOrder((current) => current.length < MAX_ROUNDS ? [...current, game] : current);
+  }
+
+  function removeGame(index: number) {
+    setGameOrder((current) => current.filter((_, itemIndex) => itemIndex !== index));
+  }
+
+  function moveGame(index: number, direction: -1 | 1) {
+    setGameOrder((current) => {
+      const target = index + direction;
+      if (target < 0 || target >= current.length) return current;
+      const next = [...current];
+      [next[index], next[target]] = [next[target], next[index]];
+      return next;
+    });
+  }
+
+  const canStart = Boolean(names[0].trim() && names[1].trim() && gameOrder.length > 0);
 
   return (
     <PartyBackdrop>
@@ -43,9 +72,9 @@ export default function TeamBattleSetup({
               <Icons.sword size={39} className="text-white" />
             </div>
             <p className="mt-6 text-[10px] font-black uppercase tracking-[0.28em] text-fuchsia-300/70">Nastavenie arény</p>
-            <h1 className="mt-2 text-3xl font-black tracking-tight text-white">Vytvorte svoje tímy</h1>
+            <h1 className="mt-2 text-3xl font-black tracking-tight text-white">Vytvorte vlastnú bitku</h1>
             <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-white/40">
-              Dva tímy, pestré minihry a jeden šampión večera.
+              Pomenujte tímy a vyskladajte minihry presne v poradí, v akom ich chcete hrať.
             </p>
           </section>
 
@@ -83,45 +112,95 @@ export default function TeamBattleSetup({
           </section>
 
           <section className="party-glass mt-5 rounded-[1.75rem] p-5">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-3">
               <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">Dĺžka bitky</p>
-                <p className="mt-1 text-sm font-bold text-white/70">Vyberte počet kôl</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">Váš program</p>
+                <p className="mt-1 text-sm font-bold text-white/70">Poradie minihier</p>
               </div>
-              <span className="rounded-xl bg-fuchsia-500/15 px-3 py-2 text-xs font-black text-fuchsia-300">{rounds} kôl</span>
+              <span className="shrink-0 rounded-xl bg-fuchsia-500/15 px-3 py-2 text-xs font-black text-fuchsia-300">
+                {gameOrder.length} {gameOrder.length === 1 ? "kolo" : gameOrder.length < 5 ? "kolá" : "kôl"}
+              </span>
             </div>
 
-            <div className="mt-5 grid grid-cols-3 gap-2">
-              {[3, 5, 7].map((value) => (
+            {gameOrder.length > 0 ? (
+              <div className="mt-4 space-y-2">
+                {gameOrder.map((game, index) => (
+                  <div
+                    key={`${game}-${index}`}
+                    className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.045] p-3"
+                  >
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/[0.07] text-[10px] font-black text-white/40">
+                      {index + 1}
+                    </span>
+                    <span className="text-2xl">{GAME_ICONS[game]}</span>
+                    <span className="min-w-0 flex-1 truncate text-sm font-black text-white">{GAME_LABELS[game]}</span>
+                    <div className="flex shrink-0 gap-1">
+                      <button
+                        onClick={() => moveGame(index, -1)}
+                        disabled={index === 0}
+                        aria-label="Posunúť vyššie"
+                        className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[0.05] text-sm font-black text-white/55 transition active:scale-90 disabled:opacity-20"
+                      >
+                        ↑
+                      </button>
+                      <button
+                        onClick={() => moveGame(index, 1)}
+                        disabled={index === gameOrder.length - 1}
+                        aria-label="Posunúť nižšie"
+                        className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[0.05] text-sm font-black text-white/55 transition active:scale-90 disabled:opacity-20"
+                      >
+                        ↓
+                      </button>
+                      <button
+                        onClick={() => removeGame(index)}
+                        aria-label="Odstrániť hru"
+                        className="flex h-8 w-8 items-center justify-center rounded-lg border border-red-400/15 bg-red-400/[0.08] text-base font-black text-red-300/70 transition active:scale-90"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="mt-4 rounded-2xl border border-dashed border-white/15 px-4 py-6 text-center">
+                <p className="text-sm font-bold text-white/40">Pridajte aspoň jednu minihru</p>
+              </div>
+            )}
+
+            <div className="mt-5 flex items-center justify-between">
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/35">Pridať minihru</p>
+              {gameOrder.length > 0 && (
+                <button onClick={() => setGameOrder([])} className="text-[10px] font-bold text-red-300/60 transition active:opacity-50">
+                  Vymazať všetko
+                </button>
+              )}
+            </div>
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              {ALL_GAMES.map((game) => (
                 <button
-                  key={value}
-                  onClick={() => setRounds(value)}
-                  className={`rounded-2xl border py-3.5 transition active:scale-95 ${
-                    rounds === value
-                      ? "border-fuchsia-400/70 bg-gradient-to-b from-fuchsia-500/30 to-violet-600/20 text-white shadow-[0_10px_28px_rgba(168,85,247,.2)]"
-                      : "border-white/10 bg-white/[0.035] text-white/40"
-                  }`}
+                  key={game}
+                  onClick={() => addGame(game)}
+                  disabled={gameOrder.length >= MAX_ROUNDS}
+                  className="flex min-w-0 items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-3 text-left transition active:scale-[.97] disabled:opacity-30"
                 >
-                  <span className="block text-2xl font-black">{value}</span>
-                  <span className="mt-1 block text-[8px] font-black uppercase tracking-[0.16em]">
-                    {value === 3 ? "Rýchla" : value === 5 ? "Klasická" : "Veľká"}
-                  </span>
+                  <span className="text-xl">{GAME_ICONS[game]}</span>
+                  <span className="min-w-0 flex-1 truncate text-[11px] font-black text-white/65">{GAME_LABELS[game]}</span>
+                  <span className="text-lg font-light text-fuchsia-300/70">+</span>
                 </button>
               ))}
             </div>
-
-            <div className="mt-4 flex items-center gap-3 rounded-2xl border border-amber-400/15 bg-amber-400/[0.07] px-4 py-3">
-              <Icons.star size={16} className="shrink-0 text-amber-300" />
-              <p className="text-[11px] leading-relaxed text-white/45">Finálové kolo má trojnásobnú hodnotu bodov.</p>
-            </div>
+            <p className="mt-3 text-center text-[10px] leading-relaxed text-white/25">
+              Hru môžete pridať aj viackrát. Maximum je {MAX_ROUNDS} kôl. Posledné kolo má trojnásobné body.
+            </p>
           </section>
 
           <button
-            onClick={() => onStart(names, rounds)}
-            disabled={!names[0].trim() || !names[1].trim()}
+            onClick={() => onStart(names, gameOrder)}
+            disabled={!canStart}
             className="party-shine mt-6 w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 via-fuchsia-500 to-pink-500 px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white shadow-[0_18px_50px_rgba(168,85,247,.35)] transition active:scale-[.97] disabled:opacity-40"
           >
-            Začať tímovú bitku
+            Začať {gameOrder.length > 0 ? `${gameOrder.length}-kolovú` : "tímovú"} bitku
           </button>
         </div>
       </main>
