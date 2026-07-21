@@ -1,9 +1,25 @@
+import {
+  SOLO_CHARADES_EASY_EXTRA,
+  SOLO_CHARADES_HARD_EXTRA,
+  SOLO_CHARADES_MEDIUM_EXTRA,
+} from "./charadesExtra.ts";
+
 export type CharadesDifficulty = "lahke" | "stredne" | "tazke";
+
+function uniqueWords(words: string[]): string[] {
+  const seen = new Set<string>();
+  return words.filter((word) => {
+    const key = word.trim().toLocaleLowerCase("sk");
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
 
 // Samostatná minihra má vlastný balík. Tieto slová nepoužíva Imposter ani
 // tímový režim, takže zmeny v jednej hre nemôžu vyprázdniť inú hru.
 export const SOLO_CHARADES_WORDS: Record<CharadesDifficulty, string[]> = {
-  lahke: [
+  lahke: uniqueWords([
     "Pes", "Mačka", "Slon", "Žirafa", "Tučniak", "Delfín", "Motýľ", "Včela", "Korytnačka", "Papagáj",
     "Jablko", "Banán", "Pizza", "Palacinka", "Zmrzlina", "Čokoláda", "Hamburger", "Špagety", "Melón", "Mrkva",
     "Stolička", "Posteľ", "Zrkadlo", "Kľúč", "Dáždnik", "Kufor", "Batoh", "Hodiny", "Sviečka", "Vankúš",
@@ -14,8 +30,9 @@ export const SOLO_CHARADES_WORDS: Record<CharadesDifficulty, string[]> = {
     "Hruška", "Pomaranč", "Jahoda", "Ananás", "Hrozno", "Chlieb", "Syr", "Koláč", "Polievka", "Klobása",
     "Televízor", "Chladnička", "Lyžica", "Vidlička", "Kniha", "Lampa", "Kefa", "Uterák", "Telefón", "Okuliare",
     "Spevák", "Herec", "Poštár", "Čašník", "Farmár", "Veterinár", "Sudca", "Predavač", "Stavbár", "Fotograf",
-  ],
-  stredne: [
+    ...SOLO_CHARADES_EASY_EXTRA,
+  ]),
+  stredne: uniqueWords([
     "Budík", "Vysávač", "Práčka", "Mikrovlnka", "Kávovar", "Ventilátor", "Diaľkový ovládač", "Nabíjačka", "Slúchadlá", "Fotoaparát",
     "Semafor", "Kruhový objazd", "Čerpacia stanica", "Letisková hala", "Železničné nástupište", "Parkovací automat", "Horská lanovka", "Záchranný čln", "Dopravná zápcha", "Hraničný priechod",
     "Narodeninová oslava", "Svadobná hostina", "Školský výlet", "Rodinný piknik", "Vianočný stromček", "Veľkonočná oblievačka", "Novoročný ohňostroj", "Hudobný festival", "Futbalový zápas", "Filmová premiéra",
@@ -26,8 +43,9 @@ export const SOLO_CHARADES_WORDS: Record<CharadesDifficulty, string[]> = {
     "Pracovný pohovor", "Maturitná skúška", "Promócie", "Stužková slávnosť", "Rozlúčka so slobodou", "Triedne stretnutie", "Silvestrovská párty", "Letná dovolenka", "Detská besiedka", "Nedeľný obed",
     "Meteorológ", "Architekt", "Tlmočník", "Novinár", "Režisér", "Knihovník", "Laborant", "Dispečer", "Tréner", "Scenárista",
     "Pirátska loď", "Ľadový palác", "Podzemné mesto", "Tropická búrka", "Tajné laboratórium", "Časostroj", "Lietajúci koberec", "Zakliaty hrad", "Mimozemská planéta", "Zabudnutá civilizácia",
-  ],
-  tazke: [
+    ...SOLO_CHARADES_MEDIUM_EXTRA,
+  ]),
+  tazke: uniqueWords([
     "Trpezlivosť", "Zvedavosť", "Nedôvera", "Odvaha", "Spravodlivosť", "Žiarlivosť", "Tvorivosť", "Zodpovednosť", "Sloboda", "Nádej",
     "Prvý dojem", "Slepá ulička", "Ticho pred búrkou", "Ihla v kope sena", "Mať hlavu v oblakoch", "Chodiť okolo horúcej kaše", "Držať jazyk za zubami", "Kúpiť mačku vo vreci", "Byť za vodou", "Hádzať flintu do žita",
     "Časový paradox", "Umelá inteligencia", "Klimatická zmena", "Teória relativity", "Gravitačná sila", "Slnečné zatmenie", "Evolučná teória", "Virtuálna realita", "Genetická informácia", "Obnoviteľná energia",
@@ -38,7 +56,8 @@ export const SOLO_CHARADES_WORDS: Record<CharadesDifficulty, string[]> = {
     "Za päť minút dvanásť", "Mať maslo na hlave", "Prilievať olej do ohňa", "Robiť z komára somára", "Vziať nohy na plecia", "Trafiť klinec po hlavičke", "Mať oči na stopkách", "Ostať na ocot", "Nosiť drevo do lesa", "Bod zlomu",
     "Kvantová fyzika", "Čierna diera", "Fotosyntéza", "Tektonická doska", "Prirodzený výber", "Elektromagnetické pole", "Kozmické žiarenie", "Reťazová reakcia", "Biologická rovnováha", "Digitálna stopa",
     "Stratená pamäť", "Utajená identita", "Posledný svedok", "Nemožná misia", "Nevinný podozrivý", "Záhadný odkaz", "Nečakaný spojenec", "Tajný vchod", "Falošné obvinenie", "Dokonalý podvod",
-  ],
+    ...SOLO_CHARADES_HARD_EXTRA,
+  ]),
 };
 
 // Tímová hra používa druhý, samostatný balík. Zámerne nie je vytvorený zo
@@ -70,5 +89,5 @@ export const TEAM_CHARADES_WORDS: Record<CharadesDifficulty, string[]> = {
   ],
 };
 
-export const ALL_SOLO_CHARADES_WORDS = Object.values(SOLO_CHARADES_WORDS).flat();
+export const ALL_SOLO_CHARADES_WORDS = uniqueWords(Object.values(SOLO_CHARADES_WORDS).flat());
 export const ALL_TEAM_CHARADES_WORDS = Object.values(TEAM_CHARADES_WORDS).flat();

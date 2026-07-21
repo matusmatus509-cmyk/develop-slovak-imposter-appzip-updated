@@ -51,12 +51,19 @@ function buildDeck(difficulty: string): Card[] {
       categoryIcon: labels[level]?.icon ?? "💬",
     })),
   );
+  const seen = new Set<string>();
+  const uniqueCards = cards.filter((card) => {
+    const key = card.word.trim().toLocaleLowerCase("sk");
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
   const fallback = ALL_SOLO_CHARADES_WORDS.map((word) => ({
     word,
     category: "Šarády",
     categoryIcon: "💬",
   }));
-  return shuffle(cards.length > 0 ? cards : fallback);
+  return shuffle(uniqueCards.length > 0 ? uniqueCards : fallback);
 }
 
 // ─── Setup Screen ─────────────────────────────────────────────────────────────
@@ -123,21 +130,22 @@ function SetupScreen({
         </p>
         <div className="flex gap-2">
           {[
-            { key: "all", label: "Všetky", icon: "📦" },
-            { key: "lahke", label: "Ľahké", icon: "🟢" },
-            { key: "stredne", label: "Stredné", icon: "🟡" },
-            { key: "tazke", label: "Ťažké", icon: "🔴" },
+            { key: "all", label: "Všetky", icon: "📦", count: ALL_SOLO_CHARADES_WORDS.length },
+            { key: "lahke", label: "Ľahké", icon: "🟢", count: SOLO_CHARADES_WORDS.lahke.length },
+            { key: "stredne", label: "Stredné", icon: "🟡", count: SOLO_CHARADES_WORDS.stredne.length },
+            { key: "tazke", label: "Ťažké", icon: "🔴", count: SOLO_CHARADES_WORDS.tazke.length },
           ].map((d) => (
             <button
               key={d.key}
               onClick={() => setDifficulty(d.key)}
-              className={`flex-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 hover:scale-[1.02] ${
+              className={`flex flex-1 flex-col items-center gap-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 hover:scale-[1.02] ${
                 difficulty === d.key
                   ? "border-purple-400/60 bg-purple-500/30 text-purple-300"
                   : "border-white/10 bg-white/5 text-white/50"
               }`}
             >
-              {d.icon} {d.label}
+              <span>{d.icon} {d.label}</span>
+              <span className="text-[10px] font-semibold opacity-55">{d.count} kariet</span>
             </button>
           ))}
         </div>
