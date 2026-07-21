@@ -302,89 +302,116 @@ const WOULD_YOU_RATHER_BASE: { a: string; b: string }[] = [
 ];
 
 // ── Iba nepravda ─────────────────────────────────────────────────────────────
-// Rozsirene baliky pre tri party hry: 30 tem a 20 roznych foriem = 600 novych poloziek v kazdej hre.
-const PARTY_TOPICS = [
-  "cestovanie", "skola", "praca", "rodina", "kamarati", "hudba", "filmy", "serialy", "knihy", "hry",
-  "jedlo", "varenie", "sport", "priroda", "mesto", "domov", "technologie", "socialne siete", "detstvo", "vikend",
-  "dovolenka", "narodeniny", "zima", "leto", "zvierata", "moda", "nakupovanie", "buducnost", "vesmir", "superhrdinovia",
+// Každá hra má vlastný tematický balík. Päťdesiat tém a dvadsať foriem
+// vytvorí viac než tisíc samostatných kariet bez miešania zásob medzi hrami.
+const TRUTH_TOPICS = [
+  "cestovanie", "škola", "práca", "rodina", "kamaráti", "hudba", "filmy", "seriály", "knihy", "videohry",
+  "jedlo", "varenie", "šport", "príroda", "život v meste", "domov", "technológie", "sociálne siete", "detstvo", "víkend",
+  "dovolenka", "narodeniny", "zima", "leto", "zvieratá", "móda", "nakupovanie", "budúcnosť", "vesmír", "superhrdinovia",
+  "láska", "randenie", "súrodenci", "starí rodičia", "peniaze", "zdravie", "spánok", "ranné vstávanie", "upratovanie", "varenie pre iných",
+  "verejné vystupovanie", "školské výlety", "pracovné pohovory", "oslavy", "susedia", "cudzie jazyky", "fotografie", "tajné talenty", "zlozvyky", "splnené sny",
+];
+
+const DARE_TOPICS = [
+  "zvieratá", "rozprávky", "superhrdinovia", "filmoví zloduchovia", "športovci", "speváci", "učitelia", "kuchári", "moderátori", "detektívi",
+  "cestovanie", "dovolenka", "škola", "kancelária", "reštaurácia", "letisko", "nemocnica", "zoo", "pláž", "hory",
+  "Vianoce", "Halloween", "narodeniny", "svadba", "festival", "futbal", "hokej", "videohry", "sociálne siete", "nakupovanie",
+  "varenie", "upratovanie", "ranné vstávanie", "neskorý príchod", "telefonovanie", "fotografovanie", "tanec", "spievanie", "maľovanie", "cvičenie",
+  "vesmír", "džungľa", "more", "stredovek", "budúcnosť", "roboty", "mimozemšťania", "piráti", "kúzelníci", "zombie apokalypsa",
+];
+
+const NEVER_TOPICS = [
+  "škole", "práci", "dovolenke", "výlete", "oslave", "svadbe", "koncerte", "festivale", "športovom zápase", "reštaurácii",
+  "kine", "divadle", "obchode", "posilňovni", "nemocnici", "hoteli", "lietadle", "vlaku", "autobuse", "aute",
+  "sociálnych sieťach", "videohre", "videohovore", "online nákupe", "skupinovom čete", "fotografovaní", "varení", "pečení", "upratovaní", "cvičení",
+  "randení", "priateľstve", "rodinnej návšteve", "školskom výlete", "pracovnom pohovore", "narodeninách", "Vianociach", "Silvestri", "lete", "zime",
+  "stretnutí s celebritou", "učení cudzieho jazyka", "starostlivosti o zviera", "šoférovaní", "stanovaní", "plávaní", "lyžovaní", "tanci", "speve", "verejnom vystúpení",
+];
+
+const RATHER_TOPICS = [
+  "cestovaní", "bývaní", "práci", "škole", "priateľstve", "láske", "rodine", "peniazoch", "zdraví", "voľnom čase",
+  "hudbe", "filmoch", "seriáloch", "knihách", "videohrách", "športe", "jedle", "varení", "móde", "technológiách",
+  "sociálnych sieťach", "dovolenke", "dobrodružstve", "prírode", "živote v meste", "živote na dedine", "zvieratách", "vesmíre", "histórii", "budúcnosti",
+  "superhrdinoch", "rozprávkach", "sláve", "talente", "šťastí", "odvahe", "múdrosti", "kreativite", "spánku", "počasí",
+  "Vianociach", "narodeninách", "nakupovaní", "šoférovaní", "lietaniu", "morí", "horách", "tanci", "fotografovaní", "učení jazykov",
 ];
 
 const TRUTH_FORMS = [
-  (topic: string) => `Co je tvoj najvacsi zazitok spojeny s temou ${topic}?`,
-  (topic: string) => `Co ta na teme ${topic} najviac tesi?`,
-  (topic: string) => `Co ta na teme ${topic} najviac irituje?`,
-  (topic: string) => `Aku trapnu spomienku mas na temu ${topic}?`,
-  (topic: string) => `Co by si o teme ${topic} najradsej nikomu nepovedal/a?`,
-  (topic: string) => `Kedy si naposledy urobil/a chybu pri teme ${topic}?`,
-  (topic: string) => `Co by si chcel/a pri teme ${topic} zmenit?`,
-  (topic: string) => `Aku radu o teme ${topic} si ignoroval/a?`,
-  (topic: string) => `Co si pri teme ${topic} predstieral/a, ze vies?`,
-  (topic: string) => `Co je tvoj tajny nazor na temu ${topic}?`,
-  (topic: string) => `Koho by si pri teme ${topic} poziadal/a o pomoc?`,
-  (topic: string) => `Co najvtipnejsie sa ti pri teme ${topic} stalo?`,
-  (topic: string) => `Aku vec o teme ${topic} by si chcel/a vediet lepsie?`,
-  (topic: string) => `Kedy si bol/a pri teme ${topic} najviac hrdy/a na seba?`,
-  (topic: string) => `Co by si pri teme ${topic} urobil/a uplne inak ako ostatni?`,
-  (topic: string) => `Aku malu loz si niekedy povedal/a o teme ${topic}?`,
-  (topic: string) => `Co ti pri teme ${topic} chyba najviac?`,
-  (topic: string) => `Co je pri teme ${topic} tvoj najvacsi strach?`,
-  (topic: string) => `Aku vec o teme ${topic} si naposledy ulahcil/a?`,
-  (topic: string) => `Co by si o teme ${topic} povedal/a svojmu mladsimu ja?`,
+  (topic: string) => `Čo je tvoj najväčší zážitok spojený s témou „${topic}“?`,
+  (topic: string) => `Čo ťa na téme „${topic}“ najviac teší?`,
+  (topic: string) => `Čo ťa na téme „${topic}“ najviac irituje?`,
+  (topic: string) => `Akú trápnu spomienku máš na tému „${topic}“?`,
+  (topic: string) => `Čo by si o téme „${topic}“ najradšej nikomu nepovedal/a?`,
+  (topic: string) => `Kedy si naposledy urobil/a chybu pri téme „${topic}“?`,
+  (topic: string) => `Čo by si chcel/a pri téme „${topic}“ zmeniť?`,
+  (topic: string) => `Akú radu o téme „${topic}“ si ignoroval/a?`,
+  (topic: string) => `Čo si pri téme „${topic}“ predstieral/a, že vieš?`,
+  (topic: string) => `Aký je tvoj tajný názor na tému „${topic}“?`,
+  (topic: string) => `Koho by si pri téme „${topic}“ požiadal/a o pomoc?`,
+  (topic: string) => `Čo najvtipnejšie sa ti pri téme „${topic}“ stalo?`,
+  (topic: string) => `Ktorú vec o téme „${topic}“ by si chcel/a vedieť lepšie?`,
+  (topic: string) => `Kedy si bol/a pri téme „${topic}“ najviac hrdý/á na seba?`,
+  (topic: string) => `Čo by si pri téme „${topic}“ urobil/a úplne inak ako ostatní?`,
+  (topic: string) => `Akú malú lož si niekedy povedal/a o téme „${topic}“?`,
+  (topic: string) => `Čo ti pri téme „${topic}“ chýba najviac?`,
+  (topic: string) => `Čoho sa pri téme „${topic}“ najviac bojíš?`,
+  (topic: string) => `Ktorú vec pri téme „${topic}“ si naposledy zbytočne uľahčil/a?`,
+  (topic: string) => `Čo by si o téme „${topic}“ povedal/a svojmu mladšiemu ja?`,
 ];
 
 const DARE_ACTIONS = [
-  "predved kratku pantomimu", "vymysli reklamu", "zaspievaj dve vety piesne", "nakresli obrazok bez zdvihnutia pera",
-  "povedz trojriadkovu basen", "zahraj kratku scenu", "vymysli novy slogan", "opis to hlasom robota",
-  "predved to bez slov", "vymysli vtip", "zatancuj 15 sekund", "vymysli rap", "povedz tri asociacie",
-  "napodobni moderatora", "vymysli rozpravku", "vysvetli to ako odbornik", "zahraj to ako v nemom filme",
-  "povedz kompliment hracovi vlavo", "vymysli novu prezivku", "povedz jeden dovod, preco je to super",
+  "Predveď krátku pantomímu", "Vymysli reklamu", "Zaspievaj dve vety piesne", "Nakresli obrázok bez zdvihnutia pera",
+  "Povedz trojriadkovú báseň", "Zahraj krátku scénu", "Vymysli nový slogan", "Opíš to hlasom robota",
+  "Predveď to bez slov", "Vymysli vtip", "Zatancuj 15 sekúnd", "Vymysli rap", "Povedz tri asociácie",
+  "Napodobni moderátora", "Vymysli rozprávku", "Vysvetli to ako odborník", "Zahraj to ako v nemom filme",
+  "Povedz kompliment hráčovi vľavo", "Vymysli novú prezývku", "Povedz jeden dôvod, prečo je to super",
 ];
 
 const NEVER_ACTIONS = [
-  "som o tom klamal/a", "som sa pri tom stratil/a", "som to odkladal/a na neskor", "som sa pri tom velmi smial/a",
-  "som na to zabudol/a", "som to robil/a na poslednu chvilu", "som to pokazil/a pred ostatnymi", "som si to tajne uzil/a",
-  "som sa pri tom citil/a trapne", "som to skusil/a len zo zvedavosti", "som sa pri tom vyhovoril/a", "som o tom snival/a",
-  "som to urobil/a bez planu", "som sa pri tom pohadal/a", "som to tajil/a pred rodinou", "som sa pri tom hanbil/a",
-  "som to odporucil/a niekomu dalsiemu", "som to vzdal/a priskoro", "som sa pri tom citil/a ako expert", "som si prial/a, aby to nikto nevidel",
+  "neklamal/a", "nestratil/a sa", "neodkladal/a všetko na neskôr", "nesmial/a sa tak, že som nevedel/a prestať",
+  "nezabudol/a na niečo dôležité", "nerobil/a všetko na poslednú chvíľu", "nepokazil/a niečo pred ostatnými", "neužil/a si to potajomky",
+  "necítil/a sa trápne", "neskúsil/a niečo len zo zvedavosti", "nevyhováral/a sa", "nesníval/a o tom",
+  "neurobil/a niečo úplne bez plánu", "nepohádal/a sa s niekým", "netajil/a niečo pred rodinou", "nehanbil/a sa za svoje správanie",
+  "neodporučil/a to niekomu ďalšiemu", "nevzdal/a to priskoro", "netváril/a sa ako expert", "neprial/a si, aby to nikto nevidel",
 ];
 
 const RATHER_OPTIONS_A = [
-  "mat neobmedzeny rozpocet", "mat viac volneho casu", "byt v tom najlepsi/a", "vediet o tom vsetko",
-  "mat to kazdy den", "mat to iba raz za rok", "zazit to sam/a", "zazit to s najlepsimi kamaratmi",
-  "vratit sa v tom do minulosti", "preskocit to do buducnosti", "mat to vzdy dokonale", "mat to vzdy prekvapive",
-  "byt pri tom slavny/a", "byt pri tom uplne anonymny/a", "mat to zadarmo", "mat to hned teraz",
-  "mat pri tom stastie", "mat pri tom talent", "vybrat si presne podla seba", "nechat rozhodnut ostatnych",
+  "mať neobmedzený rozpočet", "mať viac voľného času", "byť v tom najlepší/ia", "vedieť o tom všetko",
+  "mať to každý deň", "mať to iba raz za rok", "zažiť to sám/sama", "zažiť to s najlepšími kamarátmi",
+  "vrátiť sa v tom do minulosti", "preskočiť to do budúcnosti", "mať to vždy dokonalé", "mať to vždy prekvapivé",
+  "byť pri tom slávny/a", "byť pri tom úplne anonymný/a", "mať to zadarmo", "mať to hneď teraz",
+  "mať pri tom šťastie", "mať pri tom talent", "vybrať si presne podľa seba", "nechať rozhodnúť ostatných",
 ];
 
 const RATHER_OPTIONS_B = [
-  "mat v tom jeden dokonaly zazitok", "mat pri tom viac penazi", "byt v tom uplne pokojny/a", "vediet len to najdolezitejsie",
-  "mat to raz a nezabudnut na to", "mat to kazdy vikend", "zazit to s celou rodinou", "zazit to s cudzimi ludmi",
-  "vymysliet to uplne nanovo", "nechat to plynut bez planu", "mat to trochu chaoticke", "mat to vzdy rovnake",
-  "byt pri tom vtipny/a", "byt pri tom naozaj mudry/a", "mat to lacne ale nudne", "cakat na to cely rok",
-  "mat pri tom odvahu", "mat pri tom trpezlivost", "prisposobit sa ostatnym", "nechat rozhodnut nahodu",
+  "mať v tom jeden dokonalý zážitok", "mať pri tom viac peňazí", "byť v tom úplne pokojný/a", "vedieť len to najdôležitejšie",
+  "mať to raz a nezabudnúť na to", "mať to každý víkend", "zažiť to s celou rodinou", "zažiť to s cudzími ľuďmi",
+  "vymyslieť to úplne nanovo", "nechať to plynúť bez plánu", "mať to trochu chaotické", "mať to vždy rovnaké",
+  "byť pri tom vtipný/a", "byť pri tom naozaj múdry/a", "mať to lacné, ale nudné", "čakať na to celý rok",
+  "mať pri tom odvahu", "mať pri tom trpezlivosť", "prispôsobiť sa ostatným", "nechať rozhodnúť náhodu",
 ];
 
 export const TRUTHS: string[] = [
   ...TRUTHS_BASE,
-  ...PARTY_TOPICS.flatMap((topic) => TRUTH_FORMS.map((form) => form(topic))),
+  ...TRUTH_TOPICS.flatMap((topic) => TRUTH_FORMS.map((form) => form(topic))),
 ];
 
 export const DARES: string[] = [
   ...DARES_BASE,
-  ...PARTY_TOPICS.flatMap((topic) => DARE_ACTIONS.map((action) => `${action} na temu ${topic}.`)),
+  ...DARE_TOPICS.flatMap((topic) => DARE_ACTIONS.map((action) => `${action} na tému „${topic}“.`)),
 ];
 
 export const NEVER_HAVE_I_EVER: string[] = [
   ...NEVER_HAVE_I_EVER_BASE,
-  ...PARTY_TOPICS.flatMap((topic) => NEVER_ACTIONS.map((action) => `Nikdy som nikdy... ${action} pri teme ${topic}.`)),
+  ...NEVER_TOPICS.flatMap((topic) => NEVER_ACTIONS.map((action) => `Nikdy som nikdy ${action} pri ${topic}.`)),
 ];
 
 export const WOULD_YOU_RATHER: { a: string; b: string }[] = [
   ...WOULD_YOU_RATHER_BASE,
-  ...PARTY_TOPICS.flatMap((topic) =>
+  ...RATHER_TOPICS.flatMap((topic) =>
     RATHER_OPTIONS_A.map((optionA, index) => ({
-      a: `${optionA} pri teme ${topic}`,
-      b: `${RATHER_OPTIONS_B[index]} pri teme ${topic}`,
+      a: `${optionA} pri ${topic}`,
+      b: `${RATHER_OPTIONS_B[index]} pri ${topic}`,
     }))
   ),
 ];
@@ -438,6 +465,10 @@ const ONLY_LIES_TOPICS = [
   "rodinné oslavy", "víkendy", "dovolenky", "detstvo", "budúcnosť", "sny",
   "superhrdinovia", "vesmír", "príroda", "mesto", "domov", "kamaráti", "randenie",
   "zimné dni", "letné dni", "narodeniny",
+  "Vianoce", "Halloween", "školské výlety", "pracovné pohovory", "susedia",
+  "varenie", "upratovanie", "ranné vstávanie", "cvičenie", "nakupovanie",
+  "autá", "lietadlá", "more", "hory", "zvieratá v zoo",
+  "slávni ľudia", "rozprávky", "mobilné aplikácie", "fotografovanie", "tajné talenty",
 ];
 
 const ONLY_LIES_QUESTION_FORMS = [
@@ -484,8 +515,8 @@ const BOMB_CATEGORIES_BASE: string[] = [
   "Profesie a povolania",
   "Veci v kúpeľni",
   "Hudobné nástroje",
-  "Pohádkové postavy",
-  "Slavné osobnosti",
+  "Rozprávkové postavy",
+  "Slávne osobnosti",
   "Druhy čaju alebo kávy",
   "Veci v škole",
   "Mestá na Slovensku",
@@ -514,34 +545,36 @@ const BOMB_CATEGORIES_BASE: string[] = [
   "Veci v záhrade",
 ];
 
-// ── Hádaj emoji ───────────────────────────────────────────────────────────────
+// Rozšírené samostatné témy pre bombu.
 const BOMB_CONTEXTS = [
-  "skola", "domov", "kuchyna", "kupelna", "zahrada", "priroda", "mesto", "dedina", "cestovanie", "dovolenka",
-  "leto", "zima", "Vianoce", "narodeniny", "party", "sport", "hudba", "filmy", "serialy", "knihy",
-  "hry", "technologie", "telefon", "auto", "vlak", "lietadlo", "more", "hory", "zoo", "vesmir",
+  "škola", "domov", "kuchyňa", "kúpeľňa", "záhrada", "príroda", "mesto", "dedina", "cestovanie", "dovolenka",
+  "leto", "zima", "Vianoce", "narodeniny", "párty", "šport", "hudba", "filmy", "seriály", "knihy",
+  "hry", "technológie", "telefón", "auto", "vlak", "lietadlo", "more", "hory", "zoo", "vesmír",
+  "školský výlet", "pracovný pohovor", "svadba", "festival", "koncert", "futbalový zápas", "hokejový štadión", "reštaurácia", "hotel", "letisko",
+  "nemocnica", "lekáreň", "supermarket", "posilňovňa", "kúpalisko", "stanovačka", "farma", "džungľa", "rozprávka", "zombie apokalypsa",
 ];
 
 const BOMB_CATEGORY_FORMS = [
-  (context: string) => `Veci spojene s ${context}`,
-  (context: string) => `Slova, ktore opisuju ${context}`,
-  (context: string) => `Predmety, ktore najdes v ${context}`,
-  (context: string) => `Zvuky spojene s ${context}`,
-  (context: string) => `Farby spojene s ${context}`,
-  (context: string) => `Vone spojene s ${context}`,
-  (context: string) => `Jedla spojene s ${context}`,
-  (context: string) => `Ludia spojeni s ${context}`,
-  (context: string) => `Miesta spojene s ${context}`,
-  (context: string) => `Cinnosti spojene s ${context}`,
-  (context: string) => `Oblecenie vhodne pre ${context}`,
-  (context: string) => `Doplnky spojene s ${context}`,
-  (context: string) => `Zvierata spojene s ${context}`,
-  (context: string) => `Filmy alebo postavy spojene s ${context}`,
-  (context: string) => `Povolania spojene s ${context}`,
-  (context: string) => `Slavne znacky spojene s ${context}`,
-  (context: string) => `Veci, ktore sa daju robit pri ${context}`,
-  (context: string) => `Veci, ktore si beries do ${context}`,
-  (context: string) => `Veci, ktore by mohli pokazit ${context}`,
-  (context: string) => `Veci, ktore robia ${context} lepsim`,
+  (context: string) => `Veci spojené s témou „${context}“`,
+  (context: string) => `Slová, ktoré opisujú tému „${context}“`,
+  (context: string) => `Predmety typické pre tému „${context}“`,
+  (context: string) => `Zvuky spojené s témou „${context}“`,
+  (context: string) => `Farby spojené s témou „${context}“`,
+  (context: string) => `Vône spojené s témou „${context}“`,
+  (context: string) => `Jedlá spojené s témou „${context}“`,
+  (context: string) => `Ľudia alebo postavy spojené s témou „${context}“`,
+  (context: string) => `Miesta spojené s témou „${context}“`,
+  (context: string) => `Činnosti spojené s témou „${context}“`,
+  (context: string) => `Oblečenie vhodné pre tému „${context}“`,
+  (context: string) => `Doplnky spojené s témou „${context}“`,
+  (context: string) => `Zvieratá spojené s témou „${context}“`,
+  (context: string) => `Filmy alebo postavy spojené s témou „${context}“`,
+  (context: string) => `Povolania spojené s témou „${context}“`,
+  (context: string) => `Slávne značky spojené s témou „${context}“`,
+  (context: string) => `Veci, ktoré sa dajú robiť pri téme „${context}“`,
+  (context: string) => `Veci, ktoré by si si zbalil/a pre tému „${context}“`,
+  (context: string) => `Veci, ktoré by mohli pokaziť zážitok na tému „${context}“`,
+  (context: string) => `Veci, ktoré robia zážitok na tému „${context}“ lepším`,
 ];
 
 export const BOMB_CATEGORIES: string[] = [

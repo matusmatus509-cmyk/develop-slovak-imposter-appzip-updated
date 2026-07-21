@@ -34,8 +34,12 @@ function shuffle<T>(arr: T[]): T[] {
 function buildDeck(catIds: string[]): Card[] {
   const cats = CHARACTER_CATEGORIES.filter((c) => catIds.includes(c.id));
   const cards: Card[] = [];
+  const seen = new Set<string>();
   for (const cat of cats) {
     for (const ch of cat.characters) {
+      const key = ch.trim().toLocaleLowerCase("sk");
+      if (seen.has(key)) continue;
+      seen.add(key);
       cards.push({ word: ch, categoryName: cat.name });
     }
   }
@@ -110,7 +114,12 @@ function SetupScreen({
               style={{ animation: `slideUp 0.4s ease-out ${0.1 + i * 0.05}s both` }}
             >
               <span className="text-2xl">{cat.icon}</span>
-              <span className="font-bold flex-1">{cat.name}</span>
+              <span className="flex-1">
+                <span className="block font-bold">{cat.name}</span>
+                <span className="mt-0.5 block text-xs font-semibold text-white/35">
+                  {cat.characters.length} kariet
+                </span>
+              </span>
               {selectedCats.includes(cat.id) && (
                 <span className="text-cyan-400 font-bold">✓</span>
               )}

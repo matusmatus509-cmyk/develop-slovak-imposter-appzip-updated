@@ -10,6 +10,10 @@ export const SOLO_CHARADES_WORDS: Record<CharadesDifficulty, string[]> = {
     "Auto", "Bicykel", "Vlak", "Lietadlo", "Loď", "Traktor", "Kolobežka", "Autobus", "Motorka", "Helikoptéra",
     "Futbal", "Tenis", "Hokej", "Plávanie", "Lyžovanie", "Box", "Golf", "Basketbal", "Volejbal", "Korčuľovanie",
     "Lekár", "Učiteľ", "Kuchár", "Policajt", "Hasič", "Kaderník", "Pilot", "Pekár", "Maliar", "Záhradník",
+    "Králik", "Kôň", "Opica", "Lev", "Tiger", "Medveď", "Žaba", "Had", "Krokodíl", "Sova",
+    "Hruška", "Pomaranč", "Jahoda", "Ananás", "Hrozno", "Chlieb", "Syr", "Koláč", "Polievka", "Klobása",
+    "Televízor", "Chladnička", "Lyžica", "Vidlička", "Kniha", "Lampa", "Kefa", "Uterák", "Telefón", "Okuliare",
+    "Spevák", "Herec", "Poštár", "Čašník", "Farmár", "Veterinár", "Sudca", "Predavač", "Stavbár", "Fotograf",
   ],
   stredne: [
     "Budík", "Vysávač", "Práčka", "Mikrovlnka", "Kávovar", "Ventilátor", "Diaľkový ovládač", "Nabíjačka", "Slúchadlá", "Fotoaparát",
@@ -18,6 +22,10 @@ export const SOLO_CHARADES_WORDS: Record<CharadesDifficulty, string[]> = {
     "Objednávanie jedla", "Balenie darčeka", "Venčenie psa", "Umývanie okien", "Žehlenie košele", "Sadenie kvetov", "Pečenie koláča", "Čistenie zubov", "Telefonický rozhovor", "Nakupovanie oblečenia",
     "Detektív", "Archeológ", "Astronaut", "Fotograf", "Moderátor", "Zubár", "Mechanik", "Záchranár", "Kúzelník", "Dirigent",
     "Tajná chodba", "Stratený poklad", "Opustený ostrov", "Horská chata", "Podmorský svet", "Strašidelný dom", "Kráľovský palác", "Vesmírna stanica", "Džungľová výprava", "Čarovný les",
+    "Výmena pneumatiky", "Stavanie stanu", "Kosenie trávnika", "Maľovanie steny", "Skladanie nábytku", "Hľadanie signálu", "Rezervácia hotela", "Kontrola lístka", "Rozbaľovanie balíka", "Fotografovanie západu slnka",
+    "Pracovný pohovor", "Maturitná skúška", "Promócie", "Stužková slávnosť", "Rozlúčka so slobodou", "Triedne stretnutie", "Silvestrovská párty", "Letná dovolenka", "Detská besiedka", "Nedeľný obed",
+    "Meteorológ", "Architekt", "Tlmočník", "Novinár", "Režisér", "Knihovník", "Laborant", "Dispečer", "Tréner", "Scenárista",
+    "Pirátska loď", "Ľadový palác", "Podzemné mesto", "Tropická búrka", "Tajné laboratórium", "Časostroj", "Lietajúci koberec", "Zakliaty hrad", "Mimozemská planéta", "Zabudnutá civilizácia",
   ],
   tazke: [
     "Trpezlivosť", "Zvedavosť", "Nedôvera", "Odvaha", "Spravodlivosť", "Žiarlivosť", "Tvorivosť", "Zodpovednosť", "Sloboda", "Nádej",
@@ -26,6 +34,10 @@ export const SOLO_CHARADES_WORDS: Record<CharadesDifficulty, string[]> = {
     "Diplomatické rokovanie", "Tlačová konferencia", "Volebná kampaň", "Súdne pojednávanie", "Vedecký experiment", "Historický prevrat", "Ekonomická kríza", "Kultúrne dedičstvo", "Medzinárodná dohoda", "Verejná mienka",
     "Nečakané stretnutie", "Stratená príležitosť", "Zakázané tajomstvo", "Morálna dilema", "Dokonalé alibi", "Falošná stopa", "Osudové rozhodnutie", "Dvojitý agent", "Posledná nádej", "Nevyriešená záhada",
     "Búrka v pohári vody", "Kameň úrazu", "Medvedia služba", "Achillova päta", "Danajský dar", "Pyrrhovo víťazstvo", "Začarovaný kruh", "Labutia pieseň", "Tantalove muky", "Pandorina skrinka",
+    "Svedomie", "Predsudok", "Sebavedomie", "Nostalgia", "Solidarita", "Pokrytectvo", "Tolerancia", "Intuícia", "Ambícia", "Disciplína",
+    "Za päť minút dvanásť", "Mať maslo na hlave", "Prilievať olej do ohňa", "Robiť z komára somára", "Vziať nohy na plecia", "Trafiť klinec po hlavičke", "Mať oči na stopkách", "Ostať na ocot", "Nosiť drevo do lesa", "Bod zlomu",
+    "Kvantová fyzika", "Čierna diera", "Fotosyntéza", "Tektonická doska", "Prirodzený výber", "Elektromagnetické pole", "Kozmické žiarenie", "Reťazová reakcia", "Biologická rovnováha", "Digitálna stopa",
+    "Stratená pamäť", "Utajená identita", "Posledný svedok", "Nemožná misia", "Nevinný podozrivý", "Záhadný odkaz", "Nečakaný spojenec", "Tajný vchod", "Falošné obvinenie", "Dokonalý podvod",
   ],
 };
 

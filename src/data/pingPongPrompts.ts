@@ -20,6 +20,43 @@ const PACKING_PROMPTS = [
   "Veci, ktoré si berieš do tábora", "Veci, ktoré si berieš na prespanie",
   "Veci, ktoré si berieš na cestu lietadlom", "Veci, ktoré si berieš na turistiku",
   "Veci, ktoré si berieš na lyžovačku", "Veci, ktoré si berieš na nákupy",
+  "Veci, ktoré si berieš na festival", "Veci, ktoré si berieš na koncert",
+  "Veci, ktoré si berieš na školský výlet", "Veci, ktoré si berieš k lekárovi",
+  "Veci, ktoré si berieš na svadbu", "Veci, ktoré si berieš na bicykel",
+  "Veci, ktoré si berieš k moru", "Veci, ktoré si berieš do hôr",
+  "Veci, ktoré si berieš na pracovný pohovor", "Veci, ktoré si berieš na fotenie",
+];
+
+const LETTER_CHALLENGES = [
+  "Mená na B", "Mená na D", "Mená na E", "Mená na J", "Mená na K", "Mená na L", "Mená na R", "Mená na S", "Mená na T", "Mená na V",
+  "Mestá na A", "Mestá na D", "Mestá na L", "Mestá na M", "Mestá na N", "Mestá na P", "Mestá na R", "Mestá na S", "Mestá na T", "Mestá na V",
+  "Krajiny na A", "Krajiny na B", "Krajiny na C", "Krajiny na F", "Krajiny na G", "Krajiny na I", "Krajiny na K", "Krajiny na M", "Krajiny na P", "Krajiny na T",
+  "Zvieratá na B", "Zvieratá na D", "Zvieratá na H", "Zvieratá na L", "Zvieratá na M", "Zvieratá na P", "Zvieratá na S", "Zvieratá na T", "Zvieratá na V", "Zvieratá na Ž",
+  "Jedlá na B", "Jedlá na C", "Jedlá na H", "Jedlá na K", "Jedlá na M", "Jedlá na R", "Jedlá na S", "Jedlá na T", "Jedlá na Z", "Jedlá na Š",
+  "Povolania na A", "Povolania na D", "Povolania na H", "Povolania na K", "Povolania na M", "Povolania na P", "Povolania na S", "Povolania na U", "Povolania na Z", "Povolania na V",
+];
+
+const QUICK_ROUNDS = [
+  "Veci, ktoré majú tlačidlá", "Veci, ktoré majú obrazovku", "Veci, ktoré potrebujú elektrinu", "Veci na baterky",
+  "Veci, ktoré sa nabíjajú", "Veci s heslom", "Veci pripojené na internet", "Mobilné aplikácie", "Sociálne siete", "Videohry",
+  "Postavy z videohier", "Animované postavy", "Filmoví zloduchovia", "Filmoví hrdinovia", "Postavy z Harryho Pottera",
+  "Postavy z Marvelu", "Postavy z Disney", "Postavy zo Simpsonovcov", "Postavy zo Shreka", "Rozprávkové princezné",
+  "Slovenskí športovci", "Svetoví futbalisti", "Hokejisti", "Tenisti", "Olympijskí víťazi",
+  "Speváci", "Speváčky", "Hudobné skupiny", "Slovenské kapely", "Pesničky na párty",
+  "Veci, ktoré nájdeš v škole", "Veci, ktoré nájdeš v taške", "Veci, ktoré nájdeš vo vrecku", "Veci, ktoré nájdeš v kabelke", "Veci, ktoré nájdeš v chladničke",
+  "Veci, ktoré nájdeš v kúpeľni", "Veci, ktoré nájdeš v garáži", "Veci, ktoré nájdeš na povale", "Veci, ktoré nájdeš v hoteli", "Veci, ktoré nájdeš na letisku",
+  "Výhovorky na meškanie", "Dôvody na oslavu", "Dôvody na smiech", "Dôvody neísť do školy", "Dôvody vypnúť telefón",
+  "Veci, ktoré povie učiteľ", "Veci, ktoré povie rodič", "Veci, ktoré povie tréner", "Veci, ktoré povie lekár", "Veci, ktoré povie čašník",
+  "Veci, ktoré nechceš počuť na rande", "Veci, ktoré nechceš počuť v lietadle", "Veci, ktoré nechceš počuť u zubára", "Veci, ktoré nechceš nájsť v jedle", "Veci, ktoré nechceš zabudnúť doma",
+  "Veci, ktoré robíš potichu", "Veci, ktoré robíš nahlas", "Veci, ktoré robíš iba sám", "Veci, ktoré robíš s kamarátmi", "Veci, ktoré robíš cez prestávku",
+  "Veci, ktoré sú lepkavé", "Veci, ktoré sú šmykľavé", "Veci, ktoré sú chlpaté", "Veci, ktoré sú priehľadné", "Veci, ktoré sú krehké",
+  "Veci, ktoré dobre voňajú", "Veci, ktoré zapáchajú", "Veci, ktoré sú hlučné", "Veci, ktoré sú tiché", "Veci, ktoré sú studené",
+  "Veci, ktoré sú horúce", "Veci, ktoré sú mokré", "Veci, ktoré sú suché", "Veci, ktoré sú farebné", "Veci, ktoré blikajú",
+  "Jedlá, ktoré ješ lyžicou", "Jedlá, ktoré ješ rukami", "Jedlá na gril", "Jedlá na Vianoce", "Jedlá na oslavu",
+  "Ovocie s kôstkou", "Červené ovocie", "Zelená zelenina", "Druhy cestovín", "Príchute zmrzliny",
+  "Miesta na prvé rande", "Miesta na výlet", "Miesta, kde je ticho", "Miesta, kde je veľa ľudí", "Miesta, kde sa platí vstupné",
+  "Veci na stanovačku", "Veci na piknik", "Veci na festival", "Veci na karneval", "Veci na svadbu",
+  "Slová spojené so šťastím", "Slová spojené so strachom", "Slová spojené s priateľstvom", "Slová spojené so školou", "Slová spojené s dovolenkou",
 ];
 
 const TOPICS = [
@@ -55,7 +92,7 @@ const TOPICS = [
   "Veci v rozprávke", "Veci na opustenom ostrove",
 ];
 
-export const PING_PONG_PROMPTS: string[] = [
+export const PING_PONG_PROMPTS: string[] = [...new Set([
   ...STARTING_LETTERS.map((letter) => `Slová na ${letter}`),
   "Mená na A",
   "Mená na M",
@@ -65,7 +102,9 @@ export const PING_PONG_PROMPTS: string[] = [
   "Krajiny na S",
   "Zvieratá na K",
   "Jedlá na P",
+  ...LETTER_CHALLENGES,
   ...PLACES.map((place) => `Veci, ktoré nájdeš ${place.startsWith("na ") ? place : `v ${place}`}`),
   ...PACKING_PROMPTS,
   ...TOPICS,
-];
+  ...QUICK_ROUNDS,
+])];

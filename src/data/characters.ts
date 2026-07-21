@@ -9,7 +9,7 @@ export interface CharacterCategory {
 const CHARACTER_CATEGORIES_BASE: CharacterCategory[] = [
   {
     id: "world-personalities",
-    name: "Svetove osobnosti",
+    name: "Svetové osobnosti",
     icon: "🌍",
     characters: [
       "Elon Musk", "Barack Obama", "Nelson Mandela", "Greta Thunberg", "Oprah Winfrey",
@@ -21,7 +21,7 @@ const CHARACTER_CATEGORIES_BASE: CharacterCategory[] = [
   },
   {
     id: "world-athletes",
-    name: "Svetovi sportovci",
+    name: "Svetoví športovci",
     icon: "🏅",
     characters: [
       "Cristiano Ronaldo", "Lionel Messi", "Kylian Mbappé", "Erling Haaland", "Neymar",
@@ -33,7 +33,7 @@ const CHARACTER_CATEGORIES_BASE: CharacterCategory[] = [
   },
   {
     id: "world-youtubers",
-    name: "Svetovi YouTuberi",
+    name: "Svetoví YouTuberi",
     icon: "▶️",
     characters: [
       "MrBeast", "PewDiePie", "Markiplier", "Jacksepticeye", "KSI",
@@ -217,6 +217,67 @@ const SLOVAK_ATHLETES_EXTRA = [
   "Martin Kližan", "Viktória Kužmová", "Rebecca Šramková", "Jana Čepelová", "Michal Martikán", "Vladimír Országh",
 ];
 
+const MOVIE_CHARACTERS_EXTRA = [
+  "Neo", "Trinity", "Morpheus", "Terminátor", "John Rambo", "Ethan Hunt", "Marty McFly", "Doc Brown", "Maximus Decimus Meridius", "Katniss Everdeen",
+  "Peeta Mellark", "Dumbledore", "Severus Snape", "Rubeus Hagrid", "Draco Malfoy", "Sirius Black", "Dobby", "Princezná Leia", "Han Solo", "Yoda",
+  "Chewbacca", "Obi-Wan Kenobi", "Anakin Skywalker", "Rey", "Kylo Ren", "Aragorn", "Samwise Gamgee", "Glum", "Gimli", "Sauron",
+  "Čierna vdova", "Hawkeye", "Deadpool", "Wolverine", "Black Panther", "Doctor Strange", "Thanos", "Loki", "Ant-Man", "Groot",
+  "Rocket Raccoon", "Star-Lord", "Captain Marvel", "Aquaman", "Flash", "Harley Quinn", "Catwoman", "Green Lantern", "Shazam", "Venom",
+  "Mary Poppins", "Willy Wonka", "Edward Nožnicovoruký", "Beetlejuice", "Ace Ventura", "Maska", "Kevin McCallister", "Votrelkyňa Ripleyová", "Predátor", "Robocop",
+  "Jack Dawson", "Rose DeWitt Bukater", "Jake Sully", "Neytiri", "Barbie", "Ken", "Dominic Toretto", "Brian O'Conner", "Letty Ortiz", "Mia Toretto",
+  "Will Turner", "Elizabeth Swannová", "Davy Jones", "Hannibal Lecter", "Clarice Starlingová", "Norman Bates", "Ghostface", "Freddy Krueger", "Jason Voorhees", "Michael Myers",
+  "Regan MacNeilová", "Indiana Jones", "Lara Croft", "Agent J", "Agent K", "Peter Venkman", "Alan Grant", "John Hammond", "Forrest Gump", "Chuck Noland",
+  "Vito Corleone", "Michael Corleone", "Tony Montana", "Jordan Belfort", "Tyler Durden", "Truman Burbank", "Borat", "Mr. Bean", "Bridget Jonesová", "Elle Woodsová",
+  "Maverick", "Rocky Balboa", "Ivan Drago", "Daniel LaRusso", "Pán Miyagi", "John McClane", "Beatrix Kiddo", "Amélie Poulainová", "Biela pani", "Perinbaba",
+  "Popolvár", "Princezná Fantaghirò", "Arabela", "Rumburak", "Lietajúci Cyprián", "Jánošík", "Bathory", "Pelíšky – Kraus", "Cisárov pekár", "Kráľ Drozdia brada",
+];
+
+const ANIMATED_CHARACTERS = [
+  "Mickey Mouse", "Minnie Mouse", "Kačer Donald", "Goofy", "Pluto", "Bugs Bunny", "Daffy Duck", "Tweety", "Sylvester", "Tasmánsky čert",
+  "Tom", "Jerry", "Scooby-Doo", "Shaggy", "Fred Flintstone", "Vilma Flintstoneová", "Medveď Yogi", "Šmolko", "Gargamel", "Pepek námorník",
+  "SpongeBob", "Patrik Hviezdica", "Squidward", "Pán Krab", "Sandy", "Simpson Homer", "Marge Simpsonová", "Bart Simpson", "Lisa Simpsonová", "Maggie Simpsonová",
+  "Peter Griffin", "Stewie Griffin", "Brian Griffin", "Eric Cartman", "Kenny McCormick", "Rick Sanchez", "Morty Smith", "BoJack Horseman", "Aang", "Korra",
+  "Pokémon Pikachu", "Ash Ketchum", "Misty", "Meowth", "Macko Puf", "Prasiatko", "Tiger", "Ijáčik", "Calimero", "Krtko",
+  "Včielka Maja", "Vilko", "Pat a Mat", "Lolek", "Bolek", "Bob", "Bobek", "Maťko", "Kubko", "Macko Uško",
+  "Shrek", "Oslík", "Fiona", "Kocúr v čižmách", "Lord Farquaad", "Kráľ Julien", "Marty zo ZOO", "Alex lev", "Gloria hrošica", "Melman žirafa",
+  "Po z Kung Fu Pandy", "Majster Shifu", "Bezzubka", "Štikút", "Gru", "Mimoni Kevin", "Mimoni Stuart", "Mimoni Bob", "Megamozog", "Dracula z Hotela Transylvánia",
+  "Woody", "Buzz Rakeťák", "Jessie", "Lightning McQueen", "Mater", "Nemo", "Dory", "Marlin", "WALL-E", "EVE",
+  "Ratatouille Remy", "Mike Wazowski", "Sully", "Pán Úžasný", "Elastigirl", "Jack-Jack", "Carl Fredricksen", "Russell", "Radosť z V hlave", "Smútok z V hlave",
+  "Elsa", "Anna", "Olaf", "Sven", "Simba", "Nala", "Timon", "Pumba", "Scar", "Mufasa",
+  "Ariel", "Sebastián", "Aladin", "Džin", "Jasmína", "Belle", "Zviera", "Rapunzel", "Mauí", "Vaiana",
+  "Stitch", "Lilo", "Mulan", "Mushu", "Tarzan", "Herkules", "Robin Hood – líška", "Bambi", "Dumbo", "Pinocchio",
+  "Snehulienka", "Popoluška", "Šípková Ruženka", "Peter Pan", "Tinker Bell", "Alica", "Šialený klobučník", "Cruella de Vil", "Maleficent", "Ursula",
+];
+
+const SERIES_CHARACTERS = [
+  "Rachel Greenová", "Ross Geller", "Monica Gellerová", "Chandler Bing", "Joey Tribbiani", "Phoebe Buffayová", "Sheldon Cooper", "Leonard Hofstadter", "Penny", "Howard Wolowitz",
+  "Walter White", "Jesse Pinkman", "Saul Goodman", "Gus Fring", "Hank Schrader", "Michael Scott", "Dwight Schrute", "Jim Halpert", "Pam Beeslyová", "Andy Bernard",
+  "Ted Mosby", "Barney Stinson", "Robin Scherbatská", "Marshall Eriksen", "Lily Aldrinová", "Wednesday Addamsová", "Enid Sinclairová", "Eleven", "Mike Wheeler", "Dustin Henderson",
+  "Steve Harrington", "Jim Hopper", "Jon Snow", "Daenerys Targaryen", "Tyrion Lannister", "Arya Starková", "Sansa Starková", "Cersei Lannisterová", "Jaime Lannister", "Khal Drogo",
+  "Thomas Shelby", "Arthur Shelby", "Sherlock Holmes", "John Watson", "Moriarty", "Dexter Morgan", "Joe Goldberg", "Lucifer Morningstar", "Dr. House", "Perry Cox",
+  "Meredith Greyová", "Derek Shepherd", "Carrie Bradshawová", "Samantha Jonesová", "Bridgerton Anthony", "Bridgerton Daphne", "Emily Cooperová", "Beth Harmonová", "June Osborneová", "Villanelle",
+  "Profesor z Money Heist", "Tokio z Money Heist", "Berlín z Money Heist", "Nairobi z Money Heist", "Denver z Money Heist", "Seong Gi-hun", "Front Man", "Wednesday – Vec", "Geralt z Rivie", "Yennefer",
+  "Ciri", "Joel Miller", "Ellie Williamsová", "Pedro z Narcos", "Pablo Escobar", "Rick Grimes", "Daryl Dixon", "Negan", "Homelander", "Billy Butcher",
+  "Loki zo seriálu", "Mandalorian", "Grogu", "Ahsoka Tano", "Obi-Wan Kenobi", "Jack Reacher", "Jack Ryan", "Harvey Specter", "Mike Ross", "Donna Paulsenová",
+  "Mr. Bean", "Alf", "MacGyver", "Walker, texaský ranger", "Mitch Buchannon", "Xena", "Herkules zo seriálu", "Buffy", "Dean Winchester", "Sam Winchester",
+  "Mulder", "Scullyová", "Columbo", "Monk", "Hawkeye Pierce", "Tony Soprano", "Don Draper", "Frank Underwood", "Tommy z The Last of Us", "Cobra Kai Johnny Lawrence",
+];
+
+const VIDEO_GAME_CHARACTERS = [
+  "Super Mario", "Luigi", "Princezná Peach", "Bowser", "Yoshi", "Toad", "Donkey Kong", "Link", "Princezná Zelda", "Ganondorf",
+  "Sonic", "Tails", "Knuckles", "Dr. Eggman", "Pikachu", "Charizard", "Mewtwo", "Kirby", "Samus Aranová", "Fox McCloud",
+  "Pac-Man", "Mega Man", "Crash Bandicoot", "Coco Bandicoot", "Spyro", "Rayman", "Sackboy", "Steve z Minecraftu", "Alex z Minecraftu", "Creeper",
+  "Enderman", "Lara Croft", "Nathan Drake", "Kratos", "Atreus", "Aloy", "Geralt z Rivie", "Ciri", "Yennefer", "Master Chief",
+  "Cortana", "Doom Slayer", "Solid Snake", "Agent 47", "Leon Kennedy", "Jill Valentineová", "Chris Redfield", "Claire Redfieldová", "Nemesis", "Albert Wesker",
+  "Arthur Morgan", "John Marston", "Trevor Philips", "Michael De Santa", "Franklin Clinton", "CJ zo San Andreas", "Niko Bellic", "Tommy Vercetti", "Max Payne", "Alan Wake",
+  "Ezio Auditore", "Altaïr", "Bayek", "Kassandra", "Eivor", "Prince of Persia", "Ryu", "Ken Masters", "Chun-Li", "M. Bison",
+  "Scorpion", "Sub-Zero", "Raiden", "Liu Kang", "Kitana", "Sonya Blade", "Johnny Cage", "Cloud Strife", "Sephiroth", "Tifa Lockhartová",
+  "Sora", "Joker z Persony", "2B", "Tracer", "D.Va", "Mercy", "Reaper", "Winston", "Jinx", "Ahri",
+  "Teemo", "Garen", "Fortnite Jonesy", "Peely", "Among Us Crewmate", "Fall Guys postavička", "Gordon Freeman", "GLaDOS", "Chell", "Alyx Vanceová",
+  "Marcus Fenix", "Commander Shepard", "Tali'Zorah", "Joel Miller", "Ellie Williamsová", "Big Daddy z BioShock", "Dutch van der Linde", "Handsome Jack", "Claptrap", "Vault Boy",
+  "Sans", "Papyrus", "Cuphead", "Mugman", "Freddy Fazbear", "Bonnie", "Chica", "Foxy", "Bendy", "Huggy Wuggy",
+];
+
 function cards(id: string) {
   return CHARACTER_CATEGORIES_BASE.find((category) => category.id === id)?.characters ?? [];
 }
@@ -246,20 +307,38 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
   },
   {
     id: "slovak-personalities",
-    name: "Slovenske osobnosti a herci",
+    name: "Slovenské osobnosti a herci",
     icon: "🇸🇰",
     characters: uniqueCards([...cards("slovak-personalities"), ...cards("slovak-actors"), ...cards("slovak-musicians"), ...SLOVAK_PERSONALITIES_EXTRA]),
   },
   {
     id: "slovak-athletes",
-    name: "Slovenski sportovci",
+    name: "Slovenskí športovci",
     icon: "🏒",
     characters: uniqueCards([...cards("slovak-athletes"), ...SLOVAK_ATHLETES_EXTRA]),
   },
   {
-    id: "films-series",
-    name: "Filmy, serialy a zname postavy",
-    icon: "🎬",
-    characters: uniqueCards([...cards("movie-characters"), ...cards("films-series"), ...cards("fairy-tales"), ...cards("animals")]),
+    id: "movie-characters",
+    name: "Filmové postavy",
+    icon: "🍿",
+    characters: uniqueCards([...cards("movie-characters"), ...MOVIE_CHARACTERS_EXTRA]),
+  },
+  {
+    id: "animated-characters",
+    name: "Animované postavičky",
+    icon: "🎨",
+    characters: uniqueCards(ANIMATED_CHARACTERS),
+  },
+  {
+    id: "series-characters",
+    name: "Postavy zo seriálov",
+    icon: "📺",
+    characters: uniqueCards(SERIES_CHARACTERS),
+  },
+  {
+    id: "video-game-characters",
+    name: "Postavy z videohier",
+    icon: "🎮",
+    characters: uniqueCards(VIDEO_GAME_CHARACTERS),
   },
 ];

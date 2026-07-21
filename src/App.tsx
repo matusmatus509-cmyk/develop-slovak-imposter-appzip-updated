@@ -68,7 +68,7 @@ const MINIGAMES: MenuGame[] = [
   { screen: "hadajktosom", title: "Hádaj kto som", description: "Telefón na čelo, nápovedy a rýchle hádanie.", icon: "user", color: "from-cyan-500 to-blue-600" },
   { screen: "ibanepravda", title: "Iba nepravda", description: "Odpovedajte rýchlo, ale nikdy pravdivo.", icon: "messageSquare", color: "from-rose-500 to-pink-600" },
   { screen: "ktodostanebombu", title: "Kto dostane bombu", description: "Hovorte slová a podajte mobil skôr, než vybuchne.", icon: "zap", color: "from-orange-500 to-red-600" },
-  { screen: "hadajemoji", title: "Hádaj emoji", description: "Uhádnite filmy, povolania a osobnosti z emoji.", icon: "smile", color: "from-amber-400 to-yellow-500" },
+  { screen: "hadajemoji", title: "Hádaj emoji", description: "Uhádnite filmy, postavy, videohry či osobnosti z emoji.", icon: "smile", color: "from-amber-400 to-yellow-500" },
 ];
 
 const DEFAULT_SETTINGS: GameSettings = {
