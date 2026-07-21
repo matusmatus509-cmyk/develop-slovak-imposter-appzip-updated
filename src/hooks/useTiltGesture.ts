@@ -1,52 +1,54 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import {
+  createTiltDetector,
+  type TiltStatus,
+} from "../utils/tiltDetector";
 
 type PermissionCapableEvent = {
   requestPermission?: () => Promise<"granted" | "denied">;
 };
 
-/** Must be called directly from the Start button click for iOS/Safari. */
+/** Must run directly from the Start button click for iOS/Safari. */
 export async function requestTiltPermission(): Promise<boolean> {
   if (typeof window === "undefined") return false;
 
-  const requests: Promise<"granted" | "denied">[] = [];
-
+  const permissionTargets: PermissionCapableEvent[] = [];
   if (typeof DeviceMotionEvent !== "undefined") {
-    const motionEvent = DeviceMotionEvent as unknown as PermissionCapableEvent;
-    if (typeof motionEvent.requestPermission === "function") {
-      requests.push(motionEvent.requestPermission());
-    }
+    permissionTargets.push(DeviceMotionEvent as unknown as PermissionCapableEvent);
   }
-
   if (typeof DeviceOrientationEvent !== "undefined") {
-    const orientationEvent = DeviceOrientationEvent as unknown as PermissionCapableEvent;
-    if (typeof orientationEvent.requestPermission === "function") {
-      requests.push(orientationEvent.requestPermission());
-    }
+    permissionTargets.push(DeviceOrientationEvent as unknown as PermissionCapableEvent);
   }
 
-  if (requests.length === 0) return true;
+  const requesters = permissionTargets.filter(
+    (target) => typeof target.requestPermission === "function",
+  );
+  if (requesters.length === 0) return true;
 
-  try {
-    const states = await Promise.all(requests);
-    return states.every((state) => state === "granted");
-  } catch {
-    return false;
-  }
+  const results = await Promise.all(
+    requesters.map(async (target) => {
+      try {
+        return (await target.requestPermission?.call(target)) === "granted";
+      } catch {
+        return false;
+      }
+    }),
+  );
+  // One granted source is sufficient; the detector does not need both APIs.
+  return results.some(Boolean);
 }
 
 /**
- * Heads-up gesture for a phone held horizontally against the forehead.
- *
- * The primary signal is the gravity vector perpendicular to the display. It
- * describes the actual forward/back card flip and is independent of whether
- * landscape-left or landscape-right is used. DeviceOrientation is retained as
- * a fallback for browsers that do not expose accelerationIncludingGravity.
+ * Detects a deliberate forward/back flip of a phone held horizontally on the
+ * forehead. Motion (gravity vector) is preferred and one sensor source remains
+ * selected for the whole round to avoid jumps between coordinate systems.
  */
 export function useTiltGesture(
   active: boolean,
   onUp: () => void,
-  onDown: () => void
-) {
+  onDown: () => void,
+): TiltStatus {
+  const [status, setStatus] = useState<TiltStatus>(active ? "calibrating" : "inactive");
   const onUpRef = useRef(onUp);
   const onDownRef = useRef(onDown);
 
@@ -56,97 +58,28 @@ export function useTiltGesture(
   }, [onUp, onDown]);
 
   useEffect(() => {
-    if (!active || typeof window === "undefined") return;
+    if (!active || typeof window === "undefined") {
+      setStatus("inactive");
+      return;
+    }
 
-    // Comparable heads-up implementations use roughly 50–60° between the
-    // reset pose and either action. Filtering plus hold time rejects shaking.
-    const TRIGGER_DEGREES = 50;
-    const RESET_DEGREES = 14;
-    const ACTION_HOLD_MS = 180;
-    const RESET_HOLD_MS = 180;
-    const CALIBRATION_MS = 500;
-    const FILTER_WEIGHT = 0.3;
-    const ORIENTATION_FALLBACK_MS = 900;
-
-    type Zone = "neutral" | "up" | "down";
     type SensorSource = "motion" | "orientation";
-
-    let zone: Zone = "neutral";
-    let candidate: Exclude<Zone, "neutral"> | null = null;
-    let candidateSince = 0;
-    let resetSince = 0;
-    let calibrationStarted = performance.now();
-    let calibrationTotal = 0;
-    let calibrationSamples = 0;
-    let baseline: number | null = null;
-    let filteredTilt: number | null = null;
     let source: SensorSource | null = null;
-    let lastValidMotionAt = 0;
+    let latestOrientation: { tilt: number; at: number } | null = null;
+    let lastSensorAt = performance.now();
 
-    const resetDetector = (nextSource: SensorSource, now: number) => {
-      zone = "neutral";
-      candidate = null;
-      candidateSince = 0;
-      resetSince = 0;
-      calibrationStarted = now;
-      calibrationTotal = 0;
-      calibrationSamples = 0;
-      baseline = null;
-      filteredTilt = null;
-      source = nextSource;
-    };
+    const detector = createTiltDetector({
+      onGesture: (gesture) => {
+        if (gesture === "up") onUpRef.current();
+        else onDownRef.current();
+      },
+      onStatusChange: setStatus,
+    });
 
-    const processTilt = (rawTilt: number, now: number, nextSource: SensorSource) => {
-      if (!Number.isFinite(rawTilt)) return;
-      if (source !== nextSource) resetDetector(nextSource, now);
-
-      if (baseline === null) {
-        calibrationTotal += rawTilt;
-        calibrationSamples += 1;
-        if (now - calibrationStarted < CALIBRATION_MS || calibrationSamples < 8) return;
-
-        baseline = calibrationTotal / calibrationSamples;
-        filteredTilt = baseline;
-        return;
-      }
-
-      filteredTilt = filteredTilt === null
-        ? rawTilt
-        : filteredTilt + (rawTilt - filteredTilt) * FILTER_WEIGHT;
-      const delta = filteredTilt - baseline;
-
-      if (zone === "neutral") {
-        const nextCandidate = delta <= -TRIGGER_DEGREES
-          ? "up"
-          : delta >= TRIGGER_DEGREES
-            ? "down"
-            : null;
-
-        if (nextCandidate === null) {
-          candidate = null;
-          candidateSince = 0;
-        } else if (candidate !== nextCandidate) {
-          candidate = nextCandidate;
-          candidateSince = now;
-        } else if (now - candidateSince >= ACTION_HOLD_MS) {
-          zone = nextCandidate;
-          candidate = null;
-          candidateSince = 0;
-          if (nextCandidate === "up") onUpRef.current();
-          else onDownRef.current();
-        }
-        return;
-      }
-
-      if (Math.abs(delta) <= RESET_DEGREES) {
-        if (resetSince === 0) resetSince = now;
-        if (now - resetSince >= RESET_HOLD_MS) {
-          zone = "neutral";
-          resetSince = 0;
-        }
-      } else {
-        resetSince = 0;
-      }
+    const chooseSource = (next: SensorSource) => {
+      if (source === next) return;
+      source = next;
+      detector.reset();
     };
 
     const handleMotion = (event: DeviceMotionEvent) => {
@@ -154,49 +87,77 @@ export function useTiltGesture(
       const x = gravity?.x;
       const y = gravity?.y;
       const z = gravity?.z;
-      if (x === null || x === undefined || y === null || y === undefined || z === null || z === undefined) {
-        return;
-      }
+      if (x == null || y == null || z == null) return;
 
       const magnitude = Math.hypot(x, y, z);
-      // Ignore missing readings and impacts; a stationary gravity vector is
-      // close to 9.81 m/s², while the ratio below removes device calibration.
-      if (magnitude < 4 || magnitude > 16) return;
+      // Stationary gravity is ~9.81 m/s². Reject free-fall, impacts and sensor
+      // glitches before they can look like a card flip.
+      if (magnitude < 6 || magnitude > 14.5) return;
+
+      if (source === null) chooseSource("motion");
+      if (source !== "motion") return;
 
       const now = performance.now();
-      lastValidMotionAt = now;
-      const normalizedZ = Math.max(-1, Math.min(1, z / magnitude));
-      const tiltDegrees = Math.asin(normalizedZ) * (180 / Math.PI);
-      processTilt(tiltDegrees, now, "motion");
+      lastSensorAt = now;
+      const tilt = Math.atan2(z, Math.hypot(x, y)) * (180 / Math.PI);
+      detector.feed(tilt, now);
     };
 
-    const getScreenRelativeOrientation = (event: DeviceOrientationEvent) => {
+    const screenRelativeTilt = (event: DeviceOrientationEvent): number | null => {
       if (event.beta === null || event.gamma === null) return null;
       const modernAngle = window.screen.orientation?.angle;
       const legacyAngle = (window as Window & { orientation?: number }).orientation;
-      const angle = ((modernAngle ?? legacyAngle ?? 0) * Math.PI) / 180;
-      return event.beta * Math.cos(angle) + event.gamma * Math.sin(angle);
+      const radians = ((modernAngle ?? legacyAngle ?? 0) * Math.PI) / 180;
+      return event.beta * Math.cos(radians) + event.gamma * Math.sin(radians);
     };
 
     const handleOrientation = (event: DeviceOrientationEvent) => {
+      const tilt = screenRelativeTilt(event);
+      if (tilt === null) return;
       const now = performance.now();
-      if (lastValidMotionAt !== 0 && now - lastValidMotionAt < ORIENTATION_FALLBACK_MS) return;
-      if (lastValidMotionAt === 0 && now - calibrationStarted < ORIENTATION_FALLBACK_MS) return;
-
-      const tilt = getScreenRelativeOrientation(event);
-      if (tilt !== null) processTilt(tilt, now, "orientation");
+      latestOrientation = { tilt, at: now };
+      if (source !== "orientation") return;
+      lastSensorAt = now;
+      detector.feed(tilt, now);
     };
 
-    if (typeof DeviceMotionEvent !== "undefined") {
-      window.addEventListener("devicemotion", handleMotion);
-    }
-    if (typeof DeviceOrientationEvent !== "undefined") {
-      window.addEventListener("deviceorientation", handleOrientation);
-    }
+    // Give the gravity source a short chance to arrive. Orientation is used
+    // only as a fallback and is never mixed into an active motion trace.
+    const sourceTimer = window.setTimeout(() => {
+      if (source !== null) return;
+      if (latestOrientation) {
+        chooseSource("orientation");
+        lastSensorAt = latestOrientation.at;
+        detector.feed(latestOrientation.tilt, latestOrientation.at);
+      } else {
+        setStatus("unsupported");
+      }
+    }, 850);
+
+    const watchdog = window.setInterval(() => {
+      const now = performance.now();
+      if (source === "motion" && now - lastSensorAt > 2400 && latestOrientation && now - latestOrientation.at < 1200) {
+        chooseSource("orientation");
+        lastSensorAt = latestOrientation.at;
+        detector.feed(latestOrientation.tilt, latestOrientation.at);
+      } else if (source !== null && now - lastSensorAt > 3500) {
+        setStatus("unsupported");
+      }
+    }, 700);
+
+    const recalibrate = () => detector.reset();
+    window.addEventListener("devicemotion", handleMotion);
+    window.addEventListener("deviceorientation", handleOrientation);
+    window.addEventListener("orientationchange", recalibrate);
 
     return () => {
+      window.clearTimeout(sourceTimer);
+      window.clearInterval(watchdog);
       window.removeEventListener("devicemotion", handleMotion);
       window.removeEventListener("deviceorientation", handleOrientation);
+      window.removeEventListener("orientationchange", recalibrate);
     };
   }, [active]);
+
+  return status;
 }

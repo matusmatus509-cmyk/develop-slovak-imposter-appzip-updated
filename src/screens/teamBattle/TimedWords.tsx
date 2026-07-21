@@ -103,8 +103,15 @@ export default function TimedWords({
     actionLockedRef.current = false;
   }, [teamIdx, timeSeconds, hasDifficulty]);
 
+  const tiltStatus = useTiltGesture(
+    isHadajKtoSom && subPhase === "playing",
+    handleCorrect,
+    handleSkip,
+  );
+  const isTiltCalibrating = isHadajKtoSom && tiltStatus === "calibrating";
+
   useEffect(() => {
-    if (subPhase !== "playing") return;
+    if (subPhase !== "playing" || isTiltCalibrating) return;
     if (timeLeft <= 0) {
       if (!doneRef.current) {
         doneRef.current = true;
@@ -115,7 +122,7 @@ export default function TimedWords({
     }
     const id = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
     return () => clearTimeout(id);
-  }, [subPhase, timeLeft, pointsPerWord, isPantomima, isSarady]);
+  }, [subPhase, timeLeft, pointsPerWord, isPantomima, isSarady, isTiltCalibrating]);
 
   function handleCorrect() {
     if (doneRef.current || actionLockedRef.current) return;
@@ -195,11 +202,6 @@ export default function TimedWords({
       }
     }, 400);
   }
-
-  // "Hádaj kto som": tilt phone up = uhádnuté, down = preskočiť — same
-  // hysteresis mechanic as the standalone minigame, active only while the
-  // round is actually running so tilts elsewhere don't fire it by accident.
-  useTiltGesture(isHadajKtoSom && subPhase === "playing", handleCorrect, handleSkip);
 
   function handleTeamDone() {
     const newScores: [number, number] = [...scores] as [number, number];
@@ -331,6 +333,26 @@ export default function TimedWords({
   if (subPhase === "playing") {
     return (
       <div className="fixed inset-0 flex flex-col" style={{ background: "#0a0a14" }}>
+        {isTiltCalibrating && (
+          <div className="absolute inset-0 z-[70] flex items-center justify-center bg-black/90 backdrop-blur-md">
+            <div
+              className="flex flex-col items-center gap-4 text-center"
+              style={{ transform: "rotate(-90deg)", animation: "fadeIn .25s ease-out both" }}
+            >
+              <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-400/10">
+                <div className="absolute inset-2 rounded-full border-2 border-cyan-300/20 border-t-cyan-300 animate-spin" />
+                <span className="text-3xl">📱</span>
+              </div>
+              <div>
+                <p className="text-xl font-black text-white">Drž mobil rovno</p>
+                <p className="mt-1 max-w-[230px] text-xs font-semibold leading-relaxed text-white/50">
+                  Kalibrujem neutrálnu polohu. Približne jednu sekundu s telefónom nehýb.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {flash && (
           <div
             className="absolute inset-0 z-50 flex items-center justify-center pointer-events-none"
@@ -394,9 +416,21 @@ export default function TimedWords({
           </p>
 
           {isHadajKtoSom && (
-            <p className="text-[11px] font-bold tracking-widest text-white/25 uppercase">
-              ▲ nakloniť nahor = uhádnuté · ▼ nadol = preskočiť
-            </p>
+            <div className="space-y-2 text-center">
+              <p className="text-[11px] font-bold tracking-widest text-white/25 uppercase">
+                ▲ nakloniť nahor = uhádnuté · ▼ nadol = preskočiť
+              </p>
+              {tiltStatus === "return-to-center" && (
+                <p className="text-xs font-black uppercase tracking-[.2em] text-cyan-200/80 animate-pulse">
+                  Vráť mobil rovno
+                </p>
+              )}
+              {tiltStatus === "unsupported" && (
+                <p className="text-[10px] font-bold text-amber-100/70">
+                  Senzor nie je dostupný — použi tlačidlá na obrazovke
+                </p>
+              )}
+            </div>
           )}
         </div>
 

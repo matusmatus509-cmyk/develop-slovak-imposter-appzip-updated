@@ -261,21 +261,19 @@ function PlayingScreen({
     }, 600);
   }, [deck.length, finishRound]);
 
+  const tiltStatus = useTiltGesture(true, handleCorrect, handleSkip);
+  const isCalibrating = tiltStatus === "calibrating";
+
   // Timer countdown
   useEffect(() => {
+    if (isCalibrating) return;
     if (timeLeft <= 0) {
       finishRound();
       return;
     }
     const id = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
     return () => clearTimeout(id);
-  }, [timeLeft, finishRound]);
-
-  // Tilt phone up = correct, down = skip. Shared hysteresis logic lives in
-  // useTiltGesture so both this minigame and the team-battle round behave
-  // identically and reliably. handleCorrect/handleSkip already guard on
-  // doneRef, so the listener can stay attached for the round's lifetime.
-  useTiltGesture(true, handleCorrect, handleSkip);
+  }, [timeLeft, finishRound, isCalibrating]);
 
   const timePercent = (timeLeft / timerSeconds) * 100;
   const isWarning = timeLeft <= 10;
@@ -285,6 +283,26 @@ function PlayingScreen({
       className="fixed inset-0 bg-black overflow-hidden select-none"
       style={{ touchAction: "none" }}
     >
+      {isCalibrating && (
+        <div className="absolute inset-0 z-[70] flex items-center justify-center bg-black/92 backdrop-blur-md">
+          <div
+            className="flex flex-col items-center gap-4 text-center"
+            style={{ transform: "rotate(-90deg)", animation: "fadeIn .25s ease-out both" }}
+          >
+            <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-400/10">
+              <div className="absolute inset-2 rounded-full border-2 border-cyan-300/20 border-t-cyan-300 animate-spin" />
+              <Icons.smartphone size={30} className="text-cyan-200" />
+            </div>
+            <div>
+              <p className="text-xl font-black text-white">Drž mobil rovno</p>
+              <p className="mt-1 max-w-[230px] text-xs font-semibold leading-relaxed text-white/50">
+                Kalibrujem neutrálnu polohu. Približne jednu sekundu s telefónom nehýb.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Flash feedback overlay */}
       {flash && (
         <div
@@ -366,6 +384,16 @@ function PlayingScreen({
           >
             {card?.word ?? ""}
           </p>
+          {!flash && tiltStatus === "return-to-center" && (
+            <p className="mt-4 text-xs font-black uppercase tracking-[.2em] text-cyan-200/80 animate-pulse">
+              Vráť mobil rovno
+            </p>
+          )}
+          {tiltStatus === "unsupported" && (
+            <p className="mt-4 rounded-full border border-amber-300/20 bg-amber-400/10 px-4 py-2 text-[10px] font-bold text-amber-100/70">
+              Senzor nie je dostupný — používaj hornú a dolnú časť obrazovky
+            </p>
+          )}
         </div>
       </div>
 
