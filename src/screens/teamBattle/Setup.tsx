@@ -7,9 +7,25 @@ import {
   type GameType,
 } from "../../data/teamBattle";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
+import gameArt from "../../assets/game-art-sprite.jpg";
 
-const ALL_GAMES: GameType[] = ["pantomima", "sarady", "hadajktosom", "quiz", "pingpong"];
+const ALL_GAMES: GameType[] = [
+  "pantomima", "sarady", "zakazane", "pesnicka", "zvuk",
+  "pismeno", "patzadesat", "hadajktosom", "quiz", "pingpong",
+];
 type BattleMode = "classic" | "custom";
+const GAME_ART: Record<GameType, string> = {
+  pantomima: "33.333% 0%",
+  sarady: "100% 0%",
+  zakazane: "100% 0%",
+  pesnicka: "33.333% 0%",
+  zvuk: "66.666% 50%",
+  pismeno: "66.666% 100%",
+  patzadesat: "0% 0%",
+  hadajktosom: "33.333% 50%",
+  quiz: "0% 0%",
+  pingpong: "0% 50%",
+};
 
 export default function TeamBattleSetup({
   onBack,
@@ -202,19 +218,26 @@ export default function TeamBattleSetup({
                     <button
                       key={game}
                       onClick={() => toggleCustomGame(game)}
-                      className={`relative min-h-[6.4rem] overflow-hidden rounded-2xl border px-3 py-4 text-center transition active:scale-[.96] ${
+                      className={`relative min-h-[8rem] overflow-hidden rounded-2xl border px-3 py-4 text-center transition active:scale-[.96] ${
                         selected
-                          ? "border-cyan-300/60 bg-gradient-to-b from-cyan-400/20 to-violet-500/15 shadow-[0_12px_32px_rgba(34,211,238,.14)]"
-                          : "border-white/10 bg-white/[0.04]"
+                          ? "border-cyan-300/70 shadow-[0_12px_32px_rgba(34,211,238,.2)]"
+                          : "border-white/10"
                       }`}
                     >
+                      <span
+                        className={`absolute inset-0 bg-no-repeat transition duration-500 ${selected ? "scale-110" : "opacity-55 grayscale-[.25]"}`}
+                        style={{ backgroundImage: `url(${gameArt})`, backgroundSize: "400% 300%", backgroundPosition: GAME_ART[game] }}
+                      />
+                      <span className={`absolute inset-0 bg-gradient-to-t ${selected ? "from-cyan-950/95 via-slate-950/35" : "from-[#080b13] via-[#080b13]/45"} to-black/5`} />
                       {selected && (
-                        <span className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-cyan-300 text-xs font-black text-[#071318] shadow-[0_0_18px_rgba(103,232,249,.55)]">
+                        <span className="absolute right-2 top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-cyan-300 text-sm font-black text-[#071318] shadow-[0_0_18px_rgba(103,232,249,.55)]">
                           {order + 1}
                         </span>
                       )}
-                      <span className={`block text-3xl transition ${selected ? "scale-110" : "opacity-70"}`}>{GAME_ICONS[game]}</span>
-                      <span className={`mt-2 block text-[11px] font-black ${selected ? "text-white" : "text-white/45"}`}>{GAME_LABELS[game]}</span>
+                      <span className="absolute bottom-3 left-3 right-3 z-10 flex items-end gap-2 text-left">
+                        <span className="text-2xl drop-shadow-lg">{GAME_ICONS[game]}</span>
+                        <span className={`text-[11px] font-black leading-tight ${selected ? "text-white" : "text-white/70"}`}>{GAME_LABELS[game]}</span>
+                      </span>
                     </button>
                   );
                 })}

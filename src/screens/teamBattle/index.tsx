@@ -17,6 +17,9 @@ import TeamQuiz from "./Quiz";
 import PingPongTeam from "./PingPongTeam";
 import RoundResult from "./RoundResult";
 import GameOver from "./GameOver";
+import { ForbiddenWordGame, GuessSongGame } from "./PassAndPlay";
+import SoundBuzzer from "./SoundBuzzer";
+import { FiveInTenGame, LetterChallengeGame } from "./QuickChallenges";
 
 type Phase =
   | "setup"
@@ -160,6 +163,26 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
           onDone={handleRoundDone}
         />
       );
+    }
+
+    if (game === "zakazane") {
+      return <ForbiddenWordGame teamNames={teamNames} timeSeconds={currentRound.timeSeconds} onDone={handleRoundDone} />;
+    }
+
+    if (game === "pesnicka") {
+      return <GuessSongGame teamNames={teamNames} timeSeconds={currentRound.timeSeconds} onDone={handleRoundDone} />;
+    }
+
+    if (game === "zvuk") {
+      return <SoundBuzzer teamNames={teamNames} onDone={handleRoundDone} />;
+    }
+
+    if (game === "pismeno") {
+      return <LetterChallengeGame teamNames={teamNames} onDone={handleRoundDone} />;
+    }
+
+    if (game === "patzadesat") {
+      return <FiveInTenGame teamNames={teamNames} onDone={handleRoundDone} />;
     }
   }
 

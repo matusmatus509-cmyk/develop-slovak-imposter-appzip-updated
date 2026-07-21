@@ -15,7 +15,7 @@ import { CircularTimer } from "./PartyChrome";
 
 type SubPhase = "select-difficulty" | "ready" | "playing" | "team-done";
 
-const MODE_INST: Record<GameType, string> = {
+const MODE_INST: Partial<Record<GameType, string>> = {
   pantomima: "Predvádzaj pohybom — bez slov! Ostatní hádajú.",
   sarady: "Opisuj slovami — bez odvodenín! Ostatní hádajú.",
   hadajktosom: "Drž telefón na čele. Tím odpovedá len ÁNO / NIE. Nakláňaj telefón nahor = uhádnuté, nadol = preskočiť.",

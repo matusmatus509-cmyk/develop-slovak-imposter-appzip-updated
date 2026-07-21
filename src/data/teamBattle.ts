@@ -535,7 +535,17 @@ export const TEAM_PINGPONG_CATEGORIES: string[] = [
 ];
 
 // ── Round types ───────────────────────────────────────────────────────────────
-export type GameType = "pantomima" | "sarady" | "quiz" | "pingpong" | "hadajktosom";
+export type GameType =
+  | "pantomima"
+  | "sarady"
+  | "quiz"
+  | "pingpong"
+  | "hadajktosom"
+  | "zakazane"
+  | "pesnicka"
+  | "zvuk"
+  | "pismeno"
+  | "patzadesat";
 export type RoundSpecial = "none" | "double" | "lightning" | "final";
 
 export interface BattleRound {
@@ -552,13 +562,17 @@ export const TEAM_ICONS: [string, string] = ["🔵", "🔴"];
 // Quiz is reserved exclusively for the final round (a fitting climax), so it
 // is excluded from the regular rotation below — this guarantees it never
 // appears twice in the same session.
-const NON_FINAL_GAMES: GameType[] = ["pantomima", "sarady", "pingpong", "hadajktosom"];
+const NON_FINAL_GAMES: GameType[] = [
+  "pantomima", "sarady", "zakazane", "pesnicka", "zvuk",
+  "pismeno", "patzadesat", "pingpong", "hadajktosom",
+];
 
 export function generateBattleRounds(selection: number | GameType[]): BattleRound[] {
+  const classicPool = Array.isArray(selection) ? [] : shuffle(NON_FINAL_GAMES);
   const games: GameType[] = Array.isArray(selection)
     ? [...selection]
     : Array.from({ length: selection }, (_, index) =>
-        index === selection - 1 ? "quiz" : NON_FINAL_GAMES[index % NON_FINAL_GAMES.length]
+        index === selection - 1 ? "quiz" : classicPool[index % classicPool.length]
       );
   const count = games.length;
   const rounds: BattleRound[] = [];
@@ -607,6 +621,11 @@ export const GAME_LABELS: Record<GameType, string> = {
   quiz: "Kvízový súboj",
   pingpong: "Slovný ping pong",
   hadajktosom: "Hádaj kto som",
+  zakazane: "Zakázané slovo",
+  pesnicka: "Uhádni pesničku",
+  zvuk: "Uhádni zvuk",
+  pismeno: "Slovo na písmeno",
+  patzadesat: "5 za 10",
 };
 
 export const GAME_ICONS: Record<GameType, string> = {
@@ -615,4 +634,9 @@ export const GAME_ICONS: Record<GameType, string> = {
   quiz: "🧠",
   pingpong: "🏓",
   hadajktosom: "🤔",
+  zakazane: "🚫",
+  pesnicka: "🎵",
+  zvuk: "🔊",
+  pismeno: "🔤",
+  patzadesat: "🧠",
 };

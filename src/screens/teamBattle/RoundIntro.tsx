@@ -9,6 +9,11 @@ const GAME_DESC: Record<string, string> = {
   quiz: "Rýchly tímový kvíz. Prvý tím na bzučiaku získava právo odpovedať.",
   pingpong: "Súboj jeden na jedného. Striedajte slová a udržte tempo až do konca.",
   hadajktosom: "Držte mobil na čele a hádajte postavu iba pomocou odpovedí áno alebo nie.",
+  zakazane: "Opisujte hlavné slovo bez použitia štyroch zakázaných výrazov na karte.",
+  pesnicka: "Zahmkajte známu melódiu bez slov a nechajte svoj tím hádať názov pesničky.",
+  zvuk: "Vypočujte si tajný zvuk a buďte prvý tím, ktorý stlačí svoj bzučiak.",
+  pismeno: "Povedzte slovo zo zadanej kategórie na určené písmeno do piatich sekúnd.",
+  patzadesat: "Vymenujte päť vecí zo zadanej témy skôr, než uplynie desať sekúnd.",
 };
 
 const SPECIAL_LABELS: Record<string, { label: string; icon: string; color: string }> = {
