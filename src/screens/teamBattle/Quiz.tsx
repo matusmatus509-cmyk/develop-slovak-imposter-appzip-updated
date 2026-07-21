@@ -99,15 +99,16 @@ export default function TeamQuiz({
 
   return (
     <div
-      className="fixed inset-0 flex flex-col"
-      style={{ background: "linear-gradient(160deg, #0b0a1a 0%, #1a0a2e 100%)" }}
+      className="fixed inset-0 flex flex-col overflow-hidden"
+      style={{ background: "radial-gradient(circle at 50% 30%, rgba(168,85,247,.15), transparent 45%), #070711" }}
     >
+      <div className="party-grid pointer-events-none absolute inset-0 opacity-20" />
       {/* Score bar */}
-      <div className="shrink-0 flex items-center justify-between px-5 py-4">
+      <div className="relative z-10 m-3 flex shrink-0 items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/[0.055] px-4 py-3 backdrop-blur-xl">
         {([0, 1] as const).map((idx, i) => (
           <div
             key={idx}
-            className="flex items-center gap-2 rounded-2xl px-4 py-2 font-black transition-all"
+            className="flex items-center gap-2 rounded-2xl px-3 py-2 font-black transition-all"
             style={{
               background: `${idx === 0 ? a : b}20`,
               border: `1px solid ${idx === 0 ? a : b}40`,
@@ -124,12 +125,12 @@ export default function TeamQuiz({
       </div>
 
       {/* Question card */}
-      <div className="flex-1 flex flex-col items-center justify-center px-5 gap-4">
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-4 px-5">
         <p className="text-xs font-bold uppercase tracking-widest text-white/30">
           {q.category}
         </p>
         <div
-          className="w-full rounded-3xl border p-8 text-center transition-all duration-300 glass"
+          className="party-glass party-shine relative w-full overflow-hidden rounded-[2rem] border p-7 text-center transition-all duration-300"
           style={{
             background: bgColor,
             borderColor,
@@ -234,14 +235,14 @@ export default function TeamQuiz({
       </div>
 
       {/* Buttons */}
-      <div className="shrink-0 px-4 pb-6 pt-2 space-y-3">
+      <div className="relative z-10 shrink-0 space-y-3 px-4 pb-6 pt-2">
         {phase.t === "question" && (
           <div className="flex gap-3">
             {([0, 1] as const).map((idx) => (
               <button
                 key={idx}
                 onClick={() => buzz(idx)}
-                className="flex-1 rounded-2xl py-7 text-xl font-black text-white active:scale-[0.97] transition shadow-lg hover:brightness-110"
+                className="party-shine flex-1 overflow-hidden rounded-2xl py-7 text-xl font-black text-white shadow-lg transition active:scale-[0.97] hover:brightness-110"
                 style={{
                   background: idx === 0 ? a : b,
                   boxShadow: `0 0 24px ${(idx === 0 ? a : b)}55`,

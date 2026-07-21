@@ -11,6 +11,7 @@ import {
 } from "../../data/teamBattle";
 import { shuffle } from "../../data/teamBattle";
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
+import { CircularTimer } from "./PartyChrome";
 
 type SubPhase = "select-difficulty" | "ready" | "playing" | "team-done";
 
@@ -220,8 +221,7 @@ export default function TimedWords({
   if (subPhase === "select-difficulty") {
     return (
       <div
-        className="fixed inset-0 flex flex-col items-center justify-center gap-6 px-6 text-center"
-        style={{ background: "linear-gradient(160deg, #0b0a1a 0%, #1a0a2e 100%)" }}
+        className="party-backdrop fixed inset-0 flex flex-col items-center justify-center gap-6 overflow-hidden px-6 text-center"
       >
         <div
           className="flex h-24 w-24 items-center justify-center rounded-full text-4xl font-black text-white"
@@ -276,8 +276,7 @@ export default function TimedWords({
   if (subPhase === "ready") {
     return (
       <div
-        className="fixed inset-0 flex flex-col items-center justify-center gap-6 px-6 text-center"
-        style={{ background: "linear-gradient(160deg, #0b0a1a 0%, #1a0a2e 100%)" }}
+        className="party-backdrop fixed inset-0 flex flex-col items-center justify-center gap-6 overflow-hidden px-6 text-center"
       >
         <div
           className="flex h-24 w-24 items-center justify-center rounded-full text-4xl font-black text-white"
@@ -295,7 +294,7 @@ export default function TimedWords({
           </h2>
         </div>
 
-        <div className="glass rounded-3xl p-5 text-sm text-white/60 leading-relaxed max-w-xs" style={{ animation: "scaleIn 0.4s ease-out 0.2s both" }}>
+        <div className="party-glass rounded-[1.75rem] p-5 text-sm leading-relaxed text-white/60 max-w-xs" style={{ animation: "scaleIn 0.4s ease-out 0.2s both" }}>
           {MODE_INST[mode]}
         </div>
 
@@ -321,7 +320,7 @@ export default function TimedWords({
             if (isHadajKtoSom) await requestTiltPermission();
             setSubPhase("playing");
           }}
-          className="w-full max-w-xs rounded-2xl py-5 text-lg font-black uppercase tracking-wide text-white transition-all hover:scale-[1.02] active:scale-95"
+          className="party-shine w-full max-w-xs overflow-hidden rounded-2xl py-5 text-lg font-black uppercase tracking-wide text-white shadow-xl transition-all hover:scale-[1.02] active:scale-95"
           style={{ background: color, animation: "slideUp 0.5s ease-out 0.3s both", boxShadow: `0 4px 24px ${color}55` }}
         >
           Štart ⏱
@@ -332,7 +331,8 @@ export default function TimedWords({
 
   if (subPhase === "playing") {
     return (
-      <div className="fixed inset-0 flex flex-col" style={{ background: "#0a0a14" }}>
+      <div className="fixed inset-0 flex flex-col overflow-hidden" style={{ background: "radial-gradient(circle at 50% 35%, rgba(168,85,247,.14), transparent 44%), #070711" }}>
+        <div className="party-grid pointer-events-none absolute inset-0 opacity-20" />
         {isTiltCalibrating && (
           <div className="absolute inset-0 z-[70] flex items-center justify-center bg-black/90 backdrop-blur-md">
             <div
@@ -364,7 +364,7 @@ export default function TimedWords({
           </div>
         )}
 
-        <div className="shrink-0 flex items-center justify-between px-5 py-4" style={{ borderBottom: `2px solid ${color}40` }}>
+        <div className="relative z-10 m-3 flex shrink-0 items-center justify-between rounded-[1.4rem] border border-white/10 bg-white/[0.055] px-5 py-3 backdrop-blur-xl" style={{ boxShadow: `0 12px 34px ${color}18` }}>
           <div style={{ animation: "fadeIn 0.4s ease-out" }}>
             <p className="text-xs font-bold uppercase tracking-widest text-white/30">Na rade</p>
             <p className="text-lg font-black" style={{ color }}>{teamNames[teamIdx]}</p>
@@ -379,14 +379,14 @@ export default function TimedWords({
           </div>
         </div>
 
-        <div className="shrink-0 h-2 bg-white/10">
+        <div className="relative z-10 mx-5 h-1.5 shrink-0 overflow-hidden rounded-full bg-white/10">
           <div
             className="h-full transition-all duration-1000 ease-linear"
             style={{ width: `${timePercent}%`, background: isWarning ? "#ef4444" : color }}
           />
         </div>
 
-        <div className="flex-1 flex flex-col items-center justify-center px-8 text-center gap-4">
+        <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-5 px-6 text-center">
           {isPantomima ? (
             <p className="text-xs font-bold uppercase tracking-widest text-white/30">
               {skipCount === 0
@@ -402,18 +402,15 @@ export default function TimedWords({
               )}
             </p>
           )}
+          <div className="party-glass party-shine relative w-full max-w-md overflow-hidden rounded-[2rem] px-6 py-9">
           <p
-            className="font-black text-white leading-tight"
+            className="font-black leading-tight text-white"
             style={{ fontSize: "clamp(2rem, 10vw, 4rem)", animation: "popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both" }}
           >
             {currentWord}
           </p>
-          <p
-            className="text-5xl font-black tabular-nums"
-            style={{ color: isWarning ? "#ef4444" : color, animation: isWarning ? "ring 1s ease-in-out infinite" : undefined }}
-          >
-            {timeLeft}s
-          </p>
+          </div>
+          <CircularTimer value={timeLeft} total={timeSeconds} color={isWarning ? "#ef4444" : color} />
 
           {isHadajKtoSom && (
             <div className="space-y-2 text-center">
@@ -434,10 +431,10 @@ export default function TimedWords({
           )}
         </div>
 
-        <div className="shrink-0 flex gap-3 px-4 pb-8 pt-3">
+        <div className="relative z-10 flex shrink-0 gap-3 px-4 pb-8 pt-3">
           <button
             onClick={handleSkip}
-            className="flex-1 rounded-2xl py-5 text-base font-black text-white/70 glass active:scale-95 transition"
+            className="party-glass flex-1 rounded-2xl py-5 text-base font-black text-white/70 active:scale-95 transition"
           >
             {isPantomima
               ? skipCount === 0
@@ -447,7 +444,7 @@ export default function TimedWords({
           </button>
           <button
             onClick={handleCorrect}
-            className="flex-1 rounded-2xl py-5 text-base font-black text-white active:scale-95 transition"
+            className="party-shine flex-1 overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-lg active:scale-95 transition"
             style={{ background: "#16a34a" }}
           >
             ✅ Uhádnuté!
@@ -459,8 +456,7 @@ export default function TimedWords({
 
   return (
     <div
-      className="fixed inset-0 flex flex-col items-center justify-center gap-7 px-6 text-center"
-      style={{ background: "linear-gradient(160deg, #0b0a1a 0%, #1a0a2e 100%)" }}
+      className="party-backdrop fixed inset-0 flex flex-col items-center justify-center gap-7 overflow-hidden px-6 text-center"
     >
       <div className="text-5xl" style={{ animation: "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1)" }}>⏰</div>
       <div style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}>

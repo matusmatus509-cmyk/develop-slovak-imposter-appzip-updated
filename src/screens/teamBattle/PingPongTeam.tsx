@@ -123,8 +123,7 @@ export default function PingPongTeam({
   if (phase === "ready") {
     return (
       <div
-        className="fixed inset-0 flex flex-col items-center justify-center gap-6 px-6 text-center"
-        style={{ background: "linear-gradient(160deg, #0b0a1a 0%, #1a0a2e 100%)" }}
+        className="party-backdrop fixed inset-0 flex flex-col items-center justify-center gap-6 overflow-hidden px-6 text-center"
       >
         <div className="text-6xl" style={{ animation: "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1)" }}>🏓</div>
         <div style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}>
@@ -134,7 +133,7 @@ export default function PingPongTeam({
           <h2 className="text-2xl font-black text-white">1 v 1</h2>
         </div>
         <div
-          className="glass rounded-3xl p-5 text-sm text-white/60 leading-relaxed max-w-xs"
+          className="party-glass rounded-[1.75rem] p-5 text-sm leading-relaxed text-white/60 max-w-xs"
           style={{ animation: "scaleIn 0.4s ease-out 0.2s both" }}
         >
           Vyberte <strong className="text-white">jedného hráča z každého tímu</strong> — pôjdu proti sebe 1v1.
@@ -144,7 +143,7 @@ export default function PingPongTeam({
         </div>
         <button
           onClick={() => setPhase("playing")}
-          className="w-full max-w-xs rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition hover:brightness-110"
+          className="party-shine w-full max-w-xs overflow-hidden rounded-2xl py-5 text-lg font-black text-white shadow-xl transition active:scale-95 hover:brightness-110"
           style={{ background: "linear-gradient(135deg, #7c3aed, #a855f7)", animation: "slideUp 0.5s ease-out 0.35s both" }}
         >
           Štart 🏓
@@ -157,8 +156,7 @@ export default function PingPongTeam({
     const winColor = winner === 0 ? a : b;
     return (
       <div
-        className="fixed inset-0 flex flex-col items-center justify-center gap-6 px-6 text-center"
-        style={{ background: "linear-gradient(160deg, #0b0a1a 0%, #1a0a2e 100%)" }}
+        className="party-backdrop fixed inset-0 flex flex-col items-center justify-center gap-6 overflow-hidden px-6 text-center"
       >
         <div className="text-6xl" style={{ animation: "tada 0.8s ease-in-out" }}>🏆</div>
         <div style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}>
@@ -169,7 +167,7 @@ export default function PingPongTeam({
         </div>
         <button
           onClick={() => onDone(buildResult())}
-          className="w-full max-w-xs rounded-2xl py-5 text-base font-black text-white active:scale-95 transition"
+          className="party-shine w-full max-w-xs overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95"
           style={{ background: winColor, animation: "slideUp 0.5s ease-out 0.3s both" }}
         >
           🏁 Pokračovať
