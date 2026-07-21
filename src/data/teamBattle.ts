@@ -1,4 +1,7 @@
-import { CATEGORIES } from "./categories";
+import {
+  ALL_TEAM_CHARADES_WORDS,
+  TEAM_CHARADES_WORDS,
+} from "./charades";
 
 // ── Pantomíma words (act it out, no speaking) ────────────────────────────────
 // Split into difficulty tiers — each tier is worth a different point value.
@@ -386,39 +389,13 @@ export const SARADY_DIFFICULTY_LABELS: Record<string, string> = {
   tazke: "Ťažké",
 };
 
-export const SARADY_CATEGORY_IDS_BY_DIFFICULTY: Record<string, string[]> = {
-  lahke: [
-    "skola", "domacnost", "jedlo", "zvierata", "sport",
-    "doprava", "oblecenie", "veci",
-  ],
-  stredne: [
-    "priroda", "technologie", "povolania", "telo", "filmy",
-    "hudba", "mesta", "internet", "nahodne",
-  ],
-  tazke: ["abstraktne", "veda", "historia"],
-};
-
-function getSaradyWords(difficulty: string): string[] {
-  const categoryIds = difficulty === "all"
-    ? new Set(CATEGORIES.map((category) => category.id))
-    : new Set(SARADY_CATEGORY_IDS_BY_DIFFICULTY[difficulty] ?? []);
-
-  return Array.from(new Set(
-    CATEGORIES
-      .filter((category) => categoryIds.has(category.id))
-      .flatMap((category) => category.wordPairs.map(({ word }) => word.trim()))
-      .filter(Boolean),
-  ));
-}
-
 export const SARADY_WORDS_BY_DIFFICULTY: Record<string, string[]> = {
-  lahke: getSaradyWords("lahke"),
-  stredne: getSaradyWords("stredne"),
-  tazke: getSaradyWords("tazke"),
+  lahke: [...TEAM_CHARADES_WORDS.lahke],
+  stredne: [...TEAM_CHARADES_WORDS.stredne],
+  tazke: [...TEAM_CHARADES_WORDS.tazke],
 };
 
-// Keep the original SARADY_WORDS for backward compatibility (uses all difficulties)
-export const SARADY_WORDS: string[] = getSaradyWords("all");
+export const SARADY_WORDS: string[] = [...ALL_TEAM_CHARADES_WORDS];
 
 // ── Hádaj kto som words (characters for team mode) ───────────────────────────
 export const TEAM_CHARACTERS: string[] = [

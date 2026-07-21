@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { CATEGORIES } from "../../data/categories";
-import { SARADY_CATEGORY_IDS_BY_DIFFICULTY } from "../../data/teamBattle";
+import {
+  ALL_SOLO_CHARADES_WORDS,
+  SOLO_CHARADES_WORDS,
+  type CharadesDifficulty,
+} from "../../data/charades";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 
@@ -33,25 +36,27 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 function buildDeck(difficulty: string): Card[] {
-  const cards: Card[] = [];
-  const requestedIds = new Set(SARADY_CATEGORY_IDS_BY_DIFFICULTY[difficulty] ?? []);
-  const filtered = difficulty === "all"
-    ? CATEGORIES
-    : CATEGORIES.filter((category) => requestedIds.has(category.id));
-  for (const cat of filtered) {
-    for (const wp of cat.wordPairs) {
-      cards.push({ word: wp.word, category: cat.name, categoryIcon: cat.icon });
-    }
-  }
-  // A future database rename must never start a round with a blank card.
-  const fallback = cards.length > 0
-    ? cards
-    : CATEGORIES.flatMap((category) => category.wordPairs.map(({ word }) => ({
-        word,
-        category: category.name,
-        categoryIcon: category.icon,
-      })));
-  return shuffle(fallback);
+  const labels: Record<CharadesDifficulty, { name: string; icon: string }> = {
+    lahke: { name: "Ľahké", icon: "🟢" },
+    stredne: { name: "Stredné", icon: "🟡" },
+    tazke: { name: "Ťažké", icon: "🔴" },
+  };
+  const levels: CharadesDifficulty[] = difficulty === "all"
+    ? ["lahke", "stredne", "tazke"]
+    : [difficulty as CharadesDifficulty];
+  const cards = levels.flatMap((level) =>
+    (SOLO_CHARADES_WORDS[level] ?? []).map((word) => ({
+      word,
+      category: labels[level]?.name ?? "Šarády",
+      categoryIcon: labels[level]?.icon ?? "💬",
+    })),
+  );
+  const fallback = ALL_SOLO_CHARADES_WORDS.map((word) => ({
+    word,
+    category: "Šarády",
+    categoryIcon: "💬",
+  }));
+  return shuffle(cards.length > 0 ? cards : fallback);
 }
 
 // ─── Setup Screen ─────────────────────────────────────────────────────────────
