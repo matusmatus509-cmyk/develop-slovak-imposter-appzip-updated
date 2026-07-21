@@ -33,9 +33,6 @@ import KtoDostaneBombu from "./screens/minigames/KtoDostaneBombu";
 import HadajEmoji from "./screens/minigames/HadajEmoji";
 import TeamBattle from "./screens/teamBattle";
 import GameWelcome, { GAME_WELCOMES } from "./components/GameWelcome";
-import imposterCardArt from "./assets/imposter-card.jpg";
-import partyCardArt from "./assets/party-mode-card.jpg";
-import minigamesCardArt from "./assets/minigames-card.jpg";
 
 const IMPOSTOR_GAMES: MenuGame[] = [
   {
@@ -45,8 +42,6 @@ const IMPOSTOR_GAMES: MenuGame[] = [
     icon: "userCheck",
     color: "from-orange-400 to-rose-500",
     badge: "Klasika",
-    image: imposterCardArt,
-    imagePosition: "72% center",
   },
   {
     screen: "drawing-setup",
@@ -54,8 +49,6 @@ const IMPOSTOR_GAMES: MenuGame[] = [
     description: "Všetci kreslia rovnaké zadanie, iba imposter ho nepozná.",
     icon: "paintbrush",
     color: "from-violet-500 to-cyan-500",
-    image: partyCardArt,
-    imagePosition: "65% center",
   },
   {
     screen: "impostor-history",
@@ -63,21 +56,19 @@ const IMPOSTOR_GAMES: MenuGame[] = [
     description: "Pozrite si výsledky predchádzajúcich kôl.",
     icon: "history",
     color: "from-slate-500 to-slate-700",
-    image: imposterCardArt,
-    imagePosition: "20% center",
   },
 ];
 
 const MINIGAMES: MenuGame[] = [
-  { screen: "truth-or-dare", title: "Pravda alebo výzva", description: "Klasické otázky a odvážne výzvy.", icon: "target", color: "from-sky-500 to-indigo-600", image: minigamesCardArt, imagePosition: "10% center" },
-  { screen: "never-have-i-ever", title: "Nikdy som nikdy", description: "Zistite o sebe veci, ktoré ste netušili.", icon: "wine", color: "from-emerald-500 to-teal-600", image: minigamesCardArt, imagePosition: "28% center" },
-  { screen: "would-you-rather", title: "Radšej by som", description: "Dve možnosti, jedno ťažké rozhodnutie.", icon: "brain", color: "from-amber-500 to-rose-500", image: minigamesCardArt, imagePosition: "45% center" },
-  { screen: "slovnarosada", title: "Slovná rošáda", description: "Opisujte slová a odhaľte hráča s iným zadaním.", icon: "gamepad", color: "from-purple-500 to-indigo-600", image: partyCardArt, imagePosition: "18% center" },
-  { screen: "pingpong", title: "Slovný ping pong", description: "Striedajte slová z kategórie bez zaváhania.", icon: "rotateCcw", color: "from-green-500 to-emerald-600", image: partyCardArt, imagePosition: "52% center" },
-  { screen: "hadajktosom", title: "Hádaj kto som", description: "Telefón na čelo, nápovedy a rýchle hádanie.", icon: "user", color: "from-cyan-500 to-blue-600", image: imposterCardArt, imagePosition: "30% center" },
-  { screen: "ibanepravda", title: "Iba nepravda", description: "Odpovedajte rýchlo, ale nikdy pravdivo.", icon: "messageSquare", color: "from-rose-500 to-pink-600", image: minigamesCardArt, imagePosition: "58% center" },
-  { screen: "ktodostanebombu", title: "Kto dostane bombu", description: "Hovorte slová a podajte mobil skôr, než vybuchne.", icon: "zap", color: "from-orange-500 to-red-600", image: minigamesCardArt, imagePosition: "75% center" },
-  { screen: "hadajemoji", title: "Hádaj emoji", description: "Uhádnite filmy, povolania a osobnosti z emoji.", icon: "smile", color: "from-amber-400 to-yellow-500", image: minigamesCardArt, imagePosition: "92% center" },
+  { screen: "truth-or-dare", title: "Pravda alebo výzva", description: "Klasické otázky a odvážne výzvy.", icon: "target", color: "from-sky-500 to-indigo-600" },
+  { screen: "never-have-i-ever", title: "Nikdy som nikdy", description: "Zistite o sebe veci, ktoré ste netušili.", icon: "wine", color: "from-emerald-500 to-teal-600" },
+  { screen: "would-you-rather", title: "Radšej by som", description: "Dve možnosti, jedno ťažké rozhodnutie.", icon: "brain", color: "from-amber-500 to-rose-500" },
+  { screen: "slovnarosada", title: "Slovné šarády", description: "Opisujte slová a zbierajte body proti času.", icon: "gamepad", color: "from-purple-500 to-indigo-600" },
+  { screen: "pingpong", title: "Slovný ping pong", description: "Striedajte slová z kategórie bez zaváhania.", icon: "rotateCcw", color: "from-green-500 to-emerald-600" },
+  { screen: "hadajktosom", title: "Hádaj kto som", description: "Telefón na čelo, nápovedy a rýchle hádanie.", icon: "user", color: "from-cyan-500 to-blue-600" },
+  { screen: "ibanepravda", title: "Iba nepravda", description: "Odpovedajte rýchlo, ale nikdy pravdivo.", icon: "messageSquare", color: "from-rose-500 to-pink-600" },
+  { screen: "ktodostanebombu", title: "Kto dostane bombu", description: "Hovorte slová a podajte mobil skôr, než vybuchne.", icon: "zap", color: "from-orange-500 to-red-600" },
+  { screen: "hadajemoji", title: "Hádaj emoji", description: "Uhádnite filmy, povolania a osobnosti z emoji.", icon: "smile", color: "from-amber-400 to-yellow-500" },
 ];
 
 const DEFAULT_SETTINGS: GameSettings = {
