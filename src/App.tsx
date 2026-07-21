@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type {
   GameSettings,
   RoundAssignment,
@@ -32,6 +32,7 @@ import IbaNepravda from "./screens/minigames/IbaNepravda";
 import KtoDostaneBombu from "./screens/minigames/KtoDostaneBombu";
 import HadajEmoji from "./screens/minigames/HadajEmoji";
 import TeamBattle from "./screens/teamBattle";
+import GameWelcome, { GAME_WELCOMES } from "./components/GameWelcome";
 import imposterCardArt from "./assets/imposter-card.jpg";
 import partyCardArt from "./assets/party-mode-card.jpg";
 import minigamesCardArt from "./assets/minigames-card.jpg";
@@ -91,6 +92,7 @@ const DEFAULT_SETTINGS: GameSettings = {
 
 export default function App() {
   const [screen, setScreen] = useState<Screen>("home");
+  const [welcomeScreen, setWelcomeScreen] = useState<Screen | null>(null);
   const [settings, setSettings] = useLocalStorage<GameSettings>(
     "podvodnik-settings",
     DEFAULT_SETTINGS
@@ -116,6 +118,26 @@ export default function App() {
   const [drawingAssignment, setDrawingAssignment] =
     useState<RoundAssignment | null>(null);
   const [drawingVotedIndex, setDrawingVotedIndex] = useState<number | null>(null);
+
+  const activeTheme = GAME_WELCOMES[screen];
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty("--game-accent", activeTheme?.accent ?? "#8b5cf6");
+    root.style.setProperty("--game-accent-soft", activeTheme?.accentSoft ?? "rgba(139,92,246,.18)");
+    root.style.setProperty("--game-deep", activeTheme?.deep ?? "#080d16");
+  }, [activeTheme]);
+
+  function navigateFromMenu(next: Screen) {
+    setScreen(next);
+    setWelcomeScreen(GAME_WELCOMES[next] ? next : null);
+  }
+
+  function backFromWelcome(current: Screen) {
+    setWelcomeScreen(null);
+    if (current === "teambattle") setScreen("home");
+    else if (current === "impostor-setup" || current === "drawing-setup") setScreen("impostor-menu");
+    else setScreen("minigames-menu");
+  }
 
   function startNewRound(currentSettings: GameSettings) {
     const { assignment: newAssignment, usedWords: newUsed } = generateRound(
@@ -175,9 +197,19 @@ export default function App() {
     setScreen("impostor-result");
   }
 
+  if (welcomeScreen === screen && activeTheme) {
+    return (
+      <GameWelcome
+        config={activeTheme}
+        onBack={() => backFromWelcome(screen)}
+        onStart={() => setWelcomeScreen(null)}
+      />
+    );
+  }
+
   switch (screen) {
     case "home":
-      return <Home onNavigate={setScreen} />;
+      return <Home onNavigate={navigateFromMenu} />;
 
     case "impostor-menu":
       return (
@@ -186,7 +218,7 @@ export default function App() {
           subtitle="Dve verzie obľúbenej hry. Vyberte si tajné slovo alebo kreslenie."
           games={IMPOSTOR_GAMES}
           onBack={() => setScreen("home")}
-          onNavigate={setScreen}
+          onNavigate={navigateFromMenu}
         />
       );
 
@@ -197,7 +229,7 @@ export default function App() {
           subtitle="Rýchle hry bez dlhého nastavovania. Stačí si vybrať a začať."
           games={MINIGAMES}
           onBack={() => setScreen("home")}
-          onNavigate={setScreen}
+          onNavigate={navigateFromMenu}
         />
       );
 

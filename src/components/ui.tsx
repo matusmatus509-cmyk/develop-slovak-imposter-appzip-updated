@@ -454,12 +454,12 @@ export function TopBar({
 
 function Background() {
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#080d16]">
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-[var(--game-deep,#080d16)] transition-colors duration-700">
       <img src={appTexture} alt="" className="absolute inset-0 h-full w-full object-cover opacity-80" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#080d16]/5 via-[#080d16]/25 to-[#080d16]/65" />
-      <div className="absolute -top-36 -left-28 h-80 w-80 rounded-full bg-violet-600/12 blur-[110px]" />
-      <div className="absolute top-[38%] -right-28 h-80 w-80 rounded-full bg-cyan-600/10 blur-[115px]" />
-      <div className="absolute -bottom-32 left-1/4 h-72 w-72 rounded-full bg-orange-500/10 blur-[110px]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--game-deep,#080d16)]/25 to-[var(--game-deep,#080d16)]/75" />
+      <div className="absolute -top-36 -left-28 h-80 w-80 rounded-full bg-[var(--game-accent-soft,rgba(139,92,246,.18))] blur-[110px]" />
+      <div className="absolute top-[38%] -right-28 h-80 w-80 rounded-full bg-[var(--game-accent-soft,rgba(6,182,212,.12))] blur-[115px]" />
+      <div className="absolute -bottom-32 left-1/4 h-72 w-72 rounded-full bg-[var(--game-accent-soft,rgba(249,115,22,.12))] blur-[110px]" />
     </div>
   );
 }

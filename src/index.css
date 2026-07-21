@@ -161,6 +161,27 @@ h1, h2, h3 {
   box-shadow: 0 18px 44px -32px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.035);
 }
 
+@keyframes welcomeReveal {
+  0% { opacity: 0; transform: translateY(18px) scale(.965); filter: saturate(.65); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: saturate(1); }
+}
+
+@keyframes welcomeContent {
+  0% { opacity: 0; transform: translateY(22px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-welcome-reveal { animation: welcomeReveal .72s cubic-bezier(.2,.8,.2,1) both; }
+.animate-welcome-content { animation: welcomeContent .6s ease-out .18s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .app-button {
   position: relative;
   overflow: hidden;

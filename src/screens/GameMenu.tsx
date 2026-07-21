@@ -1,6 +1,8 @@
 import type { Screen } from "../types";
 import { Icons, type IconsType } from "../components/icons";
 import { Shell, TopBar } from "../components/ui";
+import { GAME_WELCOMES } from "../components/GameWelcome";
+import gameArt from "../assets/game-art-sprite.jpg";
 
 export interface MenuGame {
   screen: Screen;
@@ -38,6 +40,7 @@ export default function GameMenu({
       <div className="grid grid-cols-1 gap-3 pb-5">
         {games.map((game, index) => {
           const Icon = Icons[game.icon];
+          const welcome = GAME_WELCOMES[game.screen];
           return (
             <button
               key={game.screen}
@@ -46,14 +49,25 @@ export default function GameMenu({
               className="group relative min-h-[94px] overflow-hidden rounded-[24px] border border-white/[.11] bg-[#111824]/88 p-4 text-left shadow-xl shadow-black/15 backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20 active:translate-y-0 active:scale-[.985]"
               style={{ animation: `slideUp .45s ease-out ${70 + index * 55}ms both` }}
             >
-              {game.image && (
+              {(welcome || game.image) && (
                 <>
-                  <img
-                    src={game.image}
-                    alt=""
-                    className="absolute inset-y-0 right-0 h-full w-[48%] object-cover opacity-48 saturate-[.82] transition duration-500 group-hover:scale-105 group-hover:opacity-62"
-                    style={{ objectPosition: game.imagePosition ?? "center" }}
-                  />
+                  {welcome ? (
+                    <div
+                      className="absolute inset-y-0 right-0 h-full w-[52%] bg-no-repeat opacity-55 saturate-[.86] transition duration-500 group-hover:scale-105 group-hover:opacity-72"
+                      style={{
+                        backgroundImage: `url(${gameArt})`,
+                        backgroundSize: "400% 300%",
+                        backgroundPosition: welcome.artPosition,
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={game.image}
+                      alt=""
+                      className="absolute inset-y-0 right-0 h-full w-[48%] object-cover opacity-48 saturate-[.82] transition duration-500 group-hover:scale-105 group-hover:opacity-62"
+                      style={{ objectPosition: game.imagePosition ?? "center" }}
+                    />
+                  )}
                   <div className="absolute inset-0 bg-[linear-gradient(90deg,#111824_0%,rgba(17,24,36,.98)_48%,rgba(17,24,36,.48)_100%)]" />
                 </>
               )}
