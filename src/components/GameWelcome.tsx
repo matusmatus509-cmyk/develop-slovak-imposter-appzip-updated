@@ -172,8 +172,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     title: "Zakázané slovo",
     description: "Opisuj hlavné slovo bez použitia štyroch zakázaných výrazov a získaj čo najviac bodov.",
     rule: "Zakázané sú aj odvodené tvary slov",
-    players: "4+ hráči",
-    duration: "60 s/tím",
+    players: "2–8 hráčov",
+    duration: "60 s/kolo",
     accent: "#fb7185",
     accentSoft: "rgba(251,113,133,.24)",
     deep: "#2b0d18",
@@ -183,10 +183,10 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
   pesnicka: {
     eyebrow: "Melódia bez textu",
     title: "Uhádni pesničku",
-    description: "Jeden hráč hmkaním predvádza známe skladby a jeho tím háda čo najviac názvov.",
+    description: "Jeden hráč hmkaním predvádza známe skladby a ostatní hádajú čo najviac názvov.",
     rule: "Hmkanie áno, slová ani názov nie",
-    players: "4+ hráči",
-    duration: "60 s/tím",
+    players: "2–8 hráčov",
+    duration: "60 s/kolo",
     accent: "#a78bfa",
     accentSoft: "rgba(167,139,250,.24)",
     deep: "#1c1039",
@@ -196,9 +196,9 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
   zvuk: {
     eyebrow: "Počúvaj a bzuč",
     title: "Uhádni zvuk",
-    description: "Aplikácia prehrá tajný zvuk. Tím, ktorý ho spozná prvý, stlačí bzučiak a odpovedá.",
+    description: "Aplikácia prehrá tajný zvuk. Hráč alebo tím, ktorý ho spozná prvý, stlačí bzučiak a odpovedá.",
     rule: "Najprv bzučiak, potom odpoveď",
-    players: "4+ hráči",
+    players: "2–8 hráčov",
     duration: "10 zvukov",
     accent: "#22d3ee",
     accentSoft: "rgba(34,211,238,.22)",
@@ -211,7 +211,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     title: "Slovo na písmeno",
     description: "Dostaneš kategóriu a písmeno. Odpovedz skôr, než čas vyprší a bod získa súper.",
     rule: "Jedna platná odpoveď do 5 sekúnd",
-    players: "4+ hráči",
+    players: "2–8 hráčov",
     duration: "10 výziev",
     accent: "#fbbf24",
     accentSoft: "rgba(251,191,36,.23)",
@@ -222,9 +222,9 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
   patzadesat: {
     eyebrow: "Päť odpovedí. Desať sekúnd.",
     title: "5 za 10",
-    description: "Vymenuj päť vecí zo zadanej témy do desiatich sekúnd a získaj dva body pre tím.",
+    description: "Vymenuj päť vecí zo zadanej témy do desiatich sekúnd a získaj dva body pre seba alebo tím.",
     rule: "Všetkých päť odpovedí znamená +2 body",
-    players: "4+ hráči",
+    players: "2–8 hráčov",
     duration: "6 výziev",
     accent: "#34d399",
     accentSoft: "rgba(52,211,153,.22)",
@@ -258,14 +258,22 @@ export default function GameWelcome({
 
       <div className="relative mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-7 pt-5">
         <div className="relative mb-5 h-[47vh] min-h-[330px] max-h-[460px] overflow-hidden rounded-[34px] border border-white/15 shadow-2xl animate-welcome-reveal">
-          <div
-            className="absolute inset-0 scale-[1.04] bg-no-repeat"
-            style={{
-              backgroundImage: `url(${config.art ?? gameArt})`,
-              backgroundSize: config.art ? "cover" : "400% 300%",
-              backgroundPosition: config.artPosition,
-            }}
-          />
+          {config.art ? (
+            <img
+              src={config.art}
+              alt=""
+              className="absolute inset-0 h-full w-full scale-[1.04] object-cover"
+            />
+          ) : (
+            <div
+              className="absolute inset-0 scale-[1.04] bg-no-repeat"
+              style={{
+                backgroundImage: `url(${gameArt})`,
+                backgroundSize: "400% 300%",
+                backgroundPosition: config.artPosition,
+              }}
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-[#080b12]" />
           <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(255,255,255,.12),transparent_28%,transparent_70%,rgba(0,0,0,.35))]" />
 
