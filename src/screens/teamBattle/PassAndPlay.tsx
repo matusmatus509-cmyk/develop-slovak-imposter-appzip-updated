@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { TEAM_COLORS, shuffle } from "../../data/teamBattle";
-import { FORBIDDEN_CARDS, SONG_TITLES } from "../../data/teamBattleExtras";
+import { FORBIDDEN_CARDS, SONG_CARDS, type SongCard } from "../../data/teamBattleExtras";
 import { CircularTimer, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 
 type PassMode = "zakazane" | "pesnicka";
@@ -49,22 +49,75 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
   const [index, setIndex] = useState(0);
   const [turnScore, setTurnScore] = useState(0);
   const [scores, setScores] = useState<[number, number]>([0, 0]);
+  const [preview, setPreview] = useState<{ url: string; link: string } | null>(null);
+  const [previewStatus, setPreviewStatus] = useState<"loading" | "ready" | "playing" | "missing">("loading");
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const previewTimerRef = useRef<number | null>(null);
   const [blue, red] = TEAM_COLORS;
   const teamColor = team === 0 ? blue : red;
   const deck = useMemo(
-    () => mode === "zakazane" ? shuffle(FORBIDDEN_CARDS) : shuffle(SONG_TITLES),
+    () => mode === "zakazane" ? shuffle(FORBIDDEN_CARDS) : shuffle(SONG_CARDS),
     [mode, team],
   );
+  const card = mode === "zakazane"
+    ? deck[index] as (typeof FORBIDDEN_CARDS)[number]
+    : deck[index] as SongCard;
+  const forbiddenCard = card as (typeof FORBIDDEN_CARDS)[number];
+  const songCard = card as SongCard;
+
+  useEffect(() => {
+    if (mode !== "pesnicka" || phase !== "playing") return;
+    const song = songCard;
+    setPreview(null);
+    setPreviewStatus("loading");
+    const query = encodeURIComponent(`${song.title} ${song.artist}`);
+    const callbackName = `__partySongPreview_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const jsonpWindow = window as unknown as Record<string, unknown>;
+    const script = document.createElement("script");
+    let active = true;
+    const timeout = window.setTimeout(() => {
+      if (active) setPreviewStatus("missing");
+    }, 7000);
+    jsonpWindow[callbackName] = (result: { data?: Array<{ preview?: string; link?: string }> }) => {
+      if (!active) return;
+      window.clearTimeout(timeout);
+      const match = result.data?.find((item) => item.preview);
+      if (!match?.preview) {
+        setPreviewStatus("missing");
+        return;
+      }
+      setPreview({ url: match.preview, link: match.link ?? "https://www.deezer.com" });
+      setPreviewStatus("ready");
+    };
+    script.src = `https://api.deezer.com/search?q=${query}&limit=3&output=jsonp&callback=${callbackName}`;
+    script.onerror = () => {
+      if (active) setPreviewStatus("missing");
+    };
+    document.head.appendChild(script);
+    return () => {
+      active = false;
+      window.clearTimeout(timeout);
+      script.remove();
+      delete jsonpWindow[callbackName];
+    };
+  }, [mode, phase, songCard]);
 
   useEffect(() => {
     if (phase !== "playing") return;
+    if (mode === "pesnicka" && previewStatus === "playing") return;
     if (timeLeft <= 0) {
+      audioRef.current?.pause();
       setPhase("team-result");
       return;
     }
     const timer = window.setTimeout(() => setTimeLeft((value) => value - 1), 1000);
     return () => window.clearTimeout(timer);
-  }, [phase, timeLeft]);
+  }, [mode, phase, previewStatus, timeLeft]);
+
+  useEffect(() => () => {
+    if (previewTimerRef.current !== null) window.clearTimeout(previewTimerRef.current);
+    audioRef.current?.pause();
+  }, []);
 
   function startTurn() {
     setIndex(0);
@@ -74,9 +127,38 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
   }
 
   function nextCard(correct: boolean) {
+    stopPreview();
     if (correct) setTurnScore((value) => value + 1);
     setIndex((value) => (value + 1) % deck.length);
     navigator.vibrate?.(correct ? 30 : 12);
+  }
+
+  function stopPreview() {
+    if (previewTimerRef.current !== null) window.clearTimeout(previewTimerRef.current);
+    previewTimerRef.current = null;
+    audioRef.current?.pause();
+    audioRef.current = null;
+    if (preview) setPreviewStatus("ready");
+  }
+
+  async function playPreview() {
+    if (!preview) return;
+    stopPreview();
+    const audio = new Audio(preview.url);
+    audio.volume = 0.55;
+    audioRef.current = audio;
+    try {
+      await audio.play();
+      setPreviewStatus("playing");
+      previewTimerRef.current = window.setTimeout(() => {
+        audio.pause();
+        audio.currentTime = 0;
+        setPreviewStatus("ready");
+        audioRef.current = null;
+      }, 8000);
+    } catch {
+      setPreviewStatus("missing");
+    }
   }
 
   function continueAfterResult() {
@@ -141,8 +223,6 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
     );
   }
 
-  const card = mode === "zakazane" ? deck[index] as (typeof FORBIDDEN_CARDS)[number] : deck[index] as string;
-
   return (
     <div className="fixed inset-0 flex flex-col overflow-hidden" style={{ background: `radial-gradient(circle at 50% 28%, ${copy.accent}22, transparent 45%), #070711` }}>
       <div className="party-grid pointer-events-none absolute inset-0 opacity-20" />
@@ -158,25 +238,38 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
         </div>
       </header>
 
-      <main className="relative z-10 flex flex-1 items-center justify-center px-5 py-3 text-center">
+      <main className="relative z-10 flex flex-1 items-center justify-center overflow-y-auto px-5 py-3 text-center">
         <section key={index} className="party-glass party-shine w-full max-w-md overflow-hidden rounded-[2.2rem] px-6 py-8" style={{ animation: "popIn .3s ease-out both" }}>
           <span className="text-4xl">{copy.icon}</span>
-          {mode === "zakazane" && typeof card !== "string" ? (
+          {mode === "zakazane" ? (
             <>
               <p className="mt-4 text-[10px] font-black uppercase tracking-[0.24em] text-rose-300/65">Vysvetli slovo</p>
-              <h1 className="mt-2 text-4xl font-black tracking-tight text-white">{card.word}</h1>
+              <h1 className="mt-2 text-4xl font-black tracking-tight text-white">{forbiddenCard.word}</h1>
               <div className="mt-6 rounded-[1.5rem] border border-rose-400/20 bg-rose-500/[0.09] p-4">
                 <p className="text-[9px] font-black uppercase tracking-[0.22em] text-rose-300/60">Nesmieš povedať</p>
                 <div className="mt-3 grid grid-cols-2 gap-2">
-                  {card.forbidden.map((word) => <span key={word} className="rounded-xl bg-black/20 px-2 py-2 text-sm font-black text-white/70">{word}</span>)}
+                  {forbiddenCard.forbidden.map((word) => <span key={word} className="rounded-xl bg-black/20 px-2 py-2 text-sm font-black text-white/70">{word}</span>)}
                 </div>
               </div>
             </>
           ) : (
             <>
               <p className="mt-4 text-[10px] font-black uppercase tracking-[0.24em] text-violet-300/65">Zahmkaj bez slov</p>
-              <h1 className="mx-auto mt-3 max-w-sm text-3xl font-black leading-tight text-white">{card as string}</h1>
-              <p className="mt-5 text-xs font-bold text-white/30">Mobil vidí iba hráč, ktorý hmkanie predvádza.</p>
+              <h1 className="mx-auto mt-3 max-w-sm text-3xl font-black leading-tight text-white">{songCard.title}</h1>
+              <p className="mt-2 text-sm font-bold text-violet-200/60">{songCard.artist}</p>
+              <div className="mt-5 rounded-2xl border border-violet-300/15 bg-violet-400/[0.07] p-3">
+                <p className="text-[10px] font-bold leading-relaxed text-white/35">Nepoznáš ju podľa názvu? Prilož mobil k uchu a pusti si krátku ukážku.</p>
+                <button
+                  onClick={previewStatus === "playing" ? stopPreview : playPreview}
+                  disabled={previewStatus === "loading" || previewStatus === "missing"}
+                  className="mt-3 w-full rounded-xl border border-violet-300/20 bg-violet-400/15 px-3 py-3 text-xs font-black text-violet-100 transition active:scale-95 disabled:opacity-40"
+                >
+                  {previewStatus === "loading" ? "Hľadám ukážku…" : previewStatus === "missing" ? "Ukážka nie je dostupná" : previewStatus === "playing" ? "■ Zastaviť ukážku" : "▶ Pustiť 8 s ukážku"}
+                </button>
+                {preview && <a href={preview.link} target="_blank" rel="noreferrer" className="mt-2 block text-[8px] font-bold uppercase tracking-wider text-white/20">Ukážka cez Deezer</a>}
+              </div>
+              {previewStatus === "playing" && <p className="mt-2 text-[9px] font-black uppercase tracking-wider text-violet-200/60">Čas je počas ukážky pozastavený</p>}
+              <p className="mt-4 text-xs font-bold text-white/30">Mobil vidí iba hráč, ktorý hmkanie predvádza.</p>
             </>
           )}
         </section>

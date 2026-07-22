@@ -88,29 +88,331 @@ export const FORBIDDEN_CARDS: ForbiddenCard[] = [
   ["Stan", ["kempovať", "spať", "látka", "príroda"]],
 ].map(([word, forbidden]) => ({ word, forbidden })) as ForbiddenCard[];
 
-export const SONG_TITLES = [
-  "V dolinách", "Mám ťa rád", "Po schodoch", "Voda, čo ma drží nad vodou", "Čerešne",
-  "Reklama na ticho", "Sme svoji", "Nie sme zlí", "Atlantída", "Vyznanie",
-  "Úsmev", "Láska, necestuj tým vlakom", "Ak nie si moja", "Biely kvet", "Cesta",
-  "Hej, sokoly", "Macejko", "Na Kráľovej holi", "Tancuj, tancuj, vykrúcaj", "A ja taká dzivočka",
-  "Prší, prší", "Kukulienka, kde si bola", "Červený kacheľ", "Dedinka v údolí", "Slovenské mamičky",
-  "Shape of You", "Perfect", "Rolling in the Deep", "Someone Like You", "Hello",
-  "Blinding Lights", "Save Your Tears", "Dance Monkey", "Flowers", "Happy",
-  "Uptown Funk", "Counting Stars", "Believer", "Thunder", "Radioactive",
-  "Bad Guy", "Levitating", "Havana", "Senorita", "Cheap Thrills",
-  "Roar", "Firework", "Poker Face", "Bad Romance", "Just Dance",
-  "Shake It Off", "Blank Space", "Love Story", "As It Was", "Watermelon Sugar",
-  "Viva La Vida", "Yellow", "The Scientist", "Wake Me Up", "Levels",
-  "Despacito", "Waka Waka", "Whenever, Wherever", "Ai Se Eu Te Pego", "Macarena",
-  "I Want It That Way", "Everybody", "Oops!... I Did It Again", "Baby One More Time", "Toxic",
-  "Wannabe", "Barbie Girl", "Blue (Da Ba Dee)", "Dragostea Din Tei", "Freed from Desire",
-  "We Will Rock You", "We Are the Champions", "Another One Bites the Dust", "Bohemian Rhapsody", "Don't Stop Me Now",
-  "Billie Jean", "Beat It", "Thriller", "I Will Survive", "Dancing Queen",
-  "Mamma Mia", "Stayin' Alive", "Eye of the Tiger", "The Final Countdown", "Take on Me",
-  "Summer of '69", "Livin' on a Prayer", "Sweet Child o' Mine", "Zombie", "Wonderwall",
-  "Let It Be", "Hey Jude", "Yesterday", "Don't Worry, Be Happy", "What Is Love",
-  "Gangnam Style", "Baby Shark", "Let It Go", "Hakuna Matata", "Can You Feel the Love Tonight",
-];
+export interface SongCard {
+  title: string;
+  artist: string;
+}
+
+const SONG_LIBRARY = `
+V dolinách|Karol Duchoň
+Čardáš dvoch sŕdc|Karol Duchoň
+Mám ťa rád|Karol Duchoň
+Smútok krásnych dievčat|Karol Duchoň
+Po schodoch|Richard Müller
+Tlaková níž|Richard Müller
+Nebude to ľahké|Richard Müller
+Baroko|Richard Müller
+Srdce jako kníže Rohan|Richard Müller
+Voda, čo ma drží nad vodou|Elán
+Nie sme zlí|Elán
+Zaľúbil sa chlapec|Elán
+Kaskadér|Elán
+Láska moja|Elán
+Stužková|Elán
+Čaba, neblázni|Elán
+Vymyslená|Elán
+Kráľovná bielych tenisiek|Elán
+Reklama na ticho|Team
+Držím ti miesto|Team
+Malá nočná búrka|Team
+Lietam v tom tiež|Team
+Mám na teba chuť|Team
+Atlantída|Miroslav Žbirka
+Biely kvet|Miroslav Žbirka
+22 dní|Miroslav Žbirka
+Balada o poľných vtákoch|Miroslav Žbirka
+Len s ňou|Miroslav Žbirka
+Vyznanie|Marika Gombitová
+Koloseum|Marika Gombitová
+Študentská láska|Marika Gombitová
+Úsmev|Modus
+Dievčatá|Modus
+Veľký sen mora|Modus
+Čerešne|Hana Hegerová
+Levandulová|Hana Hegerová
+Mesto snov|Katarína Knechtová
+Spomaľ|Peha
+Za tebou|Peha
+Načo pôjdem domov|Katarína Knechtová
+Horehronie|Kristína
+Navždy|Kristína
+Pri oltári|Kristína
+Ako málo|Desmod
+V dolinách|Desmod
+Vyrobená pre mňa|Desmod
+Zhorí všetko čo mám|Desmod
+Lavíny|Desmod
+Cesta|Kryštof a Tomáš Klus
+Príbeh|Tina a Rytmus
+Všetko má svoj čas|Kali
+Navždy|Kali
+Jazero|Kali
+Žijeme len raz|Ego
+Keď jazdíme my|Ego
+Deti stratenej generácie|Rytmus
+Zlatokopky|Rytmus
+Technotronic Flow|Majk Spirit
+Primetime|Majk Spirit
+Kométa|Majk Spirit
+Čo bolo, bolo|No Name
+Žily|No Name
+Ty a tvoja sestra|No Name
+Nie alebo áno|No Name
+Len tak stáť|Hex
+V piatok podvečer|Hex
+Keď sme sami|Hex
+Opri sa o mňa|IMT Smile
+Ľudia nie sú zlí|IMT Smile
+Veselá pesnička|IMT Smile
+Exotica|IMT Smile
+Sľúbili sme si lásku|Ivan Hoffman
+Bosorka|Olympic
+Jasná správa|Olympic
+Okno mé lásky|Olympic
+Slzy tvý mámy|Olympic
+Želva|Olympic
+Jožin z bažin|Ivan Mládek
+Holubí dům|Jiří Schelinger
+Jahody mražený|Jiří Schelinger
+Lady Carneval|Karel Gott
+Kávu si osladím|Karel Gott
+Trezor|Karel Gott
+Včelka Mája|Karel Gott
+Být stále mlád|Karel Gott
+Čau lásko|Karel Gott a Marcela Holanová
+Lásko má, já stůňu|Helena Vondráčková
+Dlouhá noc|Helena Vondráčková
+Sladké mámení|Helena Vondráčková
+Malovaný džbánku|Helena Vondráčková
+Nonstop|Michal David
+Děti ráje|Michal David
+Pár přátel|Michal David
+Decibely lásky|Michal David
+Colu, pijeme colu|Michal David
+Láska je láska|Lucie Bílá
+Trouba|Lucie Bílá
+Most přes minulost|Lucie Bílá
+Amerika|Lucie
+Chci zas v tobě spát|David Koller
+Sen|Lucie
+Medvídek|Lucie
+Tabáček|Chinaski
+Víno|Chinaski
+Klára|Chinaski
+Každý ráno|Chinaski
+Anděl|Xindl X
+V blbým věku|Xindl X
+Pánu bohu do oken|Tomáš Klus
+Marie|Tomáš Klus
+Mám jizvu na rtu|Jaromír Nohavica
+Kometa|Jaromír Nohavica
+Tři čuníci|Jaromír Nohavica
+Shape of You|Ed Sheeran
+Perfect|Ed Sheeran
+Thinking Out Loud|Ed Sheeran
+Photograph|Ed Sheeran
+Bad Habits|Ed Sheeran
+Rolling in the Deep|Adele
+Someone Like You|Adele
+Hello|Adele
+Set Fire to the Rain|Adele
+Easy on Me|Adele
+Blinding Lights|The Weeknd
+Save Your Tears|The Weeknd
+Can't Feel My Face|The Weeknd
+Starboy|The Weeknd
+Dance Monkey|Tones and I
+Flowers|Miley Cyrus
+Wrecking Ball|Miley Cyrus
+Party in the U.S.A.|Miley Cyrus
+Happy|Pharrell Williams
+Uptown Funk|Mark Ronson feat. Bruno Mars
+Just the Way You Are|Bruno Mars
+Locked Out of Heaven|Bruno Mars
+Grenade|Bruno Mars
+Counting Stars|OneRepublic
+Apologize|OneRepublic
+I Ain't Worried|OneRepublic
+Believer|Imagine Dragons
+Thunder|Imagine Dragons
+Radioactive|Imagine Dragons
+Demons|Imagine Dragons
+Bad Guy|Billie Eilish
+What Was I Made For?|Billie Eilish
+Birds of a Feather|Billie Eilish
+Levitating|Dua Lipa
+Don't Start Now|Dua Lipa
+New Rules|Dua Lipa
+Houdini|Dua Lipa
+Havana|Camila Cabello
+Señorita|Shawn Mendes a Camila Cabello
+Cheap Thrills|Sia
+Chandelier|Sia
+Unstoppable|Sia
+Roar|Katy Perry
+Firework|Katy Perry
+Teenage Dream|Katy Perry
+Poker Face|Lady Gaga
+Bad Romance|Lady Gaga
+Just Dance|Lady Gaga
+Shallow|Lady Gaga a Bradley Cooper
+Shake It Off|Taylor Swift
+Blank Space|Taylor Swift
+Love Story|Taylor Swift
+Anti-Hero|Taylor Swift
+Cruel Summer|Taylor Swift
+As It Was|Harry Styles
+Watermelon Sugar|Harry Styles
+Viva La Vida|Coldplay
+Yellow|Coldplay
+The Scientist|Coldplay
+Paradise|Coldplay
+A Sky Full of Stars|Coldplay
+Wake Me Up|Avicii
+Levels|Avicii
+The Nights|Avicii
+Despacito|Luis Fonsi
+Waka Waka|Shakira
+Hips Don't Lie|Shakira
+Whenever, Wherever|Shakira
+Ai Se Eu Te Pego|Michel Teló
+Macarena|Los del Río
+I Want It That Way|Backstreet Boys
+Everybody|Backstreet Boys
+As Long as You Love Me|Backstreet Boys
+Oops!... I Did It Again|Britney Spears
+Baby One More Time|Britney Spears
+Toxic|Britney Spears
+Wannabe|Spice Girls
+Barbie Girl|Aqua
+Blue (Da Ba Dee)|Eiffel 65
+Dragostea Din Tei|O-Zone
+Freed from Desire|Gala
+What Is Love|Haddaway
+Rhythm Is a Dancer|Snap!
+Mr. Vain|Culture Beat
+We Will Rock You|Queen
+We Are the Champions|Queen
+Another One Bites the Dust|Queen
+Bohemian Rhapsody|Queen
+Don't Stop Me Now|Queen
+I Want to Break Free|Queen
+Billie Jean|Michael Jackson
+Beat It|Michael Jackson
+Thriller|Michael Jackson
+Smooth Criminal|Michael Jackson
+I Will Survive|Gloria Gaynor
+Dancing Queen|ABBA
+Mamma Mia|ABBA
+Gimme! Gimme! Gimme!|ABBA
+Waterloo|ABBA
+Stayin' Alive|Bee Gees
+Eye of the Tiger|Survivor
+The Final Countdown|Europe
+Take on Me|a-ha
+Summer of '69|Bryan Adams
+Heaven|Bryan Adams
+Livin' on a Prayer|Bon Jovi
+It's My Life|Bon Jovi
+Sweet Child o' Mine|Guns N' Roses
+Zombie|The Cranberries
+Wonderwall|Oasis
+Let It Be|The Beatles
+Hey Jude|The Beatles
+Yesterday|The Beatles
+Twist and Shout|The Beatles
+Don't Worry, Be Happy|Bobby McFerrin
+Gangnam Style|PSY
+Call Me Maybe|Carly Rae Jepsen
+All About That Bass|Meghan Trainor
+Can't Stop the Feeling!|Justin Timberlake
+Sorry|Justin Bieber
+Baby|Justin Bieber
+Love Yourself|Justin Bieber
+Umbrella|Rihanna
+Diamonds|Rihanna
+We Found Love|Rihanna
+Crazy in Love|Beyoncé
+Single Ladies|Beyoncé
+Halo|Beyoncé
+Moves Like Jagger|Maroon 5
+Sugar|Maroon 5
+Girls Like You|Maroon 5
+Closer|The Chainsmokers
+Titanium|David Guetta feat. Sia
+Memories|David Guetta feat. Kid Cudi
+I Gotta Feeling|The Black Eyed Peas
+Where Is the Love?|The Black Eyed Peas
+Party Rock Anthem|LMFAO
+Timber|Pitbull feat. Kesha
+Tik Tok|Kesha
+On the Floor|Jennifer Lopez
+Whenever You Need Somebody|Rick Astley
+Never Gonna Give You Up|Rick Astley
+Angels|Robbie Williams
+Rock DJ|Robbie Williams
+Seven Nation Army|The White Stripes
+Smells Like Teen Spirit|Nirvana
+Nothing Else Matters|Metallica
+Highway to Hell|AC/DC
+I Love Rock 'n' Roll|Joan Jett
+Sweet Home Alabama|Lynyrd Skynyrd
+Country Roads|John Denver
+Jolene|Dolly Parton
+Man! I Feel Like a Woman!|Shania Twain
+No Woman, No Cry|Bob Marley
+Three Little Birds|Bob Marley
+La Bamba|Ritchie Valens
+The Ketchup Song|Las Ketchup
+Jerusalema|Master KG
+Sarà perché ti amo|Ricchi e Poveri
+Volare|Domenico Modugno
+Bella Ciao|Traditional
+Hej, sokoly|Traditional
+Na Kráľovej holi|Traditional
+Tancuj, tancuj, vykrúcaj|Traditional
+Prší, prší|Traditional
+Kukulienka, kde si bola|Traditional
+Macejko|Traditional
+Červený kacheľ|Traditional
+Baby Shark|Pinkfong
+Let It Go|Idina Menzel
+Hakuna Matata|The Lion King
+Can You Feel the Love Tonight|Elton John
+You've Got a Friend in Me|Randy Newman
+Under the Sea|Samuel E. Wright
+The Bare Necessities|The Jungle Book
+How Far I'll Go|Auliʻi Cravalho
+We Don't Talk About Bruno|Encanto Cast
+Do You Want to Build a Snowman?|Frozen Cast
+I Like to Move It|Reel 2 Real
+Who Let the Dogs Out|Baha Men
+Cotton Eye Joe|Rednex
+The Lion Sleeps Tonight|The Tokens
+YMCA|Village People
+September|Earth, Wind & Fire
+Celebration|Kool & The Gang
+Footloose|Kenny Loggins
+Time of My Life|Bill Medley a Jennifer Warnes
+Girls Just Want to Have Fun|Cyndi Lauper
+Wake Me Up Before You Go-Go|Wham!
+Careless Whisper|George Michael
+Like a Prayer|Madonna
+Material Girl|Madonna
+Believe|Cher
+Total Eclipse of the Heart|Bonnie Tyler
+I Wanna Dance with Somebody|Whitney Houston
+My Heart Will Go On|Céline Dion
+I Will Always Love You|Whitney Houston
+All I Want for Christmas Is You|Mariah Carey
+Last Christmas|Wham!
+Jingle Bells|Traditional
+`;
+
+export const SONG_CARDS: SongCard[] = SONG_LIBRARY.trim().split("\n").map((line) => {
+  const [title, artist] = line.split("|");
+  return { title: title.trim(), artist: artist.trim() };
+});
 
 export interface SoundClue {
   id: string;
