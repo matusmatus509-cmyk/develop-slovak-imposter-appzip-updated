@@ -278,6 +278,60 @@ const VIDEO_GAME_CHARACTERS = [
   "Sans", "Papyrus", "Cuphead", "Mugman", "Freddy Fazbear", "Bonnie", "Chica", "Foxy", "Bendy", "Huggy Wuggy",
 ];
 
+const WORLD_MOVIES = [
+  "Titanic", "Avatar", "Avatar: The Way of Water", "The Godfather", "The Godfather Part II", "The Dark Knight", "Pulp Fiction", "Fight Club", "Forrest Gump", "The Green Mile",
+  "The Shawshank Redemption", "Schindler's List", "Gladiator", "Braveheart", "Saving Private Ryan", "The Pianist", "Oppenheimer", "Barbie", "Inception", "Interstellar",
+  "Tenet", "Dunkirk", "The Prestige", "Memento", "The Matrix", "The Matrix Reloaded", "Terminator", "Terminator 2", "Alien", "Aliens",
+  "Predator", "Blade Runner", "Blade Runner 2049", "The Martian", "Gravity", "Apollo 13", "Dune", "Dune: Part Two", "Everything Everywhere All at Once", "Arrival",
+  "Star Wars: A New Hope", "The Empire Strikes Back", "Return of the Jedi", "The Force Awakens", "Rogue One", "The Lord of the Rings: The Fellowship of the Ring", "The Two Towers", "The Return of the King", "The Hobbit", "Harry Potter and the Philosopher's Stone",
+  "Harry Potter and the Prisoner of Azkaban", "Harry Potter and the Goblet of Fire", "Harry Potter and the Deathly Hallows", "Fantastic Beasts", "Pirates of the Caribbean", "The Hunger Games", "Catching Fire", "Twilight", "The Chronicles of Narnia", "Jurassic Park",
+  "Jurassic World", "King Kong", "Godzilla", "Jaws", "E.T.", "Back to the Future", "Ghostbusters", "Indiana Jones", "Raiders of the Lost Ark", "Top Gun",
+  "Top Gun: Maverick", "Mission: Impossible", "James Bond: Casino Royale", "Skyfall", "John Wick", "Die Hard", "Rocky", "Creed", "Rambo", "The Karate Kid",
+  "Kill Bill", "Mad Max: Fury Road", "Fast & Furious", "The Transporter", "Ocean's Eleven", "Now You See Me", "The Italian Job", "The Bourne Identity", "The Equalizer", "The Revenant",
+  "The Wolf of Wall Street", "Catch Me If You Can", "The Great Gatsby", "Once Upon a Time in Hollywood", "Goodfellas", "Scarface", "Taxi Driver", "The Silence of the Lambs", "Se7en", "Zodiac",
+  "The Sixth Sense", "Shutter Island", "A Quiet Place", "The Conjuring", "It", "Scream", "Halloween", "A Nightmare on Elm Street", "The Exorcist", "Saw",
+  "Home Alone", "Mrs. Doubtfire", "The Mask", "Ace Ventura", "Dumb and Dumber", "The Hangover", "Mean Girls", "Legally Blonde", "Pretty Woman", "Notting Hill",
+  "Love Actually", "The Devil Wears Prada", "Mamma Mia!", "La La Land", "The Greatest Showman", "A Star Is Born", "Bohemian Rhapsody", "Rocketman", "Dirty Dancing", "Grease",
+  "The Notebook", "The Fault in Our Stars", "Me Before You", "Edward Scissorhands", "Charlie and the Chocolate Factory", "Alice in Wonderland", "The Wizard of Oz", "Mary Poppins", "Wonka", "Enola Holmes",
+  "The Truman Show", "Cast Away", "The Terminal", "Green Book", "Intouchables", "Slumdog Millionaire", "Parasite", "The Grand Budapest Hotel", "Knives Out", "Glass Onion",
+];
+
+const ANIMATED_MOVIES = [
+  "The Lion King", "Frozen", "Frozen 2", "Moana", "Encanto", "Coco", "Tangled", "The Little Mermaid", "Beauty and the Beast", "Aladdin",
+  "Mulan", "Pocahontas", "Hercules", "Tarzan", "Lilo & Stitch", "Peter Pan", "Pinocchio", "Dumbo", "Bambi", "Snow White and the Seven Dwarfs",
+  "Cinderella", "Sleeping Beauty", "The Jungle Book", "The Aristocats", "One Hundred and One Dalmatians", "Robin Hood", "The Sword in the Stone", "The Princess and the Frog", "Wreck-It Ralph", "Ralph Breaks the Internet",
+  "Zootopia", "Big Hero 6", "Raya and the Last Dragon", "Wish", "Bolt", "The Emperor's New Groove", "Atlantis: The Lost Empire", "Treasure Planet", "The Hunchback of Notre Dame", "Oliver & Company",
+  "Toy Story", "Toy Story 2", "Toy Story 3", "Toy Story 4", "Finding Nemo", "Finding Dory", "Monsters, Inc.", "Monsters University", "The Incredibles", "Incredibles 2",
+  "Cars", "Cars 2", "Cars 3", "Ratatouille", "WALL-E", "Up", "Brave", "Inside Out", "Inside Out 2", "The Good Dinosaur",
+  "Onward", "Soul", "Luca", "Turning Red", "Elemental", "Lightyear", "A Bug's Life", "Kung Fu Panda", "Kung Fu Panda 2", "Kung Fu Panda 3",
+  "Shrek", "Shrek 2", "Puss in Boots", "Puss in Boots: The Last Wish", "Madagascar", "Madagascar 2", "The Penguins of Madagascar", "How to Train Your Dragon", "How to Train Your Dragon 2", "The Croods",
+  "Megamind", "The Boss Baby", "Trolls", "Spirit: Stallion of the Cimarron", "The Prince of Egypt", "Chicken Run", "Wallace & Gromit", "Flushed Away", "Bee Movie", "Over the Hedge",
+  "Despicable Me", "Despicable Me 2", "Minions", "Sing", "Sing 2", "The Secret Life of Pets", "The Lorax", "The Grinch", "Migration", "The Super Mario Bros. Movie",
+  "Ice Age", "Ice Age: The Meltdown", "Rio", "Rio 2", "Ferdinand", "The Peanuts Movie", "Epic", "Robots", "Horton Hears a Who!", "Spies in Disguise",
+  "Hotel Transylvania", "Cloudy with a Chance of Meatballs", "The Smurfs", "Open Season", "Surf's Up", "The Angry Birds Movie", "Vivo", "The Mitchells vs. the Machines", "Spider-Man: Into the Spider-Verse", "Spider-Man: Across the Spider-Verse",
+  "Coraline", "The Nightmare Before Christmas", "Corpse Bride", "Kubo and the Two Strings", "ParaNorman", "The Lego Movie", "The Lego Batman Movie", "Rango", "The Polar Express", "Arthur Christmas",
+  "Pokémon: The First Movie", "My Neighbor Totoro", "Spirited Away", "Howl's Moving Castle", "Ponyo", "Kiki's Delivery Service", "The Boy and the Heron", "Your Name", "The Iron Giant", "The Simpsons Movie",
+];
+
+const HEROES_AND_VILLAINS = [
+  "Spider-Man", "Iron Man", "Captain America", "Thor", "Hulk", "Black Widow", "Hawkeye", "Doctor Strange", "Black Panther", "Captain Marvel",
+  "Ant-Man", "Wasp", "Scarlet Witch", "Vision", "Falcon", "Winter Soldier", "Star-Lord", "Gamora", "Drax", "Groot",
+  "Rocket Raccoon", "Wolverine", "Deadpool", "Professor X", "Magneto", "Storm", "Cyclops", "Jean Grey", "Mystique", "Daredevil",
+  "Punisher", "Blade", "Moon Knight", "She-Hulk", "Ms. Marvel", "Shang-Chi", "Nick Fury", "Silver Surfer", "Ghost Rider", "Fantastic Four",
+  "Thanos", "Loki", "Ultron", "Green Goblin", "Doctor Octopus", "Venom", "Carnage", "Red Skull", "Hela", "Killmonger",
+  "Batman", "Superman", "Wonder Woman", "Aquaman", "The Flash", "Cyborg", "Green Lantern", "Shazam", "Supergirl", "Batgirl",
+  "Robin", "Nightwing", "Green Arrow", "Black Canary", "Martian Manhunter", "Blue Beetle", "Constantine", "Harley Quinn", "Catwoman", "Peacemaker",
+  "Joker", "Lex Luthor", "Darkseid", "Bane", "The Riddler", "Penguin", "Two-Face", "Poison Ivy", "Scarecrow", "Deathstroke",
+  "Harry Potter", "Hermione Granger", "Ron Weasley", "Albus Dumbledore", "Severus Snape", "Rubeus Hagrid", "Sirius Black", "Dobby", "Lord Voldemort", "Draco Malfoy",
+  "Frodo Baggins", "Samwise Gamgee", "Gandalf", "Aragorn", "Legolas", "Gimli", "Galadriel", "Gollum", "Sauron", "Saruman",
+  "Luke Skywalker", "Leia Organa", "Han Solo", "Obi-Wan Kenobi", "Yoda", "Ahsoka Tano", "The Mandalorian", "Grogu", "Darth Vader", "Emperor Palpatine",
+  "Rey", "Kylo Ren", "Finn", "Chewbacca", "R2-D2", "C-3PO", "Katniss Everdeen", "Peeta Mellark", "Indiana Jones", "Lara Croft",
+  "James Bond", "Ethan Hunt", "John Wick", "Rocky Balboa", "Rambo", "The Terminator", "Neo", "Trinity", "Jack Sparrow", "Zorro",
+  "Sherlock Holmes", "Robin Hood", "Hercules", "Achilles", "King Arthur", "Merlin", "Mulan", "Tarzan", "Aladdin", "Peter Pan",
+  "Elsa", "Moana", "Rapunzel", "Belle", "Ariel", "Simba", "Po", "Shrek", "Hiccup", "Toothless",
+  "Optimus Prime", "Bumblebee", "Megatron", "Godzilla", "King Kong", "He-Man", "She-Ra", "Power Rangers", "Teenage Mutant Ninja Turtles", "The Mask",
+];
+
 function cards(id: string) {
   return CHARACTER_CATEGORIES_BASE.find((category) => category.id === id)?.characters ?? [];
 }
@@ -340,6 +394,24 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     name: "Postavy z videohier",
     icon: "🎮",
     characters: uniqueCards(VIDEO_GAME_CHARACTERS),
+  },
+  {
+    id: "world-movies",
+    name: "Svetové filmy",
+    icon: "🎞️",
+    characters: uniqueCards(WORLD_MOVIES),
+  },
+  {
+    id: "animated-movies",
+    name: "Animované filmy",
+    icon: "🎥",
+    characters: uniqueCards(ANIMATED_MOVIES),
+  },
+  {
+    id: "heroes-villains",
+    name: "Hrdinovia a zloduchovia",
+    icon: "🦸",
+    characters: uniqueCards(HEROES_AND_VILLAINS),
   },
 ];
 
