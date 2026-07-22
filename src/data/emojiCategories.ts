@@ -135,12 +135,60 @@ const VIDEO_GAMES = cards([
   "🤖🔵🦔|Metal Sonic", "🐺⚔️🌑|Sekiro", "🧒❤️🌻|Frisk", "🖋️😈🎞️|Bendy", "🔵🧸😬|Huggy Wuggy",
 ]);
 
+const FOOD_AND_DRINKS = cards([
+  "🍕🇮🇹|Pizza", "🍔🍟|Hamburger s hranolkami", "🌭🥫|Hotdog", "🌮🇲🇽|Tacos", "🌯🔥|Burrito",
+  "🍣🇯🇵|Sushi", "🍜🥢|Rezance", "🍝🇮🇹|Špagety", "🥟🥢|Knedličky", "🥘🇪🇸|Paella",
+  "🥩🔥|Steak", "🍗🔥|Pečené kura", "🍖🦴|Mäso na kosti", "🥓🍳|Slanina s vajíčkom", "🍳🌞|Volské oko",
+  "🥞🍯|Palacinky", "🧇🍓|Vafle", "🥐☕|Croissant", "🥖🧀|Bageta so syrom", "🥨🇩🇪|Praclík",
+  "🧀🇨🇭|Švajčiarsky syr", "🥗🥬|Šalát", "🥪🧀|Sendvič", "🍲🥄|Polievka", "🥣🌽|Kaša",
+  "🍚🥢|Ryža", "🍛🌶️|Kari", "🫕🧀|Fondue", "🥙🧆|Falafel", "🍤🔥|Grilované krevety",
+  "🦞🍽️|Homár", "🦀🍽️|Krab", "🐟🍋|Ryba s citrónom", "🥔🔥|Pečený zemiak", "🍟🧂|Hranolky",
+  "🍿🎬|Popcorn", "🍕🍍|Havajská pizza", "🍎🥧|Jablkový koláč", "🎂🕯️|Narodeninová torta", "🍰🍓|Jahodový koláč",
+  "🧁🌈|Cupcake", "🍩☕|Šiška", "🍪🥛|Sušienky s mliekom", "🍫🥜|Čokoláda s orechmi", "🍬🌈|Cukríky",
+  "🍭👅|Lízanka", "🍦☀️|Zmrzlina", "🍨🍒|Zmrzlinový pohár", "🍧❄️|Ľadová drť", "🍮🍯|Puding",
+  "🍯🐝|Med", "🥜🧈|Arašidové maslo", "🍓🍓|Jahodový džem", "🍌🥛|Banánový kokteil", "🥭🥤|Mangové smoothie",
+  "☕🌅|Ranná káva", "🍵🌿|Zelený čaj", "🥛🐄|Kravské mlieko", "🧋🟤|Bubble tea", "🥤🧊|Limonáda",
+  "🍋💧|Citrónová voda", "🍊🥤|Pomarančový džús", "🍎🧃|Jablkový džús", "🥥💧|Kokosová voda", "🍺🇩🇪|Pivo",
+  "🍷🍇|Víno", "🥂🎉|Šampanské", "🍹🏝️|Tropický koktail", "🍸🫒|Martini", "🥃🧊|Whisky s ľadom",
+  "🍎🍏|Jablká", "🍌🐒|Banán", "🍉☀️|Vodný melón", "🍇🍷|Hrozno", "🍓❤️|Jahoda",
+  "🍒👯|Čerešne", "🍍🏝️|Ananás", "🥝💚|Kiwi", "🥑🍞|Avokádový toast", "🌽🔥|Grilovaná kukurica",
+  "🥕🐰|Mrkva", "🍅🥫|Kečup", "🥒🥗|Uhorkový šalát", "🌶️🔥|Pálivá paprika", "🧄🧛|Cesnak",
+  "🧅😭|Cibuľa", "🍄🌲|Huby", "🥦💪|Brokolica", "🍋😖|Kyslý citrón", "🍑☀️|Broskyňa",
+  "🥚🐔|Vajce", "🥛🍫|Kakao", "🧈🍞|Chlieb s maslom", "🥣🥛|Cereálie", "🍞🔥|Hrianka",
+  "🥫🐟|Tuniak v konzerve", "🍱🇯🇵|Bento", "🥠🔮|Koláčik šťastia", "🍡🇯🇵|Dango", "🧆🥙|Pita s falafelom",
+]);
+
+const PLACES_AND_OBJECTS = cards([
+  "🏫📚|Škola", "🏥🩺|Nemocnica", "🏦💰|Banka", "🏨🛏️|Hotel", "🏪🌙|Večierka",
+  "🏬🛍️|Nákupné centrum", "🏭🏗️|Továreň", "🏰👑|Hrad", "🏛️📜|Múzeum", "⛪🔔|Kostol",
+  "🕌🌙|Mešita", "🛕🪷|Chrám", "🏟️⚽|Štadión", "🎡🎢|Zábavný park", "🎪🤡|Cirkus",
+  "🎭👏|Divadlo", "🎬🍿|Kino", "📚🤫|Knižnica", "🍽️👨‍🍳|Reštaurácia", "☕🥐|Kaviareň",
+  "✈️🧳|Letisko", "🚉🚆|Železničná stanica", "⛽🚗|Čerpacia stanica", "🚢⚓|Prístav", "🗼🇫🇷|Eiffelova veža",
+  "🗽🇺🇸|Socha slobody", "🏯🇯🇵|Japonský chrám", "🗿🏝️|Veľkonočný ostrov", "🏜️🐫|Púšť", "🏖️☀️|Pláž",
+  "🏝️🥥|Tropický ostrov", "🏔️❄️|Zasnežené hory", "🌋🔥|Sopka", "🏕️🔥|Kemp", "🌲🦌|Les",
+  "🌳🛝|Park", "🌾🚜|Farma", "🦁🦒|Zoologická záhrada", "🐠🪸|Akvárium", "🌌🔭|Hvezdáreň",
+  "🏠❤️|Domov", "🛋️📺|Obývačka", "🛏️🌙|Spálňa", "🛁🫧|Kúpeľňa", "🍳🧊|Kuchyňa",
+  "🚗🔧|Garáž", "🌷🪴|Záhrada", "💼💻|Kancelária", "🧑‍🏫🖍️|Trieda", "🧪🔬|Laboratórium",
+  "📱🔋|Mobilný telefón", "💻⌨️|Notebook", "🖥️🖱️|Počítač", "⌚❤️|Smart hodinky", "📷⚡|Fotoaparát",
+  "📺🛋️|Televízor", "🎧🎵|Slúchadlá", "🔊🎶|Reproduktor", "🎮🕹️|Herná konzola", "🖨️📄|Tlačiareň",
+  "💡⚡|Žiarovka", "🔦🌙|Baterka", "🕯️🔥|Sviečka", "⏰😴|Budík", "🧭🗺️|Kompas",
+  "🔭🌙|Teleskop", "🔬🦠|Mikroskop", "🧲📎|Magnet", "🔑🚪|Kľúč", "🔒🔐|Zámok",
+  "🧰🔨|Náradie", "🪛🔩|Skrutkovač", "🪚🪵|Píla", "🧯🔥|Hasiaci prístroj", "🪜🏠|Rebrík",
+  "🧹✨|Metla", "🧺👕|Kôš na bielizeň", "🧻🚽|Toaletný papier", "🪥😁|Zubná kefka", "🧼🫧|Mydlo",
+  "✏️📓|Ceruzka a zošit", "🖊️✍️|Pero", "📐📏|Pravítko", "🎒🏫|Školská taška", "📎📄|Kancelárska spinka",
+  "✂️📄|Nožnice", "📌🗺️|Pripináčik", "📦🚚|Balík", "✉️📮|List", "🗑️♻️|Odpadkový kôš",
+  "☂️🌧️|Dáždnik", "🕶️☀️|Slnečné okuliare", "👓📖|Okuliare", "👛💳|Peňaženka", "🧳✈️|Cestovný kufor",
+  "🎁🎀|Darček", "🎈🎉|Balón", "🪁💨|Šarkan", "🧸👶|Plyšový medveď", "🧩🧠|Puzzle",
+]);
+
 export const EMOJI_CATEGORIES: EmojiCategory[] = [
   { id: "films", title: "Filmy a seriály", icon: "🎬", puzzles: FILMS },
   { id: "people", title: "Osobnosti", icon: "🌟", puzzles: PERSONALITIES },
   { id: "jobs", title: "Povolania", icon: "🧑‍💼", puzzles: PROFESSIONS },
   { id: "animated", title: "Animované postavy", icon: "🎨", puzzles: ANIMATED_CHARACTERS },
   { id: "games", title: "Videohry", icon: "🎮", puzzles: VIDEO_GAMES },
+  { id: "food", title: "Jedlo a nápoje", icon: "🍕", puzzles: FOOD_AND_DRINKS },
+  { id: "places", title: "Miesta a predmety", icon: "🗺️", puzzles: PLACES_AND_OBJECTS },
 ];
 
 export function getEmojiCategories(includeSlovak: boolean): EmojiCategory[] {

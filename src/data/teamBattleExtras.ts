@@ -392,7 +392,103 @@ const EXTRA_FORBIDDEN_CARDS: ForbiddenCard[] = EXTRA_FORBIDDEN_LIBRARY.split("\n
   return { word, forbidden: forbidden as ForbiddenCard["forbidden"] };
 });
 
-export const FORBIDDEN_CARDS: ForbiddenCard[] = [...CORE_FORBIDDEN_CARDS, ...EXTRA_FORBIDDEN_CARDS];
+const MORE_FORBIDDEN_LIBRARY = `
+Akumulátor|batéria|energia|nabíjať|auto
+Anténa|signál|televízia|strecha|prijímať
+Bankomat|peniaze|karta|vybrať|banka
+Barometer|tlak|počasie|merať|prístroj
+Baterka|svetlo|svietiť|tma|energia
+Bludisko|cesta|stratiť|východ|chodba
+Bumerang|hodiť|vrátiť|Austrália|drevo
+Budík|ráno|zvoniť|zobudiť|hodiny
+Cestovný pas|doklad|hranica|krajina|fotografia
+Chameleón|farba|jašterica|meniť|zviera
+Chobotnica|osem|more|chápadlá|zviera
+Dalekohľad|pozerať|ďaleko|oči|priblížiť
+Delfín|more|plávať|zviera|inteligentný
+Detektív|pátrať|zločin|polícia|stopa
+Diamant|drahokam|prsteň|tvrdý|lesk
+Domino|kocky|bodky|hra|padať
+Dron|lietať|kamera|ovládať|vrtuľa
+Ďalekopis|správa|písať|stroj|odoslať
+Eskimo|ľad|sever|iglu|zima
+Fontána|voda|námestie|striekať|socha
+Gejzír|voda|horúci|vytrysknúť|Island
+Glóbus|Zem|mapa|guľa|krajiny
+Gril|mäso|oheň|záhrada|piecť
+Harfa|hudba|struny|nástroj|hrať
+Hasiaci prístroj|oheň|pena|hasiť|červený
+Hojdačka|ihrisko|sedieť|hojdať|deti
+Hurikán|vietor|búrka|zničiť|oceán
+Iglu|sneh|dom|ľad|sever
+Jaskyňa|skala|tma|podzemie|netopier
+Kaktus|pichliače|púšť|rastlina|voda
+Kaleidoskop|farby|pozerať|vzory|trubica
+Kalkulačka|počítať|čísla|matematika|tlačidlá
+Kamera|filmovať|video|objektív|záznam
+Kapitán|loď|veliteľ|more|posádka
+Karavan|cestovať|bývať|auto|dovolenka
+Katedrála|kostol|veža|viera|stavba
+Kompas|sever|smer|ihla|orientácia
+Kotva|loď|more|reťaz|zastaviť
+Kráter|Mesiac|diera|sopka|meteorit
+Križovatka|cesta|semafor|odbočiť|autá
+Kufor|cestovať|batožina|oblečenie|kolieska
+Láva|sopka|horúca|červená|tečie
+Maják|more|loď|svetlo|pobrežie
+Mapa|cesta|krajina|orientácia|papier
+Mikroskop|malé|vedec|pozerať|laboratórium
+Mlyn|múka|obilie|vietor|koleso
+Mrakodrap|budova|vysoký|mesto|poschodia
+Navigácia|mapa|cesta|GPS|smer
+Oáza|púšť|voda|palma|oddych
+Padák|skákať|lietadlo|vzduch|bezpečnosť
+Pavučina|pavúk|sieť|vlákno|chytiť
+Periskop|ponorka|pozerať|more|hladina
+Pieskové hodiny|čas|piesok|sklo|presýpať
+Pirátska loď|more|poklad|kapitán|vlajka
+Ponorka|more|pod vodou|loď|periskop
+Prilba|hlava|ochrana|motorka|bezpečnosť
+Rakva|pohreb|mŕtvy|drevo|hrob
+Robot|stroj|program|človek|kov
+Rozhľadňa|výhľad|veža|kopec|pozerať
+Satelit|vesmír|obežná dráha|signál|Zem
+Skafander|vesmír|astronaut|oblečenie|kyslík
+Skleník|rastliny|sklo|teplo|záhrada
+Skúter|motorka|dve kolesá|jazdiť|helma
+Sopka|láva|hora|výbuch|dym
+Stetoskop|lekár|srdce|počúvať|nemocnica
+Surf|vlna|doska|more|jazdiť
+Šach|kráľ|figúrky|doska|mat
+Šarkan|vietor|lietať|šnúra|papier
+Teleskop|hviezdy|vesmír|pozerať|ďaleko
+Termoska|nápoj|teplý|fľaša|udržať
+Tobogan|voda|šmýkačka|bazén|zábava
+Tornádo|vietor|lievik|búrka|točiť
+Trampolína|skákať|sieť|záhrada|pružina
+Trezor|peniaze|heslo|zamknúť|banka
+Tunel|cesta|pod zemou|tma|vlak
+Váhy|hmotnosť|merať|kilogram|stáť
+Veterník|vietor|točiť|hračka|lopatky
+Vodopád|voda|rieka|padať|skala
+Vrtuľa|lietadlo|točiť|vzduch|motor
+Výťah|poschodie|hore|dole|budova
+Záchranné koleso|voda|plávať|loď|pomoc
+Zips|oblečenie|otvoriť|zavrieť|zuby
+Žeriav|stavba|zdvíhať|stroj|vysoký
+Žonglér|cirkus|loptičky|hádzať|chytať
+`.trim();
+
+const MORE_FORBIDDEN_CARDS: ForbiddenCard[] = MORE_FORBIDDEN_LIBRARY.split("\n").map((line) => {
+  const [word, ...forbidden] = line.split("|");
+  return { word, forbidden: forbidden as ForbiddenCard["forbidden"] };
+});
+
+export const FORBIDDEN_CARDS: ForbiddenCard[] = [
+  ...CORE_FORBIDDEN_CARDS,
+  ...EXTRA_FORBIDDEN_CARDS,
+  ...MORE_FORBIDDEN_CARDS,
+];
 
 export interface SongCard {
   title: string;
@@ -1859,12 +1955,25 @@ export const SOUND_CLUES: SoundClue[] = [
   { id: "applause", label: "Potlesk", emoji: "👏", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/0/09/Applause_ii.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Applause_ii.ogg", credit: "thore", license: "Public domain" },
   { id: "horse", label: "Cválajúce kone", emoji: "🐎", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/9/96/Six_Horses_Galloping_By.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Six_Horses_Galloping_By.ogg", credit: "Freesound Community / Bruno Auzet", license: "CC0" },
   { id: "fire", label: "Praskajúci oheň", emoji: "🔥", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/8/80/Bones_breaking_wood_fire_ice_crackling.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Bones_breaking_wood_fire_ice_crackling.ogg", credit: "stephan", license: "Public domain" },
+  { id: "rooster", label: "Kikiríkanie kohúta", emoji: "🐓", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Rooster_crowing.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Rooster_crowing.ogg", credit: "Filo gèn'", license: "CC BY-SA 4.0" },
+  { id: "sheep", label: "Bľačanie ovce", emoji: "🐑", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sheep_bleating.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Sheep_bleating.ogg", credit: "earthcalling", license: "Public domain" },
+  { id: "cow", label: "Bučanie kravy", emoji: "🐄", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Single_Cow_Moo.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Single_Cow_Moo.ogg", credit: "MichaeltheFox8621", license: "CC BY-SA 4.0" },
+  { id: "thunder", label: "Hrom", emoji: "⛈️", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tonitrus.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Tonitrus.ogg", credit: "Wikimedia Commons", license: "Public domain" },
+  { id: "church-bells", label: "Kostolné zvony", emoji: "🔔", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Churchbells.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Churchbells.ogg", credit: "Natalie", license: "Public domain" },
+  { id: "waves", label: "Morské vlny", emoji: "🌊", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Waves.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Waves.ogg", credit: "Dsw4", license: "Public domain" },
+  { id: "lion", label: "Rev leva", emoji: "🦁", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lion_raring-sound1TamilNadu178.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg", credit: "Info-farmer", license: "Public domain" },
 ];
 
 const LETTER_CATEGORIES = [
   "Zviera", "Jedlo", "Mesto", "Meno", "Povolanie", "Šport", "Krajina", "Rastlina",
   "Vec v kuchyni", "Vec v škole", "Vec v kúpeľni", "Značka", "Film alebo seriál", "Hudobník",
   "Oblečenie", "Dopravný prostriedok", "Vec na dovolenku", "Niečo v prírode", "Slovo spojené so zimou", "Vec v obchode",
+  "Druh ovocia", "Druh zeleniny", "Rozprávková postava", "Superhrdina", "Herec alebo herečka",
+  "Spevák alebo kapela", "Školský predmet", "Vec v aute", "Vec na pláži", "Vec na párty",
+  "Vec v lese", "Vec v kancelárii", "Elektronika", "Hudobný nástroj", "Značka auta",
+  "Emócia", "Farba alebo odtieň", "Nápoj", "Dezert", "Činnosť",
+  "Slovo spojené s letom", "Slovo spojené s Vianocami", "Vec v spálni", "Vec v nemocnici", "Vec na letisku",
+  "Postava z filmu", "Videohra", "Aplikácia", "Kvet alebo strom", "Vec, ktorá svieti",
 ];
 const PLAYABLE_LETTERS = ["A", "B", "C", "D", "F", "H", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "V", "Z"];
 
@@ -2351,4 +2460,30 @@ slov, ktoré sa rýmujú so slovom pes
 slov, ktoré sa rýmujú so slovom noc
 `.trim().split("\n");
 
-export const FIVE_IN_TEN_PROMPTS = [...CORE_FIVE_IN_TEN_PROMPTS, ...EXTRA_FIVE_IN_TEN_LIBRARY];
+const FIVE_IN_TEN_TOPICS = [
+  "leto", "zima", "jar", "jeseň", "Vianoce", "Veľká noc", "Halloween", "narodeniny", "svadba", "festival",
+  "škola", "práca", "dovolenka", "cestovanie", "lietanie", "stanovanie", "turistika", "lyžovanie", "plávanie", "futbal",
+  "hokej", "tenis", "varenie", "pečenie", "upratovanie", "záhrada", "farma", "les", "džungľa", "more",
+  "vesmír", "počasie", "internet", "mobil", "videohry", "kino", "divadlo", "hudba", "tanec", "fotografovanie",
+  "priateľstvo", "láska", "strach", "radosť", "smiech", "detstvo", "rodina", "mesto", "dedina", "budúcnosť",
+  "kuchyňa", "kúpeľňa", "spálňa", "obývačka", "garáž", "škola", "nemocnica", "letisko", "hotel", "reštaurácia",
+  "karneval", "silvester", "promócie", "pracovný pohovor", "prvé rande", "rodinný výlet", "školský výlet", "cesta vlakom", "cesta autom", "plavba loďou",
+  "raňajky", "obed", "večera", "grilovanie", "pikantné jedlá", "sladkosti", "ovocie", "zelenina", "nápoje", "dezerty",
+  "superhrdinovia", "filmoví zloduchovia", "animované postavy", "rozprávky", "komiksy", "knihy", "detektívky", "fantasy", "sci-fi", "horory",
+  "psy", "mačky", "kone", "vtáky", "hmyz", "dinosaury", "morské zvieratá", "domáce zvieratá", "zvieratá zo zoo", "zvieratá z farmy",
+  "autá", "vlaky", "lietadlá", "lode", "bicykle", "motorky", "verejná doprava", "dopravné značky", "cestná premávka", "preteky",
+  "móda", "oblečenie", "obuv", "účesy", "kozmetika", "šperky", "farby", "tvary", "materiály", "vynálezy",
+];
+
+const GENERATED_FIVE_IN_TEN_PROMPTS = FIVE_IN_TEN_TOPICS.flatMap((topic) => [
+  `slov spojených s témou „${topic}“`,
+  `vecí typických pre tému „${topic}“`,
+  `činností spojených s témou „${topic}“`,
+  `miest, ľudí alebo postáv spojených s témou „${topic}“`,
+]);
+
+export const FIVE_IN_TEN_PROMPTS = [...new Set([
+  ...CORE_FIVE_IN_TEN_PROMPTS,
+  ...EXTRA_FIVE_IN_TEN_LIBRARY,
+  ...GENERATED_FIVE_IN_TEN_PROMPTS,
+])];

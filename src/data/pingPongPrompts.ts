@@ -92,6 +92,32 @@ const TOPICS = [
   "Veci v rozprávke", "Veci na opustenom ostrove",
 ];
 
+const ASSOCIATION_TOPICS = [
+  "Afrika", "Ázia", "Amerika", "Európa", "Austrália", "Antarktída", "Slovensko", "Paríž", "Londýn", "New York",
+  "more", "pláž", "hory", "rieka", "jazero", "púšť", "džungľa", "les", "farma", "zoologická záhrada",
+  "vesmír", "Mesiac", "Slnko", "hviezdy", "počasie", "búrka", "dážď", "sneh", "leto", "zima",
+  "škola", "škôlka", "univerzita", "nemocnica", "letisko", "železničná stanica", "hotel", "reštaurácia", "kaviareň", "obchod",
+  "kuchyňa", "kúpeľňa", "spálňa", "obývačka", "garáž", "záhrada", "kancelária", "ihrisko", "posilňovňa", "knižnica",
+  "futbal", "hokej", "tenis", "plávanie", "lyžovanie", "cyklistika", "tanec", "hudba", "film", "divadlo",
+  "videohry", "internet", "mobilný telefón", "sociálne siete", "fotografovanie", "varenie", "pečenie", "upratovanie", "nakupovanie", "cestovanie",
+  "Vianoce", "Veľká noc", "Halloween", "narodeniny", "svadba", "párty", "festival", "dovolenka", "piknik", "stanovanie",
+  "priateľstvo", "láska", "radosť", "smútok", "strach", "odvaha", "šťastie", "prekvapenie", "detstvo", "budúcnosť",
+  "karneval", "silvester", "promócie", "pracovný pohovor", "prvé rande", "rodinný výlet", "školský výlet", "cesta vlakom", "cesta autom", "plavba loďou",
+  "raňajky", "obed", "večera", "grilovanie", "pikantné jedlá", "sladkosti", "ovocie", "zelenina", "nápoje", "reštaurácia",
+  "superhrdinovia", "filmoví zloduchovia", "animované postavy", "rozprávky", "komiksy", "knihy", "detektívky", "fantasy", "sci-fi", "horory",
+  "psy", "mačky", "kone", "vtáky", "hmyz", "dinosaury", "morské zvieratá", "domáce zvieratá", "zvieratá zo zoo", "zvieratá z farmy",
+  "autá", "vlaky", "lietadlá", "lode", "bicykle", "motorky", "verejná doprava", "dopravné značky", "cestná premávka", "preteky",
+  "móda", "oblečenie", "obuv", "účesy", "kozmetika", "šperky", "farby", "tvary", "materiály", "vynálezy",
+  "lekár", "učiteľ", "policajt", "hasič", "kuchár", "herec", "spevák", "športovec", "vedec", "astronaut",
+];
+
+const ASSOCIATION_ROUNDS = ASSOCIATION_TOPICS.flatMap((topic) => [
+  `Slová spojené s témou „${topic}“`,
+  `Veci typické pre tému „${topic}“`,
+  `Činnosti spojené s témou „${topic}“`,
+  `Miesta, ľudia alebo postavy spojené s témou „${topic}“`,
+]);
+
 export const PING_PONG_PROMPTS: string[] = [...new Set([
   ...STARTING_LETTERS.map((letter) => `Slová na ${letter}`),
   "Mená na A",
@@ -107,4 +133,5 @@ export const PING_PONG_PROMPTS: string[] = [...new Set([
   ...PACKING_PROMPTS,
   ...TOPICS,
   ...QUICK_ROUNDS,
+  ...ASSOCIATION_ROUNDS,
 ])];

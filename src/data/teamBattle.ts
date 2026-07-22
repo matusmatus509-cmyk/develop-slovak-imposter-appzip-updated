@@ -442,7 +442,7 @@ export interface QuizQuestion {
   correctIndex?: 0 | 1 | 2 | 3;
 }
 
-export const QUIZ_QUESTIONS: QuizQuestion[] = [
+const CORE_QUIZ_QUESTIONS: QuizQuestion[] = [
   // Geografia
   { question: "Aká je najvyššia hora na svete?", answer: "Mount Everest", category: "🌍 Geografia" },
   { question: "Koľko kontinentov má Zem?", answer: "7", category: "🌍 Geografia" },
@@ -536,6 +536,61 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
   { question: "Ako sa volá najznámejšia egyptská hrobka v tvare trojbokého ihlanu?", options: ["Chrám", "Koloseum", "Pyramída", "Zámok"], correctIndex: 2, answer: "Pyramída", category: "📜 História" },
 ];
 
+const EXTRA_QUIZ_QUESTIONS: QuizQuestion[] = [
+  { question: "Aké je hlavné mesto Francúzska?", answer: "Paríž", category: "🌍 Geografia" },
+  { question: "Aké je hlavné mesto Talianska?", answer: "Rím", category: "🌍 Geografia" },
+  { question: "Aké je hlavné mesto Španielska?", answer: "Madrid", category: "🌍 Geografia" },
+  { question: "Aké je hlavné mesto Portugalska?", answer: "Lisabon", category: "🌍 Geografia" },
+  { question: "Aké je hlavné mesto Nemecka?", answer: "Berlín", category: "🌍 Geografia" },
+  { question: "Aké je hlavné mesto Rakúska?", answer: "Viedeň", category: "🌍 Geografia" },
+  { question: "Aké je hlavné mesto Maďarska?", answer: "Budapešť", category: "🌍 Geografia" },
+  { question: "Aké je hlavné mesto Poľska?", answer: "Varšava", category: "🌍 Geografia" },
+  { question: "Aké je hlavné mesto Česka?", answer: "Praha", category: "🌍 Geografia" },
+  { question: "Aké je hlavné mesto Japonska?", answer: "Tokio", category: "🌍 Geografia" },
+  { question: "Aké je hlavné mesto Kanady?", answer: "Ottawa", category: "🌍 Geografia" },
+  { question: "Aké je hlavné mesto Austrálie?", answer: "Canberra", category: "🌍 Geografia" },
+  { question: "Ktorá rieka preteká cez Londýn?", answer: "Temža", category: "🌍 Geografia" },
+  { question: "Ktorá rieka preteká cez Paríž?", answer: "Seina", category: "🌍 Geografia" },
+  { question: "Na ktorom kontinente leží Egypt?", answer: "Afrika", category: "🌍 Geografia" },
+  { question: "Ktorá planéta je známa svojimi prstencami?", answer: "Saturn", category: "🔬 Veda" },
+  { question: "Ktorá planéta sa nazýva červená planéta?", answer: "Mars", category: "🔬 Veda" },
+  { question: "Koľko planét má Slnečná sústava?", answer: "8", category: "🔬 Veda" },
+  { question: "Aký plyn potrebujú ľudia na dýchanie?", answer: "Kyslík", category: "🔬 Veda" },
+  { question: "Ako sa volá proces, pri ktorom rastliny vyrábajú potravu zo svetla?", answer: "Fotosyntéza", category: "🔬 Veda" },
+  { question: "Koľko kostí má približne dospelý človek?", answer: "206", category: "🔬 Veda" },
+  { question: "Ktorý orgán riadi ľudské telo?", answer: "Mozog", category: "🔬 Veda" },
+  { question: "Ako sa volá najväčší orgán ľudského tela?", answer: "Koža", category: "🔬 Veda" },
+  { question: "Pri akej teplote vrie voda pri bežnom tlaku?", answer: "100 °C", category: "🔬 Veda" },
+  { question: "Koľko nôh má pavúk?", answer: "8", category: "🐾 Zvieratá" },
+  { question: "Ktorý vták nevie lietať a žije v Antarktíde?", answer: "Tučniak", category: "🐾 Zvieratá" },
+  { question: "Ako sa volá mláďa koňa?", answer: "Žriebä", category: "🐾 Zvieratá" },
+  { question: "Ktorý cicavec dokáže aktívne lietať?", answer: "Netopier", category: "🐾 Zvieratá" },
+  { question: "Aké je najväčšie suchozemské zviera?", answer: "Slon africký", category: "🐾 Zvieratá" },
+  { question: "Ktoré zviera je symbolom Austrálie a nosí mláďa vo vaku?", answer: "Klokan", category: "🐾 Zvieratá" },
+  { question: "Kto napísal divadelnú hru Rómeo a Júlia?", answer: "William Shakespeare", category: "📚 Kultúra" },
+  { question: "Kto namaľoval Hviezdnu noc?", answer: "Vincent van Gogh", category: "🎨 Umenie" },
+  { question: "Kto skomponoval Malú nočnú hudbu?", answer: "Wolfgang Amadeus Mozart", category: "🎵 Hudba" },
+  { question: "Koľko strún má klasická gitara?", answer: "6", category: "🎵 Hudba" },
+  { question: "Ako sa volá najvyšší ženský spevácky hlas?", answer: "Soprán", category: "🎵 Hudba" },
+  { question: "Ktorá skupina naspievala skladbu Bohemian Rhapsody?", answer: "Queen", category: "🎵 Hudba" },
+  { question: "Ktorý šport sa hrá s raketou a košíkom?", answer: "Bedminton", category: "🏆 Šport" },
+  { question: "Koľko hráčov má futbalový tím na ihrisku na začiatku zápasu?", answer: "11", category: "🏆 Šport" },
+  { question: "V ktorom športe sa používa puk?", answer: "Hokej", category: "🏆 Šport" },
+  { question: "Koľko kruhov je na olympijskej vlajke?", answer: "5", category: "🏆 Šport" },
+  { question: "Ako sa volá čarodejnícka škola Harryho Pottera?", answer: "Rokfort", category: "🎬 Pop kultúra" },
+  { question: "Ako sa volá kovboj z Toy Story?", answer: "Woody", category: "🎬 Pop kultúra" },
+  { question: "Ako sa volá zelený zlobor z animovaného filmu?", answer: "Shrek", category: "🎬 Pop kultúra" },
+  { question: "Ktorý superhrdina používa štít s hviezdou?", answer: "Captain America", category: "🎬 Pop kultúra" },
+  { question: "Ako sa volá leví syn Mufasu?", answer: "Simba", category: "🎬 Pop kultúra" },
+  { question: "Koľko dní má apríl?", answer: "30", category: "📅 Fakty" },
+  { question: "Koľko sekúnd má jedna minúta?", answer: "60", category: "📅 Fakty" },
+  { question: "Koľko strán má šesťuholník?", answer: "6", category: "🧠 Logika" },
+  { question: "Aké číslo nasleduje po 999?", answer: "1000", category: "🧠 Logika" },
+  { question: "Koľko je polovica zo 100?", answer: "50", category: "🧠 Logika" },
+];
+
+export const QUIZ_QUESTIONS: QuizQuestion[] = [...CORE_QUIZ_QUESTIONS, ...EXTRA_QUIZ_QUESTIONS];
+
 // ── Ping pong categories (team mode) ─────────────────────────────────────────
 export const TEAM_PINGPONG_CATEGORIES: string[] = [
   "Európske krajiny", "Zvieratá v džungli", "Druhy ovocia",
@@ -548,6 +603,20 @@ export const TEAM_PINGPONG_CATEGORIES: string[] = [
   "Zvieratá v mori", "Druhy hudby", "Postavy z rozprávok",
   "Značky smartfónov", "Veci v škole", "Druhy syra",
   "Veci, ktoré plávajú", "Zimné športy", "Veci na párty",
+  "Africké krajiny", "Ázijské krajiny", "Americké štáty", "Svetové rieky", "Svetové pohoria",
+  "Ostrovy", "Jazerá", "Mestá pri mori", "Turistické pamiatky", "Veci na letisku",
+  "Domáce zvieratá", "Lesné zvieratá", "Vtáky", "Hmyz", "Plazy",
+  "Plemená psov", "Zvieratá s rohmi", "Zvieratá, ktoré lietajú", "Zvieratá s dlhým chvostom", "Nočné zvieratá",
+  "Druhy zeleniny", "Sladkosti", "Dezerty", "Polievky", "Cestoviny",
+  "Jedlá na raňajky", "Nealkoholické nápoje", "Koreniny", "Veci v chladničke", "Jedlá na gril",
+  "Basketbalisti", "Tenisti", "Hokejové kluby", "Loptové športy", "Vodné športy",
+  "Atletické disciplíny", "Športové potreby", "Veci v posilňovni", "Bojové športy", "Extrémne športy",
+  "Svetoví speváci", "Hudobné skupiny", "Filmoví herci", "Animované filmy", "Televízne seriály",
+  "Disney postavy", "Postavy z Harryho Pottera", "Filmoví zloduchovia", "Videohry", "Herné postavy",
+  "Veci v kúpeľni", "Veci v spálni", "Veci v aute", "Veci v kancelárii", "Veci v nemocnici",
+  "Veci na záhrade", "Veci v kabelke", "Veci v kufri", "Veci na stanovačke", "Veci na svadbe",
+  "Veci, ktoré sú okrúhle", "Veci, ktoré sú mäkké", "Veci, ktoré sú hlučné", "Veci, ktoré sa dajú otvoriť", "Veci na baterky",
+  "Dôvody na oslavu", "Výhovorky na meškanie", "Činnosti pred spaním", "Činnosti cez víkend", "Darčeky k narodeninám",
 ];
 
 // ── Round types ───────────────────────────────────────────────────────────────
