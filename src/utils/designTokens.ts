@@ -5,18 +5,18 @@ import type { CSSProperties } from "react";
 export const colors = {
   // Background
   bg: {
-    primary: "#0b0a1a",
-    secondary: "#12101f",
-    tertiary: "#1a0a2e",
-    card: "rgba(255,255,255,0.05)",
-    cardHover: "rgba(255,255,255,0.08)",
-    cardActive: "rgba(255,255,255,0.12)",
+    primary: "#080b10",
+    secondary: "#0d1219",
+    tertiary: "#141a22",
+    card: "rgba(20,26,34,0.9)",
+    cardHover: "rgba(27,34,44,0.94)",
+    cardActive: "rgba(33,41,52,0.96)",
   },
   
   // Brand gradients
   gradient: {
-    primary: "linear-gradient(135deg, #f97316 0%, #ec4899 50%, #a855f7 100%)",
-    primaryHover: "linear-gradient(135deg, #fb923c 0%, #f472b6 50%, #c084fc 100%)",
+    primary: "linear-gradient(135deg, var(--game-accent, #8b5cf6), color-mix(in srgb, var(--game-accent, #8b5cf6) 72%, #263244))",
+    primaryHover: "linear-gradient(135deg, color-mix(in srgb, var(--game-accent, #8b5cf6) 88%, white), var(--game-accent, #8b5cf6))",
     secondary: "linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)",
     success: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
     danger: "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)",
@@ -53,7 +53,7 @@ export const colors = {
     secondary: "rgba(255,255,255,0.7)",
     muted: "rgba(255,255,255,0.5)",
     disabled: "rgba(255,255,255,0.3)",
-    inverse: "#0b0a1a",
+    inverse: "#080b10",
   },
   
   // Borders
@@ -61,7 +61,7 @@ export const colors = {
     light: "rgba(255,255,255,0.08)",
     medium: "rgba(255,255,255,0.15)",
     strong: "rgba(255,255,255,0.25)",
-    focus: "#a855f7",
+    focus: "var(--game-accent, #8b5cf6)",
   },
   
   // Team colors
@@ -92,8 +92,8 @@ export const borderRadius = {
   sm: "0.5rem",     // 8px
   md: "0.75rem",    // 12px
   lg: "1rem",       // 16px
-  xl: "1.5rem",     // 24px
-  "2xl": "2rem",    // 32px
+  xl: "1.25rem",    // 20px
+  "2xl": "1.625rem", // 26px
   full: "9999px",
 } as const;
 
@@ -121,7 +121,7 @@ export const transitions = {
 export const typography = {
   fontFamily: {
     sans: '"Inter", system-ui, sans-serif',
-    display: '"Baloo 2", "Inter", system-ui, sans-serif',
+    display: '"Manrope", "Inter", system-ui, sans-serif',
     mono: '"JetBrains Mono", "Fira Code", monospace',
   },
   fontSize: {
@@ -291,13 +291,13 @@ export const componentStyles = {
   // Card variants
   card: {
     base: {
-      borderRadius: borderRadius.xl,
+      borderRadius: borderRadius.lg,
       background: colors.bg.card,
       border: `1px solid ${colors.border.light}`,
       backdropFilter: "blur(10px)",
     },
     elevated: {
-      borderRadius: borderRadius.xl,
+      borderRadius: borderRadius.lg,
       background: colors.bg.card,
       border: `1px solid ${colors.border.medium}`,
       boxShadow: shadows.lg,
@@ -309,7 +309,7 @@ export const componentStyles = {
       border: `1px solid ${colors.border.medium}`,
     },
     gradient: {
-      borderRadius: borderRadius.xl,
+      borderRadius: borderRadius.lg,
       border: "1px solid transparent",
       background: "linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)) padding-box, linear-gradient(135deg, #a855f7, #ec4899) border-box",
     },

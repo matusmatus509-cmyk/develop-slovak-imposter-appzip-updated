@@ -50,20 +50,20 @@ const SECTIONS: Array<{
 
 export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => void }) {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#080b13] text-white">
+    <main className="relative min-h-screen overflow-hidden bg-[#080b10] text-white">
       <LanguageSwitcher />
       <img
         src={partyTableBackground}
         alt=""
-        className="pointer-events-none fixed inset-0 h-full w-full object-cover opacity-55"
+        className="pointer-events-none fixed inset-0 h-full w-full object-cover opacity-42 saturate-75"
       />
-      <div className="pointer-events-none fixed inset-0 bg-gradient-to-b from-[#080b13]/35 via-[#080b13]/70 to-[#080b13]" />
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_15%,rgba(255,255,255,.08),transparent_35%)]" />
+      <div className="pointer-events-none fixed inset-0 bg-gradient-to-b from-[#080b10]/30 via-[#080b10]/75 to-[#080b10]" />
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_8%,rgba(255,246,225,.07),transparent_34%)]" />
 
       <div className="relative mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-8 pt-8">
         <header className="mb-8" style={{ animation: "slideUp .55s ease-out both" }}>
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/25 px-3 py-1.5 backdrop-blur-xl">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,.8)]" />
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#11171e]/80 px-3 py-1.5">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
             <span className="text-[10px] font-extrabold uppercase tracking-[.22em] text-white/65">Jeden mobil · celá partia</span>
           </div>
           <h1 className="max-w-[320px] text-[2.65rem] font-black leading-[.96] tracking-[-.055em]">
@@ -83,18 +83,18 @@ export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => v
                 key={section.screen}
                 type="button"
                 onClick={() => onNavigate(section.screen)}
-                className="group relative min-h-[142px] overflow-hidden rounded-[28px] border border-white/[.13] bg-[#111722] text-left shadow-2xl transition duration-300 hover:-translate-y-1 hover:border-white/25 active:translate-y-0 active:scale-[.98]"
+                className="group relative min-h-[142px] overflow-hidden rounded-[22px] border border-white/[.11] bg-[#11171e] text-left shadow-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20 active:translate-y-0 active:scale-[.985]"
                 style={{
                   animation: `slideUp .55s ease-out ${120 + index * 90}ms both`,
-                  boxShadow: `0 18px 45px -28px ${section.glow}`,
+                  boxShadow: `0 18px 42px -31px ${section.glow}`,
                 }}
               >
                 <img
                   src={section.image}
                   alt=""
-                  className="absolute inset-0 h-full w-full object-cover object-center opacity-80 saturate-[.9] transition duration-500 group-hover:scale-[1.035] group-hover:opacity-90"
+                  className="absolute inset-0 h-full w-full object-cover object-center opacity-74 saturate-[.82] transition duration-500 group-hover:scale-[1.025] group-hover:opacity-86"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,#101620_0%,rgba(16,22,32,.97)_34%,rgba(16,22,32,.68)_61%,rgba(16,22,32,.1)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,#10161d_0%,rgba(16,22,29,.98)_36%,rgba(16,22,29,.72)_64%,rgba(16,22,29,.16)_100%)]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1019]/75 via-transparent to-white/[.03]" />
                 <div className={`absolute inset-y-0 left-0 w-1 bg-gradient-to-b ${section.accent}`} />
                 <div className="relative flex min-h-[142px] items-center p-5">
@@ -105,10 +105,10 @@ export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => v
                       </span>
                       <p className="text-[9px] font-extrabold uppercase tracking-[.18em] text-white/55">{section.eyebrow}</p>
                     </div>
-                    <h2 className="text-[1.65rem] font-black leading-none tracking-[-.035em] drop-shadow-md">{section.title}</h2>
+                    <h2 className="text-[1.55rem] font-extrabold leading-none tracking-[-.035em]">{section.title}</h2>
                     <p className="mt-2 text-[11px] font-semibold leading-snug text-white/58">{section.description}</p>
                   </div>
-                  <span className="absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white/65 shadow-lg backdrop-blur-md transition group-hover:translate-x-1 group-hover:bg-white/15 group-hover:text-white">
+                  <span className="absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-xl border border-white/12 bg-[#111820]/80 text-white/65 shadow-lg transition group-hover:translate-x-0.5 group-hover:bg-[#1b232d] group-hover:text-white">
                     <Icons.chevronRight size={20} />
                   </span>
                 </div>

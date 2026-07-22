@@ -169,7 +169,7 @@ export function LanguageSwitcher() {
         onClick={() => setIsOpen((open) => !open)}
         aria-label="Language"
         aria-expanded={isOpen}
-        className="flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-[#0b0f18]/90 px-3 text-white shadow-2xl backdrop-blur-xl transition hover:border-white/30 active:scale-95"
+        className="flex min-h-11 items-center gap-2 rounded-xl border border-white/12 bg-[#111820]/95 px-3 text-white shadow-xl transition hover:border-white/25 active:scale-95"
       >
         <span className="text-base" aria-hidden="true">{active.flag}</span>
         <span className="text-[11px] font-black uppercase tracking-wider">{active.code}</span>
@@ -177,7 +177,7 @@ export function LanguageSwitcher() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-44 overflow-hidden rounded-2xl border border-white/15 bg-[#0b0f18]/95 p-1.5 shadow-2xl backdrop-blur-xl">
+        <div className="absolute right-0 mt-2 w-44 overflow-hidden rounded-xl border border-white/12 bg-[#111820]/98 p-1.5 shadow-2xl">
           {options.map((option) => (
             <button
               key={option.code}
@@ -186,7 +186,7 @@ export function LanguageSwitcher() {
                 setLanguage(option.code);
                 setIsOpen(false);
               }}
-              className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-bold transition ${language === option.code ? "bg-white text-[#111827]" : "text-white/75 hover:bg-white/10 hover:text-white"}`}
+              className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-bold transition ${language === option.code ? "bg-[#f3efe6] text-[#111827]" : "text-white/75 hover:bg-white/[.07] hover:text-white"}`}
             >
               <span className="text-lg" aria-hidden="true">{option.flag}</span>
               <span>{option.label}</span>

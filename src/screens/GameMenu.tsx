@@ -44,11 +44,11 @@ export default function GameMenu({
               key={game.screen}
               type="button"
               onClick={() => onNavigate(game.screen)}
-              className="group relative grid min-h-[122px] grid-cols-[112px_1fr] overflow-hidden rounded-[28px] border bg-[#111722] text-left shadow-xl shadow-black/25 transition duration-300 hover:-translate-y-0.5 active:translate-y-0 active:scale-[.985]"
+              className="group relative grid min-h-[122px] grid-cols-[108px_1fr] overflow-hidden rounded-[20px] border bg-[#111820] text-left shadow-lg shadow-black/25 transition duration-300 hover:-translate-y-0.5 active:translate-y-0 active:scale-[.985]"
               style={{
                 animation: `slideUp .45s ease-out ${70 + index * 55}ms both`,
-                borderColor: welcome ? `color-mix(in srgb, ${welcome.accent} 25%, rgba(255,255,255,.08))` : "rgba(255,255,255,.1)",
-                boxShadow: welcome ? `0 20px 44px -34px ${welcome.accent}` : undefined,
+                borderColor: welcome ? `color-mix(in srgb, ${welcome.accent} 16%, rgba(255,255,255,.09))` : "rgba(255,255,255,.1)",
+                boxShadow: welcome ? `0 18px 36px -32px ${welcome.accent}` : undefined,
               }}
             >
               <div className="relative min-h-[122px] overflow-hidden bg-[#0c111a]">
@@ -56,7 +56,7 @@ export default function GameMenu({
                   <img
                     src={welcome.art}
                     alt=""
-                    className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.06]"
+                  className="absolute inset-0 h-full w-full object-cover saturate-[.82] transition duration-700 group-hover:scale-[1.035]"
                   />
                 ) : welcome ? (
                   <div
@@ -80,7 +80,7 @@ export default function GameMenu({
                 </span>
               </div>
 
-              <div className="relative flex min-w-0 flex-col justify-center py-4 pl-3 pr-10">
+              <div className="relative flex min-w-0 flex-col justify-center py-4 pl-4 pr-10">
                 <div className="mb-1.5 flex min-w-0 items-center gap-2">
                   <h2 className="truncate text-[15px] font-black tracking-[-.015em] text-white">{game.title}</h2>
                   {game.badge && <span className="shrink-0 rounded-full border border-white/10 bg-white/[.07] px-2 py-0.5 text-[8px] font-black uppercase tracking-wider text-white/55">{game.badge}</span>}

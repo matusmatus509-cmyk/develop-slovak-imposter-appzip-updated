@@ -252,17 +252,17 @@ export default function GameWelcome({
   return (
     <main
       className="game-welcome relative min-h-screen overflow-hidden text-white"
-      style={{ ...style, background: `linear-gradient(180deg, ${config.deep}, #070b12 72%)` }}
+      style={{ ...style, background: `linear-gradient(180deg, ${config.deep}, #080b10 68%)` }}
     >
-      <div className="pointer-events-none absolute inset-0 opacity-40 [background-image:radial-gradient(circle_at_15%_15%,var(--welcome-soft),transparent_34%),radial-gradient(circle_at_90%_70%,var(--welcome-soft),transparent_32%)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_50%_5%,var(--welcome-soft),transparent_38%)]" />
 
       <div className="relative mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-7 pt-5">
-        <div className="relative mb-5 h-[47vh] min-h-[330px] max-h-[460px] overflow-hidden rounded-[34px] border border-white/15 shadow-2xl animate-welcome-reveal">
+        <div className="relative mb-6 h-[46vh] min-h-[320px] max-h-[450px] overflow-hidden rounded-[26px] border border-white/12 shadow-2xl animate-welcome-reveal">
           {config.art ? (
             <img
               src={config.art}
               alt=""
-              className="absolute inset-0 h-full w-full scale-[1.04] object-cover"
+              className="absolute inset-0 h-full w-full scale-[1.02] object-cover saturate-[.9]"
             />
           ) : (
             <div
@@ -281,17 +281,17 @@ export default function GameWelcome({
             type="button"
             onClick={onBack}
             aria-label="Späť"
-            className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/35 text-white backdrop-blur-xl transition hover:bg-black/55 active:scale-90"
+            className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/16 bg-[#0d1218]/80 text-white shadow-lg transition hover:bg-[#18202a] active:scale-90"
           >
             <Icons.chevronLeft size={23} />
           </button>
 
           <div className="absolute inset-x-0 bottom-0 p-6">
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1.5 backdrop-blur-xl">
-              <span className="h-2 w-2 rounded-full" style={{ background: config.accent, boxShadow: `0 0 14px ${config.accent}` }} />
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/12 bg-[#0d1218]/70 px-3 py-1.5">
+              <span className="h-2 w-2 rounded-full" style={{ background: config.accent }} />
               <span className="text-[10px] font-black uppercase tracking-[.19em] text-white/75">{config.eyebrow}</span>
             </div>
-            <h1 className="max-w-[330px] text-[2.55rem] font-black leading-[.94] tracking-[-.05em] drop-shadow-xl">{config.title}</h1>
+            <h1 className="max-w-[330px] text-[2.45rem] font-extrabold leading-[.96] tracking-[-.045em] drop-shadow-xl">{config.title}</h1>
           </div>
         </div>
 
@@ -299,18 +299,18 @@ export default function GameWelcome({
           <p className="text-[15px] font-medium leading-relaxed text-white/62">{config.description}</p>
 
           <div className="my-5 grid grid-cols-2 gap-2.5">
-            <div className="rounded-2xl border border-white/10 bg-white/[.055] px-3.5 py-3 backdrop-blur-xl">
+            <div className="rounded-xl border border-white/10 bg-[#121922]/90 px-3.5 py-3">
               <p className="text-[9px] font-black uppercase tracking-[.17em] text-white/35">Hráči</p>
               <p className="mt-1 text-sm font-extrabold text-white/85">{config.players}</p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/[.055] px-3.5 py-3 backdrop-blur-xl">
+            <div className="rounded-xl border border-white/10 bg-[#121922]/90 px-3.5 py-3">
               <p className="text-[9px] font-black uppercase tracking-[.17em] text-white/35">Trvanie</p>
               <p className="mt-1 text-sm font-extrabold text-white/85">{config.duration}</p>
             </div>
           </div>
 
-          <div className="mb-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3.5">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl" style={{ background: config.accentSoft, color: config.accent }}>
+          <div className="mb-5 flex items-center gap-3 rounded-xl border border-white/10 bg-[#0d131a]/75 px-4 py-3.5">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg" style={{ background: config.accentSoft, color: config.accent }}>
               <Icons.sparkles size={18} />
             </span>
             <p className="text-xs font-bold leading-snug text-white/68">{config.rule}</p>
@@ -319,8 +319,8 @@ export default function GameWelcome({
           <button
             type="button"
             onClick={onStart}
-            className="mt-auto flex min-h-14 w-full items-center justify-between rounded-2xl px-5 text-left font-black text-white shadow-xl transition hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 active:scale-[.98]"
-            style={{ background: `linear-gradient(135deg, ${config.accent}, color-mix(in srgb, ${config.accent} 68%, #7c3aed))`, boxShadow: `0 18px 36px -20px ${config.accent}` }}
+            className="mt-auto flex min-h-14 w-full items-center justify-between rounded-xl border border-white/10 px-5 text-left font-extrabold text-white shadow-xl transition hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 active:scale-[.98]"
+            style={{ background: `linear-gradient(135deg, ${config.accent}, color-mix(in srgb, ${config.accent} 70%, #202a38))`, boxShadow: `0 18px 34px -24px ${config.accent}` }}
           >
             <span>Pripraviť hru</span>
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/18"><Icons.chevronRight size={20} /></span>

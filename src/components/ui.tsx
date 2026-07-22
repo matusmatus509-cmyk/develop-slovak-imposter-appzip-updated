@@ -177,7 +177,7 @@ export function Button({
     primary: {
       background: colors.gradient.primary,
       color: colors.text.primary,
-      boxShadow: "0 4px 14px 0 rgba(168, 85, 247, 0.4)",
+      boxShadow: "0 12px 28px -18px color-mix(in srgb, var(--game-accent, #8b5cf6) 78%, transparent)",
       "&:hover:not(:disabled)": {
         background: colors.gradient.primaryHover,
         boxShadow: "0 6px 20px 0 rgba(168, 85, 247, 0.5)",
@@ -237,7 +237,7 @@ export function Button({
       className={cn(
         "app-button inline-flex items-center justify-center font-bold transition-all duration-200",
         "active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0a1a]",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080b10]",
         fullWidth && "w-full",
         className
       )}
@@ -300,18 +300,18 @@ export function Chip({
       disabled={!onClick}
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-all active:scale-95",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0a1a]",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080b10]",
         variant === "default" && active
-          ? "bg-gradient-to-r from-orange-500 via-pink-500 to-fuchsia-600 text-white shadow-md shadow-fuchsia-900/40"
+          ? "bg-[var(--game-accent,#8b5cf6)] text-white shadow-md shadow-black/25"
           : variant === "default"
           ? "border border-white/10 bg-white/5 text-white/60 hover:bg-white/10"
           : variant === "outline"
           ? active
-            ? "border-fuchsia-400/60 bg-gradient-to-r from-orange-500/90 to-fuchsia-600/90 text-white shadow-md shadow-fuchsia-900/40"
+            ? "border-white/25 bg-[var(--game-accent,#8b5cf6)] text-white shadow-md shadow-black/25"
             : "border-white/10 bg-white/5 text-white/60 hover:bg-white/10"
           : variant === "filled"
           ? active
-            ? "bg-gradient-to-r from-orange-500 to-fuchsia-600 text-white shadow-md"
+            ? "bg-[var(--game-accent,#8b5cf6)] text-white shadow-md shadow-black/25"
             : "bg-white/10 text-white/60 hover:bg-white/20"
           : "",
         className
@@ -340,7 +340,7 @@ export function Toggle({
       disabled={disabled}
       className={cn(
         "flex w-full items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5 text-left transition-all",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0a1a]",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080b10]",
         disabled && "opacity-50 cursor-not-allowed"
       )}
     >
@@ -354,7 +354,7 @@ export function Toggle({
         className={cn(
           "relative h-7 w-12 shrink-0 rounded-full transition-all",
           checked
-            ? "bg-gradient-to-r from-orange-500 to-fuchsia-600"
+            ? "bg-[var(--game-accent,#8b5cf6)]"
             : "bg-white/15"
         )}
       >
@@ -393,7 +393,7 @@ export function Stepper({
           disabled={disabled || value <= min}
           className={cn(
             "flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-xl font-bold transition-colors",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
             (disabled || value <= min) && "opacity-30 cursor-not-allowed"
           )}
         >
@@ -408,7 +408,7 @@ export function Stepper({
           disabled={disabled || value >= max}
           className={cn(
             "flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-xl font-bold transition-colors",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
             (disabled || value >= max) && "opacity-30 cursor-not-allowed"
           )}
         >
@@ -428,11 +428,11 @@ export function TopBar({
   showBack = true,
 }: TopBarProps) {
   return (
-    <div className="relative z-30 mb-5 flex h-11 items-center justify-between">
+    <div className="relative z-30 mb-6 flex h-11 items-center justify-between">
       {showBack && onBack ? (
         <button
           onClick={onBack}
-          className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-[#151b27]/85 text-lg shadow-lg shadow-black/20 backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/15 active:translate-y-0 active:scale-95"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-[#151b23]/95 text-lg shadow-lg shadow-black/25 transition-all hover:border-white/20 hover:bg-[#1b232d] active:scale-95"
           aria-label="Späť"
         >
           <Icon name="chevronLeft" size={20} />
@@ -441,7 +441,7 @@ export function TopBar({
         <span className="w-10" />
       )}
       {title && (
-        <span className="rounded-full border border-white/[.08] bg-black/15 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[.16em] text-white/65 backdrop-blur-lg">
+        <span className="px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[.14em] text-white/55">
           {title}
         </span>
       )}
@@ -455,11 +455,10 @@ export function TopBar({
 function Background() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[var(--game-deep,#080d16)] transition-colors duration-700">
-      <img src={appTexture} alt="" className="absolute inset-0 h-full w-full object-cover opacity-80" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--game-deep,#080d16)]/25 to-[var(--game-deep,#080d16)]/75" />
-      <div className="absolute -top-36 -left-28 h-80 w-80 rounded-full bg-[var(--game-accent-soft,rgba(139,92,246,.18))] blur-[110px]" />
-      <div className="absolute top-[38%] -right-28 h-80 w-80 rounded-full bg-[var(--game-accent-soft,rgba(6,182,212,.12))] blur-[115px]" />
-      <div className="absolute -bottom-32 left-1/4 h-72 w-72 rounded-full bg-[var(--game-accent-soft,rgba(249,115,22,.12))] blur-[110px]" />
+      <img src={appTexture} alt="" className="absolute inset-0 h-full w-full object-cover opacity-55 saturate-75" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#080b10]/20 via-[var(--game-deep,#080d16)]/55 to-[#080b10]/95" />
+      <div className="absolute -top-44 left-1/2 h-80 w-[34rem] -translate-x-1/2 rounded-full bg-[var(--game-accent-soft,rgba(139,92,246,.16))] blur-[125px]" />
+      <div className="absolute inset-0 shadow-[inset_0_0_140px_rgba(0,0,0,.45)]" />
     </div>
   );
 }
@@ -468,7 +467,7 @@ export function Shell({ children, className = "", noBackground = false }: ShellP
   return (
     <div className={cn("relative min-h-screen w-full bg-transparent text-white", className)}>
       {!noBackground && <Background />}
-      <div className="mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-8 pt-6">
+      <div className="mx-auto flex min-h-screen w-full max-w-[30rem] flex-col px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(1.25rem,env(safe-area-inset-top))]">
         {children}
       </div>
     </div>
@@ -510,8 +509,8 @@ export function Input({
         <input
           id={inputId}
           className={cn(
-            "w-full rounded-2xl border bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none transition-all",
-            "focus:border-purple-400/60 focus:ring-2 focus:ring-purple-500/20",
+            "w-full rounded-xl border border-white/10 bg-[#111821]/90 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none transition-all",
+            "focus:border-white/25 focus:ring-2 focus:ring-white/10",
             "disabled:opacity-50 disabled:cursor-not-allowed",
             leftIcon && "pl-12",
             rightIcon && "pr-12",
@@ -553,19 +552,17 @@ export function Card({
   return (
     <div
       className={cn(
-        "backdrop-blur-xl transition-all duration-200",
-        variant === "base" && "border border-white/10 bg-[#111824]/78 shadow-lg shadow-black/15",
-        variant === "elevated" && "border border-white/15 bg-[#141b28]/88 shadow-xl shadow-black/30",
-        variant === "outlined" && "border border-white/15 bg-[#0d131e]/35",
-        variant === "gradient" && "border border-transparent bg-gradient-to-br from-white/10 to-white/5 shadow-xl shadow-black/20",
+        "transition-all duration-200",
+        variant === "base" && "border border-white/10 bg-[#111820]/92 shadow-lg shadow-black/20",
+        variant === "elevated" && "border border-white/12 bg-[#171e27]/96 shadow-xl shadow-black/35",
+        variant === "outlined" && "border border-white/12 bg-[#0d131a]/55",
+        variant === "gradient" && "border border-white/12 bg-[#151c25]/95 shadow-xl shadow-black/25",
         onClick && "cursor-pointer active:scale-[0.98]",
         className
       )}
       style={{
         borderRadius: borderRadius.xl,
-        ...(variant === "gradient" && {
-          background: "linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)) padding-box, linear-gradient(135deg, #a855f7, #ec4899) border-box",
-        }),
+        ...(variant === "gradient" && { background: "linear-gradient(145deg, rgba(255,255,255,.07), rgba(17,24,32,.96))" }),
       } as any}
       onClick={onClick}
     >
