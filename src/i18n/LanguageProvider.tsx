@@ -33,6 +33,32 @@ const replacementEntries = Object.fromEntries(
 const textRecords = new WeakMap<Text, { source: string; last: string }>();
 const attributeRecords = new WeakMap<Element, Map<string, { source: string; last: string }>>();
 const translatedAttributes = ["placeholder", "title", "aria-label"];
+const participantLabels: Record<AppLanguage, { player: string; team: string }> = {
+  sk: { player: "Hráč", team: "Tím" },
+  en: { player: "Player", team: "Team" },
+  de: { player: "Spieler", team: "Team" },
+  es: { player: "Jugador", team: "Equipo" },
+  fr: { player: "Joueur", team: "Équipe" },
+  pt: { player: "Jogador", team: "Equipa" },
+};
+const generatedPlayerPattern = /^(?:Hráč|Player|Spieler|Jugador|Joueur|Jogador)(?:\s+(\d+))?$/i;
+const generatedTeamPattern = /^(?:Tím|Team|Equipo|Équipe|Equipe|Equipa)\s+([A-Z])$/i;
+
+export function defaultPlayerName(language: AppLanguage, number?: number) {
+  return number === undefined ? participantLabels[language].player : `${participantLabels[language].player} ${number}`;
+}
+
+export function defaultTeamName(language: AppLanguage, letter: string) {
+  return `${participantLabels[language].team} ${letter}`;
+}
+
+export function localizeGeneratedParticipantName(name: string, language: AppLanguage) {
+  const player = name.match(generatedPlayerPattern);
+  if (player) return defaultPlayerName(language, player[1] ? Number(player[1]) : undefined);
+  const team = name.match(generatedTeamPattern);
+  if (team) return defaultTeamName(language, team[1].toUpperCase());
+  return name;
+}
 
 function preserveWhitespace(source: string, translated: string) {
   const leading = source.match(/^\s*/)?.[0] ?? "";

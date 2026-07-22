@@ -4,6 +4,11 @@ import type { GameSettings } from "../../types";
 import { Button, Chip, Shell, Stepper, TopBar } from "../../components/ui";
 import { maxImpostorsFor } from "../../utils/gameLogic";
 import { cn } from "../../utils/designTokens";
+import {
+  defaultPlayerName,
+  localizeGeneratedParticipantName,
+  useLanguage,
+} from "../../i18n/LanguageProvider";
 
 export default function DrawingSetup({
   initial,
@@ -14,7 +19,10 @@ export default function DrawingSetup({
   onBack: () => void;
   onStart: (settings: GameSettings) => void;
 }) {
-  const [players, setPlayers] = useState<string[]>(initial.playerNames);
+  const { language } = useLanguage();
+  const [players, setPlayers] = useState<string[]>(() =>
+    initial.playerNames.map((name) => localizeGeneratedParticipantName(name, language)),
+  );
   const [categoryIds, setCategoryIds] = useState<string[]>(
     // seed with drawing category ids if initial has none of them
     initial.categoryIds.some((id) => id.startsWith("draw-"))
@@ -30,7 +38,7 @@ export default function DrawingSetup({
 
   function addPlayer() {
     if (players.length >= 12) return;
-    setPlayers([...players, `Hráč ${players.length + 1}`]);
+    setPlayers([...players, defaultPlayerName(language, players.length + 1)]);
   }
 
   function removePlayer(index: number) {
@@ -54,7 +62,7 @@ export default function DrawingSetup({
 
   function handleStart() {
     onStart({
-      playerNames: players.map((p) => p.trim() || "Hráč"),
+      playerNames: players.map((p) => p.trim() || defaultPlayerName(language)),
       categoryIds,
       impostorCount: Math.min(impostorCount, maxImpostors),
       hintsEnabled: false,
@@ -103,7 +111,7 @@ export default function DrawingSetup({
                   value={name}
                   onChange={(e) => updatePlayer(i, e.target.value)}
                   className="flex-1 bg-transparent text-sm font-semibold outline-none placeholder:text-white/30"
-                  placeholder={`Hráč ${i + 1}`}
+                  placeholder={defaultPlayerName(language, i + 1)}
                   maxLength={16}
                 />
                 <button

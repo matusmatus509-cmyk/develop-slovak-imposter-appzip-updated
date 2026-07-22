@@ -20,7 +20,7 @@ import GameOver from "./GameOver";
 import { ForbiddenWordGame, GuessSongGame } from "./PassAndPlay";
 import SoundBuzzer from "./SoundBuzzer";
 import { FiveInTenGame, LetterChallengeGame } from "./QuickChallenges";
-import { useLanguage } from "../../i18n/LanguageProvider";
+import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 
 type Phase =
   | "setup"
@@ -41,7 +41,10 @@ function wordsForGame(game: GameType, includeSlovak: boolean): string[] {
 export default function TeamBattle({ onHome }: { onHome: () => void }) {
   const { language } = useLanguage();
   const [phase, setPhase] = useState<Phase>("setup");
-  const [teamNames, setTeamNames] = useState<[string, string]>(["Tím A", "Tím B"]);
+  const [teamNames, setTeamNames] = useState<[string, string]>([
+    defaultTeamName(language, "A"),
+    defaultTeamName(language, "B"),
+  ]);
   const [rounds, setRounds] = useState<BattleRound[]>([]);
   const [currentRoundIdx, setCurrentRoundIdx] = useState(0);
   const [totalScores, setTotalScores] = useState<[number, number]>([0, 0]);

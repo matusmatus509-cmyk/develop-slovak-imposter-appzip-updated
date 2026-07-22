@@ -13,6 +13,7 @@ import songArt from "../../assets/party-song.svg";
 import soundArt from "../../assets/party-sound.svg";
 import letterArt from "../../assets/party-letter.svg";
 import fiveTenArt from "../../assets/party-five-ten.svg";
+import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 
 const ALL_GAMES: GameType[] = [
   "pantomima", "sarady", "zakazane", "pesnicka", "zvuk",
@@ -46,7 +47,11 @@ export default function TeamBattleSetup({
   onBack: () => void;
   onStart: (teamNames: [string, string], selection: number | GameType[]) => void;
 }) {
-  const [names, setNames] = useState<[string, string]>(["Tím A", "Tím B"]);
+  const { language } = useLanguage();
+  const [names, setNames] = useState<[string, string]>([
+    defaultTeamName(language, "A"),
+    defaultTeamName(language, "B"),
+  ]);
   const [mode, setMode] = useState<BattleMode>("classic");
   const [classicRounds, setClassicRounds] = useState(5);
   const [customGames, setCustomGames] = useState<GameType[]>([]);
@@ -123,7 +128,7 @@ export default function TeamBattleSetup({
                     <input
                       value={names[index]}
                       onChange={(event) => setName(index, event.target.value)}
-                      placeholder={index === 0 ? "Tím A" : "Tím B"}
+                      placeholder={defaultTeamName(language, index === 0 ? "A" : "B")}
                       maxLength={20}
                       className="mt-1 w-full border-0 bg-transparent p-0 text-lg font-black text-white outline-none placeholder:text-white/25"
                     />

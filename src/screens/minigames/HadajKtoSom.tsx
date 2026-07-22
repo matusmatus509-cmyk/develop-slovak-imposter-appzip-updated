@@ -3,7 +3,7 @@ import { getCharacterCategories, type CharacterCategory } from "../../data/chara
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
-import { useLanguage } from "../../i18n/LanguageProvider";
+import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -58,9 +58,10 @@ function SetupScreen({
   onStart: (names: string[], catIds: string[], timerSeconds: number) => void;
   categories: CharacterCategory[];
 }) {
+  const { language } = useLanguage();
   const [count, setCount] = useState(3);
   const [names, setNames] = useState(
-    Array.from({ length: 8 }, (_, i) => `Hráč ${i + 1}`)
+    Array.from({ length: 8 }, (_, i) => defaultPlayerName(language, i + 1))
   );
   const [selectedCats, setSelectedCats] = useState([categories[0].id]);
   const [timer, setTimer] = useState(60);
@@ -78,7 +79,7 @@ function SetupScreen({
   function start() {
     const trimmedNames = names
       .slice(0, count)
-      .map((n, i) => n.trim() || `Hráč ${i + 1}`);
+      .map((n, i) => n.trim() || defaultPlayerName(language, i + 1));
     onStart(trimmedNames, selectedCats, timer);
   }
 
@@ -192,7 +193,7 @@ function SetupScreen({
                 prev.map((n, idx) => (idx === i ? e.target.value : n))
               )
             }
-            placeholder={`Hráč ${i + 1}`}
+            placeholder={defaultPlayerName(language, i + 1)}
             className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-cyan-400/60"
             style={{ animation: `slideUp 0.4s ease-out ${0.2 + i * 0.04}s both` }}
           />

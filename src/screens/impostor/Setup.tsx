@@ -4,6 +4,11 @@ import type { GameSettings } from "../../types";
 import { Button, Chip, Shell, Stepper, Toggle, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { maxImpostorsFor } from "../../utils/gameLogic";
+import {
+  defaultPlayerName,
+  localizeGeneratedParticipantName,
+  useLanguage,
+} from "../../i18n/LanguageProvider";
 
 const TIMER_OPTIONS = [
   { label: "30 s", value: 30 },
@@ -23,7 +28,10 @@ export default function Setup({
   onBack: () => void;
   onStart: (settings: GameSettings) => void;
 }) {
-  const [players, setPlayers] = useState<string[]>(initial.playerNames);
+  const { language } = useLanguage();
+  const [players, setPlayers] = useState<string[]>(() =>
+    initial.playerNames.map((name) => localizeGeneratedParticipantName(name, language)),
+  );
   const [categoryIds, setCategoryIds] = useState<string[]>(
     initial.categoryIds
   );
@@ -36,7 +44,7 @@ export default function Setup({
 
   function addPlayer() {
     if (players.length >= 12) return;
-    setPlayers([...players, `Hráč ${players.length + 1}`]);
+    setPlayers([...players, defaultPlayerName(language, players.length + 1)]);
   }
 
   function removePlayer(index: number) {
@@ -60,7 +68,7 @@ export default function Setup({
 
   function handleStart() {
     onStart({
-      playerNames: players.map((p) => p.trim() || "Hráč"),
+      playerNames: players.map((p) => p.trim() || defaultPlayerName(language)),
       categoryIds,
       impostorCount: Math.min(impostorCount, maxImpostors),
       hintsEnabled,
@@ -102,7 +110,7 @@ export default function Setup({
                   value={name}
                   onChange={(e) => updatePlayer(i, e.target.value)}
                   className="flex-1 bg-transparent text-sm font-semibold outline-none placeholder:text-white/30"
-                  placeholder={`Hráč ${i + 1}`}
+                  placeholder={defaultPlayerName(language, i + 1)}
                   maxLength={16}
                 />
                 <button

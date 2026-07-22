@@ -11,6 +11,7 @@ import songArt from "../../assets/party-song.svg";
 import soundArt from "../../assets/party-sound.svg";
 import letterArt from "../../assets/party-letter.svg";
 import fiveTenArt from "../../assets/party-five-ten.svg";
+import { defaultPlayerName, defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 
 type QuickGameType = "zakazane" | "pesnicka" | "zvuk" | "pismeno" | "patzadesat";
 
@@ -30,11 +31,14 @@ const GAME_ACCENT: Record<QuickGameType, string> = {
   patzadesat: "#34d399",
 };
 
-function defaultNames(mode: QuickPlayMode) {
-  return mode === "teams" ? ["Tím A", "Tím B"] : ["Hráč 1", "Hráč 2", "Hráč 3", "Hráč 4"];
+function defaultNames(mode: QuickPlayMode, language: Parameters<typeof defaultPlayerName>[0]) {
+  return mode === "teams"
+    ? [defaultTeamName(language, "A"), defaultTeamName(language, "B")]
+    : Array.from({ length: 4 }, (_, index) => defaultPlayerName(language, index + 1));
 }
 
 export default function TeamQuickGame({ game, onBack }: { game: QuickGameType; onBack: () => void }) {
+  const { language } = useLanguage();
   const [phase, setPhase] = useState<"setup" | "playing" | "result">("setup");
   const [gameMode, setGameMode] = useState<QuickPlayMode | null>(null);
   const [names, setNames] = useState<string[]>([]);
@@ -44,7 +48,7 @@ export default function TeamQuickGame({ game, onBack }: { game: QuickGameType; o
 
   function chooseMode(mode: QuickPlayMode) {
     setGameMode(mode);
-    setNames(defaultNames(mode));
+    setNames(defaultNames(mode, language));
     setScores([]);
     setPhase("setup");
   }
@@ -55,7 +59,7 @@ export default function TeamQuickGame({ game, onBack }: { game: QuickGameType; o
 
   function addPlayer() {
     if (names.length >= 8) return;
-    setNames((current) => [...current, `Hráč ${current.length + 1}`]);
+    setNames((current) => [...current, defaultPlayerName(language, current.length + 1)]);
   }
 
   function removePlayer(index: number) {

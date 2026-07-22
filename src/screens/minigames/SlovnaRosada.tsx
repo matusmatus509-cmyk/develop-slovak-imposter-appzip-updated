@@ -6,6 +6,7 @@ import {
 } from "../../data/charades";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
+import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -75,8 +76,11 @@ function SetupScreen({
   onBack: () => void;
   onStart: (names: string[], timerSecs: number, maxSkips: number, teamMode: boolean, difficulty: string) => void;
 }) {
+  const { language } = useLanguage();
   const [count, setCount] = useState(4);
-  const [names, setNames] = useState(Array.from({ length: 8 }, (_, i) => `Hráč ${i + 1}`));
+  const [names, setNames] = useState(
+    Array.from({ length: 8 }, (_, i) => defaultPlayerName(language, i + 1)),
+  );
   const [timerSecs, setTimerSecs] = useState(60);
   const [maxSkips, setMaxSkips] = useState(3);
   const [teamMode, setTeamMode] = useState(false);
@@ -200,7 +204,7 @@ function SetupScreen({
               onChange={(e) =>
                 setNames((prev) => prev.map((n, idx) => (idx === i ? e.target.value : n)))
               }
-              placeholder={`Hráč ${i + 1}`}
+              placeholder={defaultPlayerName(language, i + 1)}
               className="flex-1 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-purple-400/60"
             />
           </div>
@@ -261,7 +265,7 @@ function SetupScreen({
         fullWidth
         onClick={() =>
           onStart(
-            names.slice(0, count).map((n, i) => n.trim() || `Hráč ${i + 1}`),
+            names.slice(0, count).map((n, i) => n.trim() || defaultPlayerName(language, i + 1)),
             timerSecs,
             maxSkips,
             teamMode,

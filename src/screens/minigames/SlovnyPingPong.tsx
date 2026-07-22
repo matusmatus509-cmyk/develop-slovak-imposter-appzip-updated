@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { PING_PONG_PROMPTS } from "../../data/pingPongPrompts";
+import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -26,8 +27,9 @@ function SetupScreen({
   onBack: () => void;
   onStart: (name1: string, name2: string, secsToEdge: number) => void;
 }) {
-  const [name1, setName1] = useState("Hráč 1");
-  const [name2, setName2] = useState("Hráč 2");
+  const { language } = useLanguage();
+  const [name1, setName1] = useState(() => defaultPlayerName(language, 1));
+  const [name2, setName2] = useState(() => defaultPlayerName(language, 2));
   const [speed, setSpeed] = useState(4); // seconds for ball to reach edge from centre
 
   return (
@@ -49,7 +51,7 @@ function SetupScreen({
         <input
           value={name1}
           onChange={(e) => setName1(e.target.value)}
-          placeholder="Hráč 1"
+          placeholder={defaultPlayerName(language, 1)}
           className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-pink-400/60"
         />
       </div>
@@ -62,7 +64,7 @@ function SetupScreen({
         <input
           value={name2}
           onChange={(e) => setName2(e.target.value)}
-          placeholder="Hráč 2"
+          placeholder={defaultPlayerName(language, 2)}
           className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-blue-400/60"
         />
       </div>
@@ -94,7 +96,7 @@ function SetupScreen({
         </div>
       </div>
 
-      <Button fullWidth onClick={() => onStart(name1.trim() || "Hráč 1", name2.trim() || "Hráč 2", speed)}>
+      <Button fullWidth onClick={() => onStart(name1.trim() || defaultPlayerName(language, 1), name2.trim() || defaultPlayerName(language, 2), speed)}>
         🏓 Hrať!
       </Button>
     </Shell>
