@@ -1195,33 +1195,31 @@ export interface SoundClue {
   id: string;
   label: string;
   emoji: string;
+  audioUrl: string;
+  sourcePage: string;
+  credit: string;
+  license: string;
 }
 
 export const SOUND_CLUES: SoundClue[] = [
-  { id: "engine", label: "Motor auta", emoji: "🚗" },
-  { id: "cat", label: "Mačka", emoji: "🐈" },
-  { id: "vacuum", label: "Vysávač", emoji: "🧹" },
-  { id: "can", label: "Otvorenie plechovky", emoji: "🥫" },
-  { id: "dog", label: "Štekajúci pes", emoji: "🐕" },
-  { id: "rain", label: "Dážď", emoji: "🌧️" },
-  { id: "siren", label: "Policajná siréna", emoji: "🚓" },
-  { id: "clock", label: "Tikajúce hodiny", emoji: "⏰" },
-  { id: "doorbell", label: "Zvonček pri dverách", emoji: "🔔" },
-  { id: "phone", label: "Zvonenie telefónu", emoji: "📱" },
-  { id: "train", label: "Vlak", emoji: "🚆" },
-  { id: "heartbeat", label: "Búšenie srdca", emoji: "❤️" },
-  { id: "helicopter", label: "Vrtuľník", emoji: "🚁" },
-  { id: "microwave", label: "Mikrovlnka", emoji: "📟" },
-  { id: "keyboard", label: "Písanie na klávesnici", emoji: "⌨️" },
-  { id: "camera", label: "Fotoaparát", emoji: "📷" },
-  { id: "alarm", label: "Budík", emoji: "⏰" },
-  { id: "wind", label: "Silný vietor", emoji: "🌬️" },
-  { id: "laser", label: "Laser z videohry", emoji: "👾" },
-  { id: "applause", label: "Potlesk", emoji: "👏" },
-  { id: "horse", label: "Cválajúci kôň", emoji: "🐎" },
-  { id: "fire", label: "Praskajúci oheň", emoji: "🔥" },
-  { id: "bird", label: "Spievajúci vták", emoji: "🐦" },
-  { id: "water", label: "Tečúca voda", emoji: "🚰" },
+  { id: "engine", label: "Motor auta", emoji: "🚗", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b5/WWS_CarPrinzNSU1200Cengine.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:WWS_CarPrinzNSU1200Cengine.ogg", credit: "Work With Sounds / Technical Museum of Slovenia", license: "CC BY 4.0" },
+  { id: "cat", label: "Mňaukajúca mačka", emoji: "🐈", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Meow_of_a_pleading_cat.oga", sourcePage: "https://commons.wikimedia.org/wiki/File:Meow_of_a_pleading_cat.oga", credit: "Heismark", license: "Public domain" },
+  { id: "can", label: "Otvorenie plechovky", emoji: "🥫", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Opening_a_can.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Opening_a_can.ogg", credit: "stephan", license: "Public domain" },
+  { id: "dog", label: "Štekajúci pes", emoji: "🐕", audioUrl: "/sounds/dog.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Barking_of_a_dog.ogg", credit: "Amada44", license: "CC BY-SA 3.0" },
+  { id: "rain", label: "Dážď na okne", emoji: "🌧️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/4/41/Rain_against_the_window.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Rain_against_the_window.ogg", credit: "cori", license: "Public domain" },
+  { id: "siren", label: "Policajná siréna", emoji: "🚓", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ae/American_police_siren_i.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:American_police_siren_i.ogg", credit: "lezer", license: "Public domain" },
+  { id: "clock", label: "Tikajúce hodiny", emoji: "🕰️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Alarm_clock_ticking.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Alarm_clock_ticking.ogg", credit: "ezwa", license: "Public domain" },
+  { id: "doorbell", label: "Zvonček pri dverách", emoji: "🔔", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/9/90/Doorbell-cheap-dingdong.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Doorbell-cheap-dingdong.ogg", credit: "Wikimedia Commons", license: "Public domain" },
+  { id: "phone", label: "Zvonenie telefónu", emoji: "☎️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/1/1c/Telephone.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Telephone.ogg", credit: "Dsw4", license: "Public domain" },
+  { id: "train", label: "Klaksón vlaku", emoji: "🚆", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8a/4000_class_train_horn.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:4000_class_train_horn.ogg", credit: "Cityedit14", license: "CC BY-SA 4.0" },
+  { id: "heartbeat", label: "Búšenie srdca", emoji: "❤️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2b/Heartbeat_mitral_valve_150_bpm.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Heartbeat_mitral_valve_150_bpm.ogg", credit: "ezwa", license: "Public domain" },
+  { id: "helicopter", label: "Vrtuľník", emoji: "🚁", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Helicopter_over_quiet_neighbourhood.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Helicopter_over_quiet_neighbourhood.ogg", credit: "ezwa", license: "Public domain" },
+  { id: "microwave", label: "Mikrovlnná rúra", emoji: "📟", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Microwave_oven.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Microwave_oven.ogg", credit: "stephan", license: "Public domain" },
+  { id: "keyboard", label: "Písanie na klávesnici", emoji: "⌨️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Keyboard_noise.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Keyboard_noise.ogg", credit: "Yuyudevil", license: "Public domain" },
+  { id: "alarm", label: "Budík", emoji: "⏰", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f4/Alarm_Clock_%28Directory.Audio%29.mp3", sourcePage: "https://commons.wikimedia.org/wiki/File:Alarm_Clock_(Directory.Audio).mp3", credit: "Yoo-toob-FX", license: "CC0" },
+  { id: "applause", label: "Potlesk", emoji: "👏", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/0/09/Applause_ii.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Applause_ii.ogg", credit: "thore", license: "Public domain" },
+  { id: "horse", label: "Cválajúce kone", emoji: "🐎", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/9/96/Six_Horses_Galloping_By.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Six_Horses_Galloping_By.ogg", credit: "Freesound Community / Bruno Auzet", license: "CC0" },
+  { id: "fire", label: "Praskajúci oheň", emoji: "🔥", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/8/80/Bones_breaking_wood_fire_ice_crackling.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Bones_breaking_wood_fire_ice_crackling.ogg", credit: "stephan", license: "Public domain" },
 ];
 
 const LETTER_CATEGORIES = [

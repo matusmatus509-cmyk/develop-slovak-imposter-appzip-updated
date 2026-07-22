@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import soundArt from "../../assets/party-sound.svg";
 import { shuffle } from "../../data/teamBattle";
 import { SOUND_CLUES } from "../../data/teamBattleExtras";
@@ -6,76 +6,9 @@ import { ParticipantScoreStrip, PartyBackdrop, PartyEyebrow } from "./PartyChrom
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
 
 type Phase = { type: "question" } | { type: "buzzed"; participant: number } | { type: "revealed"; participant: number };
+type AudioStatus = "idle" | "loading" | "playing" | "ready" | "error";
 const QUESTIONS_PER_ROUND = 10;
-
-function playSyntheticSound(id: string) {
-  const AudioContextClass = window.AudioContext;
-  if (!AudioContextClass) return;
-  const ctx = new AudioContextClass();
-  const master = ctx.createGain();
-  master.gain.value = 0.24;
-  master.connect(ctx.destination);
-  const now = ctx.currentTime + 0.04;
-
-  const tone = (frequency: number, start: number, duration: number, type: OscillatorType = "sine", endFrequency?: number) => {
-    const oscillator = ctx.createOscillator();
-    const gain = ctx.createGain();
-    oscillator.type = type;
-    oscillator.frequency.setValueAtTime(frequency, now + start);
-    if (endFrequency) oscillator.frequency.exponentialRampToValueAtTime(endFrequency, now + start + duration);
-    gain.gain.setValueAtTime(0.0001, now + start);
-    gain.gain.exponentialRampToValueAtTime(0.7, now + start + Math.min(0.03, duration / 3));
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + start + duration);
-    oscillator.connect(gain).connect(master);
-    oscillator.start(now + start);
-    oscillator.stop(now + start + duration);
-  };
-
-  const noise = (start: number, duration: number, pitch = 900, volume = 0.35) => {
-    const buffer = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * duration), ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let index = 0; index < data.length; index++) data[index] = Math.random() * 2 - 1;
-    const source = ctx.createBufferSource();
-    const filter = ctx.createBiquadFilter();
-    const gain = ctx.createGain();
-    filter.type = "lowpass";
-    filter.frequency.value = pitch;
-    gain.gain.setValueAtTime(volume, now + start);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + start + duration);
-    source.buffer = buffer;
-    source.connect(filter).connect(gain).connect(master);
-    source.start(now + start);
-  };
-
-  switch (id) {
-    case "engine": noise(0, 2.4, 280, .65); for (let i = 0; i < 9; i++) tone(65 + i * 4, i * .25, .3, "sawtooth", 85 + i * 4); break;
-    case "cat": tone(650, 0, .55, "sine", 1050); tone(900, .55, .7, "sine", 500); tone(700, 1.5, .45, "sine", 1100); break;
-    case "vacuum": noise(0, 2.6, 1300, .7); tone(115, 0, 2.6, "sawtooth", 125); break;
-    case "can": noise(0, .12, 5000, .9); tone(1200, .08, .35, "triangle", 350); noise(.18, .8, 6000, .3); break;
-    case "dog": for (const start of [0, .38, 1.1, 1.45]) { tone(260, start, .18, "square", 110); noise(start, .16, 700, .4); } break;
-    case "rain": for (let i = 0; i < 18; i++) noise(i * .13, .12, 5000, .15); noise(0, 2.5, 2600, .25); break;
-    case "siren": for (let i = 0; i < 4; i++) { tone(520, i * .55, .27, "sine", 940); tone(940, i * .55 + .27, .27, "sine", 520); } break;
-    case "clock": for (let i = 0; i < 6; i++) { tone(i % 2 ? 900 : 1200, i * .42, .05, "square"); } break;
-    case "doorbell": tone(660, 0, .65); tone(520, .7, .9); break;
-    case "phone": for (let i = 0; i < 3; i++) { tone(700, i * .7, .25, "square"); tone(900, i * .7 + .25, .25, "square"); } break;
-    case "train": tone(150, 0, 1.1, "sawtooth", 95); tone(190, 0, 1.1, "sine", 130); noise(1.1, 1.2, 450, .5); break;
-    case "heartbeat": for (let i = 0; i < 3; i++) { tone(75, i * .72, .13, "sine", 45); tone(62, i * .72 + .18, .16, "sine", 40); } break;
-    case "helicopter": for (let i = 0; i < 20; i++) noise(i * .11, .08, 230, .65); tone(85, 0, 2.3, "sawtooth"); break;
-    case "microwave": tone(880, 0, .15); tone(880, .23, .15); tone(880, .46, .35); break;
-    case "keyboard": for (let i = 0; i < 24; i++) noise(i * .075 + Math.random() * .03, .035, 5500, .45); break;
-    case "camera": noise(0, .07, 4500, .6); tone(1400, .08, .08, "square"); noise(.18, .12, 2500, .8); break;
-    case "alarm": for (let i = 0; i < 8; i++) tone(1050, i * .23, .14, "square"); break;
-    case "wind": noise(0, 2.7, 1100, .55); tone(210, 0, 2.5, "sine", 330); break;
-    case "laser": for (let i = 0; i < 5; i++) tone(1400, i * .35, .22, "sawtooth", 120); break;
-    case "applause": for (let i = 0; i < 35; i++) noise(Math.random() * 2, .08, 3500, .3); break;
-    case "horse": for (let i = 0; i < 8; i++) { tone(120, i * .28, .08, "triangle", 55); noise(i * .28, .07, 550, .4); } break;
-    case "fire": noise(0, 2.5, 900, .35); for (let i = 0; i < 9; i++) noise(Math.random() * 2.2, .05, 4000, .6); break;
-    case "bird": for (let i = 0; i < 7; i++) tone(1200 + Math.random() * 700, i * .3, .16, "sine", 1800 + Math.random() * 500); break;
-    case "water": noise(0, 2.5, 2400, .45); for (let i = 0; i < 8; i++) tone(500 + Math.random() * 700, i * .3, .1, "sine"); break;
-    default: tone(440, 0, .3); tone(660, .35, .3);
-  }
-  window.setTimeout(() => void ctx.close(), 3300);
-}
+const MAX_SOUND_SECONDS = 7;
 
 export default function SoundBuzzer({ participantNames, gameMode, onDone }: QuickParticipantsProps) {
   const deck = useMemo(() => shuffle(SOUND_CLUES).slice(0, QUESTIONS_PER_ROUND), []);
@@ -83,20 +16,53 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone }: Quic
   const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
   const [phase, setPhase] = useState<Phase>({ type: "question" });
   const [played, setPlayed] = useState(false);
-  const audioLock = useRef(false);
+  const [audioStatus, setAudioStatus] = useState<AudioStatus>("idle");
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const stopTimerRef = useRef<number | null>(null);
   const clue = deck[questionIndex];
   const playerWord = gameMode === "teams" ? "tím" : "hráč";
 
-  function play() {
-    if (audioLock.current) return;
-    audioLock.current = true;
-    setPlayed(true);
-    playSyntheticSound(clue.id);
-    window.setTimeout(() => { audioLock.current = false; }, 2900);
+  function stopAudio(nextStatus: AudioStatus = "ready") {
+    if (stopTimerRef.current !== null) window.clearTimeout(stopTimerRef.current);
+    stopTimerRef.current = null;
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      audioRef.current = null;
+    }
+    setAudioStatus(nextStatus);
+  }
+
+  useEffect(() => () => {
+    if (stopTimerRef.current !== null) window.clearTimeout(stopTimerRef.current);
+    audioRef.current?.pause();
+  }, []);
+
+  async function play() {
+    if (audioStatus === "loading") return;
+    stopAudio("loading");
+    const audio = new Audio(clue.audioUrl);
+    audio.preload = "auto";
+    audio.volume = 0.9;
+    audioRef.current = audio;
+    audio.addEventListener("ended", () => {
+      audioRef.current = null;
+      setAudioStatus("ready");
+    }, { once: true });
+    try {
+      await audio.play();
+      setPlayed(true);
+      setAudioStatus("playing");
+      stopTimerRef.current = window.setTimeout(() => stopAudio("ready"), MAX_SOUND_SECONDS * 1000);
+    } catch {
+      audioRef.current = null;
+      setAudioStatus("error");
+    }
   }
 
   function resolve(correct: boolean) {
     if (phase.type !== "revealed") return;
+    stopAudio("idle");
     const scorer = correct ? phase.participant : gameMode === "teams" && participantNames.length === 2 ? 1 - phase.participant : null;
     const nextScores = [...scores];
     if (scorer !== null) nextScores[scorer] += 1;
@@ -119,26 +85,35 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone }: Quic
             <span className="text-[10px] font-black uppercase tracking-wider text-white/30">{questionIndex + 1}/{deck.length}</span>
           </div>
 
-          <section className="party-glass relative mt-5 flex flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.2rem] px-6 py-8">
+          <section className="party-glass relative mt-5 flex flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.2rem] px-6 py-7">
             <div className="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent" />
-            <div className="relative h-44 w-full max-w-sm shrink-0 overflow-hidden rounded-[1.8rem] border border-cyan-300/20 shadow-[0_0_70px_rgba(34,211,238,.18)]">
+            <div className="relative h-40 w-full max-w-sm shrink-0 overflow-hidden rounded-[1.8rem] border border-cyan-300/20 shadow-[0_0_70px_rgba(34,211,238,.18)]">
               <img src={soundArt} alt="Ilustrácia zvukovej minihry" className="h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#07131b]/75 via-transparent to-cyan-400/10" />
               <button
-                onClick={play}
-                aria-label="Prehrať zvuk"
+                onClick={audioStatus === "playing" ? () => stopAudio("ready") : play}
+                aria-label={audioStatus === "playing" ? "Zastaviť zvuk" : "Prehrať zvuk"}
                 className="party-shine absolute inset-0 flex items-center justify-center transition active:scale-95"
               >
-                <span className={`flex h-24 w-24 items-center justify-center rounded-full border border-white/25 bg-black/35 text-5xl shadow-2xl backdrop-blur-md ${audioLock.current ? "animate-pulse" : ""}`}>{played ? "🔊" : "▶️"}</span>
+                <span className={`flex h-24 w-24 items-center justify-center rounded-full border border-white/25 bg-black/40 text-5xl shadow-2xl backdrop-blur-md ${audioStatus === "loading" || audioStatus === "playing" ? "animate-pulse" : ""}`}>
+                  {audioStatus === "loading" ? "⌛" : audioStatus === "playing" ? "⏹️" : played ? "🔊" : "▶️"}
+                </span>
               </button>
             </div>
-            <h1 className="mt-6 text-2xl font-black text-white">
-              {phase.type === "question" ? (played ? "Kto pozná tento zvuk?" : "Prehrajte tajný zvuk") : phase.type === "buzzed" ? `${participantNames[phase.participant]} odpovedá` : clue.label}
+            <h1 className="mt-5 text-2xl font-black text-white">
+              {phase.type === "question" ? (played ? "Kto pozná tento zvuk?" : "Prehrajte skutočný zvuk") : phase.type === "buzzed" ? `${participantNames[phase.participant]} odpovedá` : clue.label}
             </h1>
             <p className="mt-2 max-w-xs text-sm leading-relaxed text-white/40">
-              {phase.type === "question" ? `Zvuk môžete prehrať znova. Keď ho ${playerWord} spozná, stlačí svoj bzučiak.` : phase.type === "buzzed" ? `${gameMode === "teams" ? "Tím" : "Hráč"} povie odpoveď nahlas a moderátor potom odkryje správny zvuk.` : `Správna odpoveď: ${clue.label}`}
+              {audioStatus === "error" ? "Zvuk sa nepodarilo načítať. Skontrolujte internet a skúste ho prehrať znova." : phase.type === "question" ? `Zvuk môžete prehrať znova. Keď ho ${playerWord} spozná, stlačí svoj bzučiak.` : phase.type === "buzzed" ? `${gameMode === "teams" ? "Tím" : "Hráč"} povie odpoveď nahlas a moderátor potom odkryje správny zvuk.` : `Správna odpoveď: ${clue.label}`}
             </p>
-            {phase.type === "revealed" && <div className="mt-5 text-7xl">{clue.emoji}</div>}
+            {phase.type === "revealed" && (
+              <div className="mt-4">
+                <div className="text-6xl">{clue.emoji}</div>
+                <a href={clue.sourcePage} target="_blank" rel="noreferrer" className="mt-3 block max-w-xs text-[8px] font-bold leading-relaxed text-white/25 underline decoration-white/15 underline-offset-2">
+                  Zvuk: {clue.credit} · {clue.license} · Wikimedia Commons
+                </a>
+              </div>
+            )}
           </section>
 
           <div className="mt-4">
@@ -146,7 +121,7 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone }: Quic
               <div className="grid grid-cols-2 gap-3">
                 {participantNames.map((name, participant) => {
                   const color = PARTY_PLAYER_COLORS[participant % PARTY_PLAYER_COLORS.length];
-                  return <button key={`${name}-${participant}`} disabled={!played} onClick={() => setPhase({ type: "buzzed", participant })} className="party-shine overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30" style={{ background: color }}>🔔<span className="mt-1 block truncate px-2 text-sm">{name}</span></button>;
+                  return <button key={`${name}-${participant}`} disabled={!played} onClick={() => { stopAudio("ready"); setPhase({ type: "buzzed", participant }); }} className="party-shine overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30" style={{ background: color }}>🔔<span className="mt-1 block truncate px-2 text-sm">{name}</span></button>;
                 })}
               </div>
             )}
