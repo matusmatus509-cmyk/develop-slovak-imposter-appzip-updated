@@ -31,6 +31,24 @@ const GAME_ACCENT: Record<QuickGameType, string> = {
   patzadesat: "#34d399",
 };
 
+interface GameOptions {
+  rounds: number[];
+  defaultRounds: number;
+  times: number[];
+  defaultTime: number;
+  roundsLabel: string;
+  timeLabel: string;
+  roundsArePerParticipant: boolean;
+}
+
+const GAME_OPTIONS: Record<QuickGameType, GameOptions> = {
+  zakazane: { rounds: [1, 2, 3, 4], defaultRounds: 1, times: [30, 45, 60, 90], defaultTime: 60, roundsLabel: "Kolá na hráča / tím", timeLabel: "Čas jedného kola", roundsArePerParticipant: true },
+  pesnicka: { rounds: [1, 2, 3, 4], defaultRounds: 1, times: [30, 45, 60, 90], defaultTime: 60, roundsLabel: "Kolá na hráča / tím", timeLabel: "Čas jedného kola", roundsArePerParticipant: true },
+  zvuk: { rounds: [5, 10, 15, 20], defaultRounds: 10, times: [5, 7, 10, 15], defaultTime: 7, roundsLabel: "Počet zvukov", timeLabel: "Dĺžka ukážky", roundsArePerParticipant: false },
+  pismeno: { rounds: [1, 2, 3, 4], defaultRounds: 2, times: [5, 7, 10, 15], defaultTime: 5, roundsLabel: "Kolá na hráča / tím", timeLabel: "Čas na odpoveď", roundsArePerParticipant: true },
+  patzadesat: { rounds: [1, 2, 3, 4], defaultRounds: 2, times: [10, 15, 20, 30], defaultTime: 10, roundsLabel: "Kolá na hráča / tím", timeLabel: "Čas na výzvu", roundsArePerParticipant: true },
+};
+
 function defaultNames(mode: QuickPlayMode, language: Parameters<typeof defaultPlayerName>[0]) {
   return mode === "teams"
     ? [defaultTeamName(language, "A"), defaultTeamName(language, "B")]
@@ -45,6 +63,9 @@ export default function TeamQuickGame({ game, onBack }: { game: QuickGameType; o
   const [scores, setScores] = useState<number[]>([]);
   const [run, setRun] = useState(0);
   const accent = GAME_ACCENT[game];
+  const options = GAME_OPTIONS[game];
+  const [rounds, setRounds] = useState(options.defaultRounds);
+  const [timeSeconds, setTimeSeconds] = useState(options.defaultTime);
 
   function chooseMode(mode: QuickPlayMode) {
     setGameMode(mode);
@@ -78,9 +99,9 @@ export default function TeamQuickGame({ game, onBack }: { game: QuickGameType; o
   }
 
   if (phase === "playing" && gameMode) {
-    const shared = { key: run, participantNames: names, gameMode, onDone: finish };
-    if (game === "zakazane") return <ForbiddenWordGame {...shared} timeSeconds={60} />;
-    if (game === "pesnicka") return <GuessSongGame {...shared} timeSeconds={60} />;
+    const shared = { key: run, participantNames: names, gameMode, rounds, timeSeconds, onDone: finish };
+    if (game === "zakazane") return <ForbiddenWordGame {...shared} />;
+    if (game === "pesnicka") return <GuessSongGame {...shared} />;
     if (game === "zvuk") return <SoundBuzzer {...shared} />;
     if (game === "pismeno") return <LetterChallengeGame {...shared} />;
     return <FiveInTenGame {...shared} />;
@@ -163,6 +184,56 @@ export default function TeamQuickGame({ game, onBack }: { game: QuickGameType; o
                   );
                 })}
                 {gameMode === "players" && names.length < 8 && <button onClick={addPlayer} className="party-glass w-full rounded-2xl py-4 text-sm font-black text-white/60 transition active:scale-95">+ Pridať hráča</button>}
+              </section>
+
+              <section className="party-glass mt-5 rounded-[1.8rem] p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.24em]" style={{ color: accent }}>Nastavenie hry</p>
+                    <p className="mt-1 text-sm font-bold text-white/65">Prispôsobte si tempo a dĺžku</p>
+                  </div>
+                  <span className="rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2 text-[10px] font-black text-white/45">
+                    {options.roundsArePerParticipant ? rounds * names.length : rounds} kôl
+                  </span>
+                </div>
+
+                <div className="mt-5">
+                  <div className="flex items-center justify-between">
+                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">{options.roundsLabel}</p>
+                    <span className="text-xs font-black" style={{ color: accent }}>{rounds}</span>
+                  </div>
+                  <div className="mt-2 grid grid-cols-4 gap-2">
+                    {options.rounds.map((value) => (
+                      <button
+                        key={value}
+                        onClick={() => setRounds(value)}
+                        className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${rounds === value ? "text-white shadow-lg" : "border-white/10 bg-white/[0.035] text-white/35"}`}
+                        style={rounds === value ? { borderColor: `${accent}aa`, background: `${accent}2e`, boxShadow: `0 10px 25px ${accent}18` } : undefined}
+                      >
+                        {value}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-5">
+                  <div className="flex items-center justify-between">
+                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">{options.timeLabel}</p>
+                    <span className="text-xs font-black" style={{ color: accent }}>{timeSeconds} s</span>
+                  </div>
+                  <div className="mt-2 grid grid-cols-4 gap-2">
+                    {options.times.map((value) => (
+                      <button
+                        key={value}
+                        onClick={() => setTimeSeconds(value)}
+                        className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${timeSeconds === value ? "text-white shadow-lg" : "border-white/10 bg-white/[0.035] text-white/35"}`}
+                        style={timeSeconds === value ? { borderColor: `${accent}aa`, background: `${accent}2e`, boxShadow: `0 10px 25px ${accent}18` } : undefined}
+                      >
+                        {value}s
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </section>
 
               <button onClick={start} disabled={names.some((name) => !name.trim())} className="party-shine mt-6 w-full overflow-hidden rounded-2xl py-5 text-base font-black uppercase tracking-wider text-white shadow-xl transition active:scale-[.97] disabled:opacity-35" style={{ background: `linear-gradient(135deg, ${accent}, #7c3aed)` }}>Začať minihru</button>

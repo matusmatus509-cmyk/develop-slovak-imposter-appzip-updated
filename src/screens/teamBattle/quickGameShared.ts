@@ -4,6 +4,8 @@ export interface QuickParticipantsProps {
   participantNames: string[];
   gameMode: QuickPlayMode;
   onDone: (scores: number[]) => void;
+  rounds?: number;
+  timeSeconds?: number;
 }
 
 export const PARTY_PLAYER_COLORS = [

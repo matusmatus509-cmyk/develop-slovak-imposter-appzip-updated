@@ -74,10 +74,11 @@ function PlayerTurnCard({ name, color, label }: { name: string; color: string; l
   );
 }
 
-export function LetterChallengeGame({ participantNames, gameMode, onDone }: QuickParticipantsProps) {
+export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds, timeSeconds = 5 }: QuickParticipantsProps) {
+  const turnCount = rounds ? participantNames.length * rounds : Math.max(LETTER_TURNS, participantNames.length * 2);
   const deck = useMemo(
-    () => shuffle(LETTER_CHALLENGES).slice(0, Math.max(LETTER_TURNS, participantNames.length * 2)),
-    [participantNames.length],
+    () => shuffle(LETTER_CHALLENGES).slice(0, turnCount),
+    [turnCount],
   );
   const [turn, setTurn] = useState(0);
   const [phase, setPhase] = useState<RoundPhase>("ready");
@@ -102,7 +103,7 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone }: Quic
     navigator.vibrate?.(success ? [25, 35, 25] : 70);
   }
 
-  const timer = useSmoothTimer(5, phase === "playing", () => finish(false));
+  const timer = useSmoothTimer(timeSeconds, phase === "playing", () => finish(false));
 
   function start() {
     setFeedback(null);
@@ -143,7 +144,7 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone }: Quic
 
             {phase === "playing" && (
               <div key={turn} className="animate-pop-in flex w-full flex-col items-center">
-                <CircularTimer value={timer.remaining} total={5} color={timer.remaining <= 2 ? "#fb7185" : "#fbbf24"} size={118} />
+                <CircularTimer value={timer.remaining} total={timeSeconds} color={timer.remaining <= Math.min(3, timeSeconds / 2) ? "#fb7185" : "#fbbf24"} size={118} />
                 <p className="mt-6 text-[11px] font-black uppercase tracking-[0.25em] text-amber-200/65">{challenge.category}</p>
                 <div className="relative mt-4 flex h-32 w-32 items-center justify-center rounded-[2.3rem] border border-amber-200/35 bg-gradient-to-br from-amber-300 to-orange-500 text-8xl font-black text-[#211105] shadow-[0_20px_60px_rgba(251,191,36,.3)]">
                   {challenge.letter}
@@ -191,10 +192,11 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone }: Quic
   );
 }
 
-export function FiveInTenGame({ participantNames, onDone }: QuickParticipantsProps) {
+export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 10 }: QuickParticipantsProps) {
+  const turnCount = rounds ? participantNames.length * rounds : Math.max(FIVE_TURNS, participantNames.length * 2);
   const prompts = useMemo(
-    () => shuffle(FIVE_IN_TEN_PROMPTS).slice(0, Math.max(FIVE_TURNS, participantNames.length * 2)),
-    [participantNames.length],
+    () => shuffle(FIVE_IN_TEN_PROMPTS).slice(0, turnCount),
+    [turnCount],
   );
   const [turn, setTurn] = useState(0);
   const [phase, setPhase] = useState<RoundPhase>("ready");
@@ -214,7 +216,7 @@ export function FiveInTenGame({ participantNames, onDone }: QuickParticipantsPro
     navigator.vibrate?.(completed ? [30, 35, 30, 35, 50] : 70);
   }
 
-  const timer = useSmoothTimer(10, phase === "playing", () => finish(false));
+  const timer = useSmoothTimer(timeSeconds, phase === "playing", () => finish(false));
 
   function start() {
     setCount(0);
@@ -270,7 +272,7 @@ export function FiveInTenGame({ participantNames, onDone }: QuickParticipantsPro
             {phase === "playing" && (
               <div key={turn} className="animate-pop-in flex w-full flex-col items-center">
                 <div className="flex w-full items-center justify-center gap-5">
-                  <CircularTimer value={timer.remaining} total={10} color={timer.remaining <= 3 ? "#fb7185" : "#34d399"} size={112} />
+                  <CircularTimer value={timer.remaining} total={timeSeconds} color={timer.remaining <= Math.min(3, timeSeconds / 3) ? "#fb7185" : "#34d399"} size={112} />
                   <div className="text-left">
                     <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/35">Odpovede</p>
                     <p className="mt-1 text-5xl font-black tabular-nums text-emerald-300">{count}<span className="text-2xl text-white/25">/5</span></p>

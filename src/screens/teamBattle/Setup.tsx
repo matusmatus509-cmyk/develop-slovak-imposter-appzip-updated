@@ -20,6 +20,10 @@ const ALL_GAMES: GameType[] = [
   "pismeno", "patzadesat", "hadajktosom", "quiz", "pingpong",
 ];
 type BattleMode = "classic" | "custom";
+export interface TeamBattleOptions {
+  quickRounds: number;
+  timeSeconds: number;
+}
 const GAME_ART: Record<GameType, string> = {
   pantomima: "33.333% 0%",
   sarady: "100% 0%",
@@ -45,7 +49,7 @@ export default function TeamBattleSetup({
   onStart,
 }: {
   onBack: () => void;
-  onStart: (teamNames: [string, string], selection: number | GameType[]) => void;
+  onStart: (teamNames: [string, string], selection: number | GameType[], options: TeamBattleOptions) => void;
 }) {
   const { language } = useLanguage();
   const [names, setNames] = useState<[string, string]>([
@@ -55,6 +59,8 @@ export default function TeamBattleSetup({
   const [mode, setMode] = useState<BattleMode>("classic");
   const [classicRounds, setClassicRounds] = useState(5);
   const [customGames, setCustomGames] = useState<GameType[]>([]);
+  const [quickRounds, setQuickRounds] = useState(2);
+  const [timeSeconds, setTimeSeconds] = useState(60);
   const [blue, red] = TEAM_COLORS;
 
   function setName(index: 0 | 1, value: string) {
@@ -294,8 +300,52 @@ export default function TeamBattleSetup({
             </section>
           )}
 
+          <section className="party-glass mt-4 rounded-[1.75rem] p-5">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-emerald-300/70">Pravidlá kôl</p>
+              <p className="mt-1 text-sm font-bold text-white/70">Nastavte tempo celej bitky</p>
+            </div>
+
+            <div className="mt-5">
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">Rýchle výzvy na tím</p>
+                <span className="text-xs font-black text-emerald-300">{quickRounds}</span>
+              </div>
+              <div className="mt-2 grid grid-cols-4 gap-2">
+                {[1, 2, 3, 4].map((value) => (
+                  <button
+                    key={value}
+                    onClick={() => setQuickRounds(value)}
+                    className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${quickRounds === value ? "border-emerald-300/65 bg-emerald-400/20 text-white" : "border-white/10 bg-white/[0.035] text-white/35"}`}
+                  >
+                    {value}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-5">
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">Čas časovaných hier</p>
+                <span className="text-xs font-black text-emerald-300">{timeSeconds} s</span>
+              </div>
+              <div className="mt-2 grid grid-cols-4 gap-2">
+                {[30, 45, 60, 90].map((value) => (
+                  <button
+                    key={value}
+                    onClick={() => setTimeSeconds(value)}
+                    className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${timeSeconds === value ? "border-emerald-300/65 bg-emerald-400/20 text-white" : "border-white/10 bg-white/[0.035] text-white/35"}`}
+                  >
+                    {value}s
+                  </button>
+                ))}
+              </div>
+              <p className="mt-3 text-[10px] leading-relaxed text-white/30">Platí pre pantomímu, šarády, zakázané slovo a pesničky. Krátke výzvy majú vlastný rýchly limit.</p>
+            </div>
+          </section>
+
           <button
-            onClick={() => onStart(names, mode === "classic" ? classicRounds : customGames)}
+            onClick={() => onStart(names, mode === "classic" ? classicRounds : customGames, { quickRounds, timeSeconds })}
             disabled={!canStart}
             className="party-shine mt-6 w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 via-fuchsia-500 to-pink-500 px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white shadow-[0_18px_50px_rgba(168,85,247,.35)] transition active:scale-[.97] disabled:opacity-40"
           >

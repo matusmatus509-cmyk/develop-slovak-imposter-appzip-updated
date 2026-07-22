@@ -42,10 +42,10 @@ interface SharedProps extends QuickParticipantsProps {
   timeSeconds: number;
 }
 
-function PassAndPlay({ participantNames, gameMode, timeSeconds, onDone, mode }: SharedProps & { mode: PassMode }) {
+function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDone, mode }: SharedProps & { mode: PassMode }) {
   const { language } = useLanguage();
   const copy = MODE_COPY[mode];
-  const [participant, setParticipant] = useState(0);
+  const [turn, setTurn] = useState(0);
   const [phase, setPhase] = useState<Phase>("ready");
   const [timeLeft, setTimeLeft] = useState(timeSeconds);
   const [index, setIndex] = useState(0);
@@ -56,6 +56,9 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, onDone, mode }: 
   const [previewStatus, setPreviewStatus] = useState<"loading" | "ready" | "playing" | "missing">("loading");
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const previewTimerRef = useRef<number | null>(null);
+  const participant = turn % participantNames.length;
+  const totalTurns = participantNames.length * rounds;
+  const nextParticipant = (turn + 1) % participantNames.length;
   const participantColor = PARTY_PLAYER_COLORS[participant % PARTY_PLAYER_COLORS.length];
   const participantLabel = gameMode === "teams" ? "tím" : "hráč";
   const deck = useMemo(
@@ -182,10 +185,10 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, onDone, mode }: 
 
   function continueAfterResult() {
     const nextScores = [...scores];
-    nextScores[participant] = turnScore;
+    nextScores[participant] += turnScore;
     setScores(nextScores);
-    if (participant + 1 < participantNames.length) {
-      setParticipant((value) => value + 1);
+    if (turn + 1 < totalTurns) {
+      setTurn((value) => value + 1);
       setPhase("ready");
     } else {
       onDone(nextScores);
@@ -208,12 +211,12 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, onDone, mode }: 
               {copy.icon}
             </div>
           )}
-          <p className="mt-7 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">{participant === 0 ? "Začína" : "Na rade je"}</p>
+          <p className="mt-7 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">{turn === 0 ? "Začína" : "Na rade je"} • {Math.floor(turn / participantNames.length) + 1}/{rounds}</p>
           <h1 className="mt-2 text-4xl font-black" style={{ color: participantColor }}>{participantNames[participant]}</h1>
           <section className="party-glass mt-6 max-w-sm rounded-[1.8rem] p-5">
             <h2 className="text-lg font-black text-white">{copy.title}</h2>
             <p className="mt-2 text-sm leading-relaxed text-white/45">{copy.instruction}</p>
-            {participant > 0 && <p className="mt-3 text-xs font-bold text-white/30">Predchádzajúci {participantLabel} získal {scores[participant - 1]} bodov</p>}
+            {turn > 0 && <p className="mt-3 text-xs font-bold text-white/30">Aktuálne skóre: {scores[participant]} bodov</p>}
           </section>
           <button
             onClick={startTurn}
@@ -243,7 +246,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, onDone, mode }: 
             className="party-shine mt-7 w-full max-w-xs overflow-hidden rounded-2xl px-6 py-5 text-base font-black text-white shadow-xl transition active:scale-[.97]"
             style={{ background: participantColor }}
           >
-            {participant + 1 < participantNames.length ? `${participantNames[participant + 1]} na rad` : "Výsledok kola"}
+            {turn + 1 < totalTurns ? `${participantNames[nextParticipant]} na rad` : "Výsledok kola"}
           </button>
         </main>
       </PartyBackdrop>

@@ -9,7 +9,7 @@ import {
   type GameType,
 } from "../../data/teamBattle";
 
-import TeamBattleSetup from "./Setup";
+import TeamBattleSetup, { type TeamBattleOptions } from "./Setup";
 import TeamBattleIntro from "./Intro";
 import RoundIntro from "./RoundIntro";
 import TimedWords from "./TimedWords";
@@ -49,6 +49,7 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
   const [currentRoundIdx, setCurrentRoundIdx] = useState(0);
   const [totalScores, setTotalScores] = useState<[number, number]>([0, 0]);
   const [roundScores, setRoundScores] = useState<[number, number]>([0, 0]);
+  const [quickRounds, setQuickRounds] = useState(2);
 
   // Per-round data (words / questions / category) chosen at round start
   const [roundWords, setRoundWords] = useState<string[]>([]);
@@ -60,9 +61,15 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
 
   // ── Handlers ──────────────────────────────────────────────────────────────
 
-  function handleSetupStart(names: [string, string], selection: number | GameType[]) {
+  function handleSetupStart(names: [string, string], selection: number | GameType[], options: TeamBattleOptions) {
     setTeamNames(names);
-    setRounds(generateBattleRounds(selection));
+    setQuickRounds(options.quickRounds);
+    setRounds(generateBattleRounds(selection).map((round) => ({
+      ...round,
+      timeSeconds: ["pantomima", "sarady", "zakazane", "pesnicka", "hadajktosom"].includes(round.game)
+        ? options.timeSeconds
+        : round.timeSeconds,
+    })));
     setCurrentRoundIdx(0);
     setTotalScores([0, 0]);
     setRoundScores([0, 0]);
@@ -175,23 +182,23 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
     }
 
     if (game === "zakazane") {
-      return <ForbiddenWordGame participantNames={teamNames} gameMode="teams" timeSeconds={currentRound.timeSeconds} onDone={handleQuickRoundDone} />;
+      return <ForbiddenWordGame participantNames={teamNames} gameMode="teams" rounds={quickRounds} timeSeconds={currentRound.timeSeconds} onDone={handleQuickRoundDone} />;
     }
 
     if (game === "pesnicka") {
-      return <GuessSongGame participantNames={teamNames} gameMode="teams" timeSeconds={currentRound.timeSeconds} onDone={handleQuickRoundDone} />;
+      return <GuessSongGame participantNames={teamNames} gameMode="teams" rounds={quickRounds} timeSeconds={currentRound.timeSeconds} onDone={handleQuickRoundDone} />;
     }
 
     if (game === "zvuk") {
-      return <SoundBuzzer participantNames={teamNames} gameMode="teams" onDone={handleQuickRoundDone} />;
+      return <SoundBuzzer participantNames={teamNames} gameMode="teams" rounds={quickRounds * 5} onDone={handleQuickRoundDone} />;
     }
 
     if (game === "pismeno") {
-      return <LetterChallengeGame participantNames={teamNames} gameMode="teams" onDone={handleQuickRoundDone} />;
+      return <LetterChallengeGame participantNames={teamNames} gameMode="teams" rounds={quickRounds} onDone={handleQuickRoundDone} />;
     }
 
     if (game === "patzadesat") {
-      return <FiveInTenGame participantNames={teamNames} gameMode="teams" onDone={handleQuickRoundDone} />;
+      return <FiveInTenGame participantNames={teamNames} gameMode="teams" rounds={quickRounds} onDone={handleQuickRoundDone} />;
     }
   }
 

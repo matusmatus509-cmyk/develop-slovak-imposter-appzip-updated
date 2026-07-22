@@ -10,8 +10,8 @@ type AudioStatus = "idle" | "loading" | "playing" | "ready" | "error";
 const QUESTIONS_PER_ROUND = 10;
 const MAX_SOUND_SECONDS = 7;
 
-export default function SoundBuzzer({ participantNames, gameMode, onDone }: QuickParticipantsProps) {
-  const deck = useMemo(() => shuffle(SOUND_CLUES).slice(0, QUESTIONS_PER_ROUND), []);
+export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds = QUESTIONS_PER_ROUND, timeSeconds = MAX_SOUND_SECONDS }: QuickParticipantsProps) {
+  const deck = useMemo(() => shuffle(SOUND_CLUES).slice(0, rounds), [rounds]);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
   const [phase, setPhase] = useState<Phase>({ type: "question" });
@@ -53,7 +53,7 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone }: Quic
       await audio.play();
       setPlayed(true);
       setAudioStatus("playing");
-      stopTimerRef.current = window.setTimeout(() => stopAudio("ready"), MAX_SOUND_SECONDS * 1000);
+      stopTimerRef.current = window.setTimeout(() => stopAudio("ready"), timeSeconds * 1000);
     } catch {
       audioRef.current = null;
       setAudioStatus("error");

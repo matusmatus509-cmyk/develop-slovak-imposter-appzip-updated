@@ -10419,5 +10419,17 @@
   "Tesne vedľa!": "So close!",
   "skúsime ďalšiu": "let's try another",
   "Pozrieť výsledky": "See results",
-  "Odpovede": "Answers"
+  "Odpovede": "Answers",
+  "Prispôsobte si tempo a dĺžku": "Choose the pace and length",
+  "Kolá na hráča / tím": "Rounds per player / team",
+  "Čas jedného kola": "Time per round",
+  "Počet zvukov": "Number of sounds",
+  "Dĺžka ukážky": "Clip length",
+  "Čas na odpoveď": "Answer time",
+  "Čas na výzvu": "Challenge time",
+  "Pravidlá kôl": "Round rules",
+  "Nastavte tempo celej bitky": "Set the pace of the whole battle",
+  "Rýchle výzvy na tím": "Quick challenges per team",
+  "Čas časovaných hier": "Timed game duration",
+  "Platí pre pantomímu, šarády, zakázané slovo a pesničky. Krátke výzvy majú vlastný rýchly limit.": "Applies to mime, charades, forbidden word and songs. Quick challenges use their own short limit."
 }
