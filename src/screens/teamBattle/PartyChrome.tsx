@@ -125,7 +125,7 @@ export function CircularTimer({
   return (
     <div className="party-timer relative shrink-0 rounded-full p-[5px]" style={style}>
       <div className="flex h-full w-full flex-col items-center justify-center rounded-full border border-white/10 bg-[#0d1218]/98 shadow-inner">
-        <span className="text-3xl font-black tabular-nums leading-none text-white">{value}</span>
+        <span className="text-3xl font-black tabular-nums leading-none text-white">{Math.ceil(value)}</span>
         <span className="mt-1 text-[8px] font-black uppercase tracking-[0.22em] text-white/35">{label}</span>
       </div>
     </div>
