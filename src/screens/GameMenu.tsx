@@ -52,13 +52,19 @@ export default function GameMenu({
               }}
             >
               <div className="relative min-h-[122px] overflow-hidden bg-[#0c111a]">
-                {welcome ? (
+                {welcome?.art ? (
+                  <img
+                    src={welcome.art}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.06]"
+                  />
+                ) : welcome ? (
                   <div
                     className="absolute inset-0 bg-no-repeat transition duration-700 group-hover:scale-[1.06]"
                     style={{
-                      backgroundImage: `url(${welcome.art ?? gameArt})`,
-                      backgroundSize: welcome.art ? "cover" : "400% 300%",
-                      backgroundPosition: welcome.art ? "center" : welcome.artPosition,
+                      backgroundImage: `url(${gameArt})`,
+                      backgroundSize: "400% 300%",
+                      backgroundPosition: welcome.artPosition,
                     }}
                   />
                 ) : (
