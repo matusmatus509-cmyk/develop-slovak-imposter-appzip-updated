@@ -4,7 +4,7 @@ import ts from "typescript";
 
 const root = path.resolve("src");
 const targetLanguage = process.argv[2] ?? "en";
-const supportedLanguages = new Set(["en", "de", "es"]);
+const supportedLanguages = new Set(["en", "de", "es", "fr", "pt"]);
 if (!supportedLanguages.has(targetLanguage)) throw new Error(`Unsupported target language: ${targetLanguage}`);
 const output = path.join(root, "i18n", `translations.${targetLanguage}.json`);
 

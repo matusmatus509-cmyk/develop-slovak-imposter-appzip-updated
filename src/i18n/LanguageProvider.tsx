@@ -2,8 +2,10 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 import englishTranslations from "./translations.en.json";
 import germanTranslations from "./translations.de.json";
 import spanishTranslations from "./translations.es.json";
+import frenchTranslations from "./translations.fr.json";
+import portugueseTranslations from "./translations.pt.json";
 
-export type AppLanguage = "sk" | "en" | "de" | "es";
+export type AppLanguage = "sk" | "en" | "de" | "es" | "fr" | "pt";
 
 interface LanguageContextValue {
   language: AppLanguage;
@@ -15,6 +17,8 @@ const dictionaries: Record<Exclude<AppLanguage, "sk">, Record<string, string>> =
   en: englishTranslations as Record<string, string>,
   de: germanTranslations as Record<string, string>,
   es: spanishTranslations as Record<string, string>,
+  fr: frenchTranslations as Record<string, string>,
+  pt: portugueseTranslations as Record<string, string>,
 };
 const slovakSignal = /[áäčďéíĺľňóôŕšťúýžÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽ]|\b(hráč|hráči|tím|kolo|body|bodov|otázka|odpoveď|správne|nesprávne|ďalší|späť|začať|vyber\w*|čas|sekúnd|slovo|kategória|pravidlá|výsledok|vyhráva|prehra|pravda|výzva|nikdy|radšej|písmeno|zvuk|pesnička|vymenuj|slovenske|osobnosti|pokračovať|štart)\b/i;
 const replacementEntries = Object.fromEntries(
@@ -113,7 +117,7 @@ function translateTree(root: Node, language: AppLanguage) {
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<AppLanguage>(() => {
     const stored = localStorage.getItem("party-language");
-    return stored === "en" || stored === "de" || stored === "es" ? stored : "sk";
+    return stored === "en" || stored === "de" || stored === "es" || stored === "fr" || stored === "pt" ? stored : "sk";
   });
 
   function setLanguage(nextLanguage: AppLanguage) {
@@ -128,6 +132,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       en: "Impostor — Party Games",
       de: "Impostor — Partyspiele",
       es: "Impostor — Juegos de fiesta",
+      fr: "Imposteur — Jeux de soirée",
+      pt: "Impostor — Jogos de festa",
     }[language];
     translateTree(document.body, language);
     const observer = new MutationObserver((mutations) => {
@@ -159,6 +165,8 @@ export function LanguageSwitcher() {
     { code: "en", flag: "🇬🇧", label: "English" },
     { code: "de", flag: "🇩🇪", label: "Deutsch" },
     { code: "es", flag: "🇪🇸", label: "Español" },
+    { code: "fr", flag: "🇫🇷", label: "Français" },
+    { code: "pt", flag: "🇵🇹", label: "Português" },
   ];
   const active = options.find((option) => option.code === language) ?? options[0];
 
