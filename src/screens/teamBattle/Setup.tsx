@@ -231,6 +231,7 @@ export default function TeamBattleSetup({
                 {ALL_GAMES.map((game) => {
                   const order = customGames.indexOf(game);
                   const selected = order >= 0;
+                  const customArt = CUSTOM_GAME_ART[game];
                   return (
                     <button
                       key={game}
@@ -241,15 +242,33 @@ export default function TeamBattleSetup({
                           : "border-white/10"
                       }`}
                     >
+                      {customArt ? (
+                        <img
+                          src={customArt}
+                          alt=""
+                          className={`absolute inset-0 h-full w-full object-cover transition duration-500 ${
+                            selected ? "scale-110 opacity-100" : "opacity-85 saturate-125"
+                          }`}
+                        />
+                      ) : (
+                        <span
+                          className={`absolute inset-0 bg-no-repeat transition duration-500 ${selected ? "scale-110" : "opacity-55 grayscale-[.25]"}`}
+                          style={{
+                            backgroundImage: `url(${gameArt})`,
+                            backgroundSize: "400% 300%",
+                            backgroundPosition: GAME_ART[game],
+                          }}
+                        />
+                      )}
                       <span
-                        className={`absolute inset-0 bg-no-repeat transition duration-500 ${selected ? "scale-110" : "opacity-55 grayscale-[.25]"}`}
-                        style={{
-                          backgroundImage: `url(${CUSTOM_GAME_ART[game] ?? gameArt})`,
-                          backgroundSize: CUSTOM_GAME_ART[game] ? "cover" : "400% 300%",
-                          backgroundPosition: CUSTOM_GAME_ART[game] ? "center" : GAME_ART[game],
-                        }}
+                        className={`absolute inset-0 bg-gradient-to-t ${
+                          selected
+                            ? "from-cyan-950/95 via-slate-950/25"
+                            : customArt
+                              ? "from-[#080b13]/90 via-[#080b13]/10"
+                              : "from-[#080b13] via-[#080b13]/45"
+                        } to-black/5`}
                       />
-                      <span className={`absolute inset-0 bg-gradient-to-t ${selected ? "from-cyan-950/95 via-slate-950/35" : "from-[#080b13] via-[#080b13]/45"} to-black/5`} />
                       {selected && (
                         <span className="absolute right-2 top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-cyan-300 text-sm font-black text-[#071318] shadow-[0_0_18px_rgba(103,232,249,.55)]">
                           {order + 1}
