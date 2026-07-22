@@ -5,7 +5,7 @@ export interface ForbiddenCard {
   forbidden: [string, string, string, string];
 }
 
-export const FORBIDDEN_CARDS: ForbiddenCard[] = [
+const CORE_FORBIDDEN_CARDS: ForbiddenCard[] = [
   ["Pizza", ["jedlo", "syr", "Taliansko", "okrúhla"]],
   ["Mobil", ["telefón", "volať", "displej", "aplikácia"]],
   ["Futbal", ["lopta", "gól", "hráč", "ihrisko"]],
@@ -87,6 +87,312 @@ export const FORBIDDEN_CARDS: ForbiddenCard[] = [
   ["Hodinky", ["ruka", "čas", "nosiť", "remienok"]],
   ["Stan", ["kempovať", "spať", "látka", "príroda"]],
 ].map(([word, forbidden]) => ({ word, forbidden })) as ForbiddenCard[];
+
+const EXTRA_FORBIDDEN_LIBRARY = `
+Hamburger|žemľa|mäso|fastfood|jesť
+Špagety|cestoviny|Taliansko|omáčka|vidlička
+Hranolky|zemiaky|vyprážané|kečup|fastfood
+Polievka|lyžica|tanier|teplá|variť
+Chlieb|pekáreň|múka|krajec|maslo
+Syr|mlieko|žltý|diera|eidam
+Jablko|ovocie|strom|červené|zahryznúť
+Banán|žltý|ovocie|šupka|opica
+Jahoda|červená|ovocie|semienka|šľahačka
+Melón|leto|zelený|červený|jadierka
+Citrón|žltý|kyslý|ovocie|čaj
+Pomaranč|oranžový|ovocie|džús|šupka
+Mrkva|oranžová|zelenina|zajac|oči
+Zemiak|hranolky|zem|zelenina|kaša
+Cibuľa|plakať|krájať|zelenina|šupka
+Cesnak|vôňa|strúčik|kuchyňa|upír
+Vajce|sliepka|škrupina|žĺtok|raňajky
+Maslo|chlieb|mlieko|natrieť|žlté
+Med|včela|sladký|úľ|pohár
+Soľ|biela|korenie|slaná|kuchyňa
+Cukor|sladký|biely|káva|kocka
+Čaj|nápoj|horúci|vrecúško|kanvica
+Pivo|alkohol|pena|krčma|chmeľ
+Víno|hrozno|fľaša|alkohol|pohár
+Limonáda|nápoj|sladká|citrón|bublinky
+Sendvič|chlieb|šunka|desiata|dva
+Kebab|mäso|placka|Turecko|stánok
+Sushi|Japonsko|ryža|ryba|paličky
+Popcorn|kino|kukurica|slaný|pukať
+Croissant|Francúzsko|pečivo|maslo|raňajky
+Donut|šiška|diera|sladký|poleva
+Keksík|sladký|chrumkavý|čaj|sušienka
+Žuvačka|žuť|bublina|ústa|lepkavá
+Kečup|paradajka|červený|hranolky|omáčka
+Horčica|žltá|párok|omáčka|štipľavá
+Kôň|zviera|jazdiť|hriva|stajňa
+Krava|mlieko|zviera|farma|múkať
+Prasa|ružové|zviera|farma|blato
+Sliepka|vajce|vták|kurník|kotkodákať
+Ovca|vlna|zviera|pastier|békať
+Koza|rohy|mlieko|zviera|farma
+Lev|kráľ|zviera|hriva|Afrika
+Tiger|pruhy|mačka|zviera|džungľa
+Žirafa|krk|vysoká|Afrika|škvrny
+Slon|chobot|veľký|Afrika|kly
+Opica|banán|zviera|strom|džungľa
+Tučniak|ľad|čiernobiely|vták|Antarktída
+Delfín|more|plávať|inteligentný|skákať
+Žralok|more|zuby|ryba|nebezpečný
+Veľryba|more|obrovská|cicavec|voda
+Krokodíl|zuby|rieka|plaz|zelený
+Had|plaz|syčať|jed|bez nôh
+Žaba|zelená|skákať|rybník|kvákať
+Korytnačka|pancier|pomalá|plaz|more
+Pavúk|osem|sieť|hmyz|nohy
+Motýľ|krídla|hmyz|farebný|húsenica
+Komár|štípať|hmyz|krv|bzučať
+Mravec|malý|hmyz|mravenisko|pracovitý
+Lienka|červená|bodky|hmyz|sedem
+Sova|noc|vták|múdra|húkať
+Orol|vták|lietať|zobák|hory
+Papagáj|farebný|vták|rozprávať|klietka
+Pštros|vták|bežať|nelieta|veľký
+Klokan|Austrália|vak|skákať|zviera
+Panda|Čína|bambus|čiernobiela|medveď
+Vlk|les|svorka|zavýjať|pes
+Líška|ryšavá|les|prefíkaná|chvost
+Jeleň|parohy|les|zviera|srna
+Ježko|pichliače|malý|les|klbko
+Zajac|uši|mrkva|skákať|Veľká noc
+Myš|malá|syr|chvost|počítač
+Škrečok|klietka|koliesko|malý|hlodavec
+Akvarijná ryba|voda|sklo|plávať|kŕmiť
+Učiteľ|škola|žiak|tabuľa|učiť
+Kuchár|variť|jedlo|reštaurácia|zástera
+Čašník|reštaurácia|tácka|objednávka|sprepitné
+Pekár|chlieb|pec|múka|pekáreň
+Pilot|lietadlo|lietať|kokpit|letisko
+Vodič autobusu|šoférovať|zastávka|cestujúci|lístok
+Mechanik|auto|opravovať|motor|dielňa
+Elektrikár|prúd|kábel|zásuvka|oprava
+Inštalatér|voda|potrubie|kohútik|oprava
+Maliar|farba|štetec|obraz|plátno
+Fotograf|fotoaparát|obrázok|fotiť|objektív
+Novinár|správy|článok|rozhovor|noviny
+Herec|film|divadlo|rola|kamera
+Spevák|hudba|mikrofón|pieseň|koncert
+Tanečník|hudba|pohyb|parket|tanec
+Poštár|list|balík|doručiť|pošta
+Predavač|obchod|zákazník|pokladňa|tovar
+Právnik|súd|zákon|klient|obhajovať
+Sudca|súd|rozsudok|zákon|kladivko
+Vojak|armáda|uniforma|zbraň|vojna
+Záchranár|sanitka|pomoc|nehoda|pacient
+Veterinár|zviera|lekár|ambulancia|liečiť
+Programátor|počítač|kód|aplikácia|softvér
+Architekt|budova|plán|kresliť|dom
+Knihovník|kniha|knižnica|čítať|ticho
+Tréner|šport|cvičiť|tím|hráč
+Rozhodca|zápas|píšťalka|pravidlá|karta
+Astronaut|vesmír|raketa|Mesiac|skafander
+Detektív|pátrať|zločin|stopa|polícia
+Kúzelník|mágia|trik|klobúk|karta
+Kominár|komín|čierny|strecha|šťastie
+Záhradník|záhrada|rastlina|kosiť|lopata
+Recepčný|hotel|kľúč|hosť|pult
+Letisko|lietadlo|kufor|pas|odlet
+Stanica|vlak|koľajnice|nástupište|cestovať
+Autobusová zastávka|autobus|čakať|cestovný poriadok|lavička
+Knižnica|knihy|čítať|ticho|požičať
+Múzeum|história|výstava|obraz|exponát
+Zoologická záhrada|zviera|klietka|návštevník|výbeh
+Aquapark|voda|tobogan|bazén|plavky
+Štadión|šport|fanúšik|tribúna|zápas
+Posilňovňa|cvičiť|činka|svaly|tréning
+Lekáreň|liek|recept|zdravie|tabletka
+Banka|peniaze|účet|pôžička|trezor
+Pošta|list|balík|známka|doručiť
+Kostol|modliť|kňaz|veža|omša
+Hrad|kráľ|veža|rytieri|história
+Jaskyňa|tma|skala|netopier|podzemie
+Les|strom|zviera|príroda|huby
+Púšť|piesok|teplo|ťava|voda
+Vodopád|voda|padať|rieka|skala
+Jazero|voda|plávať|breh|ryby
+Rieka|voda|tečie|most|breh
+Park|strom|lavička|prechádzka|tráva
+Ihrisko|deti|hrať|šmykľavka|hojdačka
+Kancelária|práca|počítač|stôl|šéf
+Továreň|výroba|stroj|robotník|komín
+Garáž|auto|parkovať|dom|brána
+Balkón|byt|vonku|zábradlie|kvety
+Pivnica|podzemie|dom|tma|sklad
+Podkrovie|strecha|dom|hore|prach
+Kúpeľňa|sprcha|vaňa|umyť|uterák
+Obývačka|gauč|televízor|izba|rodina
+Spálňa|posteľ|spať|izba|skriňa
+Chodba|dvere|miestnosť|prechádzať|vešiak
+Strecha|dom|hore|komín|škridla
+Okno|sklo|výhľad|otvoriť|záclona
+Zrkadlo|odraz|pozerať|sklo|tvár
+Gauč|sedieť|obývačka|mäkký|vankúš
+Stolička|sedieť|nohy|stôl|nábytok
+Stôl|nábytok|nohy|jesť|doska
+Skriňa|oblečenie|dvere|nábytok|vešiak
+Koberec|podlaha|mäkký|vysávať|izba
+Lampa|svetlo|žiarovka|svietiť|stôl
+Sviečka|oheň|vosk|knôt|svietiť
+Uterák|osušiť|kúpeľňa|mokré|látka
+Mydlo|umyť|ruky|pena|voda
+Zubná kefka|zuby|pasta|kúpeľňa|čistiť
+Hrebeň|vlasy|česať|zuby|kúpeľňa
+Nožnice|strihať|papier|ostré|dve
+Kladivo|klinec|náradie|udrieť|drevo
+Skrutkovač|skrutka|náradie|otáčať|oprava
+Rebrík|hore|stúpať|priečky|výška
+Metla|zametať|čarodejnica|podlaha|upratovať
+Vedro|voda|nádoba|rúčka|upratovať
+Žehlička|oblečenie|horúca|žehliť|para
+Rúra|piecť|kuchyňa|teplo|koláč
+Mikrovlnka|ohriať|jedlo|kuchyňa|čas
+Umývačka|riad|kuchyňa|voda|čistiť
+Mixér|kuchyňa|miešať|ovocie|spotrebič
+Hriankovač|chlieb|raňajky|opekať|kuchyňa
+Kanvica|voda|čaj|variť|kuchyňa
+Panvica|variť|olej|kuchyňa|rúčka
+Hrniec|variť|polievka|pokrievka|kuchyňa
+Lyžica|jesť|polievka|príbor|kov
+Vidlička|jesť|zuby|príbor|kov
+Nôž|rezať|ostrý|kuchyňa|čepeľ
+Tanier|jedlo|okrúhly|riad|stôl
+Pohár|piť|sklo|nápoj|stôl
+Fľaša|piť|vrchnák|nápoj|sklo
+Batoh|chrbát|škola|popruhy|veci
+Peňaženka|peniaze|karty|vrecko|platiť
+Dáždnik|dážď|mokro|otvoriť|rúčka
+Slnečné okuliare|slnko|oči|leto|tmavé
+Rukavice|ruky|zima|prsty|nosiť
+Šál|krk|zima|oblečenie|teplý
+Kabát|oblečenie|zima|teplý|bunda
+Tenisky|topánky|šport|nohy|šnúrky
+Ponožky|nohy|topánky|pár|oblečenie
+Pyžamo|spať|oblečenie|noc|posteľ
+Plavky|voda|pláž|bazén|oblečenie
+Kravata|krk|oblek|muž|formálne
+Prsteň|prst|šperk|svadba|kruh
+Náhrdelník|krk|šperk|retiazka|nosiť
+Náušnice|ucho|šperk|pár|nosiť
+Rúž|pery|červený|kozmetika|maľovať
+Šampón|vlasy|umyť|sprcha|pena
+Fén|vlasy|sušiť|teplý|kúpeľňa
+Notebook|počítač|prenosný|klávesnica|obrazovka
+Tablet|displej|dotyk|mobil|aplikácia
+Klávesnica|písať|počítač|tlačidlá|písmená
+Monitor|obrazovka|počítač|stôl|pozerať
+Tlačiareň|papier|atrament|počítač|tlačiť
+Slúchadlá|uši|hudba|počúvať|kábel
+Reproduktor|hudba|zvuk|hlasný|počúvať
+Nabíjačka|batéria|kábel|elektrina|mobil
+Heslo|tajné|prihlásiť|účet|písmená
+Email|správa|internet|adresa|poslať
+YouTube|video|internet|pozerať|kanál
+TikTok|video|sociálna sieť|krátke|tanec
+Videohra|hrať|počítač|ovládač|obrazovka
+Diaľkový ovládač|televízor|tlačidlo|prepínať|batéria
+Semafor pre chodcov|zelená|červená|cesta|prechádzať
+Kolobežka|kolesá|jazdiť|riadidlá|odrážať
+Motorka|dve kolesá|motor|prilba|jazdiť
+Autobus|zastávka|cestujúci|vodič|lístok
+Električka|koľajnice|mesto|zastávka|elektrina
+Loď|voda|plávať|kapitán|more
+Ponorka|pod vodou|more|plavidlo|periskop
+Traktor|farma|pole|kolesá|farmár
+Sanitka|záchranár|nemocnica|siréna|pacient
+Hasičské auto|požiar|siréna|hadica|červené
+Taxi|auto|vodič|platiť|odvoz
+Most|rieka|spájať|prechádzať|konštrukcia
+Tunel|pod zemou|tma|cesta|vlak
+Križovatka|cesta|autá|odbočiť|semafor
+Kruhový objazd|cesta|kruh|auto|výjazd
+Tenis|raketa|loptička|sieť|kurt
+Volejbal|lopta|sieť|ihrisko|tím
+Plávanie|voda|bazén|plavky|šport
+Lyžovanie|sneh|zima|svah|lyže
+Snowboard|sneh|doska|svah|zima
+Box|rukavice|ring|úder|boj
+Golf|palica|loptička|jamka|tráva
+Beh|nohy|rýchlo|šport|maratón
+Gymnastika|cvičenie|šport|ohybnosť|náradie
+Bowling|guľa|kolky|dráha|zhodiť
+Biliard|stôl|gule|tágo|jamka
+Šípky|terč|hádzať|body|krčma
+Korčuľovanie|ľad|korčule|zima|šport
+Surfovanie|vlna|more|doska|pláž
+Horolezectvo|skala|lano|výška|liezť
+Maratón|beh|dlhý|kilometre|preteky
+Olympiáda|šport|medaila|kruhy|krajina
+Medaila|víťaz|kov|šport|krk
+Trofej|víťaz|pohár|súťaž|cena
+Píšťalka|rozhodca|zvuk|fúkať|šport
+Domáca úloha|škola|žiak|písať|učiteľ
+Vysvedčenie|škola|známky|koniec roka|žiak
+Prestávka|škola|zvonček|oddych|hodina
+Skúška|učiť sa|škola|otázky|známka
+Tabuľa|škola|písať|krieda|učiteľ
+Zošit|papier|škola|písať|strany
+Ceruzka|písať|guma|drevo|škola
+Pero|písať|atrament|škola|papier
+Pravítko|merať|čiara|škola|centimeter
+Kalkulačka|počítať|čísla|matematika|tlačidlá
+Glóbus|Zem|krajiny|guľa|škola
+Slovník|slová|kniha|význam|jazyk
+Abeceda|písmená|A|škola|poradie
+Matematika|čísla|počítať|škola|príklad
+Dejepis|história|škola|minulosť|rok
+Geografia|mapa|krajina|škola|Zem
+Telesná výchova|šport|škola|cvičiť|telocvičňa
+Prázdniny|škola|voľno|leto|žiaci
+Halloween|tekvica|strašidlo|október|kostým
+Veľká noc|vajce|šibačka|zajac|jar
+Silvester|polnoc|ohňostroj|nový rok|oslava
+Valentín|láska|srdce|február|zaľúbení
+Karneval|maska|kostým|zábava|tanec
+Piknik|deka|jedlo|príroda|košík
+Opekačka|oheň|špekáčik|les|palica
+Grilovanie|mäso|oheň|záhrada|leto
+Výlet|cestovať|príroda|batoh|voľno
+Koncert|hudba|spevák|pódium|publikum
+Festival|hudba|leto|pódium|dav
+Diskotéka|tanec|hudba|noc|klub
+Oslava|narodeniny|ľudia|zábava|darček
+Prekvapenie|čakať|tajomstvo|darček|nečakané
+Tajomstvo|nepovedať|skryté|vedieť|prezradiť
+Sen|spať|noc|predstava|zobudiť
+Nočná mora|sen|strach|spať|noc
+Smiech|veselý|zvuk|vtip|ústa
+Plač|slzy|smutný|oči|zvuk
+Hnev|nahnevaný|emócia|kričať|zlý
+Strach|báť sa|emócia|nebezpečenstvo|tma
+Láska|srdce|zaľúbený|cit|partner
+Šťastie|radosť|úsmev|emócia|spokojný
+Nuda|nič|zábava|čas|nezaujímavé
+Hlad|jedlo|jesť|brucho|chuť
+Smäd|piť|voda|sucho|nápoj
+Únava|spať|vyčerpaný|posteľ|energia
+Klamstvo|pravda|nepravda|hovoriť|podvádzať
+Vtip|smiech|zábavný|povedať|humor
+Hádka|kričať|spor|dvaja|nahnevaný
+Ospravedlnenie|prepáč|chyba|odpustiť|ľutovať
+Súťaž|vyhrať|prehrať|hráči|cena
+Pravidlo|dodržať|zákon|hra|zakázané
+Front|čakať|ľudia|rad|obchod
+Zápcha|autá|cesta|stáť|premávka
+Meškanie|neskoro|čas|čakať|hodiny
+Budúcnosť|zajtra|čas|neskôr|plán
+Minulosť|včera|história|čas|spomienka
+`.trim();
+
+const EXTRA_FORBIDDEN_CARDS: ForbiddenCard[] = EXTRA_FORBIDDEN_LIBRARY.split("\n").map((line) => {
+  const [word, ...forbidden] = line.split("|");
+  return { word, forbidden: forbidden as ForbiddenCard["forbidden"] };
+});
+
+export const FORBIDDEN_CARDS: ForbiddenCard[] = [...CORE_FORBIDDEN_CARDS, ...EXTRA_FORBIDDEN_CARDS];
 
 export interface SongCard {
   title: string;
@@ -936,7 +1242,7 @@ export const LETTER_CHALLENGES: LetterChallenge[] = shuffle(
   ),
 );
 
-export const FIVE_IN_TEN_PROMPTS = [
+const CORE_FIVE_IN_TEN_PROMPTS = [
   "značiek áut", "zvierat žijúcich vo vode", "slovenských miest", "filmov", "vecí v kuchyni",
   "druhov ovocia", "druhov zeleniny", "športov", "povolaní", "krajín v Európe",
   "vecí v školskej taške", "vecí v kúpeľni", "sociálnych sietí", "hudobných nástrojov", "rozprávkových postáv",
@@ -954,3 +1260,458 @@ export const FIVE_IN_TEN_PROMPTS = [
   "vecí, ktoré robíš ráno", "vecí, ktoré robíš pred spaním", "miest na prvé rande", "slov spojených s internetom", "hier pre deti",
   "stolových hier", "vecí v nemocnici", "dopravných značiek", "vecí na záhrade", "druhov kvetov",
 ];
+
+const EXTRA_FIVE_IN_TEN_LIBRARY = `
+zvierat žijúcich v Afrike
+zvierat žijúcich v lese
+zvierat žijúcich na severe
+zvierat, ktoré vedia lietať
+zvierat, ktoré kladú vajcia
+zvierat s dlhým chvostom
+zvierat so štyrmi nohami
+zvierat, ktorých sa ľudia boja
+zvierat chovaných ako domáci miláčikovia
+zvierat, ktoré nájdeš v zoologickej záhrade
+vtákov
+rýb alebo morských živočíchov
+druhov hmyzu
+plemien psov
+veľkých mačkovitých šeliem
+zvierat začínajúcich na písmeno P
+zvierat začínajúcich na písmeno K
+zvierat začínajúcich na písmeno M
+zvukov, ktoré vydávajú zvieratá
+vecí, ktoré potrebuje domáci miláčik
+tropických druhov ovocia
+citrusových plodov
+červených druhov ovocia
+žltých druhov ovocia
+zelených druhov zeleniny
+druhov koreňovej zeleniny
+jedál zo zemiakov
+jedál s cestovinami
+jedál s ryžou
+jedál, ktoré sa jedia rukami
+jedál, ktoré sa jedia lyžicou
+jedál vhodných na piknik
+jedál na grilovanie
+jedál na Vianoce
+jedál na oslavu
+slovenských tradičných jedál
+talianskych jedál
+ázijských jedál
+dezertov
+druhov koláčov
+druhov pečiva
+druhov syra
+druhov polievok
+omáčok alebo dochucovadiel
+prísad do šalátu
+vecí, ktoré si dáš do sendviča
+vecí, ktoré si môžeš objednať v kaviarni
+teplých nápojov
+studených nápojov
+alkoholických nápojov
+nealkoholických nápojov
+príchutí džúsu
+raňajkových cereálií alebo jedál
+jedál, ktoré nájdeš v školskej jedálni
+vecí, ktoré nájdeš v pekárni
+vecí, ktoré nájdeš v cukrárni
+vecí, ktoré nájdeš v supermarkete
+vecí, ktoré bývajú v mrazničke
+vecí, ktoré patria do špajze
+vecí, ktoré sú kyslé
+vecí, ktoré sú sladké
+vecí, ktoré sú slané
+vecí, ktoré sú chrumkavé
+vecí, ktoré sa môžu roztopiť
+vecí, ktoré treba ošúpať
+vecí, ktoré sa dajú nakrájať
+vecí, ktoré sa varia vo vode
+vecí, ktoré sa pečú v rúre
+jedál začínajúcich na písmeno P
+jedál začínajúcich na písmeno S
+jedál začínajúcich na písmeno K
+jedál začínajúcich na písmeno Č
+povolaní v nemocnici
+povolaní v škole
+povolaní v reštaurácii
+povolaní, pri ktorých sa nosí uniforma
+povolaní, pri ktorých sa pracuje vonku
+povolaní, pri ktorých sa používa počítač
+povolaní, pri ktorých sa šoféruje
+povolaní, pri ktorých sa pomáha ľuďom
+povolaní, pri ktorých sa pracuje v noci
+povolaní spojených s umením
+povolaní spojených so športom
+povolaní spojených so zvieratami
+povolaní začínajúcich na písmeno P
+povolaní začínajúcich na písmeno K
+vecí, ktoré používa lekár
+vecí, ktoré používa kuchár
+vecí, ktoré používa učiteľ
+vecí, ktoré používa hasič
+vecí, ktoré používa policajt
+vecí, ktoré používa kaderník
+vecí, ktoré používa mechanik
+vecí, ktoré používa maliar
+vecí, ktoré používa fotograf
+vecí, ktoré používa záhradník
+miest v škole
+miest v nemocnici
+miest v hoteli
+miest na letisku
+miest na železničnej stanici
+miest v nákupnom centre
+miest v meste
+miest na dedine
+miest, kde musí byť ticho
+miest, kde sa platí vstupné
+miest, kde sa čaká v rade
+miest, kde sa dá športovať
+miest, kde sa dá plávať
+miest, kde sa dá najesť
+miest, kde sa dá prespať
+miest, kam môžeš ísť cez víkend
+miest vhodných na rodinný výlet
+miest vhodných na rande
+miest, kde by si nechcel zostať zamknutý
+miest, kde býva veľa ľudí
+miest, kde býva zima
+miest, kde býva horúco
+európskych krajín
+ázijských krajín
+afrických krajín
+krajín pri mori
+krajín, v ktorých sa hovorí po anglicky
+krajín začínajúcich na písmeno S
+krajín začínajúcich na písmeno M
+slovenských krajských miest
+slovenských riek
+slovenských pohorí
+slovenských hradov alebo zámkov
+turistických miest na Slovensku
+európskych hlavných miest
+svetových veľkomiest
+ostrovov
+morí alebo oceánov
+riek sveta
+pohorí alebo vrchov
+vecí, ktoré nájdeš na mape
+dopravných prostriedkov na zemi
+dopravných prostriedkov na vode
+dopravných prostriedkov vo vzduchu
+značiek automobilov z Nemecka
+značiek automobilov z Ázie
+častí auta
+vecí, ktoré vodič potrebuje v aute
+vecí, ktoré sa môžu na aute pokaziť
+vecí na čerpacej stanici
+vecí na vlakovej stanici
+vecí na autobusovej zastávke
+vecí na letisku
+vecí v lietadle
+vecí na lodi
+vecí, ktoré vidíš počas jazdy autom
+dôvodov, prečo môže meškať vlak
+dôvodov, prečo môže vzniknúť zápcha
+pravidiel bezpečnej jazdy
+dopravných prostriedkov s dvomi kolesami
+vecí, ktoré majú volant
+vecí, ktoré majú motor
+vecí, ktoré majú kolesá
+vecí v obývačke
+vecí v spálni
+vecí v detskej izbe
+vecí na chodbe
+vecí v pivnici
+vecí v garáži
+vecí na balkóne
+vecí na streche
+vecí na podlahe
+vecí zavesených na stene
+kusov nábytku
+kuchynských nástrojov
+čistiacich potrieb
+elektrických spotrebičov v domácnosti
+vecí, ktoré potrebuješ pri sťahovaní
+vecí, ktoré sa doma môžu rozbiť
+vecí, ktoré sa doma zamykajú
+vecí, ktoré sa zapájajú do zásuvky
+vecí, ktoré majú vypínač
+vecí, ktoré majú dvierka
+vecí, ktoré majú zásuvku alebo šuplík
+vecí, ktoré nájdeš pod posteľou
+vecí, ktoré nájdeš na nočnom stolíku
+vecí, ktoré nájdeš v skrini
+vecí, ktoré nájdeš v chladničke
+vecí, ktoré nájdeš pri umývadle
+vecí potrebných na upratovanie
+vecí potrebných na pranie
+vecí potrebných na varenie
+vecí potrebných na pečenie
+vecí potrebných na maľovanie izby
+vecí potrebných na opravu domu
+kusov zimného oblečenia
+kusov letného oblečenia
+kusov športového oblečenia
+vecí, ktoré si obuješ
+vecí, ktoré nosíš na hlave
+vecí, ktoré nosíš na rukách
+vecí, ktoré nosíš okolo krku
+vecí, ktoré môžeš mať vo vrecku
+vecí, ktoré môžeš mať v kabelke
+vecí, ktoré môžeš mať v peňaženke
+šperkov alebo módnych doplnkov
+kozmetických výrobkov
+vecí potrebných na sprchovanie
+vecí potrebných na čistenie zubov
+vecí potrebných na úpravu vlasov
+vecí, ktoré si balíš na lyžovačku
+vecí, ktoré si balíš k moru
+vecí, ktoré si balíš na stanovačku
+vecí, ktoré si balíš na služobnú cestu
+vecí, ktoré si nesmieš zabudnúť na dovolenku
+športov s loptou
+športov bez lopty
+vodných športov
+bojových športov
+atletických disciplín
+olympijských športov
+športov, ktoré sa hrajú v hale
+športov, ktoré sa hrajú vonku
+športov, pri ktorých treba prilbu
+športov, pri ktorých sa používa raketa alebo palica
+športov, ktoré sa hrajú v tímoch
+slovenských futbalistov
+svetových futbalistov
+slovenských hokejistov
+svetových tenistov
+športových značiek
+vecí vo futbalovej výbave
+vecí v hokejovej výbave
+vecí v posilňovni
+cvikov
+dôvodov, prečo ľudia športujú
+vecí, ktoré môžeš vyhrať v súťaži
+vecí spojených s olympiádou
+filmov od Disney
+animovaných seriálov
+komediálnych filmov
+akčných filmov
+hororových filmov
+vianočných filmov
+filmových sérií
+postáv zo Star Wars
+postáv z Marvelu
+postáv z DC
+postáv z rozprávok Disney
+postáv zo seriálu Priatelia
+postáv zo seriálu Simpsonovci
+postáv z videohier
+známych filmových zloduchov
+známych detektívov z filmov alebo kníh
+slovenských hercov alebo herečiek
+českých hercov alebo herečiek
+hollywoodskych hercov
+filmov, v ktorých vystupujú zvieratá
+vecí, ktoré nájdeš v kine
+vecí spojených s natáčaním filmu
+hudobných skupín
+slovenských hudobných skupín
+českých spevákov alebo speváčok
+svetových spevákov
+rapperov
+rockových skupín
+hudobných nástrojov so strunami
+dychových hudobných nástrojov
+hudobných nástrojov, na ktoré sa udiera
+pesničiek, ktoré pozná skoro každý
+vianočných pesničiek
+detských pesničiek
+vecí na koncerte
+vecí, ktoré robí hudobník
+zvukov, ktoré počuješ v meste
+zvukov, ktoré počuješ v prírode
+zvukov, ktoré počuješ doma
+zvukov, ktoré ťa môžu zobudiť
+webových stránok
+počítačových programov
+mobilných aplikácií na komunikáciu
+mobilných aplikácií na video
+streamovacích služieb
+značiek mobilných telefónov
+značiek počítačov
+častí počítača
+vecí pripojených k počítaču
+vecí, ktoré potrebuješ na videohovor
+vecí, ktoré môžeš robiť na internete
+vecí, ktoré ľudia zdieľajú na sociálnych sieťach
+emoji, ktoré často používaš
+dôvodov, prečo sa vybije mobil
+dôvodov, prečo nejde internet
+vecí, ktoré chránia účet na internete
+videohier, ktoré pozná skoro každý
+herných konzol
+vecí, ktoré nájdeš v počítačovej hre
+slov spojených s umelou inteligenciou
+slov spojených s fotografovaním
+vecí v triede
+vecí na učiteľskom stole
+vecí v peračníku
+vecí v telocvični
+vecí v školskej jedálni
+vecí v školskej knižnici
+vecí, ktoré žiak robí cez prestávku
+dôvodov, prečo žiak nemá domácu úlohu
+dôvodov, prečo sa tešíš na prázdniny
+spôsobov, ako sa dá učiť
+vecí potrebných na písomku
+školských známok alebo hodnotení
+jazykov, ktoré sa učia v škole
+matematických pojmov
+geometrických tvarov
+historických osobností
+vynálezov
+planét alebo vesmírnych telies
+vecí vo vesmíre
+vecí, ktoré robí astronaut
+vecí spojených s dažďom
+vecí spojených so snehom
+vecí spojených s búrkou
+vecí spojených s horúčavou
+vecí spojených s jarou
+vecí spojených s letom
+vecí spojených s jeseňou
+vecí spojených so zimou
+vecí, ktoré robíš počas daždivého dňa
+vecí, ktoré môže odniesť vietor
+vecí, ktoré zamrznú
+vecí, ktoré ťa chránia pred slnkom
+vecí, ktoré ťa chránia pred dažďom
+vecí, ktoré vidíš na oblohe
+prírodných katastrof
+druhov stromov
+lesných plodov
+vecí rastúcich v záhrade
+vecí, ktoré nájdeš na lúke
+vecí, ktoré nájdeš pri rieke
+vecí, ktoré nájdeš v horách
+vecí, ktoré nájdeš v jaskyni
+vecí, ktoré patria k moru
+vecí, ktoré patria k púšti
+vecí, ktoré sú ekologické
+spôsobov, ako chrániť prírodu
+vecí, ktoré sa dajú recyklovať
+vecí na svadbe
+vecí na narodeninovej párty
+vecí na karnevale
+vecí na diskotéke
+vecí na festivale
+vecí na pikniku
+vecí na opekačke
+vecí na grilovačke
+vecí na Silvestra
+vecí na Veľkú noc
+vecí na Halloween
+darčekov na Vianoce
+darčekov pre dieťa
+darčekov pre rodičov
+dôvodov na oslavu
+dôvodov, prečo usporiadať párty
+hier, ktoré sa dajú hrať na oslave
+vecí, ktoré hostiteľ pripraví pre návštevu
+dôvodov, prečo sa ľudia smejú
+dôvodov, prečo ľudia plačú
+vecí, ktorých sa ľudia boja
+vecí, ktoré ľudí hnevajú
+vecí, ktoré ľudí potešia
+vecí, ktoré sú romantické
+vecí, ktoré sú trápne
+vecí, ktoré sú nebezpečné
+vecí, ktoré sú drahé
+vecí, ktoré sú zadarmo
+vecí, ktoré rýchlo miznú
+vecí, na ktoré sa dlho čaká
+dôvodov, prečo niekto zaspí
+dôvodov, prečo niekto mešká
+dôvodov, prečo niekto klame
+dôvodov, prečo sa ľudia hádajú
+dôvodov, prečo sa ospravedlniť
+vecí, ktoré robíš, keď sa nudíš
+vecí, ktoré robíš, keď si hladný
+vecí, ktoré robíš, keď si unavený
+vecí, ktoré robíš, keď si šťastný
+vecí, ktoré robíš potichu
+vecí, ktoré robíš veľmi nahlas
+vecí, ktoré môžeš zabudnúť
+vecí, ktoré si musíš pamätať
+vecí, ktoré sa dajú požičať
+vecí, ktoré sa dajú darovať
+vecí, ktoré sa dajú zbierať
+vecí, ktoré sa dajú zlomiť
+vecí, ktoré sa dajú rozliať
+vecí, ktoré sa dajú zrolovať
+vecí, ktoré sa dajú zaviazať
+vecí, ktoré sa dajú zapnúť
+vecí, ktoré sa dajú vypnúť
+vecí, ktoré sa dajú nabíjať
+vecí, ktoré sa dajú odfotiť
+vecí, ktoré sa dajú podpísať
+vecí, ktoré sa dajú poslať poštou
+vecí, ktoré sa dajú kúpiť online
+vecí menších ako mobil
+vecí väčších ako auto
+vecí ľahších ako kniha
+vecí ťažších ako človek
+okrúhlych vecí
+štvorcových vecí
+priehľadných vecí
+farebných vecí
+čiernobielych vecí
+kovových vecí
+drevených vecí
+plastových vecí
+sklenených vecí
+vecí s číslami
+vecí s písmenami
+vecí s rukoväťou
+vecí s displejom
+vecí s batériou
+vecí so zipsom
+vecí s kolieskami
+vecí s tlačidlami
+vecí, ktoré blikajú
+vecí, ktoré pípajú
+vecí, ktoré príjemne voňajú
+vecí, ktoré nepríjemne zapáchajú
+vecí, ktoré sú horúce
+vecí, ktoré sú studené
+vecí, ktoré sú ostré
+vecí, ktoré sú lepkavé
+vecí, ktoré sú krehké
+vecí, ktoré sú hlučné
+vecí, ktoré sú tiché
+slov na písmeno A
+slov na písmeno B
+slov na písmeno D
+slov na písmeno H
+slov na písmeno L
+slov na písmeno N
+slov na písmeno O
+slov na písmeno P
+slov na písmeno R
+slov na písmeno S
+slov na písmeno T
+slov na písmeno V
+slov na písmeno Z
+mien na písmeno M
+mien na písmeno J
+mien na písmeno P
+slov, ktoré sa rýmujú so slovom dom
+slov, ktoré sa rýmujú so slovom pes
+slov, ktoré sa rýmujú so slovom noc
+`.trim().split("\n");
+
+export const FIVE_IN_TEN_PROMPTS = [...CORE_FIVE_IN_TEN_PROMPTS, ...EXTRA_FIVE_IN_TEN_LIBRARY];
