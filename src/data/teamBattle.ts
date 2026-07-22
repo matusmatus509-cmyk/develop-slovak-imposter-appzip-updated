@@ -426,7 +426,6 @@ export function getTeamCharacters(includeSlovak: boolean): string[] {
     ? TEAM_CHARACTERS
     : TEAM_CHARACTERS.filter((character) => !LOCAL_TEAM_CHARACTERS.has(character));
   const categoryCards = getCharacterCategories(includeSlovak)
-    .filter((category) => category.id !== "global-mix")
     .flatMap((category) => category.characters);
   return [...new Set([...starterCards, ...categoryCards])];
 }
