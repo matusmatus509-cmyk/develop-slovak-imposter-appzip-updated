@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import songArt from "../../assets/party-song.svg";
 import { shuffle } from "../../data/teamBattle";
-import { FORBIDDEN_CARDS, SONG_CARDS, type SongCard } from "../../data/teamBattleExtras";
+import { FORBIDDEN_CARDS, INTERNATIONAL_SONG_CARDS, SONG_CARDS, type SongCard } from "../../data/teamBattleExtras";
+import { useLanguage } from "../../i18n/LanguageProvider";
 import { CircularTimer, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
 
@@ -42,6 +43,7 @@ interface SharedProps extends QuickParticipantsProps {
 }
 
 function PassAndPlay({ participantNames, gameMode, timeSeconds, onDone, mode }: SharedProps & { mode: PassMode }) {
+  const { language } = useLanguage();
   const copy = MODE_COPY[mode];
   const [participant, setParticipant] = useState(0);
   const [phase, setPhase] = useState<Phase>("ready");
@@ -57,8 +59,10 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, onDone, mode }: 
   const participantColor = PARTY_PLAYER_COLORS[participant % PARTY_PLAYER_COLORS.length];
   const participantLabel = gameMode === "teams" ? "tím" : "hráč";
   const deck = useMemo(
-    () => mode === "zakazane" ? shuffle(FORBIDDEN_CARDS) : shuffle(SONG_CARDS),
-    [mode, participant],
+    () => mode === "zakazane"
+      ? shuffle(FORBIDDEN_CARDS)
+      : shuffle(language === "sk" ? SONG_CARDS : INTERNATIONAL_SONG_CARDS),
+    [language, mode, participant],
   );
   const card = mode === "zakazane"
     ? deck[index] as (typeof FORBIDDEN_CARDS)[number]

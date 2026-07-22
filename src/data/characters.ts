@@ -342,3 +342,9 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     characters: uniqueCards(VIDEO_GAME_CHARACTERS),
   },
 ];
+
+export function getCharacterCategories(includeSlovak: boolean): CharacterCategory[] {
+  return includeSlovak
+    ? CHARACTER_CATEGORIES
+    : CHARACTER_CATEGORIES.filter((category) => !category.id.startsWith("slovak-"));
+}

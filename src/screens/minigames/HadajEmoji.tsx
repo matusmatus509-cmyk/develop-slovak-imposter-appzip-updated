@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
-  EMOJI_CATEGORIES,
+  getEmojiCategories,
   type EmojiCategory,
   type EmojiPuzzle,
 } from "../../data/emojiCategories";
 import { Button, Shell, TopBar } from "../../components/ui";
+import { useLanguage } from "../../i18n/LanguageProvider";
 
 function shuffle<T>(arr: T[]): T[] {
   const copy = [...arr];
@@ -16,15 +17,25 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 export default function HadajEmoji({ onBack }: { onBack: () => void }) {
-  const [categoryId, setCategoryId] = useState(EMOJI_CATEGORIES[0].id);
+  const { language } = useLanguage();
+  const categories = useMemo(() => getEmojiCategories(language === "sk"), [language]);
+  const [categoryId, setCategoryId] = useState(categories[0].id);
   const [deck, setDeck] = useState<EmojiPuzzle[]>(() =>
-    shuffle(EMOJI_CATEGORIES[0].puzzles)
+    shuffle(categories[0].puzzles)
   );
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
 
-  const category = EMOJI_CATEGORIES.find((item) => item.id === categoryId) ?? EMOJI_CATEGORIES[0];
+  const category = categories.find((item) => item.id === categoryId) ?? categories[0];
   const puzzle = deck[index];
+
+  useEffect(() => {
+    const nextCategory = categories.find((item) => item.id === categoryId) ?? categories[0];
+    setCategoryId(nextCategory.id);
+    setDeck(shuffle(nextCategory.puzzles));
+    setIndex(0);
+    setRevealed(false);
+  }, [categories, categoryId]);
 
   function selectCategory(nextCategory: EmojiCategory) {
     setCategoryId(nextCategory.id);
@@ -53,7 +64,7 @@ export default function HadajEmoji({ onBack }: { onBack: () => void }) {
             Vyber kategóriu
           </p>
           <div className="flex flex-wrap justify-center gap-2">
-            {EMOJI_CATEGORIES.map((item) => (
+            {categories.map((item) => (
               <button
                 key={item.id}
                 onClick={() => selectCategory(item)}

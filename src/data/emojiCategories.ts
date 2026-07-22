@@ -142,3 +142,10 @@ export const EMOJI_CATEGORIES: EmojiCategory[] = [
   { id: "animated", title: "Animované postavy", icon: "🎨", puzzles: ANIMATED_CHARACTERS },
   { id: "games", title: "Videohry", icon: "🎮", puzzles: VIDEO_GAMES },
 ];
+
+export function getEmojiCategories(includeSlovak: boolean): EmojiCategory[] {
+  if (includeSlovak) return EMOJI_CATEGORIES;
+  return EMOJI_CATEGORIES.map((category) => category.id === "people"
+    ? { ...category, puzzles: category.puzzles.filter((puzzle) => !puzzle.emoji.includes("🇸🇰")) }
+    : category);
+}

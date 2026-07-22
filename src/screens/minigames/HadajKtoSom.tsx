@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback, useRef } from "react";
-import { CHARACTER_CATEGORIES } from "../../data/characters";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { getCharacterCategories, type CharacterCategory } from "../../data/characters";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
+import { useLanguage } from "../../i18n/LanguageProvider";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -31,8 +32,8 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-function buildDeck(catIds: string[]): Card[] {
-  const cats = CHARACTER_CATEGORIES.filter((c) => catIds.includes(c.id));
+function buildDeck(categories: CharacterCategory[], catIds: string[]): Card[] {
+  const cats = categories.filter((c) => catIds.includes(c.id));
   const cards: Card[] = [];
   const seen = new Set<string>();
   for (const cat of cats) {
@@ -51,15 +52,17 @@ function buildDeck(catIds: string[]): Card[] {
 function SetupScreen({
   onBack,
   onStart,
+  categories,
 }: {
   onBack: () => void;
   onStart: (names: string[], catIds: string[], timerSeconds: number) => void;
+  categories: CharacterCategory[];
 }) {
   const [count, setCount] = useState(3);
   const [names, setNames] = useState(
     Array.from({ length: 8 }, (_, i) => `Hráč ${i + 1}`)
   );
-  const [selectedCats, setSelectedCats] = useState([CHARACTER_CATEGORIES[0].id]);
+  const [selectedCats, setSelectedCats] = useState([categories[0].id]);
   const [timer, setTimer] = useState(60);
 
   function toggleCat(id: string) {
@@ -102,7 +105,7 @@ function SetupScreen({
           Kategória
         </p>
         <div className="flex flex-col gap-2">
-          {CHARACTER_CATEGORIES.map((cat, i) => (
+          {categories.map((cat, i) => (
             <button
               key={cat.id}
               onClick={() => toggleCat(cat.id)}
@@ -422,12 +425,14 @@ function PlayingScreen({
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 export default function HadajKtoSom({ onBack }: { onBack: () => void }) {
+  const { language } = useLanguage();
+  const categories = useMemo(() => getCharacterCategories(language === "sk"), [language]);
   const [phase, setPhase] = useState<Phase>("setup");
   const [players, setPlayers] = useState<PlayerScore[]>([]);
   const [currentDeck, setCurrentDeck] = useState<Card[]>([]);
   const [currentPlayer, setCurrentPlayer] = useState(0);
   const [timerSeconds, setTimerSeconds] = useState(60);
-  const [allCatIds, setAllCatIds] = useState<string[]>([CHARACTER_CATEGORIES[0].id]);
+  const [allCatIds, setAllCatIds] = useState<string[]>([categories[0].id]);
 
   function handleSetupStart(names: string[], catIds: string[], timer: number) {
     setAllCatIds(catIds);
@@ -439,7 +444,7 @@ export default function HadajKtoSom({ onBack }: { onBack: () => void }) {
 
   async function startPlaying() {
     await requestTiltPermission();
-    setCurrentDeck(buildDeck(allCatIds));
+    setCurrentDeck(buildDeck(categories, allCatIds));
     setPhase("playing");
   }
 
@@ -464,7 +469,7 @@ export default function HadajKtoSom({ onBack }: { onBack: () => void }) {
 
   // ── Setup ─────────────────────────────────────────────────────────────────
   if (phase === "setup") {
-    return <SetupScreen onBack={onBack} onStart={handleSetupStart} />;
+    return <SetupScreen key={language} categories={categories} onBack={onBack} onStart={handleSetupStart} />;
   }
 
   // ── Who starts ────────────────────────────────────────────────────────────

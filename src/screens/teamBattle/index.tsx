@@ -1,9 +1,9 @@
 import { useState } from "react";
 import {
   generateBattleRounds,
+  getTeamCharacters,
   shuffle,
   SARADY_WORDS,
-  TEAM_CHARACTERS,
   QUIZ_QUESTIONS,
   type BattleRound,
   type GameType,
@@ -20,6 +20,7 @@ import GameOver from "./GameOver";
 import { ForbiddenWordGame, GuessSongGame } from "./PassAndPlay";
 import SoundBuzzer from "./SoundBuzzer";
 import { FiveInTenGame, LetterChallengeGame } from "./QuickChallenges";
+import { useLanguage } from "../../i18n/LanguageProvider";
 
 type Phase =
   | "setup"
@@ -31,13 +32,14 @@ type Phase =
 
 const TURN_BASED: GameType[] = ["pantomima", "sarady", "hadajktosom"];
 
-function wordsForGame(game: GameType): string[] {
+function wordsForGame(game: GameType, includeSlovak: boolean): string[] {
   if (game === "sarady") return shuffle(SARADY_WORDS);
-  if (game === "hadajktosom") return shuffle(TEAM_CHARACTERS);
+  if (game === "hadajktosom") return shuffle(getTeamCharacters(includeSlovak));
   return [];
 }
 
 export default function TeamBattle({ onHome }: { onHome: () => void }) {
+  const { language } = useLanguage();
   const [phase, setPhase] = useState<Phase>("setup");
   const [teamNames, setTeamNames] = useState<[string, string]>(["Tím A", "Tím B"]);
   const [rounds, setRounds] = useState<BattleRound[]>([]);
@@ -73,7 +75,7 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
     const r = rounds[idx];
     if (!r) return;
     if (TURN_BASED.includes(r.game)) {
-      setRoundWords(wordsForGame(r.game));
+      setRoundWords(wordsForGame(r.game, language === "sk"));
     } else if (r.game === "quiz") {
       setRoundQuestions(shuffle(QUIZ_QUESTIONS).slice(0, 5));
     }

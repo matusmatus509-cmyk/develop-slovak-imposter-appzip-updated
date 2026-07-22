@@ -1191,6 +1191,33 @@ export const SONG_CARDS: SongCard[] = Array.from(
   new Map(parsedSongs.map((song) => [`${song.title.toLocaleLowerCase()}|${song.artist.toLocaleLowerCase()}`, song])).values(),
 );
 
+const internationalSongStart = SONG_CARDS.findIndex(
+  (song) => song.title === "Shape of You" && song.artist === "Ed Sheeran",
+);
+const extendedLocalSongStart = SONG_CARDS.findIndex(
+  (song) => song.title === "Láska, necestuj tým vlakom" && song.artist === "Pavol Hammel",
+);
+const extendedLocalSongEnd = SONG_CARDS.findIndex(
+  (song) => song.title === "Černé oči jděte spát" && song.artist === "Traditional",
+);
+const LOCAL_TRADITIONAL_TITLES = new Set([
+  "Hej, sokoly",
+  "Na Kráľovej holi",
+  "Tancuj, tancuj, vykrúcaj",
+  "Prší, prší",
+  "Kukulienka, kde si bola",
+  "Macejko",
+  "Červený kacheľ",
+]);
+
+// Slovak and Czech songs are intentionally kept only for the Slovak language mode.
+export const INTERNATIONAL_SONG_CARDS: SongCard[] = SONG_CARDS.filter((song, index) => {
+  if (internationalSongStart >= 0 && index < internationalSongStart) return false;
+  if (extendedLocalSongStart >= 0 && extendedLocalSongEnd >= extendedLocalSongStart
+    && index >= extendedLocalSongStart && index <= extendedLocalSongEnd) return false;
+  return !LOCAL_TRADITIONAL_TITLES.has(song.title);
+});
+
 export interface SoundClue {
   id: string;
   label: string;

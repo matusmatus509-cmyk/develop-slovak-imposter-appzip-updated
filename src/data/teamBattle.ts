@@ -414,6 +414,18 @@ export const TEAM_CHARACTERS: string[] = [
   "Santa Claus", "Snehuliak", "Popoluška", "Šípková Ruženka",
 ];
 
+const LOCAL_TEAM_CHARACTERS = new Set([
+  "Marek Hamšík",
+  "Peter Sagan",
+  "Zuzana Čaputová",
+]);
+
+export function getTeamCharacters(includeSlovak: boolean): string[] {
+  return includeSlovak
+    ? TEAM_CHARACTERS
+    : TEAM_CHARACTERS.filter((character) => !LOCAL_TEAM_CHARACTERS.has(character));
+}
+
 // ── Quiz questions ────────────────────────────────────────────────────────────
 export interface QuizQuestion {
   question: string;
