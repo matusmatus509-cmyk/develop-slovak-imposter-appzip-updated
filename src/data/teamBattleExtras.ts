@@ -407,12 +407,483 @@ I Will Always Love You|Whitney Houston
 All I Want for Christmas Is You|Mariah Carey
 Last Christmas|Wham!
 Jingle Bells|Traditional
+Láska, necestuj tým vlakom|Pavol Hammel
+Učiteľka tanca|Pavol Hammel
+ZRPŠ|Pavol Hammel
+Medulienka|Pavol Hammel
+Kristínka iba spí|Peter Nagy
+Aj tak sme frajeri|Peter Nagy
+Láska je tu s nami|Peter Nagy
+Poďme sa zachrániť|Peter Nagy
+Len pomaly|Peter Nagy
+Mandolína|Adam Ďurica
+Neľutujem|Adam Ďurica
+Domovina|Adam Ďurica
+Zatancuj si so mnou|Adam Ďurica
+Tam kde sa neumiera|Zuzana Smatanová
+V dobrom aj v zlom|Zuzana Smatanová
+Horou|Zuzana Smatanová
+Vráť trochu lásky medzi nás|Money Factor
+Pokoj v duši|Jana Kirschner
+Modrá|Jana Kirschner
+Na čiernom koni|Jana Kirschner
+Strážca pokladov|Jana Kirschner
+Run Run Run|Celeste Buckingham
+Crushin' My Fairytale|Celeste Buckingham
+Mám ťa málo|Mária Čírová
+Unikát|Mária Čírová
+Nestrácaj nádej|Mária Čírová
+Smej sa|Mária Čírová
+Čerešne|Peter Cmorik
+Dážď|Peter Cmorik
+Jedno si želám|Peter Cmorik
+Nespáľme to krásne v nás|Peter Cmorik
+S tebou ma baví svet|Peter Cmorik
+Pocit|Bystrík
+Hej, dievča|Bystrík
+Chlapci spod Tatier|Kollárovci
+Daj mi lásku|Kollárovci
+Sokoly|Kollárovci
+Všetko bude fajn|Misha
+Náladu mi dvíhaš|Misha
+Keď sa láska podarí|Dara Rolins
+Zvonky šťastia|Dara Rolins a Karel Gott
+Čo o mne vieš|Dara Rolins
+Party DJ|Dara Rolins
+Slobodná|Tina
+Si sám|Tina
+Príbeh nekončí|Katarína Hasprová
+Kým vieš snívať|Katarína Koščová
+Môj Bože|Katarína Koščová
+Lietajúci Cyprián|Komajota
+Ráno v novinách|Komajota
+Chvíľu áno|Para
+Abstinent|Para
+Otec|Para
+Naša|Para
+Ona je taká|Para
+Komplikovaná|Polemic
+Ona je taká|Polemic
+Ako to prežijem|Polemic
+Mesto|Polemic
+Silný refrén|Horkýže Slíže
+L.A.G. Song|Horkýže Slíže
+Malá Žužu|Horkýže Slíže
+Vlak|Horkýže Slíže
+Ráno|Iné Kafe
+Spomienky na budúcnosť|Iné Kafe
+Čumil|Iné Kafe
+Kašovité jedlá|Iné Kafe
+Pravda víťazí|Tublatanka
+Dnes|Tublatanka
+Láska, drž ma nad hladinou|Tublatanka
+Skúsime to cez vesmír|Tublatanka
+Keď je 7 ráno|Vidiek
+Fajčenie škodí zdraviu|Vidiek
+Ó, maňo|Vidiek
+Všetko sa dá|Gladiator
+Keď sa láska podarí|Gladiator
+Bonboniéra|Gladiator
+Hlavu maj hore|Sima
+Spolu|Sima
+Femina|Sima
+V oblakoch|Kali a Sima
+Kým ťa mám|Kali
+Mám ťa rád|Kali
+Na jednej lodi|Kali
+Srdce ako z kameňa|Kali
+Čakám|Kali
+Ideme ďalej|Kali
+Tancuj|Kali
+Ženy treba ľúbiť|Miro Jaroš
+Tobogan|Miro Jaroš
+Čisté tvary|Miro Jaroš
+Kto vie|Miro Jaroš
+Láska|Katarína Knechtová
+Motýľ hlavolam|Katarína Knechtová
+Vo svetle žiariacich hviezd|Katarína Knechtová
+S tebou alebo bez teba|Tomáš Bezdeda
+Len ty|Tomáš Bezdeda
+Máme svoj deň|Peter Bič Project
+Hey Now|Peter Bič Project
+Skúšame sa nájsť|Peter Bič Project
+Where Did You Go|Peter Bič Project
+Len sa smej|Billy Barman
+Mladým chýba vojna|Billy Barman
+Traja|Billy Barman
+Hannah|Billy Barman
+Niečo nové|Korben Dallas
+Otec|Korben Dallas
+Za sklom|Korben Dallas a Jana Kirschner
+Kým sa rozídeme|Korben Dallas
+Františkovy lázně|Mandrage
+Šrouby a matice|Mandrage
+Hledá se žena|Mandrage
+Na dlani|Mandrage
+Pohoda|Kabát
+Burlaci|Kabát
+Malá dáma|Kabát
+Colorado|Kabát
+Žízeň|Kabát
+Anděl|Karel Kryl
+Bratříčku, zavírej vrátka|Karel Kryl
+Růže z papíru|Nedvědi
+Stánky|Nedvědi
+Tři kříže|Hop Trop
+Bedna od whisky|Miki Ryvola
+Rána v trávě|Žalman
+Svařák|Harlej
+Pověste ho vejš|Michal Tučný
+Báječná ženská|Michal Tučný
+Hlídač krav|Jaromír Nohavica
+Sarajevo|Jaromír Nohavica
+Zatímco se koupeš|Jaromír Nohavica
+Proměny|Čechomor
+Mezi horami|Čechomor
+Černé oči jděte spát|Traditional
+Die With A Smile|Lady Gaga a Bruno Mars
+APT.|ROSÉ a Bruno Mars
+Ordinary|Alex Warren
+Back to Friends|sombr
+Golden|HUNTR/X
+Luther|Kendrick Lamar a SZA
+That's So True|Gracie Abrams
+Wildflower|Billie Eilish
+DtMF|Bad Bunny
+A Bar Song (Tipsy)|Shaboozey
+Espresso|Sabrina Carpenter
+Please Please Please|Sabrina Carpenter
+Taste|Sabrina Carpenter
+Good Luck, Babe!|Chappell Roan
+Beautiful Things|Benson Boone
+Lose Control|Teddy Swims
+Too Sweet|Hozier
+Messy|Lola Young
+End of Beginning|Djo
+Texas Hold 'Em|Beyoncé
+Fortnight|Taylor Swift feat. Post Malone
+Greedy|Tate McRae
+Beautiful Scars|Benson Boone
+Million Dollar Baby|Tommy Richman
+I Had Some Help|Post Malone feat. Morgan Wallen
+Pink Pony Club|Chappell Roan
+Stargazing|Myles Smith
+Stick Season|Noah Kahan
+Good 4 U|Olivia Rodrigo
+Drivers License|Olivia Rodrigo
+Vampire|Olivia Rodrigo
+Déjà Vu|Olivia Rodrigo
+Flowers Need Rain|Preston Pablo a Banx & Ranx
+Positions|Ariana Grande
+Thank U, Next|Ariana Grande
+7 Rings|Ariana Grande
+Problem|Ariana Grande
+Break Free|Ariana Grande
+We Can't Be Friends|Ariana Grande
+Love Me Like You Do|Ellie Goulding
+Burn|Ellie Goulding
+Lights|Ellie Goulding
+Closer to Me|Ellie Goulding
+Stay|The Kid LAROI a Justin Bieber
+Without Me|Halsey
+Closer|The Chainsmokers feat. Halsey
+Something Just Like This|The Chainsmokers a Coldplay
+Faded|Alan Walker
+Alone|Alan Walker
+The Spectre|Alan Walker
+Lean On|Major Lazer a DJ Snake
+Rockabye|Clean Bandit
+Rather Be|Clean Bandit
+Symphony|Clean Bandit
+Don't You Worry Child|Swedish House Mafia
+This Is What You Came For|Calvin Harris feat. Rihanna
+Summer|Calvin Harris
+Feel So Close|Calvin Harris
+How Deep Is Your Love|Calvin Harris
+Animals|Martin Garrix
+Scared to Be Lonely|Martin Garrix a Dua Lipa
+Prayer in C|Lilly Wood and The Prick
+Reality|Lost Frequencies
+Are You With Me|Lost Frequencies
+Waves|Mr. Probz
+Stolen Dance|Milky Chance
+Safe and Sound|Capital Cities
+Pompeii|Bastille
+Rude|MAGIC!
+Somebody That I Used to Know|Gotye feat. Kimbra
+Royals|Lorde
+Team|Lorde
+Price Tag|Jessie J
+Domino|Jessie J
+Fight Song|Rachel Platten
+Stronger|Kelly Clarkson
+Because of You|Kelly Clarkson
+Since U Been Gone|Kelly Clarkson
+So What|P!nk
+Just Give Me a Reason|P!nk feat. Nate Ruess
+Try|P!nk
+Raise Your Glass|P!nk
+Complicated|Avril Lavigne
+Sk8er Boi|Avril Lavigne
+Girlfriend|Avril Lavigne
+I'm with You|Avril Lavigne
+Genie in a Bottle|Christina Aguilera
+Beautiful|Christina Aguilera
+Lady Marmalade|Christina Aguilera, Lil' Kim, Mýa a P!nk
+The Boy Is Mine|Brandy a Monica
+Bleeding Love|Leona Lewis
+No One|Alicia Keys
+If I Ain't Got You|Alicia Keys
+Empire State of Mind|Jay-Z feat. Alicia Keys
+Fallin'|Alicia Keys
+Crazy|Gnarls Barkley
+Crazy in Love|Beyoncé feat. Jay-Z
+Irreplaceable|Beyoncé
+Telephone|Lady Gaga feat. Beyoncé
+Alejandro|Lady Gaga
+Paparazzi|Lady Gaga
+Born This Way|Lady Gaga
+Don't Speak|No Doubt
+Just a Girl|No Doubt
+I'm Like a Bird|Nelly Furtado
+Say It Right|Nelly Furtado
+Maneater|Nelly Furtado
+Promiscuous|Nelly Furtado
+Whenever, Wherever|Shakira
+La Tortura|Shakira
+Can't Remember to Forget You|Shakira feat. Rihanna
+Livin' la Vida Loca|Ricky Martin
+The Cup of Life|Ricky Martin
+Bailando|Enrique Iglesias
+Hero|Enrique Iglesias
+I Like It|Enrique Iglesias
+Gasolina|Daddy Yankee
+Pepas|Farruko
+Mi Gente|J Balvin a Willy William
+Taki Taki|DJ Snake
+Calm Down|Rema a Selena Gomez
+Love You Like a Love Song|Selena Gomez
+Lose You to Love Me|Selena Gomez
+Wolves|Selena Gomez a Marshmello
+Heart Attack|Demi Lovato
+Sorry Not Sorry|Demi Lovato
+Cool for the Summer|Demi Lovato
+This Is Me|Demi Lovato a Joe Jonas
+See You Again|Wiz Khalifa feat. Charlie Puth
+Attention|Charlie Puth
+We Don't Talk Anymore|Charlie Puth feat. Selena Gomez
+One Call Away|Charlie Puth
+Marry You|Bruno Mars
+The Lazy Song|Bruno Mars
+When I Was Your Man|Bruno Mars
+24K Magic|Bruno Mars
+Treasure|Bruno Mars
+Fireflies|Owl City
+Hey, Soul Sister|Train
+I'm Yours|Jason Mraz
+Lucky|Jason Mraz a Colbie Caillat
+Beautiful Soul|Jesse McCartney
+You Belong with Me|Taylor Swift
+I Knew You Were Trouble|Taylor Swift
+We Are Never Ever Getting Back Together|Taylor Swift
+Style|Taylor Swift
+Cardigan|Taylor Swift
+Don't Blame Me|Taylor Swift
+Look What You Made Me Do|Taylor Swift
+Cheap Thrills|Sia feat. Sean Paul
+Elastic Heart|Sia
+Titanium|David Guetta feat. Sia
+Without You|David Guetta feat. Usher
+When Love Takes Over|David Guetta feat. Kelly Rowland
+Hey Mama|David Guetta feat. Nicki Minaj
+Turn Me On|David Guetta feat. Nicki Minaj
+Starships|Nicki Minaj
+Super Bass|Nicki Minaj
+Anaconda|Nicki Minaj
+Bang Bang|Jessie J, Ariana Grande a Nicki Minaj
+Hot N Cold|Katy Perry
+California Gurls|Katy Perry
+Dark Horse|Katy Perry
+Last Friday Night|Katy Perry
+The One That Got Away|Katy Perry
+Story of My Life|One Direction
+What Makes You Beautiful|One Direction
+Drag Me Down|One Direction
+Best Song Ever|One Direction
+Night Changes|One Direction
+Glad You Came|The Wanted
+Chasing the Sun|The Wanted
+All the Small Things|blink-182
+In the End|Linkin Park
+Numb|Linkin Park
+What I've Done|Linkin Park
+Bring Me to Life|Evanescence
+My Immortal|Evanescence
+Boulevard of Broken Dreams|Green Day
+Wake Me Up When September Ends|Green Day
+American Idiot|Green Day
+How You Remind Me|Nickelback
+Photograph|Nickelback
+Use Somebody|Kings of Leon
+Sex on Fire|Kings of Leon
+Californication|Red Hot Chili Peppers
+Under the Bridge|Red Hot Chili Peppers
+Otherside|Red Hot Chili Peppers
+The Reason|Hoobastank
+Iris|Goo Goo Dolls
+Wherever You Will Go|The Calling
+Chasing Cars|Snow Patrol
+Human|The Killers
+Mr. Brightside|The Killers
+Take Me to Church|Hozier
+Radioactive|Imagine Dragons
+It's Time|Imagine Dragons
+Hall of Fame|The Script feat. will.i.am
+Breakeven|The Script
+Superheroes|The Script
+Apologize|Timbaland feat. OneRepublic
+Stereo Hearts|Gym Class Heroes feat. Adam Levine
+Airplanes|B.o.B feat. Hayley Williams
+Nothin' on You|B.o.B feat. Bruno Mars
+Low|Flo Rida feat. T-Pain
+Right Round|Flo Rida
+Whistle|Flo Rida
+Give Me Everything|Pitbull feat. Ne-Yo
+Fireball|Pitbull
+International Love|Pitbull feat. Chris Brown
+Yeah!|Usher feat. Lil Jon a Ludacris
+DJ Got Us Fallin' in Love|Usher
+Beautiful Girls|Sean Kingston
+Temperature|Sean Paul
+Get Busy|Sean Paul
+Replay|Iyaz
+Down|Jay Sean feat. Lil Wayne
+Hotline Bling|Drake
+God's Plan|Drake
+One Dance|Drake
+Sunflower|Post Malone a Swae Lee
+Circles|Post Malone
+Rockstar|Post Malone feat. 21 Savage
+Old Town Road|Lil Nas X
+Industry Baby|Lil Nas X feat. Jack Harlow
+Montero|Lil Nas X
+The Real Slim Shady|Eminem
+Lose Yourself|Eminem
+Without Me|Eminem
+In Da Club|50 Cent
+Empire State of Mind|Jay-Z feat. Alicia Keys
+Hot in Herre|Nelly
+Hey Ya!|Outkast
+Where Is the Love?|The Black Eyed Peas
+Boom Boom Pow|The Black Eyed Peas
+Meet Me Halfway|The Black Eyed Peas
+Pump It|The Black Eyed Peas
+Sexy and I Know It|LMFAO
+Call on Me|Eric Prydz
+Satisfaction|Benny Benassi
+Sandstorm|Darude
+Everytime We Touch|Cascada
+Heaven|DJ Sammy
+Infinity 2008|Guru Josh Project
+Children|Robert Miles
+Around the World|Daft Punk
+Get Lucky|Daft Punk feat. Pharrell Williams
+One More Time|Daft Punk
+I See Fire|Ed Sheeran
+Castle on the Hill|Ed Sheeran
+Shivers|Ed Sheeran
+Dance the Night|Dua Lipa
+Training Season|Dua Lipa
+Physical|Dua Lipa
+Break My Heart|Dua Lipa
+Don't Stop the Music|Rihanna
+Only Girl (In the World)|Rihanna
+Love the Way You Lie|Eminem feat. Rihanna
+S&M|Rihanna
+Disturbia|Rihanna
+Unfaithful|Rihanna
+Man Down|Rihanna
+Firework|Katy Perry
+Halo|Beyoncé
+If I Were a Boy|Beyoncé
+Sweet Dreams|Beyoncé
+Run the World (Girls)|Beyoncé
+Africa|Toto
+Don't Stop Believin'|Journey
+Sweet Dreams (Are Made of This)|Eurythmics
+The Power of Love|Huey Lewis and the News
+Every Breath You Take|The Police
+Roxanne|The Police
+With or Without You|U2
+I Still Haven't Found What I'm Looking For|U2
+Losing My Religion|R.E.M.
+The Best|Tina Turner
+What's Love Got to Do with It|Tina Turner
+Purple Rain|Prince
+Kiss|Prince
+Tiny Dancer|Elton John
+I'm Still Standing|Elton John
+Rocket Man|Elton John
+Another Day in Paradise|Phil Collins
+In the Air Tonight|Phil Collins
+You Can't Hurry Love|Phil Collins
+Karma Chameleon|Culture Club
+Take My Breath Away|Berlin
+Heaven Is a Place on Earth|Belinda Carlisle
+99 Luftballons|Nena
+Venus|Bananarama
+Daddy Cool|Boney M.
+Rasputin|Boney M.
+Rivers of Babylon|Boney M.
+Sunny|Boney M.
+You're the One That I Want|John Travolta a Olivia Newton-John
+Summer Nights|Grease Cast
+Greased Lightnin'|John Travolta
+Murder on the Dancefloor|Sophie Ellis-Bextor
+Mambo No. 5|Lou Bega
+I'm Too Sexy|Right Said Fred
+Walking on Sunshine|Katrina and the Waves
+You Spin Me Round|Dead or Alive
+The Safety Dance|Men Without Hats
+Video Killed the Radio Star|The Buggles
+The Boys of Summer|Don Henley
+Maniac|Michael Sembello
+Flashdance... What a Feeling|Irene Cara
+Fame|Irene Cara
+Ghostbusters|Ray Parker Jr.
+I Don't Want to Miss a Thing|Aerosmith
+Dream On|Aerosmith
+Wind of Change|Scorpions
+Still Loving You|Scorpions
+Nothing Else Matters|Metallica
+Enter Sandman|Metallica
+Should I Stay or Should I Go|The Clash
+Song 2|Blur
+Basket Case|Green Day
+What's Up?|4 Non Blondes
+Torn|Natalie Imbruglia
+Kiss Me|Sixpence None the Richer
+Breakfast at Tiffany's|Deep Blue Something
+Lemon Tree|Fool's Garden
+Mmm Mmm Mmm Mmm|Crash Test Dummies
+Truly Madly Deeply|Savage Garden
+I Want You|Savage Garden
+Un-Break My Heart|Toni Braxton
+Torn|Natalie Imbruglia
+Genie in a Bottle|Christina Aguilera
+No Scrubs|TLC
+Wannabe|Spice Girls
+Stop|Spice Girls
+Say You'll Be There|Spice Girls
 `;
 
-export const SONG_CARDS: SongCard[] = SONG_LIBRARY.trim().split("\n").map((line) => {
+const parsedSongs: SongCard[] = SONG_LIBRARY.trim().split("\n").map((line) => {
   const [title, artist] = line.split("|");
   return { title: title.trim(), artist: artist.trim() };
 });
+export const SONG_CARDS: SongCard[] = Array.from(
+  new Map(parsedSongs.map((song) => [`${song.title.toLocaleLowerCase()}|${song.artist.toLocaleLowerCase()}`, song])).values(),
+);
 
 export interface SoundClue {
   id: string;

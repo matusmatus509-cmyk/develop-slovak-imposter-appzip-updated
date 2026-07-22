@@ -20,9 +20,9 @@ const MODE_COPY = {
     eyebrow: "Uhádni pesničku",
     icon: "🎵",
     title: "Zahmkaj melódiu bez slov",
-    instruction: "Názov vidí iba hráč s mobilom. Zahmká melódiu bez textu a jeho tím háda názov pesničky.",
+    instruction: "Názov vidí iba hráč s mobilom. Zahmká melódiu bez textu. Tím získava bod za názov a ďalší bod za interpreta.",
     correct: "Uhádnutá",
-    result: "uhádnutých piesní",
+    result: "bodov za názvy a interpretov",
     accent: "#a78bfa",
   },
 } as const;
@@ -49,6 +49,7 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
   const [index, setIndex] = useState(0);
   const [turnScore, setTurnScore] = useState(0);
   const [scores, setScores] = useState<[number, number]>([0, 0]);
+  const [songAwards, setSongAwards] = useState({ title: false, artist: false });
   const [preview, setPreview] = useState<{ url: string; link: string } | null>(null);
   const [previewStatus, setPreviewStatus] = useState<"loading" | "ready" | "playing" | "missing">("loading");
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -123,6 +124,7 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
     setIndex(0);
     setTurnScore(0);
     setTimeLeft(timeSeconds);
+    setSongAwards({ title: false, artist: false });
     setPhase("playing");
   }
 
@@ -131,6 +133,19 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
     if (correct) setTurnScore((value) => value + 1);
     setIndex((value) => (value + 1) % deck.length);
     navigator.vibrate?.(correct ? 30 : 12);
+  }
+
+  function awardSongPart(part: "title" | "artist") {
+    if (songAwards[part]) return;
+    setSongAwards((current) => ({ ...current, [part]: true }));
+    setTurnScore((value) => value + 1);
+    navigator.vibrate?.(25);
+  }
+
+  function nextSongCard() {
+    stopPreview();
+    setSongAwards({ title: false, artist: false });
+    setIndex((value) => (value + 1) % deck.length);
   }
 
   function stopPreview() {
@@ -257,6 +272,10 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
               <p className="mt-4 text-[10px] font-black uppercase tracking-[0.24em] text-violet-300/65">Zahmkaj bez slov</p>
               <h1 className="mx-auto mt-3 max-w-sm text-3xl font-black leading-tight text-white">{songCard.title}</h1>
               <p className="mt-2 text-sm font-bold text-violet-200/60">{songCard.artist}</p>
+              <div className="mt-4 flex justify-center gap-2">
+                <span className={`rounded-full border px-3 py-1.5 text-[9px] font-black uppercase tracking-wider ${songAwards.title ? "border-emerald-300/40 bg-emerald-400/15 text-emerald-200" : "border-white/10 bg-white/[0.04] text-white/30"}`}>Názov {songAwards.title ? "✓" : "+1"}</span>
+                <span className={`rounded-full border px-3 py-1.5 text-[9px] font-black uppercase tracking-wider ${songAwards.artist ? "border-emerald-300/40 bg-emerald-400/15 text-emerald-200" : "border-white/10 bg-white/[0.04] text-white/30"}`}>Interpret {songAwards.artist ? "✓" : "+1"}</span>
+              </div>
               <div className="mt-5 rounded-2xl border border-violet-300/15 bg-violet-400/[0.07] p-3">
                 <p className="text-[10px] font-bold leading-relaxed text-white/35">Nepoznáš ju podľa názvu? Prilož mobil k uchu a pusti si krátku ukážku.</p>
                 <button
@@ -275,10 +294,18 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
         </section>
       </main>
 
-      <footer className="relative z-10 flex shrink-0 gap-3 px-4 pb-7 pt-3">
-        <button onClick={() => nextCard(false)} className="party-glass flex-1 rounded-2xl py-5 text-sm font-black text-white/55 transition active:scale-95">Preskočiť</button>
-        <button onClick={() => nextCard(true)} className="party-shine flex-1 overflow-hidden rounded-2xl bg-emerald-600 py-5 text-sm font-black text-white shadow-lg transition active:scale-95">✓ {copy.correct} +1</button>
-      </footer>
+      {mode === "pesnicka" ? (
+        <footer className="relative z-10 grid shrink-0 grid-cols-3 gap-2 px-4 pb-7 pt-3">
+          <button onClick={nextSongCard} className="party-glass rounded-2xl py-4 text-xs font-black text-white/55 transition active:scale-95">Ďalšia →</button>
+          <button onClick={() => awardSongPart("title")} disabled={songAwards.title} className="party-shine overflow-hidden rounded-2xl bg-violet-600 py-4 text-xs font-black text-white shadow-lg transition active:scale-95 disabled:bg-emerald-700 disabled:opacity-70">{songAwards.title ? "✓ Názov" : "+1 Názov"}</button>
+          <button onClick={() => awardSongPart("artist")} disabled={songAwards.artist} className="party-shine overflow-hidden rounded-2xl bg-fuchsia-600 py-4 text-xs font-black text-white shadow-lg transition active:scale-95 disabled:bg-emerald-700 disabled:opacity-70">{songAwards.artist ? "✓ Interpret" : "+1 Interpret"}</button>
+        </footer>
+      ) : (
+        <footer className="relative z-10 flex shrink-0 gap-3 px-4 pb-7 pt-3">
+          <button onClick={() => nextCard(false)} className="party-glass flex-1 rounded-2xl py-5 text-sm font-black text-white/55 transition active:scale-95">Preskočiť</button>
+          <button onClick={() => nextCard(true)} className="party-shine flex-1 overflow-hidden rounded-2xl bg-emerald-600 py-5 text-sm font-black text-white shadow-lg transition active:scale-95">✓ {copy.correct} +1</button>
+        </footer>
+      )}
     </div>
   );
 }
