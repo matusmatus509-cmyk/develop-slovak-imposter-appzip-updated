@@ -3,7 +3,10 @@ import path from "node:path";
 import ts from "typescript";
 
 const root = path.resolve("src");
-const output = path.join(root, "i18n", "translations.en.json");
+const targetLanguage = process.argv[2] ?? "en";
+const supportedLanguages = new Set(["en", "de", "es"]);
+if (!supportedLanguages.has(targetLanguage)) throw new Error(`Unsupported target language: ${targetLanguage}`);
+const output = path.join(root, "i18n", `translations.${targetLanguage}.json`);
 
 function walk(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -85,7 +88,7 @@ function batches(items, maxChars = 2600) {
 }
 
 async function requestTranslation(text) {
-  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=sk&tl=en&dt=t&q=${encodeURIComponent(text)}`;
+  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=sk&tl=${targetLanguage}&dt=t&q=${encodeURIComponent(text)}`;
   const response = await fetch(url, { headers: { "User-Agent": "SlovakPartyApp translation build" } });
   if (!response.ok) throw new Error(`Translation request failed: ${response.status}`);
   const payload = await response.json();
