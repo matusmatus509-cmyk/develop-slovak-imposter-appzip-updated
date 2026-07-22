@@ -343,6 +343,19 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
   },
 ];
 
+const GLOBAL_CHARACTER_MIX = uniqueCards(
+  CHARACTER_CATEGORIES
+    .filter((category) => !category.id.startsWith("slovak-"))
+    .flatMap((category) => category.characters),
+);
+
+CHARACTER_CATEGORIES.unshift({
+  id: "global-mix",
+  name: "Veľký svetový mix",
+  icon: "🌐",
+  characters: GLOBAL_CHARACTER_MIX,
+});
+
 export function getCharacterCategories(includeSlovak: boolean): CharacterCategory[] {
   return includeSlovak
     ? CHARACTER_CATEGORIES

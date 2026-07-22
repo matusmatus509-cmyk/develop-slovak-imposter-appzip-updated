@@ -2,6 +2,7 @@ import {
   ALL_TEAM_CHARADES_WORDS,
   TEAM_CHARADES_WORDS,
 } from "./charades";
+import { getCharacterCategories } from "./characters";
 
 // ── Pantomíma words (act it out, no speaking) ────────────────────────────────
 // Split into difficulty tiers — each tier is worth a different point value.
@@ -421,9 +422,13 @@ const LOCAL_TEAM_CHARACTERS = new Set([
 ]);
 
 export function getTeamCharacters(includeSlovak: boolean): string[] {
-  return includeSlovak
+  const starterCards = includeSlovak
     ? TEAM_CHARACTERS
     : TEAM_CHARACTERS.filter((character) => !LOCAL_TEAM_CHARACTERS.has(character));
+  const categoryCards = getCharacterCategories(includeSlovak)
+    .filter((category) => category.id !== "global-mix")
+    .flatMap((category) => category.characters);
+  return [...new Set([...starterCards, ...categoryCards])];
 }
 
 // ── Quiz questions ────────────────────────────────────────────────────────────

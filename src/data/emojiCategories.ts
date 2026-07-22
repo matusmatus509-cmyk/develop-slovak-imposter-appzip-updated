@@ -143,9 +143,25 @@ export const EMOJI_CATEGORIES: EmojiCategory[] = [
   { id: "games", title: "Videohry", icon: "🎮", puzzles: VIDEO_GAMES },
 ];
 
+const WORLD_EMOJI_MIX = Array.from(
+  new Map(
+    EMOJI_CATEGORIES
+      .flatMap((category) => category.puzzles)
+      .map((puzzle) => [`${puzzle.emoji}|${puzzle.answer}`, puzzle]),
+  ).values(),
+);
+
+EMOJI_CATEGORIES.unshift({
+  id: "world-mix",
+  title: "Veľký svetový mix",
+  icon: "🌐",
+  puzzles: WORLD_EMOJI_MIX,
+});
+
 export function getEmojiCategories(includeSlovak: boolean): EmojiCategory[] {
   if (includeSlovak) return EMOJI_CATEGORIES;
-  return EMOJI_CATEGORIES.map((category) => category.id === "people"
-    ? { ...category, puzzles: category.puzzles.filter((puzzle) => !puzzle.emoji.includes("🇸🇰")) }
-    : category);
+  return EMOJI_CATEGORIES.map((category) => ({
+    ...category,
+    puzzles: category.puzzles.filter((puzzle) => !puzzle.emoji.includes("🇸🇰")),
+  }));
 }
