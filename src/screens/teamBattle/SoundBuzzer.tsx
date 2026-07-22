@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState } from "react";
+import soundArt from "../../assets/party-sound.svg";
 import { TEAM_COLORS, shuffle } from "../../data/teamBattle";
 import { SOUND_CLUES } from "../../data/teamBattleExtras";
 import { PartyBackdrop, PartyEyebrow, TeamBadge } from "./PartyChrome";
@@ -122,13 +123,18 @@ export default function SoundBuzzer({ teamNames, onDone }: { teamNames: [string,
 
           <section className="party-glass relative mt-5 flex flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.2rem] px-6 py-8">
             <div className="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent" />
-            <button
-              onClick={play}
-              className="party-shine relative flex h-36 w-36 items-center justify-center overflow-hidden rounded-full border border-cyan-300/30 bg-cyan-400/10 shadow-[0_0_70px_rgba(34,211,238,.23)] transition active:scale-95"
-            >
-              <span className={`text-6xl ${audioLock.current ? "animate-pulse" : ""}`}>{played ? "🔊" : "▶️"}</span>
-            </button>
-            <h1 className="mt-7 text-2xl font-black text-white">
+            <div className="relative h-44 w-full max-w-sm shrink-0 overflow-hidden rounded-[1.8rem] border border-cyan-300/20 shadow-[0_0_70px_rgba(34,211,238,.18)]">
+              <img src={soundArt} alt="Ilustrácia zvukovej minihry" className="h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#07131b]/75 via-transparent to-cyan-400/10" />
+              <button
+                onClick={play}
+                aria-label="Prehrať zvuk"
+                className="party-shine absolute inset-0 flex items-center justify-center transition active:scale-95"
+              >
+                <span className={`flex h-24 w-24 items-center justify-center rounded-full border border-white/25 bg-black/35 text-5xl shadow-2xl backdrop-blur-md ${audioLock.current ? "animate-pulse" : ""}`}>{played ? "🔊" : "▶️"}</span>
+              </button>
+            </div>
+            <h1 className="mt-6 text-2xl font-black text-white">
               {phase.type === "question" ? (played ? "Kto pozná tento zvuk?" : "Prehrajte tajný zvuk") : phase.type === "buzzed" ? `${teamNames[phase.team]} odpovedá` : clue.label}
             </h1>
             <p className="mt-2 max-w-xs text-sm leading-relaxed text-white/40">

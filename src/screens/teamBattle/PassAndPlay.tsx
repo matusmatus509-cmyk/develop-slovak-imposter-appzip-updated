@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import songArt from "../../assets/party-song.svg";
 import { TEAM_COLORS, shuffle } from "../../data/teamBattle";
 import { FORBIDDEN_CARDS, SONG_CARDS, type SongCard } from "../../data/teamBattleExtras";
 import { CircularTimer, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
@@ -193,9 +194,17 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
       <PartyBackdrop>
         <main className="flex h-full flex-col items-center justify-center px-6 text-center">
           <PartyEyebrow>{copy.eyebrow}</PartyEyebrow>
-          <div className="relative mt-7 flex h-24 w-24 items-center justify-center rounded-[2rem] border border-white/15 bg-white/[0.07] text-5xl shadow-[0_22px_60px_rgba(0,0,0,.35)]">
-            {copy.icon}
-          </div>
+          {mode === "pesnicka" ? (
+            <div className="relative mt-7 h-36 w-full max-w-sm overflow-hidden rounded-[2rem] border border-violet-300/20 shadow-[0_22px_60px_rgba(0,0,0,.35)]">
+              <img src={songArt} alt="Farebná ilustrácia hudobnej minihry" className="h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0715]/80 via-transparent to-violet-500/10" />
+              <span className="absolute bottom-4 left-5 text-4xl drop-shadow-lg">{copy.icon}</span>
+            </div>
+          ) : (
+            <div className="relative mt-7 flex h-24 w-24 items-center justify-center rounded-[2rem] border border-white/15 bg-white/[0.07] text-5xl shadow-[0_22px_60px_rgba(0,0,0,.35)]">
+              {copy.icon}
+            </div>
+          )}
           <p className="mt-7 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">{team === 0 ? "Začína" : "Na rade je"}</p>
           <h1 className="mt-2 text-4xl font-black" style={{ color: teamColor }}>{teamNames[team]}</h1>
           <section className="party-glass mt-6 max-w-sm rounded-[1.8rem] p-5">
@@ -255,9 +264,9 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
 
       <main className="relative z-10 flex flex-1 items-center justify-center overflow-y-auto px-5 py-3 text-center">
         <section key={index} className="party-glass party-shine w-full max-w-md overflow-hidden rounded-[2.2rem] px-6 py-8" style={{ animation: "popIn .3s ease-out both" }}>
-          <span className="text-4xl">{copy.icon}</span>
           {mode === "zakazane" ? (
             <>
+              <span className="text-4xl">{copy.icon}</span>
               <p className="mt-4 text-[10px] font-black uppercase tracking-[0.24em] text-rose-300/65">Vysvetli slovo</p>
               <h1 className="mt-2 text-4xl font-black tracking-tight text-white">{forbiddenCard.word}</h1>
               <div className="mt-6 rounded-[1.5rem] border border-rose-400/20 bg-rose-500/[0.09] p-4">
@@ -269,7 +278,12 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
             </>
           ) : (
             <>
-              <p className="mt-4 text-[10px] font-black uppercase tracking-[0.24em] text-violet-300/65">Zahmkaj bez slov</p>
+              <div className="relative -mx-6 -mt-8 mb-5 h-28 overflow-hidden border-b border-violet-300/15">
+                <img src={songArt} alt="Hudobná ilustrácia" className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#100b20] via-[#100b20]/20 to-transparent" />
+                <span className="absolute bottom-3 left-1/2 -translate-x-1/2 text-4xl drop-shadow-lg">{copy.icon}</span>
+              </div>
+              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-violet-300/65">Zahmkaj bez slov</p>
               <h1 className="mx-auto mt-3 max-w-sm text-3xl font-black leading-tight text-white">{songCard.title}</h1>
               <p className="mt-2 text-sm font-bold text-violet-200/60">{songCard.artist}</p>
               <div className="mt-4 flex justify-center gap-2">
