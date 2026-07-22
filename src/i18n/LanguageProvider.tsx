@@ -163,7 +163,7 @@ export function LanguageSwitcher() {
   const active = options.find((option) => option.code === language) ?? options[0];
 
   return (
-    <div data-no-translate className="fixed right-3 top-3 z-[10000]">
+    <div data-no-translate className="absolute right-5 top-5 z-50">
       <button
         type="button"
         onClick={() => setIsOpen((open) => !open)}

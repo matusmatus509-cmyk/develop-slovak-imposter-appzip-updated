@@ -4,6 +4,7 @@ import partyTableBackground from "../assets/party-table-bg.png";
 import partyModeArt from "../assets/party-mode-card.jpg";
 import imposterArt from "../assets/imposter-card.jpg";
 import minigamesArt from "../assets/minigames-card.jpg";
+import { LanguageSwitcher } from "../i18n/LanguageProvider";
 
 const SECTIONS: Array<{
   screen: Screen;
@@ -50,6 +51,7 @@ const SECTIONS: Array<{
 export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => void }) {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#080b13] text-white">
+      <LanguageSwitcher />
       <img
         src={partyTableBackground}
         alt=""
