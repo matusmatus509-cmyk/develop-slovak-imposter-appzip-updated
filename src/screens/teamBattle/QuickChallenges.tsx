@@ -1,21 +1,21 @@
 import { useEffect, useMemo, useState } from "react";
-import { TEAM_COLORS, shuffle } from "../../data/teamBattle";
+import { shuffle } from "../../data/teamBattle";
 import { FIVE_IN_TEN_PROMPTS, LETTER_CHALLENGES } from "../../data/teamBattleExtras";
-import { CircularTimer, PartyBackdrop, PartyEyebrow, TeamBadge } from "./PartyChrome";
+import { CircularTimer, ParticipantScoreStrip, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
+import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
 
 const LETTER_TURNS = 10;
 const FIVE_TURNS = 6;
 
-export function LetterChallengeGame({ teamNames, onDone }: { teamNames: [string, string]; onDone: (scores: [number, number]) => void }) {
-  const deck = useMemo(() => shuffle(LETTER_CHALLENGES).slice(0, LETTER_TURNS), []);
+export function LetterChallengeGame({ participantNames, gameMode, onDone }: QuickParticipantsProps) {
+  const deck = useMemo(() => shuffle(LETTER_CHALLENGES).slice(0, Math.max(LETTER_TURNS, participantNames.length * 2)), [participantNames.length]);
   const [turn, setTurn] = useState(0);
   const [timeLeft, setTimeLeft] = useState(5);
   const [phase, setPhase] = useState<"ready" | "playing" | "feedback">("ready");
-  const [scores, setScores] = useState<[number, number]>([0, 0]);
-  const [feedback, setFeedback] = useState<{ success: boolean; scorer: 0 | 1 } | null>(null);
-  const [blue, red] = TEAM_COLORS;
-  const activeTeam: 0 | 1 = turn % 2 === 0 ? 0 : 1;
-  const activeColor = activeTeam === 0 ? blue : red;
+  const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
+  const [feedback, setFeedback] = useState<{ success: boolean; scorer: number | null } | null>(null);
+  const activeParticipant = turn % participantNames.length;
+  const activeColor = PARTY_PLAYER_COLORS[activeParticipant % PARTY_PLAYER_COLORS.length];
   const challenge = deck[turn];
 
   useEffect(() => {
@@ -36,9 +36,9 @@ export function LetterChallengeGame({ teamNames, onDone }: { teamNames: [string,
 
   function finish(success: boolean) {
     if (phase !== "playing") return;
-    const scorer: 0 | 1 = success ? activeTeam : activeTeam === 0 ? 1 : 0;
-    const nextScores: [number, number] = [...scores] as [number, number];
-    nextScores[scorer] += 1;
+    const scorer = success ? activeParticipant : gameMode === "teams" && participantNames.length === 2 ? 1 - activeParticipant : null;
+    const nextScores = [...scores];
+    if (scorer !== null) nextScores[scorer] += 1;
     setScores(nextScores);
     setFeedback({ success, scorer });
     setPhase("feedback");
@@ -56,10 +56,7 @@ export function LetterChallengeGame({ teamNames, onDone }: { teamNames: [string,
     <PartyBackdrop>
       <main className="flex h-full flex-col overflow-y-auto px-4 pb-6 pt-5 text-center">
         <div className="mx-auto flex w-full max-w-md flex-1 flex-col">
-          <div className="flex gap-3">
-            <TeamBadge name={teamNames[0]} score={scores[0]} color={blue} side="A" active={activeTeam === 0} />
-            <TeamBadge name={teamNames[1]} score={scores[1]} color={red} side="B" active={activeTeam === 1} />
-          </div>
+          <ParticipantScoreStrip names={participantNames} scores={scores} colors={PARTY_PLAYER_COLORS} activeIndex={activeParticipant} />
           <div className="mt-5 flex items-center justify-between">
             <PartyEyebrow>Slovo na písmeno</PartyEyebrow>
             <span className="text-[10px] font-black text-white/30">{turn + 1}/{deck.length}</span>
@@ -71,14 +68,14 @@ export function LetterChallengeGame({ teamNames, onDone }: { teamNames: [string,
               <div style={{ animation: "popIn .3s ease-out both" }}>
                 <div className="text-7xl">{feedback.success ? "✅" : "⌛"}</div>
                 <h1 className="mt-5 text-3xl font-black text-white">{feedback.success ? "Platná odpoveď!" : "Čas vypršal!"}</h1>
-                <p className="mt-2 text-sm font-bold" style={{ color: feedback.scorer === 0 ? blue : red }}>+1 bod pre {teamNames[feedback.scorer]}</p>
+                <p className="mt-2 text-sm font-bold" style={{ color: feedback.scorer === null ? "rgba(255,255,255,.4)" : PARTY_PLAYER_COLORS[feedback.scorer % PARTY_PLAYER_COLORS.length] }}>{feedback.scorer === null ? "Bez bodu" : `+1 bod pre ${participantNames[feedback.scorer]}`}</p>
               </div>
             ) : (
               <>
                 <CircularTimer value={timeLeft} total={5} color={timeLeft <= 2 ? "#ef4444" : "#fbbf24"} size={104} />
                 <p className="mt-6 text-[10px] font-black uppercase tracking-[0.24em] text-white/35">{challenge.category} na písmeno</p>
                 <div className="mt-4 flex h-28 w-28 items-center justify-center rounded-[2rem] border border-amber-300/25 bg-amber-400/10 text-7xl font-black text-amber-200 shadow-[0_0_55px_rgba(251,191,36,.2)]">{challenge.letter}</div>
-                <h1 className="mt-6 text-2xl font-black text-white">{teamNames[activeTeam]} odpovedá</h1>
+                <h1 className="mt-6 text-2xl font-black text-white">{participantNames[activeParticipant]} odpovedá</h1>
                 <p className="mt-2 text-xs text-white/35">Povedzte jedno platné slovo skôr, než vyprší 5 sekúnd.</p>
               </>
             )}
@@ -95,17 +92,16 @@ export function LetterChallengeGame({ teamNames, onDone }: { teamNames: [string,
   );
 }
 
-export function FiveInTenGame({ teamNames, onDone }: { teamNames: [string, string]; onDone: (scores: [number, number]) => void }) {
-  const prompts = useMemo(() => shuffle(FIVE_IN_TEN_PROMPTS).slice(0, FIVE_TURNS), []);
+export function FiveInTenGame({ participantNames, onDone }: QuickParticipantsProps) {
+  const prompts = useMemo(() => shuffle(FIVE_IN_TEN_PROMPTS).slice(0, Math.max(FIVE_TURNS, participantNames.length * 2)), [participantNames.length]);
   const [turn, setTurn] = useState(0);
   const [phase, setPhase] = useState<"ready" | "playing" | "result">("ready");
   const [timeLeft, setTimeLeft] = useState(10);
   const [count, setCount] = useState(0);
-  const [scores, setScores] = useState<[number, number]>([0, 0]);
+  const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
   const [success, setSuccess] = useState(false);
-  const [blue, red] = TEAM_COLORS;
-  const activeTeam: 0 | 1 = turn % 2 === 0 ? 0 : 1;
-  const activeColor = activeTeam === 0 ? blue : red;
+  const activeParticipant = turn % participantNames.length;
+  const activeColor = PARTY_PLAYER_COLORS[activeParticipant % PARTY_PLAYER_COLORS.length];
 
   useEffect(() => {
     if (phase !== "playing") return;
@@ -137,8 +133,8 @@ export function FiveInTenGame({ teamNames, onDone }: { teamNames: [string, strin
 
   function finish(completed: boolean) {
     if (phase !== "playing") return;
-    const nextScores: [number, number] = [...scores] as [number, number];
-    if (completed) nextScores[activeTeam] += 2;
+    const nextScores = [...scores];
+    if (completed) nextScores[activeParticipant] += 2;
     setScores(nextScores);
     setSuccess(completed);
     setPhase("result");
@@ -157,10 +153,7 @@ export function FiveInTenGame({ teamNames, onDone }: { teamNames: [string, strin
     <PartyBackdrop>
       <main className="flex h-full flex-col overflow-y-auto px-4 pb-6 pt-5 text-center">
         <div className="mx-auto flex w-full max-w-md flex-1 flex-col">
-          <div className="flex gap-3">
-            <TeamBadge name={teamNames[0]} score={scores[0]} color={blue} side="A" active={activeTeam === 0} />
-            <TeamBadge name={teamNames[1]} score={scores[1]} color={red} side="B" active={activeTeam === 1} />
-          </div>
+          <ParticipantScoreStrip names={participantNames} scores={scores} colors={PARTY_PLAYER_COLORS} activeIndex={activeParticipant} />
           <div className="mt-5 flex items-center justify-between">
             <PartyEyebrow>5 za 10</PartyEyebrow>
             <span className="text-[10px] font-black text-white/30">Výzva {turn + 1}/{prompts.length}</span>
@@ -172,7 +165,7 @@ export function FiveInTenGame({ teamNames, onDone }: { teamNames: [string, strin
               <div style={{ animation: "popIn .3s ease-out both" }}>
                 <div className="text-7xl">{success ? "🏆" : "⏱️"}</div>
                 <h1 className="mt-5 text-3xl font-black text-white">{success ? "Všetkých päť!" : "Tentoraz nie"}</h1>
-                <p className="mt-2 text-sm font-bold" style={{ color: success ? activeColor : "rgba(255,255,255,.4)" }}>{success ? `+2 body pre ${teamNames[activeTeam]}` : `${count} z 5 odpovedí`}</p>
+                <p className="mt-2 text-sm font-bold" style={{ color: success ? activeColor : "rgba(255,255,255,.4)" }}>{success ? `+2 body pre ${participantNames[activeParticipant]}` : `${count} z 5 odpovedí`}</p>
               </div>
             ) : (
               <>
@@ -182,7 +175,7 @@ export function FiveInTenGame({ teamNames, onDone }: { teamNames: [string, strin
                 <div className="mt-6 flex gap-2">
                   {Array.from({ length: 5 }, (_, index) => <span key={index} className={`h-4 w-4 rounded-full border transition-all ${index < count ? "scale-110 border-emerald-300 bg-emerald-400 shadow-[0_0_14px_#34d399]" : "border-white/15 bg-white/[0.04]"}`} />)}
                 </div>
-                <p className="mt-4 text-sm font-black" style={{ color: activeColor }}>{teamNames[activeTeam]}</p>
+                <p className="mt-4 text-sm font-black" style={{ color: activeColor }}>{participantNames[activeParticipant]}</p>
               </>
             )}
           </section>

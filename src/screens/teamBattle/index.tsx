@@ -94,6 +94,10 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
     setPhase("round-result");
   }
 
+  function handleQuickRoundDone(scores: number[]) {
+    handleRoundDone([scores[0] ?? 0, scores[1] ?? 0]);
+  }
+
   function handleNextRound() {
     const next = currentRoundIdx + 1;
     if (next >= rounds.length) {
@@ -166,23 +170,23 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
     }
 
     if (game === "zakazane") {
-      return <ForbiddenWordGame teamNames={teamNames} timeSeconds={currentRound.timeSeconds} onDone={handleRoundDone} />;
+      return <ForbiddenWordGame participantNames={teamNames} gameMode="teams" timeSeconds={currentRound.timeSeconds} onDone={handleQuickRoundDone} />;
     }
 
     if (game === "pesnicka") {
-      return <GuessSongGame teamNames={teamNames} timeSeconds={currentRound.timeSeconds} onDone={handleRoundDone} />;
+      return <GuessSongGame participantNames={teamNames} gameMode="teams" timeSeconds={currentRound.timeSeconds} onDone={handleQuickRoundDone} />;
     }
 
     if (game === "zvuk") {
-      return <SoundBuzzer teamNames={teamNames} onDone={handleRoundDone} />;
+      return <SoundBuzzer participantNames={teamNames} gameMode="teams" onDone={handleQuickRoundDone} />;
     }
 
     if (game === "pismeno") {
-      return <LetterChallengeGame teamNames={teamNames} onDone={handleRoundDone} />;
+      return <LetterChallengeGame participantNames={teamNames} gameMode="teams" onDone={handleQuickRoundDone} />;
     }
 
     if (game === "patzadesat") {
-      return <FiveInTenGame teamNames={teamNames} onDone={handleRoundDone} />;
+      return <FiveInTenGame participantNames={teamNames} gameMode="teams" onDone={handleQuickRoundDone} />;
     }
   }
 

@@ -66,6 +66,41 @@ export function TeamBadge({
   );
 }
 
+export function ParticipantScoreStrip({
+  names,
+  scores,
+  colors,
+  activeIndex,
+}: {
+  names: string[];
+  scores: number[];
+  colors: string[];
+  activeIndex?: number;
+}) {
+  return (
+    <div className="flex gap-2 overflow-x-auto pb-1">
+      {names.map((name, index) => {
+        const color = colors[index % colors.length];
+        const active = activeIndex === index;
+        return (
+          <div
+            key={`${name}-${index}`}
+            className={`min-w-[104px] flex-1 rounded-2xl border px-3 py-2.5 text-left transition ${active ? "scale-[1.02]" : ""}`}
+            style={{
+              borderColor: `${color}${active ? "aa" : "40"}`,
+              background: `linear-gradient(145deg, ${color}${active ? "30" : "16"}, rgba(255,255,255,.035))`,
+              boxShadow: active ? `0 10px 28px ${color}22` : undefined,
+            }}
+          >
+            <p className="truncate text-[9px] font-black uppercase tracking-wider text-white/50">{name}</p>
+            <p className="mt-0.5 text-2xl font-black tabular-nums text-white">{scores[index] ?? 0}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export function CircularTimer({
   value,
   total,
@@ -96,4 +131,3 @@ export function CircularTimer({
     </div>
   );
 }
-

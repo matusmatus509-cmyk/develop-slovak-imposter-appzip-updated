@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import songArt from "../../assets/party-song.svg";
-import { TEAM_COLORS, shuffle } from "../../data/teamBattle";
+import { shuffle } from "../../data/teamBattle";
 import { FORBIDDEN_CARDS, SONG_CARDS, type SongCard } from "../../data/teamBattleExtras";
 import { CircularTimer, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
+import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
 
 type PassMode = "zakazane" | "pesnicka";
 type Phase = "ready" | "playing" | "team-result";
@@ -21,7 +22,7 @@ const MODE_COPY = {
     eyebrow: "Uhádni pesničku",
     icon: "🎵",
     title: "Zahmkaj melódiu bez slov",
-    instruction: "Názov vidí iba hráč s mobilom. Zahmká melódiu bez textu. Tím získava bod za názov a ďalší bod za interpreta.",
+    instruction: "Názov vidí iba hráč s mobilom. Zahmká melódiu bez textu. Za názov sa získava bod a za interpreta ďalší bod.",
     correct: "Uhádnutá",
     result: "bodov za názvy a interpretov",
     accent: "#a78bfa",
@@ -36,30 +37,28 @@ export function GuessSongGame(props: SharedProps) {
   return <PassAndPlay mode="pesnicka" {...props} />;
 }
 
-interface SharedProps {
-  teamNames: [string, string];
+interface SharedProps extends QuickParticipantsProps {
   timeSeconds: number;
-  onDone: (scores: [number, number]) => void;
 }
 
-function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { mode: PassMode }) {
+function PassAndPlay({ participantNames, gameMode, timeSeconds, onDone, mode }: SharedProps & { mode: PassMode }) {
   const copy = MODE_COPY[mode];
-  const [team, setTeam] = useState<0 | 1>(0);
+  const [participant, setParticipant] = useState(0);
   const [phase, setPhase] = useState<Phase>("ready");
   const [timeLeft, setTimeLeft] = useState(timeSeconds);
   const [index, setIndex] = useState(0);
   const [turnScore, setTurnScore] = useState(0);
-  const [scores, setScores] = useState<[number, number]>([0, 0]);
+  const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
   const [songAwards, setSongAwards] = useState({ title: false, artist: false });
   const [preview, setPreview] = useState<{ url: string; link: string } | null>(null);
   const [previewStatus, setPreviewStatus] = useState<"loading" | "ready" | "playing" | "missing">("loading");
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const previewTimerRef = useRef<number | null>(null);
-  const [blue, red] = TEAM_COLORS;
-  const teamColor = team === 0 ? blue : red;
+  const participantColor = PARTY_PLAYER_COLORS[participant % PARTY_PLAYER_COLORS.length];
+  const participantLabel = gameMode === "teams" ? "tím" : "hráč";
   const deck = useMemo(
     () => mode === "zakazane" ? shuffle(FORBIDDEN_CARDS) : shuffle(SONG_CARDS),
-    [mode, team],
+    [mode, participant],
   );
   const card = mode === "zakazane"
     ? deck[index] as (typeof FORBIDDEN_CARDS)[number]
@@ -178,11 +177,11 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
   }
 
   function continueAfterResult() {
-    const nextScores: [number, number] = [...scores] as [number, number];
-    nextScores[team] = turnScore;
+    const nextScores = [...scores];
+    nextScores[participant] = turnScore;
     setScores(nextScores);
-    if (team === 0) {
-      setTeam(1);
+    if (participant + 1 < participantNames.length) {
+      setParticipant((value) => value + 1);
       setPhase("ready");
     } else {
       onDone(nextScores);
@@ -205,17 +204,17 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
               {copy.icon}
             </div>
           )}
-          <p className="mt-7 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">{team === 0 ? "Začína" : "Na rade je"}</p>
-          <h1 className="mt-2 text-4xl font-black" style={{ color: teamColor }}>{teamNames[team]}</h1>
+          <p className="mt-7 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">{participant === 0 ? "Začína" : "Na rade je"}</p>
+          <h1 className="mt-2 text-4xl font-black" style={{ color: participantColor }}>{participantNames[participant]}</h1>
           <section className="party-glass mt-6 max-w-sm rounded-[1.8rem] p-5">
             <h2 className="text-lg font-black text-white">{copy.title}</h2>
             <p className="mt-2 text-sm leading-relaxed text-white/45">{copy.instruction}</p>
-            {team === 1 && <p className="mt-3 text-xs font-bold text-white/30">{teamNames[0]} získal {scores[0]} bodov</p>}
+            {participant > 0 && <p className="mt-3 text-xs font-bold text-white/30">Predchádzajúci {participantLabel} získal {scores[participant - 1]} bodov</p>}
           </section>
           <button
             onClick={startTurn}
             className="party-shine mt-7 w-full max-w-sm overflow-hidden rounded-2xl px-6 py-5 text-base font-black uppercase tracking-wider text-white shadow-xl transition active:scale-[.97]"
-            style={{ background: `linear-gradient(135deg, ${teamColor}, ${copy.accent})` }}
+            style={{ background: `linear-gradient(135deg, ${participantColor}, ${copy.accent})` }}
           >
             Spustiť {timeSeconds} sekúnd
           </button>
@@ -230,7 +229,7 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
         <main className="flex h-full flex-col items-center justify-center px-6 text-center">
           <div className="text-6xl">{turnScore > 0 ? "🎉" : "⏱️"}</div>
           <p className="mt-6 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">Výsledok tímu</p>
-          <h1 className="mt-2 text-3xl font-black" style={{ color: teamColor }}>{teamNames[team]}</h1>
+          <h1 className="mt-2 text-3xl font-black" style={{ color: participantColor }}>{participantNames[participant]}</h1>
           <div className="party-glass mt-7 w-full max-w-xs rounded-[2rem] p-8">
             <p className="text-7xl font-black tabular-nums text-white">{turnScore}</p>
             <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-white/35">{copy.result}</p>
@@ -238,9 +237,9 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
           <button
             onClick={continueAfterResult}
             className="party-shine mt-7 w-full max-w-xs overflow-hidden rounded-2xl px-6 py-5 text-base font-black text-white shadow-xl transition active:scale-[.97]"
-            style={{ background: teamColor }}
+            style={{ background: participantColor }}
           >
-            {team === 0 ? `${teamNames[1]} na rad` : "Výsledok kola"}
+            {participant + 1 < participantNames.length ? `${participantNames[participant + 1]} na rad` : "Výsledok kola"}
           </button>
         </main>
       </PartyBackdrop>
@@ -252,8 +251,8 @@ function PassAndPlay({ teamNames, timeSeconds, onDone, mode }: SharedProps & { m
       <div className="party-grid pointer-events-none absolute inset-0 opacity-20" />
       <header className="relative z-10 m-3 flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/[0.055] px-4 py-3 backdrop-blur-xl">
         <div className="min-w-0 text-left">
-          <p className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">Hrá tím</p>
-          <p className="truncate text-base font-black" style={{ color: teamColor }}>{teamNames[team]}</p>
+          <p className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">Hrá {participantLabel}</p>
+          <p className="truncate text-base font-black" style={{ color: participantColor }}>{participantNames[participant]}</p>
         </div>
         <CircularTimer value={timeLeft} total={timeSeconds} color={timeLeft <= 10 ? "#ef4444" : copy.accent} size={82} />
         <div className="text-right">

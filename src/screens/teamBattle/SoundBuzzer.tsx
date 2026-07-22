@@ -1,10 +1,11 @@
 import { useMemo, useRef, useState } from "react";
 import soundArt from "../../assets/party-sound.svg";
-import { TEAM_COLORS, shuffle } from "../../data/teamBattle";
+import { shuffle } from "../../data/teamBattle";
 import { SOUND_CLUES } from "../../data/teamBattleExtras";
-import { PartyBackdrop, PartyEyebrow, TeamBadge } from "./PartyChrome";
+import { ParticipantScoreStrip, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
+import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
 
-type Phase = { type: "question" } | { type: "buzzed"; team: 0 | 1 } | { type: "revealed"; team: 0 | 1 };
+type Phase = { type: "question" } | { type: "buzzed"; participant: number } | { type: "revealed"; participant: number };
 const QUESTIONS_PER_ROUND = 10;
 
 function playSyntheticSound(id: string) {
@@ -76,15 +77,15 @@ function playSyntheticSound(id: string) {
   window.setTimeout(() => void ctx.close(), 3300);
 }
 
-export default function SoundBuzzer({ teamNames, onDone }: { teamNames: [string, string]; onDone: (scores: [number, number]) => void }) {
+export default function SoundBuzzer({ participantNames, gameMode, onDone }: QuickParticipantsProps) {
   const deck = useMemo(() => shuffle(SOUND_CLUES).slice(0, QUESTIONS_PER_ROUND), []);
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [scores, setScores] = useState<[number, number]>([0, 0]);
+  const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
   const [phase, setPhase] = useState<Phase>({ type: "question" });
   const [played, setPlayed] = useState(false);
   const audioLock = useRef(false);
-  const [blue, red] = TEAM_COLORS;
   const clue = deck[questionIndex];
+  const playerWord = gameMode === "teams" ? "tím" : "hráč";
 
   function play() {
     if (audioLock.current) return;
@@ -96,9 +97,9 @@ export default function SoundBuzzer({ teamNames, onDone }: { teamNames: [string,
 
   function resolve(correct: boolean) {
     if (phase.type !== "revealed") return;
-    const scorer: 0 | 1 = correct ? phase.team : phase.team === 0 ? 1 : 0;
-    const nextScores: [number, number] = [...scores] as [number, number];
-    nextScores[scorer] += 1;
+    const scorer = correct ? phase.participant : gameMode === "teams" && participantNames.length === 2 ? 1 - phase.participant : null;
+    const nextScores = [...scores];
+    if (scorer !== null) nextScores[scorer] += 1;
     setScores(nextScores);
     if (questionIndex + 1 >= deck.length) onDone(nextScores);
     else {
@@ -112,10 +113,7 @@ export default function SoundBuzzer({ teamNames, onDone }: { teamNames: [string,
     <PartyBackdrop>
       <main className="flex h-full flex-col overflow-y-auto px-4 pb-6 pt-5 text-center">
         <div className="mx-auto flex w-full max-w-md flex-1 flex-col">
-          <div className="flex items-center gap-3">
-            <TeamBadge name={teamNames[0]} score={scores[0]} color={blue} side="A" active={phase.type !== "question" && phase.team === 0} />
-            <TeamBadge name={teamNames[1]} score={scores[1]} color={red} side="B" active={phase.type !== "question" && phase.team === 1} />
-          </div>
+          <ParticipantScoreStrip names={participantNames} scores={scores} colors={PARTY_PLAYER_COLORS} activeIndex={phase.type === "question" ? undefined : phase.participant} />
           <div className="mt-5 flex items-center justify-between">
             <PartyEyebrow>Uhádni zvuk</PartyEyebrow>
             <span className="text-[10px] font-black uppercase tracking-wider text-white/30">{questionIndex + 1}/{deck.length}</span>
@@ -135,10 +133,10 @@ export default function SoundBuzzer({ teamNames, onDone }: { teamNames: [string,
               </button>
             </div>
             <h1 className="mt-6 text-2xl font-black text-white">
-              {phase.type === "question" ? (played ? "Kto pozná tento zvuk?" : "Prehrajte tajný zvuk") : phase.type === "buzzed" ? `${teamNames[phase.team]} odpovedá` : clue.label}
+              {phase.type === "question" ? (played ? "Kto pozná tento zvuk?" : "Prehrajte tajný zvuk") : phase.type === "buzzed" ? `${participantNames[phase.participant]} odpovedá` : clue.label}
             </h1>
             <p className="mt-2 max-w-xs text-sm leading-relaxed text-white/40">
-              {phase.type === "question" ? "Zvuk môžete prehrať znova. Keď ho tím spozná, stlačí svoj bzučiak." : phase.type === "buzzed" ? "Tím povie odpoveď nahlas a moderátor potom odkryje správny zvuk." : `Správna odpoveď: ${clue.label}`}
+              {phase.type === "question" ? `Zvuk môžete prehrať znova. Keď ho ${playerWord} spozná, stlačí svoj bzučiak.` : phase.type === "buzzed" ? `${gameMode === "teams" ? "Tím" : "Hráč"} povie odpoveď nahlas a moderátor potom odkryje správny zvuk.` : `Správna odpoveď: ${clue.label}`}
             </p>
             {phase.type === "revealed" && <div className="mt-5 text-7xl">{clue.emoji}</div>}
           </section>
@@ -146,14 +144,14 @@ export default function SoundBuzzer({ teamNames, onDone }: { teamNames: [string,
           <div className="mt-4">
             {phase.type === "question" && (
               <div className="grid grid-cols-2 gap-3">
-                {([0, 1] as const).map((team) => {
-                  const color = team === 0 ? blue : red;
-                  return <button key={team} disabled={!played} onClick={() => setPhase({ type: "buzzed", team })} className="party-shine overflow-hidden rounded-2xl py-6 text-base font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30" style={{ background: color }}>🔔<span className="mt-1 block text-sm">{teamNames[team]}</span></button>;
+                {participantNames.map((name, participant) => {
+                  const color = PARTY_PLAYER_COLORS[participant % PARTY_PLAYER_COLORS.length];
+                  return <button key={`${name}-${participant}`} disabled={!played} onClick={() => setPhase({ type: "buzzed", participant })} className="party-shine overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30" style={{ background: color }}>🔔<span className="mt-1 block truncate px-2 text-sm">{name}</span></button>;
                 })}
               </div>
             )}
             {phase.type === "buzzed" && (
-              <button onClick={() => setPhase({ type: "revealed", team: phase.team })} className="party-shine w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 to-cyan-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95">Ukázať správny zvuk</button>
+              <button onClick={() => setPhase({ type: "revealed", participant: phase.participant })} className="party-shine w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 to-cyan-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95">Ukázať správny zvuk</button>
             )}
             {phase.type === "revealed" && (
               <div className="grid grid-cols-2 gap-3">
