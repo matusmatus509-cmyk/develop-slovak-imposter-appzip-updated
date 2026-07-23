@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import songArt from "../../assets/party-song.svg";
 import { shuffle } from "../../data/teamBattle";
-import { FORBIDDEN_CARDS, INTERNATIONAL_SONG_CARDS, SONG_CARDS, type SongCard } from "../../data/teamBattleExtras";
+import { getSongCardsForLanguage } from "../../data/localizedSongs";
+import { FORBIDDEN_CARDS, type SongCard } from "../../data/teamBattleExtras";
 import { useLanguage } from "../../i18n/LanguageProvider";
 import { CircularTimer, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
@@ -64,7 +65,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   const deck = useMemo(
     () => mode === "zakazane"
       ? shuffle(FORBIDDEN_CARDS)
-      : shuffle(language === "sk" ? SONG_CARDS : INTERNATIONAL_SONG_CARDS),
+      : shuffle(getSongCardsForLanguage(language)),
     [language, mode, participant],
   );
   const card = mode === "zakazane"
