@@ -335,11 +335,19 @@ function GameScreen({
       />
 
       {countdown > 0 && !result && (
-        <div className="absolute inset-0 z-40 flex flex-col items-center justify-center bg-black/40 text-center backdrop-blur-sm">
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-white/70">Kategória</p>
-          <p className="mt-3 max-w-[85vw] text-3xl font-black text-white">{prompt}</p>
-          <div className="mt-8 flex h-24 w-24 items-center justify-center rounded-full border-2 border-white/40 bg-white/15 text-6xl font-black text-white animate-pulse">{countdown}</div>
-          <p className="mt-4 text-sm font-bold text-white/70">Pripravte sa!</p>
+        <div className="absolute inset-0 z-40 bg-black/40 text-center backdrop-blur-sm">
+          <div className="absolute inset-x-5 top-[12%] flex flex-col items-center" style={{ transform: "rotate(180deg)" }}>
+            <p className="text-[11px] font-black uppercase tracking-[0.24em] text-white/70">Kategória</p>
+            <p className="mt-3 max-w-[85vw] text-3xl font-black text-white">{prompt}</p>
+          </div>
+          <div className="absolute inset-x-5 bottom-[12%] flex flex-col items-center">
+            <p className="text-[11px] font-black uppercase tracking-[0.24em] text-white/70">Kategória</p>
+            <p className="mt-3 max-w-[85vw] text-3xl font-black text-white">{prompt}</p>
+          </div>
+          <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
+            <div className="flex h-24 w-24 items-center justify-center rounded-full border-2 border-white/40 bg-white/15 text-6xl font-black text-white animate-pulse">{countdown}</div>
+            <p className="mt-3 whitespace-nowrap text-sm font-bold text-white/70">Pripravte sa!</p>
+          </div>
         </div>
       )}
 
