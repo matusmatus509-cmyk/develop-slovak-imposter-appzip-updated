@@ -1936,7 +1936,7 @@ export interface SoundClue {
   license: string;
 }
 
-export const SOUND_CLUES: SoundClue[] = [
+const CORE_SOUND_CLUES: SoundClue[] = [
   { id: "engine", label: "Motor auta", emoji: "🚗", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b5/WWS_CarPrinzNSU1200Cengine.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:WWS_CarPrinzNSU1200Cengine.ogg", credit: "Work With Sounds / Technical Museum of Slovenia", license: "CC BY 4.0" },
   { id: "cat", label: "Mňaukajúca mačka", emoji: "🐈", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Meow_of_a_pleading_cat.oga", sourcePage: "https://commons.wikimedia.org/wiki/File:Meow_of_a_pleading_cat.oga", credit: "Heismark", license: "Public domain" },
   { id: "can", label: "Otvorenie plechovky", emoji: "🥫", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Opening_a_can.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Opening_a_can.ogg", credit: "stephan", license: "Public domain" },
@@ -1963,6 +1963,152 @@ export const SOUND_CLUES: SoundClue[] = [
   { id: "waves", label: "Morské vlny", emoji: "🌊", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Waves.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Waves.ogg", credit: "Dsw4", license: "Public domain" },
   { id: "lion", label: "Rev leva", emoji: "🦁", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lion_raring-sound1TamilNadu178.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg", credit: "Info-farmer", license: "Public domain" },
 ];
+
+const COMMONS_SOUND_LIBRARY = `
+Híkanie osla|🫏|157763 felix-blume a-donkey-is-braying-in-his-enclosure-in-south-of-france.wav
+Delfín pod vodou|🐬|161691 felixblume dolphin-screaming-underwater-in-caribbean-sea-mexico.wav
+Veverička|🐿️|A three-striped palm squirrel (Funambulus palmarum) chirping 16January2015.oga
+Cvrčky a vtáky|🦗|Atmo – Grillen mit Vögel.mp3
+Prairie dog|🐕|Bark Huayra.ogg
+Bzučanie včely|🐝|Bee buzzing sound (animal noises).opus
+Silné bzučanie včiel|🐝|Bee Buzzing Sound - Animal Sounds.opus
+Vrčiaci diviak|🐗|Boar.Grwls(1).ogg
+Spev vtáka|🐦|Cantorchilus superciliaris.wav
+Lelek|🐦|Caprimulgus europaeus.ogg
+Stádo oviec|🐑|Corner of a sheep field in summer.ogg
+Vták peppershrike|🐦|Cyclarhis gujanensis - Rufous browed Peppershrike.wav
+Morská korytnačka|🐢|Dermochelys coriacea 001.ogg
+Čierny vták|🐦‍⬛|Dives warszewiczi - Scrub Blackbird.wav
+Pes|🐕|Dog.ogg
+Kvákajúce žaby|🐸|Frogs croak calling chorus at night.ogg
+Spievajúci vták|🐦|Garrulax-leucolophus-white-crested-laughingthrush-singing.ogg
+Gekón|🦎|Gekko gecko.wav
+Veľký pes|🐕|Giant Canine (Koopzilla) Sounds.ogg
+Veľká mačkovitá šelma|🐆|Giant Feline Sounds.ogg
+Gibony 1|🐒|Gibbon Rehabilitation Project - Phuket - 20131029 - Cris de singes 1.ogg
+Gibony 2|🐒|Gibbon Rehabilitation Project - Phuket - 20131029 - Cris de singes 2.ogg
+Gibony 3|🐒|Gibbon Rehabilitation Project - Phuket - 20131029 - Cris de singes.ogg
+Guacharaca|🐦|Guacharaca.ogg
+Ježko|🦔|Hedgehog O.ogg
+Stádo kôz|🐐|Herd of goats bleating.ogg
+Gibon spievajúci 1|🐒|Hylobates-pileatus-pileated-gibbon-calling-singing-1.oga
+Gibon spievajúci 2|🐒|Hylobates-pileatus-pileated-gibbon-calling-singing-2.oga
+Tropická žaba|🐸|Hyloxalus elachyhistus.wav
+Žluva|🐦|Icterus graceannae - White edge Oriole.wav
+Veverička palmová|🐿️|Indian palm squirrel sound.wav
+Jaguár|🐆|Jaguar saw.flac
+Vyjúci pes|🐕|Jem howls.ogg
+Praveké zviera daeodon|🐗|Lane Daeodon.ogg
+Veľryby|🐋|Long finned Pilot Whales orig.ogg
+Pes hyenovitý|🐕|Lycaon pictus hoo-sound.wav
+Srnec|🦌|Male roe deer growl.ogg
+Drozd|🐦|Mimus longicaudatus - Long tailed Mockingbird.wav
+Los|🫎|Moose mate.ogg
+Morské cicavce|🐋|Oceancetaceen Test ogg.ogg
+Guán bielokrídly 1|🐦|Penelope albipennis - White winged Guan 2.wav
+Guán bielokrídly 2|🐦|Penelope albipennis - White winged Guan.wav
+Guán bradatý|🐦|Penelope barbata - Bearded Guan.wav
+Štekajúca sučka|🐕|Perro hembra ladrando.mp3
+Štekajúci pes|🐕|Perro ladrando.ogg
+Hádajúce sa psy|🐕|Perros peleando.ogg
+Netopier|🦇|Petit rhinolophe.ogg
+Papagáj|🦜|Psittacara erythrogenys - Red masked Parakeet.wav
+Pradenie mačky|🐈|Purr (10 sec loopable).ogg
+Nočný les|🌲|Rufe nachts im Wald.ogg
+Eržanie koňa 1|🐎|Segregation-of-information-about-emotional-arousal-and-valence-in-horse-whinnies-srep09989-s2.oga
+Eržanie koňa 2|🐎|Segregation-of-information-about-emotional-arousal-and-valence-in-horse-whinnies-srep09989-s3.oga
+Bľačanie ovce|🐑|Sheep bleating.ogg
+Vydra|🦦|Smooth-coated otter sound.wav
+Delfínie pulzy|🐬|Sons pulsantes.Sotalia.WAV
+Delfínie kliknutia|🐬|Sotalia Clicks.wav
+Makak|🐒|Sound-of-stump-tailed-macaque-(macaca-arctoides).ogg
+Antilopa springbok|🦌|Springbok grunt (asthma).ogg
+Japonský vták|🐦|Tsutsubo.ogg
+Srnec 2|🦌|Verso capriolo.theora.ogg
+Motor auta Honda|🚗|2002-Honda-F20C.ogg
+Motor auta Slant Six|🚗|225 Slant Six.ogg
+Odchádzajúce auto|🚙|255122 ylearkisto henkiloauto-lahto-asfaltilla-a-car-pulling-away-on-asphalt-lada-1500-combi-a-1981-model.wav
+Prichádzajúce auto|🚙|255126 ylearkisto henkiloauto-tulo-asfaltilla-a-car-approaching-stopping-shutting-down-lada-1500-combi-a-1981-model.wav
+Motor športového auta Alfa Romeo|🏎️|Alfa Romeo 8C Spider.ogg
+Premávka v meste|🚦|Ambient sound city street Berlin 2026-05-17.oga
+Pouličná premávka|🚦|Ambient sound street traffic Berlin 2026-05-17.oga
+Motor športového auta Ariel Atom|🏎️|Ariel Atom 3.ogg
+Motor športového auta Aston Martin|🏎️|Aston Martin Rapide.ogg
+Motor auta Aston Martin V12|🏎️|Aston-Martin-V12-Vantage.ogg
+Autá na diaľnici|🛣️|Autos auf der Bundesautobahn 23 01.ogg
+Štartovanie auta|🚗|Autostarten und wegfahren 01.ogg
+Upozornenie elektromobilu|🔊|Avertisseur piétons Renault Zoe.opus
+Motor Bugatti Veyron|🏎️|Bugatti Veyron Grand Sport.ogg
+Motor Bugatti Veyron Pur Sang|🏎️|Bugatti Veyron Pur Sang.ogg
+Autá na moste|🌉|Cars passing over bridge.ogg
+Motor Chevrolet Corvette|🏎️|Chevrolet Corvette C6 ZR1 recorded2010.ogg
+Motor Citroën GT|🏎️|Citroen GT.ogg
+Hydraulické pruženie auta|🚗|Citroën BX - Suspension - Maximum to minimum-audio.ogg
+Motor Farbio|🏎️|Farbio GTS350.ogg
+Motor Ferrari 458|🏎️|Ferrari 458 Italia.ogg
+Motor Ferrari 599 GTO|🏎️|Ferrari 599 GTO.ogg
+Motor Ferrari 599 HGTE|🏎️|Ferrari 599 HGTE.ogg
+Motor Ferrari California|🏎️|Ferrari California (2009).ogg
+Výfuk Ferrari|🏎️|Ferrari F355 under-hood exhaust sound.ogg
+Motor Ferrari Scuderia|🏎️|Ferrari Scuderia Spider 16M.ogg
+Motor Ford Focus RS|🚗|Ford Focus RS.ogg
+Motor Ginetta|🏎️|Ginetta F400.ogg
+Motor auta Nissan March|🚗|HR12DE-March-K13.oga
+Motor Jaguar|🏎️|Jaguar XKR (2009).ogg
+Motor Koenigsegg Agera|🏎️|Koenigsegg Agera.ogg
+Motor Koenigsegg CCX-R|🏎️|Koenigsegg CCX-R.ogg
+Motor KTM X-Bow|🏎️|KTM X-Bow.ogg
+Motor Lamborghini Aventador|🏎️|Lamborghini Aventador LP700-4 (2011).ogg
+Motor Lamborghini Gallardo|🏎️|Lamborghini Gallardo LP570-4 Superleggera.ogg
+Štart športového auta|🏎️|Launching sound Challenger.ogg
+Motor Lexus IS-F|🚗|Lexus IS-F dynamometer 2UR-GSE (2008).ogg
+Motor Lexus LF-A|🏎️|Lexus LF-A.ogg
+Vytáčanie motora Lexus|🏎️|Lexus LFA revving 1LR-GUE (2009).ogg
+Motor Lotus Evora|🏎️|Lotus Evora.ogg
+Výfuk Maserati|🏎️|Maserati GranTurismo S Exhaust.ogg
+Motor McLaren|🏎️|McLaren MP4-12C.ogg
+Motor Mercedes SLR|🏎️|Mercedes-Benz SLR McLaren 722.ogg
+Motor Mercedes SLS|🏎️|Mercedes-Benz SLS AMG.ogg
+Motor Morgan 3 Wheeler|🚗|Morgan 3 Wheeler.ogg
+Motor Morgan Aero 1|🏎️|Morgan Aero Supersports recorded2010.ogg
+Motor Morgan Aero 2|🏎️|Morgan Aero Supersports.ogg
+Motor Nissan GT-R|🏎️|Nissan GT-R SpecV.ogg
+Motor Nissan VQ35|🚗|NISSAN VQ35HR engine.ogg
+Štartovanie Opel Corsa|🚗|Open Corsa E model 2014 engine startup sound.ogg
+Parkovací senzor|📡|Open Corsa E model 2014 parking sensor sound.oga
+Motor Pagani Zonda|🏎️|Pagani Zonda Roadster F.ogg
+Auto odchádza z garáže|🚗|Parkhaus Einsteigen und wegfahren 01.ogg
+Motor RUF CTR3|🏎️|RUF CTR3.ogg
+Motor Volkswagen Scirocco|🚗|Scirocco r 0.ogg
+Motor Chrysler Stratus|🚗|Son stratus 2L.ogg
+Motor Spyker 1|🏎️|Spyker C8 Aileron recorded2010.ogg
+Motor Spyker 2|🏎️|Spyker C8 Aileron.ogg
+Elektromobil Tesla|🔋|Tesla Roadster.ogg
+Motor Tramontana|🏎️|Tramontana R.ogg
+Motor Triumph|🚗|Triumph-I6 engine.ogg
+Motor Vauxhall|🚗|Vauxhall VXR8 Bathurst S.ogg
+Motor Volvo|🚗|Volvo C30 Polestar Concept.ogg
+Prechádzajúce policajné auto|🚓|WWS Policevanpassingby.ogg
+Motor Volkswagen Beetle|🚗|WWS VolkswagenBeetle8211engine.ogg
+Klaksón Volkswagen Beetle|📣|WWS VolkswagenBeetle8211horn.ogg
+Rally auto Toyota|🏁|Zero car Toyota Corolla 1600 GT 2 Door AE86 Jyväskylän Talviralli 2023 Kuohu.opus
+`.trim().split("\n");
+
+const COMMONS_SOUND_CLUES: SoundClue[] = COMMONS_SOUND_LIBRARY.map((entry, index) => {
+  const [label, emoji, fileName] = entry.split("|");
+  const encodedFileName = encodeURIComponent(fileName);
+  return {
+    id: `commons-library-${index + 1}`,
+    label,
+    emoji,
+    audioUrl: `https://commons.wikimedia.org/wiki/Special:Redirect/file/${encodedFileName}`,
+    sourcePage: `https://commons.wikimedia.org/wiki/File:${encodedFileName}`,
+    credit: "Wikimedia Commons",
+    license: "Licencia je uvedená na zdrojovej stránke",
+  };
+});
+
+export const SOUND_CLUES: SoundClue[] = [...CORE_SOUND_CLUES, ...COMMONS_SOUND_CLUES];
 
 const LETTER_CATEGORIES = [
   "Zviera", "Jedlo", "Mesto", "Meno", "Povolanie", "Šport", "Krajina", "Rastlina",
