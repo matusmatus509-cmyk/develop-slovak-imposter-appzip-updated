@@ -2,27 +2,13 @@ import { useState } from "react";
 import { NEVER_HAVE_I_EVER } from "../../data/prompts";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
-
-function shuffle<T>(arr: T[]): T[] {
-  const copy = [...arr];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
+import { takePersistentItem } from "../../utils/persistentDeck";
 
 export default function NeverHaveIEver({ onBack }: { onBack: () => void }) {
-  const [deck, setDeck] = useState<string[]>(() => shuffle(NEVER_HAVE_I_EVER));
-  const [index, setIndex] = useState(0);
+  const [prompt, setPrompt] = useState(() => takePersistentItem("never-have-i-ever", NEVER_HAVE_I_EVER));
 
   function next() {
-    if (index + 1 >= deck.length) {
-      setDeck(shuffle(NEVER_HAVE_I_EVER));
-      setIndex(0);
-    } else {
-      setIndex((i) => i + 1);
-    }
+    setPrompt(takePersistentItem("never-have-i-ever", NEVER_HAVE_I_EVER));
   }
 
   return (
@@ -48,12 +34,12 @@ export default function NeverHaveIEver({ onBack }: { onBack: () => void }) {
           style={{ animation: "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.2s both" }}
         >
           <p className="text-xl font-bold leading-relaxed text-white">
-            {deck[index]}
+            {prompt}
           </p>
         </div>
 
         <p className="text-xs text-white/40">
-          Výrok {index + 1} / {deck.length}
+          Každý výrok sa zobrazí iba raz, kým sa neminú všetky
         </p>
 
         <Button fullWidth onClick={next}>

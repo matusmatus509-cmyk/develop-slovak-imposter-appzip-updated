@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   generateBattleRounds,
   getTeamCharacters,
-  shuffle,
   SARADY_WORDS,
   QUIZ_QUESTIONS,
   type BattleRound,
@@ -21,6 +20,7 @@ import { ForbiddenWordGame, GuessSongGame } from "./PassAndPlay";
 import SoundBuzzer from "./SoundBuzzer";
 import { FiveInTenGame, LetterChallengeGame } from "./QuickChallenges";
 import { defaultTeamName, useLanguage, type AppLanguage } from "../../i18n/LanguageProvider";
+import { takePersistentItems } from "../../utils/persistentDeck";
 
 type Phase =
   | "setup"
@@ -33,8 +33,11 @@ type Phase =
 const TURN_BASED: GameType[] = ["pantomima", "sarady", "hadajktosom"];
 
 function wordsForGame(game: GameType, language: AppLanguage): string[] {
-  if (game === "sarady") return shuffle(SARADY_WORDS);
-  if (game === "hadajktosom") return shuffle(getTeamCharacters(language));
+  if (game === "sarady") return takePersistentItems("party:charades", SARADY_WORDS, SARADY_WORDS.length);
+  if (game === "hadajktosom") {
+    const characters = getTeamCharacters(language);
+    return takePersistentItems(`party:guess-who:${language}`, characters, characters.length);
+  }
   return [];
 }
 
@@ -54,7 +57,7 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
   // Per-round data (words / questions / category) chosen at round start
   const [roundWords, setRoundWords] = useState<string[]>([]);
   const [roundQuestions, setRoundQuestions] = useState(
-    () => shuffle(QUIZ_QUESTIONS).slice(0, 5)
+    () => takePersistentItems("party:quiz", QUIZ_QUESTIONS, 5, (item) => item.question)
   );
 
   const currentRound = rounds[currentRoundIdx] ?? null;
@@ -87,7 +90,7 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
     if (TURN_BASED.includes(r.game)) {
       setRoundWords(wordsForGame(r.game, language));
     } else if (r.game === "quiz") {
-      setRoundQuestions(shuffle(QUIZ_QUESTIONS).slice(0, 5));
+      setRoundQuestions(takePersistentItems("party:quiz", QUIZ_QUESTIONS, 5, (item) => item.question));
     }
   }
 

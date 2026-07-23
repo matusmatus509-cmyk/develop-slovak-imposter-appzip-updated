@@ -2,21 +2,12 @@ import { useEffect, useState } from "react";
 import { ONLY_LIES } from "../../data/prompts";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
+import { takePersistentItem } from "../../utils/persistentDeck";
 
 const ROUND_MS = 4000;
 
-function shuffle<T>(arr: T[]): T[] {
-  const copy = [...arr];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
 export default function IbaNepravda({ onBack }: { onBack: () => void }) {
-  const [deck, setDeck] = useState<string[]>(() => shuffle(ONLY_LIES));
-  const [index, setIndex] = useState(0);
+  const [question, setQuestion] = useState(() => takePersistentItem("only-lies", ONLY_LIES));
   const [roundId, setRoundId] = useState(0);
   const [timeLeftMs, setTimeLeftMs] = useState(ROUND_MS);
   const [lost, setLost] = useState(false);
@@ -41,17 +32,12 @@ export default function IbaNepravda({ onBack }: { onBack: () => void }) {
 
   function nextQuestion() {
     setLost(false);
-    setIndex((currentIndex) => {
-      if (currentIndex + 1 < deck.length) return currentIndex + 1;
-      setDeck(shuffle(ONLY_LIES));
-      return 0;
-    });
+    setQuestion(takePersistentItem("only-lies", ONLY_LIES));
     setRoundId((id) => id + 1);
   }
 
   function restart() {
-    setDeck(shuffle(ONLY_LIES));
-    setIndex(0);
+    setQuestion(takePersistentItem("only-lies", ONLY_LIES));
     setLost(false);
     setRoundId((id) => id + 1);
   }
@@ -106,15 +92,15 @@ export default function IbaNepravda({ onBack }: { onBack: () => void }) {
         <div
           className="glass w-full rounded-3xl border border-rose-500/30 bg-rose-500/10 p-7"
           style={{ animation: "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.2s both" }}
-          key={`${roundId}-${index}`}
+          key={`${roundId}-${question}`}
         >
           <p className="text-xl font-bold leading-relaxed text-white">
-            {deck[index]}
+            {question}
           </p>
         </div>
 
         <p className="text-xs text-white/40">
-          Otázka {index + 1} / {deck.length}
+          Bez opakovania až do vyčerpania celej zásoby
         </p>
 
         <Button fullWidth onClick={nextQuestion} disabled={lost}>

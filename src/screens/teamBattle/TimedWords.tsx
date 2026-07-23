@@ -10,6 +10,7 @@ import {
   SARADY_DIFFICULTY_LABELS,
 } from "../../data/teamBattle";
 import { shuffle } from "../../data/teamBattle";
+import { takePersistentItems } from "../../utils/persistentDeck";
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
 import { CircularTimer } from "./PartyChrome";
 
@@ -83,9 +84,9 @@ export default function TimedWords({
   function handlePickDifficulty(d: PantomimaDifficulty) {
     setDifficulty(d);
     if (isSarady) {
-      setSaradyWords(shuffle(SARADY_WORDS_BY_DIFFICULTY[d]));
+      setSaradyWords(takePersistentItems(`party:timed-charades:${d}`, SARADY_WORDS_BY_DIFFICULTY[d], SARADY_WORDS_BY_DIFFICULTY[d].length));
     } else {
-      setPantomimaWords(shuffle(PANTOMIMA_WORDS_BY_DIFFICULTY[d]));
+      setPantomimaWords(takePersistentItems(`party:pantomime:${d}`, PANTOMIMA_WORDS_BY_DIFFICULTY[d], PANTOMIMA_WORDS_BY_DIFFICULTY[d].length));
     }
     setSubPhase("ready");
   }

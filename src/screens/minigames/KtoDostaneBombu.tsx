@@ -2,21 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import { BOMB_CATEGORIES } from "../../data/prompts";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
-
-function pickRandom<T>(arr: T[], exclude?: T): T {
-  if (arr.length === 1) return arr[0];
-  let item: T;
-  do {
-    item = arr[Math.floor(Math.random() * arr.length)];
-  } while (item === exclude);
-  return item;
-}
+import { takePersistentItem } from "../../utils/persistentDeck";
 
 type Phase = "ready" | "ticking" | "exploded";
 
 export default function KtoDostaneBombu({ onBack }: { onBack: () => void }) {
   const [phase, setPhase] = useState<Phase>("ready");
-  const [category, setCategory] = useState<string>(() => pickRandom(BOMB_CATEGORIES));
+  const [category, setCategory] = useState<string>(() => takePersistentItem("bomb-categories", BOMB_CATEGORIES));
   const [pulse, setPulse] = useState(false);
   const explosionRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const speedOneRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -70,7 +62,7 @@ export default function KtoDostaneBombu({ onBack }: { onBack: () => void }) {
   function reset() {
     clearTimers();
     setPulse(false);
-    setCategory((prev) => pickRandom(BOMB_CATEGORIES, prev));
+    setCategory(takePersistentItem("bomb-categories", BOMB_CATEGORIES));
     setPhase("ready");
   }
 

@@ -6,52 +6,33 @@ import {
 } from "../../data/emojiCategories";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { useLanguage } from "../../i18n/LanguageProvider";
-
-function shuffle<T>(arr: T[]): T[] {
-  const copy = [...arr];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
+import { takePersistentItem } from "../../utils/persistentDeck";
 
 export default function HadajEmoji({ onBack }: { onBack: () => void }) {
   const { language } = useLanguage();
   const categories = useMemo(() => getEmojiCategories(language === "sk"), [language]);
   const [categoryId, setCategoryId] = useState(categories[0].id);
-  const [deck, setDeck] = useState<EmojiPuzzle[]>(() =>
-    shuffle(categories[0].puzzles)
-  );
-  const [index, setIndex] = useState(0);
+  const [puzzle, setPuzzle] = useState<EmojiPuzzle>(() => takePersistentItem(`emoji:${language}:${categories[0].id}`, categories[0].puzzles, (item) => `${item.emoji}|${item.answer}`));
   const [revealed, setRevealed] = useState(false);
 
   const category = categories.find((item) => item.id === categoryId) ?? categories[0];
-  const puzzle = deck[index];
 
   useEffect(() => {
     const nextCategory = categories.find((item) => item.id === categoryId) ?? categories[0];
     setCategoryId(nextCategory.id);
-    setDeck(shuffle(nextCategory.puzzles));
-    setIndex(0);
+    setPuzzle(takePersistentItem(`emoji:${language}:${nextCategory.id}`, nextCategory.puzzles, (item) => `${item.emoji}|${item.answer}`));
     setRevealed(false);
   }, [categories, categoryId]);
 
   function selectCategory(nextCategory: EmojiCategory) {
     setCategoryId(nextCategory.id);
-    setDeck(shuffle(nextCategory.puzzles));
-    setIndex(0);
+    setPuzzle(takePersistentItem(`emoji:${language}:${nextCategory.id}`, nextCategory.puzzles, (item) => `${item.emoji}|${item.answer}`));
     setRevealed(false);
   }
 
   function next() {
     setRevealed(false);
-    if (index + 1 >= deck.length) {
-      setDeck(shuffle(category.puzzles));
-      setIndex(0);
-    } else {
-      setIndex((current) => current + 1);
-    }
+    setPuzzle(takePersistentItem(`emoji:${language}:${category.id}`, category.puzzles, (item) => `${item.emoji}|${item.answer}`));
   }
 
   return (
@@ -90,7 +71,7 @@ export default function HadajEmoji({ onBack }: { onBack: () => void }) {
         <div
           className="glass w-full rounded-3xl border border-amber-400/20 bg-amber-400/10 p-10"
           style={{ animation: "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.1s both" }}
-          key={`${categoryId}-${index}`}
+          key={`${categoryId}-${puzzle.answer}`}
         >
           <p className="text-5xl leading-tight tracking-widest sm:text-6xl">{puzzle.emoji}</p>
         </div>
@@ -117,7 +98,7 @@ export default function HadajEmoji({ onBack }: { onBack: () => void }) {
         )}
 
         <p className="text-xs text-white/40">
-          {index + 1} / {deck.length} kariet
+          Karty sa neopakujú, kým sa neminú všetky
         </p>
 
         <Button fullWidth onClick={next}>

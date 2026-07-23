@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { TEAM_COLORS } from "../../data/teamBattle";
+import { takePersistentItem } from "../../utils/persistentDeck";
 
 // Mirrors the standalone "Slovný Ping Pong" minigame exactly (same ball
 // physics, letters, speed ramp), just relabelled for two team
@@ -9,11 +10,6 @@ const LETTERS = [
   "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
   "N", "O", "P", "R", "S", "T", "U", "V", "Z",
 ];
-
-function pickLetter(exclude?: string) {
-  const pool = exclude ? LETTERS.filter((l) => l !== exclude) : LETTERS;
-  return pool[Math.floor(Math.random() * pool.length)];
-}
 
 // "Stredne" (medium) speed from the standalone minigame — seconds for the
 // ball to travel from centre to edge.
@@ -37,7 +33,7 @@ export default function PingPongTeam({
 
   // ballY: 0 = top edge, 1 = bottom edge. Start in middle.
   const [ballY, setBallY] = useState(0.5);
-  const [letter] = useState(() => pickLetter());
+  const [letter] = useState(() => takePersistentItem("party:ping-pong-letters", LETTERS));
   // active = 0 → ball moves toward TOP (team 0 must answer)
   // active = 1 → ball moves toward BOTTOM (team 1 must answer)
   const [active, setActive] = useState<0 | 1>(() => (Math.random() < 0.5 ? 0 : 1));

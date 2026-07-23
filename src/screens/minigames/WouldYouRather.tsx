@@ -3,22 +3,15 @@ import { WOULD_YOU_RATHER } from "../../data/prompts";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { cn } from "../../utils/designTokens";
-
-function pickRandomIndex(len: number, exclude: number) {
-  if (len <= 1) return 0;
-  let i = Math.floor(Math.random() * len);
-  while (i === exclude) i = Math.floor(Math.random() * len);
-  return i;
-}
+import { takePersistentItem } from "../../utils/persistentDeck";
 
 export default function WouldYouRather({ onBack }: { onBack: () => void }) {
-  const [index, setIndex] = useState(0);
+  const [pair, setPair] = useState(() => takePersistentItem("would-you-rather", WOULD_YOU_RATHER, (item) => `${item.a}|${item.b}`));
   const [picked, setPicked] = useState<"a" | "b" | null>(null);
-  const pair = WOULD_YOU_RATHER[index];
 
   function next() {
     setPicked(null);
-    setIndex((i) => pickRandomIndex(WOULD_YOU_RATHER.length, i));
+    setPair(takePersistentItem("would-you-rather", WOULD_YOU_RATHER, (item) => `${item.a}|${item.b}`));
   }
 
   return (

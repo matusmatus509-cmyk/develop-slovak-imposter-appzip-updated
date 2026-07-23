@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { shuffle } from "../../data/teamBattle";
+import { takePersistentItems } from "../../utils/persistentDeck";
 import { FIVE_IN_TEN_PROMPTS, LETTER_CHALLENGES } from "../../data/teamBattleExtras";
 import { CircularTimer, ParticipantScoreStrip, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
@@ -77,7 +77,7 @@ function PlayerTurnCard({ name, color, label }: { name: string; color: string; l
 export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds, timeSeconds = 5 }: QuickParticipantsProps) {
   const turnCount = rounds ? participantNames.length * rounds : Math.max(LETTER_TURNS, participantNames.length * 2);
   const deck = useMemo(
-    () => shuffle(LETTER_CHALLENGES).slice(0, turnCount),
+    () => takePersistentItems("party:letter-challenge", LETTER_CHALLENGES, turnCount, (item) => `${item.category}|${item.letter}`),
     [turnCount],
   );
   const [turn, setTurn] = useState(0);
@@ -195,7 +195,7 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds
 export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 10 }: QuickParticipantsProps) {
   const turnCount = rounds ? participantNames.length * rounds : Math.max(FIVE_TURNS, participantNames.length * 2);
   const prompts = useMemo(
-    () => shuffle(FIVE_IN_TEN_PROMPTS).slice(0, turnCount),
+    () => takePersistentItems("party:five-in-ten", FIVE_IN_TEN_PROMPTS, turnCount),
     [turnCount],
   );
   const [turn, setTurn] = useState(0);

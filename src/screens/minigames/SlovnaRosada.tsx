@@ -7,6 +7,7 @@ import {
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
+import { takePersistentItems } from "../../utils/persistentDeck";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -26,15 +27,6 @@ interface Card {
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
-
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
 
 function buildDeck(difficulty: string): Card[] {
   const labels: Record<CharadesDifficulty, { name: string; icon: string }> = {
@@ -64,7 +56,8 @@ function buildDeck(difficulty: string): Card[] {
     category: "Šarády",
     categoryIcon: "💬",
   }));
-  return shuffle(uniqueCards.length > 0 ? uniqueCards : fallback);
+  const pool = uniqueCards.length > 0 ? uniqueCards : fallback;
+  return takePersistentItems(`solo-charades:${difficulty}`, pool, pool.length, (card) => card.word.trim().toLocaleLowerCase("sk"));
 }
 
 // ─── Setup Screen ─────────────────────────────────────────────────────────────

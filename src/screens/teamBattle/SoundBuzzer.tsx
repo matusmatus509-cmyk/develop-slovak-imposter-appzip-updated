@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import soundArt from "../../assets/party-sound.svg";
-import { shuffle } from "../../data/teamBattle";
+import { takePersistentItems } from "../../utils/persistentDeck";
 import { SOUND_CLUES } from "../../data/teamBattleExtras";
 import { ParticipantScoreStrip, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
@@ -11,7 +11,7 @@ const QUESTIONS_PER_ROUND = 10;
 const MAX_SOUND_SECONDS = 7;
 
 export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds = QUESTIONS_PER_ROUND, timeSeconds = MAX_SOUND_SECONDS }: QuickParticipantsProps) {
-  const deck = useMemo(() => shuffle(SOUND_CLUES).slice(0, rounds), [rounds]);
+  const deck = useMemo(() => takePersistentItems("party:sound-buzzer", SOUND_CLUES, rounds, (clue) => clue.label), [rounds]);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
   const [phase, setPhase] = useState<Phase>({ type: "question" });

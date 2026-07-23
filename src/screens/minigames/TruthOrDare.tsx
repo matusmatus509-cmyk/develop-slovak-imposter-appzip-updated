@@ -3,12 +3,9 @@ import { DARES, TRUTHS } from "../../data/prompts";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { cn } from "../../utils/designTokens";
+import { takePersistentItem } from "../../utils/persistentDeck";
 
 type Mode = "choose" | "truth" | "dare";
-
-function pickRandom<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
 
 export default function TruthOrDare({ onBack }: { onBack: () => void }) {
   const [mode, setMode] = useState<Mode>("choose");
@@ -16,11 +13,11 @@ export default function TruthOrDare({ onBack }: { onBack: () => void }) {
 
   function choose(next: Mode) {
     setMode(next);
-    setPrompt(next === "truth" ? pickRandom(TRUTHS) : pickRandom(DARES));
+    setPrompt(next === "truth" ? takePersistentItem("truth-or-dare:truth", TRUTHS) : takePersistentItem("truth-or-dare:dare", DARES));
   }
 
   function shuffleAgain() {
-    setPrompt(mode === "truth" ? pickRandom(TRUTHS) : pickRandom(DARES));
+    setPrompt(mode === "truth" ? takePersistentItem("truth-or-dare:truth", TRUTHS) : takePersistentItem("truth-or-dare:dare", DARES));
   }
 
   return (

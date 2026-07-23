@@ -4,6 +4,7 @@ import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
+import { takePersistentItems } from "../../utils/persistentDeck";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -23,15 +24,6 @@ interface Card {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
 function buildDeck(categories: CharacterCategory[], catIds: string[]): Card[] {
   const cats = categories.filter((c) => catIds.includes(c.id));
   const cards: Card[] = [];
@@ -44,7 +36,7 @@ function buildDeck(categories: CharacterCategory[], catIds: string[]): Card[] {
       cards.push({ word: ch, categoryName: cat.name });
     }
   }
-  return shuffle(cards);
+  return takePersistentItems(`guess-who:${catIds.slice().sort().join(",")}`, cards, cards.length, (card) => card.word.trim().toLocaleLowerCase("sk"));
 }
 
 // ─── Setup Screen ─────────────────────────────────────────────────────────────
