@@ -191,6 +191,53 @@ const WORLD_ATHLETES_EXTRA = [
   "Tony Hawk", "Kelly Slater", "Shaun White", "Lindsey Vonn", "Mikaela Shiffrin", "George Weah",
 ];
 
+const WORLD_ATHLETES_MORE = [
+  // Futbal
+  "Thierry Henry", "Zlatan Ibrahimović", "Kaká", "Luís Figo", "Roberto Carlos", "Paolo Maldini", "Sergio Ramos", "Gerard Piqué", "Carles Puyol", "Didier Drogba",
+  "Samuel Eto'o", "Gareth Bale", "Wayne Rooney", "Paul Scholes", "Steven Gerrard", "Frank Lampard", "Andrea Pirlo", "Francesco Totti", "Alessandro Del Piero", "Ruud Gullit",
+  "Marco van Basten", "Johan Cruyff", "Franz Beckenbauer", "Gerd Müller", "Lev Yashin", "Eric Cantona", "Dennis Bergkamp", "Arjen Robben", "Robin van Persie", "Sergio Agüero",
+  "Harry Kane", "Son Heung-min", "Rodri", "Pedri", "Lamine Yamal", "Jamal Musiala", "Florian Wirtz", "Bukayo Saka", "Phil Foden", "Gianluigi Donnarumma",
+  "Aitana Bonmatí", "Alexia Putellas", "Ada Hegerberg", "Wendie Renard", "Sam Kerr", "Lucy Bronze", "Christine Sinclair", "Birgit Prinz", "Nadine Angerer", "Hope Solo",
+
+  // Ľadový hokej
+  "Mario Lemieux", "Bobby Orr", "Gordie Howe", "Maurice Richard", "Mark Messier", "Patrick Roy", "Dominik Hašek", "Martin Brodeur", "Steve Yzerman", "Joe Sakic",
+  "Ray Bourque", "Nicklas Lidström", "Peter Forsberg", "Teemu Selänne", "Pavel Bure", "Sergei Fedorov", "Evgeni Malkin", "Nikita Kucherov", "Auston Matthews", "Leon Draisaitl",
+  "Nathan MacKinnon", "Cale Makar", "Carey Price", "Henrik Lundqvist", "Steven Stamkos", "Patrick Kane", "Jonathan Toews", "Jarome Iginla", "Phil Esposito", "Bobby Hull",
+
+  // Basketbal
+  "Kevin Durant", "Giannis Antetokounmpo", "Nikola Jokić", "Luka Dončić", "Jayson Tatum", "Kyrie Irving", "James Harden", "Russell Westbrook", "Anthony Davis", "Kawhi Leonard",
+  "Magic Johnson", "Larry Bird", "Kareem Abdul-Jabbar", "Wilt Chamberlain", "Bill Russell", "Tim Duncan", "Dirk Nowitzki", "Dwyane Wade", "Allen Iverson", "Kevin Garnett",
+  "Scottie Pippen", "Dennis Rodman", "Carmelo Anthony", "Vince Carter", "Yao Ming", "Pau Gasol", "Tony Parker", "Derrick Rose", "Ja Morant", "Victor Wembanyama",
+  "Sue Bird", "Diana Taurasi", "Candace Parker", "Breanna Stewart", "Caitlin Clark",
+
+  // Formula 1 a motoršport
+  "Ayrton Senna", "Alain Prost", "Juan Manuel Fangio", "Jackie Stewart", "Nigel Mansell", "Mika Häkkinen", "Jenson Button", "Nico Rosberg", "Daniel Ricciardo", "Carlos Sainz Jr.",
+  "George Russell", "Oscar Piastri", "Sergio Pérez", "Valtteri Bottas", "Pierre Gasly", "Esteban Ocon", "Alex Albon", "Lance Stroll", "Marc Márquez", "Jorge Lorenzo",
+  "Giacomo Agostini", "Casey Stoner", "Mick Doohan", "Sébastien Loeb", "Carlos Sainz Sr.",
+
+  // Tenis
+  "Maria Sharapova", "Monica Seles", "Chris Evert", "Billie Jean King", "Margaret Court", "Caroline Wozniacki", "Simona Halep", "Aryna Sabalenka", "Coco Gauff", "Emma Raducanu",
+  "Ashleigh Barty", "Justine Henin", "Lindsay Davenport", "John McEnroe", "Jimmy Connors", "Pete Sampras", "Boris Becker", "Goran Ivanišević", "Daniil Medvedev", "Alexander Zverev",
+
+  // Cyklistika
+  "Tadej Pogačar", "Jonas Vingegaard", "Remco Evenepoel", "Mathieu van der Poel", "Wout van Aert", "Primož Roglič", "Geraint Thomas", "Chris Froome", "Egan Bernal", "Nairo Quintana",
+  "Mark Cavendish", "Peter Sagan", "Eddy Merckx", "Bernard Hinault", "Miguel Induráin", "Alberto Contador", "Marco Pantani", "Fabian Cancellara", "Tom Boonen", "Vincenzo Nibali",
+  "Marianne Vos", "Annemiek van Vleuten", "Demi Vollering", "Pauline Ferrand-Prévot", "Beryl Burton",
+
+  // Atletika, plávanie a gymnastika
+  "Noah Lyles", "Mondo Duplantis", "Jakob Ingebrigtsen", "Shelly-Ann Fraser-Pryce", "Elaine Thompson-Herah", "Florence Griffith Joyner", "Jackie Joyner-Kersee", "Sydney McLaughlin-Levrone", "Faith Kipyegon", "Sifan Hassan",
+  "David Rudisha", "Kenenisa Bekele", "Haile Gebrselassie", "Abebe Bikila", "Daley Thompson", "Jan Železný", "Hicham El Guerrouj", "Wayde van Niekerk", "Yohan Blake", "Allyson Felix",
+  "Ian Thorpe", "Ryan Lochte", "Caeleb Dressel", "Adam Peaty", "Sarah Sjöström", "Ariarne Titmus", "Summer McIntosh", "Rebecca Adlington", "Kristóf Milák", "Chad le Clos",
+  "Nadia Comăneci", "Olga Korbut", "Kohei Uchimura", "Rebeca Andrade", "Sunisa Lee",
+
+  // Bojové športy, golf a ďalšie veľké športy
+  "Georges St-Pierre", "Anderson Silva", "Israel Adesanya", "Francis Ngannou", "Amanda Nunes", "Valentina Shevchenko", "José Aldo", "Nate Diaz", "Chuck Liddell", "Daniel Cormier",
+  "Sugar Ray Leonard", "George Foreman", "Joe Frazier", "Evander Holyfield", "Lennox Lewis", "Tyson Fury", "Gervonta Davis", "Naoya Inoue", "Katie Taylor", "Claressa Shields",
+  "Rory McIlroy", "Phil Mickelson", "Jack Nicklaus", "Arnold Palmer", "Jon Rahm", "Scottie Scheffler", "Nelly Korda", "Annika Sörenstam", "Lydia Ko", "Brooks Koepka",
+  "Sachin Tendulkar", "Virat Kohli", "MS Dhoni", "Rohit Sharma", "Ben Stokes", "Jonny Wilkinson", "Dan Carter", "Richie McCaw", "Antoine Dupont", "Jonah Lomu",
+  "Teddy Riner", "Clarisse Agbégnénou", "Aleksandr Karelin", "Mijaín López", "Jan-Ove Waldner", "Ma Long", "Lin Dan", "Viktor Axelsen", "Magnus Carlsen", "Garry Kasparov",
+];
+
 const WORLD_YOUTUBERS_EXTRA = [
   "IShowSpeed", "Kai Cenat", "Vikkstar123", "Miniminter", "Zerkaa", "Behzinga", "W2S", "TBJZL", "Kwebbelkop", "Unspeakable",
   "PrestonPlayz", "Technoblade", "Skeppy", "GeorgeNotFound", "Sapnap", "BadBoyHalo", "CaptainSparklez", "PopularMMOs", "ItsFunneh", "LDShadowLady",
@@ -354,7 +401,7 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     id: "world-athletes",
     name: "Svetovi sportovci",
     icon: "🏅",
-    characters: uniqueCards([...cards("world-athletes"), ...WORLD_ATHLETES_EXTRA]),
+    characters: uniqueCards([...cards("world-athletes"), ...WORLD_ATHLETES_EXTRA, ...WORLD_ATHLETES_MORE]),
   },
   {
     id: "world-youtubers",
