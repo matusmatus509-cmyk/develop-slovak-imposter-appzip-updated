@@ -123,6 +123,8 @@ function GameScreen({
   // active = 1 → ball moves toward BOTTOM (player 2 must answer)
   const [active, setActive] = useState<0 | 1>(() => (Math.random() < 0.5 ? 0 : 1));
   const [result, setResult] = useState<{ loser: 0 | 1 } | null>(null);
+  const [countdown, setCountdown] = useState(3);
+  const [roundKey, setRoundKey] = useState(0);
 
   // Refs for animation loop (avoid stale closures)
   const ballYRef = useRef(0.5);
@@ -140,8 +142,15 @@ function GameScreen({
     activeRef.current = active;
   }, [active]);
 
+  useEffect(() => {
+    if (countdown <= 0 || result) return;
+    const timer = window.setTimeout(() => setCountdown((value) => value - 1), 1000);
+    return () => window.clearTimeout(timer);
+  }, [countdown, result]);
+
   // Animation loop
   useEffect(() => {
+    if (countdown > 0 || result) return;
     gameOverRef.current = false;
     ballYRef.current = 0.5;
     lastTsRef.current = 0;
@@ -186,13 +195,16 @@ function GameScreen({
 
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [baseSpeed]); // only restarts when speed setting changes
+  }, [baseSpeed, countdown, result, roundKey]);
 
   function handleTap(side: 0 | 1) {
     if (gameOverRef.current) return;
     // Only active player (under pressure) can tap to bounce
     if (side !== activeRef.current) return;
     const other: 0 | 1 = side === 0 ? 1 : 0;
+    // Every valid answer sends the ball back from the centre to the opponent's half.
+    ballYRef.current = 0.5;
+    setBallY(0.5);
     activeRef.current = other;
     setActive(other);
   }
@@ -203,36 +215,14 @@ function GameScreen({
     setPrompt(newPrompt);
     setActive(newActive);
     setResult(null);
-    // Reset refs and restart animation by remounting effect
     gameOverRef.current = false;
     ballYRef.current = 0.5;
     activeRef.current = newActive;
     setBallY(0.5);
-    // trigger animation restart
-    lastTsRef.current = 0;
-    startTsRef.current = 0;
-    rafRef.current = requestAnimationFrame(function tick(ts) {
-      if (gameOverRef.current) return;
-      if (!startTsRef.current) startTsRef.current = ts;
-      const dt = lastTsRef.current ? (ts - lastTsRef.current) / 1000 : 0;
-      lastTsRef.current = ts;
-      const elapsed = (ts - startTsRef.current) / 1000;
-      const speed = baseSpeed * (1 + elapsed * 0.015);
-      const dir = activeRef.current === 0 ? -1 : 1;
-      let newY = ballYRef.current + dir * speed * dt;
-      if (newY <= 0) {
-        newY = 0; gameOverRef.current = true; ballYRef.current = newY; setBallY(newY); setResult({ loser: 0 }); return;
-      }
-      if (newY >= 1) {
-        newY = 1; gameOverRef.current = true; ballYRef.current = newY; setBallY(newY); setResult({ loser: 1 }); return;
-      }
-      ballYRef.current = newY; setBallY(newY);
-      rafRef.current = requestAnimationFrame(tick);
-    });
+    setCountdown(3);
+    setRoundKey((key) => key + 1);
   }
 
-  const topPct = ballY * 100; // top half height %
-  const botPct = (1 - ballY) * 100; // bottom half height %
   const isTopActive = active === 0;
 
   return (
@@ -244,7 +234,7 @@ function GameScreen({
       <div
         className="absolute left-0 right-0 top-0 flex items-center justify-center overflow-hidden"
         style={{
-          height: `${topPct}%`,
+          height: "50%",
           backgroundColor: COLOR_TOP,
           cursor: isTopActive ? "pointer" : "default",
         }}
@@ -293,7 +283,7 @@ function GameScreen({
       <div
         className="absolute left-0 right-0 z-20 flex items-center"
         style={{
-          top: `${topPct}%`,
+          top: "50%",
           transform: "translateY(-50%)",
           height: "4px",
           pointerEvents: "none",
@@ -314,7 +304,7 @@ function GameScreen({
       <div
         className="absolute left-0 right-0 bottom-0 flex items-center justify-center overflow-hidden"
         style={{
-          height: `${botPct}%`,
+          height: "50%",
           backgroundColor: COLOR_BOT,
           cursor: !isTopActive ? "pointer" : "default",
         }}
@@ -359,6 +349,21 @@ function GameScreen({
         </div>
       </div>
 
+      {/* Ball always starts in the middle and travels only across the active player's half. */}
+      <div
+        className="pointer-events-none absolute left-1/2 z-30 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-white bg-yellow-300 shadow-[0_0_22px_rgba(253,224,71,.95)]"
+        style={{ top: `${ballY * 100}%` }}
+      />
+
+      {countdown > 0 && !result && (
+        <div className="absolute inset-0 z-40 flex flex-col items-center justify-center bg-black/40 text-center backdrop-blur-sm">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-white/70">Kategória</p>
+          <p className="mt-3 max-w-[85vw] text-3xl font-black text-white">{prompt}</p>
+          <div className="mt-8 flex h-24 w-24 items-center justify-center rounded-full border-2 border-white/40 bg-white/15 text-6xl font-black text-white animate-pulse">{countdown}</div>
+          <p className="mt-4 text-sm font-bold text-white/70">Pripravte sa!</p>
+        </div>
+      )}
+
       {/* ── RESULT OVERLAY ── */}
       {result && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/75">
@@ -395,7 +400,7 @@ function GameScreen({
       {!result && (
         <button
           className="absolute right-4 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/30 text-white/50 active:scale-95"
-          style={{ top: `calc(${topPct}% - 18px)` }}
+          style={{ top: "calc(50% - 18px)" }}
           onPointerDown={(e) => { e.stopPropagation(); onBack(); }}
         >
           ✕
