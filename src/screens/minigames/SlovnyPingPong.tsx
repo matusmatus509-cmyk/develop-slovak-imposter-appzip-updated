@@ -243,10 +243,10 @@ function GameScreen({
       >
         {/* The dark pressure shadow grows from the centre only on the player under pressure. */}
         <div
-          className="pointer-events-none absolute bottom-0 left-0 right-0 bg-black/30 transition-[height] duration-75"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 bg-black/60 shadow-[0_-16px_36px_rgba(35,5,14,.42)] transition-[height] duration-75"
           style={{
             height: isTopActive ? `${Math.max(0, (0.5 - ballY) * 200)}%` : "0%",
-            background: `linear-gradient(to top, ${COLOR_TOP_DARK}cc, ${COLOR_TOP_DARK}55, transparent)`,
+            background: `linear-gradient(to top, ${COLOR_TOP_DARK}, ${COLOR_TOP_DARK}e8 55%, ${COLOR_TOP_DARK}99 80%, transparent)`,
           }}
         />
 
@@ -302,10 +302,10 @@ function GameScreen({
       >
         {/* The same centre-to-edge pressure shadow for the bottom player. */}
         <div
-          className="pointer-events-none absolute top-0 left-0 right-0 bg-black/30 transition-[height] duration-75"
+          className="pointer-events-none absolute top-0 left-0 right-0 bg-black/60 shadow-[0_16px_36px_rgba(8,9,55,.42)] transition-[height] duration-75"
           style={{
             height: !isTopActive ? `${Math.max(0, (ballY - 0.5) * 200)}%` : "0%",
-            background: `linear-gradient(to bottom, ${COLOR_BOT_DARK}cc, ${COLOR_BOT_DARK}55, transparent)`,
+            background: `linear-gradient(to bottom, ${COLOR_BOT_DARK}, ${COLOR_BOT_DARK}e8 55%, ${COLOR_BOT_DARK}99 80%, transparent)`,
           }}
         />
 
