@@ -71,21 +71,23 @@ export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => v
       <div className="pointer-events-none fixed inset-0 bg-gradient-to-b from-[#080b10]/30 via-[#080b10]/75 to-[#080b10]" />
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_8%,rgba(255,246,225,.07),transparent_34%)]" />
 
+      {/* Stats button — absolute, left of the language switcher */}
+      <button
+        type="button"
+        onClick={() => onNavigate("stats")}
+        aria-label="Štatistiky"
+        className="absolute right-[72px] top-5 z-50 flex h-11 w-11 items-center justify-center rounded-xl border border-white/12 bg-[#111820]/95 text-white/55 shadow-xl transition hover:border-white/25 hover:text-white/80 active:scale-95"
+      >
+        <Icons.barChart size={17} />
+      </button>
+
       <div className="relative mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-8 pt-8">
         <header className="mb-8" style={{ animation: "slideUp .55s ease-out both" }}>
-          <div className="mb-5 flex items-center justify-between">
+          <div className="mb-5">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#11171e]/80 px-3 py-1.5">
               <span className="h-2 w-2 rounded-full bg-emerald-400" />
               <span className="text-[10px] font-extrabold uppercase tracking-[.22em] text-white/65">Jeden mobil · celá partia</span>
             </div>
-            <button
-              type="button"
-              onClick={() => onNavigate("stats")}
-              aria-label="Štatistiky"
-              className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-white/10 bg-[#11171e]/80 text-white/55 backdrop-blur transition hover:text-white/80 active:scale-90"
-            >
-              <Icons.barChart size={17} />
-            </button>
           </div>
           <h1 className="max-w-[320px] text-[2.65rem] font-black leading-[.96] tracking-[-.055em]">
             Vyberte si hru.<br />
