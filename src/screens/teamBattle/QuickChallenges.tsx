@@ -200,7 +200,6 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
   );
   const [turn, setTurn] = useState(0);
   const [phase, setPhase] = useState<RoundPhase>("ready");
-  const [count, setCount] = useState(0);
   const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
   const [success, setSuccess] = useState(false);
   const activeParticipant = turn % participantNames.length;
@@ -219,24 +218,10 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
   const timer = useSmoothTimer(timeSeconds, phase === "playing", () => finish(false));
 
   function start() {
-    setCount(0);
     setSuccess(false);
     timer.arm();
     setPhase("playing");
     navigator.vibrate?.(18);
-  }
-
-  function addItem() {
-    if (phase !== "playing") return;
-    const nextCount = Math.min(5, count + 1);
-    setCount(nextCount);
-    navigator.vibrate?.(nextCount === 5 ? [25, 25, 45] : 15);
-    if (nextCount === 5) finish(true);
-  }
-
-  function removeItem() {
-    if (phase !== "playing") return;
-    setCount((value) => Math.max(0, value - 1));
   }
 
   function next() {
@@ -245,7 +230,6 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
       return;
     }
     setTurn((value) => value + 1);
-    setCount(0);
     setPhase("ready");
   }
 
@@ -271,29 +255,14 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
 
             {phase === "playing" && (
               <div key={turn} className="animate-pop-in flex w-full flex-col items-center">
-                <div className="flex w-full items-center justify-center gap-5">
-                  <CircularTimer value={timer.remaining} total={timeSeconds} color={timer.remaining <= Math.min(3, timeSeconds / 3) ? "#fb7185" : "#34d399"} size={112} />
-                  <div className="text-left">
-                    <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/35">Odpovede</p>
-                    <p className="mt-1 text-5xl font-black tabular-nums text-emerald-300">{count}<span className="text-2xl text-white/25">/5</span></p>
-                  </div>
-                </div>
+                <CircularTimer value={timer.remaining} total={timeSeconds} color={timer.remaining <= Math.min(3, timeSeconds / 3) ? "#fb7185" : "#34d399"} size={124} />
 
                 <p className="mt-6 text-[10px] font-black uppercase tracking-[0.26em] text-emerald-300/65">Vymenuj päť</p>
                 <h1 className="mx-auto mt-3 max-w-sm text-3xl font-black leading-[1.08] text-white">{prompts[turn]}</h1>
 
-                <div className="mt-7 grid w-full grid-cols-5 gap-2">
-                  {Array.from({ length: 5 }, (_, index) => {
-                    const completed = index < count;
-                    return (
-                      <span
-                        key={index}
-                        className={`flex aspect-square items-center justify-center rounded-2xl border text-lg font-black transition-all duration-300 ${completed ? "scale-105 border-emerald-200/60 bg-gradient-to-br from-emerald-400 to-teal-500 text-[#06221a] shadow-[0_10px_28px_rgba(52,211,153,.28)]" : "border-white/10 bg-white/[0.04] text-white/25"}`}
-                      >
-                        {completed ? "✓" : index + 1}
-                      </span>
-                    );
-                  })}
+                <div className="mt-7 flex items-center gap-2 rounded-2xl border border-emerald-300/20 bg-emerald-400/[0.07] px-4 py-3 text-left">
+                  <span className="text-2xl">✋</span>
+                  <p className="text-[11px] font-bold leading-relaxed text-white/50">Po vyslovení piatich správnych odpovedí stlačte tlačidlo iba raz.</p>
                 </div>
               </div>
             )}
@@ -305,7 +274,7 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
                 </div>
                 <h1 className="mt-5 text-3xl font-black text-white">{success ? "Päť z piatich!" : "Tesne vedľa!"}</h1>
                 <p className="mt-2 text-sm font-bold" style={{ color: success ? activeColor : "rgba(255,255,255,.45)" }}>
-                  {success ? `+2 body pre ${participantNames[activeParticipant]}` : `${count} z 5 odpovedí • skúsime ďalšiu`}
+                  {success ? `+2 body pre ${participantNames[activeParticipant]}` : "Čas vypršal • skúsime ďalšiu"}
                 </p>
               </div>
             )}
@@ -318,10 +287,9 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
               </button>
             )}
             {phase === "playing" && (
-              <div className="grid grid-cols-[.65fr_1.35fr] gap-3">
-                <button onClick={removeItem} disabled={count === 0} className="party-glass rounded-2xl py-5 text-2xl font-black text-white/60 transition active:scale-95 disabled:opacity-30">−</button>
-                <button onClick={addItem} className="party-shine overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95">+ Mám odpoveď!</button>
-              </div>
+              <button onClick={() => finish(true)} className="party-shine w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95">
+                ✓ Všetkých 5 správne
+              </button>
             )}
             {phase === "result" && (
               <button onClick={next} className="party-shine w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95">

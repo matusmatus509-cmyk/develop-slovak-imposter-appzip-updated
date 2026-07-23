@@ -10444,5 +10444,8 @@
   "Stredná": "Medium",
   "Hry a poradie vyberie aplikácia náhodne. Posledné kolo bude kvízové finále.": "The app randomly chooses the games and their order. The final round will be a quiz finale.",
   "Výber hier": "Game selection",
-  "Začať party hru": "Start party game"
+  "Začať party hru": "Start party game",
+  "Po vyslovení piatich správnych odpovedí stlačte tlačidlo iba raz.": "After saying five correct answers, press the button just once.",
+  "Čas vypršal • skúsime ďalšiu": "Time is up • let's try the next one",
+  "Všetkých 5 správne": "All 5 correct"
 }
