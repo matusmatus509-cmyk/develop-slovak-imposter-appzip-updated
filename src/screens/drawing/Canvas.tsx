@@ -163,7 +163,8 @@ export default function DrawingCanvas({
 
   function nextTurn() {
     if (!strokeDone) return;
-    navigator.vibrate?.(20);
+    // Clear haptic confirmation that this turn is complete and the phone can move on.
+    navigator.vibrate?.([20, 35, 32]);
     if (isLastTurn) {
       onVote();
       return;
