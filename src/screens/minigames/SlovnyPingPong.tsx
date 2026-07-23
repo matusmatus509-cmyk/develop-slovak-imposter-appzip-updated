@@ -205,6 +205,7 @@ function GameScreen({
     // Every valid answer sends the ball back from the centre to the opponent's half.
     ballYRef.current = 0.5;
     setBallY(0.5);
+    navigator.vibrate?.([18, 25, 18]);
     activeRef.current = other;
     setActive(other);
   }
@@ -240,12 +241,12 @@ function GameScreen({
         }}
         onPointerDown={() => handleTap(0)}
       >
-        {/* Darker danger zone near the line (bottom of top half) */}
+        {/* The dark pressure shadow grows from the centre only on the player under pressure. */}
         <div
-          className="absolute bottom-0 left-0 right-0"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 bg-black/30 transition-[height] duration-75"
           style={{
-            height: "clamp(24px, 8%, 60px)",
-            backgroundColor: COLOR_TOP_DARK,
+            height: isTopActive ? `${Math.max(0, (0.5 - ballY) * 200)}%` : "0%",
+            background: `linear-gradient(to top, ${COLOR_TOP_DARK}cc, ${COLOR_TOP_DARK}55, transparent)`,
           }}
         />
 
@@ -260,17 +261,6 @@ function GameScreen({
           >
             {name1}
           </p>
-          <div
-            className="rounded-2xl px-4 py-2"
-            style={{ backgroundColor: "rgba(0,0,0,0.20)" }}
-          >
-            <p
-              className="max-w-[85vw] font-black leading-tight text-white"
-              style={{ fontSize: "clamp(1.2rem, 5.5vw, 2.6rem)" }}
-            >
-              {prompt}
-            </p>
-          </div>
           {isTopActive && (
             <p className="text-white/70 font-bold text-sm animate-pulse">
               ↓ KLEPNI PO KAŽDOM SLOVE ↓
@@ -310,12 +300,12 @@ function GameScreen({
         }}
         onPointerDown={() => handleTap(1)}
       >
-        {/* Darker danger zone near the line (top of bottom half) */}
+        {/* The same centre-to-edge pressure shadow for the bottom player. */}
         <div
-          className="absolute top-0 left-0 right-0"
+          className="pointer-events-none absolute top-0 left-0 right-0 bg-black/30 transition-[height] duration-75"
           style={{
-            height: "clamp(24px, 8%, 60px)",
-            backgroundColor: COLOR_BOT_DARK,
+            height: !isTopActive ? `${Math.max(0, (ballY - 0.5) * 200)}%` : "0%",
+            background: `linear-gradient(to bottom, ${COLOR_BOT_DARK}cc, ${COLOR_BOT_DARK}55, transparent)`,
           }}
         />
 
@@ -330,17 +320,6 @@ function GameScreen({
           >
             {name2}
           </p>
-          <div
-            className="rounded-2xl px-4 py-2"
-            style={{ backgroundColor: "rgba(0,0,0,0.20)" }}
-          >
-            <p
-              className="max-w-[85vw] font-black leading-tight text-white"
-              style={{ fontSize: "clamp(1.2rem, 5.5vw, 2.6rem)" }}
-            >
-              {prompt}
-            </p>
-          </div>
           {!isTopActive && (
             <p className="text-white/70 font-bold text-sm animate-pulse">
               ↑ KLEPNI PO KAŽDOM SLOVE ↑
@@ -351,7 +330,7 @@ function GameScreen({
 
       {/* Ball always starts in the middle and travels only across the active player's half. */}
       <div
-        className="pointer-events-none absolute left-1/2 z-30 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-white bg-yellow-300 shadow-[0_0_22px_rgba(253,224,71,.95)]"
+        className="pointer-events-none absolute left-1/2 z-30 h-7 w-7 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-white bg-yellow-300 shadow-[0_0_22px_rgba(253,224,71,.95)] animate-pulse"
         style={{ top: `${ballY * 100}%` }}
       />
 
