@@ -5,6 +5,15 @@ import partyModeArt from "../assets/party-mode-card.jpg";
 import imposterArt from "../assets/imposter-card.jpg";
 import minigamesArt from "../assets/minigames-card.jpg";
 import { LanguageSwitcher } from "../i18n/LanguageProvider";
+import { useStats } from "../hooks/useStats";
+
+function formatTimeShort(totalSeconds: number): string {
+  if (totalSeconds < 60) return `${totalSeconds}s`;
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  if (hours > 0) return `${hours}h ${minutes}m`;
+  return `${minutes}m`;
+}
 
 const SECTIONS: Array<{
   screen: Screen;
@@ -49,6 +58,8 @@ const SECTIONS: Array<{
 ];
 
 export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => void }) {
+  const { stats } = useStats();
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#080b10] text-white">
       <LanguageSwitcher />
@@ -62,9 +73,19 @@ export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => v
 
       <div className="relative mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-8 pt-8">
         <header className="mb-8" style={{ animation: "slideUp .55s ease-out both" }}>
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#11171e]/80 px-3 py-1.5">
-            <span className="h-2 w-2 rounded-full bg-emerald-400" />
-            <span className="text-[10px] font-extrabold uppercase tracking-[.22em] text-white/65">Jeden mobil · celá partia</span>
+          <div className="mb-5 flex items-center justify-between">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#11171e]/80 px-3 py-1.5">
+              <span className="h-2 w-2 rounded-full bg-emerald-400" />
+              <span className="text-[10px] font-extrabold uppercase tracking-[.22em] text-white/65">Jeden mobil · celá partia</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => onNavigate("stats")}
+              aria-label="Štatistiky"
+              className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-white/10 bg-[#11171e]/80 text-white/55 backdrop-blur transition hover:text-white/80 active:scale-90"
+            >
+              <Icons.barChart size={17} />
+            </button>
           </div>
           <h1 className="max-w-[320px] text-[2.65rem] font-black leading-[.96] tracking-[-.055em]">
             Vyberte si hru.<br />
@@ -117,7 +138,41 @@ export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => v
           })}
         </section>
 
-        <footer className="mt-7 flex items-center justify-center gap-2 text-[11px] font-semibold text-white/35" style={{ animation: "fadeIn 1s ease-out .5s both" }}>
+        {/* Stats strip — only shown once at least one game has been played */}
+        {stats.gamesPlayed > 0 && (
+          <button
+            type="button"
+            onClick={() => onNavigate("stats")}
+            className="mt-5 flex w-full items-center justify-between overflow-hidden rounded-[18px] border border-white/[.08] bg-[#0e1420]/80 px-5 py-4 text-left backdrop-blur transition hover:border-white/15 active:scale-[.98]"
+            style={{ animation: "slideUp .55s ease-out 450ms both" }}
+          >
+            <div className="flex items-center gap-2.5">
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-violet-500/15 text-violet-400">
+                <Icons.barChart size={15} />
+              </span>
+              <span className="text-[11px] font-extrabold uppercase tracking-[.18em] text-white/50">
+                Vaše štatistiky
+              </span>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="text-right">
+                <p className="text-base font-black text-white leading-none">{stats.gamesPlayed}</p>
+                <p className="text-[9px] font-bold uppercase tracking-wider text-white/35 mt-0.5">hier</p>
+              </div>
+              <div className="text-right">
+                <p className="text-base font-black text-white leading-none">{stats.teamWins}</p>
+                <p className="text-[9px] font-bold uppercase tracking-wider text-white/35 mt-0.5">výhier</p>
+              </div>
+              <div className="text-right">
+                <p className="text-base font-black text-white leading-none">{formatTimeShort(stats.totalTimeSeconds)}</p>
+                <p className="text-[9px] font-bold uppercase tracking-wider text-white/35 mt-0.5">čas</p>
+              </div>
+              <Icons.chevronRight size={16} className="text-white/30 shrink-0" />
+            </div>
+          </button>
+        )}
+
+        <footer className="mt-5 flex items-center justify-center gap-2 text-[11px] font-semibold text-white/35" style={{ animation: "fadeIn 1s ease-out .5s both" }}>
           <Icons.sparkles size={14} />
           <span>Hrajte offline, kdekoľvek</span>
         </footer>

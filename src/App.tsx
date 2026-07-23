@@ -34,6 +34,8 @@ import HadajEmoji from "./screens/minigames/HadajEmoji";
 import TeamBattle from "./screens/teamBattle";
 import TeamQuickGame from "./screens/minigames/TeamQuickGame";
 import GameWelcome, { GAME_WELCOMES } from "./components/GameWelcome";
+import Stats from "./screens/Stats";
+import { useStats } from "./hooks/useStats";
 
 const IMPOSTOR_GAMES: MenuGame[] = [
   {
@@ -102,6 +104,8 @@ export default function App() {
     "podvodnik-used-words",
     {}
   );
+
+  const { recordGame } = useStats();
 
   const [assignment, setAssignment] = useState<RoundAssignment | null>(null);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
@@ -191,6 +195,10 @@ export default function App() {
       timestamp: Date.now(),
     };
     setHistory([...history, entry]);
+    recordGame({
+      timeSeconds: elapsedSeconds || settings.timerSeconds,
+      correctAnswers: caught ? 1 : 0,
+    });
     setScreen("impostor-result");
   }
 
@@ -406,8 +414,23 @@ export default function App() {
     case "patzadesat":
       return <TeamQuickGame game="patzadesat" onBack={() => setScreen("minigames-menu")} />;
 
+    case "stats":
+      return <Stats onBack={() => setScreen("home")} />;
+
     case "teambattle":
-      return <TeamBattle onHome={() => setScreen("home")} />;
+      return (
+        <TeamBattle
+          onHome={() => setScreen("home")}
+          onGameOver={(scores, teamNames) => {
+            const isDraw = scores[0] === scores[1];
+            const winner: 0 | 1 = scores[0] >= scores[1] ? 0 : 1;
+            recordGame({
+              teamWin: !isDraw && winner !== undefined,
+              correctAnswers: scores[0] + scores[1],
+            });
+          }}
+        />
+      );
 
     default:
       return <Home onNavigate={setScreen} />;

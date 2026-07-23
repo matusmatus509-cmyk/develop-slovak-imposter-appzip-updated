@@ -41,7 +41,13 @@ function wordsForGame(game: GameType, language: AppLanguage): string[] {
   return [];
 }
 
-export default function TeamBattle({ onHome }: { onHome: () => void }) {
+export default function TeamBattle({
+  onHome,
+  onGameOver,
+}: {
+  onHome: () => void;
+  onGameOver?: (scores: [number, number], teamNames: [string, string]) => void;
+}) {
   const { language } = useLanguage();
   const [phase, setPhase] = useState<Phase>("setup");
   const [teamNames, setTeamNames] = useState<[string, string]>([
@@ -116,6 +122,7 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
   function handleNextRound() {
     const next = currentRoundIdx + 1;
     if (next >= rounds.length) {
+      onGameOver?.(totalScores, teamNames);
       setPhase("game-over");
     } else {
       setCurrentRoundIdx(next);

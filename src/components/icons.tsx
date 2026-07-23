@@ -98,6 +98,7 @@ export const ShieldCheck = createIcon([["M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8
 export const Sword = createIcon([["M18 6 3 21", "M6 18l12-12", "M15 3l5 5", "M21 9l-5 5"]]);
 export const Crosshair = createIcon([["M22 12h-4", "M2 12h4", "M12 2v4", "M12 22v-4", "M12 12a10 10 0 0 0-10 10", "M22 12a10 10 0 0 1-10 10"]]);
 
+export const BarChart = createIcon([["M3 3v18h18", "M7 16V10", "M12 16V6", "M17 16v-4"]]);
 export const Clock = createIcon([["M12 6v6l4 2"]]);
 export const Timer = createIcon([["M10 2h4", "M4.5 11a7 7 0 0 0 1.5 2.5l3.5 3.5", "M15 2v4"]]);
 export const Hourglass = createIcon([["M6 2v4", "M10 2v4", "M14 2v4", "M18 2v4", "M6 18v4", "M10 18v4", "M14 18v4", "M18 18v4", "M8 6h8", "M16 6v8", "M8 16h8", "M16 10v8"]]);
@@ -505,6 +506,10 @@ export const Icons = {
   paintbrush: Paintbrush,
   paintBucket: PaintBucket,
   droplet: Droplet,
+
+  // Stats
+  barChart: BarChart,
+  checkCircle: CheckCircle,
 
   // Added for Home
   history: History,

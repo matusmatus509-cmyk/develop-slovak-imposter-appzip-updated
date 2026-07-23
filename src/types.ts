@@ -1,5 +1,6 @@
 export type Screen =
   | "home"
+  | "stats"
   | "impostor-menu"
   | "minigames-menu"
   | "impostor-setup"
@@ -53,6 +54,13 @@ export interface RoundAssignment {
   categoryIcon: string;
   impostorIndexes: number[];
   hintWord: string;
+}
+
+export interface AppStats {
+  gamesPlayed: number;       // každý koniec hry (impostor result, minigame result, party gameover)
+  teamWins: number;          // výhry tímu v party mode (gameover s víťazom)
+  totalTimeSeconds: number;  // súčet sekúnd zo všetkých diskusií/hier
+  correctAnswers: number;    // správne odpovede (playersWon + minigame/party skóre)
 }
 
 export interface RoundHistoryEntry {
