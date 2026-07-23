@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { TEAM_COLORS } from "../../data/teamBattle";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
+import { useSound } from "../../hooks/useSound";
 
 function Confetti() {
   const pieces = useMemo(
@@ -45,6 +46,7 @@ export default function GameOver({
   onPlayAgain: () => void;
   onHome: () => void;
 }) {
+  const { play } = useSound();
   const [visible, setVisible] = useState(false);
   const [blue, red] = TEAM_COLORS;
   const colors = [blue, red];
@@ -54,7 +56,12 @@ export default function GameOver({
 
   useEffect(() => {
     const timeout = window.setTimeout(() => setVisible(true), 180);
-    return () => window.clearTimeout(timeout);
+    const soundTimeout = window.setTimeout(() => play(isDraw ? "applause" : "win"), 400);
+    return () => {
+      window.clearTimeout(timeout);
+      window.clearTimeout(soundTimeout);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

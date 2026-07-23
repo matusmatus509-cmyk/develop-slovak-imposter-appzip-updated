@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import type { GameSettings, RoundAssignment } from "../../types";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { cn } from "../../utils/designTokens";
+import { useSound } from "../../hooks/useSound";
 
 export default function Result({
   settings,
@@ -17,12 +19,19 @@ export default function Result({
   onHome: () => void;
   onHistory: () => void;
 }) {
+  const { play } = useSound();
   const impostorNames = assignment.impostorIndexes.map(
     (i) => settings.playerNames[i]
   );
   const caughtImpostor =
     votedIndex !== null && assignment.impostorIndexes.includes(votedIndex);
   const playersWon = votedIndex !== null && caughtImpostor;
+
+  useEffect(() => {
+    const t = setTimeout(() => play(playersWon ? "win" : "lose"), 200);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Shell>

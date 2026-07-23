@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { GameSettings } from "../../types";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { formatTime } from "../../utils/format";
+import { useSound } from "../../hooks/useSound";
 
 export default function Discussion({
   settings,
@@ -12,6 +13,7 @@ export default function Discussion({
   onExit: () => void;
   onFinish: (elapsedSeconds: number) => void;
 }) {
+  const { play } = useSound();
   const hasTimer = settings.timerSeconds > 0;
   const [remaining, setRemaining] = useState(settings.timerSeconds);
   const [paused, setPaused] = useState(false);
@@ -43,6 +45,7 @@ export default function Discussion({
         if (r <= 1) {
           if (intervalRef.current) clearInterval(intervalRef.current);
           if (!finishedRef.current && !finishTimeoutRef.current) {
+            play("alarm");
             finishTimeoutRef.current = setTimeout(
               () => finish(settings.timerSeconds),
               300,
@@ -50,6 +53,8 @@ export default function Discussion({
           }
           return 0;
         }
+        // Tick sound in the last 10 seconds
+        if (r <= 11) play("tick");
         return r - 1;
       });
       setElapsed((e) => e + 1);

@@ -2,6 +2,7 @@ import type { ButtonHTMLAttributes, ReactNode, SVGProps } from "react";
 import { Icons, type IconsType } from "./icons";
 import { designTokens } from "../utils/designTokens";
 import appTexture from "../assets/app-texture.jpg";
+import { useSound } from "../hooks/useSound";
 
 // ── Type Definitions ──────────────────────────────────────────────────
 
@@ -164,8 +165,10 @@ export function Button({
   className = "",
   children,
   style,
+  onClick,
   ...props
 }: ButtonProps) {
+  const { play } = useSound();
   const sizeStyles = {
     sm: { padding: `${spacing.xs} ${spacing.sm}`, fontSize: typography.fontSize.sm, gap: spacing.xs, height: "32px" },
     md: { padding: `${spacing.sm} ${spacing.md}`, fontSize: typography.fontSize.base, gap: spacing.sm, height: "44px" },
@@ -250,6 +253,7 @@ export function Button({
       } as any}
       disabled={isDisabled}
       aria-busy={loading}
+      onClick={(e) => { if (!isDisabled) play("tap"); onClick?.(e); }}
       {...props}
     >
       {loading && (

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import soundArt from "../../assets/party-sound.svg";
+import { useSound } from "../../hooks/useSound";
 import { takePersistentItems } from "../../utils/persistentDeck";
 import { SOUND_CLUES } from "../../data/teamBattleExtras";
 import { ParticipantScoreStrip, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
@@ -11,6 +12,7 @@ const QUESTIONS_PER_ROUND = 10;
 const MAX_SOUND_SECONDS = 7;
 
 export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds = QUESTIONS_PER_ROUND, timeSeconds = MAX_SOUND_SECONDS }: QuickParticipantsProps) {
+  const { play } = useSound();
   const deck = useMemo(() => takePersistentItems("party:sound-buzzer", SOUND_CLUES, rounds, (clue) => clue.label), [rounds]);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
@@ -121,7 +123,7 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds
               <div className="grid grid-cols-2 gap-3">
                 {participantNames.map((name, participant) => {
                   const color = PARTY_PLAYER_COLORS[participant % PARTY_PLAYER_COLORS.length];
-                  return <button key={`${name}-${participant}`} disabled={!played} onClick={() => { stopAudio("ready"); setPhase({ type: "buzzed", participant }); }} className="party-shine overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30" style={{ background: color }}>🔔<span className="mt-1 block truncate px-2 text-sm">{name}</span></button>;
+                  return <button key={`${name}-${participant}`} disabled={!played} onClick={() => { play("buzzer"); stopAudio("ready"); setPhase({ type: "buzzed", participant }); }} className="party-shine overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30" style={{ background: color }}>🔔<span className="mt-1 block truncate px-2 text-sm">{name}</span></button>;
                 })}
               </div>
             )}
