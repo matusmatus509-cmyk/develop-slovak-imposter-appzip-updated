@@ -9,11 +9,13 @@ export default function Reveal({
   assignment,
   onExit,
   onDone,
+  mode = "impostor",
 }: {
   settings: GameSettings;
   assignment: RoundAssignment;
   onExit: () => void;
   onDone: () => void;
+  mode?: "impostor" | "drawing";
 }) {
   const [seen, setSeen] = useState<Set<number>>(new Set());
   const [viewing, setViewing] = useState<number | null>(null);
@@ -110,8 +112,9 @@ export default function Reveal({
                       {assignment.categoryIcon} {assignment.categoryName}
                     </span>
                     <p className="mt-3 text-xs leading-relaxed text-white/50">
-                      Nepoznáš tajné slovo. Počúvaj ostatných a snaž sa
-                      zapadnúť, aby ťa neodhalili.
+                      {mode === "drawing"
+                        ? "Nepoznáš tajné slovo. Sleduj kresbu ostatných a pridaj nenápadný ťah, aby ťa neodhalili."
+                        : "Nepoznáš tajné slovo. Počúvaj ostatných a snaž sa zapadnúť, aby ťa neodhalili."}
                     </p>
                   </div>
                 )}
@@ -142,8 +145,9 @@ export default function Reveal({
                   {assignment.categoryIcon} {assignment.categoryName}
                 </span>
                 <p className="relative text-xs leading-relaxed text-white/50">
-                  Povedz asociáciu súvisiacu so slovom, ale nie príliš zjavnú —
-                  pomôž odhaliť podvodníka.
+                  {mode === "drawing"
+                    ? "Zapamätaj si slovo. Pri svojom ťahu nakresli iba jednu súvislú čiaru a mobil odovzdaj ďalej."
+                    : "Povedz asociáciu súvisiacu so slovom, ale nie príliš zjavnú — pomôž odhaliť podvodníka."}
                 </p>
               </>
             )}
@@ -233,14 +237,14 @@ export default function Reveal({
           <div className="flex flex-col items-center gap-2 rounded-3xl border border-amber-500/30 bg-amber-950/30 px-6 py-5 text-center">
             <Icons.dice1 size={32} className="text-amber-400" />
             <p className="text-xs font-bold uppercase tracking-widest text-amber-400/70">
-              Losovanie — kto začína
+              {mode === "drawing" ? "Losovanie — kto kreslí prvý" : "Losovanie — kto začína"}
             </p>
             <p className="text-2xl font-black text-amber-300">
               {settings.playerNames[starter]}
             </p>
           </div>
           <Button fullWidth onClick={onDone}>
-            Začať diskusiu 💬
+            {mode === "drawing" ? "Začať kreslenie 🎨" : "Začať diskusiu 💬"}
           </Button>
         </div>
       )}

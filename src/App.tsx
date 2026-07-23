@@ -329,6 +329,7 @@ export default function App() {
         <Reveal
           settings={drawingSettings}
           assignment={drawingAssignment}
+          mode="drawing"
           onExit={() => setScreen("impostor-menu")}
           onDone={() => setScreen("drawing-canvas")}
         />
