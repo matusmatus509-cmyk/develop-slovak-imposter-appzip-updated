@@ -1,0 +1,27 @@
+{
+  "id": "/",
+  "name": "Podvodník – Párty hry",
+  "short_name": "Podvodník",
+  "description": "Párty hry pre jeden mobil – Imposter, minihry a tímové výzvy.",
+  "lang": "sk",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#080b13",
+  "theme_color": "#080b13",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

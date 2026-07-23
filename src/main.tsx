@@ -11,3 +11,11 @@ createRoot(document.getElementById("root")!).render(
     </LanguageProvider>
   </StrictMode>
 );
+
+if (import.meta.env.PROD && "serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js").catch(() => {
+      // The game remains fully playable online if the offline cache cannot register.
+    });
+  });
+}
