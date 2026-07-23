@@ -590,7 +590,318 @@ const EXTRA_QUIZ_QUESTIONS: QuizQuestion[] = [
   { question: "Koľko je polovica zo 100?", answer: "50", category: "🧠 Logika" },
 ];
 
-export const QUIZ_QUESTIONS: QuizQuestion[] = [...CORE_QUIZ_QUESTIONS, ...EXTRA_QUIZ_QUESTIONS];
+// Large evergreen library. The compact source format keeps the hundreds of
+// questions easy to expand while every item still becomes a normal quiz card.
+const EXPANDED_QUIZ_LIBRARY = `
+🌍 Geografia|Aké je hlavné mesto Írska?|Dublin
+🌍 Geografia|Aké je hlavné mesto Nórska?|Oslo
+🌍 Geografia|Aké je hlavné mesto Švédska?|Štokholm
+🌍 Geografia|Aké je hlavné mesto Fínska?|Helsinki
+🌍 Geografia|Aké je hlavné mesto Dánska?|Kodaň
+🌍 Geografia|Aké je hlavné mesto Holandska?|Amsterdam
+🌍 Geografia|Aké je hlavné mesto Belgicka?|Brusel
+🌍 Geografia|Aké je hlavné mesto Švajčiarska?|Bern
+🌍 Geografia|Aké je hlavné mesto Grécka?|Atény
+🌍 Geografia|Aké je hlavné mesto Turecka?|Ankara
+🌍 Geografia|Aké je hlavné mesto Chorvátska?|Záhreb
+🌍 Geografia|Aké je hlavné mesto Slovinska?|Ľubľana
+🌍 Geografia|Aké je hlavné mesto Rumunska?|Bukurešť
+🌍 Geografia|Aké je hlavné mesto Bulharska?|Sofia
+🌍 Geografia|Aké je hlavné mesto Islandu?|Reykjavík
+🌍 Geografia|Aké je hlavné mesto Mexika?|Mexiko City
+🌍 Geografia|Aké je hlavné mesto Argentíny?|Buenos Aires
+🌍 Geografia|Aké je hlavné mesto Brazílie?|Brasília
+🌍 Geografia|Aké je hlavné mesto Južnej Kórey?|Soul
+🌍 Geografia|Aké je hlavné mesto Číny?|Peking
+🌍 Geografia|Aké je hlavné mesto Indie?|Naí Dillí
+🌍 Geografia|Aké je hlavné mesto Thajska?|Bangkok
+🌍 Geografia|Aké je hlavné mesto Egypta?|Káhira
+🌍 Geografia|Aké je hlavné mesto Kene?|Nairobi
+🌍 Geografia|Aké je hlavné mesto Nového Zélandu?|Wellington
+🌍 Geografia|Ktorá krajina má tvar čižmy?|Taliansko
+🌍 Geografia|V ktorej krajine ležia pyramídy v Gíze?|Egypt
+🌍 Geografia|Ktorá krajina je známa javorovým listom na vlajke?|Kanada
+🌍 Geografia|Ktorá krajina má na vlajke červený kruh na bielom pozadí?|Japonsko
+🌍 Geografia|Ktorým morom je obklopená veľká časť Talianska?|Stredozemným morom
+🌍 Geografia|Ktorý kontinent je najväčší?|Ázia
+🌍 Geografia|Ktorý kontinent je najmenší?|Austrália
+🌍 Geografia|Na ktorom kontinente leží Brazília?|Južná Amerika
+🌍 Geografia|Na ktorom kontinente leží Kanada?|Severná Amerika
+🌍 Geografia|Na ktorom kontinente leží Nórsko?|Európa
+🌍 Geografia|Ktorá rieka preteká cez Rím?|Tiber
+🌍 Geografia|Ktorá rieka preteká cez Budapešť?|Dunaj
+🌍 Geografia|Ktorá rieka preteká cez Prahu?|Vltava
+🌍 Geografia|Ako sa volá púšť v Mongolsku a Číne?|Gobi
+🌍 Geografia|Ktoré pohorie oddeľuje Európu a Áziu v Rusku?|Ural
+🌍 Geografia|V ktorej krajine sa nachádza mesto Barcelona?|Španielsko
+🌍 Geografia|V ktorej krajine sa nachádza mesto Marrakech?|Maroko
+🌍 Geografia|V ktorej krajine sa nachádza Veľký bariérový útes?|Austrália
+🌍 Geografia|V ktorej krajine sa nachádzajú ruiny Petra?|Jordánsko
+🌍 Geografia|Ako sa volá najväčší ostrov na svete?|Grónsko
+🌍 Geografia|Ktorý oceán leží medzi Afrikou a Austráliou?|Indický oceán
+🌍 Geografia|Ktoré more leží medzi Európou a Afrikou?|Stredozemné more
+🌍 Geografia|Ako sa volá známy vodopád na hranici Zambie a Zimbabwe?|Viktóriine vodopády
+🌍 Geografia|Ktorý štát je známy fjordmi?|Nórsko
+🌍 Geografia|Kde leží Mount Fuji?|Japonsko
+🔬 Veda|Ktorá planéta je najväčšia v Slnečnej sústave?|Jupiter
+🔬 Veda|Ktorá planéta je najmenšia v Slnečnej sústave?|Merkúr
+🔬 Veda|Ktorá planéta je najďalej od Slnka?|Neptún
+🔬 Veda|Ako sa volá prirodzená družica Zeme?|Mesiac
+🔬 Veda|Čo meria teplomer?|Teplotu
+🔬 Veda|Čo meria barometer?|Atmosférický tlak
+🔬 Veda|Čo meria kompas?|Smer severu
+🔬 Veda|Ako sa nazýva premena vody na paru?|Vyparovanie
+🔬 Veda|Ako sa nazýva premena pary na kvapalinu?|Kondenzácia
+🔬 Veda|Ako sa nazýva premena kvapaliny na pevné skupenstvo?|Tuhnutie
+🔬 Veda|Aký kov je pri bežnej teplote kvapalný?|Ortuť
+🔬 Veda|Aký je chemický symbol zlata?|Au
+🔬 Veda|Aký je chemický symbol železa?|Fe
+🔬 Veda|Aký je chemický symbol sodíka?|Na
+🔬 Veda|Aký je chemický symbol kyslíka?|O
+🔬 Veda|Ktorý prvok má značku C?|Uhlík
+🔬 Veda|Ako sa nazýva stred atómu?|Jadro
+🔬 Veda|Ktorá časť rastliny prijíma vodu z pôdy?|Korene
+🔬 Veda|Ktorá časť rastliny zvyčajne vykonáva fotosyntézu?|Listy
+🔬 Veda|Aký plyn rastliny uvoľňujú pri fotosyntéze?|Kyslík
+🔬 Veda|Aký plyn rastliny prijímajú pri fotosyntéze?|Oxid uhličitý
+🔬 Veda|Ktoré krvinky prenášajú kyslík?|Červené krvinky
+🔬 Veda|Ktorý orgán filtruje krv a tvorí moč?|Obličky
+🔬 Veda|Ktorý orgán pomáha človeku dýchať?|Pľúca
+🔬 Veda|Koľko zubov má bežne dospelý človek?|32
+🔬 Veda|Koľko komôr má ľudské srdce?|4
+🔬 Veda|Ktorý zmyslový orgán vníma zvuk?|Ucho
+🔬 Veda|Ktorý zmyslový orgán vníma vône?|Nos
+🔬 Veda|Aká je najtvrdšia prirodzená látka?|Diamant
+🔬 Veda|Ako sa nazýva vedný odbor o živých organizmoch?|Biológia
+🔬 Veda|Ako sa nazýva vedný odbor o hviezdach a vesmíre?|Astronómia
+🔬 Veda|Ako sa nazýva vedný odbor o horninách?|Geológia
+🔬 Veda|Ako sa nazýva vedný odbor o počasí?|Meteorológia
+🔬 Veda|Čo spôsobuje príliv a odliv?|Gravitácia Mesiaca
+🔬 Veda|Aká sila priťahuje predmety k Zemi?|Gravitácia
+🔬 Veda|Aká jednotka sa používa na meranie elektrického napätia?|Volt
+🔬 Veda|Aká jednotka sa používa na meranie výkonu?|Watt
+🔬 Veda|Aká jednotka sa používa na meranie hmotnosti?|Kilogram
+🔬 Veda|Aká jednotka sa používa na meranie dĺžky?|Meter
+🔬 Veda|Ako sa volá najrýchlejšie zviera vo vode?|Plachetník
+🔬 Veda|Ako sa volá najväčší živočích na Zemi?|Modrá veľryba
+🔬 Veda|Ktorý živočích mení farbu pre maskovanie?|Chameleón
+🔬 Veda|Ktorý hmyz vyrába med?|Včela
+🔬 Veda|Ktorý vták je symbolom mieru?|Holubica
+🔬 Veda|Ktoré zviera má najdlhší krk?|Žirafa
+🔬 Veda|Ktoré zviera je najväčšia mačkovitá šelma?|Tiger
+📜 História|Kto bol prvý rímsky cisár?|Augustus
+📜 História|Kto bol vodcom Francúzska počas bitky pri Waterloo?|Napoleon Bonaparte
+📜 História|Ktorý moreplavec doplával do Ameriky v roku 1492?|Krištof Kolumbus
+📜 História|Kto viedol výpravu okolo sveta po smrti Magalhãesa?|Juan Sebastián Elcano
+📜 História|V ktorej krajine vznikli olympijské hry?|Grécko
+📜 História|Ktorý staroveký národ postavil Koloseum?|Rimania
+📜 História|Ktorý staroveký národ postavil Akropolu?|Gréci
+📜 História|Ako sa volala legendárna egyptská kráľovná spojená s Caesarom?|Kleopatra
+📜 História|V ktorom roku sa skončila druhá svetová vojna v Európe?|1945
+📜 História|V ktorom roku sa začala prvá svetová vojna?|1914
+📜 História|V ktorom roku sa začala druhá svetová vojna?|1939
+📜 História|Ktorá loď priviezla pútnikov do Ameriky v roku 1620?|Mayflower
+📜 História|Kto bol prvý prezident Československa?|Tomáš Garrigue Masaryk
+📜 História|Ako sa volal československý prezident známy ako Václav Havel?|Václav Havel
+📜 História|Ktorá civilizácia používala písmo hieroglyfy?|Starovekí Egypťania
+📜 História|Ako sa volá obdobie veľkého rozvoja umenia v Európe po stredoveku?|Renesancia
+📜 História|Kto napísal komunistický manifest spolu s Friedrichom Engelsom?|Karl Marx
+📜 História|Ktorý americký prezident je na jednodolárovej bankovke?|George Washington
+📜 História|Kto bol známy ako Panna orleánska?|Jana z Arku
+📜 História|V ktorom meste bola podpísaná Versaillská zmluva?|Versailles
+📜 História|Ktorá stavba bola starovekým divom sveta v Alexandrii?|Maják v Alexandrii
+📜 História|Ktorý staroveký grécky filozof bol učiteľom Alexandra Veľkého?|Aristoteles
+📜 História|Kto bol učiteľom Platóna?|Sokrates
+📜 História|Ako sa volal vodca boja za nezávislosť Indie známy nenásilím?|Mahátma Gándhí
+📜 História|Ktorá ríša mala centrum v Konštantínopole?|Byzantská ríša
+📜 História|Ako sa volá slávna čínska stavba viditeľná z veľkej vzdialenosti?|Veľký čínsky múr
+📜 História|V ktorom meste sídlili českí králi?|Praha
+📜 História|Ktorý slovenský štátnik bol prvým prezidentom Slovenskej republiky?|Michal Kováč
+📜 História|Kto bol prvý človek vo vesmíre?|Jurij Gagarin
+📜 História|Ako sa volala prvá žena vo vesmíre?|Valentina Tereškovová
+🏆 Šport|V ktorom športe sa používa basketbalová lopta a kôš?|Basketbal
+🏆 Šport|V ktorom športe sa používa raketa a žltá loptička?|Tenis
+🏆 Šport|V ktorom športe sa používa luk a šíp?|Lukostreľba
+🏆 Šport|V ktorom športe sa pláva v bazéne na čas?|Plávanie
+🏆 Šport|V ktorom športe sa jazdí na ľade s korčuľami a pukom?|Ľadový hokej
+🏆 Šport|Koľko bodov má kôš spoza trojkového oblúka v basketbale?|3
+🏆 Šport|Koľko jamiek má štandardné golfové ihrisko?|18
+🏆 Šport|Koľko hráčov tvorí volejbalový tím na ihrisku?|6
+🏆 Šport|Koľko hráčov tvorí hádzanársky tím na ihrisku?|7
+🏆 Šport|Ako sa volá najznámejší cyklistický etapový pretek vo Francúzsku?|Tour de France
+🏆 Šport|Ako sa volá najznámejší tenisový turnaj na tráve?|Wimbledon
+🏆 Šport|Ako sa volá motoristická séria s formulami?|Formula 1
+🏆 Šport|Akú farbu dresu má líder Tour de France?|Žltú
+🏆 Šport|Ako sa volá najvyššia hokejová liga v USA a Kanade?|NHL
+🏆 Šport|Ako sa volá tenisový úder nad hlavou?|Smeč
+🏆 Šport|Ako sa volá futbalový trestný kop z jedenástich metrov?|Penalta
+🏆 Šport|V ktorom športe sa snažíš zhodiť všetky kuželky?|Bowling
+🏆 Šport|V ktorom športe sa používajú chrániče, prilba a skateboard?|Skateboarding
+🏆 Šport|Ktorý šport kombinuje beh, bicykel a plávanie?|Triatlon
+🏆 Šport|Aký športovec je Usain Bolt?|Šprintér
+🏆 Šport|Aký športovec je Michael Phelps?|Plavec
+🏆 Šport|Aký športovec je Simone Biles?|Gymnastka
+🏆 Šport|Ako sa volá slávna trofej vo futbalovej Lige majstrov?|Ušatá trofej
+🏆 Šport|Ako sa nazýva najvyššia možná dávka bodov v šípkach jedným hodom?|Triple 20
+🏆 Šport|Koľko polí má šachovnica?|64
+🏆 Šport|Ktorá figúrka v šachu sa pohybuje do tvaru písmena L?|Jazdec
+🏆 Šport|Ktorý šport sa hrá na kurte so sieťou a malým perovým košíkom?|Bedminton
+🏆 Šport|Ktorý šport používa ťažké kamene a metly na ľade?|Curling
+🎬 Filmy a seriály|Ako sa volá zelený hrdina z filmov Shrek?|Shrek
+🎬 Filmy a seriály|Ako sa volá čarodejnícka škola v Harrym Potterovi?|Rokfort
+🎬 Filmy a seriály|Ako sa volá múdry čarodejník z Pána prsteňov?|Gandalf
+🎬 Filmy a seriály|Ako sa volá prsteňový nositeľ v Pánovi prsteňov?|Frodo Baggins
+🎬 Filmy a seriály|Ako sa volá leví kráľ z Disneyho filmu?|Simba
+🎬 Filmy a seriály|Ako sa volá snehuliak z Ľadového kráľovstva?|Olaf
+🎬 Filmy a seriály|Ako sa volá dievča v červenej kapucni z rozprávky?|Červená čiapočka
+🎬 Filmy a seriály|Ako sa volá chlapec, ktorý nikdy nedospel?|Peter Pan
+🎬 Filmy a seriály|Ako sa volá bábka, ktorej rastie nos pri klamstve?|Pinocchio
+🎬 Filmy a seriály|Ako sa volá kačací boháč z Disneyho príbehov?|Strýko Držgroš
+🎬 Filmy a seriály|Ako sa volá superhrdina s netopierím symbolom?|Batman
+🎬 Filmy a seriály|Ako sa volá superhrdina z planéty Krypton?|Superman
+🎬 Filmy a seriály|Ako sa volá hrdina Marvelu s kladivom Mjolnir?|Thor
+🎬 Filmy a seriály|Ako sa volá hrdinka Marvelu so štítom a hviezdou?|Captain Marvel
+🎬 Filmy a seriály|Ako sa volá pavúčí superhrdina z New Yorku?|Spider-Man
+🎬 Filmy a seriály|Ako sa volá žltý robot z filmov Transformers?|Bumblebee
+🎬 Filmy a seriály|Ako sa volá zloduch z príbehu Star Wars so svetelným mečom?|Darth Vader
+🎬 Filmy a seriály|Ako sa volá princezná zo Star Wars, sestra Luka Skywalkera?|Leia Organa
+🎬 Filmy a seriály|Ako sa volá kovboj z Toy Story?|Woody
+🎬 Filmy a seriály|Ako sa volá vesmírny ranger z Toy Story?|Buzz Lightyear
+🎬 Filmy a seriály|Ako sa volá rybka z animovaného filmu Hľadá sa Nemo?|Nemo
+🎬 Filmy a seriály|Ako sa volá panda bojovník z animovaného filmu Kung Fu Panda?|Po
+🎬 Filmy a seriály|Ako sa volá rodina žltých postáv zo Springfieldu?|Simpsonovci
+🎬 Filmy a seriály|Ako sa volá hlavná postava seriálu Wednesday?|Wednesday Addams
+🎬 Filmy a seriály|Ako sa volá lekárska seriálová dráma z nemocnice Seattle Grace?|Chirurgovia
+🎬 Filmy a seriály|Ako sa volá seriál o lúpeži s červenými overalmi?|Papierový dom
+🎬 Filmy a seriály|Ako sa volá seriál o skupine priateľov v New Yorku?|Priatelia
+🎬 Filmy a seriály|Ako sa volá kúzelnícky vlak, ktorý vozí žiakov do Rokfortu?|Rokfortský expres
+🎬 Filmy a seriály|Ako sa volá filmová séria s dinosaurami v parku?|Jurský park
+🎬 Filmy a seriály|Ako sa volá film o modrých mimozemšťanoch na planéte Pandora?|Avatar
+🎵 Hudba|Ktorý nástroj má čierne a biele klávesy?|Klavír
+🎵 Hudba|Ktorý nástroj má zvyčajne šesť strún?|Gitara
+🎵 Hudba|Ktorý nástroj sa hrá sláčikom a má štyri struny?|Husle
+🎵 Hudba|Ktorý nástroj má pedále a veľa píšťal?|Organ
+🎵 Hudba|Ktorý nástroj je typický pre škótske gajdy?|Dudy
+🎵 Hudba|Ktorý nástroj sa hrá paličkami a má kovové platničky?|Xylofón
+🎵 Hudba|Ktorý nástroj patrí do skupiny bicích?|Bubon
+🎵 Hudba|Ako sa volá hudobná skupina so spevákom Freddiem Mercurym?|Queen
+🎵 Hudba|Kto naspieval hit Rolling in the Deep?|Adele
+🎵 Hudba|Kto naspieval hit Bad Guy?|Billie Eilish
+🎵 Hudba|Kto naspieval hit Blinding Lights?|The Weeknd
+🎵 Hudba|Kto naspieval hit Poker Face?|Lady Gaga
+🎵 Hudba|Kto naspieval hit Shake It Off?|Taylor Swift
+🎵 Hudba|Kto naspieval hit Happy?|Pharrell Williams
+🎵 Hudba|Kto naspieval hit Someone Like You?|Adele
+🎵 Hudba|Ktorá skupina naspievala hit Dancing Queen?|ABBA
+🎵 Hudba|Ktorá skupina naspievala hit Yellow?|Coldplay
+🎵 Hudba|Ktorá skupina naspievala hit Smells Like Teen Spirit?|Nirvana
+🎵 Hudba|Ktorá skupina naspievala hit Hotel California?|Eagles
+🎵 Hudba|Ako sa volá najnižší mužský spevácky hlas?|Bas
+🎵 Hudba|Ako sa nazýva pieseň spievaná bez hudobných nástrojov?|A cappella
+🎨 Umenie a knihy|Kto namaľoval obraz Mona Lisa?|Leonardo da Vinci
+🎨 Umenie a knihy|Kto namaľoval obraz Výkrik?|Edvard Munch
+🎨 Umenie a knihy|Kto namaľoval obraz Guernica?|Pablo Picasso
+🎨 Umenie a knihy|Kto namaľoval obraz Slnečnice?|Vincent van Gogh
+🎨 Umenie a knihy|Kto vytvoril sochu Dávid?|Michelangelo
+🎨 Umenie a knihy|Kto napísal Malého princa?|Antoine de Saint-Exupéry
+🎨 Umenie a knihy|Kto napísal Hobita?|J. R. R. Tolkien
+🎨 Umenie a knihy|Kto napísal román 1984?|George Orwell
+🎨 Umenie a knihy|Kto napísal román Pýcha a predsudok?|Jane Austen
+🎨 Umenie a knihy|Kto napísal knihu Don Quijote?|Miguel de Cervantes
+🎨 Umenie a knihy|Kto napísal Odysseu?|Homér
+🎨 Umenie a knihy|Kto napísal Božskú komédiu?|Dante Alighieri
+🎨 Umenie a knihy|Ako sa volá chlapec z knihy s jazvou na čele?|Harry Potter
+🎨 Umenie a knihy|Ako sa volá detektív z Baker Street?|Sherlock Holmes
+🎨 Umenie a knihy|Ako sa volá biely veľrybí hrdina románu Hermana Melvilla?|Moby Dick
+🎨 Umenie a knihy|Kto vytvoril postavu Sherlocka Holmesa?|Arthur Conan Doyle
+🎨 Umenie a knihy|Ako sa volá umelecký smer so silnými farbami a svetlom?|Impresionizmus
+🎨 Umenie a knihy|Ako sa volá divadelná hra o dánskom princovi?|Hamlet
+🎨 Umenie a knihy|Kto napísal Draculu?|Bram Stoker
+🍝 Jedlo a život|Z ktorej krajiny pochádza sushi?|Japonsko
+🍝 Jedlo a život|Z ktorej krajiny pochádza paella?|Španielsko
+🍝 Jedlo a život|Z ktorej krajiny pochádza croissant?|Francúzsko
+🍝 Jedlo a život|Z ktorej krajiny pochádza tacos?|Mexiko
+🍝 Jedlo a život|Aká surovina je hlavnou súčasťou guacamole?|Avokádo
+🍝 Jedlo a život|Z čoho sa vyrába hranolka?|Zemiak
+🍝 Jedlo a život|Aké ovocie sa používa na výrobu hrozienok?|Hrozno
+🍝 Jedlo a život|Ktorý nápoj sa vyrába z pražených kávových zŕn?|Káva
+🍝 Jedlo a život|Ktorý nápoj sa vyrába lúhovaním čajových lístkov?|Čaj
+🍝 Jedlo a život|Aké korenie je žlté a často sa používa v kari?|Kurkuma
+🍝 Jedlo a život|Aký syr sa tradične používa na pizzu Margherita?|Mozzarella
+🍝 Jedlo a život|Aké ovocie je základom jablkového džúsu?|Jablko
+🍝 Jedlo a život|Aká zelenina má oranžovú farbu a rastie pod zemou?|Mrkva
+🍝 Jedlo a život|Aká zelenina sa používa na kyslé uhorky?|Uhorka
+🍝 Jedlo a život|Z akého ovocia sa vyrába slivkový lekvár?|Slivky
+🍝 Jedlo a život|Aké jedlo je tortillová placka plnená mäsom alebo zeleninou?|Burrito
+🍝 Jedlo a život|Ako sa volá talianske jedlo z ryže varené do krémova?|Rizoto
+🍝 Jedlo a život|Ako sa volá francúzsky dezert z cesta plneného krémom?|Éclair
+🍝 Jedlo a život|Ako sa volá japonská polievka s rezancami?|Ramen
+🍝 Jedlo a život|Aké jedlo je zmes mäsa, zeleniny a vývaru v kotlíku?|Guláš
+🇸🇰 Slovensko|Ako sa volá najdlhšia rieka Slovenska?|Váh
+🇸🇰 Slovensko|Ako sa volá národný park s roklinami a rebríkmi?|Slovenský raj
+🇸🇰 Slovensko|V ktorom meste sídli slovenský parlament?|Bratislava
+🇸🇰 Slovensko|Ako sa volá známy hrad nad obcou Oravský Podzámok?|Oravský hrad
+🇸🇰 Slovensko|V ktorom meste sa nachádza Dóm svätej Alžbety?|Košice
+🇸🇰 Slovensko|Ako sa volá najvyšší vrch Nízkych Tatier?|Ďumbier
+🇸🇰 Slovensko|Ako sa volá slovenská hymna?|Nad Tatrou sa blýska
+🇸🇰 Slovensko|Ktorý slovenský vynálezca je spojený s padákom?|Štefan Banič
+🇸🇰 Slovensko|Ako sa volá folklórny tanec typický pre východ Slovenska?|Čardáš
+🇸🇰 Slovensko|V ktorom kraji leží mesto Banská Bystrica?|Banskobystrický kraj
+🇸🇰 Slovensko|V ktorom kraji leží mesto Žilina?|Žilinský kraj
+🇸🇰 Slovensko|Ktoré mesto je známe výrobou piva Zlatý Bažant?|Hurbanovo
+🇸🇰 Slovensko|Ktorý slovenský hudobník je známy ako Rytmus?|Patrik Vrbovský
+🇸🇰 Slovensko|Ako sa volá najznámejší slovenský hokejista prezývaný Demitra?|Pavol Demitra
+🇸🇰 Slovensko|Ktorý slovenský futbalista hral za SSC Neapol a reprezentáciu?|Marek Hamšík
+🇸🇰 Slovensko|Ako sa volá jaskyňa zapísaná v UNESCO pri Rožňave?|Dobšinská ľadová jaskyňa
+💡 Technológie|Čo znamená skratka WWW?|World Wide Web
+💡 Technológie|Čo znamená skratka GPS?|Globálny pozičný systém
+💡 Technológie|Aké zariadenie prevádza papierový dokument do počítača?|Skener
+💡 Technológie|Aké zariadenie tlačí text alebo obrázky na papier?|Tlačiareň
+💡 Technológie|Ktorý kláves na klávesnici maže znak vľavo od kurzora?|Backspace
+💡 Technológie|Ktorý kláves odošle text na nový riadok?|Enter
+💡 Technológie|Ako sa nazýva tajný kód na odomknutie telefónu?|PIN
+💡 Technológie|Ako sa nazýva program na prehliadanie webu?|Prehliadač
+💡 Technológie|Ako sa nazýva škodlivý program, ktorý môže napadnúť počítač?|Vírus
+💡 Technológie|Ako sa nazýva bezdrôtové pripojenie k internetu doma?|Wi‑Fi
+💡 Technológie|Ktorý typ súboru sa najčastejšie používa pre fotografie?|JPG
+💡 Technológie|Ktorý typ súboru sa často používa pre dokumenty s pevným rozložením?|PDF
+💡 Technológie|Aká spoločnosť vyvinula operačný systém Android?|Google
+💡 Technológie|Aká spoločnosť vyrába iPhone?|Apple
+💡 Technológie|Ako sa nazýva online služba na ukladanie súborov cez internet?|Cloud
+🧠 Logika a fakty|Koľko strán má trojuholník?|3
+🧠 Logika a fakty|Koľko strán má štvoruholník?|4
+🧠 Logika a fakty|Koľko vrcholov má kocka?|8
+🧠 Logika a fakty|Koľko stien má kocka?|6
+🧠 Logika a fakty|Koľko mesiacov má rok?|12
+🧠 Logika a fakty|Koľko hodín má deň?|24
+🧠 Logika a fakty|Koľko dní má február v bežnom roku?|28
+🧠 Logika a fakty|Aké číslo je rímska číslica X?|10
+🧠 Logika a fakty|Aké číslo je rímska číslica L?|50
+🧠 Logika a fakty|Aké číslo je rímska číslica C?|100
+🧠 Logika a fakty|Koľko je tucet?|12
+🧠 Logika a fakty|Koľko je polovica z 80?|40
+🧠 Logika a fakty|Koľko je štvrtina zo 100?|25
+🧠 Logika a fakty|Aké číslo nasleduje po 49?|50
+🧠 Logika a fakty|Aké číslo predchádza číslu 100?|99
+🧠 Logika a fakty|Ktorý deň je po piatku?|Sobota
+🧠 Logika a fakty|Ktorý mesiac je po decembri?|Január
+🧠 Logika a fakty|Koľko minút má polhodina?|30
+🧠 Logika a fakty|Akú farbu zmiešaním vytvorí modrá a červená?|Fialová
+🧠 Logika a fakty|Akú farbu zmiešaním vytvorí červená a žltá?|Oranžová
+`.trim();
+
+const EXPANDED_QUIZ_QUESTIONS: QuizQuestion[] = EXPANDED_QUIZ_LIBRARY
+  .split("\n")
+  .map((line) => {
+    const [category, question, answer] = line.split("|");
+    return { category, question, answer };
+  });
+
+export const QUIZ_QUESTIONS: QuizQuestion[] = [
+  ...CORE_QUIZ_QUESTIONS,
+  ...EXTRA_QUIZ_QUESTIONS,
+  ...EXPANDED_QUIZ_QUESTIONS,
+];
 
 // ── Ping pong categories (team mode) ─────────────────────────────────────────
 export const TEAM_PINGPONG_CATEGORIES: string[] = [
