@@ -3,6 +3,7 @@ import {
   TEAM_CHARADES_WORDS,
 } from "./charades";
 import { getCharacterCategories } from "./characters";
+import type { AppLanguage } from "../i18n/LanguageProvider";
 
 // ── Pantomíma words (act it out, no speaking) ────────────────────────────────
 // Split into difficulty tiers — each tier is worth a different point value.
@@ -421,11 +422,11 @@ const LOCAL_TEAM_CHARACTERS = new Set([
   "Zuzana Čaputová",
 ]);
 
-export function getTeamCharacters(includeSlovak: boolean): string[] {
-  const starterCards = includeSlovak
+export function getTeamCharacters(language: AppLanguage): string[] {
+  const starterCards = language === "sk"
     ? TEAM_CHARACTERS
     : TEAM_CHARACTERS.filter((character) => !LOCAL_TEAM_CHARACTERS.has(character));
-  const categoryCards = getCharacterCategories(includeSlovak)
+  const categoryCards = getCharacterCategories(language)
     .flatMap((category) => category.characters);
   return [...new Set([...starterCards, ...categoryCards])];
 }

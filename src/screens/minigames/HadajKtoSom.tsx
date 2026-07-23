@@ -427,7 +427,7 @@ function PlayingScreen({
 
 export default function HadajKtoSom({ onBack }: { onBack: () => void }) {
   const { language } = useLanguage();
-  const categories = useMemo(() => getCharacterCategories(language === "sk"), [language]);
+  const categories = useMemo(() => getCharacterCategories(language), [language]);
   const [phase, setPhase] = useState<Phase>("setup");
   const [players, setPlayers] = useState<PlayerScore[]>([]);
   const [currentDeck, setCurrentDeck] = useState<Card[]>([]);

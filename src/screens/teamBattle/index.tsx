@@ -20,7 +20,7 @@ import GameOver from "./GameOver";
 import { ForbiddenWordGame, GuessSongGame } from "./PassAndPlay";
 import SoundBuzzer from "./SoundBuzzer";
 import { FiveInTenGame, LetterChallengeGame } from "./QuickChallenges";
-import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
+import { defaultTeamName, useLanguage, type AppLanguage } from "../../i18n/LanguageProvider";
 
 type Phase =
   | "setup"
@@ -32,9 +32,9 @@ type Phase =
 
 const TURN_BASED: GameType[] = ["pantomima", "sarady", "hadajktosom"];
 
-function wordsForGame(game: GameType, includeSlovak: boolean): string[] {
+function wordsForGame(game: GameType, language: AppLanguage): string[] {
   if (game === "sarady") return shuffle(SARADY_WORDS);
-  if (game === "hadajktosom") return shuffle(getTeamCharacters(includeSlovak));
+  if (game === "hadajktosom") return shuffle(getTeamCharacters(language));
   return [];
 }
 
@@ -85,7 +85,7 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
     const r = rounds[idx];
     if (!r) return;
     if (TURN_BASED.includes(r.game)) {
-      setRoundWords(wordsForGame(r.game, language === "sk"));
+      setRoundWords(wordsForGame(r.game, language));
     } else if (r.game === "quiz") {
       setRoundQuestions(shuffle(QUIZ_QUESTIONS).slice(0, 5));
     }

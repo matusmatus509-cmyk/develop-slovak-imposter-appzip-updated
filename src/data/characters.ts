@@ -1,3 +1,6 @@
+import type { AppLanguage } from "../i18n/LanguageProvider";
+import { LOCAL_PERSONALITY_CATEGORIES } from "./localizedPersonalities";
+
 export interface CharacterCategory {
   id: string;
   name: string;
@@ -415,8 +418,10 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
   },
 ];
 
-export function getCharacterCategories(includeSlovak: boolean): CharacterCategory[] {
-  return includeSlovak
-    ? CHARACTER_CATEGORIES
-    : CHARACTER_CATEGORIES.filter((category) => !category.id.startsWith("slovak-"));
+export function getCharacterCategories(languageOrIncludeSlovak: AppLanguage | boolean): CharacterCategory[] {
+  const language: AppLanguage = typeof languageOrIncludeSlovak === "boolean"
+    ? languageOrIncludeSlovak ? "sk" : "en"
+    : languageOrIncludeSlovak;
+  const globalCategories = CHARACTER_CATEGORIES.filter((category) => !category.id.startsWith("slovak-"));
+  return [...globalCategories, LOCAL_PERSONALITY_CATEGORIES[language]];
 }
