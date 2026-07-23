@@ -10431,5 +10431,18 @@
   "Nastavte tempo celej bitky": "Set the pace of the whole battle",
   "Rýchle výzvy na tím": "Quick challenges per team",
   "Čas časovaných hier": "Timed game duration",
-  "Platí pre pantomímu, šarády, zakázané slovo a pesničky. Krátke výzvy majú vlastný rýchly limit.": "Applies to mime, charades, forbidden word and songs. Quick challenges use their own short limit."
+  "Platí pre pantomímu, šarády, zakázané slovo a pesničky. Krátke výzvy majú vlastný rýchly limit.": "Applies to mime, charades, forbidden word and songs. Quick challenges use their own short limit.",
+  "Pomenujte tímy a vyberte hry v želanom poradí alebo nechajte zostavu na náhodu.": "Name the teams and select games in your preferred order, or leave the lineup to chance.",
+  "Zostava hier": "Game lineup",
+  "Vyberte hry alebo ich nechajte na náhodu": "Choose games or leave them to chance",
+  "Vybrať hry": "Choose games",
+  "Určíte hry aj ich poradie": "Choose the games and their order",
+  "Náhodne": "Random",
+  "Aplikácia vyberie zostavu": "The app chooses the lineup",
+  "Náhodný výber": "Random selection",
+  "Vyberte počet kôl": "Choose the number of rounds",
+  "Stredná": "Medium",
+  "Hry a poradie vyberie aplikácia náhodne. Posledné kolo bude kvízové finále.": "The app randomly chooses the games and their order. The final round will be a quiz finale.",
+  "Výber hier": "Game selection",
+  "Začať party hru": "Start party game"
 }

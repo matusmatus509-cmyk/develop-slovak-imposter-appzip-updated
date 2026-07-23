@@ -654,11 +654,11 @@ const NON_FINAL_GAMES: GameType[] = [
 ];
 
 export function generateBattleRounds(selection: number | GameType[]): BattleRound[] {
-  const classicPool = Array.isArray(selection) ? [] : shuffle(NON_FINAL_GAMES);
+  const randomPool = Array.isArray(selection) ? [] : shuffle(NON_FINAL_GAMES);
   const games: GameType[] = Array.isArray(selection)
     ? [...selection]
     : Array.from({ length: selection }, (_, index) =>
-        index === selection - 1 ? "quiz" : classicPool[index % classicPool.length]
+        index === selection - 1 ? "quiz" : randomPool[index % randomPool.length]
       );
   const count = games.length;
   const rounds: BattleRound[] = [];

@@ -19,7 +19,7 @@ const ALL_GAMES: GameType[] = [
   "pantomima", "sarady", "zakazane", "pesnicka", "zvuk",
   "pismeno", "patzadesat", "hadajktosom", "quiz", "pingpong",
 ];
-type BattleMode = "classic" | "custom";
+type BattleSelection = "ordered" | "random";
 export interface TeamBattleOptions {
   quickRounds: number;
   timeSeconds: number;
@@ -56,9 +56,9 @@ export default function TeamBattleSetup({
     defaultTeamName(language, "A"),
     defaultTeamName(language, "B"),
   ]);
-  const [mode, setMode] = useState<BattleMode>("classic");
-  const [classicRounds, setClassicRounds] = useState(5);
-  const [customGames, setCustomGames] = useState<GameType[]>([]);
+  const [selectionType, setSelectionType] = useState<BattleSelection>("ordered");
+  const [randomRounds, setRandomRounds] = useState(5);
+  const [selectedGames, setSelectedGames] = useState<GameType[]>([]);
   const [quickRounds, setQuickRounds] = useState(2);
   const [timeSeconds, setTimeSeconds] = useState(60);
   const [blue, red] = TEAM_COLORS;
@@ -71,8 +71,8 @@ export default function TeamBattleSetup({
     });
   }
 
-  function toggleCustomGame(game: GameType) {
-    setCustomGames((current) => {
+  function toggleSelectedGame(game: GameType) {
+    setSelectedGames((current) => {
       const selectedIndex = current.indexOf(game);
       return selectedIndex >= 0
         ? current.filter((selectedGame) => selectedGame !== game)
@@ -80,9 +80,9 @@ export default function TeamBattleSetup({
     });
   }
 
-  const roundCount = mode === "classic" ? classicRounds : customGames.length;
+  const roundCount = selectionType === "random" ? randomRounds : selectedGames.length;
   const canStart = Boolean(
-    names[0].trim() && names[1].trim() && (mode === "classic" || customGames.length > 0),
+    names[0].trim() && names[1].trim() && (selectionType === "random" || selectedGames.length > 0),
   );
 
   return (
@@ -108,7 +108,7 @@ export default function TeamBattleSetup({
             <p className="mt-6 text-[10px] font-black uppercase tracking-[0.28em] text-fuchsia-300/70">Nastavenie arény</p>
             <h1 className="mt-2 text-3xl font-black tracking-tight text-white">Pripravte tímovú bitku</h1>
             <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-white/40">
-              Pomenujte tímy a vyberte si klasickú alebo vlastnú zostavu hier.
+              Pomenujte tímy a vyberte hry v želanom poradí alebo nechajte zostavu na náhodu.
             </p>
           </section>
 
@@ -148,8 +148,8 @@ export default function TeamBattleSetup({
           <section className="mt-5">
             <div className="mb-3 flex items-end justify-between">
               <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">Režim bitky</p>
-                <p className="mt-1 text-sm font-bold text-white/70">Ako chcete hrať?</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">Zostava hier</p>
+                <p className="mt-1 text-sm font-bold text-white/70">Vyberte hry alebo ich nechajte na náhodu</p>
               </div>
               <span className="rounded-xl bg-fuchsia-500/15 px-3 py-2 text-xs font-black text-fuchsia-300">
                 {roundCount} {roundCount === 1 ? "kolo" : roundCount < 5 ? "kolá" : "kôl"}
@@ -158,72 +158,72 @@ export default function TeamBattleSetup({
 
             <div className="grid grid-cols-2 gap-3">
               <button
-                onClick={() => setMode("classic")}
+                onClick={() => setSelectionType("ordered")}
                 className={`relative overflow-hidden rounded-[1.6rem] border p-5 text-left transition active:scale-[.97] ${
-                  mode === "classic"
-                    ? "border-fuchsia-300/65 bg-fuchsia-500/20 shadow-[0_15px_45px_rgba(168,85,247,.25)]"
-                    : "border-white/10 bg-white/[0.045]"
-                }`}
-              >
-                {mode === "classic" && <span className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-fuchsia-400 text-xs font-black text-white">✓</span>}
-                <span className="text-3xl">🎲</span>
-                <span className="mt-3 block text-base font-black text-white">Classic</span>
-                <span className="mt-1 block text-[10px] leading-relaxed text-white/40">Automatický mix ako doteraz</span>
-              </button>
-
-              <button
-                onClick={() => setMode("custom")}
-                className={`relative overflow-hidden rounded-[1.6rem] border p-5 text-left transition active:scale-[.97] ${
-                  mode === "custom"
+                  selectionType === "ordered"
                     ? "border-cyan-300/65 bg-cyan-500/15 shadow-[0_15px_45px_rgba(34,211,238,.2)]"
                     : "border-white/10 bg-white/[0.045]"
                 }`}
               >
-                {mode === "custom" && <span className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-cyan-400 text-xs font-black text-[#071318]">✓</span>}
-                <span className="text-3xl">⚙️</span>
-                <span className="mt-3 block text-base font-black text-white">Custom</span>
-                <span className="mt-1 block text-[10px] leading-relaxed text-white/40">Vyberiete hry aj poradie</span>
+                {selectionType === "ordered" && <span className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-cyan-400 text-xs font-black text-[#071318]">✓</span>}
+                <span className="text-3xl">☝️</span>
+                <span className="mt-3 block text-base font-black text-white">Vybrať hry</span>
+                <span className="mt-1 block text-[10px] leading-relaxed text-white/40">Určíte hry aj ich poradie</span>
+              </button>
+
+              <button
+                onClick={() => setSelectionType("random")}
+                className={`relative overflow-hidden rounded-[1.6rem] border p-5 text-left transition active:scale-[.97] ${
+                  selectionType === "random"
+                    ? "border-fuchsia-300/65 bg-fuchsia-500/20 shadow-[0_15px_45px_rgba(168,85,247,.25)]"
+                    : "border-white/10 bg-white/[0.045]"
+                }`}
+              >
+                {selectionType === "random" && <span className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-fuchsia-400 text-xs font-black text-white">✓</span>}
+                <span className="text-3xl">🎲</span>
+                <span className="mt-3 block text-base font-black text-white">Náhodne</span>
+                <span className="mt-1 block text-[10px] leading-relaxed text-white/40">Aplikácia vyberie zostavu</span>
               </button>
             </div>
           </section>
 
-          {mode === "classic" ? (
+          {selectionType === "random" ? (
             <section className="party-glass mt-4 rounded-[1.75rem] p-5">
               <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-fuchsia-300/65">Classic</p>
-                <p className="mt-1 text-sm font-bold text-white/70">Vyberte dĺžku bitky</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-fuchsia-300/65">Náhodný výber</p>
+                <p className="mt-1 text-sm font-bold text-white/70">Vyberte počet kôl</p>
               </div>
               <div className="mt-4 grid grid-cols-3 gap-2">
                 {[3, 5, 7].map((value) => (
                   <button
                     key={value}
-                    onClick={() => setClassicRounds(value)}
+                    onClick={() => setRandomRounds(value)}
                     className={`rounded-2xl border py-3.5 transition active:scale-95 ${
-                      classicRounds === value
+                      randomRounds === value
                         ? "border-fuchsia-400/70 bg-gradient-to-b from-fuchsia-500/30 to-violet-600/20 text-white shadow-[0_10px_28px_rgba(168,85,247,.2)]"
                         : "border-white/10 bg-white/[0.035] text-white/40"
                     }`}
                   >
                     <span className="block text-2xl font-black">{value}</span>
                     <span className="mt-1 block text-[8px] font-black uppercase tracking-[0.14em]">
-                      {value === 3 ? "Rýchla" : value === 5 ? "Klasická" : "Veľká"}
+                      {value === 3 ? "Rýchla" : value === 5 ? "Stredná" : "Veľká"}
                     </span>
                   </button>
                 ))}
               </div>
               <p className="mt-4 text-center text-[10px] leading-relaxed text-white/30">
-                Hry a poradie vyberie aplikácia automaticky. Posledné kolo bude kvízové finále.
+                Hry a poradie vyberie aplikácia náhodne. Posledné kolo bude kvízové finále.
               </p>
             </section>
           ) : (
             <section className="party-glass mt-4 rounded-[1.75rem] p-5">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.24em] text-cyan-300/70">Custom</p>
+                  <p className="text-[10px] font-black uppercase tracking-[0.24em] text-cyan-300/70">Výber hier</p>
                   <p className="mt-1 text-sm font-bold text-white/70">Klikajte v želanom poradí</p>
                 </div>
-                {customGames.length > 0 && (
-                  <button onClick={() => setCustomGames([])} className="text-[10px] font-bold text-red-300/60 transition active:opacity-50">
+                {selectedGames.length > 0 && (
+                  <button onClick={() => setSelectedGames([])} className="text-[10px] font-bold text-red-300/60 transition active:opacity-50">
                     Zrušiť výber
                   </button>
                 )}
@@ -235,13 +235,13 @@ export default function TeamBattleSetup({
 
               <div className="mt-4 grid grid-cols-2 gap-2">
                 {ALL_GAMES.map((game) => {
-                  const order = customGames.indexOf(game);
+                  const order = selectedGames.indexOf(game);
                   const selected = order >= 0;
                   const customArt = CUSTOM_GAME_ART[game];
                   return (
                     <button
                       key={game}
-                      onClick={() => toggleCustomGame(game)}
+                      onClick={() => toggleSelectedGame(game)}
                       className={`relative min-h-[8rem] overflow-hidden rounded-2xl border px-3 py-4 text-center transition active:scale-[.96] ${
                         selected
                           ? "border-cyan-300/70 shadow-[0_12px_32px_rgba(34,211,238,.2)]"
@@ -289,7 +289,7 @@ export default function TeamBattleSetup({
                 })}
               </div>
 
-              {customGames.length === 0 && (
+              {selectedGames.length === 0 && (
                 <p className="mt-4 rounded-2xl border border-dashed border-white/15 px-4 py-3 text-center text-[11px] font-bold text-white/35">
                   Vyberte aspoň jednu minihru
                 </p>
@@ -345,11 +345,11 @@ export default function TeamBattleSetup({
           </section>
 
           <button
-            onClick={() => onStart(names, mode === "classic" ? classicRounds : customGames, { quickRounds, timeSeconds })}
+            onClick={() => onStart(names, selectionType === "random" ? randomRounds : selectedGames, { quickRounds, timeSeconds })}
             disabled={!canStart}
             className="party-shine mt-6 w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 via-fuchsia-500 to-pink-500 px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white shadow-[0_18px_50px_rgba(168,85,247,.35)] transition active:scale-[.97] disabled:opacity-40"
           >
-            Začať {mode === "classic" ? "Classic" : "Custom"} bitku
+            Začať party hru
           </button>
         </div>
       </main>
