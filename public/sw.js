@@ -1,10 +1,10 @@
-const CACHE_NAME = "podvodnik-app-v1";
+const CACHE_NAME = "podvodnik-app-v2";
 const APP_SHELL = [
   "/",
   "/index.html",
   "/manifest.webmanifest",
-  "/icon.svg",
-  "/icon-maskable.svg",
+  "/party-box-icon.svg",
+  "/party-box-maskable.svg",
   "/sounds/doorbell.ogg",
   "/sounds/dog.ogg",
 ];

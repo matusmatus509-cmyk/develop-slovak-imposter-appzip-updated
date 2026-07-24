@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#08031b"/><stop offset=".45" stop-color="#21073c"/><stop offset="1" stop-color="#16050d"/></linearGradient>
+    <linearGradient id="hood" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#31106a"/><stop offset=".48" stop-color="#090713"/><stop offset="1" stop-color="#e11d48"/></linearGradient>
+    <linearGradient id="party" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#fff"/><stop offset=".55" stop-color="#fff7ed"/><stop offset="1" stop-color="#dbeafe"/></linearGradient>
+    <linearGradient id="box" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#d946ef"/><stop offset=".48" stop-color="#f97316"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="9" stdDeviation="8" flood-color="#000" flood-opacity=".8"/></filter>
+  </defs>
+  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
+  <circle cx="80" cy="105" r="48" fill="#2563eb" opacity=".22" filter="url(#glow)"/><circle cx="434" cy="106" r="58" fill="#ef4444" opacity=".24" filter="url(#glow)"/>
+  <g opacity=".9" filter="url(#shadow)">
+    <g transform="translate(51 174) rotate(-18 65 90)"><rect width="130" height="180" rx="22" fill="#17114b" stroke="#67e8f9" stroke-width="7"/><circle cx="65" cy="67" r="29" fill="#8b5cf6"/><text x="65" y="80" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="42" font-weight="900">?</text></g>
+    <g transform="translate(331 169) rotate(17 65 90)"><rect width="130" height="180" rx="22" fill="#450a0a" stroke="#fb7185" stroke-width="7"/><circle cx="65" cy="66" r="30" fill="#f97316"/><path d="M48 62q17 18 34 0M48 52h8M74 52h8" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/></g>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="M154 242c6-115 45-190 102-190s96 75 102 190l-41 76H195z" fill="url(#hood)" stroke="#fb2c94" stroke-width="5"/>
+    <ellipse cx="256" cy="171" rx="72" ry="81" fill="#05050a"/>
+    <path d="M209 150q25 8 38 28-29 15-48-7zM303 150q-25 8-38 28 29 15 48-7z" fill="#fff" filter="url(#glow)"/>
+    <path d="M257 193c-10 15-9 50-6 73 3 19 25 22 31 6 4-12-4-25-14-31l-3-45c-1-10-3-15-8-15s-8 5-8 15v46" fill="#07070d" stroke="#fb7185" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="M67 311h378l-26 83H93z" fill="#080b12" stroke="#f43f5e" stroke-width="5"/>
+    <text x="256" y="375" text-anchor="middle" fill="url(#party)" stroke="#111827" stroke-width="5" paint-order="stroke" font-family="Arial Black,Arial,sans-serif" font-size="80" font-weight="900" letter-spacing="-5">PARTY</text>
+    <rect x="132" y="381" width="248" height="88" rx="28" fill="#090716" stroke="url(#box)" stroke-width="7"/>
+    <text x="256" y="451" text-anchor="middle" fill="url(#box)" stroke="#111827" stroke-width="4" paint-order="stroke" font-family="Arial Black,Arial,sans-serif" font-size="83" font-weight="900" letter-spacing="-4">BOX</text>
+  </g>
+  <g fill="#fbbf24" filter="url(#glow)"><circle cx="54" cy="370" r="5"/><circle cx="462" cy="357" r="5"/><path d="M58 392l38-13 4 9-38 14z"/><path d="M414 391l39 14 4-9-39-14z" fill="#22d3ee"/></g>
+</svg>
