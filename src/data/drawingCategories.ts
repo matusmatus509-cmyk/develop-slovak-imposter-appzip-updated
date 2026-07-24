@@ -1,4 +1,5 @@
 import type { CategoryDef } from "../types";
+import { GENERATED_DRAWING_PAIRS } from "./expandedContent";
 
 // Word database for the drawing impostor game.
 // hint is always "" — impostors receive no hint.
@@ -1485,3 +1486,10 @@ export const DRAWING_CATEGORIES: CategoryDef[] = [
     ],
   },
 ];
+
+DRAWING_CATEGORIES.push({
+  id: "draw-scenes",
+  name: "Scény a situácie",
+  icon: "🖼️",
+  wordPairs: GENERATED_DRAWING_PAIRS.slice(0, 1924),
+});

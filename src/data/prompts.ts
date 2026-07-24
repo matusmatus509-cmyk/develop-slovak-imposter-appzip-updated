@@ -391,22 +391,36 @@ const RATHER_OPTIONS_B = [
   "mať pri tom odvahu", "mať pri tom trpezlivosť", "prispôsobiť sa ostatným", "nechať rozhodnúť náhodu",
 ];
 
-export const TRUTHS: string[] = [
+import {
+  GENERATED_DARES,
+  GENERATED_NEVER,
+  GENERATED_RATHER,
+  GENERATED_TRUTHS,
+} from "./expandedContent";
+
+function uniqueStrings(items: string[], target: number) {
+  return [...new Set(items)].slice(0, target);
+}
+
+export const TRUTHS: string[] = uniqueStrings([
   ...TRUTHS_BASE,
   ...TRUTH_TOPICS.flatMap((topic) => TRUTH_FORMS.map((form) => form(topic))),
-];
+  ...GENERATED_TRUTHS,
+], 2000);
 
-export const DARES: string[] = [
+export const DARES: string[] = uniqueStrings([
   ...DARES_BASE,
   ...DARE_TOPICS.flatMap((topic) => DARE_ACTIONS.map((action) => `${action} na tému „${topic}“.`)),
-];
+  ...GENERATED_DARES,
+], 2000);
 
-export const NEVER_HAVE_I_EVER: string[] = [
+export const NEVER_HAVE_I_EVER: string[] = uniqueStrings([
   ...NEVER_HAVE_I_EVER_BASE,
   ...NEVER_TOPICS.flatMap((topic) => NEVER_ACTIONS.map((action) => `Nikdy som nikdy ${action} pri ${topic}.`)),
-];
+  ...GENERATED_NEVER,
+], 2000);
 
-export const WOULD_YOU_RATHER: { a: string; b: string }[] = [
+export const WOULD_YOU_RATHER: { a: string; b: string }[] = Array.from(new Map([
   ...WOULD_YOU_RATHER_BASE,
   ...RATHER_TOPICS.flatMap((topic) =>
     RATHER_OPTIONS_A.map((optionA, index) => ({
@@ -414,7 +428,8 @@ export const WOULD_YOU_RATHER: { a: string; b: string }[] = [
       b: `${RATHER_OPTIONS_B[index]} pri ${topic}`,
     }))
   ),
-];
+  ...GENERATED_RATHER,
+].map((item) => [`${item.a}|${item.b}`, item])).values()).slice(0, 2000);
 
 const ONLY_LIES_BASE: string[] = [
   "Aký je tvoj obľúbený film?",

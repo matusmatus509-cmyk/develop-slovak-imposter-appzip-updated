@@ -664,18 +664,14 @@ function songId(song: SongCard) {
   return `${song.title.toLocaleLowerCase()}|${song.artist.toLocaleLowerCase()}`;
 }
 
-function sampleAcrossCatalog(catalog: SongCard[], count: number) {
-  if (count >= catalog.length) return catalog;
-  return Array.from({ length: count }, (_, index) => catalog[Math.floor((index * catalog.length) / count)]);
-}
-
 const MIXED_SONG_CARDS = Object.fromEntries(
   Object.entries(LOCALIZED_SONG_CARDS).map(([language, localSongs]) => {
-    const localIds = new Set(localSongs.map(songId));
-    const globalSongs = INTERNATIONAL_SONG_CARDS.filter((song) => !localIds.has(songId(song)));
-    // Keep both sources equally represented while sampling the entire global catalogue.
-    const globalSample = sampleAcrossCatalog(globalSongs, Math.min(localSongs.length, globalSongs.length));
-    return [language, [...localSongs, ...globalSample]];
+    // Every language gets its complete local catalogue plus the complete worldwide catalogue.
+    // Map keeps local metadata when the same recording appears in both sources.
+    const mixed = Array.from(new Map(
+      [...INTERNATIONAL_SONG_CARDS, ...localSongs].map((song) => [songId(song), song]),
+    ).values());
+    return [language, mixed];
   }),
 ) as Record<AppLanguage, SongCard[]>;
 

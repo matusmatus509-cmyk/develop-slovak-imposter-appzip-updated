@@ -4,6 +4,7 @@ import {
 } from "./charades";
 import { getCharacterCategories } from "./characters";
 import type { AppLanguage } from "../i18n/LanguageProvider";
+import { GENERATED_PANTOMIME_WORDS, GENERATED_QUIZ_QUESTIONS } from "./expandedContent";
 
 // ── Pantomíma words (act it out, no speaking) ────────────────────────────────
 // Split into difficulty tiers — each tier is worth a different point value.
@@ -370,10 +371,16 @@ export const PANTOMIMA_HARD: string[] = [
   "Kocky ľadu", "Smetný kôš", 
 ];
 
+const GENERATED_PANTOMIME_THIRDS = {
+  lahke: GENERATED_PANTOMIME_WORDS.slice(0, 600),
+  stredne: GENERATED_PANTOMIME_WORDS.slice(600, 1200),
+  tazke: GENERATED_PANTOMIME_WORDS.slice(1200),
+};
+
 export const PANTOMIMA_WORDS_BY_DIFFICULTY: Record<PantomimaDifficulty, string[]> = {
-  lahke: PANTOMIMA_EASY,
-  stredne: PANTOMIMA_MEDIUM,
-  tazke: PANTOMIMA_HARD,
+  lahke: [...new Set([...PANTOMIMA_EASY, ...GENERATED_PANTOMIME_THIRDS.lahke])].slice(0, 1000),
+  stredne: [...new Set([...PANTOMIMA_MEDIUM, ...GENERATED_PANTOMIME_THIRDS.stredne])].slice(0, 1000),
+  tazke: [...new Set([...PANTOMIMA_HARD, ...GENERATED_PANTOMIME_THIRDS.tazke])].slice(0, 1000),
 };
 
 // ── Šarády words (describe it verbally, no derivatives) ──────────────────────
@@ -897,11 +904,12 @@ const EXPANDED_QUIZ_QUESTIONS: QuizQuestion[] = EXPANDED_QUIZ_LIBRARY
     return { category, question, answer };
   });
 
-export const QUIZ_QUESTIONS: QuizQuestion[] = [
+export const QUIZ_QUESTIONS: QuizQuestion[] = Array.from(new Map([
   ...CORE_QUIZ_QUESTIONS,
   ...EXTRA_QUIZ_QUESTIONS,
   ...EXPANDED_QUIZ_QUESTIONS,
-];
+  ...GENERATED_QUIZ_QUESTIONS,
+].map((item) => [item.question, item])).values()).slice(0, 5000);
 
 // ── Ping pong categories (team mode) ─────────────────────────────────────────
 export const TEAM_PINGPONG_CATEGORIES: string[] = [

@@ -27,7 +27,47 @@ export type Screen =
   | "zvuk"
   | "pismeno"
   | "patzadesat"
-  | "teambattle";
+  | "teambattle"
+  | "statistics"
+  | "settings";
+
+export interface FeedbackSettings {
+  darkMode: boolean;
+  soundsEnabled: boolean;
+  vibrationEnabled: boolean;
+  animationsEnabled: boolean;
+}
+
+export type AchievementId =
+  | "first-game"
+  | "party-master"
+  | "word-expert"
+  | "bomb-survivor"
+  | "hundred-games";
+
+export interface DailyProgress {
+  date: string;
+  baselineGames: number;
+  baselineCorrectAnswers: number;
+  baselinePartyWins: number;
+  rewardedChallengeIds: string[];
+}
+
+export interface PlayerProgression {
+  xp: number;
+  coins: number;
+  bombRoundsCompleted: number;
+  achievements: Partial<Record<AchievementId, number>>;
+  daily: DailyProgress;
+}
+
+export interface GameStatistics {
+  gamesPlayed: number;
+  teamWins: Record<string, number>;
+  totalPlaySeconds: number;
+  correctAnswers: number;
+  progression: PlayerProgression;
+}
 
 export interface CategoryDef {
   id: string;

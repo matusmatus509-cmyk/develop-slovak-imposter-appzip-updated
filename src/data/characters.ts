@@ -1,5 +1,6 @@
 import type { AppLanguage } from "../i18n/LanguageProvider";
 import { LOCAL_PERSONALITY_CATEGORIES } from "./localizedPersonalities";
+import { GENERATED_CHARACTER_CARDS } from "./expandedContent";
 
 export interface CharacterCategory {
   id: string;
@@ -462,6 +463,12 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     name: "Hrdinovia a zloduchovia",
     icon: "🦸",
     characters: uniqueCards(HEROES_AND_VILLAINS),
+  },
+  {
+    id: "character-archetypes",
+    name: "Postavy a archetypy",
+    icon: "🎭",
+    characters: GENERATED_CHARACTER_CARDS.slice(0, 1436),
   },
 ];
 

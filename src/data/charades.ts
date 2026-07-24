@@ -3,6 +3,7 @@ import {
   SOLO_CHARADES_HARD_EXTRA,
   SOLO_CHARADES_MEDIUM_EXTRA,
 } from "./charadesExtra.ts";
+import { GENERATED_CHARADES_BY_DIFFICULTY } from "./expandedContent";
 
 export type CharadesDifficulty = "lahke" | "stredne" | "tazke";
 
@@ -31,7 +32,8 @@ export const SOLO_CHARADES_WORDS: Record<CharadesDifficulty, string[]> = {
     "Televízor", "Chladnička", "Lyžica", "Vidlička", "Kniha", "Lampa", "Kefa", "Uterák", "Telefón", "Okuliare",
     "Spevák", "Herec", "Poštár", "Čašník", "Farmár", "Veterinár", "Sudca", "Predavač", "Stavbár", "Fotograf",
     ...SOLO_CHARADES_EASY_EXTRA,
-  ]),
+    ...GENERATED_CHARADES_BY_DIFFICULTY.lahke,
+  ]).slice(0, 667),
   stredne: uniqueWords([
     "Budík", "Vysávač", "Práčka", "Mikrovlnka", "Kávovar", "Ventilátor", "Diaľkový ovládač", "Nabíjačka", "Slúchadlá", "Fotoaparát",
     "Semafor", "Kruhový objazd", "Čerpacia stanica", "Letisková hala", "Železničné nástupište", "Parkovací automat", "Horská lanovka", "Záchranný čln", "Dopravná zápcha", "Hraničný priechod",
@@ -44,7 +46,8 @@ export const SOLO_CHARADES_WORDS: Record<CharadesDifficulty, string[]> = {
     "Meteorológ", "Architekt", "Tlmočník", "Novinár", "Režisér", "Knihovník", "Laborant", "Dispečer", "Tréner", "Scenárista",
     "Pirátska loď", "Ľadový palác", "Podzemné mesto", "Tropická búrka", "Tajné laboratórium", "Časostroj", "Lietajúci koberec", "Zakliaty hrad", "Mimozemská planéta", "Zabudnutá civilizácia",
     ...SOLO_CHARADES_MEDIUM_EXTRA,
-  ]),
+    ...GENERATED_CHARADES_BY_DIFFICULTY.stredne,
+  ]).slice(0, 667),
   tazke: uniqueWords([
     "Trpezlivosť", "Zvedavosť", "Nedôvera", "Odvaha", "Spravodlivosť", "Žiarlivosť", "Tvorivosť", "Zodpovednosť", "Sloboda", "Nádej",
     "Prvý dojem", "Slepá ulička", "Ticho pred búrkou", "Ihla v kope sena", "Mať hlavu v oblakoch", "Chodiť okolo horúcej kaše", "Držať jazyk za zubami", "Kúpiť mačku vo vreci", "Byť za vodou", "Hádzať flintu do žita",
@@ -57,8 +60,30 @@ export const SOLO_CHARADES_WORDS: Record<CharadesDifficulty, string[]> = {
     "Kvantová fyzika", "Čierna diera", "Fotosyntéza", "Tektonická doska", "Prirodzený výber", "Elektromagnetické pole", "Kozmické žiarenie", "Reťazová reakcia", "Biologická rovnováha", "Digitálna stopa",
     "Stratená pamäť", "Utajená identita", "Posledný svedok", "Nemožná misia", "Nevinný podozrivý", "Záhadný odkaz", "Nečakaný spojenec", "Tajný vchod", "Falošné obvinenie", "Dokonalý podvod",
     ...SOLO_CHARADES_HARD_EXTRA,
-  ]),
+    ...GENERATED_CHARADES_BY_DIFFICULTY.tazke,
+  ]).slice(0, 666),
 };
+
+// Remove overlaps between difficulty decks and refill each tier to its target size.
+const SOLO_CHARADES_TARGETS: Record<CharadesDifficulty, number> = { lahke: 667, stredne: 667, tazke: 666 };
+const charadesUsed = new Set<string>();
+const charadesFallback = Object.values(GENERATED_CHARADES_BY_DIFFICULTY).flat();
+(["lahke", "stredne", "tazke"] as CharadesDifficulty[]).forEach((difficulty) => {
+  const globallyUnique = SOLO_CHARADES_WORDS[difficulty].filter((word) => {
+    const key = word.trim().toLocaleLowerCase("sk");
+    if (charadesUsed.has(key)) return false;
+    charadesUsed.add(key);
+    return true;
+  });
+  for (const word of charadesFallback) {
+    if (globallyUnique.length >= SOLO_CHARADES_TARGETS[difficulty]) break;
+    const key = word.trim().toLocaleLowerCase("sk");
+    if (charadesUsed.has(key)) continue;
+    charadesUsed.add(key);
+    globallyUnique.push(word);
+  }
+  SOLO_CHARADES_WORDS[difficulty] = globallyUnique;
+});
 
 // Tímová hra používa vlastné nové polia a vlastné miešanie. Univerzálny rozšírený
 // katalóg sa pri vytvorení skopíruje, takže zmeny balíka počas hry neovplyvnia sólo hru.

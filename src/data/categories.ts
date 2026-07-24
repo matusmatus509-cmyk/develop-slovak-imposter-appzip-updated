@@ -1,4 +1,5 @@
 import type { CategoryDef } from "../types";
+import { GENERATED_IMPOSTOR_PAIRS } from "./expandedContent";
 
 export const CATEGORIES: CategoryDef[] = [
   {
@@ -1142,3 +1143,10 @@ export const CATEGORIES: CategoryDef[] = [
     ],
   },
 ];
+
+CATEGORIES.push({
+  id: "situacie",
+  name: "Situácie",
+  icon: "🎬",
+  wordPairs: GENERATED_IMPOSTOR_PAIRS.slice(0, 2042),
+});

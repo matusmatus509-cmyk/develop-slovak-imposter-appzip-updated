@@ -4,6 +4,7 @@ import { takePersistentItems } from "../../utils/persistentDeck";
 import { SOUND_CLUES } from "../../data/teamBattleExtras";
 import { ParticipantScoreStrip, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
+import { useFeedback } from "../../feedback/FeedbackProvider";
 
 type Phase = { type: "question" } | { type: "buzzed"; participant: number } | { type: "revealed"; participant: number };
 type AudioStatus = "idle" | "loading" | "playing" | "ready" | "error";
@@ -11,6 +12,7 @@ const QUESTIONS_PER_ROUND = 10;
 const MAX_SOUND_SECONDS = 7;
 
 export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds = QUESTIONS_PER_ROUND, timeSeconds = MAX_SOUND_SECONDS }: QuickParticipantsProps) {
+  const { playFeedback } = useFeedback();
   const deck = useMemo(() => takePersistentItems("party:sound-buzzer", SOUND_CLUES, rounds, (clue) => clue.label), [rounds]);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
@@ -18,6 +20,7 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds
   const [played, setPlayed] = useState(false);
   const [audioStatus, setAudioStatus] = useState<AudioStatus>("idle");
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
   const stopTimerRef = useRef<number | null>(null);
   const clue = deck[questionIndex];
   const playerWord = gameMode === "teams" ? "tím" : "hráč";
@@ -30,17 +33,55 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds
       audioRef.current.currentTime = 0;
       audioRef.current = null;
     }
+    if (audioContextRef.current) {
+      void audioContextRef.current.close();
+      audioContextRef.current = null;
+    }
     setAudioStatus(nextStatus);
   }
 
   useEffect(() => () => {
     if (stopTimerRef.current !== null) window.clearTimeout(stopTimerRef.current);
     audioRef.current?.pause();
+    if (audioContextRef.current) void audioContextRef.current.close();
   }, []);
 
   async function play() {
     if (audioStatus === "loading") return;
     stopAudio("loading");
+
+    if (clue.tonePattern?.length) {
+      try {
+        const context = new AudioContext();
+        audioContextRef.current = context;
+        await context.resume();
+        let cursor = context.currentTime + 0.04;
+        clue.tonePattern.forEach((tone, index) => {
+          const oscillator = context.createOscillator();
+          const gain = context.createGain();
+          oscillator.type = index % 2 === 0 ? "sine" : "triangle";
+          oscillator.frequency.value = tone.frequency;
+          gain.gain.setValueAtTime(0.0001, cursor);
+          gain.gain.exponentialRampToValueAtTime(0.32, cursor + 0.02);
+          gain.gain.setValueAtTime(0.32, Math.max(cursor + 0.02, cursor + tone.duration - 0.03));
+          gain.gain.exponentialRampToValueAtTime(0.0001, cursor + tone.duration);
+          oscillator.connect(gain);
+          gain.connect(context.destination);
+          oscillator.start(cursor);
+          oscillator.stop(cursor + tone.duration + 0.02);
+          cursor += tone.duration + tone.pause;
+        });
+        const totalMilliseconds = Math.min(timeSeconds * 1000, Math.max(350, (cursor - context.currentTime) * 1000));
+        setPlayed(true);
+        setAudioStatus("playing");
+        stopTimerRef.current = window.setTimeout(() => stopAudio("ready"), totalMilliseconds);
+      } catch {
+        audioContextRef.current = null;
+        setAudioStatus("error");
+      }
+      return;
+    }
+
     const audio = new Audio(clue.audioUrl);
     audio.preload = "auto";
     audio.volume = 0.9;
@@ -109,9 +150,13 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds
             {phase.type === "revealed" && (
               <div className="mt-4">
                 <div className="text-6xl">{clue.emoji}</div>
-                <a href={clue.sourcePage} target="_blank" rel="noreferrer" className="mt-3 block max-w-xs text-[8px] font-bold leading-relaxed text-white/25 underline decoration-white/15 underline-offset-2">
-                  Zvuk: {clue.credit} · {clue.license} · Wikimedia Commons
-                </a>
+                {clue.sourcePage ? (
+                  <a href={clue.sourcePage} target="_blank" rel="noreferrer" className="mt-3 block max-w-xs text-[8px] font-bold leading-relaxed text-white/25 underline decoration-white/15 underline-offset-2">
+                    Zvuk: {clue.credit} · {clue.license} · Wikimedia Commons
+                  </a>
+                ) : (
+                  <p className="mt-3 text-[8px] font-bold uppercase tracking-wider text-white/25">{clue.credit} · {clue.license}</p>
+                )}
               </div>
             )}
           </section>
@@ -121,7 +166,7 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds
               <div className="grid grid-cols-2 gap-3">
                 {participantNames.map((name, participant) => {
                   const color = PARTY_PLAYER_COLORS[participant % PARTY_PLAYER_COLORS.length];
-                  return <button key={`${name}-${participant}`} disabled={!played} onClick={() => { stopAudio("ready"); setPhase({ type: "buzzed", participant }); }} className="party-shine overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30" style={{ background: color }}>🔔<span className="mt-1 block truncate px-2 text-sm">{name}</span></button>;
+                  return <button key={`${name}-${participant}`} disabled={!played} onClick={() => { stopAudio("ready"); playFeedback("buzzer"); setPhase({ type: "buzzed", participant }); }} className="party-shine overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30" style={{ background: color }}>🔔<span className="mt-1 block truncate px-2 text-sm">{name}</span></button>;
                 })}
               </div>
             )}

@@ -55,7 +55,15 @@ function defaultNames(mode: QuickPlayMode, language: Parameters<typeof defaultPl
     : Array.from({ length: 4 }, (_, index) => defaultPlayerName(language, index + 1));
 }
 
-export default function TeamQuickGame({ game, onBack }: { game: QuickGameType; onBack: () => void }) {
+export default function TeamQuickGame({
+  game,
+  onBack,
+  onGameComplete,
+}: {
+  game: QuickGameType;
+  onBack: () => void;
+  onGameComplete?: (correctAnswers: number) => void;
+}) {
   const { language } = useLanguage();
   const [phase, setPhase] = useState<"setup" | "playing" | "result">("setup");
   const [gameMode, setGameMode] = useState<QuickPlayMode | null>(null);
@@ -96,6 +104,7 @@ export default function TeamQuickGame({ game, onBack }: { game: QuickGameType; o
   function finish(result: number[]) {
     setScores(result);
     setPhase("result");
+    onGameComplete?.(result.reduce((sum, score) => sum + Math.max(0, score), 0));
   }
 
   if (phase === "playing" && gameMode) {

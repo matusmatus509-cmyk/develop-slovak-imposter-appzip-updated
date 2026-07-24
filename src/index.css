@@ -373,3 +373,13 @@ button, [role="button"] {
 .party-winner-crown {
   animation: partyCrownDrop .75s cubic-bezier(.2,.9,.25,1.25) 1.15s both;
 }
+
+/* User-controlled motion preference from Nastavenia. */
+html[data-animations="reduced"] *,
+html[data-animations="reduced"] *::before,
+html[data-animations="reduced"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}

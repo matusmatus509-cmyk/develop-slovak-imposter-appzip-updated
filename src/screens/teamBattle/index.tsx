@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   generateBattleRounds,
   QUIZ_QUESTIONS,
@@ -32,7 +32,20 @@ type Phase =
   | "round-result"
   | "game-over";
 
-export default function TeamBattle({ onHome }: { onHome: () => void }) {
+export interface TeamBattleSummary {
+  teamNames: [string, string];
+  totalScores: [number, number];
+  correctAnswers: number;
+  winnerName?: string;
+}
+
+export default function TeamBattle({
+  onHome,
+  onGameComplete,
+}: {
+  onHome: () => void;
+  onGameComplete?: (summary: TeamBattleSummary) => void;
+}) {
   const { language } = useLanguage();
   const [phase, setPhase] = useState<Phase>("setup");
   const [teamNames, setTeamNames] = useState<[string, string]>([
@@ -44,6 +57,8 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
   const [totalScores, setTotalScores] = useState<[number, number]>([0, 0]);
   const [roundScores, setRoundScores] = useState<[number, number]>([0, 0]);
   const [quickRounds, setQuickRounds] = useState(2);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const completionReportedRef = useRef(false);
 
   // Per-round questions are selected at round start.
   const [roundQuestions, setRoundQuestions] = useState(
@@ -66,6 +81,8 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
     setCurrentRoundIdx(0);
     setTotalScores([0, 0]);
     setRoundScores([0, 0]);
+    setCorrectAnswers(0);
+    completionReportedRef.current = false;
     setPhase("intro");
   }
 
@@ -93,6 +110,7 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
       scores[1] * currentRound.pointMultiplier,
     ];
     setRoundScores(scores);
+    setCorrectAnswers((previous) => previous + Math.max(0, scores[0]) + Math.max(0, scores[1]));
     setTotalScores((prev) => [prev[0] + earned[0], prev[1] + earned[1]]);
     setPhase("round-result");
   }
@@ -104,6 +122,13 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
   function handleNextRound() {
     const next = currentRoundIdx + 1;
     if (next >= rounds.length) {
+      if (!completionReportedRef.current) {
+        completionReportedRef.current = true;
+        const winnerName = totalScores[0] === totalScores[1]
+          ? undefined
+          : teamNames[totalScores[0] > totalScores[1] ? 0 : 1];
+        onGameComplete?.({ teamNames, totalScores, correctAnswers, winnerName });
+      }
       setPhase("game-over");
     } else {
       setCurrentRoundIdx(next);
@@ -113,6 +138,8 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
   }
 
   function handlePlayAgain() {
+    setCorrectAnswers(0);
+    completionReportedRef.current = false;
     setPhase("setup");
   }
 

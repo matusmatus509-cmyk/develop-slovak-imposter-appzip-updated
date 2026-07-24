@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type {
+  FeedbackSettings,
   GameSettings,
+  GameStatistics,
   RoundAssignment,
   RoundHistoryEntry,
   Screen,
@@ -8,6 +10,7 @@ import type {
 import { CATEGORIES } from "./data/categories";
 import { DRAWING_CATEGORIES } from "./data/drawingCategories";
 import { generateRound } from "./utils/gameLogic";
+import { applyStatisticsEvent, createDefaultStatistics, normalizeStatistics } from "./utils/gameStats";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
 import Home from "./screens/Home";
@@ -31,8 +34,11 @@ import HadajKtoSom from "./screens/minigames/HadajKtoSom";
 import IbaNepravda from "./screens/minigames/IbaNepravda";
 import KtoDostaneBombu from "./screens/minigames/KtoDostaneBombu";
 import HadajEmoji from "./screens/minigames/HadajEmoji";
-import TeamBattle from "./screens/teamBattle";
+import TeamBattle, { type TeamBattleSummary } from "./screens/teamBattle";
 import TeamQuickGame from "./screens/minigames/TeamQuickGame";
+import Statistics from "./screens/Statistics";
+import Settings from "./screens/Settings";
+import { FeedbackProvider } from "./feedback/FeedbackProvider";
 import GameWelcome, { GAME_WELCOMES } from "./components/GameWelcome";
 
 const IMPOSTOR_GAMES: MenuGame[] = [
@@ -77,6 +83,24 @@ const MINIGAMES: MenuGame[] = [
   { screen: "patzadesat", title: "5 za 10", description: "Vymenujte päť odpovedí za desať sekúnd.", icon: "timer", color: "from-emerald-400 to-green-700", badge: "Nové" },
 ];
 
+const DEFAULT_STATISTICS = createDefaultStatistics();
+
+const DEFAULT_FEEDBACK_SETTINGS: FeedbackSettings = {
+  darkMode: true,
+  soundsEnabled: true,
+  vibrationEnabled: true,
+  animationsEnabled: true,
+};
+
+const NON_GAME_SCREENS: Screen[] = [
+  "home",
+  "impostor-menu",
+  "minigames-menu",
+  "impostor-history",
+  "statistics",
+  "settings",
+];
+
 const DEFAULT_SETTINGS: GameSettings = {
   playerNames: ["Hráč 1", "Hráč 2", "Hráč 3", "Hráč 4"],
   categoryIds: CATEGORIES.map((c) => c.id),
@@ -102,6 +126,15 @@ export default function App() {
     "podvodnik-used-words",
     {}
   );
+  const [statistics, setStatistics] = useLocalStorage<GameStatistics>(
+    "podvodnik-statistics-v1",
+    DEFAULT_STATISTICS
+  );
+  const [feedbackSettings, setFeedbackSettings] = useLocalStorage<FeedbackSettings>(
+    "podvodnik-feedback-settings-v1",
+    DEFAULT_FEEDBACK_SETTINGS
+  );
+  const gameSessionActiveRef = useRef(false);
 
   const [assignment, setAssignment] = useState<RoundAssignment | null>(null);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
@@ -124,9 +157,54 @@ export default function App() {
     root.style.setProperty("--game-deep", activeTheme?.deep ?? "#080d16");
   }, [activeTheme]);
 
+  useEffect(() => {
+    document.documentElement.dataset.theme = feedbackSettings.darkMode ? "dark" : "light";
+    document.documentElement.dataset.animations = feedbackSettings.animationsEnabled ? "enabled" : "reduced";
+  }, [feedbackSettings.darkMode, feedbackSettings.animationsEnabled]);
+
+  useEffect(() => {
+    if (NON_GAME_SCREENS.includes(screen)) gameSessionActiveRef.current = false;
+  }, [screen]);
+
+  useEffect(() => {
+    setStatistics((current) => normalizeStatistics(current));
+  }, [setStatistics]);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      if (!gameSessionActiveRef.current) return;
+      setStatistics((current) => applyStatisticsEvent(current, { playSeconds: 1 }));
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, [setStatistics]);
+
+  function startGameSession() {
+    if (gameSessionActiveRef.current) return;
+    gameSessionActiveRef.current = true;
+    setStatistics((current) => applyStatisticsEvent(current, { gamesStarted: 1 }));
+  }
+
+  function recordCorrectAnswers(correctAnswers: number) {
+    if (correctAnswers <= 0) return;
+    setStatistics((current) => applyStatisticsEvent(current, { correctAnswers }));
+  }
+
+  function recordPartyResult(summary: TeamBattleSummary) {
+    setStatistics((current) => applyStatisticsEvent(current, {
+      correctAnswers: summary.correctAnswers,
+      partyWinnerName: summary.winnerName,
+    }));
+  }
+
+  function recordBombRound() {
+    setStatistics((current) => applyStatisticsEvent(current, { bombRoundsCompleted: 1 }));
+  }
+
   function navigateFromMenu(next: Screen) {
+    const hasWelcome = Boolean(GAME_WELCOMES[next]);
     setScreen(next);
-    setWelcomeScreen(GAME_WELCOMES[next] ? next : null);
+    setWelcomeScreen(hasWelcome ? next : null);
+    if (!hasWelcome && !NON_GAME_SCREENS.includes(next)) startGameSession();
   }
 
   function backFromWelcome(current: Screen) {
@@ -196,17 +274,42 @@ export default function App() {
 
   if (welcomeScreen === screen && activeTheme) {
     return (
-      <GameWelcome
-        config={activeTheme}
-        onBack={() => backFromWelcome(screen)}
-        onStart={() => setWelcomeScreen(null)}
-      />
+      <FeedbackProvider settings={feedbackSettings}>
+        <GameWelcome
+          config={activeTheme}
+          onBack={() => backFromWelcome(screen)}
+          onStart={() => {
+            startGameSession();
+            setWelcomeScreen(null);
+          }}
+        />
+      </FeedbackProvider>
     );
   }
 
+  const canExitActiveGame = !NON_GAME_SCREENS.includes(screen);
+
+  function leaveActiveGame() {
+    setWelcomeScreen(null);
+    if (screen === "teambattle") {
+      setScreen("home");
+    } else if (screen.startsWith("impostor") || screen.startsWith("drawing")) {
+      setScreen("impostor-menu");
+    } else {
+      setScreen("minigames-menu");
+    }
+  }
+
+  function renderScreen() {
   switch (screen) {
     case "home":
-      return <Home onNavigate={navigateFromMenu} />;
+      return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => setScreen("settings")} />;
+
+    case "statistics":
+      return <Statistics statistics={statistics} onBack={() => setScreen("home")} />;
+
+    case "settings":
+      return <Settings settings={feedbackSettings} onChange={setFeedbackSettings} onBack={() => setScreen("home")} />;
 
     case "impostor-menu":
       return (
@@ -386,30 +489,48 @@ export default function App() {
       return <IbaNepravda onBack={() => setScreen("minigames-menu")} />;
 
     case "ktodostanebombu":
-      return <KtoDostaneBombu onBack={() => setScreen("minigames-menu")} />;
+      return <KtoDostaneBombu onBack={() => setScreen("minigames-menu")} onRoundComplete={recordBombRound} />;
 
     case "hadajemoji":
       return <HadajEmoji onBack={() => setScreen("minigames-menu")} />;
 
     case "zakazane":
-      return <TeamQuickGame game="zakazane" onBack={() => setScreen("minigames-menu")} />;
+      return <TeamQuickGame game="zakazane" onBack={() => setScreen("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
 
     case "pesnicka":
-      return <TeamQuickGame game="pesnicka" onBack={() => setScreen("minigames-menu")} />;
+      return <TeamQuickGame game="pesnicka" onBack={() => setScreen("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
 
     case "zvuk":
-      return <TeamQuickGame game="zvuk" onBack={() => setScreen("minigames-menu")} />;
+      return <TeamQuickGame game="zvuk" onBack={() => setScreen("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
 
     case "pismeno":
-      return <TeamQuickGame game="pismeno" onBack={() => setScreen("minigames-menu")} />;
+      return <TeamQuickGame game="pismeno" onBack={() => setScreen("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
 
     case "patzadesat":
-      return <TeamQuickGame game="patzadesat" onBack={() => setScreen("minigames-menu")} />;
+      return <TeamQuickGame game="patzadesat" onBack={() => setScreen("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
 
     case "teambattle":
-      return <TeamBattle onHome={() => setScreen("home")} />;
+      return <TeamBattle onHome={() => setScreen("home")} onGameComplete={recordPartyResult} />;
 
     default:
-      return <Home onNavigate={setScreen} />;
+      return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => setScreen("settings")} />;
   }
+  }
+
+  return (
+    <FeedbackProvider settings={feedbackSettings}>
+      {renderScreen()}
+      {canExitActiveGame && (
+        <button
+          type="button"
+          onClick={leaveActiveGame}
+          aria-label="Odísť z hry"
+          className="fixed right-3 top-3 z-[100] flex items-center gap-1.5 rounded-full border border-white/20 bg-black/65 px-3 py-2 text-xs font-black text-white shadow-lg backdrop-blur-md transition hover:bg-red-600/85 active:scale-95"
+        >
+          <span aria-hidden="true" className="text-base leading-none">×</span>
+          Odísť
+        </button>
+      )}
+    </FeedbackProvider>
+  );
 }

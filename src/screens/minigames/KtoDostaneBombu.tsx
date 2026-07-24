@@ -6,7 +6,13 @@ import { takePersistentItem } from "../../utils/persistentDeck";
 
 type Phase = "ready" | "ticking" | "exploded";
 
-export default function KtoDostaneBombu({ onBack }: { onBack: () => void }) {
+export default function KtoDostaneBombu({
+  onBack,
+  onRoundComplete,
+}: {
+  onBack: () => void;
+  onRoundComplete?: () => void;
+}) {
   const [phase, setPhase] = useState<Phase>("ready");
   const [category, setCategory] = useState<string>(() => takePersistentItem("bomb-categories", BOMB_CATEGORIES));
   const [pulse, setPulse] = useState(false);
@@ -14,6 +20,7 @@ export default function KtoDostaneBombu({ onBack }: { onBack: () => void }) {
   const speedOneRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const speedTwoRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pulseRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const completionReportedRef = useRef(false);
 
   function clearTimers() {
     if (explosionRef.current) clearTimeout(explosionRef.current);
@@ -28,6 +35,7 @@ export default function KtoDostaneBombu({ onBack }: { onBack: () => void }) {
 
   function startBomb() {
     clearTimers();
+    completionReportedRef.current = false;
     setPhase("ticking");
     const duration = (30 + Math.floor(Math.random() * 61)) * 1000;
 
@@ -55,6 +63,10 @@ export default function KtoDostaneBombu({ onBack }: { onBack: () => void }) {
       clearTimers();
       setPhase("exploded");
       setPulse(false);
+      if (!completionReportedRef.current) {
+        completionReportedRef.current = true;
+        onRoundComplete?.();
+      }
       navigator.vibrate?.([120, 60, 180]);
     }, duration);
   }

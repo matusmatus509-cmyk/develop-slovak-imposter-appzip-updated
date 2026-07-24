@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import type { GameSettings, RoundAssignment } from "../../types";
+import { useFeedback } from "../../feedback/FeedbackProvider";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { cn } from "../../utils/designTokens";
 
@@ -17,12 +19,17 @@ export default function Result({
   onHome: () => void;
   onHistory: () => void;
 }) {
+  const { playFeedback } = useFeedback();
   const impostorNames = assignment.impostorIndexes.map(
     (i) => settings.playerNames[i]
   );
   const caughtImpostor =
     votedIndex !== null && assignment.impostorIndexes.includes(votedIndex);
   const playersWon = votedIndex !== null && caughtImpostor;
+
+  useEffect(() => {
+    playFeedback(playersWon ? "win" : "loss");
+  }, [playersWon, playFeedback]);
 
   return (
     <Shell>

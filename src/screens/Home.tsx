@@ -1,4 +1,5 @@
-import type { Screen } from "../types";
+import type { GameStatistics, Screen } from "../types";
+import { getLevelInfo, normalizeStatistics } from "../utils/gameStats";
 import { Icons } from "../components/icons";
 import partyTableBackground from "../assets/party-table-bg.png";
 import partyModeArt from "../assets/party-mode-card.jpg";
@@ -50,9 +51,21 @@ const SECTIONS: Array<{
   },
 ];
 
-export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => void }) {
+export default function Home({
+  onNavigate,
+  statistics,
+  onSettings,
+}: {
+  onNavigate: (screen: Screen) => void;
+  statistics: GameStatistics;
+  onSettings: () => void;
+}) {
+  const safeStatistics = normalizeStatistics(statistics);
+  const level = getLevelInfo(safeStatistics.progression.xp);
+  const xpRemaining = Math.max(0, level.xpForNextLevel - level.xpIntoLevel);
+
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#080b10] text-white">
+    <main className="relative min-h-screen overflow-x-hidden bg-[#080b10] text-white">
       <LanguageSwitcher />
       <img
         src={partyTableBackground}
@@ -63,7 +76,10 @@ export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => v
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_8%,rgba(255,246,225,.07),transparent_34%)]" />
 
       <div className="relative mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-8 pt-8">
-        <header className="mb-8" style={{ animation: "slideUp .55s ease-out both" }}>
+        <button type="button" onClick={onSettings} aria-label="Otvoriť nastavenia" className="absolute left-5 top-5 z-50 flex h-11 w-11 items-center justify-center rounded-xl border border-white/12 bg-[#111820]/95 text-white/65 shadow-xl transition hover:border-white/25 hover:text-white active:scale-95">
+          <Icons.settings size={19} />
+        </button>
+        <header className="mb-6 pt-12" style={{ animation: "slideUp .55s ease-out 100ms both" }}>
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#11171e]/80 px-3 py-1.5">
             <span className="h-2 w-2 rounded-full bg-emerald-400" />
             <span className="text-[10px] font-extrabold uppercase tracking-[.22em] text-white/65">Jeden mobil · celá partia</span>
@@ -76,6 +92,38 @@ export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => v
             Spoločenské hry pre kamarátov, rodinu aj párty. Bez registrácie a zbytočného nastavovania.
           </p>
         </header>
+
+        <button
+          type="button"
+          onClick={() => onNavigate("statistics")}
+          aria-label={`Otvoriť herný profil, level ${level.level}`}
+          className="group relative mb-5 w-full overflow-hidden rounded-[1.55rem] border border-violet-300/20 bg-[#141525]/95 p-4 text-left shadow-[0_22px_64px_-36px_rgba(139,92,246,.92)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-violet-300/35 active:translate-y-0 active:scale-[.985]"
+          style={{ animation: "slideUp .55s ease-out 170ms both" }}
+        >
+          <span className="pointer-events-none absolute -right-10 -top-14 h-36 w-36 rounded-full bg-violet-500/20 blur-3xl" />
+          <span className="relative flex items-center gap-3">
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[1.05rem] border border-white/15 bg-gradient-to-br from-violet-500 to-indigo-600 text-white shadow-lg shadow-violet-950/45" aria-hidden="true">
+              <Icons.crown size={24} />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="flex items-baseline gap-2.5">
+                <strong className="text-[1.55rem] font-black leading-none tracking-[-.04em]">Level {level.level}</strong>
+                <small className="truncate text-[10px] font-bold text-white/42">
+                  {level.level === 100 ? "Maximálny level" : `${xpRemaining} XP do ďalšieho`}
+                </small>
+              </span>
+              <span className="mt-3 flex items-center gap-2.5">
+                <span className="block h-2 flex-1 overflow-hidden rounded-full bg-black/40 ring-1 ring-white/[.07]">
+                  <span className="block h-full rounded-full bg-gradient-to-r from-violet-500 via-fuchsia-400 to-cyan-400 shadow-[0_0_12px_rgba(167,139,250,.55)] transition-[width] duration-700" style={{ width: `${level.progressPercent}%` }} />
+                </span>
+                <small className="shrink-0 text-[9px] font-black text-white/32">{level.xpIntoLevel}/{level.xpForNextLevel} XP</small>
+              </span>
+            </span>
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[.055] text-white/45 transition group-hover:translate-x-0.5 group-hover:bg-white/[.09] group-hover:text-white">
+              <Icons.chevronRight size={18} />
+            </span>
+          </span>
+        </button>
 
         <section className="flex flex-1 flex-col justify-center gap-3.5" aria-label="Herné režimy">
           {SECTIONS.map((section, index) => {

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { TEAM_COLORS } from "../../data/teamBattle";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
+import { useFeedback } from "../../feedback/FeedbackProvider";
 
 function Confetti() {
   const pieces = useMemo(
@@ -76,6 +77,7 @@ export default function GameOver({
   onPlayAgain: () => void;
   onHome: () => void;
 }) {
+  const { playFeedback } = useFeedback();
   const [revealed, setRevealed] = useState(false);
   const [celebrating, setCelebrating] = useState(false);
   const displayScores = useAnimatedScores(totalScores, revealed);
@@ -87,12 +89,15 @@ export default function GameOver({
 
   useEffect(() => {
     const revealTimeout = window.setTimeout(() => setRevealed(true), 350);
-    const celebrationTimeout = window.setTimeout(() => setCelebrating(true), 1250);
+    const celebrationTimeout = window.setTimeout(() => {
+      setCelebrating(true);
+      if (!isDraw) playFeedback("win");
+    }, 1250);
     return () => {
       window.clearTimeout(revealTimeout);
       window.clearTimeout(celebrationTimeout);
     };
-  }, []);
+  }, [isDraw, playFeedback]);
 
   return (
     <PartyBackdrop>

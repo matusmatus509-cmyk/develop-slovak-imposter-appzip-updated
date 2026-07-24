@@ -81,37 +81,79 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   useEffect(() => {
     if (mode !== "pesnicka" || phase !== "playing" || !songCard) return;
     const song = songCard;
+    const query = encodeURIComponent(`${song.title} ${song.artist}`);
+    const requestId = `${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const deezerCallback = `__partySongPreviewDeezer_${requestId}`;
+    const itunesCallback = `__partySongPreviewItunes_${requestId}`;
+    const jsonpWindow = window as unknown as Record<string, unknown>;
+    const scripts: HTMLScriptElement[] = [];
+    const timeouts: number[] = [];
+    let active = true;
+    let fallbackStarted = false;
+
     setPreview(null);
     setPreviewStatus("loading");
-    const query = encodeURIComponent(`${song.title} ${song.artist}`);
-    const callbackName = `__partySongPreview_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-    const jsonpWindow = window as unknown as Record<string, unknown>;
-    const script = document.createElement("script");
-    let active = true;
-    const timeout = window.setTimeout(() => {
-      if (active) setPreviewStatus("missing");
-    }, 7000);
-    jsonpWindow[callbackName] = (result: { data?: Array<{ preview?: string; link?: string }> }) => {
+
+    function clearRequestTimeouts() {
+      timeouts.forEach((timeout) => window.clearTimeout(timeout));
+      timeouts.length = 0;
+    }
+
+    function useDirectPreview(url: string, link: string) {
       if (!active) return;
-      window.clearTimeout(timeout);
-      const match = result.data?.find((item) => item.preview);
-      if (!match?.preview) {
-        setPreviewStatus("missing");
-        return;
-      }
-      setPreview({ url: match.preview, link: match.link ?? "https://www.deezer.com" });
+      clearRequestTimeouts();
+      setPreview({ url, link });
       setPreviewStatus("ready");
+    }
+
+    function markMissing() {
+      if (!active) return;
+      clearRequestTimeouts();
+      setPreviewStatus("missing");
+    }
+
+    function startItunesFallback() {
+      if (!active || fallbackStarted) return;
+      fallbackStarted = true;
+      clearRequestTimeouts();
+      const script = document.createElement("script");
+      scripts.push(script);
+      jsonpWindow[itunesCallback] = (result: { results?: Array<{ previewUrl?: string; trackViewUrl?: string }> }) => {
+        const match = result.results?.find((item) => item.previewUrl);
+        if (match?.previewUrl) {
+          useDirectPreview(match.previewUrl, match.trackViewUrl ?? "https://music.apple.com");
+        } else {
+          markMissing();
+        }
+      };
+      script.src = `https://itunes.apple.com/search?term=${query}&media=music&entity=song&limit=5&callback=${itunesCallback}`;
+      script.onerror = markMissing;
+      document.head.appendChild(script);
+      timeouts.push(window.setTimeout(markMissing, 7000));
+    }
+
+    const deezerScript = document.createElement("script");
+    scripts.push(deezerScript);
+    jsonpWindow[deezerCallback] = (result: { data?: Array<{ preview?: string; link?: string }> }) => {
+      if (!active || fallbackStarted) return;
+      const match = result.data?.find((item) => item.preview);
+      if (match?.preview) {
+        useDirectPreview(match.preview, match.link ?? "https://www.deezer.com");
+      } else {
+        startItunesFallback();
+      }
     };
-    script.src = `https://api.deezer.com/search?q=${query}&limit=3&output=jsonp&callback=${callbackName}`;
-    script.onerror = () => {
-      if (active) setPreviewStatus("missing");
-    };
-    document.head.appendChild(script);
+    deezerScript.src = `https://api.deezer.com/search?q=${query}&limit=3&output=jsonp&callback=${deezerCallback}`;
+    deezerScript.onerror = startItunesFallback;
+    document.head.appendChild(deezerScript);
+    timeouts.push(window.setTimeout(startItunesFallback, 7000));
+
     return () => {
       active = false;
-      window.clearTimeout(timeout);
-      script.remove();
-      delete jsonpWindow[callbackName];
+      clearRequestTimeouts();
+      scripts.forEach((script) => script.remove());
+      delete jsonpWindow[deezerCallback];
+      delete jsonpWindow[itunesCallback];
     };
   }, [mode, phase, songCard]);
 
@@ -305,28 +347,15 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
                 <span className={`rounded-full border px-3 py-1.5 text-[9px] font-black uppercase tracking-wider ${songAwards.artist ? "border-emerald-300/40 bg-emerald-400/15 text-emerald-200" : "border-white/10 bg-white/[0.04] text-white/30"}`}>Interpret {songAwards.artist ? "✓" : "+1"}</span>
               </div>
               <div className="mt-5 rounded-2xl border border-violet-300/15 bg-violet-400/[0.07] p-3">
-                <p className="text-[10px] font-bold leading-relaxed text-white/35">Nepoznáš ju podľa názvu? Prilož mobil k uchu a pusti si krátku ukážku.</p>
+                <p className="text-[10px] font-bold leading-relaxed text-white/35">Nepoznáš ju podľa názvu? Prilož mobil k uchu a pusti si krátku ukážku priamo v aplikácii.</p>
                 <button
-                  onClick={previewStatus === "missing"
-                    ? () => window.open(`https://www.deezer.com/search/${encodeURIComponent(`${songCard?.title ?? ""} ${songCard?.artist ?? ""}`)}`, "_blank", "noopener,noreferrer")
-                    : previewStatus === "playing" ? stopPreview : playPreview}
-                  disabled={previewStatus === "loading"}
+                  onClick={previewStatus === "playing" ? stopPreview : playPreview}
+                  disabled={previewStatus === "loading" || previewStatus === "missing"}
                   className="mt-3 w-full rounded-xl border border-violet-300/20 bg-violet-400/15 px-3 py-3 text-xs font-black text-violet-100 transition active:scale-95 disabled:opacity-40"
                 >
-                  {previewStatus === "loading" ? "Hľadám ukážku…" : previewStatus === "missing" ? "↗ Pustiť ukážku v Deezeri" : previewStatus === "playing" ? "■ Zastaviť ukážku" : "▶ Pustiť 8 s ukážku"}
+                  {previewStatus === "loading" ? "Hľadám ukážku…" : previewStatus === "missing" ? "Ukážka sa nenašla" : previewStatus === "playing" ? "■ Zastaviť ukážku" : "▶ Pustiť 8 s ukážku"}
                 </button>
-                {preview ? (
-                  <a href={preview.link} target="_blank" rel="noreferrer" className="mt-2 block text-[8px] font-bold uppercase tracking-wider text-white/20">Ukážka cez Deezer</a>
-                ) : (
-                  <a
-                    href={`https://www.deezer.com/search/${encodeURIComponent(`${songCard?.title ?? ""} ${songCard?.artist ?? ""}`)}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-2 block text-[8px] font-bold uppercase tracking-wider text-white/20"
-                  >
-                    Otvoriť skladbu v Deezeri
-                  </a>
-                )}
+                {previewStatus === "missing" && <p className="mt-2 text-[9px] font-bold text-white/25">Deezer ani iTunes nemajú pre túto skladbu dostupný audio preview.</p>}
               </div>
               {previewStatus === "playing" && <p className="mt-2 text-[9px] font-black uppercase tracking-wider text-violet-200/60">Čas je počas ukážky pozastavený</p>}
               <p className="mt-4 text-xs font-bold text-white/30">Mobil vidí iba hráč, ktorý hmkanie predvádza.</p>

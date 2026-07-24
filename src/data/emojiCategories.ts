@@ -1,3 +1,5 @@
+import { GENERATED_EMOJI_PUZZLES } from "./expandedContent";
+
 export interface EmojiPuzzle {
   emoji: string;
   answer: string;
@@ -189,6 +191,7 @@ export const EMOJI_CATEGORIES: EmojiCategory[] = [
   { id: "games", title: "Videohry", icon: "🎮", puzzles: VIDEO_GAMES },
   { id: "food", title: "Jedlo a nápoje", icon: "🍕", puzzles: FOOD_AND_DRINKS },
   { id: "places", title: "Miesta a predmety", icon: "🗺️", puzzles: PLACES_AND_OBJECTS },
+  { id: "emoji-scenes", title: "Emoji scény", icon: "🧩", puzzles: GENERATED_EMOJI_PUZZLES.slice(0, 1285) },
 ];
 
 export function getEmojiCategories(includeSlovak: boolean): EmojiCategory[] {

@@ -134,4 +134,4 @@ export const PING_PONG_PROMPTS: string[] = [...new Set([
   ...TOPICS,
   ...QUICK_ROUNDS,
   ...ASSOCIATION_ROUNDS,
-])];
+])].slice(0, 500);

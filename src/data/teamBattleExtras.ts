@@ -1,4 +1,9 @@
 import { shuffle } from "./teamBattle";
+import {
+  GENERATED_FORBIDDEN_CARDS,
+  GENERATED_LETTER_CATEGORIES,
+  GENERATED_SOUND_CLUES,
+} from "./expandedContent";
 
 export interface ForbiddenCard {
   word: string;
@@ -484,11 +489,12 @@ const MORE_FORBIDDEN_CARDS: ForbiddenCard[] = MORE_FORBIDDEN_LIBRARY.split("\n")
   return { word, forbidden: forbidden as ForbiddenCard["forbidden"] };
 });
 
-export const FORBIDDEN_CARDS: ForbiddenCard[] = [
+export const FORBIDDEN_CARDS: ForbiddenCard[] = Array.from(new Map([
   ...CORE_FORBIDDEN_CARDS,
   ...EXTRA_FORBIDDEN_CARDS,
   ...MORE_FORBIDDEN_CARDS,
-];
+  ...GENERATED_FORBIDDEN_CARDS,
+].map((card) => [card.word.toLocaleLowerCase("sk"), card])).values()).slice(0, 2000);
 
 export interface SongCard {
   title: string;
@@ -1934,6 +1940,7 @@ export interface SoundClue {
   sourcePage: string;
   credit: string;
   license: string;
+  tonePattern?: Array<{ frequency: number; duration: number; pause: number }>;
 }
 
 const CORE_SOUND_CLUES: SoundClue[] = [
@@ -2108,7 +2115,11 @@ const COMMONS_SOUND_CLUES: SoundClue[] = COMMONS_SOUND_LIBRARY.map((entry, index
   };
 });
 
-export const SOUND_CLUES: SoundClue[] = [...CORE_SOUND_CLUES, ...COMMONS_SOUND_CLUES];
+export const SOUND_CLUES: SoundClue[] = [
+  ...CORE_SOUND_CLUES,
+  ...COMMONS_SOUND_CLUES,
+  ...GENERATED_SOUND_CLUES,
+].slice(0, 500);
 
 const LETTER_CATEGORIES = [
   "Zviera", "Jedlo", "Mesto", "Meno", "Povolanie", "Šport", "Krajina", "Rastlina",
@@ -2120,6 +2131,7 @@ const LETTER_CATEGORIES = [
   "Emócia", "Farba alebo odtieň", "Nápoj", "Dezert", "Činnosť",
   "Slovo spojené s letom", "Slovo spojené s Vianocami", "Vec v spálni", "Vec v nemocnici", "Vec na letisku",
   "Postava z filmu", "Videohra", "Aplikácia", "Kvet alebo strom", "Vec, ktorá svieti",
+  ...GENERATED_LETTER_CATEGORIES,
 ];
 const PLAYABLE_LETTERS = ["A", "B", "C", "D", "F", "H", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "V", "Z"];
 
