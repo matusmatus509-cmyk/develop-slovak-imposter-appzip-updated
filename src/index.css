@@ -327,3 +327,49 @@ button, [role="button"] {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
+
+/* ── Party finale / winner reveal ─────────────────────────────────── */
+@keyframes partyFinaleReveal {
+  0% { opacity: 0; transform: translateY(24px) scale(.9); filter: blur(8px); }
+  70% { opacity: 1; transform: translateY(-3px) scale(1.02); filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes partyTrophyCelebrate {
+  0%, 100% { transform: translateY(0) rotate(0) scale(1); }
+  25% { transform: translateY(-8px) rotate(-5deg) scale(1.06); }
+  55% { transform: translateY(-4px) rotate(5deg) scale(1.1); }
+  75% { transform: translateY(-7px) rotate(-2deg) scale(1.05); }
+}
+
+@keyframes partyWinnerNameGlow {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.035); filter: brightness(1.25); }
+}
+
+@keyframes partyCrownDrop {
+  0% { opacity: 0; transform: translate(-50%, -24px) rotate(-18deg) scale(.4); }
+  65% { opacity: 1; transform: translate(-50%, 4px) rotate(6deg) scale(1.15); }
+  100% { opacity: 1; transform: translate(-50%, 0) rotate(0) scale(1); }
+}
+
+.party-finale-reveal {
+  animation: partyFinaleReveal .8s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.party-winner-trophy.is-celebrating {
+  animation: partyTrophyCelebrate 1.15s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.party-winner-trophy.is-celebrating + * + .party-winner-name,
+.party-winner-name {
+  animation: partyWinnerNameGlow 2.4s ease-in-out 1.2s infinite;
+}
+
+.party-podium.winner {
+  transform: translateY(-10px) scale(1.025);
+}
+
+.party-winner-crown {
+  animation: partyCrownDrop .75s cubic-bezier(.2,.9,.25,1.25) 1.15s both;
+}

@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import songArt from "../../assets/party-song.svg";
-import { shuffle } from "../../data/teamBattle";
 import { getSongCardsForLanguage } from "../../data/localizedSongs";
-import { FORBIDDEN_CARDS, type SongCard } from "../../data/teamBattleExtras";
+import { FORBIDDEN_CARDS, type ForbiddenCard, type SongCard } from "../../data/teamBattleExtras";
+import { takePersistentItem } from "../../utils/persistentDeck";
 import { useLanguage } from "../../i18n/LanguageProvider";
 import { CircularTimer, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
@@ -57,25 +57,29 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   const [previewStatus, setPreviewStatus] = useState<"loading" | "ready" | "playing" | "missing">("loading");
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const previewTimerRef = useRef<number | null>(null);
+  const [card, setCard] = useState<ForbiddenCard | SongCard | null>(null);
   const participant = turn % participantNames.length;
   const totalTurns = participantNames.length * rounds;
   const nextParticipant = (turn + 1) % participantNames.length;
   const participantColor = PARTY_PLAYER_COLORS[participant % PARTY_PLAYER_COLORS.length];
   const participantLabel = gameMode === "teams" ? "tím" : "hráč";
-  const deck = useMemo(
-    () => mode === "zakazane"
-      ? shuffle(FORBIDDEN_CARDS)
-      : shuffle(getSongCardsForLanguage(language)),
-    [language, mode, participant],
-  );
-  const card = mode === "zakazane"
-    ? deck[index] as (typeof FORBIDDEN_CARDS)[number]
-    : deck[index] as SongCard;
-  const forbiddenCard = card as (typeof FORBIDDEN_CARDS)[number];
-  const songCard = card as SongCard;
+  const forbiddenCard = mode === "zakazane" ? card as ForbiddenCard | null : null;
+  const songCard = mode === "pesnicka" ? card as SongCard | null : null;
+
+  function drawCard() {
+    if (mode === "zakazane") {
+      setCard(takePersistentItem("quick:forbidden-words", FORBIDDEN_CARDS, (item) => item.word.trim().toLocaleLowerCase("sk")));
+      return;
+    }
+    setCard(takePersistentItem(
+      `quick:songs:${language}`,
+      getSongCardsForLanguage(language),
+      (item) => `${item.title}|${item.artist}`.toLocaleLowerCase("sk"),
+    ));
+  }
 
   useEffect(() => {
-    if (mode !== "pesnicka" || phase !== "playing") return;
+    if (mode !== "pesnicka" || phase !== "playing" || !songCard) return;
     const song = songCard;
     setPreview(null);
     setPreviewStatus("loading");
@@ -133,13 +137,15 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
     setTurnScore(0);
     setTimeLeft(timeSeconds);
     setSongAwards({ title: false, artist: false });
+    drawCard();
     setPhase("playing");
   }
 
   function nextCard(correct: boolean) {
     stopPreview();
     if (correct) setTurnScore((value) => value + 1);
-    setIndex((value) => (value + 1) % deck.length);
+    drawCard();
+    setIndex((value) => value + 1);
     navigator.vibrate?.(correct ? 30 : 12);
   }
 
@@ -153,7 +159,8 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   function nextSongCard() {
     stopPreview();
     setSongAwards({ title: false, artist: false });
-    setIndex((value) => (value + 1) % deck.length);
+    drawCard();
+    setIndex((value) => value + 1);
   }
 
   function stopPreview() {
@@ -275,11 +282,11 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
             <>
               <span className="text-4xl">{copy.icon}</span>
               <p className="mt-4 text-[10px] font-black uppercase tracking-[0.24em] text-rose-300/65">Vysvetli slovo</p>
-              <h1 className="mt-2 text-4xl font-black tracking-tight text-white">{forbiddenCard.word}</h1>
+              <h1 className="mt-2 text-4xl font-black tracking-tight text-white">{forbiddenCard?.word}</h1>
               <div className="mt-6 rounded-[1.5rem] border border-rose-400/20 bg-rose-500/[0.09] p-4">
                 <p className="text-[9px] font-black uppercase tracking-[0.22em] text-rose-300/60">Nesmieš povedať</p>
                 <div className="mt-3 grid grid-cols-2 gap-2">
-                  {forbiddenCard.forbidden.map((word) => <span key={word} className="rounded-xl bg-black/20 px-2 py-2 text-sm font-black text-white/70">{word}</span>)}
+                  {forbiddenCard?.forbidden.map((word) => <span key={word} className="rounded-xl bg-black/20 px-2 py-2 text-sm font-black text-white/70">{word}</span>)}
                 </div>
               </div>
             </>
@@ -291,8 +298,8 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
                 <span className="absolute bottom-3 left-1/2 -translate-x-1/2 text-4xl drop-shadow-lg">{copy.icon}</span>
               </div>
               <p className="text-[10px] font-black uppercase tracking-[0.24em] text-violet-300/65">Zahmkaj bez slov</p>
-              <h1 className="mx-auto mt-3 max-w-sm text-3xl font-black leading-tight text-white">{songCard.title}</h1>
-              <p className="mt-2 text-sm font-bold text-violet-200/60">{songCard.artist}</p>
+              <h1 className="mx-auto mt-3 max-w-sm text-3xl font-black leading-tight text-white">{songCard?.title}</h1>
+              <p className="mt-2 text-sm font-bold text-violet-200/60">{songCard?.artist}</p>
               <div className="mt-4 flex justify-center gap-2">
                 <span className={`rounded-full border px-3 py-1.5 text-[9px] font-black uppercase tracking-wider ${songAwards.title ? "border-emerald-300/40 bg-emerald-400/15 text-emerald-200" : "border-white/10 bg-white/[0.04] text-white/30"}`}>Názov {songAwards.title ? "✓" : "+1"}</span>
                 <span className={`rounded-full border px-3 py-1.5 text-[9px] font-black uppercase tracking-wider ${songAwards.artist ? "border-emerald-300/40 bg-emerald-400/15 text-emerald-200" : "border-white/10 bg-white/[0.04] text-white/30"}`}>Interpret {songAwards.artist ? "✓" : "+1"}</span>

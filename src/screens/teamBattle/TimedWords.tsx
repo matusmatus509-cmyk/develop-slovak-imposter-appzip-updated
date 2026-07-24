@@ -5,12 +5,11 @@ import {
   PANTOMIMA_WORDS_BY_DIFFICULTY,
   PANTOMIMA_DIFFICULTY_POINTS,
   PANTOMIMA_DIFFICULTY_LABELS,
-  SARADY_WORDS_BY_DIFFICULTY,
   SARADY_DIFFICULTY_POINTS,
   SARADY_DIFFICULTY_LABELS,
 } from "../../data/teamBattle";
-import { shuffle } from "../../data/teamBattle";
-import { takePersistentItems } from "../../utils/persistentDeck";
+import { SOLO_CHARADES_WORDS } from "../../data/charades";
+import { takePersistentItem, takePersistentItems } from "../../utils/persistentDeck";
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
 import { CircularTimer } from "./PartyChrome";
 
@@ -62,6 +61,7 @@ export default function TimedWords({
   const [difficulty, setDifficulty] = useState<PantomimaDifficulty | null>(null);
   const [pantomimaWords, setPantomimaWords] = useState<string[]>([]);
   const [saradyWords, setSaradyWords] = useState<string[]>([]);
+  const [activeSharedWord, setActiveSharedWord] = useState("");
   const [skipCount, setSkipCount] = useState(0);
 
   const [a, b] = TEAM_COLORS;
@@ -73,18 +73,36 @@ export default function TimedWords({
 
   const half = Math.ceil(words.length / 2);
   const sharedTeamWords = teamIdx === 0 ? words.slice(0, half) : words.slice(half);
-  const teamWords = isPantomima ? pantomimaWords : isSarady ? saradyWords : sharedTeamWords;
-  const currentWord = teamWords[wordIdx] ?? "—";
+  const teamWords = isPantomima ? pantomimaWords : isSarady ? (activeSharedWord ? [activeSharedWord] : []) : sharedTeamWords;
+  const currentWord = (isSarady || isHadajKtoSom) ? activeSharedWord : teamWords[wordIdx] ?? "—";
   const pointsPerWord = isPantomima && difficulty
     ? PANTOMIMA_DIFFICULTY_POINTS[difficulty]
     : 1;
   const skipPenalty = Math.max(0, skipCount - 1);
   const pendingPantomimaScore = Math.max(0, pointsPerWord - skipPenalty);
 
+  function takeNextSharedWord() {
+    if (isSarady && difficulty) {
+      return takePersistentItem(
+        `solo-charades:${difficulty}`,
+        saradyWords,
+        (word) => word.trim().toLocaleLowerCase("sk"),
+      );
+    }
+    if (isHadajKtoSom) {
+      return takePersistentItem(
+        "guess-who:all",
+        words,
+        (word) => word.trim().toLocaleLowerCase("sk"),
+      );
+    }
+    return "";
+  }
+
   function handlePickDifficulty(d: PantomimaDifficulty) {
     setDifficulty(d);
     if (isSarady) {
-      setSaradyWords(takePersistentItems(`party:timed-charades:${d}`, SARADY_WORDS_BY_DIFFICULTY[d], SARADY_WORDS_BY_DIFFICULTY[d].length));
+      setSaradyWords(SOLO_CHARADES_WORDS[d]);
     } else {
       setPantomimaWords(takePersistentItems(`party:pantomime:${d}`, PANTOMIMA_WORDS_BY_DIFFICULTY[d], PANTOMIMA_WORDS_BY_DIFFICULTY[d].length));
     }
@@ -96,6 +114,7 @@ export default function TimedWords({
     setDifficulty(null);
     setPantomimaWords([]);
     setSaradyWords([]);
+    setActiveSharedWord("");
     setWordIdx(0);
     setSkipCount(0);
     setTimeLeft(timeSeconds);
@@ -145,14 +164,18 @@ export default function TimedWords({
       setFlash("ok");
       setTimeout(() => {
         setFlash(null);
-        if (wordIdx + 1 >= teamWords.length) {
-          doneRef.current = true;
-          setRoundScore(correctRef.current * pointsPerWord);
-          setSubPhase("team-done");
-        } else {
-          setWordIdx((i) => i + 1);
-          actionLockedRef.current = false;
-        }
+        setActiveSharedWord(takeNextSharedWord());
+        actionLockedRef.current = false;
+      }, 500);
+      return;
+    }
+    if (isHadajKtoSom) {
+      correctRef.current += 1;
+      setFlash("ok");
+      setTimeout(() => {
+        setFlash(null);
+        setActiveSharedWord(takeNextSharedWord());
+        actionLockedRef.current = false;
       }, 500);
       return;
     }
@@ -187,6 +210,15 @@ export default function TimedWords({
       setTimeout(() => {
         setFlash(null);
         setWordIdx((i) => i + 1);
+        actionLockedRef.current = false;
+      }, 400);
+      return;
+    }
+    if (isSarady || isHadajKtoSom) {
+      setFlash("skip");
+      setTimeout(() => {
+        setFlash(null);
+        setActiveSharedWord(takeNextSharedWord());
         actionLockedRef.current = false;
       }, 400);
       return;
@@ -319,6 +351,7 @@ export default function TimedWords({
         <button
           onClick={async () => {
             if (isHadajKtoSom) await requestTiltPermission();
+            if (isSarady || isHadajKtoSom) setActiveSharedWord(takeNextSharedWord());
             setSubPhase("playing");
           }}
           className="party-shine w-full max-w-xs overflow-hidden rounded-2xl py-5 text-lg font-black uppercase tracking-wide text-white shadow-xl transition-all hover:scale-[1.02] active:scale-95"
@@ -397,7 +430,7 @@ export default function TimedWords({
           ) : (
             <p className="text-xs font-bold uppercase tracking-widest text-white/30">
               {isSarady ? (
-                <>{SARADY_DIFFICULTY_LABELS[difficulty ?? "lahke"]} • Slovo {wordIdx + 1} / {teamWords.length}</>
+                <>{SARADY_DIFFICULTY_LABELS[difficulty ?? "lahke"]} • ďalšie slovo</>
               ) : (
                 <>Slovo {wordIdx + 1} / {teamWords.length}</>
               )}

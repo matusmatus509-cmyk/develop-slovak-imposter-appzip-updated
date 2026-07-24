@@ -15,16 +15,18 @@ const SECTIONS: Array<{
   image: string;
   accent: string;
   glow: string;
+  featured?: boolean;
 }> = [
   {
     screen: "teambattle",
     eyebrow: "Tím proti tímu",
     title: "Party mode",
-    description: "Veľká tímová hra na celý večer",
+    description: "Kompletný súboj 2 tímov · body · finále",
     icon: "users",
     image: partyModeArt,
     accent: "from-violet-500 to-indigo-500",
     glow: "rgba(124, 58, 237, .38)",
+    featured: true,
   },
   {
     screen: "impostor-menu",
@@ -83,7 +85,7 @@ export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => v
                 key={section.screen}
                 type="button"
                 onClick={() => onNavigate(section.screen)}
-                className="group relative min-h-[142px] overflow-hidden rounded-[22px] border border-white/[.11] bg-[#11171e] text-left shadow-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20 active:translate-y-0 active:scale-[.985]"
+                className={`group relative overflow-hidden rounded-[22px] border text-left shadow-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20 active:translate-y-0 active:scale-[.985] ${section.featured ? "min-h-[184px] border-violet-300/25 bg-[#141525]" : "min-h-[132px] border-white/[.11] bg-[#11171e]"}`}
                 style={{
                   animation: `slideUp .55s ease-out ${120 + index * 90}ms both`,
                   boxShadow: `0 18px 42px -31px ${section.glow}`,
@@ -97,7 +99,12 @@ export default function Home({ onNavigate }: { onNavigate: (screen: Screen) => v
                 <div className="absolute inset-0 bg-[linear-gradient(90deg,#10161d_0%,rgba(16,22,29,.98)_36%,rgba(16,22,29,.72)_64%,rgba(16,22,29,.16)_100%)]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1019]/75 via-transparent to-white/[.03]" />
                 <div className={`absolute inset-y-0 left-0 w-1 bg-gradient-to-b ${section.accent}`} />
-                <div className="relative flex min-h-[142px] items-center p-5">
+                <div className={`relative flex items-center p-5 ${section.featured ? "min-h-[184px]" : "min-h-[132px]"}`}>
+                  {section.featured && (
+                    <span className="absolute right-4 top-4 rounded-full border border-fuchsia-300/25 bg-fuchsia-500/15 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.18em] text-fuchsia-200 backdrop-blur-md">
+                      Hlavná hra
+                    </span>
+                  )}
                   <div className="w-[68%] min-w-0">
                     <div className="mb-2.5 flex items-center gap-2">
                       <span className={`flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br ${section.accent} shadow-lg`}>

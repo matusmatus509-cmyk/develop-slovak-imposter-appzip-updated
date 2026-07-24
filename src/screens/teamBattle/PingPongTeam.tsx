@@ -1,15 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { TEAM_COLORS } from "../../data/teamBattle";
+import { PING_PONG_PROMPTS } from "../../data/pingPongPrompts";
 import { takePersistentItem } from "../../utils/persistentDeck";
 
-// Mirrors the standalone "Slovný Ping Pong" minigame exactly (same ball
-// physics, letters, speed ramp), just relabelled for two team
-// representatives who play 1v1 instead of two named individual players.
-
-const LETTERS = [
-  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-  "N", "O", "P", "R", "S", "T", "U", "V", "Z",
-];
+// Uses the same prompt database and persistent deck as standalone Slovný Ping Pong.
+// A theme shown in either mode is not selected again until every theme has been used.
 
 // "Stredne" (medium) speed from the standalone minigame — seconds for the
 // ball to travel from centre to edge.
@@ -33,7 +28,7 @@ export default function PingPongTeam({
 
   // ballY: 0 = top edge, 1 = bottom edge. Start in middle.
   const [ballY, setBallY] = useState(0.5);
-  const [letter] = useState(() => takePersistentItem("party:ping-pong-letters", LETTERS));
+  const [prompt] = useState(() => takePersistentItem("ping-pong-prompts", PING_PONG_PROMPTS));
   // active = 0 → ball moves toward TOP (team 0 must answer)
   // active = 1 → ball moves toward BOTTOM (team 1 must answer)
   const [active, setActive] = useState<0 | 1>(() => (Math.random() < 0.5 ? 0 : 1));
@@ -105,6 +100,10 @@ export default function PingPongTeam({
     if (gameOverRef.current) return;
     if (side !== activeRef.current) return;
     const other: 0 | 1 = side === 0 ? 1 : 0;
+    // Match the standalone game: a valid word sends the ball back from centre.
+    ballYRef.current = 0.5;
+    setBallY(0.5);
+    navigator.vibrate?.([18, 25, 18]);
     activeRef.current = other;
     setActive(other);
   }
@@ -208,8 +207,8 @@ export default function PingPongTeam({
           </p>
           <div className="rounded-2xl px-4 py-2" style={{ backgroundColor: "rgba(0,0,0,0.20)" }}>
             <p className="font-black text-white leading-none" style={{ fontSize: "clamp(2rem, 9vw, 3.5rem)" }}>
-              Slová na{" "}
-              <span className="underline decoration-4 underline-offset-4">{letter}</span>
+              Téma: {" "}
+              <span className="underline decoration-4 underline-offset-4">{prompt}</span>
             </p>
           </div>
           {isTopActive && (
@@ -259,8 +258,8 @@ export default function PingPongTeam({
           </p>
           <div className="rounded-2xl px-4 py-2" style={{ backgroundColor: "rgba(0,0,0,0.20)" }}>
             <p className="font-black text-white leading-none" style={{ fontSize: "clamp(2rem, 9vw, 3.5rem)" }}>
-              Slová na{" "}
-              <span className="underline decoration-4 underline-offset-4">{letter}</span>
+              Téma: {" "}
+              <span className="underline decoration-4 underline-offset-4">{prompt}</span>
             </p>
           </div>
           {!isTopActive && (

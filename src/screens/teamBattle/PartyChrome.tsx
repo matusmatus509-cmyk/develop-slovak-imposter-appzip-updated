@@ -66,6 +66,65 @@ export function TeamBadge({
   );
 }
 
+export function PartyScoreboard({
+  teamNames,
+  scores,
+  colors,
+  eyebrow = "Aktuálne skóre",
+  detail = "Body počas celej Party hry",
+  highlightLeader = true,
+}: {
+  teamNames: [string, string];
+  scores: [number, number];
+  colors: [string, string];
+  eyebrow?: string;
+  detail?: string;
+  highlightLeader?: boolean;
+}) {
+  const total = Math.max(scores[0] + scores[1], 1);
+  const firstShare = (scores[0] / total) * 100;
+  const leader = scores[0] === scores[1] ? null : scores[0] > scores[1] ? 0 : 1;
+
+  return (
+    <section className="party-glass overflow-hidden rounded-[1.8rem] p-5 text-left" aria-label={eyebrow}>
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/35">{eyebrow}</p>
+          <p className="mt-1 text-xs font-bold text-white/60">{detail}</p>
+        </div>
+        <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[9px] font-black uppercase tracking-wider text-white/40">
+          {leader === null ? "Remíza" : `Vedie tím ${leader === 0 ? "A" : "B"}`}
+        </span>
+      </div>
+
+      <div className="mt-5 grid grid-cols-[1fr_auto_1fr] items-end gap-3">
+        {([0, 1] as const).map((index) => {
+          const leading = highlightLeader && leader === index;
+          return (
+            <div key={index} className={index === 1 ? "text-right" : ""} style={{ gridColumn: index === 0 ? 1 : 3 }}>
+              <div className={`flex items-center gap-2 ${index === 1 ? "flex-row-reverse" : ""}`}>
+                <span className="flex h-7 w-7 items-center justify-center rounded-lg text-[10px] font-black text-white" style={{ background: colors[index] }}>
+                  {index === 0 ? "A" : "B"}
+                </span>
+                {leading && <span className="text-sm" aria-label="Vedúci tím">♛</span>}
+              </div>
+              <p className="mt-2 truncate text-[11px] font-black uppercase tracking-wider" style={{ color: colors[index] }}>{teamNames[index]}</p>
+              <p className="mt-1 text-4xl font-black tabular-nums text-white">{scores[index]}</p>
+              <p className="text-[8px] font-black uppercase tracking-[0.18em] text-white/25">bodov</p>
+            </div>
+          );
+        })}
+        <span className="col-start-2 row-start-1 self-center pb-2 text-[9px] font-black uppercase tracking-widest text-white/20">vs</span>
+      </div>
+
+      <div className="mt-5 flex h-3 overflow-hidden rounded-full bg-white/10 p-0.5">
+        <div className="rounded-l-full transition-all duration-700" style={{ width: `${firstShare}%`, background: colors[0], boxShadow: `0 0 16px ${colors[0]}66` }} />
+        <div className="flex-1 rounded-r-full transition-all duration-700" style={{ background: colors[1], boxShadow: `0 0 16px ${colors[1]}55` }} />
+      </div>
+    </section>
+  );
+}
+
 export function ParticipantScoreStrip({
   names,
   scores,

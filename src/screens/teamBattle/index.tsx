@@ -1,8 +1,6 @@
 import { useState } from "react";
 import {
   generateBattleRounds,
-  getTeamCharacters,
-  SARADY_WORDS,
   QUIZ_QUESTIONS,
   type BattleRound,
   type GameType,
@@ -16,6 +14,7 @@ import TeamQuiz from "./Quiz";
 import PingPongTeam from "./PingPongTeam";
 import RoundResult from "./RoundResult";
 import GameOver from "./GameOver";
+import FinaleIntro from "./FinaleIntro";
 import { ForbiddenWordGame, GuessSongGame } from "./PassAndPlay";
 import SoundBuzzer from "./SoundBuzzer";
 import { FiveInTenGame, LetterChallengeGame } from "./QuickChallenges";
@@ -25,18 +24,24 @@ import { takePersistentItems } from "../../utils/persistentDeck";
 type Phase =
   | "setup"
   | "intro"
+  | "finale"
   | "round-intro"
   | "playing"
   | "round-result"
   | "game-over";
 
+import { getCharacterCategories } from "../../data/characters";
+
 const TURN_BASED: GameType[] = ["pantomima", "sarady", "hadajktosom"];
 
 function wordsForGame(game: GameType, language: AppLanguage): string[] {
-  if (game === "sarady") return takePersistentItems("party:charades", SARADY_WORDS, SARADY_WORDS.length);
   if (game === "hadajktosom") {
-    const characters = getTeamCharacters(language);
-    return takePersistentItems(`party:guess-who:${language}`, characters, characters.length);
+    return [...new Set(
+      getCharacterCategories(language)
+        .flatMap((category) => category.characters)
+        .map((character) => character.trim())
+        .filter(Boolean),
+    )];
   }
   return [];
 }
@@ -81,7 +86,7 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
 
   function handleIntroEnd() {
     prepareRoundData(0);
-    setPhase("round-intro");
+    setPhase(rounds[0]?.special === "final" ? "finale" : "round-intro");
   }
 
   function prepareRoundData(idx: number) {
@@ -120,7 +125,7 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
     } else {
       setCurrentRoundIdx(next);
       prepareRoundData(next);
-      setPhase("round-intro");
+      setPhase(rounds[next]?.special === "final" ? "finale" : "round-intro");
     }
   }
 
@@ -136,6 +141,16 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
 
   if (phase === "intro") {
     return <TeamBattleIntro teamNames={teamNames} onDone={handleIntroEnd} />;
+  }
+
+  if (phase === "finale" && currentRound) {
+    return (
+      <FinaleIntro
+        teamNames={teamNames}
+        scores={totalScores}
+        onContinue={() => setPhase("round-intro")}
+      />
+    );
   }
 
   if (phase === "round-intro" && currentRound) {

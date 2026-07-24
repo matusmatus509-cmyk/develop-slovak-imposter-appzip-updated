@@ -1,6 +1,6 @@
 import type { BattleRound } from "../../data/teamBattle";
 import { GAME_ICONS, GAME_LABELS, TEAM_COLORS } from "../../data/teamBattle";
-import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
+import { PartyBackdrop, PartyEyebrow, PartyScoreboard } from "./PartyChrome";
 
 export default function RoundResult({
   round,
@@ -25,8 +25,6 @@ export default function RoundResult({
     roundScores[1] * round.pointMultiplier,
   ];
   const roundWinner = earned[0] > earned[1] ? 0 : earned[1] > earned[0] ? 1 : null;
-  const scoreTotal = Math.max(totalScores[0] + totalScores[1], 1);
-  const blueShare = (totalScores[0] / scoreTotal) * 100;
 
   return (
     <PartyBackdrop>
@@ -74,33 +72,14 @@ export default function RoundResult({
             ))}
           </section>
 
-          <section className="party-glass rounded-[1.75rem] p-5 text-left">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/35">Celkové skóre</p>
-                <p className="mt-1 text-sm font-bold text-white/70">Bitka pokračuje</p>
-              </div>
-              <span className="rounded-xl bg-white/[0.06] px-3 py-2 text-xs font-black text-white/50">
-                {round.index + 1}/{totalRounds}
-              </span>
-            </div>
-
-            <div className="mt-5 flex items-end justify-between gap-4">
-              <div>
-                <p className="max-w-[8rem] truncate text-xs font-black" style={{ color: blue }}>{teamNames[0]}</p>
-                <p className="text-3xl font-black tabular-nums text-white">{totalScores[0]}</p>
-              </div>
-              <span className="pb-2 text-[10px] font-black uppercase tracking-widest text-white/25">vs</span>
-              <div className="text-right">
-                <p className="max-w-[8rem] truncate text-xs font-black" style={{ color: red }}>{teamNames[1]}</p>
-                <p className="text-3xl font-black tabular-nums text-white">{totalScores[1]}</p>
-              </div>
-            </div>
-            <div className="mt-4 flex h-3 overflow-hidden rounded-full bg-white/10 p-0.5">
-              <div className="rounded-l-full transition-all duration-700" style={{ width: `${blueShare}%`, background: blue }} />
-              <div className="flex-1 rounded-r-full transition-all duration-700" style={{ background: red }} />
-            </div>
-          </section>
+          <PartyScoreboard
+            teamNames={teamNames}
+            scores={totalScores}
+            colors={[blue, red]}
+            eyebrow={isLastRound ? "Konečné skóre" : "Celkové skóre"}
+            detail={isLastRound ? "Finále je dohrané" : `Po ${round.index + 1}. z ${totalRounds} kôl`}
+            highlightLeader
+          />
 
           <button
             onClick={onNext}

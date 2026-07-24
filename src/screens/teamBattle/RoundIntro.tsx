@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { BattleRound } from "../../data/teamBattle";
 import { GAME_ICONS, GAME_LABELS, TEAM_COLORS } from "../../data/teamBattle";
-import { PartyBackdrop, PartyEyebrow, TeamBadge } from "./PartyChrome";
+import { PartyBackdrop, PartyEyebrow, PartyScoreboard } from "./PartyChrome";
 
 const GAME_DESC: Record<string, string> = {
   pantomima: "Predvádzajte pohybom bez slov. Tím háda čo najviac výrazov za čas.",
@@ -118,10 +118,14 @@ export default function RoundIntro({
             </div>
           </section>
 
-          <div className="flex gap-3">
-            <TeamBadge name={teamNames[0]} score={scores[0]} color={blue} side="A" active={scores[0] > scores[1]} />
-            <TeamBadge name={teamNames[1]} score={scores[1]} color={red} side="B" active={scores[1] > scores[0]} />
-          </div>
+          <PartyScoreboard
+            teamNames={teamNames}
+            scores={scores}
+            colors={[blue, red]}
+            eyebrow={round.special === "final" ? "Skóre pred finále" : "Priebežné skóre"}
+            detail={`Po ${round.index} ${round.index === 1 ? "odohranom kole" : "odohraných kolách"}`}
+            highlightLeader
+          />
 
           <button
             onClick={() => setStarting(true)}

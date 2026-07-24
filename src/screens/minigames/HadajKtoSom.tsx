@@ -4,7 +4,7 @@ import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
-import { takePersistentItems } from "../../utils/persistentDeck";
+import { takePersistentItem } from "../../utils/persistentDeck";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -36,7 +36,7 @@ function buildDeck(categories: CharacterCategory[], catIds: string[]): Card[] {
       cards.push({ word: ch, categoryName: cat.name });
     }
   }
-  return takePersistentItems(`guess-who:${catIds.slice().sort().join(",")}`, cards, cards.length, (card) => card.word.trim().toLocaleLowerCase("sk"));
+  return cards;
 }
 
 // ─── Setup Screen ─────────────────────────────────────────────────────────────
@@ -211,6 +211,11 @@ function PlayingScreen({
   onDone: (correct: number, skipped: number) => void;
 }) {
   const [cardIdx, setCardIdx] = useState(0);
+  const [card, setCard] = useState(() => takePersistentItem(
+    "guess-who:all",
+    deck,
+    (item) => item.word.trim().toLocaleLowerCase("sk"),
+  ));
   const [timeLeft, setTimeLeft] = useState(timerSeconds);
   const [flash, setFlash] = useState<"correct" | "wrong" | null>(null);
 
@@ -220,7 +225,6 @@ function PlayingScreen({
   const tiltLocked = useRef(false);
   const doneRef = useRef(false);
 
-  const card = deck[cardIdx];
 
   const finishRound = useCallback(() => {
     if (doneRef.current) return;
@@ -236,16 +240,15 @@ function PlayingScreen({
     setFlash("correct");
     setTimeout(() => {
       setFlash(null);
-      setCardIdx((i) => {
-        if (i + 1 >= deck.length) {
-          finishRound();
-          return i;
-        }
-        return i + 1;
-      });
+      setCard(takePersistentItem(
+        "guess-who:all",
+        deck,
+        (item) => item.word.trim().toLocaleLowerCase("sk"),
+      ));
+      setCardIdx((value) => value + 1);
       tiltLocked.current = false;
     }, 600);
-  }, [deck.length, finishRound]);
+  }, [deck]);
 
   const handleSkip = useCallback(() => {
     if (doneRef.current || tiltLocked.current) return;
@@ -255,16 +258,15 @@ function PlayingScreen({
     setFlash("wrong");
     setTimeout(() => {
       setFlash(null);
-      setCardIdx((i) => {
-        if (i + 1 >= deck.length) {
-          finishRound();
-          return i;
-        }
-        return i + 1;
-      });
+      setCard(takePersistentItem(
+        "guess-who:all",
+        deck,
+        (item) => item.word.trim().toLocaleLowerCase("sk"),
+      ));
+      setCardIdx((value) => value + 1);
       tiltLocked.current = false;
     }, 600);
-  }, [deck.length, finishRound]);
+  }, [deck]);
 
   const tiltStatus = useTiltGesture(true, handleCorrect, handleSkip);
   const isCalibrating = tiltStatus === "calibrating";

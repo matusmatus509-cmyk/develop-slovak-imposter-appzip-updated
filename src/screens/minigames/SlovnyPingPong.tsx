@@ -2,14 +2,14 @@ import { useState, useEffect, useRef } from "react";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { PING_PONG_PROMPTS } from "../../data/pingPongPrompts";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
+import { takePersistentItem } from "../../utils/persistentDeck";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-function pickPrompt(exclude?: string) {
-  const pool = exclude
-    ? PING_PONG_PROMPTS.filter((prompt) => prompt !== exclude)
-    : PING_PONG_PROMPTS;
-  return pool[Math.floor(Math.random() * pool.length)];
+const PING_PONG_DECK_KEY = "ping-pong-prompts";
+
+function takePrompt() {
+  return takePersistentItem(PING_PONG_DECK_KEY, PING_PONG_PROMPTS);
 }
 
 // Colors
@@ -118,7 +118,7 @@ function GameScreen({
 }) {
   // ballY: 0 = top edge, 1 = bottom edge. Start in middle.
   const [ballY, setBallY] = useState(0.5);
-  const [prompt, setPrompt] = useState(() => pickPrompt());
+  const [prompt, setPrompt] = useState(() => takePrompt());
   // active = 0 → ball moves toward TOP (player 1 must answer)
   // active = 1 → ball moves toward BOTTOM (player 2 must answer)
   const [active, setActive] = useState<0 | 1>(() => (Math.random() < 0.5 ? 0 : 1));
@@ -211,7 +211,7 @@ function GameScreen({
   }
 
   function restart() {
-    const newPrompt = pickPrompt(prompt);
+    const newPrompt = takePrompt();
     const newActive: 0 | 1 = Math.random() < 0.5 ? 0 : 1;
     setPrompt(newPrompt);
     setActive(newActive);

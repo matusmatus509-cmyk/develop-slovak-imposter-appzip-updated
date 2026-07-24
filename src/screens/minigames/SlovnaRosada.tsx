@@ -7,7 +7,7 @@ import {
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
-import { takePersistentItems } from "../../utils/persistentDeck";
+import { takePersistentItem } from "../../utils/persistentDeck";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -57,7 +57,7 @@ function buildDeck(difficulty: string): Card[] {
     categoryIcon: "💬",
   }));
   const pool = uniqueCards.length > 0 ? uniqueCards : fallback;
-  return takePersistentItems(`solo-charades:${difficulty}`, pool, pool.length, (card) => card.word.trim().toLocaleLowerCase("sk"));
+  return pool;
 }
 
 // ─── Setup Screen ─────────────────────────────────────────────────────────────
@@ -277,6 +277,7 @@ function SetupScreen({
 function PlayingScreen({
   player,
   deck,
+  deckKey,
   timerSecs,
   maxSkips,
   teamMode,
@@ -284,12 +285,18 @@ function PlayingScreen({
 }: {
   player: Player;
   deck: Card[];
+  deckKey: string;
   timerSecs: number;
   maxSkips: number;
   teamMode: boolean;
   onDone: (correct: number, skips: number) => void;
 }) {
   const [cardIdx, setCardIdx] = useState(0);
+  const [card, setCard] = useState(() => takePersistentItem(
+    deckKey,
+    deck,
+    (item) => item.word.trim().toLocaleLowerCase("sk"),
+  ));
   const [timeLeft, setTimeLeft] = useState(timerSecs);
   const [skipsUsed, setSkipsUsed] = useState(0);
   const [correct, setCorrect] = useState(0);
@@ -300,7 +307,6 @@ function PlayingScreen({
   const doneRef = useRef(false);
   const actionLockedRef = useRef(false);
 
-  const card = deck[cardIdx];
 
   function finish() {
     if (doneRef.current) return;
@@ -321,9 +327,12 @@ function PlayingScreen({
     setCardAnim(type);
     setTimeout(() => {
       setCardAnim("idle");
-      const nextIdx = cardIdx + 1;
-      if (nextIdx >= deck.length) { finish(); return; }
-      setCardIdx(nextIdx);
+      setCard(takePersistentItem(
+        deckKey,
+        deck,
+        (item) => item.word.trim().toLocaleLowerCase("sk"),
+      ));
+      setCardIdx((value) => value + 1);
       actionLockedRef.current = false;
     }, 300);
     return true;
@@ -583,6 +592,7 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
       <PlayingScreen
         player={current}
         deck={deck}
+        deckKey={`solo-charades:${difficulty}`}
         timerSecs={timerSecs}
         maxSkips={maxSkips}
         teamMode={teamMode}

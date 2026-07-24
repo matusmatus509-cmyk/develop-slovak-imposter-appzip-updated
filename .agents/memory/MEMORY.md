@@ -1,1 +1,0 @@
-- [Run-on word-table parsing](run-on-word-table-parsing.md) — pasted Slovak 3-column word tables with no delimiters need careful tokenization, not naive regex.
