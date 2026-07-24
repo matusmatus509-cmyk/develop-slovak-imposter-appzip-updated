@@ -105,16 +105,18 @@ function SetupScreen({
 
 // ─── Game Screen ──────────────────────────────────────────────────────────────
 
-function GameScreen({
+export function SlovnyPingPongGame({
   name1,
   name2,
   secsToEdge,
   onBack,
+  onWinner,
 }: {
   name1: string;
   name2: string;
   secsToEdge: number;
   onBack: () => void;
+  onWinner?: (winner: 0 | 1) => void;
 }) {
   // ballY: 0 = top edge, 1 = bottom edge. Start in middle.
   const [ballY, setBallY] = useState(0.5);
@@ -225,6 +227,10 @@ function GameScreen({
   }
 
   const isTopActive = active === 0;
+  // Scale a fixed shadow layer instead of changing its height on every animation frame.
+  // This keeps the pressure visual in the compositor and precisely in sync with the ball.
+  const topPressure = isTopActive ? Math.min(1, Math.max(0, (0.5 - ballY) * 2)) : 0;
+  const bottomPressure = !isTopActive ? Math.min(1, Math.max(0, (ballY - 0.5) * 2)) : 0;
 
   return (
     <div
@@ -243,9 +249,11 @@ function GameScreen({
       >
         {/* The dark pressure shadow grows from the centre only on the player under pressure. */}
         <div
-          className="pointer-events-none absolute bottom-0 left-0 right-0 bg-black/60 shadow-[0_-16px_36px_rgba(35,5,14,.42)] transition-[height] duration-75"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-full bg-black/60 shadow-[0_-16px_36px_rgba(35,5,14,.42)]"
           style={{
-            height: isTopActive ? `${Math.max(0, (0.5 - ballY) * 200)}%` : "0%",
+            transform: `scaleY(${topPressure})`,
+            transformOrigin: "bottom",
+            willChange: "transform",
             background: `linear-gradient(to top, ${COLOR_TOP_DARK}, ${COLOR_TOP_DARK}e8 55%, ${COLOR_TOP_DARK}99 80%, transparent)`,
           }}
         />
@@ -302,9 +310,11 @@ function GameScreen({
       >
         {/* The same centre-to-edge pressure shadow for the bottom player. */}
         <div
-          className="pointer-events-none absolute top-0 left-0 right-0 bg-black/60 shadow-[0_16px_36px_rgba(8,9,55,.42)] transition-[height] duration-75"
+          className="pointer-events-none absolute inset-x-0 top-0 h-full bg-black/60 shadow-[0_16px_36px_rgba(8,9,55,.42)]"
           style={{
-            height: !isTopActive ? `${Math.max(0, (ballY - 0.5) * 200)}%` : "0%",
+            transform: `scaleY(${bottomPressure})`,
+            transformOrigin: "top",
+            willChange: "transform",
             background: `linear-gradient(to bottom, ${COLOR_BOT_DARK}, ${COLOR_BOT_DARK}e8 55%, ${COLOR_BOT_DARK}99 80%, transparent)`,
           }}
         />
@@ -365,20 +375,29 @@ function GameScreen({
             <p className="text-sm text-white/50">
               {result.loser === 0 ? name1 : name2} nestihol/a!
             </p>
-            <div className="flex w-full gap-3">
+            {onWinner ? (
               <button
-                onClick={restart}
-                className="flex-1 rounded-2xl bg-white/20 py-3.5 font-bold text-white active:scale-95 transition"
+                onClick={() => onWinner(result.loser === 0 ? 1 : 0)}
+                className="w-full rounded-2xl bg-white/20 py-3.5 font-bold text-white active:scale-95 transition"
               >
-                🔄 Znova
+                🏁 Pokračovať v Party mode
               </button>
-              <button
-                onClick={onBack}
-                className="flex-1 rounded-2xl border border-white/20 py-3.5 font-bold text-white/70 active:scale-95 transition"
-              >
-                Domov
-              </button>
-            </div>
+            ) : (
+              <div className="flex w-full gap-3">
+                <button
+                  onClick={restart}
+                  className="flex-1 rounded-2xl bg-white/20 py-3.5 font-bold text-white active:scale-95 transition"
+                >
+                  🔄 Znova
+                </button>
+                <button
+                  onClick={onBack}
+                  className="flex-1 rounded-2xl border border-white/20 py-3.5 font-bold text-white/70 active:scale-95 transition"
+                >
+                  Domov
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -420,7 +439,7 @@ export default function SlovnyPingPong({ onBack }: { onBack: () => void }) {
   }
 
   return (
-    <GameScreen
+    <SlovnyPingPongGame
       key={gameKey}
       name1={gameParams.name1}
       name2={gameParams.name2}

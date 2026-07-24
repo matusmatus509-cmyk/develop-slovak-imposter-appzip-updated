@@ -11,14 +11,16 @@ import TeamBattleIntro from "./Intro";
 import RoundIntro from "./RoundIntro";
 import TimedWords from "./TimedWords";
 import TeamQuiz from "./Quiz";
-import PingPongTeam from "./PingPongTeam";
+import { SlovnyPingPongGame } from "../minigames/SlovnyPingPong";
+import { PartySlovnaRosada } from "../minigames/SlovnaRosada";
+import { PartyHadajKtoSom } from "../minigames/HadajKtoSom";
 import RoundResult from "./RoundResult";
 import GameOver from "./GameOver";
 import FinaleIntro from "./FinaleIntro";
 import { ForbiddenWordGame, GuessSongGame } from "./PassAndPlay";
 import SoundBuzzer from "./SoundBuzzer";
 import { FiveInTenGame, LetterChallengeGame } from "./QuickChallenges";
-import { defaultTeamName, useLanguage, type AppLanguage } from "../../i18n/LanguageProvider";
+import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItems } from "../../utils/persistentDeck";
 
 type Phase =
@@ -29,22 +31,6 @@ type Phase =
   | "playing"
   | "round-result"
   | "game-over";
-
-import { getCharacterCategories } from "../../data/characters";
-
-const TURN_BASED: GameType[] = ["pantomima", "sarady", "hadajktosom"];
-
-function wordsForGame(game: GameType, language: AppLanguage): string[] {
-  if (game === "hadajktosom") {
-    return [...new Set(
-      getCharacterCategories(language)
-        .flatMap((category) => category.characters)
-        .map((character) => character.trim())
-        .filter(Boolean),
-    )];
-  }
-  return [];
-}
 
 export default function TeamBattle({ onHome }: { onHome: () => void }) {
   const { language } = useLanguage();
@@ -59,8 +45,7 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
   const [roundScores, setRoundScores] = useState<[number, number]>([0, 0]);
   const [quickRounds, setQuickRounds] = useState(2);
 
-  // Per-round data (words / questions / category) chosen at round start
-  const [roundWords, setRoundWords] = useState<string[]>([]);
+  // Per-round questions are selected at round start.
   const [roundQuestions, setRoundQuestions] = useState(
     () => takePersistentItems("party:quiz", QUIZ_QUESTIONS, 5, (item) => item.question)
   );
@@ -92,9 +77,7 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
   function prepareRoundData(idx: number) {
     const r = rounds[idx];
     if (!r) return;
-    if (TURN_BASED.includes(r.game)) {
-      setRoundWords(wordsForGame(r.game, language));
-    } else if (r.game === "quiz") {
+    if (r.game === "quiz") {
       setRoundQuestions(takePersistentItems("party:quiz", QUIZ_QUESTIONS, 5, (item) => item.question));
     }
   }
@@ -168,13 +151,33 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
   if (phase === "playing" && currentRound) {
     const game = currentRound.game;
 
-    if (TURN_BASED.includes(game)) {
+    if (game === "pantomima") {
       return (
         <TimedWords
           teamNames={teamNames}
-          words={roundWords}
+          words={[]}
           timeSeconds={currentRound.timeSeconds}
           mode={game}
+          onDone={handleRoundDone}
+        />
+      );
+    }
+
+    if (game === "sarady") {
+      return (
+        <PartySlovnaRosada
+          teamNames={teamNames}
+          timerSecs={currentRound.timeSeconds}
+          onDone={handleRoundDone}
+        />
+      );
+    }
+
+    if (game === "hadajktosom") {
+      return (
+        <PartyHadajKtoSom
+          teamNames={teamNames}
+          timerSeconds={currentRound.timeSeconds}
           onDone={handleRoundDone}
         />
       );
@@ -192,9 +195,12 @@ export default function TeamBattle({ onHome }: { onHome: () => void }) {
 
     if (game === "pingpong") {
       return (
-        <PingPongTeam
-          teamNames={teamNames}
-          onDone={handleRoundDone}
+        <SlovnyPingPongGame
+          name1={teamNames[0]}
+          name2={teamNames[1]}
+          secsToEdge={4}
+          onBack={() => handleRoundDone([0, 0])}
+          onWinner={(winner) => handleRoundDone(winner === 0 ? [1, 0] : [0, 1])}
         />
       );
     }

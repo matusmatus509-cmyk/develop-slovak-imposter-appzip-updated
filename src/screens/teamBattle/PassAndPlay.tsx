@@ -307,13 +307,26 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
               <div className="mt-5 rounded-2xl border border-violet-300/15 bg-violet-400/[0.07] p-3">
                 <p className="text-[10px] font-bold leading-relaxed text-white/35">Nepoznáš ju podľa názvu? Prilož mobil k uchu a pusti si krátku ukážku.</p>
                 <button
-                  onClick={previewStatus === "playing" ? stopPreview : playPreview}
-                  disabled={previewStatus === "loading" || previewStatus === "missing"}
+                  onClick={previewStatus === "missing"
+                    ? () => window.open(`https://www.deezer.com/search/${encodeURIComponent(`${songCard?.title ?? ""} ${songCard?.artist ?? ""}`)}`, "_blank", "noopener,noreferrer")
+                    : previewStatus === "playing" ? stopPreview : playPreview}
+                  disabled={previewStatus === "loading"}
                   className="mt-3 w-full rounded-xl border border-violet-300/20 bg-violet-400/15 px-3 py-3 text-xs font-black text-violet-100 transition active:scale-95 disabled:opacity-40"
                 >
-                  {previewStatus === "loading" ? "Hľadám ukážku…" : previewStatus === "missing" ? "Ukážka nie je dostupná" : previewStatus === "playing" ? "■ Zastaviť ukážku" : "▶ Pustiť 8 s ukážku"}
+                  {previewStatus === "loading" ? "Hľadám ukážku…" : previewStatus === "missing" ? "↗ Pustiť ukážku v Deezeri" : previewStatus === "playing" ? "■ Zastaviť ukážku" : "▶ Pustiť 8 s ukážku"}
                 </button>
-                {preview && <a href={preview.link} target="_blank" rel="noreferrer" className="mt-2 block text-[8px] font-bold uppercase tracking-wider text-white/20">Ukážka cez Deezer</a>}
+                {preview ? (
+                  <a href={preview.link} target="_blank" rel="noreferrer" className="mt-2 block text-[8px] font-bold uppercase tracking-wider text-white/20">Ukážka cez Deezer</a>
+                ) : (
+                  <a
+                    href={`https://www.deezer.com/search/${encodeURIComponent(`${songCard?.title ?? ""} ${songCard?.artist ?? ""}`)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-2 block text-[8px] font-bold uppercase tracking-wider text-white/20"
+                  >
+                    Otvoriť skladbu v Deezeri
+                  </a>
+                )}
               </div>
               {previewStatus === "playing" && <p className="mt-2 text-[9px] font-black uppercase tracking-wider text-violet-200/60">Čas je počas ukážky pozastavený</p>}
               <p className="mt-4 text-xs font-bold text-white/30">Mobil vidí iba hráč, ktorý hmkanie predvádza.</p>

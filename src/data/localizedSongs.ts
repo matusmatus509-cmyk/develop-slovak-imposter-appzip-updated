@@ -1,5 +1,5 @@
 import type { AppLanguage } from "../i18n/LanguageProvider";
-import type { SongCard } from "./teamBattleExtras";
+import { INTERNATIONAL_SONG_CARDS, type SongCard } from "./teamBattleExtras";
 
 const SONGS_BY_LANGUAGE: Record<AppLanguage, string> = {
   sk: `
@@ -660,10 +660,29 @@ const LOCALIZED_SONG_CARDS = Object.fromEntries(
   }),
 ) as Record<AppLanguage, SongCard[]>;
 
+function songId(song: SongCard) {
+  return `${song.title.toLocaleLowerCase()}|${song.artist.toLocaleLowerCase()}`;
+}
+
+function sampleAcrossCatalog(catalog: SongCard[], count: number) {
+  if (count >= catalog.length) return catalog;
+  return Array.from({ length: count }, (_, index) => catalog[Math.floor((index * catalog.length) / count)]);
+}
+
+const MIXED_SONG_CARDS = Object.fromEntries(
+  Object.entries(LOCALIZED_SONG_CARDS).map(([language, localSongs]) => {
+    const localIds = new Set(localSongs.map(songId));
+    const globalSongs = INTERNATIONAL_SONG_CARDS.filter((song) => !localIds.has(songId(song)));
+    // Keep both sources equally represented while sampling the entire global catalogue.
+    const globalSample = sampleAcrossCatalog(globalSongs, Math.min(localSongs.length, globalSongs.length));
+    return [language, [...localSongs, ...globalSample]];
+  }),
+) as Record<AppLanguage, SongCard[]>;
+
 export function getSongCardsForLanguage(language: AppLanguage): SongCard[] {
-  return LOCALIZED_SONG_CARDS[language];
+  return MIXED_SONG_CARDS[language];
 }
 
 export const SONG_COUNTS_BY_LANGUAGE = Object.fromEntries(
-  Object.entries(LOCALIZED_SONG_CARDS).map(([language, songs]) => [language, songs.length]),
+  Object.entries(MIXED_SONG_CARDS).map(([language, songs]) => [language, songs.length]),
 ) as Record<AppLanguage, number>;

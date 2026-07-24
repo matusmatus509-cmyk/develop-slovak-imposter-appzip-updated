@@ -468,15 +468,33 @@ function PlayingScreen({
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
-export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
-  const [phase, setPhase] = useState<Phase>("setup");
-  const [players, setPlayers] = useState<Player[]>([]);
+interface PartySlovnaRosadaConfig {
+  teamNames: [string, string];
+  timerSecs: number;
+  onDone: (scores: [number, number]) => void;
+}
+
+export function PartySlovnaRosada(props: PartySlovnaRosadaConfig) {
+  return <SlovnaRosada onBack={() => props.onDone([0, 0])} partyConfig={props} />;
+}
+
+export default function SlovnaRosada({
+  onBack,
+  partyConfig,
+}: {
+  onBack: () => void;
+  partyConfig?: PartySlovnaRosadaConfig;
+}) {
+  const [phase, setPhase] = useState<Phase>(partyConfig ? "who-starts" : "setup");
+  const [players, setPlayers] = useState<Player[]>(() => partyConfig
+    ? partyConfig.teamNames.map((name, team) => ({ name, team: team as 0 | 1, score: 0, skipsUsed: 0 }))
+    : []);
   const [currentIdx, setCurrentIdx] = useState(0);
-  const [timerSecs, setTimerSecs] = useState(60);
+  const [timerSecs, setTimerSecs] = useState(partyConfig?.timerSecs ?? 60);
   const [maxSkips, setMaxSkips] = useState(3);
-  const [teamMode, setTeamMode] = useState(false);
+  const [teamMode, setTeamMode] = useState(Boolean(partyConfig));
   const [difficulty, setDifficulty] = useState("all");
-  const [deck, setDeck] = useState<Card[]>([]);
+  const [deck, setDeck] = useState<Card[]>(() => partyConfig ? buildDeck("all") : []);
   const [roundCorrect, setRoundCorrect] = useState(0);
   const [roundSkips, setRoundSkips] = useState(0);
 
@@ -536,7 +554,7 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
 
     return (
       <Shell>
-        <TopBar title="Slovné šarády" onBack={() => setPhase("setup")} />
+        <TopBar title="Slovné šarády" onBack={partyConfig ? undefined : () => setPhase("setup")} />
         <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
           <div
             className="flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-purple-500/20 to-fuchsia-500/20"
@@ -746,15 +764,32 @@ export default function SlovnaRosada({ onBack }: { onBack: () => void }) {
               </div>
             ))}
 
-            <div className="flex gap-3">
-              <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty)); setPhase("who-starts"); }}>
-                🔄 Znova
+            {partyConfig ? (
+              <Button
+                fullWidth
+                onClick={() => {
+                  const scores: [number, number] = [
+                    players.filter((player) => player.team === 0).reduce((sum, player) => sum + player.score, 0),
+                    players.filter((player) => player.team === 1).reduce((sum, player) => sum + player.score, 0),
+                  ];
+                  partyConfig.onDone(scores);
+                }}
+              >
+                🏁 Pokračovať v Party mode
               </Button>
-              <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
-                Nastavenia
-              </Button>
-            </div>
-            <Button fullWidth variant="ghost" onClick={onBack}>Domov</Button>
+            ) : (
+              <>
+                <div className="flex gap-3">
+                  <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty)); setPhase("who-starts"); }}>
+                    🔄 Znova
+                  </Button>
+                  <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
+                    Nastavenia
+                  </Button>
+                </div>
+                <Button fullWidth variant="ghost" onClick={onBack}>Domov</Button>
+              </>
+            )}
           </div>
         </Shell>
       );

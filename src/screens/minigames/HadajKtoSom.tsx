@@ -419,15 +419,35 @@ function PlayingScreen({
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
-export default function HadajKtoSom({ onBack }: { onBack: () => void }) {
+interface PartyHadajKtoSomConfig {
+  teamNames: [string, string];
+  timerSeconds: number;
+  onDone: (scores: [number, number]) => void;
+}
+
+export function PartyHadajKtoSom(props: PartyHadajKtoSomConfig) {
+  return <HadajKtoSom onBack={() => props.onDone([0, 0])} partyConfig={props} />;
+}
+
+export default function HadajKtoSom({
+  onBack,
+  partyConfig,
+}: {
+  onBack: () => void;
+  partyConfig?: PartyHadajKtoSomConfig;
+}) {
   const { language } = useLanguage();
   const categories = useMemo(() => getCharacterCategories(language), [language]);
-  const [phase, setPhase] = useState<Phase>("setup");
-  const [players, setPlayers] = useState<PlayerScore[]>([]);
+  const [phase, setPhase] = useState<Phase>(partyConfig ? "who-starts" : "setup");
+  const [players, setPlayers] = useState<PlayerScore[]>(() => partyConfig
+    ? partyConfig.teamNames.map((name) => ({ name, correct: 0, skipped: 0, played: false }))
+    : []);
   const [currentDeck, setCurrentDeck] = useState<Card[]>([]);
   const [currentPlayer, setCurrentPlayer] = useState(0);
-  const [timerSeconds, setTimerSeconds] = useState(60);
-  const [allCatIds, setAllCatIds] = useState<string[]>([categories[0].id]);
+  const [timerSeconds, setTimerSeconds] = useState(partyConfig?.timerSeconds ?? 60);
+  const [allCatIds, setAllCatIds] = useState<string[]>(() => partyConfig
+    ? categories.map((category) => category.id)
+    : [categories[0].id]);
 
   function handleSetupStart(names: string[], catIds: string[], timer: number) {
     setAllCatIds(catIds);
@@ -473,7 +493,7 @@ export default function HadajKtoSom({ onBack }: { onBack: () => void }) {
     const isFirst = currentPlayer === 0;
     return (
       <Shell>
-        <TopBar title="Hádaj kto som" onBack={() => setPhase("setup")} />
+        <TopBar title="Hádaj kto som" onBack={partyConfig ? undefined : () => setPhase("setup")} />
         <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
           <div
             className="flex h-24 w-24 items-center justify-center rounded-3xl bg-gradient-to-br from-cyan-500/20 to-fuchsia-500/20"
@@ -627,23 +647,37 @@ export default function HadajKtoSom({ onBack }: { onBack: () => void }) {
             ))}
           </div>
 
-          <div className="flex gap-3 mt-2">
+          {partyConfig ? (
             <Button
               fullWidth
-              onClick={() => {
-                setCurrentPlayer(0);
-                setPhase("who-starts");
-              }}
+              onClick={() => partyConfig.onDone([
+                players[0]?.correct ?? 0,
+                players[1]?.correct ?? 0,
+              ])}
             >
-              🔄 Hrať znova
+              🏁 Pokračovať v Party mode
             </Button>
-            <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
-              Nastavenia
-            </Button>
-          </div>
-          <Button fullWidth variant="ghost" onClick={onBack}>
-            Domov
-          </Button>
+          ) : (
+            <>
+              <div className="flex gap-3 mt-2">
+                <Button
+                  fullWidth
+                  onClick={() => {
+                    setCurrentPlayer(0);
+                    setPhase("who-starts");
+                  }}
+                >
+                  🔄 Hrať znova
+                </Button>
+                <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
+                  Nastavenia
+                </Button>
+              </div>
+              <Button fullWidth variant="ghost" onClick={onBack}>
+                Domov
+              </Button>
+            </>
+          )}
         </div>
       </Shell>
     );
