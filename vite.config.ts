@@ -10,6 +10,8 @@ const __dirname = path.dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
+  // GitHub Pages serves this project under /party-box-slovak/; Vercel and local builds remain at the domain root.
+  base: process.env.GITHUB_ACTIONS ? "/party-box-slovak/" : "/",
   plugins: [react(), tailwindcss(), process.env.NODE_ENV === "production" && viteSingleFile()].filter(Boolean),
   resolve: {
     alias: {

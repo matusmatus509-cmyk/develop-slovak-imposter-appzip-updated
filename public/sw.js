@@ -1,12 +1,12 @@
-const CACHE_NAME = "podvodnik-app-v2";
+const CACHE_NAME = "party-box-app-v3";
 const APP_SHELL = [
-  "/",
-  "/index.html",
-  "/manifest.webmanifest",
-  "/party-box-icon.svg",
-  "/party-box-maskable.svg",
-  "/sounds/doorbell.ogg",
-  "/sounds/dog.ogg",
+  "./",
+  "./index.html",
+  "./manifest.webmanifest",
+  "./party-box-icon.svg",
+  "./party-box-maskable.svg",
+  "./sounds/doorbell.ogg",
+  "./sounds/dog.ogg",
 ];
 
 self.addEventListener("install", (event) => {
@@ -30,7 +30,7 @@ self.addEventListener("fetch", (event) => {
 
   if (event.request.mode === "navigate") {
     event.respondWith(
-      fetch(event.request).catch(() => caches.match("/index.html")),
+      fetch(event.request).catch(() => caches.match("./index.html")),
     );
     return;
   }
