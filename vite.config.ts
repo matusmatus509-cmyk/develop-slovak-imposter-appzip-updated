@@ -10,8 +10,11 @@ const __dirname = path.dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
-  // GitHub Pages serves this project under /party-box-slovak/; Vercel and local builds remain at the domain root.
-  base: process.env.GITHUB_ACTIONS ? "/party-box-slovak/" : "/",
+  // GitHub Pages serves the app from /<repo>/, so the base is derived from the repository name during CI.
+  // Local dev, Vercel, Netlify and any root-domain hosting keep using "/".
+  base: process.env.GITHUB_ACTIONS && process.env.GITHUB_REPOSITORY
+    ? `/${process.env.GITHUB_REPOSITORY.split("/")[1]}/`
+    : "/",
   plugins: [react(), tailwindcss(), process.env.NODE_ENV === "production" && viteSingleFile()].filter(Boolean),
   resolve: {
     alias: {
