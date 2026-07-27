@@ -3,6 +3,7 @@ import { Icons, type IconsType } from "../components/icons";
 import { Shell, TopBar } from "../components/ui";
 import { GAME_WELCOMES } from "../components/GameWelcome";
 import gameArt from "../assets/game-art-sprite.jpg";
+import { PLAYABLE_GAMES } from "../data/engagement";
 
 export interface MenuGame {
   screen: Screen;
@@ -19,12 +20,16 @@ export default function GameMenu({
   games,
   onBack,
   onNavigate,
+  favoriteIds,
+  onToggleFavorite,
 }: {
   title: string;
   subtitle: string;
   games: MenuGame[];
   onBack: () => void;
   onNavigate: (screen: Screen) => void;
+  favoriteIds: string[];
+  onToggleFavorite: (id: string) => void;
 }) {
   return (
     <Shell className="bg-[#090c14]">
@@ -39,11 +44,11 @@ export default function GameMenu({
         {games.map((game, index) => {
           const Icon = Icons[game.icon];
           const welcome = GAME_WELCOMES[game.screen];
+          const playable = PLAYABLE_GAMES.find((item) => item.screen === game.screen);
+          const isFavorite = playable ? favoriteIds.includes(playable.id) : false;
           return (
-            <button
+            <article
               key={game.screen}
-              type="button"
-              onClick={() => onNavigate(game.screen)}
               className="group relative grid min-h-[122px] grid-cols-[108px_1fr] overflow-hidden rounded-[20px] border bg-[#111820] text-left shadow-lg shadow-black/25 transition duration-300 hover:-translate-y-0.5 active:translate-y-0 active:scale-[.985]"
               style={{
                 animation: `slideUp .45s ease-out ${70 + index * 55}ms both`,
@@ -51,6 +56,7 @@ export default function GameMenu({
                 boxShadow: welcome ? `0 18px 36px -32px ${welcome.accent}` : undefined,
               }}
             >
+              <button type="button" onClick={() => onNavigate(game.screen)} aria-label={`Spustiť ${game.title}`} className="absolute inset-0 z-[1] rounded-[20px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300" />
               <div className="relative min-h-[122px] overflow-hidden bg-[#0c111a]">
                 {welcome?.art ? (
                   <img
@@ -93,10 +99,11 @@ export default function GameMenu({
                 <p className="line-clamp-2 text-[11px] font-medium leading-[1.45] text-white/45">{game.description}</p>
               </div>
 
-              <span className="absolute right-3.5 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/[.08] bg-white/[.045] text-white/30 transition group-hover:translate-x-0.5 group-hover:border-white/15 group-hover:bg-white/[.09] group-hover:text-white/80">
+              {playable && <button type="button" onClick={() => onToggleFavorite(playable.id)} aria-pressed={isFavorite} aria-label={isFavorite ? `Odobrať ${game.title} z obľúbených` : `Pridať ${game.title} medzi obľúbené`} className={`absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full border transition ${isFavorite ? "border-rose-300/25 bg-rose-400/15 text-rose-300" : "border-white/[.08] bg-black/25 text-white/35 hover:text-rose-200"}`}><Icons.heart size={15} fill={isFavorite ? "currentColor" : "none"} /></button>}
+              <span className="absolute bottom-3.5 right-3.5 flex h-8 w-8 items-center justify-center rounded-full border border-white/[.08] bg-white/[.045] text-white/30 transition group-hover:translate-x-0.5 group-hover:border-white/15 group-hover:bg-white/[.09] group-hover:text-white/80">
                 <Icons.chevronRight size={17} />
               </span>
-            </button>
+            </article>
           );
         })}
       </div>

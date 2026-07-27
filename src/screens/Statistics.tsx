@@ -3,11 +3,17 @@ import partyTableBackground from "../assets/party-table-bg.png";
 import {
   ACHIEVEMENTS,
   DAILY_CHALLENGES,
+  DAILY_REWARD_XP,
+  PARTY_PASS_REWARDS,
   getDailyChallengeProgress,
   getLevelInfo,
+  getNextPartyPassReward,
+  isDailyRewardAvailable,
   normalizeStatistics,
 } from "../utils/gameStats";
 import type { GameStatistics } from "../types";
+import { PLAYABLE_GAMES } from "../data/engagement";
+import { useCurrentLocalDate } from "../hooks/useCurrentLocalDate";
 
 function formatPlayTime(totalSeconds: number) {
   const safeSeconds = Math.max(0, Math.floor(totalSeconds));
@@ -19,13 +25,21 @@ function formatPlayTime(totalSeconds: number) {
   return `${seconds} s`;
 }
 
-export default function Statistics({ statistics, onBack }: { statistics: GameStatistics; onBack: () => void }) {
+export default function Statistics({ statistics, onBack, onClaimDailyReward }: { statistics: GameStatistics; onBack: () => void; onClaimDailyReward: () => void }) {
   const safeStatistics = normalizeStatistics(statistics);
   const progression = safeStatistics.progression;
   const level = getLevelInfo(progression.xp);
+  const nextReward = getNextPartyPassReward(progression.xp);
+  useCurrentLocalDate();
+  const dailyRewardAvailable = isDailyRewardAvailable(safeStatistics);
   const teamWins = Object.entries(safeStatistics.teamWins).sort(([, winsA], [, winsB]) => winsB - winsA);
   const totalTeamWins = teamWins.reduce((sum, [, wins]) => sum + wins, 0);
   const unlockedAchievements = ACHIEVEMENTS.filter((achievement) => progression.achievements[achievement.id]);
+  const playableGameIds = new Set(PLAYABLE_GAMES.map((game) => game.id));
+  const favoriteGameEntry = Object.entries(safeStatistics.gamePlayCounts)
+    .filter(([id]) => playableGameIds.has(id))
+    .sort(([, countA], [, countB]) => countB - countA)[0];
+  const favoriteGame = favoriteGameEntry ? PLAYABLE_GAMES.find((game) => game.id === favoriteGameEntry[0]) : undefined;
   const completedDaily = progression.daily.rewardedChallengeIds.length;
   const metrics = [
     { label: "Odohrané hry", value: safeStatistics.gamesPlayed.toLocaleString("sk-SK"), icon: Icons.gamepad, color: "#a78bfa", background: "rgba(139, 92, 246, .13)" },
@@ -63,11 +77,11 @@ export default function Statistics({ statistics, onBack }: { statistics: GameSta
           </div>
         </section>
 
-        <section className="relative mt-7 overflow-hidden rounded-[1.8rem] border border-violet-300/20 bg-[#151426]/95 p-5 shadow-[0_24px_70px_-38px_rgba(139,92,246,.9)]" style={{ animation: "slideUp .5s ease-out 60ms both" }}>
+        <section className={`relative mt-7 overflow-hidden rounded-[1.8rem] border p-5 shadow-[0_24px_70px_-38px_rgba(139,92,246,.9)] ${level.level >= 50 ? "border-amber-300/55 ring-2 ring-amber-300/15" : "border-violet-300/20"} ${level.level >= 10 ? "bg-[radial-gradient(circle_at_85%_0%,rgba(34,211,238,.18),transparent_42%),linear-gradient(145deg,#20123b,#101827)]" : "bg-[#151426]/95"}`} style={{ animation: "slideUp .5s ease-out 60ms both" }}>
           <div className="absolute -right-12 -top-16 h-44 w-44 rounded-full bg-violet-500/20 blur-3xl" />
           <div className="relative flex items-start justify-between gap-4">
             <div className="flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-600 text-white shadow-lg shadow-violet-950/40"><Icons.crown size={23} /></span>
+              <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-600 text-white shadow-lg shadow-violet-950/40"><Icons.crown size={23} />{level.level >= 5 && <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full border border-white/25 bg-fuchsia-500 text-[9px]" aria-label="Party ikona odomknutá">🎉</span>}</span>
               <div>
                 <p className="text-[9px] font-black uppercase tracking-[.2em] text-violet-300/70">Aktuálny level</p>
                 <p className="mt-0.5 text-3xl font-black tracking-tight">Level {level.level}</p>
@@ -86,6 +100,15 @@ export default function Statistics({ statistics, onBack }: { statistics: GameSta
             <div className="h-full rounded-full bg-gradient-to-r from-violet-500 via-fuchsia-400 to-cyan-400 transition-[width] duration-700" style={{ width: `${level.progressPercent}%` }} />
           </div>
           <p className="relative mt-3 text-[10px] font-semibold text-white/35">Za každú spustenú hru získate 100 XP · maximálny level je 100</p>
+        </section>
+
+        <section className="mt-4 rounded-[1.55rem] border border-amber-300/20 bg-amber-400/[.07] p-4" style={{ animation: "slideUp .5s ease-out 90ms both" }}>
+          <div className="flex items-center gap-3"><span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-400/12 text-amber-300"><Icons.calendarDays size={21} /></span><div className="min-w-0 flex-1"><h2 className="text-sm font-black">Denný darček · +{DAILY_REWARD_XP} XP</h2><p className="mt-0.5 text-[9px] font-semibold text-white/38">Raz za miestny kalendárny deň</p></div><button type="button" disabled={!dailyRewardAvailable} onClick={onClaimDailyReward} className="rounded-xl bg-amber-300 px-3 py-2 text-[9px] font-black text-amber-950 disabled:bg-white/[.07] disabled:text-white/35">{dailyRewardAvailable ? "Vyzdvihnúť" : "Získané"}</button></div>
+        </section>
+
+        <section className="mt-7" style={{ animation: "slideUp .5s ease-out 105ms both" }}>
+          <div className="mb-3 flex items-end justify-between"><div><p className="text-[9px] font-black uppercase tracking-[.2em] text-violet-300/65">Míľnikové odmeny</p><h2 className="mt-1 text-xl font-black">Party Pass</h2></div><span className="text-[9px] font-black text-white/38">{nextReward ? `Ďalej L${nextReward.level}` : "Kompletné"}</span></div>
+          <div className="space-y-2">{PARTY_PASS_REWARDS.map((reward) => { const unlocked = level.level >= reward.level; return <article key={reward.level} className={`flex items-center gap-3 rounded-[1.25rem] border p-3 ${unlocked ? "border-emerald-300/15 bg-emerald-400/[.06]" : "border-white/[.08] bg-white/[.035]"}`}><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[.06] text-lg">{reward.kind === "icon" ? "🎉" : reward.kind === "background" ? "🌌" : reward.kind === "pack" ? "🎁" : "👑"}</span><div className="min-w-0 flex-1"><div className="flex items-center gap-2"><h3 className="text-xs font-black">{reward.title}</h3><span className="text-[8px] font-black text-white/30">LEVEL {reward.level}</span></div><p className="mt-0.5 text-[9px] text-white/38">{reward.description}</p></div>{unlocked ? <Icons.circleCheck size={17} className="text-emerald-300" /> : <Icons.lock size={16} className="text-white/22" />}</article>; })}</div>
         </section>
 
         <section className="mt-7" style={{ animation: "slideUp .5s ease-out 120ms both" }}>
@@ -140,6 +163,15 @@ export default function Statistics({ statistics, onBack }: { statistics: GameSta
               </article>
             );
           })}
+        </section>
+
+        <section className="mt-4 flex items-center gap-3 rounded-[1.4rem] border border-white/[.1] bg-[#11171e]/90 p-4" aria-label="Najobľúbenejšia hra">
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-rose-400/10 text-xl">{favoriteGame?.icon ?? "♡"}</span>
+          <div className="min-w-0 flex-1">
+            <p className="text-[9px] font-black uppercase tracking-[.16em] text-rose-300/70">Najobľúbenejšia hra podľa spustení</p>
+            <h2 className="mt-1 truncate text-sm font-black">{favoriteGame?.title ?? "Zatiaľ bez dát"}</h2>
+          </div>
+          {favoriteGameEntry && <span className="rounded-lg bg-white/[.055] px-2.5 py-1.5 text-[9px] font-black text-white/40">{favoriteGameEntry[1]}×</span>}
         </section>
 
         <section className="mt-7" style={{ animation: "slideUp .5s ease-out 350ms both" }}>

@@ -28,14 +28,33 @@ export type Screen =
   | "pismeno"
   | "patzadesat"
   | "teambattle"
+  | "party-hub"
   | "statistics"
   | "settings";
+
+export type PartyTheme = "dark" | "neon" | "gold" | "halloween" | "christmas" | "galaxy";
+
+export type WorkshopEntryKind = "truth" | "dare" | "emoji" | "quiz" | "word";
+
+export interface WorkshopEntry {
+  id: string;
+  kind: WorkshopEntryKind;
+  text: string;
+  answer?: string;
+  likes: number;
+  rating: number;
+  ratingCount: number;
+  userRating?: number;
+  createdAt: number;
+}
 
 export interface FeedbackSettings {
   darkMode: boolean;
   soundsEnabled: boolean;
   vibrationEnabled: boolean;
   animationsEnabled: boolean;
+  partyTheme?: PartyTheme;
+  musicEnabled?: boolean;
 }
 
 export type AchievementId =
@@ -51,6 +70,7 @@ export interface DailyProgress {
   baselineCorrectAnswers: number;
   baselinePartyWins: number;
   rewardedChallengeIds: string[];
+  lastDailyRewardDate?: string;
 }
 
 export interface PlayerProgression {
@@ -63,6 +83,7 @@ export interface PlayerProgression {
 
 export interface GameStatistics {
   gamesPlayed: number;
+  gamePlayCounts: Record<string, number>;
   teamWins: Record<string, number>;
   totalPlaySeconds: number;
   correctAnswers: number;

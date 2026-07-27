@@ -3,7 +3,7 @@ import { Toggle } from "../components/ui";
 import type { FeedbackSettings } from "../types";
 
 export default function Settings({ settings, onChange, onBack }: { settings: FeedbackSettings; onChange: (settings: FeedbackSettings) => void; onBack: () => void }) {
-  const update = (key: keyof FeedbackSettings, value: boolean) => onChange({ ...settings, [key]: value });
+  const update = (key: "darkMode" | "soundsEnabled" | "vibrationEnabled" | "animationsEnabled", value: boolean) => onChange({ ...settings, [key]: value });
   return (
     <main className="min-h-screen bg-[#080b10] px-5 pb-10 pt-5 text-white">
       <div className="mx-auto w-full max-w-md">
