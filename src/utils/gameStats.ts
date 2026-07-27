@@ -1,8 +1,23 @@
 import type { AchievementId, DailyProgress, GameStatistics, PlayerProgression } from "../types";
 
 export const XP_PER_GAME = 100;
+export const DAILY_REWARD_XP = 50;
 export const XP_PER_LEVEL = 500;
 export const MAX_LEVEL = 100;
+
+export interface PartyPassReward {
+  level: 5 | 10 | 20 | 50;
+  title: string;
+  description: string;
+  kind: "icon" | "background" | "pack" | "frame";
+}
+
+export const PARTY_PASS_REWARDS: PartyPassReward[] = [
+  { level: 5, title: "Party ikona", description: "Odznak pre váš lokálny profil", kind: "icon" },
+  { level: 10, title: "Neónové pozadie", description: "Vizuálna odmena v profile", kind: "background" },
+  { level: 20, title: "Bonusový mix", description: "Odomkne reálny mix existujúcich hier", kind: "pack" },
+  { level: 50, title: "Exkluzívny rám", description: "Zlatý rám lokálneho profilu", kind: "frame" },
+];
 
 export type DailyChallengeId = "play-3" | "correct-20" | "party-win";
 
@@ -41,10 +56,12 @@ export const ACHIEVEMENTS: AchievementDefinition[] = [
 
 export interface StatisticsEvent {
   gamesStarted?: number;
+  gameId?: string;
   playSeconds?: number;
   correctAnswers?: number;
   partyWinnerName?: string;
   bombRoundsCompleted?: number;
+  dailyRewardClaim?: boolean;
 }
 
 function safeNumber(value: unknown) {
@@ -69,11 +86,12 @@ function createDailyProgress(statistics: Pick<GameStatistics, "gamesPlayed" | "c
     baselineCorrectAnswers: statistics.correctAnswers,
     baselinePartyWins: getTotalPartyWins(statistics.teamWins),
     rewardedChallengeIds: [],
+    lastDailyRewardDate: undefined,
   };
 }
 
 export function createDefaultStatistics(): GameStatistics {
-  const base = { gamesPlayed: 0, teamWins: {}, totalPlaySeconds: 0, correctAnswers: 0 };
+  const base = { gamesPlayed: 0, gamePlayCounts: {}, teamWins: {}, totalPlaySeconds: 0, correctAnswers: 0 };
   return {
     ...base,
     progression: {
@@ -104,7 +122,13 @@ export function normalizeStatistics(value: Partial<GameStatistics> | null | unde
   const totalPlaySeconds = safeNumber(value?.totalPlaySeconds);
   const rawTeamWins = value?.teamWins && typeof value.teamWins === "object" ? value.teamWins : {};
   const teamWins = Object.fromEntries(Object.entries(rawTeamWins).map(([name, wins]) => [name, safeNumber(wins)]));
-  const base = { gamesPlayed, correctAnswers, totalPlaySeconds, teamWins };
+  const rawGamePlayCounts = value?.gamePlayCounts && typeof value.gamePlayCounts === "object" ? value.gamePlayCounts : {};
+  const gamePlayCounts = Object.fromEntries(
+    Object.entries(rawGamePlayCounts)
+      .filter(([id]) => id.length > 0 && id.length <= 80)
+      .map(([id, count]) => [id, safeNumber(count)])
+  );
+  const base = { gamesPlayed, gamePlayCounts, correctAnswers, totalPlaySeconds, teamWins };
   const rawProgression = value?.progression as Partial<PlayerProgression> | undefined;
   const rawDaily = rawProgression?.daily as Partial<DailyProgress> | undefined;
   const progression: PlayerProgression = {
@@ -118,6 +142,7 @@ export function normalizeStatistics(value: Partial<GameStatistics> | null | unde
       baselineCorrectAnswers: safeNumber(rawDaily?.baselineCorrectAnswers ?? correctAnswers),
       baselinePartyWins: safeNumber(rawDaily?.baselinePartyWins ?? getTotalPartyWins(teamWins)),
       rewardedChallengeIds: Array.isArray(rawDaily?.rewardedChallengeIds) ? rawDaily.rewardedChallengeIds.filter((id): id is string => typeof id === "string") : [],
+      lastDailyRewardDate: typeof rawDaily?.lastDailyRewardDate === "string" ? rawDaily.lastDailyRewardDate : undefined,
     },
   };
   let statistics: GameStatistics = { ...base, progression };
@@ -143,16 +168,27 @@ export function applyStatisticsEvent(current: GameStatistics, event: StatisticsE
     const name = event.partyWinnerName.trim() || "Tím";
     teamWins[name] = (teamWins[name] ?? 0) + 1;
   }
+  const today = getLocalDateKey();
+  const canClaimDailyReward = Boolean(event.dailyRewardClaim) && normalized.progression.daily.lastDailyRewardDate !== today;
+  const gamesStarted = safeNumber(event.gamesStarted);
+  const gamePlayCounts = { ...normalized.gamePlayCounts };
+  const gameId = typeof event.gameId === "string" ? event.gameId.trim().slice(0, 80) : "";
+  if (gamesStarted > 0 && gameId) gamePlayCounts[gameId] = (gamePlayCounts[gameId] ?? 0) + gamesStarted;
   let next: GameStatistics = {
-    gamesPlayed: normalized.gamesPlayed + safeNumber(event.gamesStarted),
+    gamesPlayed: normalized.gamesPlayed + gamesStarted,
+    gamePlayCounts,
     correctAnswers: normalized.correctAnswers + safeNumber(event.correctAnswers),
     totalPlaySeconds: normalized.totalPlaySeconds + safeNumber(event.playSeconds),
     teamWins,
     progression: {
       ...normalized.progression,
-      xp: normalized.progression.xp + safeNumber(event.gamesStarted) * XP_PER_GAME,
+      xp: normalized.progression.xp + gamesStarted * XP_PER_GAME + (canClaimDailyReward ? DAILY_REWARD_XP : 0),
       bombRoundsCompleted: normalized.progression.bombRoundsCompleted + safeNumber(event.bombRoundsCompleted),
-      daily: { ...normalized.progression.daily, rewardedChallengeIds: [...normalized.progression.daily.rewardedChallengeIds] },
+      daily: {
+        ...normalized.progression.daily,
+        rewardedChallengeIds: [...normalized.progression.daily.rewardedChallengeIds],
+        lastDailyRewardDate: canClaimDailyReward ? today : normalized.progression.daily.lastDailyRewardDate,
+      },
     },
   };
 
@@ -179,4 +215,14 @@ export function getLevelInfo(xp: number) {
     xpForNextLevel: XP_PER_LEVEL,
     progressPercent: Math.min(100, (xpIntoLevel / XP_PER_LEVEL) * 100),
   };
+}
+
+
+export function isDailyRewardAvailable(statistics: GameStatistics) {
+  return normalizeStatistics(statistics).progression.daily.lastDailyRewardDate !== getLocalDateKey();
+}
+
+export function getNextPartyPassReward(xp: number) {
+  const { level } = getLevelInfo(xp);
+  return PARTY_PASS_REWARDS.find((reward) => reward.level > level) ?? null;
 }

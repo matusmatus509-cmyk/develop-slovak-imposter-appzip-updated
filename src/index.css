@@ -383,3 +383,59 @@ html[data-animations="reduced"] *::after {
   transition-duration: 0.01ms !important;
   scroll-behavior: auto !important;
 }
+
+
+/* Local party themes share the existing accent variables and keep high-contrast text. */
+html[data-party-theme="dark"] { --theme-a: #8b5cf6; --theme-b: #22d3ee; --theme-bg: #080b10; }
+html[data-party-theme="neon"] { --theme-a: #d946ef; --theme-b: #22d3ee; --theme-bg: #020617; }
+html[data-party-theme="gold"] { --theme-a: #f59e0b; --theme-b: #fde68a; --theme-bg: #171006; }
+html[data-party-theme="halloween"] { --theme-a: #f97316; --theme-b: #7c3aed; --theme-bg: #120904; }
+html[data-party-theme="christmas"] { --theme-a: #ef4444; --theme-b: #22c55e; --theme-bg: #07130c; }
+html[data-party-theme="galaxy"] { --theme-a: #818cf8; --theme-b: #c026d3; --theme-bg: #050816; }
+
+html[data-party-theme] body { background-color: var(--theme-bg); }
+.theme-surface {
+  background:
+    radial-gradient(circle at 82% 2%, color-mix(in srgb, var(--theme-a) 16%, transparent), transparent 26rem),
+    radial-gradient(circle at 5% 42%, color-mix(in srgb, var(--theme-b) 9%, transparent), transparent 24rem),
+    var(--theme-bg);
+}
+.hub-hero {
+  background:
+    radial-gradient(circle at 90% 0%, color-mix(in srgb, var(--theme-b) 22%, transparent), transparent 55%),
+    linear-gradient(145deg, color-mix(in srgb, var(--theme-a) 19%, #111820), #111820 62%);
+}
+.party-wheel {
+  position: relative;
+  background: conic-gradient(
+    #8b5cf6 0deg 21.18deg, #ec4899 21.18deg 42.35deg,
+    #06b6d4 42.35deg 63.53deg, #f59e0b 63.53deg 84.71deg,
+    #10b981 84.71deg 105.88deg, #ef4444 105.88deg 127.06deg,
+    #6366f1 127.06deg 148.24deg, #d946ef 148.24deg 169.41deg,
+    #14b8a6 169.41deg 190.59deg, #f97316 190.59deg 211.76deg,
+    #8b5cf6 211.76deg 232.94deg, #ec4899 232.94deg 254.12deg,
+    #06b6d4 254.12deg 275.29deg, #f59e0b 275.29deg 296.47deg,
+    #10b981 296.47deg 317.65deg, #ef4444 317.65deg 338.82deg,
+    #6366f1 338.82deg 360deg
+  );
+}
+.party-wheel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: repeating-conic-gradient(from 0deg, rgba(255,255,255,.2) 0deg 1deg, transparent 1deg 21.18deg);
+}
+
+
+/* Keep every existing screen recognizable while carrying the selected app theme globally. */
+html[data-party-theme] main {
+  box-shadow: inset 0 0 0 9999px color-mix(in srgb, var(--theme-a) 2.5%, transparent);
+}
+html[data-party-theme="neon"] .glass,
+html[data-party-theme="gold"] .glass,
+html[data-party-theme="halloween"] .glass,
+html[data-party-theme="christmas"] .glass,
+html[data-party-theme="galaxy"] .glass {
+  border-color: color-mix(in srgb, var(--theme-a) 24%, rgba(255,255,255,.1));
+}

@@ -6,11 +6,14 @@ import type {
   RoundAssignment,
   RoundHistoryEntry,
   Screen,
+  WorkshopEntry,
 } from "./types";
 import { CATEGORIES } from "./data/categories";
 import { DRAWING_CATEGORIES } from "./data/drawingCategories";
 import { generateRound } from "./utils/gameLogic";
 import { applyStatisticsEvent, createDefaultStatistics, normalizeStatistics } from "./utils/gameStats";
+import { normalizeFavoriteIds, normalizeWorkshopEntries, PARTY_THEMES, PLAYABLE_GAMES } from "./data/engagement";
+import { usePartyMusic } from "./hooks/usePartyMusic";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
 import Home from "./screens/Home";
@@ -38,6 +41,7 @@ import TeamBattle, { type TeamBattleSummary } from "./screens/teamBattle";
 import TeamQuickGame from "./screens/minigames/TeamQuickGame";
 import Statistics from "./screens/Statistics";
 import Settings from "./screens/Settings";
+import PartyHub from "./screens/PartyHub";
 import { FeedbackProvider } from "./feedback/FeedbackProvider";
 import GameWelcome, { GAME_WELCOMES } from "./components/GameWelcome";
 
@@ -90,13 +94,38 @@ const DEFAULT_FEEDBACK_SETTINGS: FeedbackSettings = {
   soundsEnabled: true,
   vibrationEnabled: true,
   animationsEnabled: true,
+  partyTheme: "dark",
+  musicEnabled: false,
 };
+
+function normalizeFeedbackSettings(value: unknown): FeedbackSettings {
+  const candidate = value && typeof value === "object" ? value as Partial<FeedbackSettings> : {};
+  const partyTheme = PARTY_THEMES.some((theme) => theme.id === candidate.partyTheme) ? candidate.partyTheme : "dark";
+  return {
+    darkMode: typeof candidate.darkMode === "boolean" ? candidate.darkMode : DEFAULT_FEEDBACK_SETTINGS.darkMode,
+    soundsEnabled: typeof candidate.soundsEnabled === "boolean" ? candidate.soundsEnabled : DEFAULT_FEEDBACK_SETTINGS.soundsEnabled,
+    vibrationEnabled: typeof candidate.vibrationEnabled === "boolean" ? candidate.vibrationEnabled : DEFAULT_FEEDBACK_SETTINGS.vibrationEnabled,
+    animationsEnabled: typeof candidate.animationsEnabled === "boolean" ? candidate.animationsEnabled : DEFAULT_FEEDBACK_SETTINGS.animationsEnabled,
+    partyTheme,
+    musicEnabled: Boolean(candidate.musicEnabled),
+  };
+}
+
+const THEME_ACCENTS = {
+  dark: { accent: "#8b5cf6", soft: "rgba(139,92,246,.18)", deep: "#080d16" },
+  neon: { accent: "#22d3ee", soft: "rgba(217,70,239,.2)", deep: "#020617" },
+  gold: { accent: "#fbbf24", soft: "rgba(245,158,11,.18)", deep: "#171006" },
+  halloween: { accent: "#f97316", soft: "rgba(249,115,22,.18)", deep: "#120904" },
+  christmas: { accent: "#ef4444", soft: "rgba(34,197,94,.17)", deep: "#07130c" },
+  galaxy: { accent: "#818cf8", soft: "rgba(76,29,149,.22)", deep: "#050816" },
+} as const;
 
 const NON_GAME_SCREENS: Screen[] = [
   "home",
   "impostor-menu",
   "minigames-menu",
   "impostor-history",
+  "party-hub",
   "statistics",
   "settings",
 ];
@@ -134,7 +163,20 @@ export default function App() {
     "podvodnik-feedback-settings-v1",
     DEFAULT_FEEDBACK_SETTINGS
   );
+  const [storedFavoriteIds, setStoredFavoriteIds] = useLocalStorage<string[]>("podvodnik-favorites-v1", []);
+  const [storedWorkshopEntries, setStoredWorkshopEntries] = useLocalStorage<WorkshopEntry[]>("podvodnik-workshop-v1", []);
+  const safeFeedbackSettings = normalizeFeedbackSettings(feedbackSettings);
+  const favoriteIds = normalizeFavoriteIds(storedFavoriteIds);
+  const workshopEntries = normalizeWorkshopEntries(storedWorkshopEntries);
+  const favoriteGames = favoriteIds.flatMap((id) => {
+    const game = PLAYABLE_GAMES.find((item) => item.id === id);
+    return game ? [game] : [];
+  });
+  const music = usePartyMusic(Boolean(safeFeedbackSettings.musicEnabled && safeFeedbackSettings.soundsEnabled));
   const gameSessionActiveRef = useRef(false);
+  const gameReturnScreenRef = useRef<Screen>("home");
+  const statisticsReturnScreenRef = useRef<Screen>("home");
+  const historyReturnScreenRef = useRef<Screen>("impostor-menu");
 
   const [assignment, setAssignment] = useState<RoundAssignment | null>(null);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
@@ -149,18 +191,31 @@ export default function App() {
     useState<RoundAssignment | null>(null);
   const [drawingVotedIndex, setDrawingVotedIndex] = useState<number | null>(null);
 
+  const selectedTheme = safeFeedbackSettings.partyTheme ?? "dark";
   const activeTheme = GAME_WELCOMES[screen];
   useEffect(() => {
     const root = document.documentElement;
-    root.style.setProperty("--game-accent", activeTheme?.accent ?? "#8b5cf6");
-    root.style.setProperty("--game-accent-soft", activeTheme?.accentSoft ?? "rgba(139,92,246,.18)");
-    root.style.setProperty("--game-deep", activeTheme?.deep ?? "#080d16");
-  }, [activeTheme]);
+    const previousAccent = root.style.getPropertyValue("--game-accent");
+    const previousAccentSoft = root.style.getPropertyValue("--game-accent-soft");
+    const previousDeep = root.style.getPropertyValue("--game-deep");
+    const previousPartyTheme = root.dataset.partyTheme;
+    const fallbackTheme = THEME_ACCENTS[selectedTheme];
+    root.style.setProperty("--game-accent", activeTheme?.accent ?? fallbackTheme.accent);
+    root.style.setProperty("--game-accent-soft", activeTheme?.accentSoft ?? fallbackTheme.soft);
+    root.style.setProperty("--game-deep", activeTheme?.deep ?? fallbackTheme.deep);
+    root.dataset.partyTheme = selectedTheme;
+    return () => {
+      if (previousAccent) root.style.setProperty("--game-accent", previousAccent); else root.style.removeProperty("--game-accent");
+      if (previousAccentSoft) root.style.setProperty("--game-accent-soft", previousAccentSoft); else root.style.removeProperty("--game-accent-soft");
+      if (previousDeep) root.style.setProperty("--game-deep", previousDeep); else root.style.removeProperty("--game-deep");
+      if (previousPartyTheme) root.dataset.partyTheme = previousPartyTheme; else delete root.dataset.partyTheme;
+    };
+  }, [activeTheme, selectedTheme]);
 
   useEffect(() => {
-    document.documentElement.dataset.theme = feedbackSettings.darkMode ? "dark" : "light";
-    document.documentElement.dataset.animations = feedbackSettings.animationsEnabled ? "enabled" : "reduced";
-  }, [feedbackSettings.darkMode, feedbackSettings.animationsEnabled]);
+    document.documentElement.dataset.theme = safeFeedbackSettings.darkMode ? "dark" : "light";
+    document.documentElement.dataset.animations = safeFeedbackSettings.animationsEnabled ? "enabled" : "reduced";
+  }, [safeFeedbackSettings.darkMode, safeFeedbackSettings.animationsEnabled]);
 
   useEffect(() => {
     if (NON_GAME_SCREENS.includes(screen)) gameSessionActiveRef.current = false;
@@ -171,6 +226,16 @@ export default function App() {
   }, [setStatistics]);
 
   useEffect(() => {
+    setFeedbackSettings((current) => normalizeFeedbackSettings(current));
+    const normalizedFavorites = normalizeFavoriteIds(storedFavoriteIds);
+    if (JSON.stringify(normalizedFavorites) !== JSON.stringify(storedFavoriteIds)) setStoredFavoriteIds(normalizedFavorites);
+    const normalizedWorkshop = normalizeWorkshopEntries(storedWorkshopEntries);
+    if (JSON.stringify(normalizedWorkshop) !== JSON.stringify(storedWorkshopEntries)) setStoredWorkshopEntries(normalizedWorkshop);
+  // Persisted values are migrated once on startup; setters are stable for the lifetime of the app.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     const timer = window.setInterval(() => {
       if (!gameSessionActiveRef.current) return;
       setStatistics((current) => applyStatisticsEvent(current, { playSeconds: 1 }));
@@ -178,10 +243,11 @@ export default function App() {
     return () => window.clearInterval(timer);
   }, [setStatistics]);
 
-  function startGameSession() {
+  function startGameSession(gameScreen: Screen) {
     if (gameSessionActiveRef.current) return;
     gameSessionActiveRef.current = true;
-    setStatistics((current) => applyStatisticsEvent(current, { gamesStarted: 1 }));
+    const gameId = PLAYABLE_GAMES.find((game) => game.screen === gameScreen)?.id;
+    setStatistics((current) => applyStatisticsEvent(current, { gamesStarted: 1, gameId }));
   }
 
   function recordCorrectAnswers(correctAnswers: number) {
@@ -200,18 +266,37 @@ export default function App() {
     setStatistics((current) => applyStatisticsEvent(current, { bombRoundsCompleted: 1 }));
   }
 
+  function claimDailyReward() {
+    setStatistics((current) => applyStatisticsEvent(current, { dailyRewardClaim: true }));
+  }
+
+  function toggleFavorite(id: string) {
+    setStoredFavoriteIds((current) => {
+      const normalized = normalizeFavoriteIds(current);
+      return normalized.includes(id) ? normalized.filter((item) => item !== id) : normalizeFavoriteIds([...normalized, id]);
+    });
+  }
+
   function navigateFromMenu(next: Screen) {
+    const enteringGame = !NON_GAME_SCREENS.includes(next);
+    if (enteringGame && NON_GAME_SCREENS.includes(screen)) gameReturnScreenRef.current = screen;
+    if (next === "statistics" && NON_GAME_SCREENS.includes(screen)) statisticsReturnScreenRef.current = screen;
+    if (next === "impostor-history" && NON_GAME_SCREENS.includes(screen)) historyReturnScreenRef.current = screen;
     const hasWelcome = Boolean(GAME_WELCOMES[next]);
     setScreen(next);
     setWelcomeScreen(hasWelcome ? next : null);
-    if (!hasWelcome && !NON_GAME_SCREENS.includes(next)) startGameSession();
+    if (!hasWelcome && enteringGame) startGameSession(next);
+  }
+
+  function returnFromActiveGame(fallback: Screen) {
+    const target = NON_GAME_SCREENS.includes(gameReturnScreenRef.current) ? gameReturnScreenRef.current : fallback;
+    setWelcomeScreen(null);
+    setScreen(target);
   }
 
   function backFromWelcome(current: Screen) {
-    setWelcomeScreen(null);
-    if (current === "teambattle") setScreen("home");
-    else if (current === "impostor-setup" || current === "drawing-setup") setScreen("impostor-menu");
-    else setScreen("minigames-menu");
+    const fallback = current === "teambattle" ? "home" : current === "impostor-setup" || current === "drawing-setup" ? "impostor-menu" : "minigames-menu";
+    returnFromActiveGame(fallback);
   }
 
   function startNewRound(currentSettings: GameSettings) {
@@ -274,12 +359,12 @@ export default function App() {
 
   if (welcomeScreen === screen && activeTheme) {
     return (
-      <FeedbackProvider settings={feedbackSettings}>
+      <FeedbackProvider settings={safeFeedbackSettings}>
         <GameWelcome
           config={activeTheme}
           onBack={() => backFromWelcome(screen)}
           onStart={() => {
-            startGameSession();
+            startGameSession(screen);
             setWelcomeScreen(null);
           }}
         />
@@ -290,26 +375,24 @@ export default function App() {
   const canExitActiveGame = !NON_GAME_SCREENS.includes(screen);
 
   function leaveActiveGame() {
-    setWelcomeScreen(null);
-    if (screen === "teambattle") {
-      setScreen("home");
-    } else if (screen.startsWith("impostor") || screen.startsWith("drawing")) {
-      setScreen("impostor-menu");
-    } else {
-      setScreen("minigames-menu");
-    }
+    if (screen === "teambattle") returnFromActiveGame("home");
+    else if (screen.startsWith("impostor") || screen.startsWith("drawing")) returnFromActiveGame("impostor-menu");
+    else returnFromActiveGame("minigames-menu");
   }
 
   function renderScreen() {
   switch (screen) {
     case "home":
-      return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => setScreen("settings")} />;
+      return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => setScreen("settings")} favoriteGames={favoriteGames} onToggleFavorite={toggleFavorite} />;
+
+    case "party-hub":
+      return <PartyHub statistics={statistics} settings={safeFeedbackSettings} musicSupported={music.supported} musicBlocked={music.blocked} workshopEntries={workshopEntries} onWorkshopChange={setStoredWorkshopEntries} onSettingsChange={setFeedbackSettings} onClaimDailyReward={claimDailyReward} onNavigate={navigateFromMenu} onBack={() => setScreen("home")} />;
 
     case "statistics":
-      return <Statistics statistics={statistics} onBack={() => setScreen("home")} />;
+      return <Statistics statistics={statistics} onBack={() => setScreen(statisticsReturnScreenRef.current)} onClaimDailyReward={claimDailyReward} />;
 
     case "settings":
-      return <Settings settings={feedbackSettings} onChange={setFeedbackSettings} onBack={() => setScreen("home")} />;
+      return <Settings settings={safeFeedbackSettings} onChange={setFeedbackSettings} onBack={() => setScreen("home")} />;
 
     case "impostor-menu":
       return (
@@ -319,6 +402,8 @@ export default function App() {
           games={IMPOSTOR_GAMES}
           onBack={() => setScreen("home")}
           onNavigate={navigateFromMenu}
+          favoriteIds={favoriteIds}
+          onToggleFavorite={toggleFavorite}
         />
       );
 
@@ -330,6 +415,8 @@ export default function App() {
           games={MINIGAMES}
           onBack={() => setScreen("home")}
           onNavigate={navigateFromMenu}
+          favoriteIds={favoriteIds}
+          onToggleFavorite={toggleFavorite}
         />
       );
 
@@ -337,7 +424,7 @@ export default function App() {
       return (
         <Setup
           initial={settings}
-          onBack={() => setScreen("impostor-menu")}
+          onBack={() => returnFromActiveGame("impostor-menu")}
           onStart={handleStartSetup}
         />
       );
@@ -351,7 +438,7 @@ export default function App() {
         <Reveal
           settings={settings}
           assignment={assignment}
-          onExit={() => setScreen("impostor-menu")}
+          onExit={() => returnFromActiveGame("impostor-menu")}
           onDone={() => setScreen("impostor-discussion")}
         />
       );
@@ -360,7 +447,7 @@ export default function App() {
       return (
         <Discussion
           settings={settings}
-          onExit={() => setScreen("impostor-menu")}
+          onExit={() => returnFromActiveGame("impostor-menu")}
           onFinish={(elapsed) => {
             setElapsedSeconds(elapsed);
             setScreen("impostor-voting");
@@ -372,7 +459,7 @@ export default function App() {
       return (
         <Voting
           settings={settings}
-          onExit={() => setScreen("impostor-menu")}
+          onExit={() => returnFromActiveGame("impostor-menu")}
           onConfirm={handleVoteConfirm}
         />
       );
@@ -388,8 +475,11 @@ export default function App() {
           assignment={assignment}
           votedIndex={votedIndex}
           onNewRound={() => startNewRound(settings)}
-          onHome={() => setScreen("impostor-menu")}
-          onHistory={() => setScreen("impostor-history")}
+          onHome={() => returnFromActiveGame("impostor-menu")}
+          onHistory={() => {
+            historyReturnScreenRef.current = gameReturnScreenRef.current;
+            setScreen("impostor-history");
+          }}
         />
       );
 
@@ -397,7 +487,7 @@ export default function App() {
       return (
         <History
           history={history}
-          onBack={() => setScreen("impostor-menu")}
+          onBack={() => setScreen(historyReturnScreenRef.current)}
           onClear={() => {
             setHistory([]);
             setUsedWords({});
@@ -406,19 +496,19 @@ export default function App() {
       );
 
     case "truth-or-dare":
-      return <TruthOrDare onBack={() => setScreen("minigames-menu")} />;
+      return <TruthOrDare onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "never-have-i-ever":
-      return <NeverHaveIEver onBack={() => setScreen("minigames-menu")} />;
+      return <NeverHaveIEver onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "would-you-rather":
-      return <WouldYouRather onBack={() => setScreen("minigames-menu")} />;
+      return <WouldYouRather onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "drawing-setup":
       return (
         <DrawingSetup
           initial={drawingSettings}
-          onBack={() => setScreen("impostor-menu")}
+          onBack={() => returnFromActiveGame("impostor-menu")}
           onStart={handleDrawingSetupStart}
         />
       );
@@ -433,7 +523,7 @@ export default function App() {
           settings={drawingSettings}
           assignment={drawingAssignment}
           mode="drawing"
-          onExit={() => setScreen("impostor-menu")}
+          onExit={() => returnFromActiveGame("impostor-menu")}
           onDone={() => setScreen("drawing-canvas")}
         />
       );
@@ -447,7 +537,7 @@ export default function App() {
         <DrawingCanvas
           settings={drawingSettings}
           assignment={drawingAssignment}
-          onExit={() => setScreen("impostor-menu")}
+          onExit={() => returnFromActiveGame("impostor-menu")}
           onVote={() => setScreen("drawing-vote")}
         />
       );
@@ -456,7 +546,7 @@ export default function App() {
       return (
         <DrawingVote
           settings={drawingSettings}
-          onExit={() => setScreen("impostor-menu")}
+          onExit={() => returnFromActiveGame("impostor-menu")}
           onConfirm={handleDrawingVote}
         />
       );
@@ -472,53 +562,53 @@ export default function App() {
           assignment={drawingAssignment}
           votedIndex={drawingVotedIndex}
           onNewRound={() => startDrawingRound(drawingSettings)}
-          onHome={() => setScreen("impostor-menu")}
+          onHome={() => returnFromActiveGame("impostor-menu")}
         />
       );
 
     case "slovnarosada":
-      return <SlovnaRosada onBack={() => setScreen("minigames-menu")} />;
+      return <SlovnaRosada onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "pingpong":
-      return <SlovnyPingPong onBack={() => setScreen("minigames-menu")} />;
+      return <SlovnyPingPong onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "hadajktosom":
-      return <HadajKtoSom onBack={() => setScreen("minigames-menu")} />;
+      return <HadajKtoSom onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "ibanepravda":
-      return <IbaNepravda onBack={() => setScreen("minigames-menu")} />;
+      return <IbaNepravda onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "ktodostanebombu":
-      return <KtoDostaneBombu onBack={() => setScreen("minigames-menu")} onRoundComplete={recordBombRound} />;
+      return <KtoDostaneBombu onBack={() => returnFromActiveGame("minigames-menu")} onRoundComplete={recordBombRound} />;
 
     case "hadajemoji":
-      return <HadajEmoji onBack={() => setScreen("minigames-menu")} />;
+      return <HadajEmoji onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "zakazane":
-      return <TeamQuickGame game="zakazane" onBack={() => setScreen("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
+      return <TeamQuickGame game="zakazane" onBack={() => returnFromActiveGame("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
 
     case "pesnicka":
-      return <TeamQuickGame game="pesnicka" onBack={() => setScreen("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
+      return <TeamQuickGame game="pesnicka" onBack={() => returnFromActiveGame("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
 
     case "zvuk":
-      return <TeamQuickGame game="zvuk" onBack={() => setScreen("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
+      return <TeamQuickGame game="zvuk" onBack={() => returnFromActiveGame("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
 
     case "pismeno":
-      return <TeamQuickGame game="pismeno" onBack={() => setScreen("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
+      return <TeamQuickGame game="pismeno" onBack={() => returnFromActiveGame("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
 
     case "patzadesat":
-      return <TeamQuickGame game="patzadesat" onBack={() => setScreen("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
+      return <TeamQuickGame game="patzadesat" onBack={() => returnFromActiveGame("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
 
     case "teambattle":
-      return <TeamBattle onHome={() => setScreen("home")} onGameComplete={recordPartyResult} />;
+      return <TeamBattle onHome={() => returnFromActiveGame("home")} onGameComplete={recordPartyResult} />;
 
     default:
-      return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => setScreen("settings")} />;
+      return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => setScreen("settings")} favoriteGames={favoriteGames} onToggleFavorite={toggleFavorite} />;
   }
   }
 
   return (
-    <FeedbackProvider settings={feedbackSettings}>
+    <FeedbackProvider settings={safeFeedbackSettings}>
       {renderScreen()}
       {canExitActiveGame && (
         <button
