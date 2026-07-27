@@ -338,6 +338,7 @@ export function Toggle({
       type="button"
       onClick={() => !disabled && onChange(!checked)}
       disabled={disabled}
+      aria-pressed={checked}
       className={cn(
         "flex w-full items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5 text-left transition-all",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080b10]",

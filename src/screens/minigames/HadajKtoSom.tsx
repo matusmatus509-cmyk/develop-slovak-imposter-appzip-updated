@@ -1,6 +1,9 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { getCharacterCategories, type CharacterCategory } from "../../data/characters";
 import { Button, Shell, TopBar } from "../../components/ui";
+import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
+import type { GeneratedPrompt, WorkshopEntry } from "../../types";
+import { useFeedback } from "../../feedback/FeedbackProvider";
 import { Icons } from "../../components/icons";
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
@@ -18,13 +21,14 @@ interface PlayerScore {
 }
 
 interface Card {
+  id?: string;
   word: string;
   categoryName: string;
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function buildDeck(categories: CharacterCategory[], catIds: string[]): Card[] {
+function buildDeck(categories: CharacterCategory[], catIds: string[], extraCards: Array<{ id: string; word: string }> = []): Card[] {
   const cats = categories.filter((c) => catIds.includes(c.id));
   const cards: Card[] = [];
   const seen = new Set<string>();
@@ -36,6 +40,12 @@ function buildDeck(categories: CharacterCategory[], catIds: string[]): Card[] {
       cards.push({ word: ch, categoryName: cat.name });
     }
   }
+  for (const { id, word } of extraCards) {
+    const key = word.trim().toLocaleLowerCase("sk");
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    cards.push({ id: `custom:${id}`, word, categoryName: "✨ Vlastná téma" });
+  }
   return cards;
 }
 
@@ -45,10 +55,12 @@ function SetupScreen({
   onBack,
   onStart,
   categories,
+  customControls,
 }: {
   onBack: () => void;
   onStart: (names: string[], catIds: string[], timerSeconds: number) => void;
   categories: CharacterCategory[];
+  customControls?: CustomContentControls;
 }) {
   const { language } = useLanguage();
   const [count, setCount] = useState(3);
@@ -88,6 +100,8 @@ function SetupScreen({
         <strong className="text-white">dole = preskočiť ✗</strong>.
         Daj čo najviac za čas!
       </div>
+
+      {customControls && <div className="mb-4"><CustomContentSelector controls={customControls} compact /></div>}
 
       {/* Category */}
       <div
@@ -203,19 +217,24 @@ function SetupScreen({
 
 function PlayingScreen({
   deck,
+  priorityCards,
   timerSeconds,
   onDone,
 }: {
   deck: Card[];
+  priorityCards: Card[];
   timerSeconds: number;
   onDone: (correct: number, skipped: number) => void;
 }) {
-  const [cardIdx, setCardIdx] = useState(0);
-  const [card, setCard] = useState(() => takePersistentItem(
+  const { playFeedback } = useFeedback();
+  const priorityQueueRef = useRef([...priorityCards]);
+  const drawNextCard = useCallback(() => priorityQueueRef.current.shift() ?? takePersistentItem(
     "guess-who:all",
     deck,
-    (item) => item.word.trim().toLocaleLowerCase("sk"),
-  ));
+    (item) => item.id ?? item.word.trim().toLocaleLowerCase("sk"),
+  ), [deck]);
+  const [cardIdx, setCardIdx] = useState(0);
+  const [card, setCard] = useState(drawNextCard);
   const [timeLeft, setTimeLeft] = useState(timerSeconds);
   const [flash, setFlash] = useState<"correct" | "wrong" | null>(null);
 
@@ -235,38 +254,30 @@ function PlayingScreen({
   const handleCorrect = useCallback(() => {
     if (doneRef.current || tiltLocked.current) return;
     tiltLocked.current = true;
-    navigator.vibrate?.(25);
+    playFeedback("click");
     correctRef.current += 1;
     setFlash("correct");
     setTimeout(() => {
       setFlash(null);
-      setCard(takePersistentItem(
-        "guess-who:all",
-        deck,
-        (item) => item.word.trim().toLocaleLowerCase("sk"),
-      ));
+      setCard(drawNextCard());
       setCardIdx((value) => value + 1);
       tiltLocked.current = false;
     }, 600);
-  }, [deck]);
+  }, [drawNextCard, playFeedback]);
 
   const handleSkip = useCallback(() => {
     if (doneRef.current || tiltLocked.current) return;
     tiltLocked.current = true;
-    navigator.vibrate?.(25);
+    playFeedback("click");
     skippedRef.current += 1;
     setFlash("wrong");
     setTimeout(() => {
       setFlash(null);
-      setCard(takePersistentItem(
-        "guess-who:all",
-        deck,
-        (item) => item.word.trim().toLocaleLowerCase("sk"),
-      ));
+      setCard(drawNextCard());
       setCardIdx((value) => value + 1);
       tiltLocked.current = false;
     }, 600);
-  }, [deck]);
+  }, [drawNextCard, playFeedback]);
 
   const tiltStatus = useTiltGesture(true, handleCorrect, handleSkip);
   const isCalibrating = tiltStatus === "calibrating";
@@ -340,12 +351,14 @@ function PlayingScreen({
       >
         {/* Tap zone — upper half = correct */}
         <button
+          data-feedback="off"
           className="absolute top-0 left-0 right-0 z-10 opacity-0"
           style={{ height: "45%" }}
           onClick={handleCorrect}
         />
         {/* Tap zone — lower half = skip */}
         <button
+          data-feedback="off"
           className="absolute bottom-0 left-0 right-0 z-10 opacity-0"
           style={{ height: "45%" }}
           onClick={handleSkip}
@@ -432,9 +445,15 @@ export function PartyHadajKtoSom(props: PartyHadajKtoSomConfig) {
 export default function HadajKtoSom({
   onBack,
   partyConfig,
+  customEntries = [],
+  customControls,
+  themedPrompts = [],
 }: {
   onBack: () => void;
   partyConfig?: PartyHadajKtoSomConfig;
+  customEntries?: WorkshopEntry[];
+  customControls?: CustomContentControls;
+  themedPrompts?: GeneratedPrompt[];
 }) {
   const { language } = useLanguage();
   const categories = useMemo(() => getCharacterCategories(language), [language]);
@@ -443,6 +462,7 @@ export default function HadajKtoSom({
     ? partyConfig.teamNames.map((name) => ({ name, correct: 0, skipped: 0, played: false }))
     : []);
   const [currentDeck, setCurrentDeck] = useState<Card[]>([]);
+  const [priorityCards, setPriorityCards] = useState<Card[]>([]);
   const [currentPlayer, setCurrentPlayer] = useState(0);
   const [timerSeconds, setTimerSeconds] = useState(partyConfig?.timerSeconds ?? 60);
   const [allCatIds, setAllCatIds] = useState<string[]>(() => partyConfig
@@ -459,7 +479,10 @@ export default function HadajKtoSom({
 
   async function startPlaying() {
     await requestTiltPermission();
-    setCurrentDeck(buildDeck(categories, allCatIds));
+    setCurrentDeck(buildDeck(categories, allCatIds, customEntries.map((entry) => ({ id: entry.id, word: entry.text }))));
+    setPriorityCards(currentPlayer === 0
+      ? themedPrompts.filter((prompt) => prompt.kind === "person").map((prompt) => ({ word: prompt.text, categoryName: "✨ AI Party téma" }))
+      : []);
     setPhase("playing");
   }
 
@@ -484,7 +507,7 @@ export default function HadajKtoSom({
 
   // ── Setup ─────────────────────────────────────────────────────────────────
   if (phase === "setup") {
-    return <SetupScreen key={language} categories={categories} onBack={onBack} onStart={handleSetupStart} />;
+    return <SetupScreen key={language} categories={categories} customControls={customControls} onBack={onBack} onStart={handleSetupStart} />;
   }
 
   // ── Who starts ────────────────────────────────────────────────────────────
@@ -537,6 +560,7 @@ export default function HadajKtoSom({
     return (
       <PlayingScreen
         deck={currentDeck}
+        priorityCards={priorityCards}
         timerSeconds={timerSeconds}
         onDone={handleRoundDone}
       />

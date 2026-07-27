@@ -1,4 +1,4 @@
-import type { PartyTheme, Screen, WorkshopEntry } from "../types";
+import type { PartyTheme, Screen } from "../types";
 
 export interface PlayableGame {
   id: string;
@@ -95,67 +95,8 @@ export async function getWeeklyFeature(date = new Date(), provider?: WeeklyConte
   }
 }
 
-export interface GeneratedPartyItem { kind: string; prompt: string; screen: Screen }
-
-const CONTEXT_TEMPLATES = [
-  { match: /chat|chata|cabin/i, place: "na chate", action: "nájdite najzábavnejší predmet v izbe", topic: "príroda a výlety" },
-  { match: /škola|tried|school/i, place: "v škole", action: "napodobni obľúbeného učiteľa bez mena", topic: "škola" },
-  { match: /naroden|birthday|oslava/i, place: "na oslave", action: "vymysli krátky narodeninový prípitok", topic: "oslavy" },
-  { match: /cesta|auto|vlak|trip/i, place: "na ceste", action: "predveď zvuk dopravného prostriedku", topic: "cestovanie" },
-];
-
-function hashText(text: string) {
-  let hash = 2166136261;
-  for (const char of text) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
-  return hash >>> 0;
-}
-
-export function generatePartyMix(context: string): GeneratedPartyItem[] {
-  const clean = context.trim().slice(0, 80) || "s partiou";
-  const preset = CONTEXT_TEMPLATES.find((item) => item.match.test(clean)) ?? { place: `v situácii „${clean}“`, action: "predveď predmet, ktorý vidíš okolo seba", topic: "vaša partia" };
-  const variants = ["najvtipnejší", "najodvážnejší", "najnečakanejší"];
-  const variant = variants[hashText(clean) % variants.length];
-  return [
-    { kind: "Pravda", prompt: `Aký bol tvoj ${variant} zážitok ${preset.place}?`, screen: "truth-or-dare" },
-    { kind: "Výzva", prompt: `${preset.action.charAt(0).toUpperCase()}${preset.action.slice(1)}.`, screen: "truth-or-dare" },
-    { kind: "Nikdy som nikdy", prompt: `Nikdy som nikdy nezažil/a nečakané dobrodružstvo ${preset.place}.`, screen: "never-have-i-ever" },
-    { kind: "Kvíz", prompt: `Každý povie jednu otázku na tému „${preset.topic}“. Kto zaváha, stráca bod.`, screen: "teambattle" },
-    { kind: "Hádaj kto", prompt: `Vyberte osobu spojenú s témou „${preset.topic}“ a dávajte iba áno/nie nápovedy.`, screen: "hadajktosom" },
-  ];
-}
-
 export function normalizeFavoriteIds(value: unknown) {
   const valid = new Set(PLAYABLE_GAMES.map((game) => game.id));
   if (!Array.isArray(value)) return [];
   return [...new Set(value.filter((id): id is string => typeof id === "string" && valid.has(id)))];
-}
-
-export function normalizeWorkshopEntries(value: unknown): WorkshopEntry[] {
-  if (!Array.isArray(value)) return [];
-  const kinds = new Set<WorkshopEntry["kind"]>(["truth", "dare", "emoji", "quiz", "word"]);
-  const seenIds = new Set<string>();
-  const normalized: WorkshopEntry[] = [];
-  for (const [index, entry] of value.slice(0, 200).entries()) {
-    if (!entry || typeof entry !== "object") continue;
-    const candidate = entry as Partial<WorkshopEntry>;
-    const text = typeof candidate.text === "string" ? candidate.text.trim().slice(0, 240) : "";
-    if (!text || !candidate.kind || !kinds.has(candidate.kind)) continue;
-    const createdAt = Number.isFinite(candidate.createdAt) ? Math.max(0, Number(candidate.createdAt)) : Date.now();
-    let id = typeof candidate.id === "string" ? candidate.id.trim().slice(0, 80) : "";
-    if (!id || seenIds.has(id)) id = `local-${Math.round(createdAt)}-${index}`;
-    while (seenIds.has(id)) id = `${id}-copy`;
-    seenIds.add(id);
-    normalized.push({
-      id,
-      kind: candidate.kind,
-      text,
-      answer: typeof candidate.answer === "string" ? candidate.answer.trim().slice(0, 160) || undefined : undefined,
-      likes: Number.isFinite(candidate.likes) ? Math.min(1_000_000, Math.max(0, Number(candidate.likes))) : 0,
-      rating: Number.isFinite(candidate.rating) ? Math.min(5, Math.max(0, Number(candidate.rating))) : 0,
-      ratingCount: Number.isFinite(candidate.ratingCount) ? Math.min(1_000_000, Math.max(0, Number(candidate.ratingCount))) : 0,
-      userRating: Number.isFinite(candidate.userRating) ? Math.min(5, Math.max(1, Math.round(Number(candidate.userRating)))) : undefined,
-      createdAt,
-    });
-  }
-  return normalized;
 }

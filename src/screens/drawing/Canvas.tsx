@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { GameSettings, RoundAssignment } from "../../types";
+import { vibrate } from "../../utils/deviceFeedback";
 
 const PLAYER_COLORS = [
   "#fb7185", "#fb923c", "#facc15", "#4ade80",
@@ -150,7 +151,7 @@ export default function DrawingCanvas({
     isDrawingRef.current = false;
     lastPosRef.current = null;
     setStrokeDone(true);
-    navigator.vibrate?.(14);
+    vibrate(14);
   }
 
   function undoStroke() {
@@ -158,13 +159,13 @@ export default function DrawingCanvas({
     if (!canvas || !committedRef.current) return;
     canvas.getContext("2d")?.putImageData(committedRef.current, 0, 0);
     setStrokeDone(false);
-    navigator.vibrate?.(10);
+    vibrate(10);
   }
 
   function nextTurn() {
     if (!strokeDone) return;
     // Clear haptic confirmation that this turn is complete and the phone can move on.
-    navigator.vibrate?.([20, 35, 32]);
+    vibrate([20, 35, 32]);
     if (isLastTurn) {
       onVote();
       return;

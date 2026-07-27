@@ -4,6 +4,7 @@ import {
   QUIZ_QUESTIONS,
   type BattleRound,
   type GameType,
+  type QuizQuestion,
 } from "../../data/teamBattle";
 
 import TeamBattleSetup, { type TeamBattleOptions } from "./Setup";
@@ -22,6 +23,7 @@ import SoundBuzzer from "./SoundBuzzer";
 import { FiveInTenGame, LetterChallengeGame } from "./QuickChallenges";
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItems } from "../../utils/persistentDeck";
+import type { CustomContentControls } from "../../components/CustomContentSelector";
 
 type Phase =
   | "setup"
@@ -42,11 +44,27 @@ export interface TeamBattleSummary {
 export default function TeamBattle({
   onHome,
   onGameComplete,
+  customQuestions = [],
+  themedQuestions = [],
+  customControls,
 }: {
   onHome: () => void;
   onGameComplete?: (summary: TeamBattleSummary) => void;
+  customQuestions?: QuizQuestion[];
+  themedQuestions?: QuizQuestion[];
+  customControls?: CustomContentControls;
 }) {
   const { language } = useLanguage();
+  const themedQuestionQueueRef = useRef([...themedQuestions]);
+  function chooseQuizQuestions() {
+    const pool = [...QUIZ_QUESTIONS, ...customQuestions];
+    if (themedQuestionQueueRef.current.length > 0) {
+      const themed = themedQuestionQueueRef.current.splice(0, 5);
+      const filler = takePersistentItems("party:quiz:themed-filler", pool, 5 - themed.length, (item) => item.id ?? item.question);
+      return [...themed, ...filler];
+    }
+    return takePersistentItems("party:quiz", pool, 5, (item) => item.id ?? item.question);
+  }
   const [phase, setPhase] = useState<Phase>("setup");
   const [teamNames, setTeamNames] = useState<[string, string]>([
     defaultTeamName(language, "A"),
@@ -61,9 +79,7 @@ export default function TeamBattle({
   const completionReportedRef = useRef(false);
 
   // Per-round questions are selected at round start.
-  const [roundQuestions, setRoundQuestions] = useState(
-    () => takePersistentItems("party:quiz", QUIZ_QUESTIONS, 5, (item) => item.question)
-  );
+  const [roundQuestions, setRoundQuestions] = useState<QuizQuestion[]>([]);
 
   const currentRound = rounds[currentRoundIdx] ?? null;
 
@@ -95,7 +111,7 @@ export default function TeamBattle({
     const r = rounds[idx];
     if (!r) return;
     if (r.game === "quiz") {
-      setRoundQuestions(takePersistentItems("party:quiz", QUIZ_QUESTIONS, 5, (item) => item.question));
+      setRoundQuestions(chooseQuizQuestions());
     }
   }
 
@@ -138,6 +154,7 @@ export default function TeamBattle({
   }
 
   function handlePlayAgain() {
+    themedQuestionQueueRef.current = [...themedQuestions];
     setCorrectAnswers(0);
     completionReportedRef.current = false;
     setPhase("setup");
@@ -146,7 +163,7 @@ export default function TeamBattle({
   // ── Render ────────────────────────────────────────────────────────────────
 
   if (phase === "setup") {
-    return <TeamBattleSetup onBack={onHome} onStart={handleSetupStart} />;
+    return <TeamBattleSetup onBack={onHome} onStart={handleSetupStart} customControls={customControls} quizOnly={themedQuestions.length > 0} />;
   }
 
   if (phase === "intro") {

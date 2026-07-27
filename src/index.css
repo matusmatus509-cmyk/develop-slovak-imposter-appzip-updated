@@ -439,3 +439,97 @@ html[data-party-theme="christmas"] .glass,
 html[data-party-theme="galaxy"] .glass {
   border-color: color-mix(in srgb, var(--theme-a) 24%, rgba(255,255,255,.1));
 }
+
+
+/* Premium app surfaces shared by Home, Party Hub and Settings. */
+.premium-nav-button {
+  display: flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: .9rem;
+  border: 1px solid var(--hairline);
+  background: color-mix(in srgb, var(--panel-raised) 94%, transparent);
+  color: var(--muted-ink);
+  box-shadow: 0 14px 30px -22px rgba(0,0,0,.85);
+  transition: transform .18s ease, border-color .18s ease, color .18s ease;
+}
+.premium-nav-button:active { transform: scale(.92); }
+.premium-section { margin-top: 1.75rem; scroll-margin-top: 5.5rem; }
+.premium-section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: .75rem; }
+.premium-section-heading h2 { margin-top: .22rem; font-size: 1.25rem; line-height: 1.25; font-weight: 800; }
+.premium-eyebrow { font-size: .56rem; line-height: 1rem; font-weight: 900; letter-spacing: .2em; text-transform: uppercase; }
+.premium-icon { display: flex; width: 2.75rem; height: 2.75rem; flex: none; align-items: center; justify-content: center; border-radius: .9rem; border: 1px solid var(--hairline); background: rgba(255,255,255,.055); }
+.premium-card { border: 1px solid var(--hairline); border-radius: 1.5rem; background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(17,24,32,.88)); box-shadow: 0 20px 45px -36px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.035); }
+.premium-field-label { display: block; margin-bottom: .38rem; font-size: .55rem; line-height: 1rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.38); }
+.premium-choice { border: 1px solid rgba(255,255,255,.09); border-radius: .8rem; background: rgba(255,255,255,.04); padding: .68rem .25rem; font-size: .62rem; font-weight: 900; color: rgba(255,255,255,.5); transition: .18s ease; }
+.premium-choice.is-active { border-color: color-mix(in srgb, var(--theme-a) 60%, white); background: color-mix(in srgb, var(--theme-a) 24%, transparent); color: white; }
+.premium-input { width: 100%; min-height: 2.8rem; border: 1px solid rgba(255,255,255,.1); border-radius: .8rem; background: rgba(0,0,0,.24); padding: .72rem .8rem; color: white; font-size: .75rem; outline: none; }
+.premium-input:focus { border-color: color-mix(in srgb, var(--theme-a) 60%, white); box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-a) 14%, transparent); }
+.premium-input::placeholder { color: rgba(255,255,255,.25); }
+
+/* Readable application-wide light mode. Artwork remains unfiltered and theme accents stay intact. */
+html[data-theme="light"] {
+  color-scheme: light;
+  --ink: #172033;
+  --muted-ink: rgba(23,32,51,.62);
+  --panel: rgba(255,255,255,.9);
+  --panel-raised: rgba(255,255,255,.97);
+  --hairline: rgba(15,23,42,.13);
+  --warm-highlight: rgba(255,255,255,.8);
+}
+html[data-theme="light"] body { background: #eef2f8; color: var(--ink); }
+html[data-theme="light"] main.theme-surface,
+html[data-theme="light"] main.home-screen {
+  color: var(--ink);
+  background-color: #eef2f8 !important;
+  background-image:
+    radial-gradient(circle at 82% 2%, color-mix(in srgb, var(--theme-a) 11%, transparent), transparent 24rem),
+    radial-gradient(circle at 5% 42%, color-mix(in srgb, var(--theme-b) 7%, transparent), transparent 22rem),
+    linear-gradient(180deg, #f8fafc, #edf2f7) !important;
+}
+html[data-theme="light"] main:is(.theme-surface, .home-screen) :is(
+  .premium-card,
+  .glass,
+  .party-glass,
+  .hub-hero,
+  .custom-content-panel
+) {
+  background: rgba(255,255,255,.9) !important;
+  border-color: rgba(15,23,42,.13) !important;
+  color: #172033;
+  box-shadow: 0 20px 45px -36px rgba(15,23,42,.5), inset 0 1px 0 #fff;
+}
+html[data-theme="light"] main:is(.theme-surface, .home-screen) :is(.text-white, [class*="text-white/"]) { color: #172033 !important; }
+html[data-theme="light"] main:is(.theme-surface, .home-screen) :is([class~="bg-white/5"], [class*="bg-white/["], [class~="bg-black/20"], [class~="bg-black/25"], [class~="bg-black/35"]) { background-color: rgba(255,255,255,.72) !important; }
+html[data-theme="light"] main:is(.theme-surface, .home-screen) input,
+html[data-theme="light"] main:is(.theme-surface, .home-screen) textarea,
+html[data-theme="light"] main:is(.theme-surface, .home-screen) select,
+html[data-theme="light"] .premium-input {
+  background: rgba(255,255,255,.88) !important;
+  border-color: rgba(15,23,42,.16) !important;
+  color: #172033 !important;
+}
+html[data-theme="light"] main:is(.theme-surface, .home-screen) input::placeholder,
+html[data-theme="light"] main:is(.theme-surface, .home-screen) textarea::placeholder,
+html[data-theme="light"] .premium-input::placeholder { color: rgba(23,32,51,.4) !important; }
+html[data-theme="light"] .premium-field-label { color: rgba(23,32,51,.52); }
+html[data-theme="light"] .premium-choice { border-color: rgba(15,23,42,.13); background: rgba(255,255,255,.74); color: rgba(23,32,51,.66); }
+html[data-theme="light"] .premium-choice.is-active { color: #172033; }
+html[data-theme="light"] .premium-nav-button { background: rgba(255,255,255,.9); color: #334155; }
+html[data-theme="light"] .home-screen > img { opacity: .19; }
+html[data-theme="light"] .home-screen > div[class*="from-\[\#080b10\]"] { opacity: .12; }
+html[data-theme="light"] .home-screen .home-mode-card { background-color: rgba(255,255,255,.91) !important; border-color: rgba(15,23,42,.13) !important; }
+html[data-theme="light"] .home-screen .home-mode-card > div[class*="linear-gradient"] { opacity: .1; }
+html[data-theme="light"] .party-wheel { color: white; }
+
+
+/* Keep intentionally dark controls legible while the surrounding hub uses light mode. */
+html[data-theme="light"] main:is(.theme-surface, .home-screen) .light-keep-dark,
+html[data-theme="light"] main:is(.theme-surface, .home-screen) .light-keep-dark :is(.text-white, [class*="text-white/"]) {
+  color: white !important;
+}
+html[data-theme="light"] .settings-screen [class*="text-violet-"] { color: #6d28d9 !important; }
+html[data-theme="light"] .settings-screen [class*="text-cyan-"] { color: #0e7490 !important; }
+html[data-theme="light"] .settings-screen [class*="text-emerald-"] { color: #047857 !important; }

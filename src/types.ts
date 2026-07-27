@@ -34,18 +34,95 @@ export type Screen =
 
 export type PartyTheme = "dark" | "neon" | "gold" | "halloween" | "christmas" | "galaxy";
 
-export type WorkshopEntryKind = "truth" | "dare" | "emoji" | "quiz" | "word";
+export type WorkshopEntryKind =
+  | "truth"
+  | "dare"
+  | "never"
+  | "wouldRather"
+  | "emoji"
+  | "quiz"
+  | "person"
+  | "charade"
+  | "word";
+
+export interface WorkshopCollection {
+  id: string;
+  name: string;
+  icon: string;
+  color: string;
+  createdAt: number;
+}
 
 export interface WorkshopEntry {
   id: string;
   kind: WorkshopEntryKind;
   text: string;
   answer?: string;
+  collectionIds: string[];
+  enabled: boolean;
   likes: number;
   rating: number;
   ratingCount: number;
   userRating?: number;
   createdAt: number;
+}
+
+export type CustomContentGame =
+  | "truth-or-dare"
+  | "never-have-i-ever"
+  | "would-you-rather"
+  | "hadajemoji"
+  | "hadajktosom"
+  | "slovnarosada"
+  | "teambattle";
+
+export interface WorkshopSelection {
+  enabled: boolean;
+  collectionIds: string[];
+}
+
+export type WorkshopSelections = Record<CustomContentGame, WorkshopSelection>;
+
+export type AiAudience = "friends" | "family" | "couple";
+export type AiVibe = "fun" | "chill" | "competitive";
+export type AiIntensity = 1 | 2 | 3;
+
+export interface PartyGeneratorControls {
+  audience: AiAudience;
+  vibe: AiVibe;
+  intensity: AiIntensity;
+  playerCount?: number;
+  context: string;
+}
+
+export interface GeneratedPrompt {
+  kind: Exclude<WorkshopEntryKind, "emoji" | "word">;
+  text: string;
+  answer?: string;
+}
+
+export interface GeneratedGameGroup {
+  id: string;
+  screen: Extract<Screen, "truth-or-dare" | "never-have-i-ever" | "would-you-rather" | "hadajktosom" | "slovnarosada" | "teambattle">;
+  title: string;
+  icon: string;
+  prompts: GeneratedPrompt[];
+}
+
+export interface GeneratedPartySession {
+  id: string;
+  title: string;
+  summary: string;
+  themeTags: string[];
+  controls: PartyGeneratorControls;
+  groups: GeneratedGameGroup[];
+}
+
+export interface GeneratedLaunchPayload {
+  sessionId: string;
+  screen: GeneratedGameGroup["screen"];
+  title: string;
+  prompts: GeneratedPrompt[];
 }
 
 export interface FeedbackSettings {

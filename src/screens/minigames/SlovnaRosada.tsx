@@ -5,6 +5,8 @@ import {
   type CharadesDifficulty,
 } from "../../data/charades";
 import { Button, Shell, TopBar } from "../../components/ui";
+import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
+import type { GeneratedPrompt, WorkshopEntry } from "../../types";
 import { Icons } from "../../components/icons";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
@@ -21,6 +23,7 @@ interface Player {
 }
 
 interface Card {
+  id?: string;
   word: string;
   category: string;
   categoryIcon: string;
@@ -28,7 +31,7 @@ interface Card {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function buildDeck(difficulty: string): Card[] {
+function buildDeck(difficulty: string, extraCards: Array<{ id: string; word: string }> = []): Card[] {
   const labels: Record<CharadesDifficulty, { name: string; icon: string }> = {
     lahke: { name: "Ľahké", icon: "🟢" },
     stredne: { name: "Stredné", icon: "🟡" },
@@ -57,6 +60,11 @@ function buildDeck(difficulty: string): Card[] {
     categoryIcon: "💬",
   }));
   const pool = uniqueCards.length > 0 ? uniqueCards : fallback;
+  for (const { id, word } of extraCards) {
+    const key = word.trim().toLocaleLowerCase("sk");
+    if (!key) continue;
+    pool.push({ id: `custom:${id}`, word, category: "Vlastná téma", categoryIcon: "✨" });
+  }
   return pool;
 }
 
@@ -65,9 +73,11 @@ function buildDeck(difficulty: string): Card[] {
 function SetupScreen({
   onBack,
   onStart,
+  customControls,
 }: {
   onBack: () => void;
   onStart: (names: string[], timerSecs: number, maxSkips: number, teamMode: boolean, difficulty: string) => void;
+  customControls?: CustomContentControls;
 }) {
   const { language } = useLanguage();
   const [count, setCount] = useState(4);
@@ -89,6 +99,8 @@ function SetupScreen({
       >
         Vysvetluj slová bez toho, aby si ich povedal/a. Za každé uhádnuté slovo bod. Preskočiť môžeš obmedzený počet krát!
       </div>
+
+      {customControls && <div className="mb-4"><CustomContentSelector controls={customControls} compact /></div>}
 
       {/* Team mode */}
       <div
@@ -277,6 +289,7 @@ function SetupScreen({
 function PlayingScreen({
   player,
   deck,
+  priorityCards,
   deckKey,
   timerSecs,
   maxSkips,
@@ -285,18 +298,23 @@ function PlayingScreen({
 }: {
   player: Player;
   deck: Card[];
+  priorityCards: Card[];
   deckKey: string;
   timerSecs: number;
   maxSkips: number;
   teamMode: boolean;
   onDone: (correct: number, skips: number) => void;
 }) {
+  const priorityQueueRef = useRef([...priorityCards]);
+  function drawNextCard() {
+    return priorityQueueRef.current.shift() ?? takePersistentItem(
+      deckKey,
+      deck,
+      (item) => item.id ?? item.word.trim().toLocaleLowerCase("sk"),
+    );
+  }
   const [cardIdx, setCardIdx] = useState(0);
-  const [card, setCard] = useState(() => takePersistentItem(
-    deckKey,
-    deck,
-    (item) => item.word.trim().toLocaleLowerCase("sk"),
-  ));
+  const [card, setCard] = useState(drawNextCard);
   const [timeLeft, setTimeLeft] = useState(timerSecs);
   const [skipsUsed, setSkipsUsed] = useState(0);
   const [correct, setCorrect] = useState(0);
@@ -327,11 +345,7 @@ function PlayingScreen({
     setCardAnim(type);
     setTimeout(() => {
       setCardAnim("idle");
-      setCard(takePersistentItem(
-        deckKey,
-        deck,
-        (item) => item.word.trim().toLocaleLowerCase("sk"),
-      ));
+      setCard(drawNextCard());
       setCardIdx((value) => value + 1);
       actionLockedRef.current = false;
     }, 300);
@@ -481,10 +495,17 @@ export function PartySlovnaRosada(props: PartySlovnaRosadaConfig) {
 export default function SlovnaRosada({
   onBack,
   partyConfig,
+  customEntries = [],
+  customControls,
+  themedPrompts = [],
 }: {
   onBack: () => void;
   partyConfig?: PartySlovnaRosadaConfig;
+  customEntries?: WorkshopEntry[];
+  customControls?: CustomContentControls;
+  themedPrompts?: GeneratedPrompt[];
 }) {
+  const extraCards = customEntries.map((entry) => ({ id: entry.id, word: entry.text }));
   const [phase, setPhase] = useState<Phase>(partyConfig ? "who-starts" : "setup");
   const [players, setPlayers] = useState<Player[]>(() => partyConfig
     ? partyConfig.teamNames.map((name, team) => ({ name, team: team as 0 | 1, score: 0, skipsUsed: 0 }))
@@ -494,7 +515,7 @@ export default function SlovnaRosada({
   const [maxSkips, setMaxSkips] = useState(3);
   const [teamMode, setTeamMode] = useState(Boolean(partyConfig));
   const [difficulty, setDifficulty] = useState("all");
-  const [deck, setDeck] = useState<Card[]>(() => partyConfig ? buildDeck("all") : []);
+  const [deck, setDeck] = useState<Card[]>(() => partyConfig ? buildDeck("all", extraCards) : []);
   const [roundCorrect, setRoundCorrect] = useState(0);
   const [roundSkips, setRoundSkips] = useState(0);
 
@@ -503,7 +524,7 @@ export default function SlovnaRosada({
     setMaxSkips(skips);
     setTeamMode(teams);
     setDifficulty(diff);
-    setDeck(buildDeck(diff));
+    setDeck(buildDeck(diff, extraCards));
     setPlayers(
       names.map((name, i) => ({
         name,
@@ -533,7 +554,7 @@ export default function SlovnaRosada({
       setPhase("final-result");
     } else {
       setCurrentIdx(next);
-      setDeck(buildDeck(difficulty)); // fresh shuffled deck for each player
+      setDeck(buildDeck(difficulty, extraCards)); // fresh shuffled deck for each player
       setPhase("who-starts");
     }
   }
@@ -542,7 +563,7 @@ export default function SlovnaRosada({
 
   // ── Setup ─────────────────────────────────────────────────────────────────
   if (phase === "setup") {
-    return <SetupScreen onBack={onBack} onStart={startGame} />;
+    return <SetupScreen onBack={onBack} onStart={startGame} customControls={customControls} />;
   }
 
   // ── Who starts ────────────────────────────────────────────────────────────
@@ -610,6 +631,9 @@ export default function SlovnaRosada({
       <PlayingScreen
         player={current}
         deck={deck}
+        priorityCards={currentIdx === 0
+          ? themedPrompts.filter((prompt) => prompt.kind === "charade").map((prompt) => ({ word: prompt.text, category: "AI Party téma", categoryIcon: "✨" }))
+          : []}
         deckKey={`solo-charades:${difficulty}`}
         timerSecs={timerSecs}
         maxSkips={maxSkips}
@@ -780,7 +804,7 @@ export default function SlovnaRosada({
             ) : (
               <>
                 <div className="flex gap-3">
-                  <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty)); setPhase("who-starts"); }}>
+                  <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty, extraCards)); setPhase("who-starts"); }}>
                     🔄 Znova
                   </Button>
                   <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
@@ -836,7 +860,7 @@ export default function SlovnaRosada({
           </div>
 
           <div className="flex gap-3">
-            <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty)); setPhase("who-starts"); }}>
+            <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty, extraCards)); setPhase("who-starts"); }}>
               🔄 Znova
             </Button>
             <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>

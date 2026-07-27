@@ -3,6 +3,7 @@ import { Button, Shell, TopBar } from "../../components/ui";
 import { PING_PONG_PROMPTS } from "../../data/pingPongPrompts";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
+import { vibrate } from "../../utils/deviceFeedback";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -207,7 +208,7 @@ export function SlovnyPingPongGame({
     // Every valid answer sends the ball back from the centre to the opponent's half.
     ballYRef.current = 0.5;
     setBallY(0.5);
-    navigator.vibrate?.([18, 25, 18]);
+    vibrate([18, 25, 18]);
     activeRef.current = other;
     setActive(other);
   }

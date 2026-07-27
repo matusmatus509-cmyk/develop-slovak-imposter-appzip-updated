@@ -3,6 +3,7 @@ import { takePersistentItems } from "../../utils/persistentDeck";
 import { FIVE_IN_TEN_PROMPTS, LETTER_CHALLENGES } from "../../data/teamBattleExtras";
 import { CircularTimer, ParticipantScoreStrip, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
+import { vibrate } from "../../utils/deviceFeedback";
 
 const LETTER_TURNS = 10;
 const FIVE_TURNS = 6;
@@ -100,7 +101,7 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds
     setScores(nextScores);
     setFeedback({ success, scorer });
     setPhase("result");
-    navigator.vibrate?.(success ? [25, 35, 25] : 70);
+    vibrate(success ? [25, 35, 25] : 70);
   }
 
   const timer = useSmoothTimer(timeSeconds, phase === "playing", () => finish(false));
@@ -109,7 +110,7 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds
     setFeedback(null);
     timer.arm();
     setPhase("playing");
-    navigator.vibrate?.(18);
+    vibrate(18);
   }
 
   function next() {
@@ -212,7 +213,7 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
     setScores(nextScores);
     setSuccess(completed);
     setPhase("result");
-    navigator.vibrate?.(completed ? [30, 35, 30, 35, 50] : 70);
+    vibrate(completed ? [30, 35, 30, 35, 50] : 70);
   }
 
   const timer = useSmoothTimer(timeSeconds, phase === "playing", () => finish(false));
@@ -221,7 +222,7 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
     setSuccess(false);
     timer.arm();
     setPhase("playing");
-    navigator.vibrate?.(18);
+    vibrate(18);
   }
 
   function next() {

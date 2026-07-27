@@ -3,6 +3,7 @@ import { BOMB_CATEGORIES } from "../../data/prompts";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { takePersistentItem } from "../../utils/persistentDeck";
+import { vibrate } from "../../utils/deviceFeedback";
 
 type Phase = "ready" | "ticking" | "exploded";
 
@@ -67,7 +68,7 @@ export default function KtoDostaneBombu({
         completionReportedRef.current = true;
         onRoundComplete?.();
       }
-      navigator.vibrate?.([120, 60, 180]);
+      vibrate([120, 60, 180]);
     }, duration);
   }
 

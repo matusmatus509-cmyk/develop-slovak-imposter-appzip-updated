@@ -48,7 +48,7 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
   }
 
   return (
-    <main className="relative min-h-[100dvh] bg-[#080b10] text-white">
+    <main className="home-screen relative min-h-[100dvh] bg-[#080b10] text-white">
       <img src={partyTableBackground} alt="" className="pointer-events-none fixed inset-0 h-full w-full object-cover opacity-38 saturate-75" />
       <div className="pointer-events-none fixed inset-0 bg-gradient-to-b from-[#080b10]/20 via-[#080b10]/72 to-[#080b10]" />
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,246,225,.06),transparent_28%)]" />
@@ -72,7 +72,7 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
           type="button"
           onClick={() => onNavigate("statistics")}
           aria-label={`Otvoriť herný profil, level ${level.level}`}
-          className="group relative mt-4 w-full overflow-hidden rounded-[1.3rem] border border-violet-300/20 bg-[#141525]/95 p-3 text-left shadow-[0_18px_52px_-34px_rgba(139,92,246,.9)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-violet-300/35 active:scale-[.985]"
+          className="home-mode-card group relative mt-4 w-full overflow-hidden rounded-[1.3rem] border border-violet-300/20 bg-[#141525]/95 p-3 text-left shadow-[0_18px_52px_-34px_rgba(139,92,246,.9)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-violet-300/35 active:scale-[.985]"
           style={{ animation: "slideUp .45s ease-out 70ms both" }}
         >
           <span className="pointer-events-none absolute -right-10 -top-14 h-32 w-32 rounded-full bg-violet-500/20 blur-3xl" />
@@ -101,7 +101,7 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
             return (
               <article
                 key={section.screen}
-                className={`group relative min-h-0 flex-1 overflow-hidden rounded-[1.25rem] border text-left shadow-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20 active:scale-[.985] ${section.featured ? "border-violet-300/25 bg-[#141525]" : "border-white/[.11] bg-[#11171e]"}`}
+                className={`home-mode-card group relative min-h-0 flex-1 overflow-hidden rounded-[1.25rem] border text-left shadow-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20 active:scale-[.985] ${section.featured ? "border-violet-300/25 bg-[#141525]" : "border-white/[.11] bg-[#11171e]"}`}
                 style={{ animation: `slideUp .45s ease-out ${120 + index * 65}ms both`, boxShadow: `0 18px 42px -31px ${section.glow}` }}
               >
                 <button type="button" onClick={() => onNavigate(section.screen)} aria-label={`Otvoriť ${section.title}`} className="absolute inset-0 z-[1] rounded-[1.25rem] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300" />
