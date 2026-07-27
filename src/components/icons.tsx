@@ -205,9 +205,6 @@ export const Receipt = createIcon([["M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1-2 1
 export const ShoppingCart = createIcon([["M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z", "M3 6h18", "M16 10a4 4 0 0 1 0 8", "M12 18h.01"]]);
 export const ShoppingBag = createIcon([["M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z", "M3 6h18", "M12 18h.01", "M9 6v12", "M15 6v12"]]);
 
-export const Heart = createIcon([["M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"]]);
-export const Music = createIcon([["M9 18V5l12-2v13", "M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0z", "M21 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"]]);
-
 // ── Health & Medical ────────────────────────────────────────────────
 export const HeartPulse = createIcon([["M4 14a1 1 0 0 1-.78-1.63l9.9-10.27a.5.5 0 0 1 .86.03l9.8 10.27a1 1 0 0 1-.79 1.63H14.56l-2.25 2.74a1 1 0 0 1-.14.05H6.48a1 1 0 0 1-.9-.64L4 14z"]]);
 export const Activity = createIcon([["M22 12h-4l-5 5 5 5", "M2 12l5-5-5-5", "M12 22l5-5-5-5", "M12 2l-5 5 5 5"]]);
