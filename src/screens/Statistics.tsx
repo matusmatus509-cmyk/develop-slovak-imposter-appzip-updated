@@ -11,8 +11,9 @@ import {
   isDailyRewardAvailable,
   normalizeStatistics,
 } from "../utils/gameStats";
-import type { GameStatistics } from "../types";
+import type { GameStatistics, PartyRecords } from "../types";
 import { PLAYABLE_GAMES } from "../data/engagement";
+import { normalizePartyRecords } from "../utils/partyRecords";
 import { useCurrentLocalDate } from "../hooks/useCurrentLocalDate";
 
 function formatPlayTime(totalSeconds: number) {
@@ -25,8 +26,9 @@ function formatPlayTime(totalSeconds: number) {
   return `${seconds} s`;
 }
 
-export default function Statistics({ statistics, onBack, onClaimDailyReward }: { statistics: GameStatistics; onBack: () => void; onClaimDailyReward: () => void }) {
+export default function Statistics({ statistics, records, onBack, onClaimDailyReward }: { statistics: GameStatistics; records: PartyRecords; onBack: () => void; onClaimDailyReward: () => void }) {
   const safeStatistics = normalizeStatistics(statistics);
+  const safeRecords = normalizePartyRecords(records);
   const progression = safeStatistics.progression;
   const level = getLevelInfo(progression.xp);
   const nextReward = getNextPartyPassReward(progression.xp);
@@ -163,6 +165,15 @@ export default function Statistics({ statistics, onBack, onClaimDailyReward }: {
               </article>
             );
           })}
+        </section>
+
+        <section className="mt-7" aria-label="Party rekordy">
+          <div className="mb-3"><p className="text-[9px] font-black uppercase tracking-[.2em] text-amber-300/65">Osobné maximá v tomto zariadení</p><h2 className="mt-1 text-xl font-black">Party rekordy</h2></div>
+          <div className="space-y-2.5">
+            <article className="flex items-center gap-3 rounded-[1.4rem] border border-violet-300/15 bg-violet-400/[.06] p-4"><span className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-400/12 text-xl">⏱️</span><div className="min-w-0 flex-1"><p className="text-[9px] font-black uppercase tracking-[.16em] text-violet-300/70">Najdlhší Party mód</p><h3 className="mt-1 text-lg font-black">{safeRecords.longestParty ? formatPlayTime(safeRecords.longestParty.durationSeconds) : "Zatiaľ bez rekordu"}</h3></div></article>
+            <article className="flex items-center gap-3 rounded-[1.4rem] border border-amber-300/15 bg-amber-400/[.06] p-4"><span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-400/12 text-xl">🏆</span><div className="min-w-0 flex-1"><p className="text-[9px] font-black uppercase tracking-[.16em] text-amber-300/70">Najviac bodov v jednej hre</p><h3 className="mt-1 text-lg font-black">{safeRecords.highestGameScore ? `${safeRecords.highestGameScore.score} bodov` : "Zatiaľ bez rekordu"}</h3>{safeRecords.highestGameScore && <p className="mt-0.5 truncate text-[9px] text-white/38">{safeRecords.highestGameScore.teamName}</p>}</div></article>
+            <article className="flex items-center gap-3 rounded-[1.4rem] border border-cyan-300/15 bg-cyan-400/[.06] p-4"><span className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-400/12 text-xl">⚡</span><div className="min-w-0 flex-1"><p className="text-[9px] font-black uppercase tracking-[.16em] text-cyan-300/70">Najrýchlejšie uhádnuté slovo</p><h3 className="mt-1 truncate text-lg font-black">{safeRecords.fastestGuess ? `„${safeRecords.fastestGuess.word}“ · ${(safeRecords.fastestGuess.milliseconds / 1000).toLocaleString("sk-SK", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} s` : "Zatiaľ bez rekordu"}</h3>{safeRecords.fastestGuess && <p className="mt-0.5 text-[9px] text-white/38">{safeRecords.fastestGuess.gameTitle}</p>}</div></article>
+          </div>
         </section>
 
         <section className="mt-4 flex items-center gap-3 rounded-[1.4rem] border border-white/[.1] bg-[#11171e]/90 p-4" aria-label="Najobľúbenejšia hra">

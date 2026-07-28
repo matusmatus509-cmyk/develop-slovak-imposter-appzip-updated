@@ -23,6 +23,7 @@ import SoundBuzzer from "./SoundBuzzer";
 import { FiveInTenGame, LetterChallengeGame } from "./QuickChallenges";
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItems } from "../../utils/persistentDeck";
+import type { WordGuessRecordInput } from "../../types";
 import type { CustomContentControls } from "../../components/CustomContentSelector";
 
 type Phase =
@@ -38,18 +39,21 @@ export interface TeamBattleSummary {
   teamNames: [string, string];
   totalScores: [number, number];
   correctAnswers: number;
+  durationSeconds: number;
   winnerName?: string;
 }
 
 export default function TeamBattle({
   onHome,
   onGameComplete,
+  onWordGuessed,
   customQuestions = [],
   themedQuestions = [],
   customControls,
 }: {
   onHome: () => void;
   onGameComplete?: (summary: TeamBattleSummary) => void;
+  onWordGuessed?: (record: WordGuessRecordInput) => void;
   customQuestions?: QuizQuestion[];
   themedQuestions?: QuizQuestion[];
   customControls?: CustomContentControls;
@@ -77,6 +81,7 @@ export default function TeamBattle({
   const [quickRounds, setQuickRounds] = useState(2);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const completionReportedRef = useRef(false);
+  const partyStartedAtRef = useRef<number | null>(null);
 
   // Per-round questions are selected at round start.
   const [roundQuestions, setRoundQuestions] = useState<QuizQuestion[]>([]);
@@ -98,6 +103,7 @@ export default function TeamBattle({
     setTotalScores([0, 0]);
     setRoundScores([0, 0]);
     setCorrectAnswers(0);
+    partyStartedAtRef.current = Date.now();
     completionReportedRef.current = false;
     setPhase("intro");
   }
@@ -143,7 +149,8 @@ export default function TeamBattle({
         const winnerName = totalScores[0] === totalScores[1]
           ? undefined
           : teamNames[totalScores[0] > totalScores[1] ? 0 : 1];
-        onGameComplete?.({ teamNames, totalScores, correctAnswers, winnerName });
+        const durationSeconds = Math.max(1, Math.round((Date.now() - (partyStartedAtRef.current ?? Date.now())) / 1000));
+        onGameComplete?.({ teamNames, totalScores, correctAnswers, durationSeconds, winnerName });
       }
       setPhase("game-over");
     } else {
@@ -212,6 +219,7 @@ export default function TeamBattle({
         <PartySlovnaRosada
           teamNames={teamNames}
           timerSecs={currentRound.timeSeconds}
+          onWordGuessed={onWordGuessed}
           onDone={handleRoundDone}
         />
       );
@@ -222,6 +230,7 @@ export default function TeamBattle({
         <PartyHadajKtoSom
           teamNames={teamNames}
           timerSeconds={currentRound.timeSeconds}
+          onWordGuessed={onWordGuessed}
           onDone={handleRoundDone}
         />
       );

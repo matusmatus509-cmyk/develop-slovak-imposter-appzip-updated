@@ -530,6 +530,17 @@ html[data-theme="light"] main:is(.theme-surface, .home-screen) .light-keep-dark,
 html[data-theme="light"] main:is(.theme-surface, .home-screen) .light-keep-dark :is(.text-white, [class*="text-white/"]) {
   color: white !important;
 }
+html[data-theme="light"] main:is(.theme-surface, .home-screen) .light-keep-dark :is([class~="bg-white/5"], [class*="bg-white/["], [class~="bg-black/20"], [class~="bg-black/25"], [class~="bg-black/35"]) {
+  background-color: rgba(255,255,255,.07) !important;
+}
+html[data-theme="light"] main:is(.theme-surface, .home-screen) .light-keep-dark :is(input, textarea, select, .premium-input) {
+  background: rgba(255,255,255,.07) !important;
+  border-color: rgba(255,255,255,.14) !important;
+  color: white !important;
+}
+html[data-theme="light"] main:is(.theme-surface, .home-screen) .light-keep-dark :is(input, textarea)::placeholder { color: rgba(255,255,255,.35) !important; }
+html[data-theme="light"] main:is(.theme-surface, .home-screen) .light-keep-dark .premium-field-label { color: rgba(255,255,255,.52); }
+html[data-theme="light"] main:is(.theme-surface, .home-screen) .light-keep-dark .premium-nav-button { background: rgba(255,255,255,.08); color: white; }
 html[data-theme="light"] .settings-screen [class*="text-violet-"] { color: #6d28d9 !important; }
 html[data-theme="light"] .settings-screen [class*="text-cyan-"] { color: #0e7490 !important; }
 html[data-theme="light"] .settings-screen [class*="text-emerald-"] { color: #047857 !important; }
