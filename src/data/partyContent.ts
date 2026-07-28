@@ -7,6 +7,7 @@ import type {
   WorkshopSelections,
 } from "../types";
 import type { QuizQuestion } from "./teamBattle";
+import { isValidCharadeText } from "./charades";
 
 export const DEFAULT_COLLECTION_ID = "default";
 export const DEFAULT_COLLECTION: WorkshopCollection = {
@@ -69,7 +70,7 @@ export const SEASONAL_PARTY_PACKS: SeasonalPartyPack[] = [
       { kind: "quiz", text: "Ako sa volá obdobie štyroch týždňov pred Vianocami?", answer: "Advent" },
       { kind: "quiz", text: "Ktorý deň je na Slovensku Štedrý deň?", answer: "24. december" },
       { kind: "person", text: "Ježiško nesúci príliš veľa darčekov" },
-      { kind: "charade", text: "Zdobenie vianočného stromčeka" },
+      { kind: "charade", text: "Zdobenie stromčeka" },
       { kind: "charade", text: "Stavanie snehuliaka" },
     ],
   },
@@ -91,7 +92,7 @@ export const SEASONAL_PARTY_PACKS: SeasonalPartyPack[] = [
       { kind: "quiz", text: "Ktorý dátum pripadá na Halloween?", answer: "31. október" },
       { kind: "person", text: "Upír, ktorý sa bojí tmy" },
       { kind: "charade", text: "Vyrezávanie tekvice" },
-      { kind: "charade", text: "Duch prechádzajúci cez zatvorené dvere" },
+      { kind: "charade", text: "Strašidelný duch" },
     ],
   },
   {
@@ -111,8 +112,8 @@ export const SEASONAL_PARTY_PACKS: SeasonalPartyPack[] = [
       { kind: "quiz", text: "Ktorý sviatok sa oslavuje 14. februára?", answer: "Valentín" },
       { kind: "quiz", text: "Ktorý orgán symbolizuje lásku?", answer: "Srdce" },
       { kind: "person", text: "Amor, ktorému sa zamotali šípy" },
-      { kind: "charade", text: "Písanie anonymného valentínskeho odkazu" },
-      { kind: "charade", text: "Príprava prekvapivej večere" },
+      { kind: "charade", text: "Písanie odkazu" },
+      { kind: "charade", text: "Príprava večere" },
     ],
   },
   {
@@ -132,8 +133,8 @@ export const SEASONAL_PARTY_PACKS: SeasonalPartyPack[] = [
       { kind: "quiz", text: "Koľko mesiacov má kalendárny rok?", answer: "12" },
       { kind: "quiz", text: "Ako sa volá posledný deň roka?", answer: "Silvester" },
       { kind: "person", text: "Moderátor odpočítavania posledných desiatich sekúnd roka" },
-      { kind: "charade", text: "Otváranie fľaše so šumivým nápojom" },
-      { kind: "charade", text: "Písanie novoročných predsavzatí" },
+      { kind: "charade", text: "Otváranie fľaše" },
+      { kind: "charade", text: "Novoročné predsavzatie" },
     ],
   },
 ];
@@ -179,9 +180,12 @@ export function normalizeWorkshopEntries(value: unknown, collectionsValue?: unkn
   for (const [index, raw] of value.slice(0, 500).entries()) {
     if (!raw || typeof raw !== "object") continue;
     const candidate = raw as Partial<WorkshopEntry>;
-    const text = cleanString(candidate.text, 240);
     const rawKind = candidate.kind === "word" ? "charade" : candidate.kind;
+    const text = cleanString(candidate.text, rawKind === "charade" ? 80 : 240);
     if (!text || !rawKind || !VALID_KINDS.has(rawKind)) continue;
+    // Aj importované a staršie vlastné šarády musia dodržať rovnaký štandard
+    // ako vstavaný katalóg: 1–3 slová, žiadne dvojbodkové kombinácie.
+    if (rawKind === "charade" && !isValidCharadeText(text)) continue;
     const createdAt = Number.isFinite(candidate.createdAt) ? Math.max(0, Number(candidate.createdAt)) : 0;
     const id = uniqueId(candidate.id ?? "", seenIds, `local-${createdAt}-${index}`);
     const collectionIds = Array.isArray(candidate.collectionIds)
