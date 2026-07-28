@@ -67,7 +67,6 @@ export const SOLO_CHARADES_WORDS: Record<CharadesDifficulty, string[]> = {
 // Remove overlaps between difficulty decks and refill each tier to its target size.
 const SOLO_CHARADES_TARGETS: Record<CharadesDifficulty, number> = { lahke: 667, stredne: 667, tazke: 666 };
 const charadesUsed = new Set<string>();
-const charadesFallback = Object.values(GENERATED_CHARADES_BY_DIFFICULTY).flat();
 (["lahke", "stredne", "tazke"] as CharadesDifficulty[]).forEach((difficulty) => {
   const globallyUnique = SOLO_CHARADES_WORDS[difficulty].filter((word) => {
     const key = word.trim().toLocaleLowerCase("sk");
@@ -75,6 +74,11 @@ const charadesFallback = Object.values(GENERATED_CHARADES_BY_DIFFICULTY).flat();
     charadesUsed.add(key);
     return true;
   });
+  // Dopĺňame prednostne z rovnakej úrovne, aby ľahká úroveň nedostala ťažké karty.
+  const charadesFallback = [
+    ...GENERATED_CHARADES_BY_DIFFICULTY[difficulty],
+    ...Object.values(GENERATED_CHARADES_BY_DIFFICULTY).flat(),
+  ];
   for (const word of charadesFallback) {
     if (globallyUnique.length >= SOLO_CHARADES_TARGETS[difficulty]) break;
     const key = word.trim().toLocaleLowerCase("sk");

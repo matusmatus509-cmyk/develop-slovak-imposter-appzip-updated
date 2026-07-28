@@ -46,22 +46,24 @@ const DARE_TEMPLATES = [
   "vymysli tri rýmy", "urob módnu prehliadku", "zahraj prekvapeného reportéra", "predveď motivačného trénera",
 ];
 
+// Pozor: veta sa skladá ako „Nikdy som nikdy <šablóna> pri téme <téma>.“,
+// takže šablóny musia byť už v zápornej forme a bez pomocného „som“.
 const NEVER_TEMPLATES = [
-  "som sa tváril/a, že tomu rozumiem", "som kvôli tomu meškal/a", "som o tom klamal/a", "som sa pri tom strápnil/a",
-  "som na to minul/a priveľa peňazí", "som to tajil/a pred rodinou", "som sa kvôli tomu pohádal/a", "som pri tom zaspal/a",
-  "som si to odfotil/a", "som to zdieľal/a na internete", "som to predstieral/a", "som sa tomu nahlas smial/a",
-  "som kvôli tomu zmenil/a plán", "som to skúsil/a bez prípravy", "som pri tom niečo rozbil/a", "som kvôli tomu volal/a kamarátovi",
-  "som si na to požičal/a peniaze", "som sa kvôli tomu ospravedlňoval/a", "som to urobil/a uprostred noci", "som sa pri tom stratil/a",
-  "som to vzdal/a príliš skoro", "som tým niekoho prekvapil/a", "som to urobil/a iba zo zvedavosti", "som tvrdil/a, že to bol môj nápad",
+  "nepredstieral/a, že tomu rozumiem", "nemeškal/a kvôli tomu", "neklamal/a o tom", "nemal/a kvôli tomu trápny moment",
+  "neminul/a na to priveľa peňazí", "netajil/a to pred rodinou", "nezačal/a kvôli tomu hádku", "nezaspal/a pri tom",
+  "neodfotil/a to", "nezdieľal/a to na internete", "nerobil/a to naoko", "nevybuchol/a pri tom do smiechu",
+  "nezmenil/a kvôli tomu plán", "neskúsil/a to bez prípravy", "nerozbil/a pri tom niečo", "nevolal/a kvôli tomu kamarátovi",
+  "nepožičal/a si kvôli tomu peniaze", "nepísal/a kvôli tomu ospravedlnenie", "nerobil/a to uprostred noci", "nestratil/a pri tom orientáciu",
+  "nevzdal/a to príliš skoro", "neprekvapil/a tým niekoho", "nerobil/a to iba zo zvedavosti", "netvrdil/a, že to bol môj nápad",
 ];
 
 const RATHER_TEMPLATES = [
   ["byť v téme najlepší/ia", "mať pri téme najviac šťastia"], ["poznať o téme celú pravdu", "nikdy o téme nič nevedieť"],
   ["venovať téme celý rok", "už sa téme nikdy nevenovať"], ["riešiť tému sám/sama", "riešiť tému s veľkým tímom"],
-  ["mať pri téme neobmedzený čas", "mať pri téme neobmedzené peniaze"], ["urobiť pri téme jednu veľkú chybu", "urobiť sto malých chýb"],
-  ["byť pri téme vždy úprimný/á", "vždy vedieť, keď ostatní klamú"], ["zažiť pri téme minulosť", "vidieť pri téme budúcnosť"],
+  ["mať pri téme neobmedzený čas", "mať pri téme neobmedzené peniaze"], ["urobiť pri téme jednu veľkú chybu", "urobiť pri téme sto malých chýb"],
+  ["byť pri téme vždy úprimný/á", "vedieť pri téme vždy odhaliť lož"], ["zažiť pri téme minulosť", "vidieť pri téme budúcnosť"],
   ["mať pri téme slávu", "mať pri téme pokoj"], ["získať pri téme talent", "získať pri téme skúsenosti"],
-  ["začať tému od začiatku", "preskočiť rovno na koniec"], ["všetko o téme hovoriť nahlas", "o téme už nikdy nehovoriť"],
+  ["začať tému od začiatku", "preskočiť pri téme rovno na koniec"], ["všetko o téme hovoriť nahlas", "o téme už nikdy nehovoriť"],
   ["byť pri téme odvážny/á", "byť pri téme dokonale pripravený/á"], ["mať pri téme dokonalú pamäť", "vedieť pri téme zabudnúť na chyby"],
   ["vyhrať pri téme podvodom", "prehrať pri téme čestne"], ["mať pri téme jednu vernú podporu", "mať pri téme tisíc fanúšikov"],
   ["poznať pri téme každú odpoveď", "vedieť položiť pri téme najlepšiu otázku"], ["robiť tému iba ráno", "robiť tému iba v noci"],
@@ -73,12 +75,26 @@ const RATHER_TEMPLATES = [
 export const GENERATED_TRUTHS = PROMPT_TOPICS.flatMap((topic) => TRUTH_TEMPLATES.map((template) => template(topic)));
 export const GENERATED_DARES = PROMPT_TOPICS.flatMap((topic) => DARE_TEMPLATES.map((template) => `${template} na tému „${topic}“.`));
 export const GENERATED_NEVER = PROMPT_TOPICS.flatMap((topic) => NEVER_TEMPLATES.map((template) => `Nikdy som nikdy ${template} pri téme ${topic}.`));
-export const GENERATED_RATHER = PROMPT_TOPICS.flatMap((topic) => RATHER_TEMPLATES.map(([a, b]) => ({ a: `${a}: ${topic}`, b: `${b}: ${topic}` })));
+// Téma sa vkladá priamo do vety (v úvodzovkách), aby na karte nikdy nevznikla
+// dvojica oddelená dvojbodkou typu „byť v téme najlepší: šport“.
+// Hranice slova riešime cez Unicode triedy — `\b` v JS nepozná slovenskú diakritiku.
+const TOPIC_SLOT = /(^|[^\p{L}\p{N}])(tém(?:a|e|u|ou|y))(?![\p{L}\p{N}])/u;
+
+function withTopic(text: string, topic: string) {
+  if (TOPIC_SLOT.test(text)) {
+    return text.replace(TOPIC_SLOT, (_match, prefix: string, word: string) => `${prefix}${word} „${topic}“`);
+  }
+  return `${text} (téma „${topic}“)`;
+}
+
+export const GENERATED_RATHER = PROMPT_TOPICS.flatMap((topic) =>
+  RATHER_TEMPLATES.map(([a, b]) => ({ a: withTopic(a, topic), b: withTopic(b, topic) })),
+);
 
 const CHARACTER_ROLES = [
   "detektív", "lekárka", "pilot", "vedkyňa", "kuchár", "učiteľka", "hasič", "novinárka", "astronaut", "archeologička",
   "hudobník", "maliarka", "športovec", "režisérka", "fotograf", "programátorka", "záchranár", "architektka", "farmár", "veterinárka",
-  "kúzelník", "kráľovná", "rytieri", "pirátka", "objaviteľ", "vynálezkyňa", "cestovateľ", "diplomatka", "sudca", "advokátka",
+  "kúzelník", "kráľovná", "rytier", "pirátka", "objaviteľ", "vynálezkyňa", "cestovateľ", "diplomatka", "sudca", "advokátka",
   "mechanik", "kapitánka", "policajt", "knihovníčka", "botanik", "meteorologička", "geológ", "biologička", "historik", "psychologička",
   "tanečník", "speváčka", "komik", "moderátorka", "tréner", "horolezkyňa", "námorník", "záhradníčka", "pekár", "dizajnérka",
   "robot", "mimozemšťanka", "superhrdina", "čarodejnica", "upír", "víla", "škriatok", "strážkyňa", "dobrodruh", "tajná agentka",
@@ -94,7 +110,7 @@ export const GENERATED_CHARACTER_CARDS = CHARACTER_ROLES.flatMap((role) => CHARA
 
 const DRAW_SUBJECTS = [
   "pes", "mačka", "slon", "žirafa", "tučniak", "delfín", "medveď", "líška", "sova", "korytnačka",
-  "robot", "astronaut", "pirát", "princezná", "rytieri", "čarodejnica", "drak", "jednorožec", "mimozemšťan", "superhrdina",
+  "robot", "astronaut", "pirát", "princezná", "rytier", "čarodejnica", "drak", "jednorožec", "mimozemšťan", "superhrdina",
   "auto", "vlak", "lietadlo", "loď", "bicykel", "traktor", "ponorka", "helikoptéra", "raketa", "karavan",
   "dom", "hrad", "maják", "stan", "škola", "nemocnica", "kaviareň", "múzeum", "divadlo", "štadión",
   "jablko", "pizza", "torta", "zmrzlina", "hamburger", "palacinka", "melón", "špagety", "šiška", "sendvič",
@@ -110,25 +126,83 @@ const DRAW_SCENES = [
 ];
 export const GENERATED_DRAWING_PAIRS = DRAW_SUBJECTS.flatMap((subject) => DRAW_SCENES.map((scene) => ({ word: `${subject} ${scene}`, hint: "" })));
 
-const MIME_ACTIONS = [
-  "Hľadanie", "Otváranie", "Zatváranie", "Nosenie", "Ťahanie", "Tlačenie", "Umývanie", "Čistenie", "Maľovanie", "Fotografovanie",
-  "Opravovanie", "Skladanie", "Balenie", "Rozbaľovanie", "Varenie", "Pečenie", "Ochutnávanie", "Kupovanie", "Predávanie", "Požičiavanie",
-  "Chytanie", "Hádzanie", "Kopanie", "Zdvíhanie", "Schovávanie", "Objavovanie", "Strácanie", "Zachraňovanie", "Kŕmenie", "Venčenie",
-  "Šoférovanie", "Pilotovanie", "Veslovanie", "Korčuľovanie s", "Lyžovanie s", "Tancovanie s", "Spievanie pre", "Telefonovanie s", "Rozprávanie o", "Snívanie o",
-  "Utekanie pred", "Naháňanie", "Čakanie na", "Stavanie", "Búranie", "Preskakovanie", "Plávanie s", "Cestovanie s", "Súťaženie o", "Oslavovanie s",
-  "Zaspávanie pri", "Prebúdzanie pri", "Smianie sa na", "Plač nad", "Bojovanie s", "Kúzlenie s", "Trénovanie s", "Vystupovanie s", "Pracovanie s", "Oddychovanie pri",
+// ── Pantomíma a šarády ───────────────────────────────────────────────────────
+// Karty sa skladajú ako „<podmet v nominatíve> <predložkové spojenie>“, takže
+// každá kombinácia je gramaticky správna a zmysluplná scéna, ktorú sa dá
+// predviesť alebo opísať. Nikdy nevznikne nezmysel typu „Šoférovanie: snehuliak“.
+const MIME_EASY_SUBJECTS = [
+  "Pes", "Mačka", "Sliepka", "Kôň", "Krava", "Ovca", "Myš", "Zajac", "Medveď", "Opica",
+  "Lev", "Tiger", "Slon", "Žirafa", "Tučniak", "Žaba", "Papagáj", "Sova", "Korytnačka", "Delfín",
+  "Hasič", "Policajt", "Lekár", "Učiteľ", "Kuchár", "Pekár", "Poštár", "Čašník", "Šofér autobusu", "Predavač",
+  "Futbalista", "Hokejista", "Plavec", "Bežec", "Tanečník", "Spevák", "Klaun", "Kúzelník", "Robot", "Bábätko",
 ];
-const MIME_TARGETS = [
-  "stratený kľúč", "ťažký kufor", "pokazený bicykel", "obrovský balón", "malý pes", "nahnevaná mačka", "lietajúci drak", "tajný poklad",
-  "horúca polievka", "narodeninová torta", "nový telefón", "starý fotoaparát", "futbalová lopta", "tenisová raketa", "mokrý dáždnik",
-  "vysoký rebrík", "zamknuté dvere", "hlučný vysávač", "veľká mapa", "čarovná palička", "vesmírna prilba", "pirátska loď",
-  "snehuliak", "táborový oheň", "pokazený robot", "divoký kôň", "obrovská ryba", "tajomný balík", "hudobný nástroj", "neviditeľný kamarát",
+const MIME_EASY_SITUATIONS = [
+  "na pláži", "v dažďi", "na snehu", "v škole", "v kuchyni", "v posteli", "na bicykli", "vo vlaku",
+  "v autobuse", "na ihrisku", "v obchode", "v lese", "na kopci", "pri jazere", "v aute", "na ceste",
+  "v telocvični", "na diskotéke", "na oslave", "pri raňajkách", "pri obede", "vo výťahu", "na kolotoči", "v kine",
+  "u zubára", "na letisku", "v zoo", "na trhu", "v knižnici", "na štadióne", "v bazéne", "v tme",
+  "vo vesmíre",
 ];
-export const GENERATED_PANTOMIME_WORDS = MIME_ACTIONS.flatMap((action) => MIME_TARGETS.map((target) => `${action}: ${target}`));
+const MIME_MEDIUM_SUBJECTS = [
+  "Nervózny šofér", "Unavený učiteľ", "Prísna zdravotná sestra", "Nešikovný kuchár", "Zmätený turista", "Neposedný školák",
+  "Prekvapený fotograf", "Vystresovaný manažér", "Roztržitý vedec", "Namyslený spevák", "Vyplašená mačka", "Hladný medveď",
+  "Zvedavá opica", "Lenivý pes", "Rozčúlený tréner", "Pomalý poštár", "Precízny hodinár", "Zamilovaný čašník",
+  "Netrpezlivý taxikár", "Prísny sudca", "Ustarostená mamina", "Hrdý dedko", "Rozhodcov pomocník", "Neohrozený záchranár",
+  "Začínajúci kaderník", "Skúsená horolezkyňa", "Prehnane veselý moderátor", "Tichý knihovník", "Vynervovaný pilot", "Šikovný mechanik",
+  "Neúspešný kúzelník", "Prísny vrátnik", "Rozprávkový rytier", "Tajný agent", "Zmätený robot", "Vážne chorý herec",
+  "Rozospatý strážnik", "Hyperaktívny animátor", "Prísny šéfkuchár", "Nešťastný futbalový fanúšik",
+];
+const MIME_MEDIUM_SITUATIONS = [
+  "na prvom rande", "v dopravnej zápche", "počas búrky", "na svadbe", "pri sťahovaní", "na pracovnom pohovore",
+  "v preplnenom vlaku", "pri skladaní nábytku", "na horskej turistike", "pri parkovaní", "v zubárskom kresle", "počas výpadku elektriny",
+  "pri varení večere", "na letiskovej kontrole", "v šatni po zápase", "pri natáčaní videa", "na rodinnom obede", "pri veľkom nákupe",
+  "počas online hovoru", "pri vypratávaní pivnice", "na silvestrovskej párty", "v čakárni u lekára", "pri kúpaní psa", "počas skúšky v škole",
+  "v lunaparku", "pri hľadaní kľúčov", "v tichej knižnici", "pri stavaní stanu", "na detskej oslave", "počas dlhého letu",
+  "pri maľovaní izby", "na zamrznutom jazere", "v uzavretom výťahu",
+];
+const MIME_HARD_SUBJECTS = [
+  "Trpezlivosť", "Žiarlivosť", "Zvedavosť", "Odvaha", "Nervozita", "Nostalgia", "Hrdosť", "Ľútosť",
+  "Podozrievavosť", "Nadšenie", "Sklamanie", "Úľava", "Panika", "Rozpaky", "Súcit", "Rivalita",
+  "Nedôvera", "Vnútorný pokoj", "Zmätok", "Predstieraná radosť", "Skrývaný strach", "Tichý hnev", "Falošná skromnosť", "Nečakaná nádej",
+  "Zbytočná výhovorka", "Trápne ticho", "Náhla inšpirácia", "Prehnané sebavedomie", "Úprimné ospravedlnenie", "Nezaslúžená pochvala",
+  "Zle skrytá závisť", "Detská radosť", "Posledná šanca", "Zbabraný plán", "Ťažké rozhodnutie", "Nudná povinnosť",
+  "Predčasná oslava", "Neochotná pomoc", "Zabudnutý sľub", "Nečakané odpustenie",
+];
+const MIME_HARD_SITUATIONS = [
+  "pri odovzdávaní ceny", "na maturitnej skúške", "počas služobnej cesty", "pri strate mobilu", "na stretnutí po rokoch", "pri rodinnom fotení",
+  "počas finálového zápasu", "na tlačovej konferencii", "pri žiadosti o zvýšenie platu", "v prvý deň v novej práci", "pri lúčení na letisku", "počas dlhého čakania",
+  "pri odovzdávaní darčeka", "na spoločnom výlete", "pri poslednom pokuse", "počas dôležitého telefonátu", "pri návrate domov", "na verejnom vystúpení",
+  "pri nečakanej návšteve", "počas spoločnej hry", "pri delení účtu", "na rušnej ulici", "pri neúspešnej oprave", "počas sťahovania do nového bytu",
+  "pri prehratej súťaži", "na začiatku dovolenky", "pri hľadaní stratenej veci", "počas búrlivej diskusie", "pri hodnotení výsledkov", "na romantickej večeri",
+  "pri chybnej odpovedi", "počas nočnej služby", "pri prvom tréningu",
+];
+
+/**
+ * Kombinácie prekladáme (nie „všetky situácie pre prvý podmet, potom druhý“),
+ * pretože balíky sa napĺňajú od začiatku zoznamu. Takto sa do hry dostanú
+ * všetky postavy a hráč nedostane desiatky kariet s tým istým podmetom.
+ * `shift` posúva párovanie, takže šarády a pantomíma nezačínajú rovnako.
+ */
+function crossScenes(subjects: string[], situations: string[], shift = 0) {
+  const scenes: string[] = [];
+  for (let round = 0; round < situations.length; round += 1) {
+    subjects.forEach((subject, index) => {
+      const situation = situations[(index + round + shift) % situations.length];
+      scenes.push(`${subject} ${situation}`);
+    });
+  }
+  return scenes;
+}
+
+export const GENERATED_PANTOMIME_BY_DIFFICULTY = {
+  lahke: crossScenes(MIME_EASY_SUBJECTS, MIME_EASY_SITUATIONS),
+  stredne: crossScenes(MIME_MEDIUM_SUBJECTS, MIME_MEDIUM_SITUATIONS),
+  tazke: crossScenes(MIME_HARD_SUBJECTS, MIME_HARD_SITUATIONS),
+};
 export const GENERATED_CHARADES_BY_DIFFICULTY = {
-  lahke: GENERATED_PANTOMIME_WORDS.slice(0, 700),
-  stredne: GENERATED_PANTOMIME_WORDS.slice(700, 1400),
-  tazke: GENERATED_PANTOMIME_WORDS.slice(1400),
+  lahke: crossScenes(MIME_EASY_SUBJECTS, MIME_EASY_SITUATIONS, 17),
+  stredne: crossScenes(MIME_MEDIUM_SUBJECTS, MIME_MEDIUM_SITUATIONS, 17),
+  tazke: crossScenes(MIME_HARD_SUBJECTS, MIME_HARD_SITUATIONS, 17),
 };
 
 const FORBIDDEN_OBJECTS = [

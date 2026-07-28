@@ -5,6 +5,7 @@ import { FORBIDDEN_CARDS, type ForbiddenCard, type SongCard } from "../../data/t
 import { takePersistentItem } from "../../utils/persistentDeck";
 import { useLanguage } from "../../i18n/LanguageProvider";
 import { CircularTimer, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
+import { useCountdown } from "../../hooks/useCountdown";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
 import { soundsEnabled, vibrate } from "../../utils/deviceFeedback";
 
@@ -50,7 +51,6 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   const soundAllowed = soundsEnabled();
   const [turn, setTurn] = useState(0);
   const [phase, setPhase] = useState<Phase>("ready");
-  const [timeLeft, setTimeLeft] = useState(timeSeconds);
   const [index, setIndex] = useState(0);
   const [turnScore, setTurnScore] = useState(0);
   const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
@@ -159,17 +159,16 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
     };
   }, [mode, phase, songCard, soundAllowed]);
 
-  useEffect(() => {
-    if (phase !== "playing") return;
-    if (mode === "pesnicka" && previewStatus === "playing") return;
-    if (timeLeft <= 0) {
+  // Počas prehrávania ukážky pesničky sa čas zastaví, inak beží podľa reálneho času.
+  const isPreviewPlaying = mode === "pesnicka" && previewStatus === "playing";
+  const { secondsLeft: timeLeft, reset: resetCountdown } = useCountdown(
+    timeSeconds,
+    phase === "playing" && !isPreviewPlaying,
+    () => {
       audioRef.current?.pause();
       setPhase("team-result");
-      return;
-    }
-    const timer = window.setTimeout(() => setTimeLeft((value) => value - 1), 1000);
-    return () => window.clearTimeout(timer);
-  }, [mode, phase, previewStatus, timeLeft]);
+    },
+  );
 
   useEffect(() => () => {
     if (previewTimerRef.current !== null) window.clearTimeout(previewTimerRef.current);
@@ -183,7 +182,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   function startTurn() {
     setIndex(0);
     setTurnScore(0);
-    setTimeLeft(timeSeconds);
+    resetCountdown();
     setSongAwards({ title: false, artist: false });
     drawCard();
     setPhase("playing");

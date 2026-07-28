@@ -4,8 +4,11 @@ import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { takePersistentItem } from "../../utils/persistentDeck";
 import { vibrate } from "../../utils/deviceFeedback";
+import { useCountdown } from "../../hooks/useCountdown";
 
 type Phase = "ready" | "ticking" | "exploded";
+
+const randomFuseSeconds = () => 30 + Math.floor(Math.random() * 61);
 
 export default function KtoDostaneBombu({
   onBack,
@@ -17,69 +20,58 @@ export default function KtoDostaneBombu({
   const [phase, setPhase] = useState<Phase>("ready");
   const [category, setCategory] = useState<string>(() => takePersistentItem("bomb-categories", BOMB_CATEGORIES));
   const [pulse, setPulse] = useState(false);
-  const explosionRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const speedOneRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const speedTwoRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [fuseSeconds, setFuseSeconds] = useState(randomFuseSeconds);
   const pulseRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const completionReportedRef = useRef(false);
 
-  function clearTimers() {
-    if (explosionRef.current) clearTimeout(explosionRef.current);
-    if (speedOneRef.current) clearTimeout(speedOneRef.current);
-    if (speedTwoRef.current) clearTimeout(speedTwoRef.current);
+  function clearPulse() {
     if (pulseRef.current) clearInterval(pulseRef.current);
-    explosionRef.current = null;
-    speedOneRef.current = null;
-    speedTwoRef.current = null;
     pulseRef.current = null;
   }
 
-  function startBomb() {
-    clearTimers();
-    completionReportedRef.current = false;
-    setPhase("ticking");
-    const duration = (30 + Math.floor(Math.random() * 61)) * 1000;
-
-    let interval = 1000;
-    function schedulePulse() {
-      pulseRef.current = setInterval(() => {
-        setPulse((p) => !p);
-      }, interval);
+  // Zápalná šnúra sa meria absolútnym časom, takže sa nedá predĺžiť prekresľovaním
+  // obrazovky. Po prepnutí aplikácie na pozadie a späť sa čas dorovná okamžite.
+  const { secondsLeft, reset: resetFuse } = useCountdown(fuseSeconds, phase === "ticking", () => {
+    clearPulse();
+    setPhase("exploded");
+    setPulse(false);
+    if (!completionReportedRef.current) {
+      completionReportedRef.current = true;
+      onRoundComplete?.();
     }
-    schedulePulse();
+    vibrate([120, 60, 180]);
+  });
 
-    speedOneRef.current = setTimeout(() => {
-      if (pulseRef.current) clearInterval(pulseRef.current);
-      interval = 600;
-      schedulePulse();
-    }, 20000);
+  // Tikanie sa zrýchľuje podľa uplynutého času, nie podľa reťazených timeoutov.
+  const elapsedSeconds = fuseSeconds - secondsLeft;
+  const pulseInterval = elapsedSeconds >= 50 ? 350 : elapsedSeconds >= 20 ? 600 : 1000;
 
-    speedTwoRef.current = setTimeout(() => {
-      if (pulseRef.current) clearInterval(pulseRef.current);
-      interval = 350;
-      schedulePulse();
-    }, 50000);
+  useEffect(() => {
+    if (phase !== "ticking") {
+      clearPulse();
+      return;
+    }
+    pulseRef.current = setInterval(() => setPulse((value) => !value), pulseInterval);
+    return () => clearPulse();
+  }, [phase, pulseInterval]);
 
-    explosionRef.current = setTimeout(() => {
-      clearTimers();
-      setPhase("exploded");
-      setPulse(false);
-      if (!completionReportedRef.current) {
-        completionReportedRef.current = true;
-        onRoundComplete?.();
-      }
-      vibrate([120, 60, 180]);
-    }, duration);
+  function startBomb() {
+    completionReportedRef.current = false;
+    const nextFuse = randomFuseSeconds();
+    setFuseSeconds(nextFuse);
+    resetFuse(nextFuse);
+    setPhase("ticking");
   }
 
   function reset() {
-    clearTimers();
+    clearPulse();
     setPulse(false);
+    resetFuse(fuseSeconds);
     setCategory(takePersistentItem("bomb-categories", BOMB_CATEGORIES));
     setPhase("ready");
   }
 
-  useEffect(() => () => clearTimers(), []);
+  useEffect(() => () => clearPulse(), []);
 
   // ── Exploded ──────────────────────────────────────────────────────
   if (phase === "exploded") {
