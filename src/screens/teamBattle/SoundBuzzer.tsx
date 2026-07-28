@@ -5,6 +5,7 @@ import { SOUND_CLUES } from "../../data/teamBattleExtras";
 import { ParticipantScoreStrip, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
 import { useFeedback } from "../../feedback/FeedbackProvider";
+import { soundsEnabled } from "../../utils/deviceFeedback";
 
 type Phase = { type: "question" } | { type: "buzzed"; participant: number } | { type: "revealed"; participant: number };
 type AudioStatus = "idle" | "loading" | "playing" | "ready" | "error";
@@ -13,6 +14,7 @@ const MAX_SOUND_SECONDS = 7;
 
 export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds = QUESTIONS_PER_ROUND, timeSeconds = MAX_SOUND_SECONDS }: QuickParticipantsProps) {
   const { playFeedback } = useFeedback();
+  const soundAllowed = soundsEnabled();
   const deck = useMemo(() => takePersistentItems("party:sound-buzzer", SOUND_CLUES, rounds, (clue) => clue.label), [rounds]);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
@@ -46,8 +48,12 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds
     if (audioContextRef.current) void audioContextRef.current.close();
   }, []);
 
+  useEffect(() => {
+    if (!soundAllowed) stopAudio("idle");
+  }, [soundAllowed]);
+
   async function play() {
-    if (audioStatus === "loading") return;
+    if (!soundAllowed || audioStatus === "loading") return;
     stopAudio("loading");
 
     if (clue.tonePattern?.length) {
@@ -133,7 +139,8 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds
               <div className="absolute inset-0 bg-gradient-to-t from-[#07131b]/75 via-transparent to-cyan-400/10" />
               <button
                 onClick={audioStatus === "playing" ? () => stopAudio("ready") : play}
-                aria-label={audioStatus === "playing" ? "Zastaviť zvuk" : "Prehrať zvuk"}
+                disabled={!soundAllowed}
+                aria-label={!soundAllowed ? "Zvuky sú vypnuté v nastaveniach" : audioStatus === "playing" ? "Zastaviť zvuk" : "Prehrať zvuk"}
                 className="party-shine absolute inset-0 flex items-center justify-center transition active:scale-95"
               >
                 <span className={`flex h-24 w-24 items-center justify-center rounded-full border border-white/25 bg-black/40 text-5xl shadow-2xl backdrop-blur-md ${audioStatus === "loading" || audioStatus === "playing" ? "animate-pulse" : ""}`}>

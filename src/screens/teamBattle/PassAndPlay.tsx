@@ -6,6 +6,7 @@ import { takePersistentItem } from "../../utils/persistentDeck";
 import { useLanguage } from "../../i18n/LanguageProvider";
 import { CircularTimer, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
+import { soundsEnabled, vibrate } from "../../utils/deviceFeedback";
 
 type PassMode = "zakazane" | "pesnicka";
 type Phase = "ready" | "playing" | "team-result";
@@ -46,6 +47,7 @@ interface SharedProps extends QuickParticipantsProps {
 function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDone, mode }: SharedProps & { mode: PassMode }) {
   const { language } = useLanguage();
   const copy = MODE_COPY[mode];
+  const soundAllowed = soundsEnabled();
   const [turn, setTurn] = useState(0);
   const [phase, setPhase] = useState<Phase>("ready");
   const [timeLeft, setTimeLeft] = useState(timeSeconds);
@@ -79,7 +81,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   }
 
   useEffect(() => {
-    if (mode !== "pesnicka" || phase !== "playing" || !songCard) return;
+    if (!soundAllowed || mode !== "pesnicka" || phase !== "playing" || !songCard) return;
     const song = songCard;
     const query = encodeURIComponent(`${song.title} ${song.artist}`);
     const requestId = `${Date.now()}_${Math.random().toString(36).slice(2)}`;
@@ -155,7 +157,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
       delete jsonpWindow[deezerCallback];
       delete jsonpWindow[itunesCallback];
     };
-  }, [mode, phase, songCard]);
+  }, [mode, phase, songCard, soundAllowed]);
 
   useEffect(() => {
     if (phase !== "playing") return;
@@ -174,6 +176,10 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
     audioRef.current?.pause();
   }, []);
 
+  useEffect(() => {
+    if (!soundAllowed) stopPreview();
+  }, [soundAllowed]);
+
   function startTurn() {
     setIndex(0);
     setTurnScore(0);
@@ -188,14 +194,14 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
     if (correct) setTurnScore((value) => value + 1);
     drawCard();
     setIndex((value) => value + 1);
-    navigator.vibrate?.(correct ? 30 : 12);
+    vibrate(correct ? 30 : 12);
   }
 
   function awardSongPart(part: "title" | "artist") {
     if (songAwards[part]) return;
     setSongAwards((current) => ({ ...current, [part]: true }));
     setTurnScore((value) => value + 1);
-    navigator.vibrate?.(25);
+    vibrate(25);
   }
 
   function nextSongCard() {
@@ -214,7 +220,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   }
 
   async function playPreview() {
-    if (!preview) return;
+    if (!preview || !soundAllowed) return;
     stopPreview();
     const audio = new Audio(preview.url);
     audio.volume = 0.55;
@@ -350,7 +356,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
                 <p className="text-[10px] font-bold leading-relaxed text-white/35">Nepoznáš ju podľa názvu? Prilož mobil k uchu a pusti si krátku ukážku priamo v aplikácii.</p>
                 <button
                   onClick={previewStatus === "playing" ? stopPreview : playPreview}
-                  disabled={previewStatus === "loading" || previewStatus === "missing"}
+                  disabled={!soundAllowed || previewStatus === "loading" || previewStatus === "missing"}
                   className="mt-3 w-full rounded-xl border border-violet-300/20 bg-violet-400/15 px-3 py-3 text-xs font-black text-violet-100 transition active:scale-95 disabled:opacity-40"
                 >
                   {previewStatus === "loading" ? "Hľadám ukážku…" : previewStatus === "missing" ? "Ukážka sa nenašla" : previewStatus === "playing" ? "■ Zastaviť ukážku" : "▶ Pustiť 8 s ukážku"}

@@ -12,6 +12,7 @@ import { SOLO_CHARADES_WORDS } from "../../data/charades";
 import { takePersistentItem, takePersistentItems } from "../../utils/persistentDeck";
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
 import { CircularTimer } from "./PartyChrome";
+import { vibrate } from "../../utils/deviceFeedback";
 
 type SubPhase = "select-difficulty" | "ready" | "playing" | "team-done";
 
@@ -148,7 +149,7 @@ export default function TimedWords({
   function handleCorrect() {
     if (doneRef.current || actionLockedRef.current) return;
     actionLockedRef.current = true;
-    if (isHadajKtoSom) navigator.vibrate?.(25);
+    if (isHadajKtoSom) vibrate(25);
     if (isPantomima) {
       doneRef.current = true;
       setFlash("ok");
@@ -197,7 +198,7 @@ export default function TimedWords({
   function handleSkip() {
     if (doneRef.current || actionLockedRef.current) return;
     actionLockedRef.current = true;
-    if (isHadajKtoSom) navigator.vibrate?.(25);
+    if (isHadajKtoSom) vibrate(25);
     if (isPantomima) {
       if (wordIdx + 1 >= teamWords.length) {
         doneRef.current = true;

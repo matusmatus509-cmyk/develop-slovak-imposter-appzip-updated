@@ -1,18 +1,34 @@
 import { useEffect, useRef, useState } from "react";
 import type {
+  CustomContentGame,
   FeedbackSettings,
   GameSettings,
   GameStatistics,
+  GeneratedLaunchPayload,
   RoundAssignment,
   RoundHistoryEntry,
   Screen,
+  WorkshopCollection,
   WorkshopEntry,
+  WorkshopSelections,
 } from "./types";
 import { CATEGORIES } from "./data/categories";
 import { DRAWING_CATEGORIES } from "./data/drawingCategories";
 import { generateRound } from "./utils/gameLogic";
 import { applyStatisticsEvent, createDefaultStatistics, normalizeStatistics } from "./utils/gameStats";
-import { normalizeFavoriteIds, normalizeWorkshopEntries, PARTY_THEMES, PLAYABLE_GAMES } from "./data/engagement";
+import { normalizeFavoriteIds, PARTY_THEMES, PLAYABLE_GAMES } from "./data/engagement";
+import {
+  DEFAULT_COLLECTION,
+  DEFAULT_WORKSHOP_SELECTIONS,
+  countCompatibleEntries,
+  filterWorkshopEntries,
+  generatedPayloadToQuiz,
+  normalizeWorkshopCollections,
+  normalizeWorkshopEntries,
+  normalizeWorkshopSelections,
+  workshopEntriesToQuiz,
+} from "./data/partyContent";
+import type { CustomContentControls } from "./components/CustomContentSelector";
 import { usePartyMusic } from "./hooks/usePartyMusic";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
@@ -164,10 +180,22 @@ export default function App() {
     DEFAULT_FEEDBACK_SETTINGS
   );
   const [storedFavoriteIds, setStoredFavoriteIds] = useLocalStorage<string[]>("podvodnik-favorites-v1", []);
-  const [storedWorkshopEntries, setStoredWorkshopEntries] = useLocalStorage<WorkshopEntry[]>("podvodnik-workshop-v1", []);
+  const [storedWorkshopCollections, setStoredWorkshopCollections] = useLocalStorage<WorkshopCollection[]>("podvodnik-workshop-collections-v2", [DEFAULT_COLLECTION]);
+  const workshopEntriesV2ExistedOnStartupRef = useRef((() => {
+    try {
+      return typeof window !== "undefined" && window.localStorage.getItem("podvodnik-workshop-entries-v2") !== null;
+    } catch {
+      return false;
+    }
+  })());
+  const [storedWorkshopEntries, setStoredWorkshopEntries] = useLocalStorage<WorkshopEntry[]>("podvodnik-workshop-entries-v2", []);
+  const [storedWorkshopSelections, setStoredWorkshopSelections] = useLocalStorage<WorkshopSelections>("podvodnik-workshop-selections-v2", DEFAULT_WORKSHOP_SELECTIONS);
+  const [generatedLaunch, setGeneratedLaunch] = useState<GeneratedLaunchPayload | null>(null);
   const safeFeedbackSettings = normalizeFeedbackSettings(feedbackSettings);
   const favoriteIds = normalizeFavoriteIds(storedFavoriteIds);
-  const workshopEntries = normalizeWorkshopEntries(storedWorkshopEntries);
+  const workshopCollections = normalizeWorkshopCollections(storedWorkshopCollections);
+  const workshopEntries = normalizeWorkshopEntries(storedWorkshopEntries, workshopCollections);
+  const workshopSelections = normalizeWorkshopSelections(storedWorkshopSelections, workshopCollections);
   const favoriteGames = favoriteIds.flatMap((id) => {
     const game = PLAYABLE_GAMES.find((item) => item.id === id);
     return game ? [game] : [];
@@ -176,6 +204,7 @@ export default function App() {
   const gameSessionActiveRef = useRef(false);
   const gameReturnScreenRef = useRef<Screen>("home");
   const statisticsReturnScreenRef = useRef<Screen>("home");
+  const settingsReturnScreenRef = useRef<Screen>("home");
   const historyReturnScreenRef = useRef<Screen>("impostor-menu");
 
   const [assignment, setAssignment] = useState<RoundAssignment | null>(null);
@@ -229,8 +258,36 @@ export default function App() {
     setFeedbackSettings((current) => normalizeFeedbackSettings(current));
     const normalizedFavorites = normalizeFavoriteIds(storedFavoriteIds);
     if (JSON.stringify(normalizedFavorites) !== JSON.stringify(storedFavoriteIds)) setStoredFavoriteIds(normalizedFavorites);
-    const normalizedWorkshop = normalizeWorkshopEntries(storedWorkshopEntries);
+    const normalizedCollections = normalizeWorkshopCollections(storedWorkshopCollections);
+    if (JSON.stringify(normalizedCollections) !== JSON.stringify(storedWorkshopCollections)) setStoredWorkshopCollections(normalizedCollections);
+    const validStoredWorkshopEntries = Array.isArray(storedWorkshopEntries) ? storedWorkshopEntries : [];
+    const normalizedV2Workshop = normalizeWorkshopEntries(validStoredWorkshopEntries, normalizedCollections);
+    let normalizedWorkshop = normalizedV2Workshop;
+    let migratedLegacyWorkshop = false;
+    if (!workshopEntriesV2ExistedOnStartupRef.current) {
+      try {
+        const legacy = window.localStorage.getItem("podvodnik-workshop-v1");
+        if (legacy) {
+          const normalizedLegacyWorkshop = normalizeWorkshopEntries(JSON.parse(legacy), normalizedCollections);
+          if (normalizedLegacyWorkshop.length > 0) {
+            normalizedWorkshop = normalizedLegacyWorkshop;
+            migratedLegacyWorkshop = true;
+          }
+        }
+      } catch { /* Malformed legacy data is ignored by the normalizer. */ }
+    }
+    if (migratedLegacyWorkshop) {
+      try {
+        const serialized = JSON.stringify(normalizedWorkshop);
+        window.localStorage.setItem("podvodnik-workshop-entries-v2", serialized);
+        if (window.localStorage.getItem("podvodnik-workshop-entries-v2") === serialized) {
+          window.localStorage.removeItem("podvodnik-workshop-v1");
+        }
+      } catch { /* Keep the legacy key when the migrated value cannot be persisted. */ }
+    }
     if (JSON.stringify(normalizedWorkshop) !== JSON.stringify(storedWorkshopEntries)) setStoredWorkshopEntries(normalizedWorkshop);
+    const normalizedSelections = normalizeWorkshopSelections(storedWorkshopSelections, normalizedCollections);
+    if (JSON.stringify(normalizedSelections) !== JSON.stringify(storedWorkshopSelections)) setStoredWorkshopSelections(normalizedSelections);
   // Persisted values are migrated once on startup; setters are stable for the lifetime of the app.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -277,10 +334,43 @@ export default function App() {
     });
   }
 
-  function navigateFromMenu(next: Screen) {
+  function customControls(game: CustomContentGame): CustomContentControls {
+    const countsByCollection = countCompatibleEntries(workshopEntries, game);
+    const compatibleEntries = filterWorkshopEntries(workshopEntries, game, {
+      enabled: true,
+      collectionIds: workshopCollections.map((collection) => collection.id),
+    });
+    return {
+      collections: workshopCollections,
+      selection: workshopSelections[game],
+      countsByCollection,
+      compatibleEntryCollectionIds: compatibleEntries.map((entry) => entry.collectionIds),
+      onChange: (selection) => setStoredWorkshopSelections((current) => ({
+        ...normalizeWorkshopSelections(current, workshopCollections),
+        [game]: selection,
+      })),
+    };
+  }
+
+  function customEntries(game: CustomContentGame) {
+    return filterWorkshopEntries(workshopEntries, game, workshopSelections[game]);
+  }
+
+  function themedPrompts(target: GeneratedLaunchPayload["screen"]) {
+    return generatedLaunch?.screen === target ? generatedLaunch.prompts : [];
+  }
+
+  function startThemedLaunch(payload: GeneratedLaunchPayload) {
+    setGeneratedLaunch(payload);
+    navigateFromMenu(payload.screen, true);
+  }
+
+  function navigateFromMenu(next: Screen, preserveGenerated = false) {
+    if (!preserveGenerated) setGeneratedLaunch(null);
     const enteringGame = !NON_GAME_SCREENS.includes(next);
     if (enteringGame && NON_GAME_SCREENS.includes(screen)) gameReturnScreenRef.current = screen;
     if (next === "statistics" && NON_GAME_SCREENS.includes(screen)) statisticsReturnScreenRef.current = screen;
+    if (next === "settings" && NON_GAME_SCREENS.includes(screen)) settingsReturnScreenRef.current = screen;
     if (next === "impostor-history" && NON_GAME_SCREENS.includes(screen)) historyReturnScreenRef.current = screen;
     const hasWelcome = Boolean(GAME_WELCOMES[next]);
     setScreen(next);
@@ -291,6 +381,7 @@ export default function App() {
   function returnFromActiveGame(fallback: Screen) {
     const target = NON_GAME_SCREENS.includes(gameReturnScreenRef.current) ? gameReturnScreenRef.current : fallback;
     setWelcomeScreen(null);
+    setGeneratedLaunch(null);
     setScreen(target);
   }
 
@@ -383,16 +474,16 @@ export default function App() {
   function renderScreen() {
   switch (screen) {
     case "home":
-      return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => setScreen("settings")} favoriteGames={favoriteGames} onToggleFavorite={toggleFavorite} />;
+      return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => navigateFromMenu("settings")} favoriteGames={favoriteGames} onToggleFavorite={toggleFavorite} />;
 
     case "party-hub":
-      return <PartyHub statistics={statistics} settings={safeFeedbackSettings} musicSupported={music.supported} musicBlocked={music.blocked} workshopEntries={workshopEntries} onWorkshopChange={setStoredWorkshopEntries} onSettingsChange={setFeedbackSettings} onClaimDailyReward={claimDailyReward} onNavigate={navigateFromMenu} onBack={() => setScreen("home")} />;
+      return <PartyHub statistics={statistics} settings={safeFeedbackSettings} musicSupported={music.supported} musicBlocked={music.blocked} collections={workshopCollections} workshopEntries={workshopEntries} onCollectionsChange={setStoredWorkshopCollections} onWorkshopChange={setStoredWorkshopEntries} onSettingsChange={setFeedbackSettings} onClaimDailyReward={claimDailyReward} onThemedLaunch={startThemedLaunch} onNavigate={navigateFromMenu} onBack={() => setScreen("home")} />;
 
     case "statistics":
       return <Statistics statistics={statistics} onBack={() => setScreen(statisticsReturnScreenRef.current)} onClaimDailyReward={claimDailyReward} />;
 
     case "settings":
-      return <Settings settings={safeFeedbackSettings} onChange={setFeedbackSettings} onBack={() => setScreen("home")} />;
+      return <Settings settings={safeFeedbackSettings} musicSupported={music.supported} musicBlocked={music.blocked} onChange={setFeedbackSettings} onBack={() => setScreen(settingsReturnScreenRef.current)} />;
 
     case "impostor-menu":
       return (
@@ -496,13 +587,13 @@ export default function App() {
       );
 
     case "truth-or-dare":
-      return <TruthOrDare onBack={() => returnFromActiveGame("minigames-menu")} />;
+      return <TruthOrDare onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("truth-or-dare")} customControls={customControls("truth-or-dare")} themedPrompts={themedPrompts("truth-or-dare")} />;
 
     case "never-have-i-ever":
-      return <NeverHaveIEver onBack={() => returnFromActiveGame("minigames-menu")} />;
+      return <NeverHaveIEver onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("never-have-i-ever")} customControls={customControls("never-have-i-ever")} themedPrompts={themedPrompts("never-have-i-ever")} />;
 
     case "would-you-rather":
-      return <WouldYouRather onBack={() => returnFromActiveGame("minigames-menu")} />;
+      return <WouldYouRather onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("would-you-rather")} customControls={customControls("would-you-rather")} themedPrompts={themedPrompts("would-you-rather")} />;
 
     case "drawing-setup":
       return (
@@ -567,13 +658,13 @@ export default function App() {
       );
 
     case "slovnarosada":
-      return <SlovnaRosada onBack={() => returnFromActiveGame("minigames-menu")} />;
+      return <SlovnaRosada onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("slovnarosada")} customControls={customControls("slovnarosada")} themedPrompts={themedPrompts("slovnarosada")} />;
 
     case "pingpong":
       return <SlovnyPingPong onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "hadajktosom":
-      return <HadajKtoSom onBack={() => returnFromActiveGame("minigames-menu")} />;
+      return <HadajKtoSom onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("hadajktosom")} customControls={customControls("hadajktosom")} themedPrompts={themedPrompts("hadajktosom")} />;
 
     case "ibanepravda":
       return <IbaNepravda onBack={() => returnFromActiveGame("minigames-menu")} />;
@@ -582,7 +673,7 @@ export default function App() {
       return <KtoDostaneBombu onBack={() => returnFromActiveGame("minigames-menu")} onRoundComplete={recordBombRound} />;
 
     case "hadajemoji":
-      return <HadajEmoji onBack={() => returnFromActiveGame("minigames-menu")} />;
+      return <HadajEmoji onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("hadajemoji")} customControls={customControls("hadajemoji")} />;
 
     case "zakazane":
       return <TeamQuickGame game="zakazane" onBack={() => returnFromActiveGame("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
@@ -600,10 +691,10 @@ export default function App() {
       return <TeamQuickGame game="patzadesat" onBack={() => returnFromActiveGame("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
 
     case "teambattle":
-      return <TeamBattle onHome={() => returnFromActiveGame("home")} onGameComplete={recordPartyResult} />;
+      return <TeamBattle onHome={() => returnFromActiveGame("home")} onGameComplete={recordPartyResult} customQuestions={workshopEntriesToQuiz(customEntries("teambattle"))} themedQuestions={generatedPayloadToQuiz(generatedLaunch)} customControls={customControls("teambattle")} />;
 
     default:
-      return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => setScreen("settings")} favoriteGames={favoriteGames} onToggleFavorite={toggleFavorite} />;
+      return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => navigateFromMenu("settings")} favoriteGames={favoriteGames} onToggleFavorite={toggleFavorite} />;
   }
   }
 

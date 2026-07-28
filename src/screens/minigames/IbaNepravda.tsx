@@ -3,6 +3,7 @@ import { ONLY_LIES } from "../../data/prompts";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { takePersistentItem } from "../../utils/persistentDeck";
+import { vibrate } from "../../utils/deviceFeedback";
 
 const ROUND_MS = 4000;
 
@@ -22,7 +23,7 @@ export default function IbaNepravda({ onBack }: { onBack: () => void }) {
 
       if (remaining === 0) {
         window.clearInterval(interval);
-        navigator.vibrate?.([80, 50, 120]);
+        vibrate([80, 50, 120]);
         setLost(true);
       }
     }, 50);

@@ -1,6 +1,7 @@
 import { GENERATED_EMOJI_PUZZLES } from "./expandedContent";
 
 export interface EmojiPuzzle {
+  id?: string;
   emoji: string;
   answer: string;
 }

@@ -440,6 +440,7 @@ export function getTeamCharacters(language: AppLanguage): string[] {
 
 // ── Quiz questions ────────────────────────────────────────────────────────────
 export interface QuizQuestion {
+  id?: string;
   question: string;
   answer: string;
   category: string;
