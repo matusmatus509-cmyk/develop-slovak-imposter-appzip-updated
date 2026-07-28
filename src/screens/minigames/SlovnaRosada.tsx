@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import {
   ALL_SOLO_CHARADES_WORDS,
   SOLO_CHARADES_WORDS,
@@ -10,6 +10,7 @@ import type { WordGuessRecordInput, WorkshopEntry } from "../../types";
 import { Icons } from "../../components/icons";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
+import { useCountdown } from "../../hooks/useCountdown";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -317,7 +318,6 @@ function PlayingScreen({
   }
   const [cardIdx, setCardIdx] = useState(0);
   const [card, setCard] = useState(drawNextCard);
-  const [timeLeft, setTimeLeft] = useState(timerSecs);
   const [skipsUsed, setSkipsUsed] = useState(0);
   const [correct, setCorrect] = useState(0);
   const [cardAnim, setCardAnim] = useState<"idle" | "correct" | "skip">("idle");
@@ -335,12 +335,8 @@ function PlayingScreen({
     onDone(correctRef.current, skipsRef.current);
   }
 
-  // Timer
-  useEffect(() => {
-    if (timeLeft <= 0) { finish(); return; }
-    const id = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
-    return () => clearTimeout(id);
-  });
+  // Odpočet beží podľa reálneho času, takže ho animácie kariet ani skóre nespomalia.
+  const { secondsLeft: timeLeft, percentLeft } = useCountdown(timerSecs, true, finish);
 
   function advance(type: "correct" | "skip") {
     if (doneRef.current || actionLockedRef.current) return false;
@@ -371,7 +367,7 @@ function PlayingScreen({
   }
 
   const canSkip = maxSkips === 99 || skipsUsed < maxSkips;
-  const timerPct = (timeLeft / timerSecs) * 100;
+  const timerPct = percentLeft;
   const isWarning = timeLeft <= 10;
 
   return (
@@ -439,7 +435,11 @@ function PlayingScreen({
           <p className="mb-3 text-xs font-bold uppercase tracking-widest text-gray-400">
             {card?.categoryIcon} {card?.category}
           </p>
-          <p className="text-4xl font-black text-gray-900 leading-tight">
+          <p
+            className="font-black text-gray-900 leading-tight break-words hyphens-auto"
+            style={{ fontSize: `clamp(1.35rem, ${Math.max(4, 12 - (card?.word?.length ?? 0) / 6)}vw, 2.25rem)` }}
+            lang="sk"
+          >
             {card?.word ?? ""}
           </p>
         </div>
@@ -449,7 +449,7 @@ function PlayingScreen({
       <div className="w-full px-8 mb-3">
         <div className="h-1.5 w-full rounded-full bg-white/10 overflow-hidden">
           <div
-            className={`h-full rounded-full transition-all duration-1000 ease-linear ${
+            className={`h-full rounded-full transition-[width] duration-200 ease-linear ${
               isWarning ? "bg-red-500" : "bg-purple-400"
             }`}
             style={{ width: `${timerPct}%` }}
