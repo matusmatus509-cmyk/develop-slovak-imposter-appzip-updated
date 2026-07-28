@@ -373,10 +373,13 @@ export const PANTOMIMA_HARD: string[] = [
 
 // Generované scény sú rozdelené podľa náročnosti (jednoduché postavy → scény
 // s emóciami), takže ľahká úroveň nikdy neobsahuje ťažkú kartu a naopak.
+// Pôvodné exporty vyššie zostávajú kvôli spätnej kompatibilite uložených hier.
+// Aktívny balík však používa iba revidovaný katalóg: každá karta je zrozumiteľná
+// činnosť alebo situácia a už neobsahuje staré rozbité či náhodné spojenia.
 export const PANTOMIMA_WORDS_BY_DIFFICULTY: Record<PantomimaDifficulty, string[]> = {
-  lahke: [...new Set([...PANTOMIMA_EASY, ...GENERATED_PANTOMIME_BY_DIFFICULTY.lahke])].slice(0, 1000),
-  stredne: [...new Set([...PANTOMIMA_MEDIUM, ...GENERATED_PANTOMIME_BY_DIFFICULTY.stredne])].slice(0, 1000),
-  tazke: [...new Set([...PANTOMIMA_HARD, ...GENERATED_PANTOMIME_BY_DIFFICULTY.tazke])].slice(0, 1000),
+  lahke: [...GENERATED_PANTOMIME_BY_DIFFICULTY.lahke],
+  stredne: [...GENERATED_PANTOMIME_BY_DIFFICULTY.stredne],
+  tazke: [...GENERATED_PANTOMIME_BY_DIFFICULTY.tazke],
 };
 
 // ── Šarády words (describe it verbally, no derivatives) ──────────────────────

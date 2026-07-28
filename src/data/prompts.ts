@@ -7,7 +7,7 @@ const TRUTHS_BASE: string[] = [
   "Aká je najtrápnejšia prezývka, ktorú si kedy mal/a?",
   "Čo je najtrápnejšia vec, ktorú si povedal/a do ticha keď si si myslel/a, že nikto nepočúva?",
   "Stalo sa ti niekedy, že si si obliekol/a oblečenie naopak a prišiel/a si na to až neskôr?",
-  "Aký je tvoj najhorší hairstyle z minulosti?",
+  "Aký bol tvoj najhorší účes v minulosti?",
   "Čo je najtrápnejšia vec, ktorú si niekedy napísal/a na sociálnej sieti a potom zmazal/a?",
   "Mal/a si niekedy prezývku v škole, za ktorú sa hanbíš?",
 
@@ -16,7 +16,7 @@ const TRUTHS_BASE: string[] = [
   "Čo je vec, ktorú by si nikdy nepriznal/a rodičom?",
   "Aká je vec, ktorú robíš, ale hanbíš sa za ňu?",
   "Do koho si bol/a kedysi tajne zamilovaný/á?",
-  "Čo je najväčší klamstvo, ktoré si niekomu z tejto miestnosti povedal/a?",
+  "Aké je najväčšie klamstvo, ktoré si niekomu z tejto miestnosti povedal/a?",
   "Aká je najhoršia vec, ktorú si kedy urobil/a kamarátovi?",
   "Kedy si naposledy čítal/a cudzie správy bez povolenia?",
   "Čo je tvoja najväčšia závislosť alebo zlozvyk?",
@@ -266,7 +266,7 @@ const WOULD_YOU_RATHER_BASE: { a: string; b: string }[] = [
   { a: "cestovať do minulosti", b: "cestovať do budúcnosti" },
   { a: "stratiť sa v lese", b: "stratiť sa v meste" },
   { a: "bývať na mieste s dokonalým počasím", b: "bývať na mieste, kde sa stretneš s ľuďmi svojich snov" },
-  { a: "objastiť celú Európu autobusom zadarmo", b: "stráviť mesiac na luxusnom ostrove bez možnosti odísť skôr" },
+  { a: "precestovať celú Európu autobusom zadarmo", b: "stráviť mesiac na luxusnom ostrove bez možnosti odísť skôr" },
   { a: "žiť rok v džungli", b: "žiť rok na Arktíde" },
   { a: "preskúmať oceánske hlbiny", b: "preskúmať vesmír" },
 
@@ -297,7 +297,7 @@ const WOULD_YOU_RATHER_BASE: { a: string; b: string }[] = [
   { a: "mať hlavu psa ale telo človeka", b: "mať hlavu človeka ale telo psa" },
   { a: "kýchať vždy presne trikrát za sebou nie menej nie viac", b: "zakaždým keď si sadneš vydáš hlasný zvuk" },
   { a: "smiať sa ako kačica navždy", b: "mať hlas ako Darth Vader navždy" },
-  { a: "vždy vedieť, kto o tebe luže", b: "vždy vedieť, kto ťa má rád" },
+  { a: "vždy vedieť, kto o tebe klame", b: "vždy vedieť, kto ťa má rád" },
   { a: "stretnúť sa so svojím budúcim ja", b: "stretnúť sa so svojím minulým ja z pred 10 rokov" },
 ];
 
@@ -321,11 +321,11 @@ const DARE_TOPICS = [
 ];
 
 const NEVER_TOPICS = [
-  "škole", "práci", "dovolenke", "výlete", "oslave", "svadbe", "koncerte", "festivale", "športovom zápase", "reštaurácii",
-  "kine", "divadle", "obchode", "posilňovni", "nemocnici", "hoteli", "lietadle", "vlaku", "autobuse", "aute",
-  "sociálnych sieťach", "videohre", "videohovore", "online nákupe", "skupinovom čete", "fotografovaní", "varení", "pečení", "upratovaní", "cvičení",
-  "randení", "priateľstve", "rodinnej návšteve", "školskom výlete", "pracovnom pohovore", "narodeninách", "Vianociach", "Silvestri", "lete", "zime",
-  "stretnutí s celebritou", "učení cudzieho jazyka", "starostlivosti o zviera", "šoférovaní", "stanovaní", "plávaní", "lyžovaní", "tanci", "speve", "verejnom vystúpení",
+  "v škole", "v práci", "na dovolenke", "na výlete", "na oslave", "na svadbe", "na koncerte", "na festivale", "na športovom zápase", "v reštaurácii",
+  "v kine", "v divadle", "v obchode", "v posilňovni", "v nemocnici", "v hoteli", "v lietadle", "vo vlaku", "v autobuse", "v aute",
+  "na sociálnych sieťach", "vo videohre", "počas videohovoru", "pri online nákupe", "v skupinovom čete", "pri fotografovaní", "pri varení", "pri pečení", "pri upratovaní", "pri cvičení",
+  "na rande", "v priateľstve", "na rodinnej návšteve", "na školskom výlete", "na pracovnom pohovore", "na narodeninách", "počas Vianoc", "na Silvestra", "v lete", "v zime",
+  "pri stretnutí s celebritou", "pri učení cudzieho jazyka", "pri starostlivosti o zviera", "pri šoférovaní", "pri stanovaní", "pri plávaní", "pri lyžovaní", "pri tanci", "pri speve", "pri verejnom vystúpení",
 ];
 
 const RATHER_TOPICS = [
@@ -414,9 +414,34 @@ export const DARES: string[] = uniqueStrings([
   ...GENERATED_DARES,
 ], 2000);
 
+function normalizeNeverCard(card: string) {
+  const statement = card.replace(/^Nikdy som nikdy\.\.\.\s*/, "").replace(/^som\s+/, "").trim();
+  if (!statement) return "";
+  const corrections: Record<string, string> = {
+    "premeškala odchod vlaku, autobusu alebo lietadla.": "Nikdy som nikdy nezmeškal/a vlak, autobus ani lietadlo.",
+    "spala pod holým nebom.": "Nikdy som nikdy nespal/a pod holým nebom.",
+    "sa stratil/a v cudzom meste.": "Nikdy som nikdy nebol/a stratený/á v cudzom meste.",
+    "hitchhikoval/a.": "Nikdy som nikdy necestoval/a stopom.",
+    "videl/a more.": "Nikdy som nikdy nevidel/a more.",
+    "liezol/la na horu vyššiu ako 2000 metrov.": "Nikdy som nikdy nevystúpil/a na horu vyššiu ako 2 000 metrov.",
+  };
+  if (corrections[statement]) return corrections[statement];
+  const withoutTrailingAuxiliary = statement.replace(/^(ne[^\s]+)\s+som\s+(sa\s+)?/, "$2$1 ");
+  if (/^ne/i.test(withoutTrailingAuxiliary)) return `Nikdy som nikdy ${withoutTrailingAuxiliary}`;
+  const withNegatedVerb = withoutTrailingAuxiliary.replace(/^(sa|si)\s+([^\s]+)|^([^\s]+)/, (_match, pronoun: string | undefined, verbAfterPronoun: string | undefined, verb: string | undefined) => {
+    const negate = (value: string) => {
+      const parts = value.split("/");
+      if (parts.length === 2 && /^(a|la)$/i.test(parts[1])) return `${parts[0].startsWith("ne") ? parts[0] : `ne${parts[0]}`}/${parts[1]}`;
+      return parts.map((part) => part.startsWith("ne") ? part : `ne${part}`).join("/");
+    };
+    return pronoun ? `${pronoun} ${negate(verbAfterPronoun!)}` : negate(verb!);
+  });
+  return `Nikdy som nikdy ${withNegatedVerb}`;
+}
+
 export const NEVER_HAVE_I_EVER: string[] = uniqueStrings([
-  ...NEVER_HAVE_I_EVER_BASE,
-  ...NEVER_TOPICS.flatMap((topic) => NEVER_ACTIONS.map((action) => `Nikdy som nikdy ${action} pri ${topic}.`)),
+  ...NEVER_HAVE_I_EVER_BASE.map(normalizeNeverCard),
+  ...NEVER_TOPICS.flatMap((topic) => NEVER_ACTIONS.map((action) => `Nikdy som nikdy ${action} ${topic}.`)),
   ...GENERATED_NEVER,
 ], 2000);
 
