@@ -6,7 +6,7 @@ import {
 } from "../../data/charades";
 import { Button, Shell, TopBar } from "../../components/ui";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
-import type { GeneratedPrompt, WordGuessRecordInput, WorkshopEntry } from "../../types";
+import type { WordGuessRecordInput, WorkshopEntry } from "../../types";
 import { Icons } from "../../components/icons";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
@@ -503,14 +503,12 @@ export default function SlovnaRosada({
   partyConfig,
   customEntries = [],
   customControls,
-  themedPrompts = [],
   onWordGuessed,
 }: {
   onBack: () => void;
   partyConfig?: PartySlovnaRosadaConfig;
   customEntries?: WorkshopEntry[];
   customControls?: CustomContentControls;
-  themedPrompts?: GeneratedPrompt[];
   onWordGuessed?: (record: WordGuessRecordInput) => void;
 }) {
   const extraCards = customEntries.map((entry) => ({ id: entry.id, word: entry.text }));
@@ -639,9 +637,7 @@ export default function SlovnaRosada({
       <PlayingScreen
         player={current}
         deck={deck}
-        priorityCards={currentIdx === 0
-          ? themedPrompts.filter((prompt) => prompt.kind === "charade").map((prompt) => ({ word: prompt.text, category: "AI Party téma", categoryIcon: "✨" }))
-          : []}
+        priorityCards={[]}
         deckKey={`solo-charades:${difficulty}`}
         timerSecs={timerSecs}
         maxSkips={maxSkips}
