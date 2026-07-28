@@ -1,4 +1,4 @@
-import { normalizeWorkshopCollections, normalizeWorkshopEntries } from "./partyContent";
+import { getWorkshopEntryValidationError, normalizeWorkshopCollections, normalizeWorkshopEntries } from "./partyContent";
 import type { WorkshopCollection, WorkshopEntry, WorkshopEntryKind } from "../types";
 
 const FORMAT_PREFIX = "PP1";
@@ -117,13 +117,17 @@ function validateCompactPack(value: unknown): DecodedPartyPack {
     const answer = cleanString(raw[2], 160) || undefined;
     if (!VALID_KINDS.has(kind) || !text) throw new PartyPackError(`Kartička ${index + 1} má neplatný typ alebo prázdny text.`);
     if (ANSWER_REQUIRED.has(kind) && !answer) throw new PartyPackError(`Kartička ${index + 1} potrebuje odpoveď alebo možnosť B.`);
+    const qualityError = getWorkshopEntryValidationError(kind, text, answer);
+    if (qualityError) throw new PartyPackError(`Kartička ${index + 1} nie je vhodná pre vybraný typ hry: ${qualityError}`);
     return { kind, text, answer };
   });
   return { version: 1, name, icon, color, entries };
 }
 
 export function createPartyPackExport(collection: WorkshopCollection, entries: WorkshopEntry[]) {
-  const packEntries = normalizeWorkshopEntries(entries, [collection]).filter((entry) => entry.collectionIds.includes(collection.id));
+  const packEntries = normalizeWorkshopEntries(entries, [collection])
+    .filter((entry) => entry.collectionIds.includes(collection.id))
+    .filter((entry) => !getWorkshopEntryValidationError(entry.kind, entry.text, entry.answer));
   if (!packEntries.length) throw new PartyPackError("Kolekcia nemá žiadne platné kartičky na export.");
   if (packEntries.length > 100) throw new PartyPackError("Jeden balík môže obsahovať najviac 100 kartičiek.");
   const compact: CompactPartyPackV1 = {
@@ -172,6 +176,8 @@ export function installPartyPack(
   options: { collectionId?: string } = {},
 ): InstalledPartyPack {
   const pack = typeof packValue === "string" ? decodePartyPackExport(packValue) : packValue;
+  const invalidPackEntryIndex = pack.entries.findIndex((entry) => Boolean(getWorkshopEntryValidationError(entry.kind, entry.text, entry.answer)));
+  if (invalidPackEntryIndex >= 0) throw new PartyPackError(`Kartička ${invalidPackEntryIndex + 1} nie je vhodná pre vybraný typ hry.`);
   const collections = normalizeWorkshopCollections(currentCollections);
   const entries = normalizeWorkshopEntries(currentEntries, collections);
   if (collections.length >= 40) throw new PartyPackError("Nie je možné pridať balík: dosiahli ste limit 40 kolekcií.");

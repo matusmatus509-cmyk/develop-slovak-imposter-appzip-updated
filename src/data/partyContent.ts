@@ -143,6 +143,49 @@ function cleanString(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().replace(/\s+/g, " ").slice(0, maxLength) : "";
 }
 
+const COLON_PATTERN = /:/;
+const EMOJI_PATTERN = /\p{Extended_Pictographic}/u;
+
+/** Returns a player-facing reason when a custom card does not fit its game. */
+export function getWorkshopEntryValidationError(
+  kind: WorkshopEntryKind,
+  rawText: unknown,
+  rawAnswer?: unknown,
+): string | null {
+  const normalizedKind = kind === "word" ? "charade" : kind;
+  const maxLength = normalizedKind === "charade" ? 80 : 240;
+  const sourceText = typeof rawText === "string" ? rawText.trim().replace(/\s+/g, " ") : "";
+  const sourceAnswer = typeof rawAnswer === "string" ? rawAnswer.trim().replace(/\s+/g, " ") : "";
+  const text = cleanString(rawText, maxLength);
+  const answer = cleanString(rawAnswer, 160);
+  if (sourceText.length > maxLength) return `Text kartičky môže mať najviac ${maxLength} znakov.`;
+  if (sourceAnswer.length > 160) return "Odpoveď môže mať najviac 160 znakov.";
+  if (!text) return "Doplňte text kartičky.";
+  if (COLON_PATTERN.test(text) || COLON_PATTERN.test(answer)) return "Kartička ani odpoveď nesmú obsahovať dvojbodku.";
+  if (normalizedKind === "charade") return isValidCharadeText(text) ? null : "Šaráda musí mať 1 až 3 bežné slová bez dvojbodky.";
+  if (normalizedKind === "truth") return text.endsWith("?") ? null : "Otázka pravdy má byť úplná otázka zakončená otáznikom.";
+  if (normalizedKind === "dare") return /[.!]$/.test(text) ? null : "Výzvu napíšte ako úplnú vetu zakončenú bodkou alebo výkričníkom.";
+  if (normalizedKind === "never") {
+    if (!/^Nikdy som nikdy\b/i.test(text)) return "Kartička musí začínať slovami „Nikdy som nikdy“.";
+    if (/Nikdy som nikdy\s+som\b/i.test(text) || /\.\.\./.test(text)) return "Použite prirodzený tvar, napríklad „Nikdy som nikdy nemeškal/a do školy.“";
+    return null;
+  }
+  if (normalizedKind === "wouldRather") {
+    if (!answer) return "Radšej by som potrebuje obe možnosti.";
+    return text.toLocaleLowerCase() === answer.toLocaleLowerCase() ? "Možnosti A a B musia byť odlišné." : null;
+  }
+  if (normalizedKind === "emoji") {
+    if (!EMOJI_PATTERN.test(text)) return "Emoji karta musí obsahovať aspoň jedno emoji.";
+    return answer ? null : "Doplňte odpoveď na emoji hádanku.";
+  }
+  if (normalizedKind === "quiz") return answer && text.endsWith("?") ? null : answer ? "Kvíz musí byť otázka zakončená otáznikom." : "Kvíz potrebuje správnu odpoveď.";
+  if (normalizedKind === "person") {
+    if (/[?!]/.test(text) || text.split(" ").length > 6) return "Osoba alebo postava má byť stručný názov s najviac šiestimi slovami.";
+    return null;
+  }
+  return null;
+}
+
 function uniqueId(base: string, seen: Set<string>, fallback: string) {
   let id = cleanString(base, 64).replace(/[^a-zA-Z0-9_-]/g, "-") || fallback;
   while (seen.has(id)) id = `${id}-copy`;
@@ -181,11 +224,14 @@ export function normalizeWorkshopEntries(value: unknown, collectionsValue?: unkn
     if (!raw || typeof raw !== "object") continue;
     const candidate = raw as Partial<WorkshopEntry>;
     const rawKind = candidate.kind === "word" ? "charade" : candidate.kind;
-    const text = cleanString(candidate.text, rawKind === "charade" ? 80 : 240);
+    const text = cleanString(candidate.text, 240);
+    const answer = cleanString(candidate.answer, 160);
     if (!text || !rawKind || !VALID_KINDS.has(rawKind)) continue;
-    // Aj importované a staršie vlastné šarády musia dodržať rovnaký štandard
-    // ako vstavaný katalóg: 1–3 slová, žiadne dvojbodkové kombinácie.
-    if (rawKind === "charade" && !isValidCharadeText(text)) continue;
+    // Existing local cards stay visible after an app update. New edits and
+    // imported PP1 cards use the strict player-facing validator before they
+    // reach this normalizer. A legacy charade that fails the new 1–3-word rule
+    // is preserved for repair but disabled, so it cannot appear in a game.
+    const legacyInvalidCharade = rawKind === "charade" && (text.length > 80 || !isValidCharadeText(text));
     const createdAt = Number.isFinite(candidate.createdAt) ? Math.max(0, Number(candidate.createdAt)) : 0;
     const id = uniqueId(candidate.id ?? "", seenIds, `local-${createdAt}-${index}`);
     const collectionIds = Array.isArray(candidate.collectionIds)
@@ -195,9 +241,9 @@ export function normalizeWorkshopEntries(value: unknown, collectionsValue?: unkn
       id,
       kind: rawKind,
       text,
-      answer: cleanString(candidate.answer, 160) || undefined,
+      answer: answer || undefined,
       collectionIds: collectionIds.length ? collectionIds : [DEFAULT_COLLECTION_ID],
-      enabled: candidate.enabled !== false,
+      enabled: candidate.enabled !== false && !legacyInvalidCharade,
       likes: Number.isFinite(candidate.likes) ? Math.min(1_000_000, Math.max(0, Number(candidate.likes))) : 0,
       rating: Number.isFinite(candidate.rating) ? Math.min(5, Math.max(0, Number(candidate.rating))) : 0,
       ratingCount: Number.isFinite(candidate.ratingCount) ? Math.min(1_000_000, Math.max(0, Number(candidate.ratingCount))) : 0,
@@ -227,7 +273,7 @@ const ANSWER_REQUIRED_KINDS = new Set<WorkshopEntryKind>(["wouldRather", "emoji"
 function isEntryCompatible(entry: WorkshopEntry, game: CustomContentGame) {
   const normalizedKind = entry.kind === "word" ? "charade" : entry.kind;
   const kinds = CUSTOM_GAME_KINDS[game].map((kind) => kind === "word" ? "charade" : kind);
-  return entry.enabled && kinds.includes(normalizedKind) && (!ANSWER_REQUIRED_KINDS.has(normalizedKind) || Boolean(entry.answer));
+  return entry.enabled && !getWorkshopEntryValidationError(normalizedKind, entry.text, entry.answer) && kinds.includes(normalizedKind) && (!ANSWER_REQUIRED_KINDS.has(normalizedKind) || Boolean(entry.answer));
 }
 
 export function filterWorkshopEntries(
