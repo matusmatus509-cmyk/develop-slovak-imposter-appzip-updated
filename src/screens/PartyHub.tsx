@@ -23,13 +23,14 @@ function randomIndex(length: number) {
   return Math.floor(Math.random() * length);
 }
 
-export default function PartyHub({ statistics, settings, musicSupported, musicBlocked, collections, workshopEntries, onCollectionsChange, onWorkshopChange, onSettingsChange, onClaimDailyReward, onThemedLaunch, onNavigate, onBack }: {
+export default function PartyHub({ statistics, settings, musicSupported, musicBlocked, collections, workshopEntries, packImportNotice, onCollectionsChange, onWorkshopChange, onSettingsChange, onClaimDailyReward, onThemedLaunch, onNavigate, onBack }: {
   statistics: GameStatistics;
   settings: FeedbackSettings;
   musicSupported: boolean;
   musicBlocked: boolean;
   collections: WorkshopCollection[];
   workshopEntries: WorkshopEntry[];
+  packImportNotice?: { kind: "success" | "pending" | "error"; message: string } | null;
   onCollectionsChange: (collections: WorkshopCollection[]) => void;
   onWorkshopChange: (entries: WorkshopEntry[]) => void;
   onSettingsChange: (settings: FeedbackSettings) => void;
@@ -101,7 +102,7 @@ export default function PartyHub({ statistics, settings, musicSupported, musicBl
         </section>
 
         <div className="premium-section scroll-mt-20"><PartyAiSection onLaunch={onThemedLaunch} /></div>
-        <div className="premium-section scroll-mt-20"><PartyCollections collections={collections} entries={workshopEntries} onCollectionsChange={onCollectionsChange} onEntriesChange={onWorkshopChange} /></div>
+        <div className="premium-section scroll-mt-20"><PartyCollections collections={collections} entries={workshopEntries} autoImportNotice={packImportNotice} onCollectionsChange={onCollectionsChange} onEntriesChange={onWorkshopChange} /></div>
 
         <section id="style" className="premium-section scroll-mt-20"><div className="premium-section-heading"><div><p className="premium-eyebrow text-violet-300/70">Vzhľad a zvuk</p><h2>Štýl party</h2></div><button type="button" onClick={() => onNavigate("settings")} className="text-[10px] font-black text-violet-300">Všetky nastavenia</button></div>
           <div className="mt-3 grid grid-cols-2 gap-2.5">{PARTY_THEMES.map((theme) => <button key={theme.id} type="button" aria-pressed={currentTheme === theme.id} onClick={() => onSettingsChange({ ...settings, partyTheme: theme.id as PartyTheme })} className={`premium-card p-3 text-left ${currentTheme === theme.id ? "border-white/35 bg-white/[.1]" : ""}`}><span className="block h-12 rounded-xl" style={{ background: theme.swatch }} /><strong className="mt-2 block text-xs">{theme.title}</strong><small className="text-[9px] text-white/38">{theme.description}</small></button>)}</div>
