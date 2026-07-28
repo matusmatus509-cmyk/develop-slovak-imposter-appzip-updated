@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { getCharacterCategories, type CharacterCategory } from "../../data/characters";
 import { Button, Shell, TopBar } from "../../components/ui";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
-import type { GeneratedPrompt, WordGuessRecordInput, WorkshopEntry } from "../../types";
+import type { WordGuessRecordInput, WorkshopEntry } from "../../types";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { Icons } from "../../components/icons";
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
@@ -460,14 +460,12 @@ export default function HadajKtoSom({
   partyConfig,
   customEntries = [],
   customControls,
-  themedPrompts = [],
   onWordGuessed,
 }: {
   onBack: () => void;
   partyConfig?: PartyHadajKtoSomConfig;
   customEntries?: WorkshopEntry[];
   customControls?: CustomContentControls;
-  themedPrompts?: GeneratedPrompt[];
   onWordGuessed?: (record: WordGuessRecordInput) => void;
 }) {
   const { language } = useLanguage();
@@ -495,9 +493,7 @@ export default function HadajKtoSom({
   async function startPlaying() {
     await requestTiltPermission();
     setCurrentDeck(buildDeck(categories, allCatIds, customEntries.map((entry) => ({ id: entry.id, word: entry.text }))));
-    setPriorityCards(currentPlayer === 0
-      ? themedPrompts.filter((prompt) => prompt.kind === "person").map((prompt) => ({ word: prompt.text, categoryName: "✨ AI Party téma" }))
-      : []);
+    setPriorityCards([]);
     setPhase("playing");
   }
 

@@ -48,25 +48,17 @@ export default function TeamBattle({
   onGameComplete,
   onWordGuessed,
   customQuestions = [],
-  themedQuestions = [],
   customControls,
 }: {
   onHome: () => void;
   onGameComplete?: (summary: TeamBattleSummary) => void;
   onWordGuessed?: (record: WordGuessRecordInput) => void;
   customQuestions?: QuizQuestion[];
-  themedQuestions?: QuizQuestion[];
   customControls?: CustomContentControls;
 }) {
   const { language } = useLanguage();
-  const themedQuestionQueueRef = useRef([...themedQuestions]);
   function chooseQuizQuestions() {
     const pool = [...QUIZ_QUESTIONS, ...customQuestions];
-    if (themedQuestionQueueRef.current.length > 0) {
-      const themed = themedQuestionQueueRef.current.splice(0, 5);
-      const filler = takePersistentItems("party:quiz:themed-filler", pool, 5 - themed.length, (item) => item.id ?? item.question);
-      return [...themed, ...filler];
-    }
     return takePersistentItems("party:quiz", pool, 5, (item) => item.id ?? item.question);
   }
   const [phase, setPhase] = useState<Phase>("setup");
@@ -161,7 +153,6 @@ export default function TeamBattle({
   }
 
   function handlePlayAgain() {
-    themedQuestionQueueRef.current = [...themedQuestions];
     setCorrectAnswers(0);
     completionReportedRef.current = false;
     setPhase("setup");
@@ -170,11 +161,11 @@ export default function TeamBattle({
   // ── Render ────────────────────────────────────────────────────────────────
 
   if (phase === "setup") {
-    return <TeamBattleSetup onBack={onHome} onStart={handleSetupStart} customControls={customControls} quizOnly={themedQuestions.length > 0} />;
+    return <div className="party-phase-shell" key="setup"><TeamBattleSetup onBack={onHome} onStart={handleSetupStart} customControls={customControls} /></div>;
   }
 
   if (phase === "intro") {
-    return <TeamBattleIntro teamNames={teamNames} onDone={handleIntroEnd} />;
+    return <div className="party-phase-shell" key="intro"><TeamBattleIntro teamNames={teamNames} onDone={handleIntroEnd} /></div>;
   }
 
   if (phase === "finale" && currentRound) {
