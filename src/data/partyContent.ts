@@ -45,6 +45,102 @@ const VALID_KINDS = new Set<WorkshopEntryKind>([
 ]);
 const COLLECTION_COLORS = ["#34d399", "#22d3ee", "#a78bfa", "#fb7185", "#fbbf24", "#60a5fa"];
 
+export interface SeasonalPartyPack {
+  id: string;
+  name: string;
+  icon: string;
+  color: string;
+  description: string;
+  entries: Array<{ kind: Exclude<WorkshopEntryKind, "word">; text: string; answer?: string }>;
+}
+
+export const SEASONAL_PARTY_PACKS: SeasonalPartyPack[] = [
+  {
+    id: "christmas-sk",
+    name: "Vianočná nálada",
+    icon: "🎄",
+    color: "#22c55e",
+    description: "Tradície, koledy, darčeky a zimné šarády.",
+    entries: [
+      { kind: "truth", text: "Ktorá vianočná tradícia je pre teba najdôležitejšia a prečo?" },
+      { kind: "truth", text: "Aký darček ťa v detstve najviac potešil?" },
+      { kind: "dare", text: "Zaspievaj alebo zahmkaj refrén známej koledy." },
+      { kind: "dare", text: "Predveď rozbaľovanie darčeka, ktorý ťa úplne prekvapil." },
+      { kind: "never", text: "Nikdy som nikdy neochutnal/a vianočné pečivo ešte pred sviatkami." },
+      { kind: "wouldRather", text: "Radšej by si zdobil/a stromček celý deň", answer: "Radšej by si piekol/piekla koláče celý deň" },
+      { kind: "emoji", text: "🎄⭐🎁", answer: "Vianočný stromček a darčeky" },
+      { kind: "quiz", text: "Ako sa volá obdobie štyroch týždňov pred Vianocami?", answer: "Advent" },
+      { kind: "quiz", text: "Ktorý deň je na Slovensku Štedrý deň?", answer: "24. december" },
+      { kind: "person", text: "Ježiško nesúci príliš veľa darčekov" },
+      { kind: "charade", text: "Zdobenie vianočného stromčeka" },
+      { kind: "charade", text: "Stavanie snehuliaka" },
+    ],
+  },
+  {
+    id: "halloween-sk",
+    name: "Halloweenska noc",
+    icon: "🎃",
+    color: "#f97316",
+    description: "Strašidelne zábavné otázky, postavy a hádanie.",
+    entries: [
+      { kind: "truth", text: "Ktorý film alebo príbeh ťa kedysi najviac vystrašil?" },
+      { kind: "truth", text: "Aký kostým by si si vybral/a, keby si mal/a neobmedzený rozpočet?" },
+      { kind: "dare", text: "Vymysli trojvetový strašidelný príbeh s veselým koncom." },
+      { kind: "dare", text: "Prejdi sa po miestnosti ako nemotorný zombík." },
+      { kind: "never", text: "Nikdy som nikdy nezľakol/nezľakla vlastného odrazu v tme." },
+      { kind: "wouldRather", text: "Radšej by si prespal/a v starom hrade", answer: "Radšej by si prešiel/prešla nočným lesom" },
+      { kind: "emoji", text: "👻🏚️🌕", answer: "Strašidelný dom pri splne" },
+      { kind: "quiz", text: "Z ktorej zeleniny sa najčastejšie vyrezáva halloweenska lampa?", answer: "Tekvica" },
+      { kind: "quiz", text: "Ktorý dátum pripadá na Halloween?", answer: "31. október" },
+      { kind: "person", text: "Upír, ktorý sa bojí tmy" },
+      { kind: "charade", text: "Vyrezávanie tekvice" },
+      { kind: "charade", text: "Duch prechádzajúci cez zatvorené dvere" },
+    ],
+  },
+  {
+    id: "valentine-sk",
+    name: "Valentínska párty",
+    icon: "💝",
+    color: "#fb7185",
+    description: "Milé otázky pre dvojice aj priateľov bez trápnych chvíľ.",
+    entries: [
+      { kind: "truth", text: "Ktorá vlastnosť robí podľa teba človeka dobrým priateľom alebo partnerom?" },
+      { kind: "truth", text: "Aké malé gesto ti vždy zlepší deň?" },
+      { kind: "dare", text: "Povedz osobe po pravej ruke úprimný a konkrétny kompliment." },
+      { kind: "dare", text: "Vymysli slogan pre najlepšie priateľstvo na svete." },
+      { kind: "never", text: "Nikdy som nikdy neposlal/a správu nesprávnej osobe." },
+      { kind: "wouldRather", text: "Radšej by si dostal/a ručne vyrobený darček", answer: "Radšej by si zažil/a spoločné dobrodružstvo" },
+      { kind: "emoji", text: "🍝🕯️💬", answer: "Večera pri sviečkach" },
+      { kind: "quiz", text: "Ktorý sviatok sa oslavuje 14. februára?", answer: "Valentín" },
+      { kind: "quiz", text: "Ktorý orgán symbolizuje lásku?", answer: "Srdce" },
+      { kind: "person", text: "Amor, ktorému sa zamotali šípy" },
+      { kind: "charade", text: "Písanie anonymného valentínskeho odkazu" },
+      { kind: "charade", text: "Príprava prekvapivej večere" },
+    ],
+  },
+  {
+    id: "new-year-sk",
+    name: "Silvestrovský štart",
+    icon: "🎆",
+    color: "#a78bfa",
+    description: "Spomienky, predsavzatia, odpočítavanie a oslavy.",
+    entries: [
+      { kind: "truth", text: "Na ktorý moment z uplynulého roka si najviac hrdý/á?" },
+      { kind: "truth", text: "Čo nové by si chcel/a v ďalšom roku vyskúšať?" },
+      { kind: "dare", text: "Prednes desaťsekundový novoročný prípitok pre celú partiu." },
+      { kind: "dare", text: "Predveď oslavu polnoci bez jediného slova." },
+      { kind: "never", text: "Nikdy som nikdy zaspal/a ešte pred polnočným odpočítavaním." },
+      { kind: "wouldRather", text: "Radšej by si oslavoval/a na veľkej párty", answer: "Radšej by si vítal/a rok na pokojnej chate" },
+      { kind: "emoji", text: "🕛🥂🎆", answer: "Silvestrovská polnoc" },
+      { kind: "quiz", text: "Koľko mesiacov má kalendárny rok?", answer: "12" },
+      { kind: "quiz", text: "Ako sa volá posledný deň roka?", answer: "Silvester" },
+      { kind: "person", text: "Moderátor odpočítavania posledných desiatich sekúnd roka" },
+      { kind: "charade", text: "Otváranie fľaše so šumivým nápojom" },
+      { kind: "charade", text: "Písanie novoročných predsavzatí" },
+    ],
+  },
+];
+
 function cleanString(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().replace(/\s+/g, " ").slice(0, maxLength) : "";
 }

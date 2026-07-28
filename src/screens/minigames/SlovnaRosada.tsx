@@ -6,7 +6,7 @@ import {
 } from "../../data/charades";
 import { Button, Shell, TopBar } from "../../components/ui";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
-import type { GeneratedPrompt, WorkshopEntry } from "../../types";
+import type { GeneratedPrompt, WordGuessRecordInput, WorkshopEntry } from "../../types";
 import { Icons } from "../../components/icons";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
@@ -294,6 +294,7 @@ function PlayingScreen({
   timerSecs,
   maxSkips,
   teamMode,
+  onWordGuessed,
   onDone,
 }: {
   player: Player;
@@ -303,6 +304,7 @@ function PlayingScreen({
   timerSecs: number;
   maxSkips: number;
   teamMode: boolean;
+  onWordGuessed?: (record: WordGuessRecordInput) => void;
   onDone: (correct: number, skips: number) => void;
 }) {
   const priorityQueueRef = useRef([...priorityCards]);
@@ -324,6 +326,7 @@ function PlayingScreen({
   const skipsRef = useRef(0);
   const doneRef = useRef(false);
   const actionLockedRef = useRef(false);
+  const cardStartedAtRef = useRef(Date.now());
 
 
   function finish() {
@@ -346,6 +349,7 @@ function PlayingScreen({
     setTimeout(() => {
       setCardAnim("idle");
       setCard(drawNextCard());
+      cardStartedAtRef.current = Date.now();
       setCardIdx((value) => value + 1);
       actionLockedRef.current = false;
     }, 300);
@@ -354,6 +358,7 @@ function PlayingScreen({
 
   function handleCorrect() {
     if (!advance("correct")) return;
+    if (card?.word) onWordGuessed?.({ word: card.word, milliseconds: Math.max(100, Date.now() - cardStartedAtRef.current), gameTitle: "Slovné šarády" });
     correctRef.current += 1;
     setCorrect((c) => c + 1);
   }
@@ -485,6 +490,7 @@ function PlayingScreen({
 interface PartySlovnaRosadaConfig {
   teamNames: [string, string];
   timerSecs: number;
+  onWordGuessed?: (record: WordGuessRecordInput) => void;
   onDone: (scores: [number, number]) => void;
 }
 
@@ -498,12 +504,14 @@ export default function SlovnaRosada({
   customEntries = [],
   customControls,
   themedPrompts = [],
+  onWordGuessed,
 }: {
   onBack: () => void;
   partyConfig?: PartySlovnaRosadaConfig;
   customEntries?: WorkshopEntry[];
   customControls?: CustomContentControls;
   themedPrompts?: GeneratedPrompt[];
+  onWordGuessed?: (record: WordGuessRecordInput) => void;
 }) {
   const extraCards = customEntries.map((entry) => ({ id: entry.id, word: entry.text }));
   const [phase, setPhase] = useState<Phase>(partyConfig ? "who-starts" : "setup");
@@ -638,6 +646,7 @@ export default function SlovnaRosada({
         timerSecs={timerSecs}
         maxSkips={maxSkips}
         teamMode={teamMode}
+        onWordGuessed={onWordGuessed ?? partyConfig?.onWordGuessed}
         onDone={handleRoundDone}
       />
     );

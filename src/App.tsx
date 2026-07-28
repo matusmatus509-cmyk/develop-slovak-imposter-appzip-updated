@@ -5,16 +5,19 @@ import type {
   GameSettings,
   GameStatistics,
   GeneratedLaunchPayload,
+  PartyRecords,
   RoundAssignment,
   RoundHistoryEntry,
   Screen,
   WorkshopCollection,
   WorkshopEntry,
   WorkshopSelections,
+  WordGuessRecordInput,
 } from "./types";
 import { CATEGORIES } from "./data/categories";
 import { DRAWING_CATEGORIES } from "./data/drawingCategories";
 import { generateRound } from "./utils/gameLogic";
+import { applyPartyCompletionRecord, applyFastestGuessRecord, DEFAULT_PARTY_RECORDS, normalizePartyRecords } from "./utils/partyRecords";
 import { applyStatisticsEvent, createDefaultStatistics, normalizeStatistics } from "./utils/gameStats";
 import { normalizeFavoriteIds, PARTY_THEMES, PLAYABLE_GAMES } from "./data/engagement";
 import {
@@ -28,6 +31,12 @@ import {
   normalizeWorkshopSelections,
   workshopEntriesToQuiz,
 } from "./data/partyContent";
+import {
+  accumulatePartyPackLink,
+  installPartyPack,
+  parsePartyPackLink,
+  PartyPackError,
+} from "./data/partyPackSharing";
 import type { CustomContentControls } from "./components/CustomContentSelector";
 import { usePartyMusic } from "./hooks/usePartyMusic";
 import { useLocalStorage } from "./hooks/useLocalStorage";
@@ -175,6 +184,7 @@ export default function App() {
     "podvodnik-statistics-v1",
     DEFAULT_STATISTICS
   );
+  const [partyRecords, setPartyRecords] = useLocalStorage<PartyRecords>("podvodnik-party-records-v1", DEFAULT_PARTY_RECORDS);
   const [feedbackSettings, setFeedbackSettings] = useLocalStorage<FeedbackSettings>(
     "podvodnik-feedback-settings-v1",
     DEFAULT_FEEDBACK_SETTINGS
@@ -191,11 +201,17 @@ export default function App() {
   const [storedWorkshopEntries, setStoredWorkshopEntries] = useLocalStorage<WorkshopEntry[]>("podvodnik-workshop-entries-v2", []);
   const [storedWorkshopSelections, setStoredWorkshopSelections] = useLocalStorage<WorkshopSelections>("podvodnik-workshop-selections-v2", DEFAULT_WORKSHOP_SELECTIONS);
   const [generatedLaunch, setGeneratedLaunch] = useState<GeneratedLaunchPayload | null>(null);
+  const [packImportNotice, setPackImportNotice] = useState<{ kind: "success" | "pending" | "error"; message: string } | null>(null);
+  const [workshopStartupReady, setWorkshopStartupReady] = useState(false);
   const safeFeedbackSettings = normalizeFeedbackSettings(feedbackSettings);
   const favoriteIds = normalizeFavoriteIds(storedFavoriteIds);
   const workshopCollections = normalizeWorkshopCollections(storedWorkshopCollections);
   const workshopEntries = normalizeWorkshopEntries(storedWorkshopEntries, workshopCollections);
   const workshopSelections = normalizeWorkshopSelections(storedWorkshopSelections, workshopCollections);
+  const workshopCollectionsRef = useRef(workshopCollections);
+  const workshopEntriesRef = useRef(workshopEntries);
+  workshopCollectionsRef.current = workshopCollections;
+  workshopEntriesRef.current = workshopEntries;
   const favoriteGames = favoriteIds.flatMap((id) => {
     const game = PLAYABLE_GAMES.find((item) => item.id === id);
     return game ? [game] : [];
@@ -252,7 +268,8 @@ export default function App() {
 
   useEffect(() => {
     setStatistics((current) => normalizeStatistics(current));
-  }, [setStatistics]);
+    setPartyRecords((current) => normalizePartyRecords(current));
+  }, [setPartyRecords, setStatistics]);
 
   useEffect(() => {
     setFeedbackSettings((current) => normalizeFeedbackSettings(current));
@@ -288,9 +305,48 @@ export default function App() {
     if (JSON.stringify(normalizedWorkshop) !== JSON.stringify(storedWorkshopEntries)) setStoredWorkshopEntries(normalizedWorkshop);
     const normalizedSelections = normalizeWorkshopSelections(storedWorkshopSelections, normalizedCollections);
     if (JSON.stringify(normalizedSelections) !== JSON.stringify(storedWorkshopSelections)) setStoredWorkshopSelections(normalizedSelections);
+    setWorkshopStartupReady(true);
   // Persisted values are migrated once on startup; setters are stable for the lifetime of the app.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (!workshopStartupReady) return;
+    const consumePackLink = () => {
+      let link;
+      try {
+        link = parsePartyPackLink(window.location.href);
+      } catch (reason) {
+        setPackImportNotice({ kind: "error", message: reason instanceof PartyPackError || reason instanceof Error ? reason.message : "QR odkaz balíka sa nepodarilo prečítať." });
+        setScreen("party-hub");
+        window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+        return;
+      }
+      if (!link) return;
+      setWelcomeScreen(null);
+      setScreen("party-hub");
+      try {
+        const accumulated = accumulatePartyPackLink(link, window.localStorage);
+        if (accumulated.status === "pending") {
+          setPackImportNotice({ kind: "pending", message: `QR časť ${link.index} z ${link.total} bola uložená. Načítané ${accumulated.received}/${accumulated.total}; pokračujte ďalším QR kódom.` });
+        } else {
+          const installed = installPartyPack(accumulated.pack, workshopCollectionsRef.current, workshopEntriesRef.current);
+          setStoredWorkshopCollections(installed.collections);
+          setStoredWorkshopEntries(installed.entries);
+          setPackImportNotice({ kind: "success", message: `Balík „${installed.collection.name}“ sa automaticky importoval ako nová kolekcia (${installed.entryCount} kariet).` });
+        }
+      } catch (reason) {
+        setPackImportNotice({ kind: "error", message: reason instanceof PartyPackError || reason instanceof Error ? reason.message : "QR balík sa nepodarilo importovať." });
+      } finally {
+        window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+      }
+    };
+    consumePackLink();
+    window.addEventListener("hashchange", consumePackLink);
+    return () => window.removeEventListener("hashchange", consumePackLink);
+  // The refs keep same-tab camera/hash imports on the latest normalized local data.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [workshopStartupReady]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -317,6 +373,16 @@ export default function App() {
       correctAnswers: summary.correctAnswers,
       partyWinnerName: summary.winnerName,
     }));
+    const highestIndex = summary.totalScores[0] >= summary.totalScores[1] ? 0 : 1;
+    setPartyRecords((current) => applyPartyCompletionRecord(current, {
+      durationSeconds: summary.durationSeconds,
+      score: summary.totalScores[highestIndex],
+      teamName: summary.teamNames[highestIndex],
+    }));
+  }
+
+  function recordFastestGuess(record: WordGuessRecordInput) {
+    setPartyRecords((current) => applyFastestGuessRecord(current, record));
   }
 
   function recordBombRound() {
@@ -477,10 +543,10 @@ export default function App() {
       return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => navigateFromMenu("settings")} favoriteGames={favoriteGames} onToggleFavorite={toggleFavorite} />;
 
     case "party-hub":
-      return <PartyHub statistics={statistics} settings={safeFeedbackSettings} musicSupported={music.supported} musicBlocked={music.blocked} collections={workshopCollections} workshopEntries={workshopEntries} onCollectionsChange={setStoredWorkshopCollections} onWorkshopChange={setStoredWorkshopEntries} onSettingsChange={setFeedbackSettings} onClaimDailyReward={claimDailyReward} onThemedLaunch={startThemedLaunch} onNavigate={navigateFromMenu} onBack={() => setScreen("home")} />;
+      return <PartyHub statistics={statistics} settings={safeFeedbackSettings} musicSupported={music.supported} musicBlocked={music.blocked} collections={workshopCollections} workshopEntries={workshopEntries} packImportNotice={packImportNotice} onCollectionsChange={setStoredWorkshopCollections} onWorkshopChange={setStoredWorkshopEntries} onSettingsChange={setFeedbackSettings} onClaimDailyReward={claimDailyReward} onThemedLaunch={startThemedLaunch} onNavigate={navigateFromMenu} onBack={() => setScreen("home")} />;
 
     case "statistics":
-      return <Statistics statistics={statistics} onBack={() => setScreen(statisticsReturnScreenRef.current)} onClaimDailyReward={claimDailyReward} />;
+      return <Statistics statistics={statistics} records={partyRecords} onBack={() => setScreen(statisticsReturnScreenRef.current)} onClaimDailyReward={claimDailyReward} />;
 
     case "settings":
       return <Settings settings={safeFeedbackSettings} musicSupported={music.supported} musicBlocked={music.blocked} onChange={setFeedbackSettings} onBack={() => setScreen(settingsReturnScreenRef.current)} />;
@@ -658,13 +724,13 @@ export default function App() {
       );
 
     case "slovnarosada":
-      return <SlovnaRosada onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("slovnarosada")} customControls={customControls("slovnarosada")} themedPrompts={themedPrompts("slovnarosada")} />;
+      return <SlovnaRosada onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("slovnarosada")} customControls={customControls("slovnarosada")} themedPrompts={themedPrompts("slovnarosada")} onWordGuessed={recordFastestGuess} />;
 
     case "pingpong":
       return <SlovnyPingPong onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "hadajktosom":
-      return <HadajKtoSom onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("hadajktosom")} customControls={customControls("hadajktosom")} themedPrompts={themedPrompts("hadajktosom")} />;
+      return <HadajKtoSom onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("hadajktosom")} customControls={customControls("hadajktosom")} themedPrompts={themedPrompts("hadajktosom")} onWordGuessed={recordFastestGuess} />;
 
     case "ibanepravda":
       return <IbaNepravda onBack={() => returnFromActiveGame("minigames-menu")} />;
@@ -691,7 +757,7 @@ export default function App() {
       return <TeamQuickGame game="patzadesat" onBack={() => returnFromActiveGame("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
 
     case "teambattle":
-      return <TeamBattle onHome={() => returnFromActiveGame("home")} onGameComplete={recordPartyResult} customQuestions={workshopEntriesToQuiz(customEntries("teambattle"))} themedQuestions={generatedPayloadToQuiz(generatedLaunch)} customControls={customControls("teambattle")} />;
+      return <TeamBattle onHome={() => returnFromActiveGame("home")} onGameComplete={recordPartyResult} onWordGuessed={recordFastestGuess} customQuestions={workshopEntriesToQuiz(customEntries("teambattle"))} themedQuestions={generatedPayloadToQuiz(generatedLaunch)} customControls={customControls("teambattle")} />;
 
     default:
       return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => navigateFromMenu("settings")} favoriteGames={favoriteGames} onToggleFavorite={toggleFavorite} />;

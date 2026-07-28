@@ -167,6 +167,18 @@ export interface GameStatistics {
   progression: PlayerProgression;
 }
 
+export interface PartyRecords {
+  longestParty: { durationSeconds: number; achievedAt: number } | null;
+  highestGameScore: { score: number; teamName: string; achievedAt: number } | null;
+  fastestGuess: { word: string; milliseconds: number; gameTitle: string; achievedAt: number } | null;
+}
+
+export interface WordGuessRecordInput {
+  word: string;
+  milliseconds: number;
+  gameTitle: string;
+}
+
 export interface CategoryDef {
   id: string;
   name: string;

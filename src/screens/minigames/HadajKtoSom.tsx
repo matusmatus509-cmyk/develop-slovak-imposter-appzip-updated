@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { getCharacterCategories, type CharacterCategory } from "../../data/characters";
 import { Button, Shell, TopBar } from "../../components/ui";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
-import type { GeneratedPrompt, WorkshopEntry } from "../../types";
+import type { GeneratedPrompt, WordGuessRecordInput, WorkshopEntry } from "../../types";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { Icons } from "../../components/icons";
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
@@ -219,11 +219,13 @@ function PlayingScreen({
   deck,
   priorityCards,
   timerSeconds,
+  onWordGuessed,
   onDone,
 }: {
   deck: Card[];
   priorityCards: Card[];
   timerSeconds: number;
+  onWordGuessed?: (record: WordGuessRecordInput) => void;
   onDone: (correct: number, skipped: number) => void;
 }) {
   const { playFeedback } = useFeedback();
@@ -243,6 +245,8 @@ function PlayingScreen({
   const skippedRef = useRef(0);
   const tiltLocked = useRef(false);
   const doneRef = useRef(false);
+  const cardStartedAtRef = useRef(performance.now());
+  const wasCalibratingRef = useRef(false);
 
 
   const finishRound = useCallback(() => {
@@ -255,15 +259,17 @@ function PlayingScreen({
     if (doneRef.current || tiltLocked.current) return;
     tiltLocked.current = true;
     playFeedback("click");
+    if (card?.word) onWordGuessed?.({ word: card.word, milliseconds: Math.max(100, Math.round(performance.now() - cardStartedAtRef.current)), gameTitle: "Hádaj kto som" });
     correctRef.current += 1;
     setFlash("correct");
     setTimeout(() => {
       setFlash(null);
       setCard(drawNextCard());
+      cardStartedAtRef.current = performance.now();
       setCardIdx((value) => value + 1);
       tiltLocked.current = false;
     }, 600);
-  }, [drawNextCard, playFeedback]);
+  }, [card?.word, drawNextCard, onWordGuessed, playFeedback]);
 
   const handleSkip = useCallback(() => {
     if (doneRef.current || tiltLocked.current) return;
@@ -274,6 +280,7 @@ function PlayingScreen({
     setTimeout(() => {
       setFlash(null);
       setCard(drawNextCard());
+      cardStartedAtRef.current = performance.now();
       setCardIdx((value) => value + 1);
       tiltLocked.current = false;
     }, 600);
@@ -281,6 +288,11 @@ function PlayingScreen({
 
   const tiltStatus = useTiltGesture(true, handleCorrect, handleSkip);
   const isCalibrating = tiltStatus === "calibrating";
+
+  useEffect(() => {
+    if (wasCalibratingRef.current && !isCalibrating) cardStartedAtRef.current = performance.now();
+    wasCalibratingRef.current = isCalibrating;
+  }, [isCalibrating]);
 
   // Timer countdown
   useEffect(() => {
@@ -435,6 +447,7 @@ function PlayingScreen({
 interface PartyHadajKtoSomConfig {
   teamNames: [string, string];
   timerSeconds: number;
+  onWordGuessed?: (record: WordGuessRecordInput) => void;
   onDone: (scores: [number, number]) => void;
 }
 
@@ -448,12 +461,14 @@ export default function HadajKtoSom({
   customEntries = [],
   customControls,
   themedPrompts = [],
+  onWordGuessed,
 }: {
   onBack: () => void;
   partyConfig?: PartyHadajKtoSomConfig;
   customEntries?: WorkshopEntry[];
   customControls?: CustomContentControls;
   themedPrompts?: GeneratedPrompt[];
+  onWordGuessed?: (record: WordGuessRecordInput) => void;
 }) {
   const { language } = useLanguage();
   const categories = useMemo(() => getCharacterCategories(language), [language]);
@@ -562,6 +577,7 @@ export default function HadajKtoSom({
         deck={currentDeck}
         priorityCards={priorityCards}
         timerSeconds={timerSeconds}
+        onWordGuessed={onWordGuessed ?? partyConfig?.onWordGuessed}
         onDone={handleRoundDone}
       />
     );
