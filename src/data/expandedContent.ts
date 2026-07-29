@@ -57,15 +57,6 @@ const DARE_TEMPLATES = [
   "vymysli tri rýmy", "urob módnu prehliadku", "zahraj prekvapeného reportéra", "predveď motivačného trénera",
 ];
 
-const NEVER_TEMPLATES = [
-  "nepredstieral/a, že tomu rozumiem", "nemeškal/a kvôli tomu", "neklamal/a o tom", "nemal/a kvôli tomu trápny moment",
-  "neminul/a na to priveľa peňazí", "netajil/a to pred rodinou", "nezačal/a kvôli tomu hádku", "nezaspal/a pri tom",
-  "neodfotil/a to", "nezdieľal/a to na internete", "nerobil/a to naoko", "nevybuchol/a pri tom do smiechu",
-  "nezmenil/a kvôli tomu plán", "neskúsil/a to bez prípravy", "nerozbil/a pri tom niečo", "nevolal/a kvôli tomu kamarátovi",
-  "nepožičal/a si kvôli tomu peniaze", "nepísal/a kvôli tomu ospravedlnenie", "nerobil/a to uprostred noci", "nestratil/a pri tom orientáciu",
-  "nevzdal/a to príliš skoro", "neprekvapil/a tým niekoho", "nerobil/a to iba zo zvedavosti", "netvrdil/a, že to bol môj nápad",
-];
-
 const RATHER_TEMPLATES = [
   ["byť v téme najlepší/ia", "mať pri téme najviac šťastia"], ["poznať o téme celú pravdu", "nikdy o téme nič nevedieť"],
   ["venovať téme celý rok", "už sa téme nikdy nevenovať"], ["riešiť tému sám/sama", "riešiť tému s veľkým tímom"],
@@ -83,7 +74,6 @@ const RATHER_TEMPLATES = [
 
 export const GENERATED_TRUTHS = PROMPT_TOPICS.flatMap((topic) => TRUTH_TEMPLATES.map((template) => template(topic)));
 export const GENERATED_DARES = PROMPT_TOPICS.flatMap((topic) => DARE_TEMPLATES.map((template) => `${template} na tému „${topic}“.`));
-export const GENERATED_NEVER = PROMPT_TOPICS.flatMap((topic) => NEVER_TEMPLATES.map((template) => `Nikdy som nikdy ${template} pri téme „${topic}“.`));
 
 const TOPIC_SLOT = /(^|[^\p{L}\p{N}])(tém(?:a|e|u|ou|y))(?![\p{L}\p{N}])/u;
 function withTopic(text: string, topic: string) {
