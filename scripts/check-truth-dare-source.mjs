@@ -18,7 +18,7 @@ const bannedTopics = [
 ];
 const bannedDares = [
   /\bpobozkaj|\bkiss\b|\bküss\w*|\bbesa\b|\bembrasse\b|\bbeija\b/iu,
-  /\bvyzleč|\bstrip\b|\bausziehen\b|\bdesnuda\w*|\bdéshabille\w*|\bdespe\w*/iu,
+  /\bvyzleč\w*|\bstrip\b|\bausziehen\b|\bdesnud\w*|\bdéshabille\w*|\bdespe-te\b|\bdespir\b/iu,
   /\balkohol\w*|\balcohol\w*|\balcool\w*|\bshot\b|\bvodka\b|\bbeer\b|\bbier\b/iu,
   /\brozbi\b|\bznič\w*|\bbreak something\b|\bzerbrich\w*|\brompe\b|\bcasse\b|\bparte\b/iu,
   /\bheslo\w*|\bpassword\w*|\bpasswort\w*|\bcontraseñ\w*|\bmot de passe\b|\bpalavra-passe\b/iu,
