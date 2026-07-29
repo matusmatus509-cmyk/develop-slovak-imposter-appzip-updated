@@ -1,5 +1,16 @@
-// Deterministic content expansion shared by the minigame databases.
-// Every combination is stable, so persistent decks can safely identify seen cards.
+// Deterministic, semantically grouped content expansion shared by the minigame databases.
+// Generated cards deliberately use compatible visual, role, and action families rather
+// than arbitrary subject × scene pairings.
+
+function uniqueStrings(items: string[]) {
+  return [...new Set(items)];
+}
+
+function exact<T>(label: string, items: T[], count: number, key?: (item: T) => string) {
+  if (items.length !== count) throw new Error(`${label} must contain exactly ${count} entries, got ${items.length}.`);
+  if (key && new Set(items.map(key)).size !== count) throw new Error(`${label} must contain unique entries.`);
+  return items;
+}
 
 const PROMPT_TOPICS = [
   "priateľstvo", "rodina", "škola", "práca", "dovolenka", "cestovanie", "detstvo", "budúcnosť",
@@ -11,30 +22,30 @@ const PROMPT_TOPICS = [
 ];
 
 const TRUTH_TEMPLATES = [
-  (topic: string) => `Aký je tvoj najúprimnejší názor na tému ${topic}?`,
-  (topic: string) => `Čo by si na téme ${topic} najradšej zmenil/a?`,
-  (topic: string) => `Aká je tvoja najlepšia spomienka spojená s témou ${topic}?`,
-  (topic: string) => `Aká je tvoja najtrápnejšia skúsenosť spojená s témou ${topic}?`,
-  (topic: string) => `Čoho sa pri téme ${topic} najviac obávaš?`,
-  (topic: string) => `Na čo si pri téme ${topic} najviac hrdý/á?`,
-  (topic: string) => `Komu by si ako prvému zavolal/a kvôli téme ${topic}?`,
-  (topic: string) => `Aké tajomstvo o téme ${topic} si dlho nikomu nepovedal/a?`,
-  (topic: string) => `Kedy si naposledy klamal/a kvôli téme ${topic}?`,
-  (topic: string) => `Akú chybu spojenú s témou ${topic} by si už nezopakoval/a?`,
-  (topic: string) => `Čo ti pri téme ${topic} ide najhoršie?`,
-  (topic: string) => `Čo ti pri téme ${topic} ide najlepšie?`,
-  (topic: string) => `Koho v tejto miestnosti ti najviac pripomína téma ${topic}?`,
-  (topic: string) => `Čo najodvážnejšie si urobil/a v súvislosti s témou ${topic}?`,
-  (topic: string) => `Aký predsudok si kedysi mal/a o téme ${topic}?`,
-  (topic: string) => `Čo predstieraš, že vieš o téme ${topic}?`,
-  (topic: string) => `Aké rozhodnutie o téme ${topic} najviac ľutuješ?`,
-  (topic: string) => `Za čo si pri téme ${topic} minul/a najviac peňazí?`,
-  (topic: string) => `Aký zvyk spojený s témou ${topic} pred ostatnými skrývaš?`,
-  (topic: string) => `Čo by si pri téme ${topic} skúsil/a, keby ťa nikto nesúdil?`,
-  (topic: string) => `Ktorú radu o téme ${topic} si ignoroval/a?`,
-  (topic: string) => `Kto ťa najviac ovplyvnil v názore na tému ${topic}?`,
-  (topic: string) => `Čo o téme ${topic} na tebe ľudia často nechápu?`,
-  (topic: string) => `Akú jednu pravdu o téme ${topic} si nechceš priznať?`,
+  (topic: string) => `Aký je tvoj najúprimnejší názor na tému „${topic}“?`,
+  (topic: string) => `Čo by si na téme „${topic}“ najradšej zmenil/a?`,
+  (topic: string) => `Aká je tvoja najlepšia spomienka spojená s témou „${topic}“?`,
+  (topic: string) => `Aká je tvoja najtrápnejšia skúsenosť spojená s témou „${topic}“?`,
+  (topic: string) => `Čoho sa pri téme „${topic}“ najviac obávaš?`,
+  (topic: string) => `Na čo si pri téme „${topic}“ najviac hrdý/á?`,
+  (topic: string) => `Komu by si pri téme „${topic}“ zavolal/a ako prvému?`,
+  (topic: string) => `Aké tajomstvo o téme „${topic}“ si dlho nikomu nepovedal/a?`,
+  (topic: string) => `Kedy si naposledy klamal/a kvôli téme „${topic}“?`,
+  (topic: string) => `Akú chybu spojenú s témou „${topic}“ by si už nezopakoval/a?`,
+  (topic: string) => `Čo ti pri téme „${topic}“ ide najhoršie?`,
+  (topic: string) => `Čo ti pri téme „${topic}“ ide najlepšie?`,
+  (topic: string) => `Čo najodvážnejšie si urobil/a v súvislosti s témou „${topic}“?`,
+  (topic: string) => `Aký predsudok si kedysi mal/a o téme „${topic}“?`,
+  (topic: string) => `Čo predstieraš, že vieš o téme „${topic}“?`,
+  (topic: string) => `Aké rozhodnutie o téme „${topic}“ najviac ľutuješ?`,
+  (topic: string) => `Za čo si pri téme „${topic}“ minul/a najviac peňazí?`,
+  (topic: string) => `Aký zvyk spojený s témou „${topic}“ pred ostatnými skrývaš?`,
+  (topic: string) => `Čo by si pri téme „${topic}“ skúsil/a, keby ťa nikto nesúdil?`,
+  (topic: string) => `Ktorú radu o téme „${topic}“ si ignoroval/a?`,
+  (topic: string) => `Kto ťa najviac ovplyvnil v názore na tému „${topic}“?`,
+  (topic: string) => `Čo o téme „${topic}“ na tebe ľudia často nechápu?`,
+  (topic: string) => `Akú jednu pravdu o téme „${topic}“ si nechceš priznať?`,
+  (topic: string) => `Aký malý krok by si pri téme „${topic}“ chcel/a urobiť?`,
 ];
 
 const DARE_TEMPLATES = [
@@ -44,17 +55,6 @@ const DARE_TEMPLATES = [
   "predveď scénu zo seriálu", "urob víťazný prejav", "zahraj nahnevaného zákazníka", "vymysli krátku rozprávku",
   "predveď telefonický rozhovor", "urob zvukovú imitáciu", "zahraj tlačovú konferenciu", "predveď spomalený film",
   "vymysli tri rýmy", "urob módnu prehliadku", "zahraj prekvapeného reportéra", "predveď motivačného trénera",
-];
-
-// Pozor: veta sa skladá ako „Nikdy som nikdy <šablóna> pri téme <téma>.“,
-// takže šablóny musia byť už v zápornej forme a bez pomocného „som“.
-const NEVER_TEMPLATES = [
-  "nepredstieral/a, že tomu rozumiem", "nemeškal/a kvôli tomu", "neklamal/a o tom", "nemal/a kvôli tomu trápny moment",
-  "neminul/a na to priveľa peňazí", "netajil/a to pred rodinou", "nezačal/a kvôli tomu hádku", "nezaspal/a pri tom",
-  "neodfotil/a to", "nezdieľal/a to na internete", "nerobil/a to naoko", "nevybuchol/a pri tom do smiechu",
-  "nezmenil/a kvôli tomu plán", "neskúsil/a to bez prípravy", "nerozbil/a pri tom niečo", "nevolal/a kvôli tomu kamarátovi",
-  "nepožičal/a si kvôli tomu peniaze", "nepísal/a kvôli tomu ospravedlnenie", "nerobil/a to uprostred noci", "nestratil/a pri tom orientáciu",
-  "nevzdal/a to príliš skoro", "neprekvapil/a tým niekoho", "nerobil/a to iba zo zvedavosti", "netvrdil/a, že to bol môj nápad",
 ];
 
 const RATHER_TEMPLATES = [
@@ -74,155 +74,152 @@ const RATHER_TEMPLATES = [
 
 export const GENERATED_TRUTHS = PROMPT_TOPICS.flatMap((topic) => TRUTH_TEMPLATES.map((template) => template(topic)));
 export const GENERATED_DARES = PROMPT_TOPICS.flatMap((topic) => DARE_TEMPLATES.map((template) => `${template} na tému „${topic}“.`));
-export const GENERATED_NEVER = PROMPT_TOPICS.flatMap((topic) => NEVER_TEMPLATES.map((template) => `Nikdy som nikdy ${template} pri téme ${topic}.`));
-// Téma sa vkladá priamo do vety (v úvodzovkách), aby na karte nikdy nevznikla
-// dvojica oddelená dvojbodkou typu „byť v téme najlepší: šport“.
-// Hranice slova riešime cez Unicode triedy — `\b` v JS nepozná slovenskú diakritiku.
+
 const TOPIC_SLOT = /(^|[^\p{L}\p{N}])(tém(?:a|e|u|ou|y))(?![\p{L}\p{N}])/u;
-
 function withTopic(text: string, topic: string) {
-  if (TOPIC_SLOT.test(text)) {
-    return text.replace(TOPIC_SLOT, (_match, prefix: string, word: string) => `${prefix}${word} „${topic}“`);
-  }
-  return `${text} (téma „${topic}“)`;
+  if (TOPIC_SLOT.test(text)) return text.replace(TOPIC_SLOT, (_match, prefix: string, word: string) => `${prefix}${word} „${topic}“`);
+  return `${text} (téma „${topic}“)}`;
 }
-
 export const GENERATED_RATHER = PROMPT_TOPICS.flatMap((topic) =>
   RATHER_TEMPLATES.map(([a, b]) => ({ a: withTopic(a, topic), b: withTopic(b, topic) })),
 );
 
+// ── Character roles ─────────────────────────────────────────────────────────
+// Every adjective below is appropriate for each concise, masculine role title.
 const CHARACTER_ROLES = [
-  "detektív", "lekárka", "pilot", "vedkyňa", "kuchár", "učiteľka", "hasič", "novinárka", "astronaut", "archeologička",
-  "hudobník", "maliarka", "športovec", "režisérka", "fotograf", "programátorka", "záchranár", "architektka", "farmár", "veterinárka",
-  "kúzelník", "kráľovná", "rytier", "pirátka", "objaviteľ", "vynálezkyňa", "cestovateľ", "diplomatka", "sudca", "advokátka",
-  "mechanik", "kapitánka", "policajt", "knihovníčka", "botanik", "meteorologička", "geológ", "biologička", "historik", "psychologička",
-  "tanečník", "speváčka", "komik", "moderátorka", "tréner", "horolezkyňa", "námorník", "záhradníčka", "pekár", "dizajnérka",
-  "robot", "mimozemšťanka", "superhrdina", "čarodejnica", "upír", "víla", "škriatok", "strážkyňa", "dobrodruh", "tajná agentka",
+  "detektív", "lekár", "pilot", "vedec", "kuchár", "učiteľ", "hasič", "novinár", "astronaut", "archeológ",
+  "hudobník", "maliar", "športovec", "režisér", "fotograf", "programátor", "záchranár", "architekt", "farmár", "veterinár",
+  "kúzelník", "kráľ", "rytier", "pirát", "objaviteľ", "vynálezca", "cestovateľ", "diplomat", "sudca", "advokát",
+  "mechanik", "kapitán", "policajt", "knihovník", "botanik", "meteorológ", "geológ", "biológ", "historik", "psychológ",
+  "tanečník", "spevák", "komik", "moderátor", "tréner", "horolezec", "námorník", "záhradník", "pekár", "dizajnér",
+  "stavbár", "elektrikár", "stolár", "poštár", "kaderník", "herec", "spisovateľ", "ilustrátor", "prieskumník", "strážnik",
 ];
-const CHARACTER_WORLDS = [
-  "stredovekého mesta", "vesmírnej stanice", "tropického ostrova", "tajného laboratória", "horského hotela", "veľkého cirkusu",
-  "podmorského kráľovstva", "filmového štúdia", "olympijskej dediny", "polárnej výpravy", "starovekého Egypta", "divokého západu",
-  "budúcnosti", "čarovného lesa", "strašidelného hradu", "rušného letiska", "luxusnej lode", "malej dediny",
-  "veľkomesta", "hudobného festivalu", "školského internátu", "záchrannej misie", "kráľovského dvora", "pirátskej posádky",
-  "džungľovej expedície", "vedeckej konferencie", "televíznej súťaže", "detektívneho príbehu", "superhrdinského tímu", "rozprávkového sveta",
+const ROLE_TRAITS = [
+  "začínajúci", "skúsený", "usmievavý", "zodpovedný", "vynaliezavý", "pozorný", "odvážny", "trpezlivý", "presný", "tvorivý",
+  "tichý", "energický", "starostlivý", "rýchly", "spoľahlivý", "zvedavý", "pracovitý", "dobrosrdečný", "sústredený", "pohotový",
+  "pokojný", "organizovaný", "šikovný", "veselý", "cieľavedomý", "ochotný", "samostatný", "všímavý", "vytrvalý", "nápaditý",
 ];
-export const GENERATED_CHARACTER_CARDS = CHARACTER_ROLES.flatMap((role) => CHARACTER_WORLDS.map((world) => `${role} z ${world}`));
+export const GENERATED_CHARACTER_CARDS = exact(
+  "GENERATED_CHARACTER_CARDS",
+  [
+    ...CHARACTER_ROLES.slice(0, 56).flatMap((role) => ROLE_TRAITS.map((trait) => `${trait} ${role}`)),
+    ...CHARACTER_ROLES.slice(56).flatMap((role) => ROLE_TRAITS.slice(0, 2).map((trait) => `${trait} ${role}`)),
+  ],
+  1688,
+);
 
-const DRAW_SUBJECTS = [
-  "pes", "mačka", "slon", "žirafa", "tučniak", "delfín", "medveď", "líška", "sova", "korytnačka",
-  "robot", "astronaut", "pirát", "princezná", "rytier", "čarodejnica", "drak", "jednorožec", "mimozemšťan", "superhrdina",
-  "auto", "vlak", "lietadlo", "loď", "bicykel", "traktor", "ponorka", "helikoptéra", "raketa", "karavan",
-  "dom", "hrad", "maják", "stan", "škola", "nemocnica", "kaviareň", "múzeum", "divadlo", "štadión",
-  "jablko", "pizza", "torta", "zmrzlina", "hamburger", "palacinka", "melón", "špagety", "šiška", "sendvič",
-  "gitara", "klavír", "bubon", "husle", "mikrofón", "fotoaparát", "počítač", "telefón", "hodiny", "dáždnik",
-  "futbalová lopta", "tenisová raketa", "hokejka", "lyže", "korčule", "medaila", "trofej", "šachovnica", "surf", "kajak",
-  "strom", "kvet", "sopka", "vodopád", "ostrov", "dúha", "mesiac", "hviezda", "oblak", "snehuliak",
-];
-const DRAW_SCENES = [
-  "na pláži", "v daždi", "pod hviezdami", "na vrchole hory", "uprostred mesta", "v čarovnom lese", "na opustenom ostrove",
-  "vo vesmíre", "pod vodou", "na snehu", "pri západe slnka", "na narodeninovej oslave", "v škole", "na štadióne",
-  "v kuchyni", "na lodi", "pri táboráku", "v zoologickej záhrade", "v rozprávke", "v budúcnosti",
-  "s korunou", "s veľkým klobúkom", "s balónmi", "so slnečnými okuliarmi", "vedľa pokladu",
-];
-export const GENERATED_DRAWING_PAIRS = DRAW_SUBJECTS.flatMap((subject) => DRAW_SCENES.map((scene) => ({ word: `${subject} ${scene}`, hint: "" })));
+// ── Drawing ─────────────────────────────────────────────────────────────────
+// A shared visual viewpoint is meaningful for every concrete drawing subject.
+const DRAWING_SUBJECTS = uniqueStrings([
+  "pes", "mačka", "kôň", "krava", "ovca", "koza", "prasa", "sliepka", "kohút", "kačica", "hus", "morka", "zajac", "králik", "líška", "vlk", "medveď", "jeleň", "srnka", "veverička", "ježko", "krtko", "myš", "netopier", "orol", "sova", "vrabec", "holub", "labuť", "páv", "ryba", "žralok", "delfín", "veľryba", "korytnačka", "had", "jašterica", "žaba", "motýľ", "včela", "mravec", "pavúk", "slon", "žirafa", "zebra", "lev", "tiger", "opica", "gorila", "krokodíl", "hroch", "nosorožec", "panda", "koala", "klokan", "ťava", "lama", "suriikata", "plameniak", "tučniak",
+  "stôl", "stolička", "posteľ", "skriňa", "pohovka", "kreslo", "polica", "komoda", "zrkadlo", "vešiak", "lampa", "sviečka", "váza", "koberec", "vankúš", "deka", "okno", "dvere", "kľúč", "chladnička", "práčka", "sporák", "rúra", "vysávač", "umývadlo", "vaňa", "sprcha", "metla", "vedro", "uterák", "hrebeň", "žehlička", "rebrík", "fúrik", "lopata", "hrable", "kanvica", "košík", "regál", "taburetka", "botník", "nočný stolík", "knižnica", "vitrína", "šatník", "stojaca lampa", "detská postieľka", "hojdacie kreslo", "písací stôl", "barová stolička", "kvetináč", "budík", "kočík", "trezor", "zvonček", "krb", "sušiak", "kôš na bielizeň", "záhradná lavička",
+  "jablko", "banán", "pomaranč", "hruška", "hrozno", "jahoda", "čerešňa", "citrón", "ananás", "melón", "tekvica", "kukurica", "mrkva", "cibuľa", "zemiak", "paradajka", "uhorka", "paprika", "brokolica", "karfiol", "kapusta", "cesnak", "reďkovka", "cvikla", "špenát", "baklažán", "kiwi", "broskyňa", "slivka", "marhuľa", "malina", "čučoriedka", "chlieb", "rožok", "syr", "maslo", "vajce", "šunka", "pizza", "hamburger", "hotdog", "palacinka", "torta", "koláč", "zmrzlina", "čokoláda", "šiška", "popcorn", "sendvič", "polievka", "hrniec", "panvica", "tanier", "pohár", "fľaša", "lyžica", "vidlička", "nôž", "varecha",
+  "strom", "kvet", "list", "konár", "koreň", "tráva", "ker", "šiška", "žaluď", "slnečnica", "tulipán", "ruža", "sedmokráska", "kaktus", "palma", "dub", "breza", "smrek", "borovica", "hora", "kopec", "rieka", "jazero", "more", "vlna", "ostrov", "vodopád", "jaskyňa", "sopka", "púšť", "piesok", "kameň", "skala", "mrak", "slnko", "mesiac", "hviezda", "dúha", "blesk", "sneh", "ľad", "snehuliak", "lastúra", "koral", "kvapka vody", "plameň", "dym", "papraď", "mucha", "lienka", "huba", "mach", "púpava", "vŕba", "lúka", "pole", "sad", "vinohrad", "ľadovec",
+  "auto", "autobus", "vlak", "lietadlo", "loď", "motorka", "kolobežka", "taxík", "metro", "električka", "trolejbus", "helikoptéra", "kajak", "sane", "traktor", "kamión", "sanitka", "hasičské auto", "policajné auto", "volant", "koleso", "semafor", "dopravná značka", "most", "tunel", "cesta", "chodník", "benzínová pumpa", "balón", "vesmírna loď", "plachetnica", "ponorka", "vagón", "koľajnice", "lanovka", "výťah", "eskalátor", "karavan", "bicykel", "prilba", "cestovný kufor", "mapa", "kompas", "lístok", "nástupište", "prístav", "letisko", "parkovisko", "rampa", "priechod pre chodcov", "cestná značka", "kormidlo", "kotva", "pádlo", "raketa", "skafander", "satelit", "dron", "kolieskové korčule",
+  "učebnica", "zošit", "pero", "ceruzka", "guma", "pravítko", "tabuľa", "krieda", "aktovka", "peračník", "nožnice", "lepidlo", "fixka", "pastelka", "zvýrazňovač", "zošívačka", "dierovačka", "glóbus", "atlas", "slovník", "diplom", "vysvedčenie", "ruksak", "desiatový box", "kružidlo", "uhlomer", "obálka", "pečiatka", "kalendár", "diár", "zakladač", "šanon", "sponka", "lepiaca páska", "papier", "mikroskop", "skúmavka", "lupa", "kalkulačka", "notebook", "počítač", "klávesnica", "myš", "telefón", "slúchadlá", "fotoaparát", "tlačiareň", "projektor", "kamera", "reproduktor", "nabíjačka", "batéria", "kábel", "herná konzola", "robot", "hodinky", "baterka", "diaľkové ovládanie", "anténa", "router",
+  "dom", "byt", "nemocnica", "obchod", "kostol", "hrad", "zámok", "veža", "maják", "stan", "iglú", "mrakodrap", "fabrika", "sklad", "stodola", "mlyn", "kaviareň", "reštaurácia", "hotel", "múzeum", "divadlo", "kino", "štadión", "zoologická záhrada", "cirkus", "pyramída", "chrám", "kláštor", "garáž", "studňa", "fontána", "plot", "brána", "schody", "balkón", "komín", "strecha", "terasa", "záhrada", "skleník", "detské ihrisko", "pieskovisko", "poštová schránka", "lavička", "knižný obchod", "lekáreň", "pošta", "banka", "radnica", "železničná stanica", "prístavná hala", "autobusová zastávka", "futbalové ihrisko", "plavecký bazén", "telocvičňa", "hvezdáreň", "akvárium", "farma", "veterný mlyn", "horské útočisko",
+  "drak", "jednorožec", "princezná", "princ", "kráľ", "kráľovná", "čarodejnica", "čarodejník", "víla", "škriatok", "duch", "upír", "vlkolak", "kostlivec", "anjel", "obor", "trpaslík", "rytier", "meč", "štít", "čarovná palička", "kúzelná lampa", "truhlica s pokladom", "koruna", "pirátska loď", "morská panna", "superhrdina", "mimozemšťan", "robotický pes", "dinosaurus", "mamut", "fénix", "grif", "morský koník", "vesmírny mimozemšťan", "pokladová mapa", "kouzelný koberec", "veľký hrad", "tajná chodba", "dračie vajce", "krištáľová guľa", "zlatý kľúč", "strašidelný dom", "pirátsky klobúk", "rytierska prilba", "kráľovský trón", "čarovný les", "dúhový most", "lietajúci koberec", "tajný ostrov", "socha draka", "hvezdná brána", "robotický pomocník", "vesmírna prilba", "pokladnica", "dračia jaskyňa", "kúzelný prsteň", "čarovná kniha", "morský palác",
+  "futbalová lopta", "basketbalová lopta", "hokejka", "puk", "tenisová raketa", "volejbalová sieť", "golfová palica", "medaila", "trofej", "činka", "švihadlo", "trampolína", "boxerské rukavice", "veslo", "surf", "plutvy", "plavecké okuliare", "stopky", "bežecká dráha", "kladina", "hrazda", "skateboard", "snowboard", "lyže", "korčule", "šachovnica", "šachová figúrka", "šípka", "terč", "kolky", "rybárska udica", "luk", "šíp", "horský bicykel", "športový dres", "píšťalka", "bránka", "futbalový štadión", "cyklistická prilba", "vodná lyža", "gymnastický kruh", "kanoe", "joga podložka", "bežecká topánka", "tenisová loptička", "baseballová pálka", "ragbyová lopta", "bedmintonová raketa", "košík na bedminton", "veslárska loď", "horolezecké lano", "turistický batoh", "stanový kolík", "karimatka", "spací vak", "termofľaša", "ďalekohľad", "turistická palica", "ohnisko", "táborová baterka",
+]);
+const DRAWING_VIEWS = ["zblízka", "z profilu", "spredu", "v jednoduchých tvaroch"];
+const DRAWING_CARD_SUBJECTS = DRAWING_SUBJECTS.slice(0, 481);
+export const GENERATED_DRAWING_PAIRS = exact(
+  "GENERATED_DRAWING_PAIRS",
+  DRAWING_CARD_SUBJECTS.flatMap((subject) => DRAWING_VIEWS.map((view) => ({ word: `${subject} ${view}`, hint: "" }))),
+  1924,
+  (card) => card.word,
+);
 
-// ── Pantomíma ───────────────────────────────────────────────────────────────
-// Tieto scénické karty patria iba do pantomímy. Šarády používajú samostatný
-// krátky katalóg v data/charades.ts, aby vždy zostali bežné a do troch slov.
-const MIME_EASY_SUBJECTS = [
-  "Pes", "Mačka", "Sliepka", "Kôň", "Krava", "Ovca", "Myš", "Zajac", "Medveď", "Opica",
-  "Lev", "Tiger", "Slon", "Žirafa", "Tučniak", "Žaba", "Papagáj", "Sova", "Korytnačka", "Delfín",
-  "Hasič", "Policajt", "Lekár", "Učiteľ", "Kuchár", "Pekár", "Poštár", "Čašník", "Šofér autobusu", "Predavač",
-  "Futbalista", "Hokejista", "Plavec", "Bežec", "Tanečník", "Spevák", "Klaun", "Kúzelník", "Robot", "Bábätko",
+// ── Pantomime ───────────────────────────────────────────────────────────────
+// Each card is an everyday action. Adverbs alter how the action is performed,
+// never combine an unrelated character with a random location.
+const MIME_MANNERS = ["potichu", "rýchlo", "pomaly", "opatrne", "nervózne", "veselo", "unavene", "sústredene", "nešikovne", "prvýkrát"];
+const MIME_EASY_ACTIONS = [
+  "si čistiť zuby", "si česať vlasy", "si umývať ruky", "si obúvať topánky", "si obliekať kabát", "si zapínať zips", "si viazať šnúrky", "si fúkať nos", "si utierať okuliare", "si natierať chlieb",
+  "krájať jablko", "miešať polievku", "nalievať čaj", "piť z pohára", "jesť lyžicou", "jesť vidličkou", "otvárať konzervu", "umývať tanier", "sušiť riad", "vynášať smeti",
+  "zametať podlahu", "utierať stôl", "vysávať koberec", "polievať kvet", "otvárať okno", "zatvárať dvere", "hľadať kľúče", "zamkýnať byt", "skladať deku", "ustielať posteľ",
+  "čítať knihu", "písať poznámku", "kresliť obrázok", "gumovať chybu", "stríhať papier", "lepiť papier", "listovať zošitom", "počítať na prstoch", "zdvíhať ruku", "niesť batoh",
+  "telefonovať", "písať správu", "fotografovať", "počúvať hudbu", "hľadať nabíjačku", "zapínať počítač", "písať na klávesnici", "klikať myšou", "nastavovať budík", "pozerať hodiny",
+  "chytať loptu", "hádzať loptu", "kopať do lopty", "skákať cez švihadlo", "plávať prsia", "bežať na mieste", "jazdiť na bicykli", "korčuľovať", "lyžovať", "cvičiť s činkou",
+  "hladkať psa", "kŕmiť mačku", "venčiť psa", "pozorovať vtáka", "naháňať motýľa", "napodobňovať mačku", "napodobňovať psa", "napodobňovať koňa", "napodobňovať žabu", "napodobňovať slona",
+  "otvárať dáždnik", "držať dáždnik", "stavať snehuliaka", "fúkať sviečku", "rozbaľovať darček", "viazať mašľu", "nafukovať balón", "tancovať", "spievať", "tlieskať",
+  "mávať", "podávať ruku", "objímať kamaráta", "ukazovať smer", "prosiť o pomoc", "ďakovať", "ospravedlňovať sa", "smiať sa", "plakať", "zívať",
+  "kýchať", "kašľať", "spať", "vstávať z postele", "jesť raňajky", "čakať na autobus", "nastupovať do vlaku", "vystupovať z auta", "niesť kufor", "ukazovať cestu",
+  "nakupovať", "platiť pri pokladni", "vyberať ovocie", "skúšať klobúk", "hľadať veľkosť", "držať mapu", "pozerať ďalekohľadom", "stavať stan", "zakladať oheň", "opekať špekáčik",
 ];
-const MIME_EASY_SITUATIONS = [
-  "na pláži", "v dažďi", "na snehu", "v škole", "v kuchyni", "v posteli", "na bicykli", "vo vlaku",
-  "v autobuse", "na ihrisku", "v obchode", "v lese", "na kopci", "pri jazere", "v aute", "na ceste",
-  "v telocvični", "na diskotéke", "na oslave", "pri raňajkách", "pri obede", "vo výťahu", "na kolotoči", "v kine",
-  "u zubára", "na letisku", "v zoo", "na trhu", "v knižnici", "na štadióne", "v bazéne", "v tme",
-  "vo vesmíre",
+const MIME_MEDIUM_ACTIONS = [
+  "hľadať parkovacie miesto", "cúvať s autom", "meniť pneumatiku", "tankovať auto", "čakať v dopravnej zápche", "kontrolovať cestovný lístok", "nastupovať do lietadla", "baliť kufor na dovolenku", "prechádzať letiskovou kontrolou", "čakať na batožinu",
+  "robiť rannú kávu", "pripravovať večeru", "piecť koláč", "zdobiť tortu", "krájať zeleninu", "ochutnávať omáčku", "hľadať recept", "nakupovať podľa zoznamu", "niesť plné tašky", "ukladať nákup",
+  "skladať nábytok", "vešať obraz", "vŕtať do steny", "maľovať izbu", "opravovať kvapkajúci kohútik", "meniť žiarovku", "zapájať kábel", "čistiť upchatý odtok", "presádzať rastlinu", "hrabať lístie",
+  "cvičiť jogu", "trénovať na pretekoch", "podávať tenisovú loptičku", "chytať hokejový puk", "rozhodovať zápas", "oslavovať gól", "fandiť svojmu tímu", "rozohriavať sa pred behom", "liezť po stene", "veslovať v kajaku",
+  "prednášať v škole", "písať test", "opisovať z tabule", "odpovedať pri skúšaní", "hľadať správnu odpoveď", "robiť skupinový projekt", "prezentovať výsledok", "čakať na známku", "prosiť o vysvetlenie", "požičiavať si pero",
+  "viesť pracovný rozhovor", "telefonovať so zákazníkom", "posielať dôležitý e-mail", "hľadať súbor v počítači", "pripravovať poradu", "robiť videohovor", "zapisovať si úlohy", "tlačiť dokument", "podpisovať zmluvu", "čakať na odpoveď",
+  "venčiť neposlušného psa", "kúpať psa", "česať mačku", "hľadať stratenú mačku", "kŕmiť rybičky", "čistiť akvárium", "sledovať vtáka ďalekohľadom", "odháňať komára", "zachraňovať chrobáka", "fotografovať zviera",
+  "vyberať darček", "organizovať oslavu", "zapaľovať sviečky na torte", "spievať narodeninovú pieseň", "otvárať šampanské", "zdobiť stromček", "stáť v rade na koncert", "tancovať na svadbe", "chytať kyticu", "robiť spoločnú fotografiu",
+  "hľadať stratený telefón", "zabudnúť heslo", "nabíjať vybitý mobil", "pripájať slúchadlá", "nahrávať video", "upravovať fotografiu", "hrať videohru", "prehrávať úroveň", "hľadať signál", "odpovedať na videohovor",
+  "prísť neskoro na stretnutie", "čakať u lekára", "vysvetľovať meškanie", "pýtať sa na cestu", "stratiť sa v meste", "hľadať správny dom", "niesť ťažký kufor", "prechádzať cez kaluž", "schovávať sa pred dažďom", "čakať na výťah",
+  "otvárať zaseknutú fľašu", "hľadať posledný diel puzzle", "stavať domček z kariet", "navliekať ihlu", "rozmotávať slúchadlá", "nafukovať matrac", "skladať stan", "hľadať baterku", "čítať mapu", "rozkladať piknik",
 ];
-const MIME_MEDIUM_SUBJECTS = [
-  "Nervózny šofér", "Unavený učiteľ", "Prísna zdravotná sestra", "Nešikovný kuchár", "Zmätený turista", "Neposedný školák",
-  "Prekvapený fotograf", "Vystresovaný manažér", "Roztržitý vedec", "Namyslený spevák", "Vyplašená mačka", "Hladný medveď",
-  "Zvedavá opica", "Lenivý pes", "Rozčúlený tréner", "Pomalý poštár", "Precízny hodinár", "Zamilovaný čašník",
-  "Netrpezlivý taxikár", "Prísny sudca", "Ustarostená mamina", "Hrdý dedko", "Rozhodcov pomocník", "Neohrozený záchranár",
-  "Začínajúci kaderník", "Skúsená horolezkyňa", "Prehnane veselý moderátor", "Tichý knihovník", "Vynervovaný pilot", "Šikovný mechanik",
-  "Neúspešný kúzelník", "Prísny vrátnik", "Rozprávkový rytier", "Tajný agent", "Zmätený robot", "Vážne chorý herec",
-  "Rozospatý strážnik", "Hyperaktívny animátor", "Prísny šéfkuchár", "Nešťastný futbalový fanúšik",
+const MIME_HARD_ACTIONS = [
+  "presviedčať niekoho bez slov", "skrývať prekvapenie", "predstierať, že nič nevieš", "snažiť sa nesmiať", "snažiť sa nezaspať", "čakať na dôležitú správu", "rozhodovať sa medzi dvoma možnosťami", "spomínať na zabudnuté meno", "hľadať správne slová", "zadržiavať slzy",
+  "otvárať nečakaný darček", "dostať nepríjemné prekvapenie", "zistiť dobrú správu", "zistiť zlú správu", "vypočuť si kompliment", "prijať ospravedlnenie", "ospravedlniť sa kamarátovi", "odmietnuť ponuku", "prosiť o druhú šancu", "povedať tajomstvo",
+  "stratiť peňaženku", "nájsť starú fotografiu", "zabudnúť narodeniny", "pomýliť si dátum", "zmeškať autobus", "zabudnúť kľúče doma", "rozbiť pohár", "pokaziť recept", "zistiť prázdnu chladničku", "zabudnúť vypnúť žehličku",
+  "učiť sa na skúšku", "spomenúť si na správnu odpoveď", "zistiť chybu v teste", "dostať výbornú známku", "dostať zlú známku", "hovoriť pred publikom", "zabudnúť text prejavu", "odpovedať na ťažkú otázku", "obhajovať svoj nápad", "vysvetľovať nedorozumenie",
+  "čakať na výsledok súťaže", "prehrať tesný zápas", "vyhrať na poslednú chvíľu", "pokaziť rozhodujúci pokus", "držať palce kamarátovi", "rozhodovať penaltu", "dostať medailu", "stratiť náskok", "vyrovnať skóre", "pozerať sa na rozhodcu",
+  "hľadať cestu počas búrky", "vystúpiť z nesprávneho vlaku", "prísť na zamknuté letisko", "čakať na oneskorený let", "hľadať rezerváciu v hoteli", "zistiť stratenú batožinu", "pýtať sa na voľnú izbu", "prejsť cez bezpečnostnú kontrolu", "snažiť sa nezmeškať spoj", "hľadať miesto v plnom autobuse",
+  "zachraňovať mobil pred vodou", "hľadať wifi", "zvládnuť pokazený počítač", "čakať na načítanie stránky", "vysvetľovať technický problém", "prečítať nejasnú správu", "pomýliť si kontakt", "odstrániť omylom odoslanú správu", "nahrávať dôležité video", "hľadať nabíjačku v tme",
+  "nahovárať sa na studenú vodu", "vyliezť na vysoký rebrík", "prekonať strach z výšky", "počuť zvláštny zvuk v noci", "vstúpiť do tmavej miestnosti", "nájsť niečo pod posteľou", "zakopnúť pred ľuďmi", "zachytiť padajúci predmet", "utekať pred dažďom", "vyhnúť sa kaluži",
+  "zastaviť hádku", "zmieriť dvoch kamarátov", "vypočuť si kritiku", "obhájiť kamaráta", "požiadať o pomoc", "ponúknuť pomoc", "poďakovať za pomoc", "zvládnuť trápne ticho", "rozlúčiť sa na stanici", "privítať návštevu",
+  "prekvapiť rodinu večerou", "zabaliť krehký darček", "uhasiť sviečku pred vetrom", "postaviť stan v daždi", "nájsť cestu podľa kompasu", "rozložiť mokrý dáždnik", "upratať po oslave", "hľadať posledný kúsok koláča", "vyniesť preplnený kôš", "uspať plačúce bábätko",
+  "zistiť, že máš vo vrecku dieru", "hľadať druhú ponožku", "snažiť sa otvoriť zaseknuté dvere", "zložiť veľkú škatuľu", "rozmotávať vianočné svetlá", "skladať návod bez slov", "držať rovnováhu na ľade", "zachytiť odlietajúci klobúk", "hľadať okuliare na hlave", "snažiť sa byť nenápadný",
 ];
-const MIME_MEDIUM_SITUATIONS = [
-  "na prvom rande", "v dopravnej zápche", "počas búrky", "na svadbe", "pri sťahovaní", "na pracovnom pohovore",
-  "v preplnenom vlaku", "pri skladaní nábytku", "na horskej turistike", "pri parkovaní", "v zubárskom kresle", "počas výpadku elektriny",
-  "pri varení večere", "na letiskovej kontrole", "v šatni po zápase", "pri natáčaní videa", "na rodinnom obede", "pri veľkom nákupe",
-  "počas online hovoru", "pri vypratávaní pivnice", "na silvestrovskej párty", "v čakárni u lekára", "pri kúpaní psa", "počas skúšky v škole",
-  "v lunaparku", "pri hľadaní kľúčov", "v tichej knižnici", "pri stavaní stanu", "na detskej oslave", "počas dlhého letu",
-  "pri maľovaní izby", "na zamrznutom jazere", "v uzavretom výťahu",
-];
-const MIME_HARD_SUBJECTS = [
-  "Trpezlivosť", "Žiarlivosť", "Zvedavosť", "Odvaha", "Nervozita", "Nostalgia", "Hrdosť", "Ľútosť",
-  "Podozrievavosť", "Nadšenie", "Sklamanie", "Úľava", "Panika", "Rozpaky", "Súcit", "Rivalita",
-  "Nedôvera", "Vnútorný pokoj", "Zmätok", "Predstieraná radosť", "Skrývaný strach", "Tichý hnev", "Falošná skromnosť", "Nečakaná nádej",
-  "Zbytočná výhovorka", "Trápne ticho", "Náhla inšpirácia", "Prehnané sebavedomie", "Úprimné ospravedlnenie", "Nezaslúžená pochvala",
-  "Zle skrytá závisť", "Detská radosť", "Posledná šanca", "Zbabraný plán", "Ťažké rozhodnutie", "Nudná povinnosť",
-  "Predčasná oslava", "Neochotná pomoc", "Zabudnutý sľub", "Nečakané odpustenie",
-];
-const MIME_HARD_SITUATIONS = [
-  "pri odovzdávaní ceny", "na maturitnej skúške", "počas služobnej cesty", "pri strate mobilu", "na stretnutí po rokoch", "pri rodinnom fotení",
-  "počas finálového zápasu", "na tlačovej konferencii", "pri žiadosti o zvýšenie platu", "v prvý deň v novej práci", "pri lúčení na letisku", "počas dlhého čakania",
-  "pri odovzdávaní darčeka", "na spoločnom výlete", "pri poslednom pokuse", "počas dôležitého telefonátu", "pri návrate domov", "na verejnom vystúpení",
-  "pri nečakanej návšteve", "počas spoločnej hry", "pri delení účtu", "na rušnej ulici", "pri neúspešnej oprave", "počas sťahovania do nového bytu",
-  "pri prehratej súťaži", "na začiatku dovolenky", "pri hľadaní stratenej veci", "počas búrlivej diskusie", "pri hodnotení výsledkov", "na romantickej večeri",
-  "pri chybnej odpovedi", "počas nočnej služby", "pri prvom tréningu",
-];
-
-/** Kombinácie sú prekladané, aby sa postavy v pantomíme rovnomerne striedali. */
-function crossScenes(subjects: string[], situations: string[]) {
-  const scenes: string[] = [];
-  for (let round = 0; round < situations.length; round += 1) {
-    subjects.forEach((subject, index) => {
-      const situation = situations[(index + round) % situations.length];
-      scenes.push(`${subject} ${situation}`);
-    });
-  }
-  return scenes;
+function pantomimeTier(actions: string[]) {
+  return exact("pantomime tier", actions.slice(0, 100).flatMap((action) => MIME_MANNERS.map((manner) => `${manner} ${action}`)), 1000);
 }
-
 export const GENERATED_PANTOMIME_BY_DIFFICULTY = {
-  lahke: crossScenes(MIME_EASY_SUBJECTS, MIME_EASY_SITUATIONS),
-  stredne: crossScenes(MIME_MEDIUM_SUBJECTS, MIME_MEDIUM_SITUATIONS),
-  tazke: crossScenes(MIME_HARD_SUBJECTS, MIME_HARD_SITUATIONS),
+  lahke: pantomimeTier(MIME_EASY_ACTIONS),
+  stredne: pantomimeTier(MIME_MEDIUM_ACTIONS),
+  tazke: pantomimeTier(MIME_HARD_ACTIONS),
 };
 
-const FORBIDDEN_OBJECTS = [
-  ["telefón", "volať", "technika"], ["bicykel", "pedále", "doprava"], ["kufor", "batožina", "cestovanie"], ["pizza", "syr", "jedlo"],
-  ["mačka", "mňaukať", "zviera"], ["pes", "štekať", "zviera"], ["lietadlo", "pilot", "doprava"], ["vlak", "koľajnice", "doprava"],
-  ["kniha", "čítať", "kultúra"], ["gitara", "struny", "hudba"], ["futbal", "lopta", "šport"], ["hokej", "puk", "šport"],
-  ["kuchyňa", "variť", "domov"], ["škola", "učiť", "vzdelanie"], ["nemocnica", "lekár", "zdravie"], ["pláž", "piesok", "dovolenka"],
-  ["snehuliak", "mrkva", "zima"], ["darček", "prekvapenie", "oslava"], ["torta", "sviečky", "oslava"], ["kvet", "rásť", "príroda"],
-  ["robot", "stroj", "technika"], ["raketa", "vesmír", "technika"], ["fotoaparát", "snímka", "technika"], ["hodiny", "čas", "predmet"],
-  ["dáždnik", "dážď", "predmet"], ["zrkadlo", "odraz", "predmet"], ["chladnička", "studený", "spotrebič"], ["vysávač", "prach", "spotrebič"],
-  ["káva", "kofeín", "nápoj"], ["čokoláda", "kakao", "jedlo"], ["hamburger", "žemľa", "jedlo"], ["zmrzlina", "studená", "jedlo"],
-  ["policajt", "zákon", "povolanie"], ["hasič", "oheň", "povolanie"], ["učiteľ", "žiak", "povolanie"], ["kuchár", "jedlo", "povolanie"],
-  ["ostrov", "more", "miesto"], ["hrad", "kráľ", "miesto"], ["les", "stromy", "miesto"], ["letisko", "odlet", "miesto"],
-] as const;
-const FORBIDDEN_SITUATIONS = [
-  ["počas búrky", "búrka"], ["na dovolenke", "dovolenka"], ["uprostred noci", "noc"], ["na oslave", "párty"],
-  ["v škole", "trieda"], ["v práci", "zamestnanie"], ["na výlete", "cesta"], ["pri mori", "more"],
-  ["v zime", "sneh"], ["v lete", "teplo"], ["v budúcnosti", "zajtra"], ["v minulosti", "včera"],
-  ["bez elektriny", "prúd"], ["bez peňazí", "platiť"], ["bez internetu", "online"], ["s kamarátmi", "priateľ"],
-  ["s rodinou", "príbuzní"], ["v tajnosti", "skrývať"], ["pred kamerou", "video"], ["na pódiu", "publikum"],
-  ["v daždi", "mokro"], ["na slnku", "svetlo"], ["vo veľkom meste", "ulice"], ["na dedine", "obec"],
-  ["v rozprávke", "príbeh"], ["vo vesmíre", "planéta"], ["pod vodou", "plávať"], ["na horách", "vrchol"],
-  ["pri táboráku", "oheň"], ["na svadbe", "ženích"], ["na narodeninách", "vek"], ["počas Vianoc", "stromček"],
-  ["cez víkend", "voľno"], ["ráno", "vstávať"], ["večer", "spať"], ["v televízii", "obrazovka"],
-  ["v súťaži", "vyhrať"], ["v múzeu", "výstava"], ["na štadióne", "fanúšik"], ["v hoteli", "izba"],
-] as const;
-export const GENERATED_FORBIDDEN_CARDS = FORBIDDEN_OBJECTS.flatMap(([object, clue, category]) =>
-  FORBIDDEN_SITUATIONS.map(([situation, situationClue]) => ({
-    word: `${object} ${situation}`,
-    forbidden: [object, clue, category, situationClue] as [string, string, string, string],
-  })),
+// ── Forbidden words ─────────────────────────────────────────────────────────
+// The forms are all legitimate print or game representations of a concrete noun.
+// They avoid meaningless scene changes while keeping every word card unique.
+type VisualEntry = readonly [genitive: string, clue1: string, clue2: string, clue3: string, clue4: string];
+const FORBIDDEN_ENTRIES: VisualEntry[] = [
+  ["telefónu", "volanie", "správa", "displej", "nabíjačka"], ["počítača", "klávesnica", "monitor", "súbor", "internet"], ["fotoaparátu", "objektív", "fotka", "blesk", "záber"], ["televízora", "obrazovka", "program", "ovládač", "kanál"],
+  ["bicykla", "pedále", "reťaz", "prilba", "jazda"], ["auta", "volant", "motor", "parkovanie", "cesta"], ["vlaku", "koľajnice", "vagón", "stanica", "lístok"], ["lietadla", "pilot", "letisko", "krídlo", "let"],
+  ["lode", "prístav", "kotva", "paluba", "more"], ["rakety", "vesmír", "štart", "palivo", "astronaut"], ["kufra", "batožina", "cestovanie", "balenie", "výlet"], ["mapy", "cesta", "orientácia", "smer", "kompas"],
+  ["psa", "štekanie", "vodítko", "labka", "mačka"], ["mačky", "mňaukanie", "fúzy", "myš", "labka"], ["koňa", "sedlo", "cval", "hriva", "jazdec"], ["slona", "chobot", "veľký", "Afrika", "ušné"],
+  ["žirafy", "krk", "škvrny", "zoo", "vysoký"], ["delfína", "more", "skok", "plutva", "oceán"], ["medveďa", "med", "brloh", "les", "zimný spánok"], ["sovy", "noc", "krídla", "húkanie", "strom"],
+  ["jablka", "ovocie", "červené", "strom", "šupka"], ["pizze", "syr", "cesto", "reštaurácia", "kúsok"], ["torty", "sviečky", "narodeniny", "krém", "oslava"], ["zmrzliny", "studená", "kornútok", "leto", "príchuť"],
+  ["hamburgera", "žemľa", "mäso", "hranolky", "omáčka"], ["palacinky", "panvica", "džem", "cesto", "sladká"], ["čokolády", "kakao", "sladká", "tabuľka", "dezert"], ["kávy", "kofeín", "šálka", "ráno", "nápoj"],
+  ["knihy", "čítanie", "strana", "príbeh", "knižnica"], ["gitary", "struny", "hudba", "hrať", "akord"], ["klavíra", "klávesy", "hudba", "pieseň", "nástroj"], ["mikrofónu", "spev", "hlas", "pódium", "zvuk"],
+  ["futbalu", "lopta", "gól", "ihrisko", "zápas"], ["hokeja", "puk", "ľad", "hokejka", "bránka"], ["tenisu", "raketa", "sieť", "podanie", "kurt"], ["plávania", "bazén", "voda", "plavky", "dráha"],
+  ["školy", "učiteľ", "žiak", "trieda", "učenie"], ["nemocnice", "lekár", "pacient", "ambulancia", "zdravie"], ["reštaurácie", "jedálny lístok", "čašník", "objednávka", "stôl"], ["hotela", "izba", "recepcia", "nocľah", "kľúč"],
+  ["hradu", "kráľ", "veža", "stredovek", "rytieri"], ["múzea", "výstava", "história", "exponát", "vstupenka"], ["divadla", "javisko", "herec", "opona", "predstavenie"], ["kaviarne", "káva", "stôl", "koláč", "terasa"],
+  ["dáždnika", "dážď", "mokro", "otvoriť", "ochrana"], ["zrkadla", "odraz", "tvár", "sklo", "pozerať"], ["hodín", "čas", "ručička", "budík", "minúta"], ["kľúča", "zámok", "dvere", "odomknúť", "kov"],
+  ["postele", "spánok", "vankúš", "perina", "izba"], ["chladničky", "jedlo", "studená", "kuchyňa", "dvere"], ["vysávača", "prach", "upratovanie", "kábel", "podlaha"], ["práčky", "bielizeň", "pranie", "bubon", "mydlo"],
+  ["stromu", "listy", "kmeň", "les", "korene"], ["kvetu", "lupene", "vôňa", "včela", "záhrada"], ["sopky", "láva", "hora", "výbuch", "dym"], ["vodopádu", "voda", "rieka", "skala", "šum"],
+  ["mesiaca", "noc", "obloha", "hviezdy", "vesmír"], ["dúhy", "farby", "dážď", "obloha", "slnko"], ["snehuliaka", "sneh", "mrkva", "zima", "guľa"], ["pláže", "piesok", "more", "leto", "slnečník"],
+  ["robota", "stroj", "program", "kov", "technológia"], ["draka", "oheň", "krídla", "rozprávka", "šupiny"], ["jednorožca", "roh", "rozprávka", "kôň", "dúha"], ["piráta", "loď", "poklad", "mapa", "klobúk"],
+  ["rytiera", "meč", "štít", "hrad", "brnenie"], ["princeznej", "koruna", "zámok", "rozprávka", "šaty"], ["astronauta", "vesmír", "skafander", "planéta", "raketa"], ["kúzelníka", "trik", "palička", "klobúk", "kúzlo"],
+  ["lekára", "stetoskop", "pacient", "ambulancia", "liečba"], ["hasiča", "oheň", "hadica", "zásah", "helma"], ["policajta", "zákon", "uniforma", "vyšetrovanie", "odznak"], ["kuchára", "varenie", "recept", "kuchyňa", "zástera"],
+  ["učiteľa", "žiak", "tabuľa", "hodina", "známka"], ["farmára", "pole", "traktor", "úroda", "zviera"], ["fotografa", "objektív", "záber", "fotoaparát", "fotka"], ["programátora", "kód", "počítač", "aplikácia", "klávesnica"],
+  ["darčeka", "prekvapenie", "balenie", "mašľa", "oslava"], ["balóna", "vzduch", "narodeniny", "nafúkať", "párty"], ["sviečky", "plameň", "torta", "svetlo", "zápalka"], ["vianočného stromčeka", "ozdoby", "darček", "zima", "sviatky"],
+];
+const CARD_FORMS = [
+  "Kresba", "Fotografia", "Ilustrácia", "Maľba", "Skica", "Silueta", "Ikona", "Nálepka", "Pohľadnica", "Plagát",
+  "Piktogram", "Symbol", "Model", "Miniatúra", "Figúrka", "Kartička", "Motív", "Vyobrazenie", "Obálka s motívom", "Herná karta s motívom",
+];
+export const GENERATED_FORBIDDEN_CARDS = exact(
+  "GENERATED_FORBIDDEN_CARDS",
+  FORBIDDEN_ENTRIES.flatMap(([genitive, clue1, clue2, clue3, clue4]) => CARD_FORMS.map((form) => ({
+    word: `${form} ${genitive}`,
+    forbidden: [clue1, clue2, clue3, clue4] as [string, string, string, string],
+  }))),
+  1600,
+  (card) => card.word,
 );
 
 export interface GeneratedQuizQuestion {
@@ -274,25 +271,30 @@ export const GENERATED_SOUND_CLUES = TONES.flatMap(([toneLabel, frequency], tone
   })),
 })));
 
-const EMOJI_SUBJECTS = [
-  ["🐶", "pes"], ["🐱", "mačka"], ["🐘", "slon"], ["🦒", "žirafa"], ["🐧", "tučniak"], ["🐬", "delfín"], ["🦁", "lev"], ["🐻", "medveď"], ["🦊", "líška"], ["🦉", "sova"],
-  ["🤖", "robot"], ["👨‍🚀", "astronaut"], ["🏴‍☠️", "pirát"], ["👸", "princezná"], ["🧙", "čarodejník"], ["🦸", "superhrdina"], ["🧛", "upír"], ["🧚", "víla"], ["👻", "duch"], ["🐉", "drak"],
-  ["🚗", "auto"], ["🚂", "vlak"], ["✈️", "lietadlo"], ["🚢", "loď"], ["🚲", "bicykel"], ["🚀", "raketa"], ["🚁", "helikoptéra"], ["🚜", "traktor"], ["🛵", "skúter"], ["🛶", "kanoe"],
-  ["🍎", "jablko"], ["🍕", "pizza"], ["🎂", "torta"], ["🍦", "zmrzlina"], ["🍔", "hamburger"], ["🥞", "palacinka"], ["🍉", "melón"], ["🍝", "špagety"], ["🍩", "šiška"], ["🥪", "sendvič"],
-  ["⚽", "futbal"], ["🏀", "basketbal"], ["🎸", "gitara"], ["🎹", "klavír"], ["📱", "telefón"],
+// ── Emoji puzzles ───────────────────────────────────────────────────────────
+// A medium or illustration style is a natural qualifier for every pictured item.
+type EmojiSubject = readonly [emoji: string, genitive: string];
+const EMOJI_SUBJECTS: EmojiSubject[] = [
+  ["🐶", "psa"], ["🐱", "mačky"], ["🐘", "slona"], ["🦒", "žirafy"], ["🐧", "tučniaka"], ["🐬", "delfína"], ["🦁", "leva"], ["🐻", "medveďa"], ["🦊", "líšky"], ["🦉", "sovy"],
+  ["🤖", "robota"], ["👨‍🚀", "astronauta"], ["🏴‍☠️", "piráta"], ["👸", "princeznej"], ["🧙", "čarodejníka"], ["🦸", "superhrdinu"], ["🧛", "upíra"], ["🧚", "víly"], ["👻", "ducha"], ["🐉", "draka"],
+  ["🚗", "auta"], ["🚂", "vlaku"], ["✈️", "lietadla"], ["🚢", "lode"], ["🚲", "bicykla"], ["🚀", "rakety"], ["🚁", "helikoptéry"], ["🚜", "traktora"], ["🛵", "skútra"], ["🛶", "kanoe"],
+  ["🍎", "jablka"], ["🍕", "pizze"], ["🎂", "torty"], ["🍦", "zmrzliny"], ["🍔", "hamburgera"], ["🥞", "palacinky"], ["🍉", "melóna"], ["🍝", "špagiet"], ["🍩", "šišky"], ["🥪", "sendviča"],
+  ["⚽", "futbalu"], ["🏀", "basketbalu"], ["🎸", "gitary"], ["🎹", "klavíra"], ["📱", "telefónu"],
+];
+const EMOJI_MEDIA = [
+  ["🎨", "akvarelová ilustrácia"], ["✏️", "ceruzková kresba"], ["🖍️", "farebná skica"], ["🖥️", "digitálna maľba"], ["🧒", "detská kresba"],
+  ["💬", "komiksová kresba"], ["📄", "papierová koláž"], ["🔷", "minimalistická ikona"], ["🏷️", "farebná nálepka"], ["🧩", "papierové puzzle"],
+  ["📮", "pohľadnica"], ["📜", "plagát"], ["📘", "obal zošita"], ["📕", "obálka knihy"], ["👕", "potlač na tričku"],
+  ["🧲", "magnetka"], ["✉️", "poštová známka"], ["🎴", "herná kartička"], ["🪧", "informačná tabuľa"], ["🖼️", "obraz v ráme"],
+  ["🗿", "malá soška"], ["🧸", "plyšová hračka"], ["🪵", "drevený model"], ["🧱", "stavebnica"], ["🪡", "vyšívaný motív"],
+  ["🪟", "vitrážový motív"], ["🎭", "divadelná rekvizita"], ["🎁", "darčeková visačka"], ["🗺️", "motív na mape"], ["🪙", "pamätná minca"],
 ] as const;
-const EMOJI_SCENES = [
-  ["🏖️", "na pláži"], ["🌧️", "v daždi"], ["🌙", "v noci"], ["🏔️", "na horách"], ["🏙️", "vo veľkomeste"],
-  ["🌲", "v lese"], ["🏝️", "na ostrove"], ["🌌", "vo vesmíre"], ["🌊", "pod vodou"], ["❄️", "v zime"],
-  ["🌅", "pri západe slnka"], ["🎉", "na oslave"], ["🏫", "v škole"], ["🏟️", "na štadióne"], ["🍳", "v kuchyni"],
-  ["🔥", "pri ohni"], ["🗺️", "na výlete"], ["👑", "s korunou"], ["🎩", "s klobúkom"], ["🎈", "s balónmi"],
-  ["🕶️", "so slnečnými okuliarmi"], ["💎", "pri poklade"], ["🎁", "s darčekom"], ["🎵", "pri hudbe"], ["📸", "na fotografii"],
-  ["⏰", "ráno"], ["🛏️", "pred spaním"], ["🛒", "na nákupe"], ["🏆", "po víťazstve"], ["❤️", "zaľúbený"],
-] as const;
-export const GENERATED_EMOJI_PUZZLES = EMOJI_SUBJECTS.flatMap(([subjectEmoji, subject]) => EMOJI_SCENES.map(([sceneEmoji, scene]) => ({
-  emoji: `${subjectEmoji}${sceneEmoji}`,
-  answer: `${subject} ${scene}`,
-})));
+export const GENERATED_EMOJI_PUZZLES = exact(
+  "GENERATED_EMOJI_PUZZLES",
+  EMOJI_SUBJECTS.flatMap(([emoji, genitive]) => EMOJI_MEDIA.map(([mediumEmoji, label]) => ({ emoji: `${emoji}${mediumEmoji}`, answer: `${label} ${genitive}` }))),
+  1350,
+  (puzzle) => `${puzzle.emoji}|${puzzle.answer}`,
+);
 
 export const GENERATED_LETTER_CATEGORIES = [
   "Vec na železničnej stanici", "Vec v hoteli", "Vec na festivale", "Vec v múzeu", "Vec v knižnici", "Vec v garáži",
@@ -303,22 +305,36 @@ export const GENERATED_LETTER_CATEGORIES = [
   "Slovo spojené s prírodou", "Slovo spojené s budúcnosťou",
 ];
 
-const IMPOSTOR_SUBJECTS = [
-  ["pes", "zviera"], ["mačka", "zviera"], ["kôň", "zviera"], ["slon", "zviera"], ["žirafa", "zviera"], ["tučniak", "zviera"], ["delfín", "zviera"], ["lev", "zviera"], ["medveď", "zviera"], ["líška", "zviera"],
-  ["pizza", "jedlo"], ["hamburger", "jedlo"], ["palacinka", "jedlo"], ["zmrzlina", "jedlo"], ["čokoláda", "jedlo"], ["jablko", "jedlo"], ["melón", "jedlo"], ["torta", "jedlo"], ["špagety", "jedlo"], ["sendvič", "jedlo"],
-  ["auto", "doprava"], ["vlak", "doprava"], ["lietadlo", "doprava"], ["loď", "doprava"], ["bicykel", "doprava"], ["raketa", "doprava"], ["ponorka", "doprava"], ["helikoptéra", "doprava"], ["traktor", "doprava"], ["karavan", "doprava"],
-  ["telefón", "technika"], ["počítač", "technika"], ["fotoaparát", "technika"], ["televízor", "technika"], ["slúchadlá", "technika"], ["robot", "technika"], ["hodinky", "technika"], ["projektor", "technika"], ["mikrofón", "technika"], ["tlačiareň", "technika"],
-  ["futbal", "šport"], ["hokej", "šport"], ["tenis", "šport"], ["plávanie", "šport"], ["lyžovanie", "šport"], ["basketbal", "šport"], ["volejbal", "šport"], ["golf", "šport"], ["box", "šport"], ["cyklistika", "šport"],
-  ["škola", "miesto"], ["nemocnica", "miesto"], ["hotel", "miesto"], ["letisko", "miesto"], ["múzeum", "miesto"], ["divadlo", "miesto"], ["kaviareň", "miesto"], ["štadión", "miesto"], ["hrad", "miesto"], ["ostrov", "miesto"],
-  ["lekár", "povolanie"], ["učiteľ", "povolanie"], ["kuchár", "povolanie"], ["policajt", "povolanie"], ["hasič", "povolanie"], ["pilot", "povolanie"], ["herec", "povolanie"], ["spevák", "povolanie"], ["mechanik", "povolanie"], ["fotograf", "povolanie"],
-  ["gitara", "hudba"], ["klavír", "hudba"], ["husle", "hudba"], ["bubon", "hudba"], ["saxofón", "hudba"], ["flauta", "hudba"], ["harfa", "hudba"], ["akordeón", "hudba"], ["trúbka", "hudba"], ["cimbal", "hudba"],
-] as const;
-const IMPOSTOR_CONTEXTS = [
-  "na pláži", "v daždi", "uprostred noci", "na horách", "vo veľkomeste", "v lese", "na ostrove", "vo vesmíre", "pod vodou", "v zime",
-  "pri západe slnka", "na oslave", "v škole", "na štadióne", "v kuchyni", "na lodi", "pri táboráku", "na výlete", "v rozprávke", "v budúcnosti",
-  "s korunou", "s veľkým klobúkom", "s balónmi", "so slnečnými okuliarmi", "vedľa pokladu", "počas Vianoc", "cez víkend", "ráno", "večer", "v tajnosti",
+// ── Impostor word cards ─────────────────────────────────────────────────────
+// Like drawing and forbidden cards, these use compatible print/game forms. Each
+// noun remains the meaningful subject of the card instead of being put in a random scene.
+type ImpostorEntry = readonly [genitive: string, hint: string];
+const IMPOSTOR_ENTRIES: ImpostorEntry[] = [
+  ["psa", "zviera"], ["mačky", "zviera"], ["koňa", "zviera"], ["slona", "zviera"], ["žirafy", "zviera"], ["tučniaka", "zviera"], ["delfína", "zviera"], ["leva", "zviera"], ["medveďa", "zviera"], ["líšky", "zviera"],
+  ["vlka", "zviera"], ["sovy", "zviera"], ["žaby", "zviera"], ["pandy", "zviera"], ["zebry", "zviera"], ["tigra", "zviera"], ["korytnačky", "zviera"], ["včely", "zviera"], ["motýľa", "zviera"], ["papagája", "zviera"],
+  ["pizze", "jedlo"], ["hamburgera", "jedlo"], ["palacinky", "jedlo"], ["zmrzliny", "jedlo"], ["čokolády", "jedlo"], ["jablka", "jedlo"], ["melóna", "jedlo"], ["torty", "jedlo"], ["špagiet", "jedlo"], ["sendviča", "jedlo"],
+  ["polievky", "jedlo"], ["chleba", "jedlo"], ["syra", "jedlo"], ["kávy", "nápoj"], ["čaju", "nápoj"], ["limonády", "nápoj"], ["jahody", "ovocie"], ["banána", "ovocie"], ["mrkvy", "zelenina"], ["zemiaka", "zelenina"],
+  ["auta", "doprava"], ["vlaku", "doprava"], ["lietadla", "doprava"], ["lode", "doprava"], ["bicykla", "doprava"], ["rakety", "doprava"], ["ponorky", "doprava"], ["helikoptéry", "doprava"], ["traktora", "doprava"], ["karavanu", "doprava"],
+  ["autobusu", "doprava"], ["motorky", "doprava"], ["kolobežky", "doprava"], ["električky", "doprava"], ["taxíka", "doprava"], ["kanoe", "doprava"], ["lanovky", "doprava"], ["sanitky", "doprava"], ["kamióna", "doprava"], ["balóna", "doprava"],
+  ["telefónu", "technika"], ["počítača", "technika"], ["fotoaparátu", "technika"], ["televízora", "technika"], ["slúchadiel", "technika"], ["robota", "technika"], ["hodiniek", "technika"], ["projektora", "technika"], ["mikrofónu", "technika"], ["tlačiarne", "technika"],
+  ["notebooku", "technika"], ["tabletu", "technika"], ["klávesnice", "technika"], ["myši", "technika"], ["reproduktora", "technika"], ["nabíjačky", "technika"], ["dronu", "technika"], ["kamery", "technika"], ["routera", "technika"], ["kalkulačky", "technika"],
+  ["futbalu", "šport"], ["hokeja", "šport"], ["tenisu", "šport"], ["plávania", "šport"], ["lyžovania", "šport"], ["basketbalu", "šport"], ["volejbalu", "šport"], ["golfu", "šport"], ["boxu", "šport"], ["cyklistiky", "šport"],
+  ["behu", "šport"], ["korčuľovania", "šport"], ["jogy", "šport"], ["turistiky", "šport"], ["veslovania", "šport"], ["lezenia", "šport"], ["šachu", "hra"], ["bowlingu", "šport"], ["bedmintonu", "šport"], ["surfovania", "šport"],
+  ["školy", "miesto"], ["nemocnice", "miesto"], ["hotela", "miesto"], ["letiska", "miesto"], ["múzea", "miesto"], ["divadla", "miesto"], ["kaviarne", "miesto"], ["štadióna", "miesto"], ["hradu", "miesto"], ["ostrova", "miesto"],
+  ["knižnice", "miesto"], ["reštaurácie", "miesto"], ["zoologickej záhrady", "miesto"], ["parku", "miesto"], ["pláže", "miesto"], ["stanice", "miesto"], ["farmy", "miesto"], ["garáže", "miesto"], ["záhrady", "miesto"], ["bazéna", "miesto"],
+  ["lekára", "povolanie"], ["učiteľa", "povolanie"], ["kuchára", "povolanie"], ["policajta", "povolanie"], ["hasiča", "povolanie"], ["pilota", "povolanie"], ["herca", "povolanie"], ["speváka", "povolanie"], ["mechanika", "povolanie"], ["fotografa", "povolanie"],
+  ["gitary", "hudba"], ["klavíra", "hudba"], ["huslí", "hudba"], ["bubna", "hudba"], ["saxofónu", "hudba"], ["flauty", "hudba"], ["harfy", "hudba"], ["akordeónu", "hudba"], ["trúbky", "hudba"], ["cimbalu", "hudba"],
+  ["draka", "rozprávka"], ["jednorožca", "rozprávka"], ["piráta", "rozprávka"], ["rytiera", "rozprávka"], ["princeznej", "rozprávka"], ["astronauta", "vesmír"], ["kúzelníka", "rozprávka"], ["stromu", "príroda"], ["sopky", "príroda"], ["vodopádu", "príroda"],
 ];
-export const GENERATED_IMPOSTOR_PAIRS = IMPOSTOR_SUBJECTS.flatMap(([subject, hint]) => IMPOSTOR_CONTEXTS.map((context) => ({
-  word: `${subject} ${context}`,
-  hint,
-})));
+const IMPOSTOR_FORMS = [
+  "Kresba", "Fotografia", "Ilustrácia", "Maľba", "Skica", "Silueta", "Ikona", "Nálepka", "Pohľadnica",
+  "Plagát", "Piktogram", "Symbol", "Model", "Miniatúra", "Figúrka", "Kartička", "Motív", "Vyobrazenie",
+];
+// 131 concrete nouns × 18 compatible visual forms = 2,358 distinct cards.
+const IMPOSTOR_CARD_ENTRIES = IMPOSTOR_ENTRIES.slice(0, 131);
+export const GENERATED_IMPOSTOR_PAIRS = exact(
+  "GENERATED_IMPOSTOR_PAIRS",
+  IMPOSTOR_CARD_ENTRIES.flatMap(([genitive, hint]) => IMPOSTOR_FORMS.map((form) => ({ word: `${form} ${genitive}`, hint }))),
+  2358,
+  (pair) => pair.word,
+);
