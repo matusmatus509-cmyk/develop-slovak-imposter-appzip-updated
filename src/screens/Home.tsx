@@ -101,7 +101,7 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
             return (
               <article
                 key={section.screen}
-                className={`home-mode-card group relative min-h-0 flex-1 overflow-hidden rounded-[1.25rem] border text-left shadow-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20 active:scale-[.985] ${section.featured ? "border-violet-300/25 bg-[#141525]" : "border-white/[.11] bg-[#11171e]"}`}
+                className={`home-mode-card group relative min-h-0 overflow-hidden rounded-[1.45rem] border text-left shadow-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20 active:scale-[.985] ${section.featured ? "home-party-featured flex-[1.35] border-violet-300/30 bg-[#141525]" : "flex-1 border-white/[.11] bg-[#11171e]"}`}
                 style={{ animation: `slideUp .45s ease-out ${120 + index * 65}ms both`, boxShadow: `0 18px 42px -31px ${section.glow}` }}
               >
                 <button type="button" onClick={() => onNavigate(section.screen)} aria-label={`Otvoriť ${section.title}`} className="absolute inset-0 z-[1] rounded-[1.25rem] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300" />
@@ -110,8 +110,8 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
                 <div className={`absolute inset-y-0 left-0 w-1 bg-gradient-to-b ${section.accent}`} />
                 <div className="relative flex h-full items-center p-4">
                   <div className="w-[76%] min-w-0">
-                    <div className="flex items-center gap-2"><span className={`flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br ${section.accent} shadow-lg`}><Icon size={15} className="text-white" /></span><p className="text-[8px] font-extrabold uppercase tracking-[.16em] text-white/52">{section.eyebrow}</p></div>
-                    <h2 className="mt-2 text-[1.3rem] font-extrabold leading-none tracking-[-.035em]">{section.title}</h2>
+                    <div className="flex items-center gap-2"><span className={`flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br ${section.accent} shadow-lg`}><Icon size={15} className="text-white" /></span><p className="text-[8px] font-extrabold uppercase tracking-[.16em] text-white/52">{section.eyebrow}</p>{section.featured && <span className="party-live-mark ml-1 !px-2 !py-1"><span /> TOP</span>}</div>
+                    <h2 className={`mt-2 font-extrabold leading-none tracking-[-.045em] ${section.featured ? "text-[1.65rem]" : "text-[1.3rem]"}`}>{section.title}</h2>
                     <p className="mt-1 text-[10px] font-semibold leading-snug text-white/55">{section.description}</p>
                   </div>
                   {section.screen === "teambattle" && <button type="button" onClick={() => onToggleFavorite("teambattle")} aria-pressed={favoriteGames.some((game) => game.id === "teambattle")} aria-label={favoriteGames.some((game) => game.id === "teambattle") ? "Odobrať Party mode z obľúbených" : "Pridať Party mode medzi obľúbené"} className={`absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-lg border ${favoriteGames.some((game) => game.id === "teambattle") ? "border-rose-300/25 bg-rose-400/15 text-rose-300" : "border-white/12 bg-[#111820]/75 text-white/55"}`}><Icons.heart size={14} fill={favoriteGames.some((game) => game.id === "teambattle") ? "currentColor" : "none"} /></button>}

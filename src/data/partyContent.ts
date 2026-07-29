@@ -1,8 +1,5 @@
 import type {
   CustomContentGame,
-  GeneratedLaunchPayload,
-  GeneratedPartySession,
-  PartyGeneratorControls,
   WorkshopCollection,
   WorkshopEntry,
   WorkshopEntryKind,
@@ -10,6 +7,7 @@ import type {
   WorkshopSelections,
 } from "../types";
 import type { QuizQuestion } from "./teamBattle";
+import { isValidCharadeText } from "./charades";
 
 export const DEFAULT_COLLECTION_ID = "default";
 export const DEFAULT_COLLECTION: WorkshopCollection = {
@@ -72,7 +70,7 @@ export const SEASONAL_PARTY_PACKS: SeasonalPartyPack[] = [
       { kind: "quiz", text: "Ako sa volá obdobie štyroch týždňov pred Vianocami?", answer: "Advent" },
       { kind: "quiz", text: "Ktorý deň je na Slovensku Štedrý deň?", answer: "24. december" },
       { kind: "person", text: "Ježiško nesúci príliš veľa darčekov" },
-      { kind: "charade", text: "Zdobenie vianočného stromčeka" },
+      { kind: "charade", text: "Zdobenie stromčeka" },
       { kind: "charade", text: "Stavanie snehuliaka" },
     ],
   },
@@ -94,7 +92,7 @@ export const SEASONAL_PARTY_PACKS: SeasonalPartyPack[] = [
       { kind: "quiz", text: "Ktorý dátum pripadá na Halloween?", answer: "31. október" },
       { kind: "person", text: "Upír, ktorý sa bojí tmy" },
       { kind: "charade", text: "Vyrezávanie tekvice" },
-      { kind: "charade", text: "Duch prechádzajúci cez zatvorené dvere" },
+      { kind: "charade", text: "Strašidelný duch" },
     ],
   },
   {
@@ -114,8 +112,8 @@ export const SEASONAL_PARTY_PACKS: SeasonalPartyPack[] = [
       { kind: "quiz", text: "Ktorý sviatok sa oslavuje 14. februára?", answer: "Valentín" },
       { kind: "quiz", text: "Ktorý orgán symbolizuje lásku?", answer: "Srdce" },
       { kind: "person", text: "Amor, ktorému sa zamotali šípy" },
-      { kind: "charade", text: "Písanie anonymného valentínskeho odkazu" },
-      { kind: "charade", text: "Príprava prekvapivej večere" },
+      { kind: "charade", text: "Písanie odkazu" },
+      { kind: "charade", text: "Príprava večere" },
     ],
   },
   {
@@ -135,14 +133,57 @@ export const SEASONAL_PARTY_PACKS: SeasonalPartyPack[] = [
       { kind: "quiz", text: "Koľko mesiacov má kalendárny rok?", answer: "12" },
       { kind: "quiz", text: "Ako sa volá posledný deň roka?", answer: "Silvester" },
       { kind: "person", text: "Moderátor odpočítavania posledných desiatich sekúnd roka" },
-      { kind: "charade", text: "Otváranie fľaše so šumivým nápojom" },
-      { kind: "charade", text: "Písanie novoročných predsavzatí" },
+      { kind: "charade", text: "Otváranie fľaše" },
+      { kind: "charade", text: "Novoročné predsavzatie" },
     ],
   },
 ];
 
 function cleanString(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().replace(/\s+/g, " ").slice(0, maxLength) : "";
+}
+
+const COLON_PATTERN = /:/;
+const EMOJI_PATTERN = /\p{Extended_Pictographic}/u;
+
+/** Returns a player-facing reason when a custom card does not fit its game. */
+export function getWorkshopEntryValidationError(
+  kind: WorkshopEntryKind,
+  rawText: unknown,
+  rawAnswer?: unknown,
+): string | null {
+  const normalizedKind = kind === "word" ? "charade" : kind;
+  const maxLength = normalizedKind === "charade" ? 80 : 240;
+  const sourceText = typeof rawText === "string" ? rawText.trim().replace(/\s+/g, " ") : "";
+  const sourceAnswer = typeof rawAnswer === "string" ? rawAnswer.trim().replace(/\s+/g, " ") : "";
+  const text = cleanString(rawText, maxLength);
+  const answer = cleanString(rawAnswer, 160);
+  if (sourceText.length > maxLength) return `Text kartičky môže mať najviac ${maxLength} znakov.`;
+  if (sourceAnswer.length > 160) return "Odpoveď môže mať najviac 160 znakov.";
+  if (!text) return "Doplňte text kartičky.";
+  if (COLON_PATTERN.test(text) || COLON_PATTERN.test(answer)) return "Kartička ani odpoveď nesmú obsahovať dvojbodku.";
+  if (normalizedKind === "charade") return isValidCharadeText(text) ? null : "Šaráda musí mať 1 až 3 bežné slová bez dvojbodky.";
+  if (normalizedKind === "truth") return text.endsWith("?") ? null : "Otázka pravdy má byť úplná otázka zakončená otáznikom.";
+  if (normalizedKind === "dare") return /[.!]$/.test(text) ? null : "Výzvu napíšte ako úplnú vetu zakončenú bodkou alebo výkričníkom.";
+  if (normalizedKind === "never") {
+    if (!/^Nikdy som nikdy\b/i.test(text)) return "Kartička musí začínať slovami „Nikdy som nikdy“.";
+    if (/Nikdy som nikdy\s+som\b/i.test(text) || /\.\.\./.test(text)) return "Použite prirodzený tvar, napríklad „Nikdy som nikdy nemeškal/a do školy.“";
+    return null;
+  }
+  if (normalizedKind === "wouldRather") {
+    if (!answer) return "Radšej by som potrebuje obe možnosti.";
+    return text.toLocaleLowerCase() === answer.toLocaleLowerCase() ? "Možnosti A a B musia byť odlišné." : null;
+  }
+  if (normalizedKind === "emoji") {
+    if (!EMOJI_PATTERN.test(text)) return "Emoji karta musí obsahovať aspoň jedno emoji.";
+    return answer ? null : "Doplňte odpoveď na emoji hádanku.";
+  }
+  if (normalizedKind === "quiz") return answer && text.endsWith("?") ? null : answer ? "Kvíz musí byť otázka zakončená otáznikom." : "Kvíz potrebuje správnu odpoveď.";
+  if (normalizedKind === "person") {
+    if (/[?!]/.test(text) || text.split(" ").length > 6) return "Osoba alebo postava má byť stručný názov s najviac šiestimi slovami.";
+    return null;
+  }
+  return null;
 }
 
 function uniqueId(base: string, seen: Set<string>, fallback: string) {
@@ -182,9 +223,15 @@ export function normalizeWorkshopEntries(value: unknown, collectionsValue?: unkn
   for (const [index, raw] of value.slice(0, 500).entries()) {
     if (!raw || typeof raw !== "object") continue;
     const candidate = raw as Partial<WorkshopEntry>;
-    const text = cleanString(candidate.text, 240);
     const rawKind = candidate.kind === "word" ? "charade" : candidate.kind;
+    const text = cleanString(candidate.text, 240);
+    const answer = cleanString(candidate.answer, 160);
     if (!text || !rawKind || !VALID_KINDS.has(rawKind)) continue;
+    // Existing local cards stay visible after an app update. New edits and
+    // imported PP1 cards use the strict player-facing validator before they
+    // reach this normalizer. A legacy charade that fails the new 1–3-word rule
+    // is preserved for repair but disabled, so it cannot appear in a game.
+    const legacyInvalidCharade = rawKind === "charade" && (text.length > 80 || !isValidCharadeText(text));
     const createdAt = Number.isFinite(candidate.createdAt) ? Math.max(0, Number(candidate.createdAt)) : 0;
     const id = uniqueId(candidate.id ?? "", seenIds, `local-${createdAt}-${index}`);
     const collectionIds = Array.isArray(candidate.collectionIds)
@@ -194,9 +241,9 @@ export function normalizeWorkshopEntries(value: unknown, collectionsValue?: unkn
       id,
       kind: rawKind,
       text,
-      answer: cleanString(candidate.answer, 160) || undefined,
+      answer: answer || undefined,
       collectionIds: collectionIds.length ? collectionIds : [DEFAULT_COLLECTION_ID],
-      enabled: candidate.enabled !== false,
+      enabled: candidate.enabled !== false && !legacyInvalidCharade,
       likes: Number.isFinite(candidate.likes) ? Math.min(1_000_000, Math.max(0, Number(candidate.likes))) : 0,
       rating: Number.isFinite(candidate.rating) ? Math.min(5, Math.max(0, Number(candidate.rating))) : 0,
       ratingCount: Number.isFinite(candidate.ratingCount) ? Math.min(1_000_000, Math.max(0, Number(candidate.ratingCount))) : 0,
@@ -226,7 +273,7 @@ const ANSWER_REQUIRED_KINDS = new Set<WorkshopEntryKind>(["wouldRather", "emoji"
 function isEntryCompatible(entry: WorkshopEntry, game: CustomContentGame) {
   const normalizedKind = entry.kind === "word" ? "charade" : entry.kind;
   const kinds = CUSTOM_GAME_KINDS[game].map((kind) => kind === "word" ? "charade" : kind);
-  return entry.enabled && kinds.includes(normalizedKind) && (!ANSWER_REQUIRED_KINDS.has(normalizedKind) || Boolean(entry.answer));
+  return entry.enabled && !getWorkshopEntryValidationError(normalizedKind, entry.text, entry.answer) && kinds.includes(normalizedKind) && (!ANSWER_REQUIRED_KINDS.has(normalizedKind) || Boolean(entry.answer));
 }
 
 export function filterWorkshopEntries(
@@ -255,187 +302,4 @@ export function workshopEntriesToQuiz(entries: WorkshopEntry[]): QuizQuestion[] 
     answer: entry.answer!,
     category: "✨ Vlastná kolekcia",
   }));
-}
-
-export function generatedPayloadToQuiz(payload?: GeneratedLaunchPayload | null): QuizQuestion[] {
-  if (!payload || payload.screen !== "teambattle") return [];
-  return payload.prompts.filter((prompt) => prompt.kind === "quiz" && prompt.answer).map((prompt, index) => ({
-    id: `theme:${payload.sessionId}:${index}`,
-    question: prompt.text,
-    answer: prompt.answer!,
-    category: `✨ ${payload.title}`,
-  }));
-}
-
-function hashText(text: string) {
-  let hash = 2166136261;
-  for (const char of text) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
-  return hash >>> 0;
-}
-
-const UNSAFE_CONTEXT = /(?:sex|porno|nude|nahot|drogy|koka|hero[ií]n|zbra[nň]|zabi|samovra|bomb|výbu|explosive)/i;
-
-function safeContext(value: string) {
-  const clean = cleanString(value, 80);
-  if (!clean || UNSAFE_CONTEXT.test(clean)) return "spoločná párty";
-  return clean;
-}
-
-function rotate<T>(items: T[], seed: number) {
-  if (!items.length) return items;
-  const offset = seed % items.length;
-  return [...items.slice(offset), ...items.slice(0, offset)];
-}
-
-export function generatePartySession(input: PartyGeneratorControls): GeneratedPartySession {
-  const controls: PartyGeneratorControls = {
-    audience: ["friends", "family", "couple"].includes(input.audience) ? input.audience : "friends",
-    vibe: ["fun", "chill", "competitive"].includes(input.vibe) ? input.vibe : "fun",
-    intensity: input.intensity === 2 || input.intensity === 3 ? input.intensity : 1,
-    playerCount: Number.isFinite(input.playerCount) ? Math.min(20, Math.max(2, Math.round(input.playerCount!))) : undefined,
-    context: safeContext(input.context),
-  };
-  const seed = hashText(JSON.stringify(controls));
-  const place = controls.context;
-  const audienceLabel = controls.audience === "family" ? "rodinu" : controls.audience === "couple" ? "dvojicu" : "partiu";
-  const vibeLabel = controls.vibe === "competitive" ? "súťaživý" : controls.vibe === "chill" ? "pokojný" : "zábavný";
-  const intensityLabel = controls.intensity === 3 ? "výrazná" : controls.intensity === 2 ? "stredná" : "jemná";
-  const vibeCue = controls.vibe === "competitive"
-    ? "Odpovedz presne a získaj bod:"
-    : controls.vibe === "chill"
-      ? "Bez ponáhľania:"
-      : "Čo najzábavnejšie:";
-  const truthDepth = controls.intensity === 3
-    ? "Pridaj aj dôvod, ktorý ostatní ešte nepoznajú."
-    : controls.intensity === 2
-      ? "Vysvetli odpoveď jednou vetou."
-      : "Stačí krátka a príjemná odpoveď.";
-  const actionSeconds = controls.intensity === 3 ? 10 : controls.intensity === 2 ? 20 : 30;
-  const actionFinish = controls.vibe === "competitive" ? "Tím rozhodne, či získavaš bod." : controls.vibe === "chill" ? "Pokojne si vezmi chvíľu na prípravu." : "Ostatní sa môžu pridať.";
-
-  const audienceTruths = controls.audience === "family" ? [
-    `Ktorá rodinná spomienka na tému „${place}“ ťa vždy rozosmeje?`,
-    "Ktorú tradíciu by si chcel/a zachovať aj o desať rokov?",
-    "Za čo si dnes niekomu z rodiny vďačný/á?",
-    "Kto z rodiny by najlepšie zorganizoval nečakaný výlet a prečo?",
-    "Akú novú spoločnú aktivitu by mala rodina vyskúšať?",
-  ] : controls.audience === "couple" ? [
-    `Ktorý spoločný moment s témou „${place}“ si chceš zapamätať?`,
-    "Čím ťa druhý človek naposledy príjemne prekvapil?",
-    "Aký malý spoločný plán by si chcel/a uskutočniť tento mesiac?",
-    "Ktorá vlastnosť toho druhého ti najviac pomáha?",
-    "Aký názov by mal film o vašom dnešnom večeri?",
-  ] : [
-    `Ktorý moment spojený s témou „${place}“ ťa naposledy rozosmial?`,
-    `Kto z partie by najlepšie zvládol dobrodružstvo na tému „${place}“ a prečo?`,
-    "Aký malý úspech z posledných dní by si dnes oslávil/a?",
-    "Ktorú schopnosť niekoho z partie by si si na deň požičal/a?",
-    "Čo by mala celá partia skúsiť aspoň raz?",
-  ];
-  const audienceDares = controls.audience === "family" ? [
-    `Predveď bez slov rodinný výlet na tému „${place}“.`,
-    "Napodobni milý zvyk niekoho v miestnosti bez prezradenia mena.",
-    "Vymysli nové rodinné motto a nauč ho ostatných.",
-    "Povedz trom ľuďom po jednom úprimnom komplimente.",
-    "Predveď najveselšiu spoločnú fotografiu bez fotoaparátu.",
-  ] : controls.audience === "couple" ? [
-    `Predveď pantomímou spoločný plán na tému „${place}“.`,
-    "Vymysli krátky slogan pre váš dnešný večer.",
-    "Vymenuj tri veci, ktoré na druhom človeku oceňuješ.",
-    "Zahraj scénu z vašej vymyslenej dovolenkovej reklamy.",
-    "Vymysli spoločné víťazné gesto.",
-  ] : [
-    `Predveď pantomímou tému „${place}“.`,
-    "Vymysli krátky reklamný slogan pre dnešnú partiu.",
-    "Napodobni zvuk predmetu v miestnosti; ostatní hádajú.",
-    "Povedz trom hráčom po jednom úprimnom komplimente.",
-    "Vymysli tímové gesto, ktoré všetci zopakujú.",
-  ];
-  const audienceNever = controls.audience === "family" ? [
-    "Nikdy som nikdy nezaspal/a počas rodinného filmu.",
-    "Nikdy som nikdy nezabudol/a na rodinnú oslavu.",
-    "Nikdy som nikdy tajne nedojedol/la poslednú sladkosť.",
-    "Nikdy som nikdy neprehral/a rodinnú hru o jediný bod.",
-    "Nikdy som nikdy nerozosmial/a celý stôl bez zámeru.",
-  ] : controls.audience === "couple" ? [
-    "Nikdy som nikdy nezabudol/a na dohodnutý spoločný plán.",
-    "Nikdy som nikdy nepredstieral/a, že poznám názov filmu.",
-    "Nikdy som nikdy nepripravil/a malé prekvapenie bez dôvodu.",
-    "Nikdy som nikdy nezmenil/a názor po jednom dobrom argumente.",
-    "Nikdy som nikdy nezaspal/a skôr, než skončil film.",
-  ] : [
-    "Nikdy som nikdy nezmenil/a plán na poslednú chvíľu kvôli zábave.",
-    "Nikdy som nikdy neprehral/a hru o jediný bod.",
-    "Nikdy som nikdy nerozosmial/a celú miestnosť bez zámeru.",
-    "Nikdy som nikdy neskúsil/a novú aktivitu len na odporúčanie kamaráta.",
-    "Nikdy som nikdy nezabudol/a, že som na rade.",
-  ];
-  const audienceChoices: Array<[string, string]> = controls.audience === "family" ? [
-    ["rodinný výlet bez plánu", "rodinný večer s presným programom"],
-    ["variť spolu večeru", "hrať spolu turnaj"],
-    ["poznať všetky rodinné recepty", "poznať všetky rodinné príbehy"],
-    ["mať spoločný deň pri mori", "mať spoločný deň na horách"],
-    ["vyhrať tímovo", "prehrať pri najvtipnejšom kole"],
-  ] : controls.audience === "couple" ? [
-    ["spontánny víkend", "dokonale naplánovaná dovolenka"],
-    ["spoločný koncert", "spoločný filmový maratón"],
-    ["vedieť čítať myšlienky", "vedieť vždy rozosmiať toho druhého"],
-    ["variť nové jedlo", "objaviť nové miesto"],
-    ["vyhrať ako tím", "navzájom sa prekvapiť výsledkom"],
-  ] : [
-    ["mať dokonalú pamäť", "vedieť skvelo improvizovať"],
-    ["vyhrať tesne", "prehrať po najzábavnejšom kole"],
-    ["plánovať celý večer", "nechať všetko na náhodu"],
-    ["hrať iba slovné hry", "hrať iba pantomímu"],
-    ["mať tím plný stratégov", "mať tím plný zabávačov"],
-  ];
-  const audiencePeople = controls.audience === "family" ? [
-    "Moderátor rodinnej televíznej súťaže", "Kuchár pripravujúci nedeľný obed", "Sprievodca na rodinnom výlete", "Vynálezca novej stolovej hry", `Detektív rodinnej záhady na tému „${place}“`,
-  ] : controls.audience === "couple" ? [
-    "Režisér romantickej komédie", "Cestovateľ plánujúci výlet vo dvojici", "Kuchár pripravujúci prekvapenie", "Fotograf spoločného dobrodružstva", `Detektív záhady na tému „${place}“`,
-  ] : [
-    "Moderátor zábavnej televíznej súťaže", "Prieskumník na neznámej planéte", "Kapitán tímu pred finále", "Kuchár pripravujúci prekvapenie", `Detektív riešiaci záhadu na tému „${place}“`,
-  ];
-  const audienceCharades = controls.audience === "family" ? [
-    "Balenie celej rodiny na dovolenku", "Spoločné pečenie koláča", "Hľadanie ovládača od televízora", "Rodinná oslava víťazstva", `Príprava výletu na tému „${place}“`,
-  ] : controls.audience === "couple" ? [
-    "Príprava prekvapivej večere", "Spoločné skladanie nábytku", "Fotografovanie dokonalej fotky", "Hľadanie stratených kľúčov", `Plánovanie výletu na tému „${place}“`,
-  ] : [
-    "Otváranie obrovského darčeka", "Hľadanie strateného kľúča", "Tímová oslava víťazstva", "Fotografovanie skupinovej fotky", `Príprava na výlet s témou „${place}“`,
-  ];
-  const quizPool: Array<[string, string]> = controls.intensity === 3 ? [
-    ["Ktorý chemický prvok má značku Fe?", "Železo"], ["Koľko hrán má kocka?", "12"], ["Ktorý oceán je najväčší?", "Tichý oceán"], ["V ktorom roku vznikla Slovenská republika?", "1993"], ["Koľko stupňov má súčet vnútorných uhlov trojuholníka?", "180"],
-  ] : controls.intensity === 2 ? [
-    ["Ktorá planéta je najbližšie k Slnku?", "Merkúr"], ["Koľko hráčov má futbalový tím na ihrisku?", "11"], ["Aké je hlavné mesto Rakúska?", "Viedeň"], ["Koľko kontinentov sa bežne rozlišuje?", "7"], ["Kto napísal Hamleta?", "William Shakespeare"],
-  ] : [
-    ["Koľko minút má jedna hodina?", "60"], ["Aké je hlavné mesto Slovenska?", "Bratislava"], ["Koľko strán má klasická hracia kocka?", "6"], ["Koľko dní má bežný rok?", "365"], ["Akú farbu vytvorí modrá a žltá?", "Zelenú"],
-  ];
-
-  const truths = rotate(audienceTruths.map((text) => `${vibeCue} ${text} ${truthDepth}`), seed);
-  const dares = rotate(audienceDares.map((text) => `${text} Máš ${actionSeconds} sekúnd. ${actionFinish}`), seed >> 2);
-  const neverPrefix = controls.vibe === "competitive" ? "Bod úprimnosti — " : controls.vibe === "chill" ? "Pohodové priznanie — " : "Rýchle priznanie — ";
-  const never = rotate(audienceNever.map((text) => `${neverPrefix}${text}`), seed >> 3);
-  const choiceCue = controls.intensity === 3 ? "Ťažká voľba" : controls.intensity === 2 ? "Stredná voľba" : "Rýchla voľba";
-  const choices = rotate(audienceChoices.map(([a, b]) => [`${choiceCue} · ${vibeCue} ${a}`, b] as [string, string]), seed >> 4);
-  const roleCue = controls.vibe === "competitive" ? "Súťažný" : controls.vibe === "chill" ? "Pokojný" : "Komický";
-  const people = rotate(audiencePeople.map((text) => `${roleCue} ${text.toLocaleLowerCase("sk")}`), seed >> 5);
-  const charades = rotate(audienceCharades.map((text) => `${text} · ${actionSeconds} sekúnd${controls.vibe === "competitive" ? " na bod" : ""}`), seed >> 6);
-  const quizCue = controls.vibe === "competitive" ? "Súboj o bod" : controls.vibe === "chill" ? "Pohodový kvíz" : "Zábavný kvíz";
-  const quiz = rotate(quizPool.map(([question, answer]) => [`${quizCue} pre ${audienceLabel}: ${question}`, answer] as [string, string]), seed >> 7);
-  const groups = [
-    { id: "truth-or-dare", screen: "truth-or-dare" as const, title: "Pravda alebo výzva", icon: "🎯", prompts: [...truths.slice(0, 4).map((text) => ({ kind: "truth" as const, text })), ...dares.slice(0, 4).map((text) => ({ kind: "dare" as const, text }))] },
-    { id: "never", screen: "never-have-i-ever" as const, title: "Nikdy som nikdy", icon: "🙋", prompts: never.slice(0, 4).map((text) => ({ kind: "never" as const, text })) },
-    { id: "rather", screen: "would-you-rather" as const, title: "Radšej by som", icon: "🤔", prompts: choices.slice(0, 4).map(([text, answer]) => ({ kind: "wouldRather" as const, text, answer })) },
-    { id: "person", screen: "hadajktosom" as const, title: "Hádaj kto som", icon: "👤", prompts: people.slice(0, 4).map((text) => ({ kind: "person" as const, text })) },
-    { id: "charade", screen: "slovnarosada" as const, title: "Slovné šarády", icon: "🎭", prompts: charades.slice(0, 4).map((text) => ({ kind: "charade" as const, text })) },
-    { id: "quiz", screen: "teambattle" as const, title: "Tímový kvíz", icon: "🏆", prompts: quiz.slice(0, 4).map(([text, answer]) => ({ kind: "quiz" as const, text, answer })) },
-  ];
-  return {
-    id: `local-${seed.toString(36)}`,
-    title: `${vibeLabel[0].toUpperCase()}${vibeLabel.slice(1)} mix pre ${audienceLabel}`,
-    summary: `${controls.playerCount ? `${controls.playerCount} hráčov · ` : ""}${intensityLabel} intenzita · téma „${place}“.`,
-    themeTags: [audienceLabel, vibeLabel, `intenzita ${controls.intensity}`],
-    controls,
-    groups,
-  };
 }

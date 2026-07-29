@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { takePersistentItems } from "../../utils/persistentDeck";
+import { useCountdown } from "../../hooks/useCountdown";
 import { FIVE_IN_TEN_PROMPTS, LETTER_CHALLENGES } from "../../data/teamBattleExtras";
 import { CircularTimer, ParticipantScoreStrip, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
@@ -9,39 +10,6 @@ const LETTER_TURNS = 10;
 const FIVE_TURNS = 6;
 
 type RoundPhase = "ready" | "playing" | "result";
-
-function useSmoothTimer(totalSeconds: number, active: boolean, onExpire: () => void) {
-  const [remaining, setRemaining] = useState(totalSeconds);
-  const deadlineRef = useRef(0);
-  const onExpireRef = useRef(onExpire);
-  onExpireRef.current = onExpire;
-
-  function arm() {
-    deadlineRef.current = Date.now() + totalSeconds * 1000;
-    setRemaining(totalSeconds);
-  }
-
-  useEffect(() => {
-    if (!active || deadlineRef.current === 0) return;
-    let timeout = 0;
-
-    const tick = () => {
-      const next = Math.max(0, (deadlineRef.current - Date.now()) / 1000);
-      setRemaining(next);
-      if (next <= 0) {
-        deadlineRef.current = 0;
-        onExpireRef.current();
-        return;
-      }
-      timeout = window.setTimeout(tick, 80);
-    };
-
-    tick();
-    return () => window.clearTimeout(timeout);
-  }, [active]);
-
-  return { remaining, arm };
-}
 
 function RoundProgress({ current, total, color }: { current: number; total: number; color: string }) {
   return (
@@ -104,11 +72,11 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds
     vibrate(success ? [25, 35, 25] : 70);
   }
 
-  const timer = useSmoothTimer(timeSeconds, phase === "playing", () => finish(false));
+  const timer = useCountdown(timeSeconds, phase === "playing", () => finish(false));
 
   function start() {
     setFeedback(null);
-    timer.arm();
+    timer.reset();
     setPhase("playing");
     vibrate(18);
   }
@@ -145,7 +113,7 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds
 
             {phase === "playing" && (
               <div key={turn} className="animate-pop-in flex w-full flex-col items-center">
-                <CircularTimer value={timer.remaining} total={timeSeconds} color={timer.remaining <= Math.min(3, timeSeconds / 2) ? "#fb7185" : "#fbbf24"} size={118} />
+                <CircularTimer value={timer.remainingSeconds} total={timeSeconds} color={timer.remainingSeconds <= Math.min(3, timeSeconds / 2) ? "#fb7185" : "#fbbf24"} size={118} />
                 <p className="mt-6 text-[11px] font-black uppercase tracking-[0.25em] text-amber-200/65">{challenge.category}</p>
                 <div className="relative mt-4 flex h-32 w-32 items-center justify-center rounded-[2.3rem] border border-amber-200/35 bg-gradient-to-br from-amber-300 to-orange-500 text-8xl font-black text-[#211105] shadow-[0_20px_60px_rgba(251,191,36,.3)]">
                   {challenge.letter}
@@ -216,11 +184,11 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
     vibrate(completed ? [30, 35, 30, 35, 50] : 70);
   }
 
-  const timer = useSmoothTimer(timeSeconds, phase === "playing", () => finish(false));
+  const timer = useCountdown(timeSeconds, phase === "playing", () => finish(false));
 
   function start() {
     setSuccess(false);
-    timer.arm();
+    timer.reset();
     setPhase("playing");
     vibrate(18);
   }
@@ -256,7 +224,7 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
 
             {phase === "playing" && (
               <div key={turn} className="animate-pop-in flex w-full flex-col items-center">
-                <CircularTimer value={timer.remaining} total={timeSeconds} color={timer.remaining <= Math.min(3, timeSeconds / 3) ? "#fb7185" : "#34d399"} size={124} />
+                <CircularTimer value={timer.remainingSeconds} total={timeSeconds} color={timer.remainingSeconds <= Math.min(3, timeSeconds / 3) ? "#fb7185" : "#34d399"} size={124} />
 
                 <p className="mt-6 text-[10px] font-black uppercase tracking-[0.26em] text-emerald-300/65">Vymenuj päť</p>
                 <h1 className="mx-auto mt-3 max-w-sm text-3xl font-black leading-[1.08] text-white">{prompts[turn]}</h1>

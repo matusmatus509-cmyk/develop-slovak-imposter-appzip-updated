@@ -4,7 +4,7 @@ import {
 } from "./charades";
 import { getCharacterCategories } from "./characters";
 import type { AppLanguage } from "../i18n/LanguageProvider";
-import { GENERATED_PANTOMIME_WORDS, GENERATED_QUIZ_QUESTIONS } from "./expandedContent";
+import { GENERATED_PANTOMIME_BY_DIFFICULTY, GENERATED_QUIZ_QUESTIONS } from "./expandedContent";
 
 // ── Pantomíma words (act it out, no speaking) ────────────────────────────────
 // Split into difficulty tiers — each tier is worth a different point value.
@@ -371,16 +371,15 @@ export const PANTOMIMA_HARD: string[] = [
   "Kocky ľadu", "Smetný kôš", 
 ];
 
-const GENERATED_PANTOMIME_THIRDS = {
-  lahke: GENERATED_PANTOMIME_WORDS.slice(0, 600),
-  stredne: GENERATED_PANTOMIME_WORDS.slice(600, 1200),
-  tazke: GENERATED_PANTOMIME_WORDS.slice(1200),
-};
-
+// Generované scény sú rozdelené podľa náročnosti (jednoduché postavy → scény
+// s emóciami), takže ľahká úroveň nikdy neobsahuje ťažkú kartu a naopak.
+// Pôvodné exporty vyššie zostávajú kvôli spätnej kompatibilite uložených hier.
+// Aktívny balík však používa iba revidovaný katalóg: každá karta je zrozumiteľná
+// činnosť alebo situácia a už neobsahuje staré rozbité či náhodné spojenia.
 export const PANTOMIMA_WORDS_BY_DIFFICULTY: Record<PantomimaDifficulty, string[]> = {
-  lahke: [...new Set([...PANTOMIMA_EASY, ...GENERATED_PANTOMIME_THIRDS.lahke])].slice(0, 1000),
-  stredne: [...new Set([...PANTOMIMA_MEDIUM, ...GENERATED_PANTOMIME_THIRDS.stredne])].slice(0, 1000),
-  tazke: [...new Set([...PANTOMIMA_HARD, ...GENERATED_PANTOMIME_THIRDS.tazke])].slice(0, 1000),
+  lahke: [...GENERATED_PANTOMIME_BY_DIFFICULTY.lahke],
+  stredne: [...GENERATED_PANTOMIME_BY_DIFFICULTY.stredne],
+  tazke: [...GENERATED_PANTOMIME_BY_DIFFICULTY.tazke],
 };
 
 // ── Šarády words (describe it verbally, no derivatives) ──────────────────────

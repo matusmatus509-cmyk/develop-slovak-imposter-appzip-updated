@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { GameSettings } from "../../types";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { formatTime } from "../../utils/format";
+import { useCountdown, useStopwatch } from "../../hooks/useCountdown";
 
 export default function Discussion({
   settings,
@@ -13,57 +14,32 @@ export default function Discussion({
   onFinish: (elapsedSeconds: number) => void;
 }) {
   const hasTimer = settings.timerSeconds > 0;
-  const [remaining, setRemaining] = useState(settings.timerSeconds);
   const [paused, setPaused] = useState(false);
-  const [elapsed, setElapsed] = useState(0);
   const finishedRef = useRef(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const finishTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function finish(time: number) {
     if (finishedRef.current) return;
     finishedRef.current = true;
-    if (intervalRef.current) clearInterval(intervalRef.current);
     if (finishTimeoutRef.current) clearTimeout(finishTimeoutRef.current);
     finishTimeoutRef.current = null;
     onFinish(time);
   }
 
-  useEffect(() => {
-    if (!hasTimer) {
-      const interval = setInterval(() => {
-        if (!paused) setElapsed((e) => e + 1);
-      }, 1000);
-      intervalRef.current = interval;
-      return () => clearInterval(interval);
-    }
-    const interval = setInterval(() => {
-      if (paused) return;
-      setRemaining((r) => {
-        if (r <= 1) {
-          if (intervalRef.current) clearInterval(intervalRef.current);
-          if (!finishedRef.current && !finishTimeoutRef.current) {
-            finishTimeoutRef.current = setTimeout(
-              () => finish(settings.timerSeconds),
-              300,
-            );
-          }
-          return 0;
-        }
-        return r - 1;
-      });
-      setElapsed((e) => e + 1);
-    }, 1000);
-    intervalRef.current = interval;
-    return () => {
-      clearInterval(interval);
-      if (finishTimeoutRef.current) {
-        clearTimeout(finishTimeoutRef.current);
-        finishTimeoutRef.current = null;
-      }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paused, hasTimer]);
+  // Odpočet aj stopky pracujú s reálnym časom, takže pauza naozaj zastaví čas
+  // a po návrate do aplikácie sa hodnota dorovná namiesto zaostávania.
+  const countdown = useCountdown(settings.timerSeconds, hasTimer && !paused, () => {
+    if (finishedRef.current || finishTimeoutRef.current) return;
+    finishTimeoutRef.current = setTimeout(() => finish(settings.timerSeconds), 300);
+  });
+  const stopwatch = useStopwatch(!hasTimer && !paused);
+
+  useEffect(() => () => {
+    if (finishTimeoutRef.current) clearTimeout(finishTimeoutRef.current);
+  }, []);
+
+  const remaining = countdown.secondsLeft;
+  const elapsed = hasTimer ? Math.max(0, settings.timerSeconds - remaining) : stopwatch.elapsedSeconds;
 
   const progress = hasTimer
     ? ((settings.timerSeconds - remaining) / settings.timerSeconds) * 100

@@ -7,7 +7,7 @@ const TRUTHS_BASE: string[] = [
   "Aká je najtrápnejšia prezývka, ktorú si kedy mal/a?",
   "Čo je najtrápnejšia vec, ktorú si povedal/a do ticha keď si si myslel/a, že nikto nepočúva?",
   "Stalo sa ti niekedy, že si si obliekol/a oblečenie naopak a prišiel/a si na to až neskôr?",
-  "Aký je tvoj najhorší hairstyle z minulosti?",
+  "Aký bol tvoj najhorší účes v minulosti?",
   "Čo je najtrápnejšia vec, ktorú si niekedy napísal/a na sociálnej sieti a potom zmazal/a?",
   "Mal/a si niekedy prezývku v škole, za ktorú sa hanbíš?",
 
@@ -16,7 +16,7 @@ const TRUTHS_BASE: string[] = [
   "Čo je vec, ktorú by si nikdy nepriznal/a rodičom?",
   "Aká je vec, ktorú robíš, ale hanbíš sa za ňu?",
   "Do koho si bol/a kedysi tajne zamilovaný/á?",
-  "Čo je najväčší klamstvo, ktoré si niekomu z tejto miestnosti povedal/a?",
+  "Aké je najväčšie klamstvo, ktoré si niekomu z tejto miestnosti povedal/a?",
   "Aká je najhoršia vec, ktorú si kedy urobil/a kamarátovi?",
   "Kedy si naposledy čítal/a cudzie správy bez povolenia?",
   "Čo je tvoja najväčšia závislosť alebo zlozvyk?",
@@ -188,7 +188,7 @@ const WOULD_YOU_RATHER_BASE: { a: string; b: string }[] = [
   { a: "cestovať do minulosti", b: "cestovať do budúcnosti" },
   { a: "stratiť sa v lese", b: "stratiť sa v meste" },
   { a: "bývať na mieste s dokonalým počasím", b: "bývať na mieste, kde sa stretneš s ľuďmi svojich snov" },
-  { a: "objastiť celú Európu autobusom zadarmo", b: "stráviť mesiac na luxusnom ostrove bez možnosti odísť skôr" },
+  { a: "precestovať celú Európu autobusom zadarmo", b: "stráviť mesiac na luxusnom ostrove bez možnosti odísť skôr" },
   { a: "žiť rok v džungli", b: "žiť rok na Arktíde" },
   { a: "preskúmať oceánske hlbiny", b: "preskúmať vesmír" },
 
@@ -219,7 +219,7 @@ const WOULD_YOU_RATHER_BASE: { a: string; b: string }[] = [
   { a: "mať hlavu psa ale telo človeka", b: "mať hlavu človeka ale telo psa" },
   { a: "kýchať vždy presne trikrát za sebou nie menej nie viac", b: "zakaždým keď si sadneš vydáš hlasný zvuk" },
   { a: "smiať sa ako kačica navždy", b: "mať hlas ako Darth Vader navždy" },
-  { a: "vždy vedieť, kto o tebe luže", b: "vždy vedieť, kto ťa má rád" },
+  { a: "vždy vedieť, kto o tebe klame", b: "vždy vedieť, kto ťa má rád" },
   { a: "stretnúť sa so svojím budúcim ja", b: "stretnúť sa so svojím minulým ja z pred 10 rokov" },
 ];
 
@@ -303,18 +303,21 @@ import {
   GENERATED_TRUTHS,
 } from "./expandedContent";
 import { NEVER_HAVE_I_EVER as REBUILT_NEVER_HAVE_I_EVER } from "./localizedNeverHaveIEver";
+import { DARES, TRUTHS, WOULD_YOU_RATHER } from "./promptCatalogues";
+
+export { DARES, TRUTHS, WOULD_YOU_RATHER };
 
 function uniqueStrings(items: string[], target: number) {
   return [...new Set(items)].slice(0, target);
 }
 
-export const TRUTHS: string[] = uniqueStrings([
+const LEGACY_TRUTHS: string[] = uniqueStrings([
   ...TRUTHS_BASE,
   ...TRUTH_TOPICS.flatMap((topic) => TRUTH_FORMS.map((form) => form(topic))),
   ...GENERATED_TRUTHS,
 ], 2000);
 
-export const DARES: string[] = uniqueStrings([
+const LEGACY_DARES: string[] = uniqueStrings([
   ...DARES_BASE,
   ...DARE_TOPICS.flatMap((topic) => DARE_ACTIONS.map((action) => `${action} na tému „${topic}“.`)),
   ...GENERATED_DARES,
@@ -322,7 +325,7 @@ export const DARES: string[] = uniqueStrings([
 
 export const NEVER_HAVE_I_EVER: string[] = REBUILT_NEVER_HAVE_I_EVER;
 
-export const WOULD_YOU_RATHER: { a: string; b: string }[] = Array.from(new Map([
+const LEGACY_WOULD_YOU_RATHER: { a: string; b: string }[] = Array.from(new Map([
   ...WOULD_YOU_RATHER_BASE,
   ...RATHER_TOPICS.flatMap((topic) =>
     RATHER_OPTIONS_A.map((optionA, index) => ({
