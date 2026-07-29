@@ -149,84 +149,6 @@ const DARES_BASE: string[] = [
   "Sprav selfie v najtrápnejšej póze a pošli ju do rodinnej skupiny.",
 ];
 
-const NEVER_HAVE_I_EVER_BASE: string[] = [
-  // --- Cestovanie a dobrodružstvo ---
-  "Nikdy som nikdy... nepreletel/a lietadlom.",
-  "Nikdy som nikdy... nebol/a sám/sama v cudzej krajine.",
-  "Nikdy som nikdy... som premeškala odchod vlaku, autobusu alebo lietadla.",
-  "Nikdy som nikdy... som spala pod holým nebom.",
-  "Nikdy som nikdy... som sa stratil/a v cudzom meste.",
-  "Nikdy som nikdy... som hitchhikoval/a.",
-  "Nikdy som nikdy... som videl/a more.",
-  "Nikdy som nikdy... som liezol/la na horu vyššiu ako 2000 metrov.",
-
-  // --- Škola a práca ---
-  "Nikdy som nikdy... neklamal/a učiteľovi alebo šéfovi.",
-  "Nikdy som nikdy... nezaspal/a v práci alebo v škole.",
-  "Nikdy som nikdy... som odovzdal/a cudziu prácu ako svoju.",
-  "Nikdy som nikdy... som ušla/ušiel z hodiny alebo zo schôdze.",
-  "Nikdy som nikdy... som zabudol/a na dôležitú skúšku alebo deadline.",
-  "Nikdy som nikdy... som sa učil/a celú noc pred skúškou.",
-  "Nikdy som nikdy... som plakal/a kvôli škole alebo práci.",
-  "Nikdy som nikdy... som podvádzal/a na skúške.",
-
-  // --- Vzťahy a spoločnosť ---
-  "Nikdy som nikdy... nebozkal/a niekoho na prvom rande.",
-  "Nikdy som nikdy... nemal/a tajný účet na sociálnych sieťach.",
-  "Nikdy som nikdy... som tajil/a vzťah pred rodičmi.",
-  "Nikdy som nikdy... som hovoril/a za chrbtom o svojom partnerovi/partnerke.",
-  "Nikdy som nikdy... nemal/a rozbité srdce.",
-  "Nikdy som nikdy... som odmietol/a niekoho, kto ma pozval na rande.",
-  "Nikdy som nikdy... som bol/a na slepom rande.",
-  "Nikdy som nikdy... som staloval/a ex na sociálnych sieťach.",
-  "Nikdy som nikdy... som mal/a 'kamaráta s výhodami'.",
-  "Nikdy som nikdy... som napísal/a ľúbostný list.",
-
-  // --- Trápne situácie ---
-  "Nikdy som nikdy... nespadol/a na verejnosti.",
-  "Nikdy som nikdy... neposlal/a správu nesprávnemu človeku.",
-  "Nikdy som nikdy... som zabudol/a na meno človeka hneď po zoznámení.",
-  "Nikdy som nikdy... som si obliekol/a oblečenie naopak a prišiel/prišla som na to až na ulici.",
-  "Nikdy som nikdy... som sa smial/a v nevhodnej chvíli.",
-  "Nikdy som nikdy... som volal/a niekoho nesprávnym menom.",
-  "Nikdy som nikdy... som si zamienil/a cudzí telefón za vlastný.",
-  "Nikdy som nikdy... som odišiel/odišla z obchodu bez zaplatenia omylom.",
-  "Nikdy som nikdy... som prišiel/prišla na párty v úplne nevhodnom oblečení.",
-
-  // --- Jedlo a návyky ---
-  "Nikdy som nikdy... nejedol/a jedlo, ktoré spadlo na zem.",
-  "Nikdy som nikdy... neplakal/a pri filme.",
-  "Nikdy som nikdy... nespieval/a v aute na plné hrdlo.",
-  "Nikdy som nikdy... som jedol/a priamo z hrnca alebo panvice.",
-  "Nikdy som nikdy... som dal/a si raňajky na obed alebo večeru.",
-  "Nikdy som nikdy... som vyhodil/a jedlo, ktoré bolo ešte dobré, len preto, lebo sa mi nechcelo variť.",
-  "Nikdy som nikdy... som zjedol/a celú čokoládu naraz.",
-  "Nikdy som nikdy... som si objednal/a jedlo len preto, lebo sa mi nechcelo variť.",
-
-  // --- Technológie a sociálne siete ---
-  "Nikdy som nikdy... neopil/a som sa tak, že som si nepamätal/a večer.",
-  "Nikdy som nikdy... nepodvádzal/a v hre (kartovej, deskovej alebo videohre).",
-  "Nikdy som nikdy... som mal/a strach z tmy ako dospelý.",
-  "Nikdy som nikdy... neposlal/a niekomu správu a hneď to oľutoval/a.",
-  "Nikdy som nikdy... som čítal/a správy niekoho iného bez povolenia.",
-  "Nikdy som nikdy... som zablokoval/a niekoho len preto, aby som sa mu/jej vyhol/vyhla.",
-  "Nikdy som nikdy... som googled/a samého/samu seba.",
-  "Nikdy som nikdy... som vytvoril/a falošný profil na sociálnej sieti.",
-  "Nikdy som nikdy... som strávil/a celý deň na telefóne bez toho, aby som vstával/a z postele.",
-
-  // --- Odvážne veci ---
-  "Nikdy som nikdy... som neušiel/nešla som z domu ako dieťa.",
-  "Nikdy som nikdy... nepredstieral/a chorobu, aby som sa vyhol/vyhla povinnosti.",
-  "Nikdy som nikdy... nezmeškal/a dôležitú schôdzku kvôli spánku.",
-  "Nikdy som nikdy... netancoval/a sám/sama pred zrkadlom.",
-  "Nikdy som nikdy... som klamal/a o svojom veku.",
-  "Nikdy som nikdy... som ušiel/ušla z nepríjemnej situácie cez toaletu.",
-  "Nikdy som nikdy... som si vymyslel/a výhovorku, aby som nemusel/nemusela ísť niekam.",
-  "Nikdy som nikdy... som prežil/a trápne ticho na rande dlhšie ako 5 minút.",
-  "Nikdy som nikdy... som tajil/a pred rodinou vzťah.",
-  "Nikdy som nikdy... som zaplatil/a za niekoho účet bez toho, aby o tom vedel/a.",
-];
-
 const WOULD_YOU_RATHER_BASE: { a: string; b: string }[] = [
   // --- Superschopnosti ---
   { a: "vedieť lietať", b: "byť neviditeľný/á" },
@@ -320,14 +242,6 @@ const DARE_TOPICS = [
   "vesmír", "džungľa", "more", "stredovek", "budúcnosť", "roboty", "mimozemšťania", "piráti", "kúzelníci", "zombie apokalypsa",
 ];
 
-const NEVER_TOPICS = [
-  "škole", "práci", "dovolenke", "výlete", "oslave", "svadbe", "koncerte", "festivale", "športovom zápase", "reštaurácii",
-  "kine", "divadle", "obchode", "posilňovni", "nemocnici", "hoteli", "lietadle", "vlaku", "autobuse", "aute",
-  "sociálnych sieťach", "videohre", "videohovore", "online nákupe", "skupinovom čete", "fotografovaní", "varení", "pečení", "upratovaní", "cvičení",
-  "randení", "priateľstve", "rodinnej návšteve", "školskom výlete", "pracovnom pohovore", "narodeninách", "Vianociach", "Silvestri", "lete", "zime",
-  "stretnutí s celebritou", "učení cudzieho jazyka", "starostlivosti o zviera", "šoférovaní", "stanovaní", "plávaní", "lyžovaní", "tanci", "speve", "verejnom vystúpení",
-];
-
 const RATHER_TOPICS = [
   "cestovaní", "bývaní", "práci", "škole", "priateľstve", "láske", "rodine", "peniazoch", "zdraví", "voľnom čase",
   "hudbe", "filmoch", "seriáloch", "knihách", "videohrách", "športe", "jedle", "varení", "móde", "technológiách",
@@ -367,14 +281,6 @@ const DARE_ACTIONS = [
   "Povedz kompliment hráčovi vľavo", "Vymysli novú prezývku", "Povedz jeden dôvod, prečo je to super",
 ];
 
-const NEVER_ACTIONS = [
-  "neklamal/a", "nestratil/a sa", "neodkladal/a všetko na neskôr", "nesmial/a sa tak, že som nevedel/a prestať",
-  "nezabudol/a na niečo dôležité", "nerobil/a všetko na poslednú chvíľu", "nepokazil/a niečo pred ostatnými", "neužil/a si to potajomky",
-  "necítil/a sa trápne", "neskúsil/a niečo len zo zvedavosti", "nevyhováral/a sa", "nesníval/a o tom",
-  "neurobil/a niečo úplne bez plánu", "nepohádal/a sa s niekým", "netajil/a niečo pred rodinou", "nehanbil/a sa za svoje správanie",
-  "neodporučil/a to niekomu ďalšiemu", "nevzdal/a to priskoro", "netváril/a sa ako expert", "neprial/a si, aby to nikto nevidel",
-];
-
 const RATHER_OPTIONS_A = [
   "mať neobmedzený rozpočet", "mať viac voľného času", "byť v tom najlepší/ia", "vedieť o tom všetko",
   "mať to každý deň", "mať to iba raz za rok", "zažiť to sám/sama", "zažiť to s najlepšími kamarátmi",
@@ -393,10 +299,10 @@ const RATHER_OPTIONS_B = [
 
 import {
   GENERATED_DARES,
-  GENERATED_NEVER,
   GENERATED_RATHER,
   GENERATED_TRUTHS,
 } from "./expandedContent";
+import { NEVER_HAVE_I_EVER as REBUILT_NEVER_HAVE_I_EVER } from "./localizedNeverHaveIEver";
 
 function uniqueStrings(items: string[], target: number) {
   return [...new Set(items)].slice(0, target);
@@ -414,11 +320,7 @@ export const DARES: string[] = uniqueStrings([
   ...GENERATED_DARES,
 ], 2000);
 
-export const NEVER_HAVE_I_EVER: string[] = uniqueStrings([
-  ...NEVER_HAVE_I_EVER_BASE,
-  ...NEVER_TOPICS.flatMap((topic) => NEVER_ACTIONS.map((action) => `Nikdy som nikdy ${action} pri ${topic}.`)),
-  ...GENERATED_NEVER,
-], 2000);
+export const NEVER_HAVE_I_EVER: string[] = REBUILT_NEVER_HAVE_I_EVER;
 
 export const WOULD_YOU_RATHER: { a: string; b: string }[] = Array.from(new Map([
   ...WOULD_YOU_RATHER_BASE,
