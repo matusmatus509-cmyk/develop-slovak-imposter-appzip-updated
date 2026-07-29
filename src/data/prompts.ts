@@ -302,8 +302,8 @@ import {
   GENERATED_RATHER,
   GENERATED_TRUTHS,
 } from "./expandedContent";
+import { NEVER_HAVE_I_EVER as REBUILT_NEVER_HAVE_I_EVER } from "./localizedNeverHaveIEver";
 import { DARES, TRUTHS, WOULD_YOU_RATHER } from "./promptCatalogues";
-import { NEVER_HAVE_I_EVER as REBUILT_NEVER_HAVE_I_EVER } from "./neverHaveIEver";
 
 export { DARES, TRUTHS, WOULD_YOU_RATHER };
 
