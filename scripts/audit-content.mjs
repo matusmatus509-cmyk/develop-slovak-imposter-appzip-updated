@@ -11,6 +11,7 @@ import { ALL_SOLO_CHARADES_WORDS } from "../src/data/charades.ts";
 import { PING_PONG_PROMPTS } from "../src/data/pingPongPrompts.ts";
 import { CATEGORIES } from "../src/data/categories.ts";
 import { getWorkshopEntryValidationError, normalizeWorkshopEntries, SEASONAL_PARTY_PACKS } from "../src/data/partyContent.ts";
+import { DARES_BY_LANGUAGE, TRUTHS_BY_LANGUAGE } from "../src/data/localizedTruthOrDare.ts";
 
 const flatten = (groups, field) => groups.flatMap((group) => group[field]);
 const difficultyTotal = (groups) => Object.values(groups).reduce((sum, items) => sum + items.length, 0);
@@ -32,7 +33,7 @@ const counts = {
 };
 
 const requirements = {
-  truths: [2000, 2000], dares: [2000, 2000], neverHaveIEver: [2000, 2000], wouldYouRather: [2000, 2000],
+  truths: [1000, 1000], dares: [1000, 1000], neverHaveIEver: [2000, 2000], wouldYouRather: [2000, 2000],
   guessWho: [3000, 3000], drawing: [3000, 3000], pantomime: [3000, 3000], forbiddenWords: [2000, 2000],
   pingPong: [300, 500], letterChallenges: [500, 1000], quiz: [5000, 5000], songs: [1000, Infinity], sounds: [500, 1000],
   emoji: [2000, 2000], onlyLies: [1000, Infinity], bomb: [1000, Infinity], fiveInTen: [1000, Infinity], charades: [2000, 2000], impostor: [3000, 3000],
@@ -45,6 +46,17 @@ const wordCatalogues = [
 ];
 const malformedWords = wordCatalogues.flatMap(([name, cards]) => cards.filter((card) => !card || card !== card.trim() || /:/.test(card) || /\s{2,}/.test(card)).map((card) => `${name}: ${card}`));
 const malformedNever = NEVER_HAVE_I_EVER.filter((card) => !/^Nikdy som nikdy\b/i.test(card) || /Nikdy som nikdy\s+som\b/i.test(card) || /\.\.\./.test(card));
+const truthDareLanguageIssues = [
+  ["truth", TRUTHS_BY_LANGUAGE],
+  ["dare", DARES_BY_LANGUAGE],
+].flatMap(([kind, decks]) => Object.entries(decks).flatMap(([language, cards]) => {
+  const uniqueCards = new Set(cards.map((card) => card.toLocaleLowerCase()));
+  const malformedCards = cards.filter((card) => !card.endsWith(kind === "truth" ? "?" : ".") || /\.\.\./.test(card) || /\s{2,}/.test(card));
+  return [
+    ...(cards.length === 1000 && uniqueCards.size === 1000 ? [] : [`${kind}/${language}: ${cards.length} cards, ${uniqueCards.size} unique`]),
+    ...malformedCards.map((card) => `${kind}/${language}: ${card}`),
+  ];
+}));
 const invalidSeasonal = SEASONAL_PARTY_PACKS.flatMap((pack) => pack.entries.filter((entry) => getWorkshopEntryValidationError(entry.kind, entry.text, entry.answer)).map((entry) => `${pack.id}: ${entry.text}`));
 const seasonalTotal = SEASONAL_PARTY_PACKS.reduce((sum, pack) => sum + pack.entries.length, 0);
 const normalizedSeasonal = normalizeWorkshopEntries(SEASONAL_PARTY_PACKS.flatMap((pack) => pack.entries.map((entry, index) => ({ ...entry, id: `${pack.id}-${index}`, collectionIds: ["default"] }))));
@@ -52,8 +64,13 @@ const normalizedSeasonal = normalizeWorkshopEntries(SEASONAL_PARTY_PACKS.flatMap
 const failures = [
   ...Object.entries(requirements).filter(([key, [minimum, maximum]]) => counts[key] < minimum || counts[key] > maximum).map(([key, range]) => `${key}=${counts[key]} expected ${range.join("-")}`),
   ...malformedWords.map((card) => `malformed word card ${card}`), ...malformedNever.map((card) => `malformed Never Have I Ever card ${card}`),
+  ...truthDareLanguageIssues.map((issue) => `Truth or Dare localisation issue ${issue}`),
   ...invalidSeasonal.map((card) => `invalid seasonal card ${card}`),
   ...(normalizedSeasonal.length === seasonalTotal ? [] : ["a seasonal card was rejected by the shared validator"]),
 ];
-console.log(JSON.stringify({ counts, quality: { malformedWords: malformedWords.length, malformedNever: malformedNever.length, invalidSeasonal: invalidSeasonal.length } }, null, 2));
+const truthDareLanguageCounts = {
+  truths: Object.fromEntries(Object.entries(TRUTHS_BY_LANGUAGE).map(([language, cards]) => [language, cards.length])),
+  dares: Object.fromEntries(Object.entries(DARES_BY_LANGUAGE).map(([language, cards]) => [language, cards.length])),
+};
+console.log(JSON.stringify({ counts, truthDareByLanguage: truthDareLanguageCounts, quality: { malformedWords: malformedWords.length, malformedNever: malformedNever.length, truthDareLanguageIssues: truthDareLanguageIssues.length, invalidSeasonal: invalidSeasonal.length } }, null, 2));
 if (failures.length) throw new Error(`Content audit failed: ${failures.join("; ")}`);
