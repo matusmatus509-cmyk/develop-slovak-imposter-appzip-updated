@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { DARES, TRUTHS } from "../../data/prompts";
+import { getDaresForLanguage, getTruthsForLanguage } from "../../data/localizedTruthOrDare";
+import { useLanguage } from "../../i18n/LanguageProvider";
 import { Button, Shell, TopBar } from "../../components/ui";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
 import { Icons } from "../../components/icons";
@@ -15,12 +16,13 @@ export default function TruthOrDare({ onBack, customEntries = [], customControls
   customEntries?: WorkshopEntry[];
   customControls?: CustomContentControls;
 }) {
+  const { language } = useLanguage();
   const [mode, setMode] = useState<Mode>("choose");
   const [prompt, setPrompt] = useState<PromptCard | null>(null);
   const decks = useMemo(() => ({
-    truth: [...TRUTHS.map((text) => ({ text, source: "bundled" as const })), ...customEntries.filter((entry) => entry.kind === "truth").map((entry) => ({ id: entry.id, text: entry.text, source: "custom" as const }))],
-    dare: [...DARES.map((text) => ({ text, source: "bundled" as const })), ...customEntries.filter((entry) => entry.kind === "dare").map((entry) => ({ id: entry.id, text: entry.text, source: "custom" as const }))],
-  }), [customEntries]);
+    truth: [...getTruthsForLanguage(language).map((text) => ({ text, source: "bundled" as const })), ...customEntries.filter((entry) => entry.kind === "truth").map((entry) => ({ id: entry.id, text: entry.text, source: "custom" as const }))],
+    dare: [...getDaresForLanguage(language).map((text) => ({ text, source: "bundled" as const })), ...customEntries.filter((entry) => entry.kind === "dare").map((entry) => ({ id: entry.id, text: entry.text, source: "custom" as const }))],
+  }), [customEntries, language]);
   function draw(next: "truth" | "dare") {
     return takePersistentItem(`truth-or-dare:${next}`, decks[next], (item) => item.source === "bundled" ? item.text : `${item.source}:${item.id ?? item.text}`);
   }
@@ -36,7 +38,7 @@ export default function TruthOrDare({ onBack, customEntries = [], customControls
     </div> : <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
       <span className={cn("rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest", mode === "truth" ? "bg-sky-500/20 text-sky-300" : "bg-rose-500/20 text-rose-300")}>{mode === "truth" ? "Pravda 💬" : "Výzva 🔥"}</span>
       {prompt?.source === "custom" && <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-[9px] font-black text-emerald-300">✨ Vlastná kartička</span>}
-      <div className={cn("glass w-full rounded-3xl border p-8", mode === "truth" ? "border-sky-500/30 bg-sky-500/5" : "border-rose-500/30 bg-rose-500/5")}><p className="text-xl font-bold leading-relaxed">{prompt?.text}</p></div>
+      <div className={cn("glass w-full rounded-3xl border p-8", mode === "truth" ? "border-sky-500/30 bg-sky-500/5" : "border-rose-500/30 bg-rose-500/5")}><p className="text-xl font-bold leading-relaxed" data-no-translate>{prompt?.text}</p></div>
       <div className="flex w-full gap-3"><Button fullWidth variant="secondary" onClick={shuffleAgain}>🔀 Iná otázka</Button><Button fullWidth variant="ghost" onClick={() => setMode("choose")}>Späť</Button></div>
     </div>}
   </Shell>;

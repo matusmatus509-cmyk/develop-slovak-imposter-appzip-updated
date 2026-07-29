@@ -302,8 +302,9 @@ import {
   GENERATED_RATHER,
   GENERATED_TRUTHS,
 } from "./expandedContent";
+import { DARES, TRUTHS } from "./localizedTruthOrDare";
 import { NEVER_HAVE_I_EVER as REBUILT_NEVER_HAVE_I_EVER } from "./localizedNeverHaveIEver";
-import { DARES, TRUTHS, WOULD_YOU_RATHER } from "./promptCatalogues";
+import { WOULD_YOU_RATHER } from "./promptCatalogues";
 
 export { DARES, TRUTHS, WOULD_YOU_RATHER };
 
