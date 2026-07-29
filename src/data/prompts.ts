@@ -302,19 +302,22 @@ import {
   GENERATED_RATHER,
   GENERATED_TRUTHS,
 } from "./expandedContent";
+import { DARES, TRUTHS, WOULD_YOU_RATHER } from "./promptCatalogues";
 import { NEVER_HAVE_I_EVER as REBUILT_NEVER_HAVE_I_EVER } from "./neverHaveIEver";
+
+export { DARES, TRUTHS, WOULD_YOU_RATHER };
 
 function uniqueStrings(items: string[], target: number) {
   return [...new Set(items)].slice(0, target);
 }
 
-export const TRUTHS: string[] = uniqueStrings([
+const LEGACY_TRUTHS: string[] = uniqueStrings([
   ...TRUTHS_BASE,
   ...TRUTH_TOPICS.flatMap((topic) => TRUTH_FORMS.map((form) => form(topic))),
   ...GENERATED_TRUTHS,
 ], 2000);
 
-export const DARES: string[] = uniqueStrings([
+const LEGACY_DARES: string[] = uniqueStrings([
   ...DARES_BASE,
   ...DARE_TOPICS.flatMap((topic) => DARE_ACTIONS.map((action) => `${action} na tému „${topic}“.`)),
   ...GENERATED_DARES,
@@ -322,7 +325,7 @@ export const DARES: string[] = uniqueStrings([
 
 export const NEVER_HAVE_I_EVER: string[] = REBUILT_NEVER_HAVE_I_EVER;
 
-export const WOULD_YOU_RATHER: { a: string; b: string }[] = Array.from(new Map([
+const LEGACY_WOULD_YOU_RATHER: { a: string; b: string }[] = Array.from(new Map([
   ...WOULD_YOU_RATHER_BASE,
   ...RATHER_TOPICS.flatMap((topic) =>
     RATHER_OPTIONS_A.map((optionA, index) => ({
