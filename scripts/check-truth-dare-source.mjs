@@ -42,7 +42,7 @@ for (const [kind, languageDecks] of Object.entries(decks)) {
 
 // Template detection: two cards built from the same template share almost all
 // of their words in the same order, while genuinely different cards do not.
-const SIMILARITY_LIMIT = 0.7;
+const SIMILARITY_LIMIT = 0.65;
 
 const tokenize = (card) => card.toLocaleLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").split(/\s+/u).filter(Boolean);
 
