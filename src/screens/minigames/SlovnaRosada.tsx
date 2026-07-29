@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import {
   ALL_SOLO_CHARADES_WORDS,
   SOLO_CHARADES_WORDS,
+  isValidCharadeText,
   type CharadesDifficulty,
 } from "../../data/charades";
 import { Button, Shell, TopBar } from "../../components/ui";
@@ -62,9 +63,12 @@ function buildDeck(difficulty: string, extraCards: Array<{ id: string; word: str
   }));
   const pool = uniqueCards.length > 0 ? uniqueCards : fallback;
   for (const { id, word } of extraCards) {
-    const key = word.trim().toLocaleLowerCase("sk");
-    if (!key) continue;
-    pool.push({ id: `custom:${id}`, word, category: "Vlastná téma", categoryIcon: "✨" });
+    const normalizedWord = word.trim().replace(/\s+/g, " ");
+    const key = normalizedWord.toLocaleLowerCase("sk");
+    // Vlastné/importované šarády dodržiavajú rovnaké pravidlá ako vstavané.
+    if (!isValidCharadeText(normalizedWord) || seen.has(key)) continue;
+    seen.add(key);
+    pool.push({ id: `custom:${id}`, word: normalizedWord, category: "Vlastná téma", categoryIcon: "✨" });
   }
   return pool;
 }

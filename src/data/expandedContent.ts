@@ -126,10 +126,9 @@ const DRAW_SCENES = [
 ];
 export const GENERATED_DRAWING_PAIRS = DRAW_SUBJECTS.flatMap((subject) => DRAW_SCENES.map((scene) => ({ word: `${subject} ${scene}`, hint: "" })));
 
-// ── Pantomíma a šarády ───────────────────────────────────────────────────────
-// Karty sa skladajú ako „<podmet v nominatíve> <predložkové spojenie>“, takže
-// každá kombinácia je gramaticky správna a zmysluplná scéna, ktorú sa dá
-// predviesť alebo opísať. Nikdy nevznikne nezmysel typu „Šoférovanie: snehuliak“.
+// ── Pantomíma ───────────────────────────────────────────────────────────────
+// Tieto scénické karty patria iba do pantomímy. Šarády používajú samostatný
+// krátky katalóg v data/charades.ts, aby vždy zostali bežné a do troch slov.
 const MIME_EASY_SUBJECTS = [
   "Pes", "Mačka", "Sliepka", "Kôň", "Krava", "Ovca", "Myš", "Zajac", "Medveď", "Opica",
   "Lev", "Tiger", "Slon", "Žirafa", "Tučniak", "Žaba", "Papagáj", "Sova", "Korytnačka", "Delfín",
@@ -177,17 +176,12 @@ const MIME_HARD_SITUATIONS = [
   "pri chybnej odpovedi", "počas nočnej služby", "pri prvom tréningu",
 ];
 
-/**
- * Kombinácie prekladáme (nie „všetky situácie pre prvý podmet, potom druhý“),
- * pretože balíky sa napĺňajú od začiatku zoznamu. Takto sa do hry dostanú
- * všetky postavy a hráč nedostane desiatky kariet s tým istým podmetom.
- * `shift` posúva párovanie, takže šarády a pantomíma nezačínajú rovnako.
- */
-function crossScenes(subjects: string[], situations: string[], shift = 0) {
+/** Kombinácie sú prekladané, aby sa postavy v pantomíme rovnomerne striedali. */
+function crossScenes(subjects: string[], situations: string[]) {
   const scenes: string[] = [];
   for (let round = 0; round < situations.length; round += 1) {
     subjects.forEach((subject, index) => {
-      const situation = situations[(index + round + shift) % situations.length];
+      const situation = situations[(index + round) % situations.length];
       scenes.push(`${subject} ${situation}`);
     });
   }
@@ -198,11 +192,6 @@ export const GENERATED_PANTOMIME_BY_DIFFICULTY = {
   lahke: crossScenes(MIME_EASY_SUBJECTS, MIME_EASY_SITUATIONS),
   stredne: crossScenes(MIME_MEDIUM_SUBJECTS, MIME_MEDIUM_SITUATIONS),
   tazke: crossScenes(MIME_HARD_SUBJECTS, MIME_HARD_SITUATIONS),
-};
-export const GENERATED_CHARADES_BY_DIFFICULTY = {
-  lahke: crossScenes(MIME_EASY_SUBJECTS, MIME_EASY_SITUATIONS, 17),
-  stredne: crossScenes(MIME_MEDIUM_SUBJECTS, MIME_MEDIUM_SITUATIONS, 17),
-  tazke: crossScenes(MIME_HARD_SUBJECTS, MIME_HARD_SITUATIONS, 17),
 };
 
 const FORBIDDEN_OBJECTS = [
