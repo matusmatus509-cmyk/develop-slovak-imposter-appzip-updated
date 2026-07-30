@@ -179,7 +179,7 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
             <h1 className="mt-0.5 text-lg font-black">{result === "draw" ? "Remíza" : result ? `${names[result]} vyhráva!` : names[turn]}</h1>
           </div>
 
-          <section className="tic-board mx-auto mt-2 grid aspect-square w-[min(100%,48dvh,390px)] shrink-0 grid-cols-3 gap-2 rounded-[1.6rem] border border-white/10 bg-black/20 p-2.5 shadow-2xl shadow-black/35">
+          <section className="tic-board tic-board-shape mx-auto mt-2 grid w-full shrink-0 grid-cols-3 gap-2 rounded-[1.6rem] border border-white/10 bg-black/20 p-2.5 shadow-2xl shadow-black/35">
             {board.map((cell, index) => {
               const winner = winningLine.includes(index);
               return <button key={`${round}-${index}`} onClick={() => play(index)} disabled={Boolean(cell) || Boolean(result) || aiThinking} aria-label={cell ? `Pole ${index + 1}: ${cell}` : `Pole ${index + 1}: prázdne`} className={`tic-cell relative flex items-center justify-center rounded-xl border text-[clamp(2.4rem,12vw,4rem)] font-black transition active:scale-90 ${winner ? "tic-cell-winner" : "border-white/[.08] bg-white/[.045]"}`}>{cell && <span className={`tic-symbol tic-mark tic-mark-${cell.toLowerCase()}`}>{cell}</span>}</button>;

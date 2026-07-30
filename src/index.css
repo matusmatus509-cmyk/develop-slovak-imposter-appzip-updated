@@ -849,3 +849,24 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   .battle-play-boards .battle-board { width: min(100%, 31dvh, 13.5rem); }
   .battle-placement-heading p:last-child { display: none; }
 }
+
+
+
+/* Piškvorky always stays a true square; viewport fitting must not stretch its board or cells. */
+.tic-game-screen .tic-board-shape {
+  box-sizing: border-box;
+  inline-size: min(100%, 48dvh, 390px);
+  aspect-ratio: 1 / 1;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  flex: none;
+}
+
+.tic-game-screen .tic-board-shape .tic-cell {
+  min-inline-size: 0;
+  min-block-size: 0;
+  aspect-ratio: 1 / 1;
+}
+
+@media (max-height: 620px) {
+  .tic-game-screen .tic-board-shape { inline-size: min(100%, 45dvh, 330px); }
+}
