@@ -27,6 +27,8 @@ export type Screen =
   | "zvuk"
   | "pismeno"
   | "patzadesat"
+  | "tic-tac-toe"
+  | "battleship"
   | "teambattle"
   | "party-hub"
   | "statistics"

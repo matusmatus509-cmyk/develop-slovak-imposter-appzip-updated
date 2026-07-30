@@ -544,6 +544,70 @@ html[data-theme="light"] main:is(.theme-surface, .home-screen) .light-keep-dark 
 html[data-theme="light"] .settings-screen [class*="text-violet-"] { color: #6d28d9 !important; }
 html[data-theme="light"] .settings-screen [class*="text-cyan-"] { color: #0e7490 !important; }
 html[data-theme="light"] .settings-screen [class*="text-emerald-"] { color: #047857 !important; }
+/* ── Tic-tac-toe & Battleship minigames ─────────────────────────── */
+@keyframes ticHeroFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+@keyframes ticSymbolDraw {
+  0% { opacity: 0; transform: scale(.25) rotate(-18deg); filter: blur(6px); }
+  70% { opacity: 1; transform: scale(1.12) rotate(3deg); filter: blur(0); }
+  100% { transform: scale(1) rotate(0); }
+}
+@keyframes ticWinnerPulse {
+  0%, 100% { box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 0 16px rgba(34,211,238,.12); }
+  50% { box-shadow: inset 0 0 0 1px rgba(255,255,255,.2), 0 0 34px rgba(232,121,249,.36); }
+}
+@keyframes battleWaveDrift {
+  from { transform: translateX(-60%) rotate(8deg); }
+  to { transform: translateX(60%) rotate(8deg); }
+}
+@keyframes battleImpact {
+  0% { transform: scale(.15); opacity: 0; }
+  45% { transform: scale(1.35); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes battleLatest {
+  0%, 100% { outline-color: rgba(250,204,21,.2); }
+  50% { outline-color: rgba(250,204,21,.9); }
+}
+@keyframes battleRadarSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes battleFinale {
+  0% { opacity: 0; transform: translateY(24px) scale(.92); }
+  70% { transform: translateY(-3px) scale(1.015); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.tic-hero { animation: ticHeroFloat 3.6s ease-in-out infinite; }
+.tic-mark-x { color: #67e8f9; text-shadow: 0 0 24px rgba(34,211,238,.45); }
+.tic-mark-o { color: #f0abfc; text-shadow: 0 0 24px rgba(232,121,249,.42); }
+.tic-player-active { box-shadow: 0 14px 38px -24px var(--game-accent, #22d3ee); transform: translateY(-2px); }
+.tic-cell { min-height: 0; box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+.tic-cell:not(:disabled):hover { border-color: rgba(103,232,249,.34); background: rgba(34,211,238,.07); }
+.tic-symbol { display: inline-block; animation: ticSymbolDraw .42s cubic-bezier(.2,.9,.25,1.3) both; }
+.tic-cell-winner { border-color: rgba(103,232,249,.55); background: linear-gradient(145deg, rgba(34,211,238,.16), rgba(232,121,249,.14)); animation: ticWinnerPulse 1.25s ease-in-out infinite; }
+.tic-result { animation: battleFinale .55s cubic-bezier(.2,.8,.2,1) both; }
+
+.battle-cell { border-color: rgba(125,211,252,.09); background: linear-gradient(145deg, rgba(14,165,233,.11), rgba(8,47,73,.34)); }
+.battle-cell:not(:disabled):hover { border-color: rgba(103,232,249,.65); background: rgba(34,211,238,.2); transform: scale(1.06); z-index: 2; }
+.battle-cell[data-state="SHIP"] { border-color: rgba(103,232,249,.34); background: linear-gradient(145deg, #64748b, #263548); box-shadow: inset 0 0 0 2px rgba(255,255,255,.08); }
+.battle-cell[data-state="MISS"] { background: rgba(14,116,144,.14); }
+.battle-cell[data-state="HIT"] { border-color: rgba(251,146,60,.65); background: radial-gradient(circle, rgba(251,146,60,.55), rgba(127,29,29,.5)); }
+.battle-cell[data-state="SUNK"] { border-color: rgba(251,113,133,.62); background: linear-gradient(145deg, rgba(190,18,60,.78), rgba(69,10,10,.82)); }
+.battle-wave { position: absolute; inset: 45% -65% auto; height: 30%; border-top: 1px solid rgba(125,211,252,.1); border-radius: 50%; animation: battleWaveDrift 4s linear infinite; pointer-events: none; }
+.battle-miss-dot { position: absolute; left: 50%; top: 50%; width: 22%; aspect-ratio: 1; border-radius: 999px; background: #bae6fd; box-shadow: 0 0 8px rgba(186,230,253,.7); transform: translate(-50%,-50%); animation: battleImpact .36s ease-out both; }
+.battle-hit-burst, .battle-sunk-mark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff7ed; font-size: clamp(.65rem, 4vw, 1.2rem); font-weight: 1000; text-shadow: 0 0 9px #fb923c; animation: battleImpact .42s cubic-bezier(.2,.9,.25,1.3) both; }
+.battle-sunk-mark { color: #fecdd3; text-shadow: 0 0 9px #f43f5e; }
+.battle-cell-latest { outline: 2px solid rgba(250,204,21,.85); outline-offset: 1px; animation: battleLatest 1s ease-in-out 3; z-index: 3; }
+.battle-radar { box-shadow: 0 0 70px rgba(34,211,238,.15), inset 0 0 35px rgba(34,211,238,.08); }
+.battle-radar::before, .battle-radar::after { content: ""; position: absolute; inset: 25%; border: 1px solid rgba(103,232,249,.13); border-radius: 999px; }
+.battle-radar::after { inset: 50% 0 auto; border-radius: 0; border-width: 1px 0 0; }
+.battle-radar-sweep { position: absolute; inset: 0; border-radius: inherit; background: conic-gradient(from 0deg, transparent 0 75%, rgba(34,211,238,.32)); animation: battleRadarSweep 1.5s linear infinite; }
+.battle-finale { animation: battleFinale .7s cubic-bezier(.2,.8,.2,1) both; }
+.battle-finale-icon { animation: partyTrophyCelebrate 1.15s cubic-bezier(.2,.8,.2,1) .3s both; }
 
 
 /* ── 2026 motion system: Party Hub and Party arena ─────────────── */

@@ -62,6 +62,8 @@ import KtoDostaneBombu from "./screens/minigames/KtoDostaneBombu";
 import HadajEmoji from "./screens/minigames/HadajEmoji";
 import TeamBattle, { type TeamBattleSummary } from "./screens/teamBattle";
 import TeamQuickGame from "./screens/minigames/TeamQuickGame";
+import TicTacToe from "./screens/minigames/TicTacToe";
+import Battleship from "./screens/minigames/Battleship";
 import Statistics from "./screens/Statistics";
 import Settings from "./screens/Settings";
 import PartyHub from "./screens/PartyHub";
@@ -108,6 +110,8 @@ const MINIGAMES: MenuGame[] = [
   { screen: "zvuk", title: "Uhádni zvuk", description: "Počúvajte tajné zvuky a predbiehajte sa na bzučiaku.", icon: "bell", color: "from-cyan-500 to-blue-700", badge: "Nové" },
   { screen: "pismeno", title: "Slovo na písmeno", description: "Kategória, písmeno a iba päť sekúnd na odpoveď.", icon: "tag", color: "from-amber-400 to-orange-600", badge: "Nové" },
   { screen: "patzadesat", title: "5 za 10", description: "Vymenujte päť odpovedí za desať sekúnd.", icon: "timer", color: "from-emerald-400 to-green-700", badge: "Nové" },
+  { screen: "tic-tac-toe", title: "Piškvorky", description: "Animovaný klasický súboj X a O pre dvoch alebo proti robotovi.", icon: "grid", color: "from-cyan-500 to-fuchsia-600", badge: "Nové" },
+  { screen: "battleship", title: "Loďky", description: "Rozmiestnite flotilu a potopte päť súperových lodí na mape 10 × 10.", icon: "ship", color: "from-cyan-600 to-blue-800", badge: "Nové" },
 ];
 
 const DEFAULT_STATISTICS = createDefaultStatistics();
@@ -741,6 +745,12 @@ export default function App() {
 
     case "patzadesat":
       return <TeamQuickGame game="patzadesat" onBack={() => returnFromActiveGame("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
+
+    case "tic-tac-toe":
+      return <TicTacToe onBack={() => returnFromActiveGame("minigames-menu")} />;
+
+    case "battleship":
+      return <Battleship onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "teambattle":
       return <TeamBattle onHome={() => returnFromActiveGame("home")} onGameComplete={recordPartyResult} onWordGuessed={recordFastestGuess} customQuestions={workshopEntriesToQuiz(customEntries("teambattle"))} customControls={customControls("teambattle")} />;

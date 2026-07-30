@@ -26,6 +26,8 @@ export const PLAYABLE_GAMES: PlayableGame[] = [
   { id: "zvuk", screen: "zvuk", title: "Uhádni zvuk", icon: "🔔", color: "#0284c7" },
   { id: "pismeno", screen: "pismeno", title: "Slovo na písmeno", icon: "🔤", color: "#f59e0b" },
   { id: "patzadesat", screen: "patzadesat", title: "5 za 10", icon: "⏱️", color: "#16a34a" },
+  { id: "tic-tac-toe", screen: "tic-tac-toe", title: "Piškvorky", icon: "❌", color: "#22d3ee" },
+  { id: "battleship", screen: "battleship", title: "Loďky", icon: "🚢", color: "#0284c7" },
 ];
 
 export const PARTY_THEMES: Array<{ id: PartyTheme; title: string; swatch: string; description: string }> = [
@@ -76,10 +78,12 @@ const WEEKLY_COPY = [
   ["Víťaz vyberie ďalšiu hru pre celú partiu.", "Ktorý oceán je najväčší? · Tichý oceán"],
 ];
 
+const WEEKLY_ELIGIBLE_GAMES = PLAYABLE_GAMES.filter((game) => game.id !== "tic-tac-toe" && game.id !== "battleship");
+
 export function getBundledWeeklyFeature(date = new Date()): WeeklyFeature {
   const { year, week } = isoWeek(date);
   const seed = year * 53 + week;
-  const game = PLAYABLE_GAMES[seed % PLAYABLE_GAMES.length];
+  const game = WEEKLY_ELIGIBLE_GAMES[seed % WEEKLY_ELIGIBLE_GAMES.length];
   const copy = WEEKLY_COPY[seed % WEEKLY_COPY.length];
   return { game, challenge: copy[0], quiz: copy[1], number: week, year };
 }

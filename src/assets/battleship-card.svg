@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title">
+  <title id="title">Námorná hra Loďky</title>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#061524"/><stop offset=".55" stop-color="#0b3151"/><stop offset="1" stop-color="#082032"/></linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#0e7490"/><stop offset="1" stop-color="#062339"/></linearGradient>
+    <linearGradient id="ship" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#cbd5e1"/><stop offset="1" stop-color="#334155"/></linearGradient>
+    <radialGradient id="sun"><stop stop-color="#fde68a"/><stop offset=".3" stop-color="#f59e0b" stop-opacity=".38"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/></radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <pattern id="waterGrid" width="72" height="72" patternUnits="userSpaceOnUse"><path d="M72 0H0V72" fill="none" stroke="#7dd3fc" stroke-opacity=".075" stroke-width="2"/></pattern>
+  </defs>
+  <rect width="800" height="1000" fill="url(#sky)"/><circle cx="650" cy="170" r="260" fill="url(#sun)"/>
+  <g fill="#fff" opacity=".65"><circle cx="94" cy="110" r="3"/><circle cx="210" cy="170" r="2"/><circle cx="537" cy="92" r="4"/><circle cx="730" cy="310" r="2"/></g>
+  <path d="M0 420Q100 385 200 420T400 420T600 420T800 420V1000H0Z" fill="url(#sea)"/>
+  <path d="M0 420Q100 385 200 420T400 420T600 420T800 420" fill="none" stroke="#67e8f9" stroke-opacity=".55" stroke-width="8"/>
+  <path d="M0 440H800V1000H0Z" fill="url(#waterGrid)" opacity=".9"/>
+  <g transform="translate(84 300)">
+    <path d="M36 222L572 222L520 340Q498 382 431 382H163Q95 382 73 337Z" fill="url(#ship)" stroke="#e2e8f0" stroke-opacity=".35" stroke-width="5"/>
+    <path d="M148 217L185 132H395L466 217" fill="#475569" stroke="#cbd5e1" stroke-opacity=".35" stroke-width="5"/>
+    <path d="M243 127V69H350V127" fill="#64748b"/><path d="M294 69V-4" stroke="#cbd5e1" stroke-width="9"/><path d="M294 17L365 45" stroke="#cbd5e1" stroke-width="5"/><circle cx="294" cy="-4" r="10" fill="#22d3ee" filter="url(#glow)"/>
+    <path d="M117 197H56M438 198H525" stroke="#1e293b" stroke-width="18" stroke-linecap="round"/>
+    <g fill="#67e8f9" opacity=".78"><rect x="207" y="158" width="35" height="31" rx="5"/><rect x="258" y="158" width="35" height="31" rx="5"/><rect x="309" y="158" width="35" height="31" rx="5"/></g>
+    <path d="M92 382Q170 420 248 382T404 382T560 382" fill="none" stroke="#bae6fd" stroke-opacity=".42" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(515 665)" filter="url(#glow)">
+    <circle cx="88" cy="88" r="83" fill="#071827" fill-opacity=".8" stroke="#67e8f9" stroke-opacity=".45" stroke-width="4"/>
+    <circle cx="88" cy="88" r="53" fill="none" stroke="#67e8f9" stroke-opacity=".25" stroke-width="3"/>
+    <path d="M88 5V171M5 88H171" stroke="#67e8f9" stroke-opacity=".22" stroke-width="3"/>
+    <path d="M88 88L148 35A83 83 0 0 1 171 88Z" fill="#22d3ee" fill-opacity=".35"/>
+    <circle cx="88" cy="88" r="7" fill="#fbbf24"/>
+  </g>
+  <g transform="translate(95 795)" fill="none" stroke="#fbbf24" stroke-width="8" stroke-linecap="round" opacity=".85"><circle cx="55" cy="55" r="24"/><path d="M55 7V29M55 81V103M7 55H29M81 55H103"/></g>
+</svg>
