@@ -160,40 +160,35 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
 
   return (
     <PartyBackdrop>
-      <main className="h-full overflow-y-auto px-5 pb-9 pt-5 text-white">
-        <div className="mx-auto w-full max-w-md">
-          <header className="flex items-center justify-between">
-            <button onClick={() => setPhase("setup")} aria-label="Nastavenie" className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[.06] text-white/70 transition active:scale-90"><Icons.chevronLeft size={21} /></button>
+      <main className="tic-game-screen relative h-[100dvh] overflow-hidden px-4 py-3 text-white">
+        <div className="mx-auto flex h-full w-full max-w-md flex-col">
+          <header className="flex shrink-0 items-center justify-between">
+            <button onClick={() => setPhase("setup")} aria-label="Nastavenie" className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[.06] text-white/70 transition active:scale-90"><Icons.chevronLeft size={19} /></button>
             <PartyEyebrow>Kolo {round}</PartyEyebrow>
-            <div className="h-11 w-11" />
+            <div className="h-10 w-10" />
           </header>
 
-          <section className="mt-7 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
-            {(["X", "O"] as const).map((mark) => <div key={mark} className={`party-glass rounded-2xl p-4 ${turn === mark && !result ? "tic-player-active" : ""}`} style={{ borderColor: turn === mark && !result ? (mark === "X" ? "#22d3ee88" : "#e879f988") : undefined }}><p className="truncate text-[9px] font-black uppercase tracking-wider text-white/38">{names[mark]}</p><div className="mt-1 flex items-end justify-between"><span className={`tic-mark tic-mark-${mark.toLowerCase()} text-3xl font-black`}>{mark}</span><strong className="text-2xl font-black tabular-nums">{scores[mark]}</strong></div></div>)}
-            <span className="col-start-2 row-start-1 text-[9px] font-black uppercase tracking-widest text-white/22">vs</span>
+          <section className="tic-scoreboard mt-2 grid shrink-0 grid-cols-[1fr_auto_1fr] items-center gap-2">
+            {(["X", "O"] as const).map((mark) => <div key={mark} className={`party-glass rounded-xl p-2 ${turn === mark && !result ? "tic-player-active" : ""}`} style={{ borderColor: turn === mark && !result ? (mark === "X" ? "#22d3ee88" : "#e879f988") : undefined }}><p className="truncate text-[7px] font-black uppercase tracking-wider text-white/38">{names[mark]}</p><div className="mt-0.5 flex items-end justify-between"><span className={`tic-mark tic-mark-${mark.toLowerCase()} text-2xl font-black`}>{mark}</span><strong className="text-lg font-black tabular-nums">{scores[mark]}</strong></div></div>)}
+            <span className="col-start-2 row-start-1 text-[8px] font-black uppercase tracking-widest text-white/22">vs</span>
           </section>
 
-          <div className="relative mt-6 text-center">
-            <button onClick={nextRound} aria-label="Nové kolo" className="absolute right-0 top-0 flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[.05] text-white/45 transition active:scale-90"><Icons.refresh size={17} /></button>
-            <p className="text-[10px] font-black uppercase tracking-[.22em] text-white/30">{result ? "Kolo skončilo" : aiThinking ? "Robot premýšľa…" : "Na ťahu"}</p>
-            <h1 className="mt-1 text-2xl font-black">{result === "draw" ? "Remíza" : result ? `${names[result]} vyhráva!` : names[turn]}</h1>
+          <div className="tic-turn-panel relative mt-2 shrink-0 text-center">
+            <button onClick={nextRound} aria-label="Nové kolo" className="absolute right-0 top-0 flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[.05] text-white/45 transition active:scale-90"><Icons.refresh size={15} /></button>
+            <p className="text-[8px] font-black uppercase tracking-[.22em] text-white/30">{result ? "Kolo skončilo" : aiThinking ? "Robot premýšľa…" : "Na ťahu"}</p>
+            <h1 className="mt-0.5 text-lg font-black">{result === "draw" ? "Remíza" : result ? `${names[result]} vyhráva!` : names[turn]}</h1>
           </div>
 
-          <section className="tic-board mx-auto mt-6 grid aspect-square w-full max-w-[390px] grid-cols-3 gap-3 rounded-[2.2rem] border border-white/10 bg-black/20 p-4 shadow-2xl shadow-black/35">
+          <section className="tic-board mx-auto mt-2 grid aspect-square w-[min(100%,48dvh,390px)] shrink-0 grid-cols-3 gap-2 rounded-[1.6rem] border border-white/10 bg-black/20 p-2.5 shadow-2xl shadow-black/35">
             {board.map((cell, index) => {
               const winner = winningLine.includes(index);
-              return <button key={`${round}-${index}`} onClick={() => play(index)} disabled={Boolean(cell) || Boolean(result) || aiThinking} aria-label={cell ? `Pole ${index + 1}: ${cell}` : `Pole ${index + 1}: prázdne`} className={`tic-cell relative flex items-center justify-center rounded-2xl border text-6xl font-black transition active:scale-90 ${winner ? "tic-cell-winner" : "border-white/[.08] bg-white/[.045]"}`}>{cell && <span className={`tic-symbol tic-mark tic-mark-${cell.toLowerCase()}`}>{cell}</span>}</button>;
+              return <button key={`${round}-${index}`} onClick={() => play(index)} disabled={Boolean(cell) || Boolean(result) || aiThinking} aria-label={cell ? `Pole ${index + 1}: ${cell}` : `Pole ${index + 1}: prázdne`} className={`tic-cell relative flex items-center justify-center rounded-xl border text-[clamp(2.4rem,12vw,4rem)] font-black transition active:scale-90 ${winner ? "tic-cell-winner" : "border-white/[.08] bg-white/[.045]"}`}>{cell && <span className={`tic-symbol tic-mark tic-mark-${cell.toLowerCase()}`}>{cell}</span>}</button>;
             })}
           </section>
 
-          <div className="mt-5 flex items-center justify-center gap-2 text-[10px] font-bold text-white/35"><span>Remízy</span><span className="rounded-full border border-white/10 bg-white/[.05] px-3 py-1 font-black text-white/65">{scores.draw}</span></div>
+          <div className="mt-2 flex shrink-0 items-center justify-center gap-2 text-[8px] font-bold text-white/35"><span>Remízy</span><span className="rounded-full border border-white/10 bg-white/[.05] px-2 py-0.5 font-black text-white/65">{scores.draw}</span></div>
 
-          {result && <section className="tic-result party-glass mt-5 rounded-[1.8rem] p-5 text-center">
-            <div className="text-4xl">{result === "draw" ? "🤝" : result === "X" ? "✨" : mode === "ai" ? "🤖" : "🎉"}</div>
-            <p className="mt-2 text-lg font-black">{result === "draw" ? "Tentoraz bez víťaza" : `Víťaz: ${names[result]}`}</p>
-            <button onClick={nextRound} className="party-shine relative mt-4 w-full overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-500 to-fuchsia-600 py-4 text-sm font-black uppercase tracking-wider transition active:scale-95">Ďalšie kolo</button>
-            <button onClick={() => setPhase("setup")} className="mt-2 w-full py-3 text-xs font-black text-white/38">Zmeniť režim</button>
-          </section>}
+          {result && <section className="tic-result absolute inset-x-5 top-1/2 z-20 -translate-y-1/2 rounded-[1.5rem] border border-cyan-300/20 bg-[#101827]/95 p-4 text-center shadow-2xl shadow-cyan-950/60 backdrop-blur"><div className="text-3xl">{result === "draw" ? "🤝" : result === "X" ? "✨" : mode === "ai" ? "🤖" : "🎉"}</div><p className="mt-1 text-base font-black">{result === "draw" ? "Tentoraz bez víťaza" : `Víťaz: ${names[result]}`}</p><button onClick={nextRound} className="party-shine relative mt-3 w-full overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-fuchsia-600 py-2.5 text-[10px] font-black uppercase tracking-wider transition active:scale-95">Ďalšie kolo</button><button onClick={() => setPhase("setup")} className="mt-1 w-full py-2 text-[9px] font-black text-white/38">Zmeniť režim</button></section>}
         </div>
       </main>
     </PartyBackdrop>
