@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import PackShareDialog from "../../components/PackShareDialog";
-import { DEFAULT_COLLECTION_ID, SEASONAL_PARTY_PACKS, normalizeWorkshopCollections, normalizeWorkshopEntries, type SeasonalPartyPack } from "../../data/partyContent";
+import { DEFAULT_COLLECTION_ID, SEASONAL_PARTY_PACKS, getWorkshopEntryValidationError, normalizeWorkshopCollections, normalizeWorkshopEntries, type SeasonalPartyPack } from "../../data/partyContent";
 import { PartyPackError, installPartyPack, type DecodedPartyPack } from "../../data/partyPackSharing";
 import type { WorkshopCollection, WorkshopEntry, WorkshopEntryKind } from "../../types";
 
@@ -9,6 +9,16 @@ const KINDS: Array<[Exclude<WorkshopEntryKind, "word">, string]> = [
   ["emoji", "Emoji"], ["quiz", "Kvíz"], ["person", "Osoba"], ["charade", "Šaráda"],
 ];
 const ANSWER_KINDS = new Set<WorkshopEntryKind>(["wouldRather", "emoji", "quiz"]);
+const KIND_GUIDANCE: Record<Exclude<WorkshopEntryKind, "word">, string> = {
+  truth: "Napíšte jednu prirodzenú otázku zakončenú otáznikom.",
+  dare: "Napíšte jasnú a bezpečnú výzvu v celej vete.",
+  never: "Začnite presne slovami „Nikdy som nikdy“ a pokračujte prirodzenou vetou.",
+  wouldRather: "Napíšte dve odlišné a porovnateľné možnosti A a B.",
+  emoji: "Použite emoji ako nápovedu a do odpovede napíšte jednoznačné riešenie.",
+  quiz: "Napíšte otázku zakončenú otáznikom a jej správnu odpoveď.",
+  person: "Použite stručný názov osoby alebo postavy, nie celú vetu.",
+  charade: "Použite 1 až 3 bežné slová bez dvojbodky, napríklad „Umývanie riadu“.",
+};
 const COLORS = ["#34d399", "#22d3ee", "#a78bfa", "#fb7185", "#fbbf24", "#60a5fa"];
 
 function seasonalCollectionId(packId: string) {
@@ -43,6 +53,7 @@ export default function PartyCollections({ collections, entries, autoImportNotic
   const [importOpen, setImportOpen] = useState(false);
   const [packNotice, setPackNotice] = useState<{ kind: "success" | "error"; message: string } | null>(null);
   const requiresAnswer = ANSWER_KINDS.has(kind);
+  const entryValidationError = getWorkshopEntryValidationError(kind, text, requiresAnswer ? answer : "");
   const filtered = useMemo(() => entries.filter((entry) => (filterCollection === "all" || entry.collectionIds.includes(filterCollection)) && (filterKind === "all" || entry.kind === filterKind)), [entries, filterCollection, filterKind]);
   const installedSeasonalIds = useMemo(() => new Set(SEASONAL_PARTY_PACKS
     .filter((pack) => isSeasonalPackInstalled(pack, collections, entries))
@@ -85,11 +96,13 @@ export default function PartyCollections({ collections, entries, autoImportNotic
   }
 
   function saveEntry() {
-    const cleanText = text.trim().slice(0, 240);
-    const cleanAnswer = answer.trim().slice(0, 160);
-    if (!cleanText || (requiresAnswer && !cleanAnswer) || selectedCollectionIds.length === 0) return;
+    const cleanText = text.trim().replace(/\s+/g, " ").slice(0, kind === "charade" ? 80 : 240);
+    const cleanAnswer = requiresAnswer ? answer.trim().slice(0, 160) : "";
+    if (!cleanText || selectedCollectionIds.length === 0) return;
+    const validationError = getWorkshopEntryValidationError(kind, cleanText, cleanAnswer);
+    if (validationError) return;
     if (editingId) {
-      onEntriesChange(normalizeWorkshopEntries(entries.map((entry) => entry.id === editingId ? { ...entry, kind, text: cleanText, answer: cleanAnswer || undefined, collectionIds: selectedCollectionIds } : entry), collections));
+      onEntriesChange(normalizeWorkshopEntries(entries.map((entry) => entry.id === editingId ? { ...entry, kind, text: cleanText, answer: cleanAnswer || undefined, collectionIds: selectedCollectionIds, enabled: getWorkshopEntryValidationError(entry.kind, entry.text, entry.answer) ? true : entry.enabled } : entry), collections));
     } else {
       const entry: WorkshopEntry = { id: `card-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`, kind, text: cleanText, answer: cleanAnswer || undefined, collectionIds: selectedCollectionIds, enabled: true, likes: 0, rating: 0, ratingCount: 0, createdAt: Date.now() };
       onEntriesChange(normalizeWorkshopEntries([entry, ...entries], collections));
@@ -143,11 +156,13 @@ export default function PartyCollections({ collections, entries, autoImportNotic
 
       <div id="collection-editor" className="mt-4 rounded-2xl border border-white/10 bg-black/20 p-3">
         <div><p className="premium-eyebrow text-emerald-300/70">Jedna karta naraz</p><h3 className="mt-1 text-sm font-black">Rýchly editor otázky alebo slova</h3><p className="mt-1 text-[9px] leading-relaxed text-white/38">Vyberte typ, napíšte jednu otázku, výzvu alebo slovo a uložte ho do kolekcie.</p></div>
-        <div className="mt-3 flex flex-wrap gap-1.5">{KINDS.map(([value, label]) => <button key={value} type="button" aria-pressed={kind === value} onClick={() => setKind(value)} className={`rounded-lg px-2.5 py-2 text-[9px] font-black ${kind === value ? "bg-emerald-300 text-emerald-950" : "bg-white/[.06] text-white/45"}`}>{label}</button>)}</div>
-        <label className="mt-3 block"><span className="premium-field-label">{kind === "emoji" ? "Emoji nápoveda" : kind === "wouldRather" ? "Možnosť A" : "Text kartičky"}</span><textarea value={text} onChange={(event) => setText(event.target.value)} maxLength={240} rows={3} className="premium-input resize-none" placeholder="Napíšte vlastný obsah" /></label>
+        <div className="mt-3 flex flex-wrap gap-1.5">{KINDS.map(([value, label]) => <button key={value} type="button" aria-pressed={kind === value} onClick={() => { setKind(value); if (!ANSWER_KINDS.has(value)) setAnswer(""); }} className={`rounded-lg px-2.5 py-2 text-[9px] font-black ${kind === value ? "bg-emerald-300 text-emerald-950" : "bg-white/[.06] text-white/45"}`}>{label}</button>)}</div>
+        <label className="mt-3 block"><span className="premium-field-label">{kind === "emoji" ? "Emoji nápoveda" : kind === "wouldRather" ? "Možnosť A" : kind === "charade" ? "Šaráda (max. 3 slová)" : "Text kartičky"}</span><textarea value={text} onChange={(event) => setText(event.target.value)} maxLength={kind === "charade" ? 80 : 240} rows={3} className="premium-input resize-none" placeholder={kind === "charade" ? "Napríklad: Umývanie riadu" : "Napíšte vlastný obsah"} /></label>
+        <p className="mt-1 text-[9px] leading-relaxed text-white/38">{KIND_GUIDANCE[kind]}</p>
+        {entryValidationError && text.trim() && <p role="alert" className="mt-2 text-[10px] font-bold text-amber-200">{entryValidationError}</p>}
         {requiresAnswer && <label className="mt-2 block"><span className="premium-field-label">{kind === "wouldRather" ? "Možnosť B" : "Správna odpoveď"}</span><input value={answer} onChange={(event) => setAnswer(event.target.value)} maxLength={160} className="premium-input" /></label>}
         <fieldset className="mt-3"><legend className="premium-field-label">Kolekcie (jedna alebo viac)</legend><div className="flex flex-wrap gap-2">{collections.map((collection) => <button key={collection.id} type="button" aria-pressed={selectedCollectionIds.includes(collection.id)} onClick={() => toggleSelectedCollection(collection.id)} className={`rounded-xl border px-3 py-2 text-[9px] font-black ${selectedCollectionIds.includes(collection.id) ? "border-emerald-300/40 bg-emerald-300 text-emerald-950" : "border-white/10 bg-white/[.04] text-white/45"}`}>{collection.icon} {collection.name}</button>)}</div></fieldset>
-        <button type="button" disabled={!text.trim() || (requiresAnswer && !answer.trim()) || selectedCollectionIds.length === 0} onClick={saveEntry} className="mt-3 w-full rounded-xl bg-emerald-300 py-3 text-xs font-black text-emerald-950 disabled:opacity-35">{editingId ? "Uložiť zmeny" : "Pridať kartičku"}</button>
+        <button type="button" disabled={!text.trim() || Boolean(entryValidationError) || selectedCollectionIds.length === 0} onClick={saveEntry} className="mt-3 w-full rounded-xl bg-emerald-300 py-3 text-xs font-black text-emerald-950 disabled:opacity-35">{editingId ? "Uložiť zmeny" : "Pridať kartičku"}</button>
         {editingId && <button type="button" onClick={() => { setEditingId(null); setText(""); setAnswer(""); }} className="mt-1 w-full py-2 text-[9px] font-black text-white/40">Zrušiť úpravu</button>}
       </div>
 

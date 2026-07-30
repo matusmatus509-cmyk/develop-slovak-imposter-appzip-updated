@@ -2,12 +2,13 @@ import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { getCharacterCategories, type CharacterCategory } from "../../data/characters";
 import { Button, Shell, TopBar } from "../../components/ui";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
-import type { GeneratedPrompt, WordGuessRecordInput, WorkshopEntry } from "../../types";
+import type { WordGuessRecordInput, WorkshopEntry } from "../../types";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { Icons } from "../../components/icons";
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
+import { useCountdown } from "../../hooks/useCountdown";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -237,7 +238,6 @@ function PlayingScreen({
   ), [deck]);
   const [cardIdx, setCardIdx] = useState(0);
   const [card, setCard] = useState(drawNextCard);
-  const [timeLeft, setTimeLeft] = useState(timerSeconds);
   const [flash, setFlash] = useState<"correct" | "wrong" | null>(null);
 
   // Use refs so event handlers always see fresh values
@@ -294,18 +294,10 @@ function PlayingScreen({
     wasCalibratingRef.current = isCalibrating;
   }, [isCalibrating]);
 
-  // Timer countdown
-  useEffect(() => {
-    if (isCalibrating) return;
-    if (timeLeft <= 0) {
-      finishRound();
-      return;
-    }
-    const id = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
-    return () => clearTimeout(id);
-  }, [timeLeft, finishRound, isCalibrating]);
+  // Odpočet podľa reálneho času — pauzne sa iba počas kalibrácie senzora.
+  const { secondsLeft: timeLeft, percentLeft } = useCountdown(timerSeconds, !isCalibrating, finishRound);
 
-  const timePercent = (timeLeft / timerSeconds) * 100;
+  const timePercent = percentLeft;
   const isWarning = timeLeft <= 10;
 
   return (
@@ -432,7 +424,7 @@ function PlayingScreen({
       {/* Timer bar at bottom of portrait screen */}
       <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-white/10 z-50">
         <div
-          className={`h-full transition-all duration-1000 ease-linear ${
+          className={`h-full transition-[width] duration-200 ease-linear ${
             isWarning ? "bg-red-500" : "bg-cyan-400"
           }`}
           style={{ width: `${timePercent}%` }}
@@ -460,14 +452,12 @@ export default function HadajKtoSom({
   partyConfig,
   customEntries = [],
   customControls,
-  themedPrompts = [],
   onWordGuessed,
 }: {
   onBack: () => void;
   partyConfig?: PartyHadajKtoSomConfig;
   customEntries?: WorkshopEntry[];
   customControls?: CustomContentControls;
-  themedPrompts?: GeneratedPrompt[];
   onWordGuessed?: (record: WordGuessRecordInput) => void;
 }) {
   const { language } = useLanguage();
@@ -495,9 +485,7 @@ export default function HadajKtoSom({
   async function startPlaying() {
     await requestTiltPermission();
     setCurrentDeck(buildDeck(categories, allCatIds, customEntries.map((entry) => ({ id: entry.id, word: entry.text }))));
-    setPriorityCards(currentPlayer === 0
-      ? themedPrompts.filter((prompt) => prompt.kind === "person").map((prompt) => ({ word: prompt.text, categoryName: "✨ AI Party téma" }))
-      : []);
+    setPriorityCards([]);
     setPhase("playing");
   }
 

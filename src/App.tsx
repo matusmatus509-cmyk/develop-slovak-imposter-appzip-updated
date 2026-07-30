@@ -4,7 +4,6 @@ import type {
   FeedbackSettings,
   GameSettings,
   GameStatistics,
-  GeneratedLaunchPayload,
   PartyRecords,
   RoundAssignment,
   RoundHistoryEntry,
@@ -25,7 +24,6 @@ import {
   DEFAULT_WORKSHOP_SELECTIONS,
   countCompatibleEntries,
   filterWorkshopEntries,
-  generatedPayloadToQuiz,
   normalizeWorkshopCollections,
   normalizeWorkshopEntries,
   normalizeWorkshopSelections,
@@ -204,7 +202,6 @@ export default function App() {
   })());
   const [storedWorkshopEntries, setStoredWorkshopEntries] = useLocalStorage<WorkshopEntry[]>("podvodnik-workshop-entries-v2", []);
   const [storedWorkshopSelections, setStoredWorkshopSelections] = useLocalStorage<WorkshopSelections>("podvodnik-workshop-selections-v2", DEFAULT_WORKSHOP_SELECTIONS);
-  const [generatedLaunch, setGeneratedLaunch] = useState<GeneratedLaunchPayload | null>(null);
   const [packImportNotice, setPackImportNotice] = useState<{ kind: "success" | "pending" | "error"; message: string } | null>(null);
   const [workshopStartupReady, setWorkshopStartupReady] = useState(false);
   const safeFeedbackSettings = normalizeFeedbackSettings(feedbackSettings);
@@ -426,17 +423,7 @@ export default function App() {
     return filterWorkshopEntries(workshopEntries, game, workshopSelections[game]);
   }
 
-  function themedPrompts(target: GeneratedLaunchPayload["screen"]) {
-    return generatedLaunch?.screen === target ? generatedLaunch.prompts : [];
-  }
-
-  function startThemedLaunch(payload: GeneratedLaunchPayload) {
-    setGeneratedLaunch(payload);
-    navigateFromMenu(payload.screen, true);
-  }
-
-  function navigateFromMenu(next: Screen, preserveGenerated = false) {
-    if (!preserveGenerated) setGeneratedLaunch(null);
+  function navigateFromMenu(next: Screen) {
     const enteringGame = !NON_GAME_SCREENS.includes(next);
     if (enteringGame && NON_GAME_SCREENS.includes(screen)) gameReturnScreenRef.current = screen;
     if (next === "statistics" && NON_GAME_SCREENS.includes(screen)) statisticsReturnScreenRef.current = screen;
@@ -451,7 +438,6 @@ export default function App() {
   function returnFromActiveGame(fallback: Screen) {
     const target = NON_GAME_SCREENS.includes(gameReturnScreenRef.current) ? gameReturnScreenRef.current : fallback;
     setWelcomeScreen(null);
-    setGeneratedLaunch(null);
     setScreen(target);
   }
 
@@ -547,7 +533,7 @@ export default function App() {
       return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => navigateFromMenu("settings")} favoriteGames={favoriteGames} onToggleFavorite={toggleFavorite} />;
 
     case "party-hub":
-      return <PartyHub statistics={statistics} settings={safeFeedbackSettings} musicSupported={music.supported} musicBlocked={music.blocked} collections={workshopCollections} workshopEntries={workshopEntries} packImportNotice={packImportNotice} onCollectionsChange={setStoredWorkshopCollections} onWorkshopChange={setStoredWorkshopEntries} onSettingsChange={setFeedbackSettings} onClaimDailyReward={claimDailyReward} onThemedLaunch={startThemedLaunch} onNavigate={navigateFromMenu} onBack={() => setScreen("home")} />;
+      return <PartyHub statistics={statistics} settings={safeFeedbackSettings} musicSupported={music.supported} musicBlocked={music.blocked} collections={workshopCollections} workshopEntries={workshopEntries} packImportNotice={packImportNotice} onCollectionsChange={setStoredWorkshopCollections} onWorkshopChange={setStoredWorkshopEntries} onSettingsChange={setFeedbackSettings} onClaimDailyReward={claimDailyReward} onNavigate={navigateFromMenu} onBack={() => setScreen("home")} />;
 
     case "statistics":
       return <Statistics statistics={statistics} records={partyRecords} onBack={() => setScreen(statisticsReturnScreenRef.current)} onClaimDailyReward={claimDailyReward} />;
@@ -657,13 +643,13 @@ export default function App() {
       );
 
     case "truth-or-dare":
-      return <TruthOrDare onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("truth-or-dare")} customControls={customControls("truth-or-dare")} themedPrompts={themedPrompts("truth-or-dare")} />;
+      return <TruthOrDare onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("truth-or-dare")} customControls={customControls("truth-or-dare")} />;
 
     case "never-have-i-ever":
-      return <NeverHaveIEver onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("never-have-i-ever")} customControls={customControls("never-have-i-ever")} themedPrompts={themedPrompts("never-have-i-ever")} />;
+      return <NeverHaveIEver onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("never-have-i-ever")} customControls={customControls("never-have-i-ever")} />;
 
     case "would-you-rather":
-      return <WouldYouRather onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("would-you-rather")} customControls={customControls("would-you-rather")} themedPrompts={themedPrompts("would-you-rather")} />;
+      return <WouldYouRather onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("would-you-rather")} customControls={customControls("would-you-rather")} />;
 
     case "drawing-setup":
       return (
@@ -728,13 +714,13 @@ export default function App() {
       );
 
     case "slovnarosada":
-      return <SlovnaRosada onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("slovnarosada")} customControls={customControls("slovnarosada")} themedPrompts={themedPrompts("slovnarosada")} onWordGuessed={recordFastestGuess} />;
+      return <SlovnaRosada onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("slovnarosada")} customControls={customControls("slovnarosada")} onWordGuessed={recordFastestGuess} />;
 
     case "pingpong":
       return <SlovnyPingPong onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "hadajktosom":
-      return <HadajKtoSom onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("hadajktosom")} customControls={customControls("hadajktosom")} themedPrompts={themedPrompts("hadajktosom")} onWordGuessed={recordFastestGuess} />;
+      return <HadajKtoSom onBack={() => returnFromActiveGame("minigames-menu")} customEntries={customEntries("hadajktosom")} customControls={customControls("hadajktosom")} onWordGuessed={recordFastestGuess} />;
 
     case "ibanepravda":
       return <IbaNepravda onBack={() => returnFromActiveGame("minigames-menu")} />;
@@ -767,7 +753,7 @@ export default function App() {
       return <Battleship onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "teambattle":
-      return <TeamBattle onHome={() => returnFromActiveGame("home")} onGameComplete={recordPartyResult} onWordGuessed={recordFastestGuess} customQuestions={workshopEntriesToQuiz(customEntries("teambattle"))} themedQuestions={generatedPayloadToQuiz(generatedLaunch)} customControls={customControls("teambattle")} />;
+      return <TeamBattle onHome={() => returnFromActiveGame("home")} onGameComplete={recordPartyResult} onWordGuessed={recordFastestGuess} customQuestions={workshopEntriesToQuiz(customEntries("teambattle"))} customControls={customControls("teambattle")} />;
 
     default:
       return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => navigateFromMenu("settings")} favoriteGames={favoriteGames} onToggleFavorite={toggleFavorite} />;

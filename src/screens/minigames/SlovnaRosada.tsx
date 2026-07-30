@@ -1,15 +1,17 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import {
   ALL_SOLO_CHARADES_WORDS,
   SOLO_CHARADES_WORDS,
+  isValidCharadeText,
   type CharadesDifficulty,
 } from "../../data/charades";
 import { Button, Shell, TopBar } from "../../components/ui";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
-import type { GeneratedPrompt, WordGuessRecordInput, WorkshopEntry } from "../../types";
+import type { WordGuessRecordInput, WorkshopEntry } from "../../types";
 import { Icons } from "../../components/icons";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
+import { useCountdown } from "../../hooks/useCountdown";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -61,9 +63,12 @@ function buildDeck(difficulty: string, extraCards: Array<{ id: string; word: str
   }));
   const pool = uniqueCards.length > 0 ? uniqueCards : fallback;
   for (const { id, word } of extraCards) {
-    const key = word.trim().toLocaleLowerCase("sk");
-    if (!key) continue;
-    pool.push({ id: `custom:${id}`, word, category: "Vlastná téma", categoryIcon: "✨" });
+    const normalizedWord = word.trim().replace(/\s+/g, " ");
+    const key = normalizedWord.toLocaleLowerCase("sk");
+    // Vlastné/importované šarády dodržiavajú rovnaké pravidlá ako vstavané.
+    if (!isValidCharadeText(normalizedWord) || seen.has(key)) continue;
+    seen.add(key);
+    pool.push({ id: `custom:${id}`, word: normalizedWord, category: "Vlastná téma", categoryIcon: "✨" });
   }
   return pool;
 }
@@ -317,7 +322,6 @@ function PlayingScreen({
   }
   const [cardIdx, setCardIdx] = useState(0);
   const [card, setCard] = useState(drawNextCard);
-  const [timeLeft, setTimeLeft] = useState(timerSecs);
   const [skipsUsed, setSkipsUsed] = useState(0);
   const [correct, setCorrect] = useState(0);
   const [cardAnim, setCardAnim] = useState<"idle" | "correct" | "skip">("idle");
@@ -335,12 +339,8 @@ function PlayingScreen({
     onDone(correctRef.current, skipsRef.current);
   }
 
-  // Timer
-  useEffect(() => {
-    if (timeLeft <= 0) { finish(); return; }
-    const id = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
-    return () => clearTimeout(id);
-  });
+  // Odpočet beží podľa reálneho času, takže ho animácie kariet ani skóre nespomalia.
+  const { secondsLeft: timeLeft, percentLeft } = useCountdown(timerSecs, true, finish);
 
   function advance(type: "correct" | "skip") {
     if (doneRef.current || actionLockedRef.current) return false;
@@ -371,7 +371,7 @@ function PlayingScreen({
   }
 
   const canSkip = maxSkips === 99 || skipsUsed < maxSkips;
-  const timerPct = (timeLeft / timerSecs) * 100;
+  const timerPct = percentLeft;
   const isWarning = timeLeft <= 10;
 
   return (
@@ -439,7 +439,11 @@ function PlayingScreen({
           <p className="mb-3 text-xs font-bold uppercase tracking-widest text-gray-400">
             {card?.categoryIcon} {card?.category}
           </p>
-          <p className="text-4xl font-black text-gray-900 leading-tight">
+          <p
+            className="font-black text-gray-900 leading-tight break-words hyphens-auto"
+            style={{ fontSize: `clamp(1.35rem, ${Math.max(4, 12 - (card?.word?.length ?? 0) / 6)}vw, 2.25rem)` }}
+            lang="sk"
+          >
             {card?.word ?? ""}
           </p>
         </div>
@@ -449,7 +453,7 @@ function PlayingScreen({
       <div className="w-full px-8 mb-3">
         <div className="h-1.5 w-full rounded-full bg-white/10 overflow-hidden">
           <div
-            className={`h-full rounded-full transition-all duration-1000 ease-linear ${
+            className={`h-full rounded-full transition-[width] duration-200 ease-linear ${
               isWarning ? "bg-red-500" : "bg-purple-400"
             }`}
             style={{ width: `${timerPct}%` }}
@@ -503,14 +507,12 @@ export default function SlovnaRosada({
   partyConfig,
   customEntries = [],
   customControls,
-  themedPrompts = [],
   onWordGuessed,
 }: {
   onBack: () => void;
   partyConfig?: PartySlovnaRosadaConfig;
   customEntries?: WorkshopEntry[];
   customControls?: CustomContentControls;
-  themedPrompts?: GeneratedPrompt[];
   onWordGuessed?: (record: WordGuessRecordInput) => void;
 }) {
   const extraCards = customEntries.map((entry) => ({ id: entry.id, word: entry.text }));
@@ -639,9 +641,7 @@ export default function SlovnaRosada({
       <PlayingScreen
         player={current}
         deck={deck}
-        priorityCards={currentIdx === 0
-          ? themedPrompts.filter((prompt) => prompt.kind === "charade").map((prompt) => ({ word: prompt.text, category: "AI Party téma", categoryIcon: "✨" }))
-          : []}
+        priorityCards={[]}
         deckKey={`solo-charades:${difficulty}`}
         timerSecs={timerSecs}
         maxSkips={maxSkips}

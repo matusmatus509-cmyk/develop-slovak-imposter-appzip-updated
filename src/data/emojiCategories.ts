@@ -39,7 +39,7 @@ const FILMS = cards([
   "🐉👸|Shrek", "🦸‍♂️👨‍👩‍👧|Rodinka Úžasných", "🐜🌿|Mravec Z", "🐧🐧|Madagaskar", "🦣❄️|Doba ľadová",
   "🌊🐟|Hľadá sa Dory", "🚀🌍|Marťan", "🌕🚀|Apollo 13", "🧙‍♂️🪞|Doktor Parnassus", "🎩🐇|Iluzionista",
   "🦸‍♂️🕸️|Venom", "😈👠|Diabol nosí Pradu", "👑📖|Denník princeznej", "🎤⭐|Zrodila sa hviezda", "🎸🎶|Bohemian Rhapsody",
-  "🕺🧤|Michael Jackson: This Is It", "🐺🌕|Vlkolak", "🧛🩸|Dracula", "🧟‍♀️🏠|Resident Evil", "🤡🎈|To",
+  "🕺🧤|Michael Jackson – This Is It", "🐺🌕|Vlkolak", "🧛🩸|Dracula", "🧟‍♀️🏠|Resident Evil", "🤡🎈|To",
   "🧸👻|Annabelle", "🚪🚪🚪|Narnia", "🌪️🏠|Twister", "🦸‍♀️🐱|Catwoman", "🐎🏇|Spirit",
   "🧚‍♂️🌿|Peter Pan", "🐘🎪|Dumbo", "👸🌹|Na vlásku", "🍎👸|Snehulienka a sedem trpaslíkov", "🐺👵|Červená čiapočka",
 ]);

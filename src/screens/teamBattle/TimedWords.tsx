@@ -13,6 +13,7 @@ import { takePersistentItem, takePersistentItems } from "../../utils/persistentD
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
 import { CircularTimer } from "./PartyChrome";
 import { vibrate } from "../../utils/deviceFeedback";
+import { useCountdown } from "../../hooks/useCountdown";
 
 type SubPhase = "select-difficulty" | "ready" | "playing" | "team-done";
 
@@ -54,7 +55,6 @@ export default function TimedWords({
     hasDifficulty ? "select-difficulty" : "ready"
   );
   const [wordIdx, setWordIdx] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(timeSeconds);
   const [scores, setScores] = useState<[number, number]>([0, 0]);
   const [flash, setFlash] = useState<"ok" | "skip" | null>(null);
   const [roundScore, setRoundScore] = useState(0);
@@ -110,6 +110,25 @@ export default function TimedWords({
     setSubPhase("ready");
   }
 
+  const tiltStatus = useTiltGesture(
+    isHadajKtoSom && subPhase === "playing",
+    handleCorrect,
+    handleSkip,
+  );
+  const isTiltCalibrating = isHadajKtoSom && tiltStatus === "calibrating";
+
+  // Čas beží len počas hrania a počas kalibrácie senzora je pozastavený.
+  const { secondsLeft: timeLeft, percentLeft, reset: resetCountdown } = useCountdown(
+    timeSeconds,
+    subPhase === "playing" && !isTiltCalibrating,
+    () => {
+      if (doneRef.current) return;
+      doneRef.current = true;
+      setRoundScore(isPantomima ? 0 : correctRef.current * pointsPerWord);
+      setSubPhase("team-done");
+    },
+  );
+
   useEffect(() => {
     setSubPhase(hasDifficulty ? "select-difficulty" : "ready");
     setDifficulty(null);
@@ -118,33 +137,14 @@ export default function TimedWords({
     setActiveSharedWord("");
     setWordIdx(0);
     setSkipCount(0);
-    setTimeLeft(timeSeconds);
+    resetCountdown();
     setFlash(null);
     doneRef.current = false;
     correctRef.current = 0;
     actionLockedRef.current = false;
+    // Nový ťah tímu = čistý odpočet od plného času.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [teamIdx, timeSeconds, hasDifficulty]);
-
-  const tiltStatus = useTiltGesture(
-    isHadajKtoSom && subPhase === "playing",
-    handleCorrect,
-    handleSkip,
-  );
-  const isTiltCalibrating = isHadajKtoSom && tiltStatus === "calibrating";
-
-  useEffect(() => {
-    if (subPhase !== "playing" || isTiltCalibrating) return;
-    if (timeLeft <= 0) {
-      if (!doneRef.current) {
-        doneRef.current = true;
-        setRoundScore(isPantomima ? 0 : correctRef.current * pointsPerWord);
-        setSubPhase("team-done");
-      }
-      return;
-    }
-    const id = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
-    return () => clearTimeout(id);
-  }, [subPhase, timeLeft, pointsPerWord, isPantomima, isSarady, isTiltCalibrating]);
 
   function handleCorrect() {
     if (doneRef.current || actionLockedRef.current) return;
@@ -249,7 +249,7 @@ export default function TimedWords({
     }
   }
 
-  const timePercent = (timeLeft / timeSeconds) * 100;
+  const timePercent = percentLeft;
   const isWarning = timeLeft <= 10;
 
   if (subPhase === "select-difficulty") {
@@ -416,7 +416,7 @@ export default function TimedWords({
 
         <div className="relative z-10 mx-5 h-1.5 shrink-0 overflow-hidden rounded-full bg-white/10">
           <div
-            className="h-full transition-all duration-1000 ease-linear"
+            className="h-full transition-[width] duration-200 ease-linear"
             style={{ width: `${timePercent}%`, background: isWarning ? "#ef4444" : color }}
           />
         </div>
@@ -439,8 +439,13 @@ export default function TimedWords({
           )}
           <div className="party-glass party-shine relative w-full max-w-md overflow-hidden rounded-[2rem] px-6 py-9">
           <p
-            className="font-black leading-tight text-white"
-            style={{ fontSize: "clamp(2rem, 10vw, 4rem)", animation: "popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both" }}
+            className="font-black leading-tight text-white break-words hyphens-auto"
+            lang="sk"
+            style={{
+              // Dlhé scénické karty musia zostať čitateľné aj na úzkom displeji.
+              fontSize: `clamp(1.5rem, ${Math.max(5, 11 - String(currentWord ?? "").length / 6)}vw, 3.5rem)`,
+              animation: "popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both",
+            }}
           >
             {currentWord}
           </p>

@@ -49,12 +49,10 @@ export default function TeamBattleSetup({
   onBack,
   onStart,
   customControls,
-  quizOnly = false,
 }: {
   onBack: () => void;
   onStart: (teamNames: [string, string], selection: number | GameType[], options: TeamBattleOptions) => void;
   customControls?: CustomContentControls;
-  quizOnly?: boolean;
 }) {
   const { language } = useLanguage();
   const [names, setNames] = useState<[string, string]>([
@@ -63,7 +61,7 @@ export default function TeamBattleSetup({
   ]);
   const [selectionType, setSelectionType] = useState<BattleSelection>("ordered");
   const [randomRounds, setRandomRounds] = useState(5);
-  const [selectedGames, setSelectedGames] = useState<GameType[]>(quizOnly ? ["quiz"] : []);
+  const [selectedGames, setSelectedGames] = useState<GameType[]>([]);
   const [quickRounds, setQuickRounds] = useState(2);
   const [timeSeconds, setTimeSeconds] = useState(60);
   const [blue, red] = TEAM_COLORS;
@@ -85,9 +83,9 @@ export default function TeamBattleSetup({
     });
   }
 
-  const roundCount = quizOnly ? 1 : selectionType === "random" ? randomRounds : selectedGames.length;
+  const roundCount = selectionType === "random" ? randomRounds : selectedGames.length;
   const canStart = Boolean(
-    names[0].trim() && names[1].trim() && (quizOnly || selectionType === "random" || selectedGames.length > 0),
+    names[0].trim() && names[1].trim() && (selectionType === "random" || selectedGames.length > 0),
   );
 
   return (
@@ -150,16 +148,7 @@ export default function TeamBattleSetup({
             })}
           </section>
 
-          {quizOnly && (
-            <section className="party-glass mt-5 rounded-[1.75rem] border-cyan-300/25 bg-cyan-400/10 p-5 text-center">
-              <span className="text-3xl">✨</span>
-              <p className="mt-2 text-[10px] font-black uppercase tracking-[0.24em] text-cyan-300/75">AI Party téma</p>
-              <h2 className="mt-1 text-lg font-black text-white">Pripravené tematické kvízové kolo</h2>
-              <p className="mt-2 text-[11px] leading-relaxed text-white/45">Táto relácia používa iba vygenerované kvízové otázky. Stačí pomenovať tímy a začať.</p>
-            </section>
-          )}
-
-          <section className={quizOnly ? "hidden" : "mt-5"}>
+          <section className="mt-5">
             <div className="mb-3 flex items-end justify-between">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">Zostava hier</p>
@@ -316,7 +305,7 @@ export default function TeamBattleSetup({
 
           {customControls && <div className="mt-4"><CustomContentSelector controls={customControls} compact /></div>}
 
-          <section className={quizOnly ? "hidden" : "party-glass mt-4 rounded-[1.75rem] p-5"}>
+          <section className="party-glass mt-4 rounded-[1.75rem] p-5">
             <div>
               <p className="text-[10px] font-black uppercase tracking-[0.24em] text-emerald-300/70">Pravidlá kôl</p>
               <p className="mt-1 text-sm font-bold text-white/70">Nastavte tempo celej bitky</p>
@@ -361,11 +350,11 @@ export default function TeamBattleSetup({
           </section>
 
           <button
-            onClick={() => onStart(names, quizOnly ? ["quiz"] : selectionType === "random" ? randomRounds : selectedGames, { quickRounds, timeSeconds })}
+            onClick={() => onStart(names, selectionType === "random" ? randomRounds : selectedGames, { quickRounds, timeSeconds })}
             disabled={!canStart}
             className="party-shine mt-6 w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 via-fuchsia-500 to-pink-500 px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white shadow-[0_18px_50px_rgba(168,85,247,.35)] transition active:scale-[.97] disabled:opacity-40"
           >
-            {quizOnly ? "Začať tematický kvíz" : "Začať party hru"}
+            Začať party hru
           </button>
         </div>
       </main>

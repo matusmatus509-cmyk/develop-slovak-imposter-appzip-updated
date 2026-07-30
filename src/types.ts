@@ -85,48 +85,6 @@ export interface WorkshopSelection {
 
 export type WorkshopSelections = Record<CustomContentGame, WorkshopSelection>;
 
-export type AiAudience = "friends" | "family" | "couple";
-export type AiVibe = "fun" | "chill" | "competitive";
-export type AiIntensity = 1 | 2 | 3;
-
-export interface PartyGeneratorControls {
-  audience: AiAudience;
-  vibe: AiVibe;
-  intensity: AiIntensity;
-  playerCount?: number;
-  context: string;
-}
-
-export interface GeneratedPrompt {
-  kind: Exclude<WorkshopEntryKind, "emoji" | "word">;
-  text: string;
-  answer?: string;
-}
-
-export interface GeneratedGameGroup {
-  id: string;
-  screen: Extract<Screen, "truth-or-dare" | "never-have-i-ever" | "would-you-rather" | "hadajktosom" | "slovnarosada" | "teambattle">;
-  title: string;
-  icon: string;
-  prompts: GeneratedPrompt[];
-}
-
-export interface GeneratedPartySession {
-  id: string;
-  title: string;
-  summary: string;
-  themeTags: string[];
-  controls: PartyGeneratorControls;
-  groups: GeneratedGameGroup[];
-}
-
-export interface GeneratedLaunchPayload {
-  sessionId: string;
-  screen: GeneratedGameGroup["screen"];
-  title: string;
-  prompts: GeneratedPrompt[];
-}
-
 export interface FeedbackSettings {
   darkMode: boolean;
   soundsEnabled: boolean;
