@@ -6,6 +6,8 @@ import songArt from "../assets/party-song.svg";
 import soundArt from "../assets/party-sound.svg";
 import letterArt from "../assets/party-letter.svg";
 import fiveTenArt from "../assets/party-five-ten.svg";
+import ticTacToeArt from "../assets/tic-tac-toe-card.svg";
+import battleshipArt from "../assets/battleship-card.svg";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -231,6 +233,32 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     deep: "#06271c",
     artPosition: "center",
     art: fiveTenArt,
+  },
+  "tic-tac-toe": {
+    eyebrow: "Tri symboly v rade",
+    title: "Piškvorky",
+    description: "Nadčasový súboj X a O v animovanom prevedení. Hrajte vo dvojici alebo proti šikovnému robotovi.",
+    rule: "Prvý hráč s tromi symbolmi v rade vyhráva",
+    players: "1–2 hráči",
+    duration: "1–5 min",
+    accent: "#22d3ee",
+    accentSoft: "rgba(34,211,238,.22)",
+    deep: "#061d2c",
+    artPosition: "center",
+    art: ticTacToeArt,
+  },
+  battleship: {
+    eyebrow: "Námorná bitka 10 × 10",
+    title: "Loďky",
+    description: "Rozmiestni päť lodí, odhadni pozície nepriateľa a potop jeho flotilu skôr než on tú tvoju.",
+    rule: "Jeden výstrel na ťah — zásah, vedľa alebo potopená loď",
+    players: "1 hráč proti AI",
+    duration: "10–20 min",
+    accent: "#38bdf8",
+    accentSoft: "rgba(56,189,248,.22)",
+    deep: "#051a2b",
+    artPosition: "center",
+    art: battleshipArt,
   },
 };
 
