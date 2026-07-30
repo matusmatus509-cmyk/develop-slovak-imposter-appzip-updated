@@ -804,3 +804,48 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 .battle-preview-invalid { border-color: rgba(251,113,133,.9) !important; background: rgba(244,63,94,.35) !important; box-shadow: inset 0 0 0 1px rgba(254,205,211,.38); }
 .battle-player-active { border-color: rgba(103,232,249,.38) !important; background: linear-gradient(145deg, rgba(34,211,238,.15), rgba(10,15,25,.88)); box-shadow: 0 16px 38px -26px rgba(34,211,238,.7); transform: translateY(-2px); }
 .battle-player-active.battle-player-two { border-color: rgba(252,211,77,.38) !important; background: linear-gradient(145deg, rgba(245,158,11,.15), rgba(10,15,25,.88)); box-shadow: 0 16px 38px -26px rgba(245,158,11,.65); }
+
+
+
+/* Compact, touch-friendly game stages: every active round stays inside the viewport. */
+.tic-game-screen,
+.battle-game-screen,
+.battle-placement-screen {
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.tic-game-screen .tic-board {
+  width: min(100%, 48dvh, 390px);
+}
+
+.battle-grid-compact {
+  padding: .35rem;
+  border-radius: .9rem;
+}
+
+.battle-board-compact .battle-wave { animation-duration: 6s; }
+.battle-board-compact .battle-hit-burst,
+.battle-board-compact .battle-sunk-mark { font-size: clamp(.45rem, 3.2vw, .8rem); }
+
+.battle-placement-map .battle-board {
+  width: min(100%, 44dvh, 21rem);
+}
+
+.battle-placement-map .battle-placement-notice {
+  max-width: min(100%, 21rem);
+}
+
+.battle-play-boards .battle-board {
+  width: min(100%, 34dvh, 15.5rem);
+}
+
+.battle-play-boards .battle-board-muted { opacity: .52; }
+
+@media (max-height: 620px) {
+  .tic-game-screen .tic-board { width: min(100%, 45dvh, 330px); }
+  .battle-placement-map .battle-board { width: min(100%, 40dvh, 18rem); }
+  .battle-play-boards .battle-board { width: min(100%, 31dvh, 13.5rem); }
+  .battle-placement-heading p:last-child { display: none; }
+}

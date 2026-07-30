@@ -3,6 +3,7 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ChangeEvent,
   type PointerEvent as ReactPointerEvent,
@@ -73,6 +74,25 @@ function isValidPlacement(cells: number[] | null, ships: ShipState[], noTouching
   const occupied = new Set(ships.flatMap((ship) => ship.cells));
   if (cells.some((cell) => occupied.has(cell))) return false;
   return !noTouching || cells.every((cell) => neighbours(cell).every((nearby) => !occupied.has(nearby)));
+}
+
+function nearestValidPlacement(target: number, definition: ShipDefinition, orientation: Orientation, ships: ShipState[], noTouching: boolean) {
+  const targetRow = Math.floor(target / SIZE);
+  const targetColumn = target % SIZE;
+  let nearest: number | null = null;
+  let nearestDistance = Infinity;
+  for (let candidate = 0; candidate < SIZE * SIZE; candidate += 1) {
+    const cells = placementCells(candidate, definition.length, orientation);
+    if (!isValidPlacement(cells, ships, noTouching)) continue;
+    const rowDistance = Math.abs(Math.floor(candidate / SIZE) - targetRow);
+    const columnDistance = Math.abs(candidate % SIZE - targetColumn);
+    const distance = rowDistance + columnDistance;
+    if (distance < nearestDistance) {
+      nearest = candidate;
+      nearestDistance = distance;
+    }
+  }
+  return nearest;
 }
 
 function randomFleet(noTouching: boolean): ShipState[] {
@@ -152,12 +172,10 @@ function resultLabel(result: ShotResult, ship?: ShipState) {
   return "Všetky lode potopené!";
 }
 
-function FleetStrip({ ships, color = "cyan", hidden = false }: { ships: ShipState[]; color?: "cyan" | "amber"; hidden?: boolean }) {
-  return <div className="grid grid-cols-5 gap-1.5" aria-label="Stav flotily">{FLEET.map((definition) => {
-    const ship = ships.find((item) => item.id === definition.id);
-    const sunk = ship?.sunk;
-    const hits = ship?.hits.length ?? 0;
-    return <div key={definition.id} title={definition.name} className={`rounded-xl border px-1.5 py-2 text-center transition ${sunk ? "border-rose-400/25 bg-rose-500/10 opacity-45" : "border-white/[.08] bg-white/[.035]"}`}><div className="flex justify-center gap-[2px]">{Array.from({ length: definition.length }, (_, index) => <span key={index} className={`h-1.5 flex-1 rounded-full ${sunk || (!hidden && index < hits) ? "bg-rose-400" : color === "cyan" ? "bg-cyan-300/55" : "bg-amber-300/55"}`} />)}</div><p className="mt-1.5 truncate text-[6px] font-black uppercase tracking-wide text-white/35">{sunk ? "Potopená" : definition.shortName}</p></div>;
+function DeploymentFleetStatus({ ships }: { ships: ShipState[] }) {
+  return <div className="battle-deployment-status grid grid-cols-5 gap-1" aria-label="Rozmiestnenie flotily">{FLEET.map((definition) => {
+    const placed = ships.some((ship) => ship.id === definition.id);
+    return <div key={definition.id} title={`${definition.name}: ${placed ? "umiestnená" : "ešte treba umiestniť"}`} className={`min-w-0 rounded-lg border px-1 py-1 text-center ${placed ? "border-emerald-300/30 bg-emerald-400/10 text-emerald-200" : "border-white/[.08] bg-white/[.035] text-white/40"}`}><span className="block text-[9px] font-black leading-none">{placed ? "✓" : definition.length}</span><span className="mt-0.5 block truncate text-[5px] font-black uppercase tracking-wide">{placed ? "hotovo" : definition.shortName}</span></div>;
   })}</div>;
 }
 
@@ -166,33 +184,38 @@ function BattleGrid({
   revealShips,
   disabled = false,
   onCell,
+  onShipPointerDown,
   lastShot,
   label,
   placement = false,
   previewCells = [],
   previewValid = true,
   emphasis = "normal",
+  compact = false,
 }: {
   board: BoardState;
   revealShips: boolean;
   disabled?: boolean;
   onCell?: (index: number) => void;
+  onShipPointerDown?: (shipId: string, event: ReactPointerEvent<HTMLButtonElement>) => void;
   lastShot?: number | null;
   label: string;
   placement?: boolean;
   previewCells?: number[];
   previewValid?: boolean;
   emphasis?: "normal" | "active" | "muted";
+  compact?: boolean;
 }) {
-  return <div className={`battle-board battle-board-${emphasis}`}>
-    <div className="mb-2 flex items-center justify-between"><p className="text-[9px] font-black uppercase tracking-[.22em] text-white/38">{label}</p><span className="text-[8px] font-black uppercase tracking-wider text-cyan-300/45">10 × 10</span></div>
-    <div className={`battle-grid rounded-[1.35rem] border border-cyan-200/10 bg-[#07131e]/85 p-2 shadow-2xl shadow-cyan-950/30 ${placement ? "battle-placement-grid" : ""}`} style={{ display: "grid", gridTemplateColumns: "18px repeat(10,minmax(0,1fr))", gap: "3px" }}>
-      <span />{Array.from({ length: SIZE }, (_, index) => <span key={`column-${index}`} className="flex items-center justify-center text-[7px] font-black text-white/28">{index + 1}</span>)}
-      {ROWS.map((row, rowIndex) => <Fragment key={row}><span className="flex items-center justify-center text-[7px] font-black text-white/28">{row}</span>{Array.from({ length: SIZE }, (_, columnIndex) => {
+  return <div className={["battle-board", emphasis === "active" ? "battle-board-active" : emphasis === "muted" ? "battle-board-muted" : "battle-board-normal", compact ? "battle-board-compact" : ""].filter(Boolean).join(" ")}>
+    <div className={[compact ? "mb-1" : "mb-2", "flex", "items-center", "justify-between"].join(" ")}><p className={[compact ? "text-[7px]" : "text-[9px]", "font-black", "uppercase", "tracking-[.22em]", "text-white/38"].join(" ")}>{label}</p><span className={[compact ? "text-[6px]" : "text-[8px]", "font-black", "uppercase", "tracking-wider", "text-cyan-300/45"].join(" ")}>10 × 10</span></div>
+    <div className={["battle-grid", "rounded-[1.35rem]", "border", "border-cyan-200/10", "bg-[#07131e]/85", "shadow-2xl", "shadow-cyan-950/30", placement ? "battle-placement-grid" : "", compact ? "battle-grid-compact" : "p-2"].filter(Boolean).join(" ")} style={{ display: "grid", gridTemplateColumns: compact ? "12px repeat(10,minmax(0,1fr))" : "18px repeat(10,minmax(0,1fr))", gap: compact ? "1.5px" : "3px" }}>
+      <span />{Array.from({ length: SIZE }, (_, index) => <span key={`column-${index}`} className={`flex items-center justify-center ${compact ? "text-[5px]" : "text-[7px]"} font-black text-white/28`}>{index + 1}</span>)}
+      {ROWS.map((row, rowIndex) => <Fragment key={row}><span className={`flex items-center justify-center ${compact ? "text-[5px]" : "text-[7px]"} font-black text-white/28`}>{row}</span>{Array.from({ length: SIZE }, (_, columnIndex) => {
         const index = rowIndex * SIZE + columnIndex;
         const state = visibleState(board, index, revealShips);
         const interactive = placement || (Boolean(onCell) && !disabled && !board.shots[index]);
         const preview = previewCells.includes(index);
+        const placedShip = placement ? board.ships.find((ship) => ship.cells.includes(index)) : undefined;
         return <button
           key={index}
           type="button"
@@ -200,8 +223,9 @@ function BattleGrid({
           data-placement-index={placement ? index : undefined}
           aria-label={`${coordinate(index)}: ${state}`}
           disabled={!interactive}
+          onPointerDown={(event) => { if (placedShip) onShipPointerDown?.(placedShip.id, event); }}
           onClick={() => onCell?.(index)}
-          className={`battle-cell relative aspect-square min-w-0 overflow-hidden rounded-[5px] border transition ${lastShot === index ? "battle-cell-latest" : ""} ${preview ? previewValid ? "battle-preview-valid" : "battle-preview-invalid" : ""}`}
+          className={`battle-cell relative aspect-square min-w-0 overflow-hidden ${compact ? "rounded-[3px]" : "rounded-[5px]"} border transition ${lastShot === index ? "battle-cell-latest" : ""} ${preview ? previewValid ? "battle-preview-valid" : "battle-preview-invalid" : ""}`}
         ><span className="battle-wave" />{state === "MISS" && <span className="battle-miss-dot" />}{state === "HIT" && <span className="battle-hit-burst">×</span>}{state === "SUNK" && <span className="battle-sunk-mark">×</span>}</button>;
       })}</Fragment>)}
     </div>
@@ -240,6 +264,7 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
   const [orientations, setOrientations] = useState<Record<string, Orientation>>(DEFAULT_ORIENTATIONS);
   const [selectedShipId, setSelectedShipId] = useState<string>(FLEET[0].id);
   const [drag, setDrag] = useState<DragState | null>(null);
+  const suppressPlacementClickRef = useRef(false);
   const [noTouching, setNoTouching] = useState(true);
   const [hitKeepsTurn, setHitKeepsTurn] = useState(false);
   const [playerBoard, setPlayerBoard] = useState<BoardState>(emptyBoard());
@@ -261,9 +286,12 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
     if (!drag || drag.hoverIndex === null) return { cells: [] as number[], valid: true };
     const definition = FLEET.find((ship) => ship.id === drag.shipId);
     if (!definition) return { cells: [] as number[], valid: false };
-    const cells = placementCells(drag.hoverIndex, definition.length, orientations[definition.id]);
     const others = placementBoard.ships.filter((ship) => ship.id !== definition.id);
-    return { cells: cells ?? [], valid: isValidPlacement(cells, others, noTouching) };
+    const requestedCells = placementCells(drag.hoverIndex, definition.length, orientations[definition.id]);
+    const start = isValidPlacement(requestedCells, others, noTouching)
+      ? drag.hoverIndex
+      : nearestValidPlacement(drag.hoverIndex, definition, orientations[definition.id], others, noTouching);
+    return { cells: start === null ? [] : placementCells(start, definition.length, orientations[definition.id]) ?? [], valid: start !== null };
   }, [drag, noTouching, orientations, placementBoard.ships]);
 
   const setPlacementBoard = useCallback((next: BoardState) => {
@@ -284,17 +312,24 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
     const definition = FLEET.find((ship) => ship.id === shipId);
     if (!definition) return false;
     const remainingShips = placementBoard.ships.filter((ship) => ship.id !== shipId);
-    const cells = placementCells(index, definition.length, orientations[shipId]);
-    if (!isValidPlacement(cells, remainingShips, noTouching) || !cells) {
-      setNotice(noTouching ? "Sem sa loď nezmestí alebo sa dotýka inej lode." : "Sem sa loď nezmestí alebo prekrýva inú loď.");
+    const requestedCells = placementCells(index, definition.length, orientations[shipId]);
+    const start = isValidPlacement(requestedCells, remainingShips, noTouching)
+      ? index
+      : nearestValidPlacement(index, definition, orientations[shipId], remainingShips, noTouching);
+    if (start === null) {
+      setNotice("Pre túto loď už nie je voľné miesto. Skús presunúť inú loď alebo vyčistiť flotilu.");
       playFeedback("loss");
       return false;
     }
+    const cells = placementCells(start, definition.length, orientations[shipId])!;
     const ships = [...remainingShips, { ...definition, cells, hits: [], sunk: false }];
     setPlacementBoard(emptyBoard(ships));
     const next = FLEET.find((ship) => !ships.some((placed) => placed.id === ship.id));
     if (next) setSelectedShipId(next.id);
-    setNotice(next ? `Teraz polož: ${next.name}.` : "Flotila je pripravená. Lode môžeš stále presúvať alebo otáčať.");
+    const snapped = start !== index;
+    setNotice(snapped
+      ? `${definition.name} som umiestnil na najbližšie voľné miesto (${coordinate(start)}).`
+      : next ? `Teraz polož: ${next.name}.` : "Flotila je pripravená. Lode môžeš stále presúvať alebo otáčať.");
     playFeedback(next ? "click" : "win");
     return true;
   }, [noTouching, orientations, placementBoard.ships, playFeedback, setPlacementBoard]);
@@ -312,7 +347,11 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
       if (event.pointerId !== drag.pointerId) return;
       const element = document.elementFromPoint(event.clientX, event.clientY)?.closest<HTMLElement>("[data-placement-index]");
       const value = element?.dataset.placementIndex;
-      if (value !== undefined) placeShip(drag.shipId, Number(value));
+      if (value !== undefined) {
+        suppressPlacementClickRef.current = true;
+        window.setTimeout(() => { suppressPlacementClickRef.current = false; }, 0);
+        placeShip(drag.shipId, Number(value));
+      }
       setDrag(null);
     };
     const cancel = (event: PointerEvent) => { if (event.pointerId === drag.pointerId) setDrag(null); };
@@ -373,6 +412,14 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
     setSelectedShipId(shipId);
     event.currentTarget.setPointerCapture?.(event.pointerId);
     setDrag({ shipId, pointerId: event.pointerId, x: event.clientX, y: event.clientY, hoverIndex: null });
+  }
+
+  function handlePlacementCellClick(index: number) {
+    if (suppressPlacementClickRef.current) {
+      suppressPlacementClickRef.current = false;
+      return;
+    }
+    placeShip(selectedShipId, index);
   }
 
   function rotateShip(shipId: string) {
@@ -530,34 +577,32 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
   if (phase === "deploying") return <PartyBackdrop><main className="flex h-full flex-col items-center justify-center px-6 text-center text-white"><div className="battle-radar relative flex h-44 w-44 items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-400/[.06]"><span className="battle-radar-sweep" /><span className="text-6xl">🚢</span></div><div className="mt-7"><PartyEyebrow>Čakanie na súpera</PartyEyebrow></div><h1 className="mt-5 text-3xl font-black">Flotily vyplávajú</h1><p className="mt-3 max-w-xs text-sm leading-relaxed text-white/45">Robot tajne rozmiestňuje svoje lode. Priprav delá!</p></main></PartyBackdrop>;
 
   if (phase === "placement") return <PartyBackdrop>
-    <main className="h-full overflow-y-auto px-4 pb-9 pt-5 text-white">
-      <div className="mx-auto w-full max-w-md">
-        <header className="flex items-center justify-between"><button onClick={newGame} aria-label="Zrušiť hru" className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[.06] text-white/70 transition active:scale-90"><Icons.chevronLeft size={21} /></button><PartyEyebrow>{mode === "local" ? `Hráč ${deploymentPlayer + 1} · súkromne` : "Tvoja flotila"}</PartyEyebrow><div className="h-11 w-11" /></header>
-        <section className="mt-5 text-center"><p className="text-[9px] font-black uppercase tracking-[.24em] text-cyan-300/60">Rozmiestnenie lodí</p><h1 className="mt-1 text-3xl font-black">{mode === "local" ? `Flotila hráča ${deploymentPlayer + 1}` : "Priprav svoju flotilu"}</h1><p className="mx-auto mt-2 max-w-sm text-xs leading-relaxed text-white/42">Všetkých päť lodí vidíš naraz. Podrž samotnú siluetu lode a presuň ju na mapu.</p></section>
+    <main className="battle-placement-screen h-[100dvh] overflow-hidden px-3 py-3 text-white">
+      <div className="mx-auto flex h-full w-full max-w-md flex-col">
+        <header className="flex shrink-0 items-center justify-between"><button onClick={newGame} aria-label="Zrušiť hru" className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[.06] text-white/70 transition active:scale-90"><Icons.chevronLeft size={19} /></button><PartyEyebrow>{mode === "local" ? `Hráč ${deploymentPlayer + 1} · súkromne` : "Tvoja flotila"}</PartyEyebrow><div className="h-10 w-10" /></header>
+        <section className="battle-placement-heading mt-2 shrink-0 text-center"><p className="text-[7px] font-black uppercase tracking-[.24em] text-cyan-300/60">Rozmiestnenie lodí</p><h1 className="mt-0.5 text-xl font-black">{mode === "local" ? `Flotila hráča ${deploymentPlayer + 1}` : "Priprav svoju flotilu"}</h1><p className="mt-0.5 text-[9px] leading-relaxed text-white/42">Ťahaj loď z lišty alebo už položenú loď priamo po mape.</p></section>
 
-        <section className="party-glass mt-5 rounded-[1.6rem] p-3.5">
-          <div className="mb-3 flex items-center justify-between"><div><p className="text-[9px] font-black uppercase tracking-[.2em] text-white/35">Lode na presúvanie</p><p className="mt-1 text-[9px] font-bold text-cyan-300/60">Podrž len farebnú siluetu lode a presuň ju na mapu</p></div><span className="rounded-full border border-white/10 bg-white/[.05] px-3 py-1.5 text-[9px] font-black text-white/45">{placedCount}/5</span></div>
-          <div className="battle-ship-tray grid grid-cols-5 gap-1.5">{FLEET.map((definition) => {
+        <section className="battle-placement-status mt-2 shrink-0 rounded-xl border border-white/[.08] bg-white/[.035] p-1.5"><div className="mb-1 flex items-center justify-between px-1"><p className="text-[7px] font-black uppercase tracking-[.18em] text-white/38">Stav flotily</p><span className="text-[8px] font-black text-cyan-200/65">{placedCount}/5</span></div><DeploymentFleetStatus ships={placementBoard.ships} /></section>
+
+        <section className="battle-placement-tray mt-2 shrink-0 rounded-xl border border-white/[.08] bg-white/[.035] p-1.5">
+          <div className="battle-ship-tray grid grid-cols-5 gap-1">{FLEET.map((definition) => {
             const placed = placementBoard.ships.some((ship) => ship.id === definition.id);
             const selected = selectedShipId === definition.id;
             const vertical = orientations[definition.id] === "vertical";
-            return <article key={definition.id} className={`battle-ship-block min-w-0 rounded-xl border p-0.5 transition ${selected ? "is-selected border-cyan-300/45 bg-cyan-400/12" : placed ? "border-emerald-300/20 bg-emerald-400/[.07]" : "border-white/[.08] bg-white/[.035]"}`}>
-              <button type="button" onClick={() => { setSelectedShipId(definition.id); setNotice(`Vybraná: ${definition.name}. Klepni na mapu alebo chyť farebnú siluetu a presuň ju.`); }} className="battle-ship-select flex h-[62px] w-full flex-col items-center justify-center rounded-lg bg-black/10" aria-label={`Vybrať ${definition.name}`}>
-                <span onPointerDown={(event) => beginDrag(definition.id, event)} className={`battle-ship-silhouette flex min-h-9 min-w-9 cursor-grab rounded-lg border border-white/10 bg-black/20 p-1 active:cursor-grabbing ${vertical ? "flex-col" : "flex-row"} gap-px`} aria-label={`Presunúť ${definition.name}`}>{Array.from({ length: definition.length }, (_, index) => <i key={index} className={`h-1 w-1 rounded-[1px] ${placed ? "bg-emerald-300" : "bg-cyan-300"}`} />)}</span>
-                <small className="mt-1 max-w-full truncate px-0.5 text-[6px] font-black uppercase tracking-wide text-white/45">{definition.shortName}</small>
+            return <article key={definition.id} className={`battle-ship-block min-w-0 rounded-lg border p-0.5 transition ${selected ? "is-selected border-cyan-300/45 bg-cyan-400/12" : placed ? "border-emerald-300/20 bg-emerald-400/[.07]" : "border-white/[.08] bg-white/[.035]"}`}>
+              <button type="button" onClick={() => { setSelectedShipId(definition.id); setNotice(`Vybraná: ${definition.name}. Klepni na mapu alebo ju presuň.`); }} className="battle-ship-select flex h-11 w-full flex-col items-center justify-center rounded-md bg-black/10" aria-label={`Vybrať ${definition.name}`}>
+                <span onPointerDown={(event) => beginDrag(definition.id, event)} className={`battle-ship-silhouette flex min-h-7 min-w-7 cursor-grab rounded-md border border-white/10 bg-black/20 p-1 active:cursor-grabbing ${vertical ? "flex-col" : "flex-row"} gap-px`} aria-label={`Presunúť ${definition.name}`}>{Array.from({ length: definition.length }, (_, index) => <i key={index} className={`h-1 w-1 rounded-[1px] ${placed ? "bg-emerald-300" : "bg-cyan-300"}`} />)}</span>
+                <small className="mt-0.5 max-w-full truncate px-0.5 text-[5px] font-black uppercase tracking-wide text-white/45">{definition.shortName}</small>
               </button>
-              <button type="button" onClick={() => rotateShip(definition.id)} aria-label={`Otočiť ${definition.name} ${vertical ? "vodorovne" : "zvisle"}`} className="mt-1.5 w-full rounded-md border border-white/[.07] bg-white/[.04] py-1 text-[10px] font-black text-white/60">{vertical ? "↔" : "↕"}</button>
+              <button type="button" onClick={() => rotateShip(definition.id)} aria-label={`Otočiť ${definition.name} ${vertical ? "vodorovne" : "zvisle"}`} className="mt-1 w-full rounded border border-white/[.07] bg-white/[.04] py-0.5 text-[8px] font-black text-white/60">{vertical ? "↔" : "↕"}</button>
             </article>;
           })}</div>
         </section>
 
-        <section className="party-glass mt-3 rounded-[1.6rem] p-3.5">
-          <BattleGrid board={placementBoard} revealShips placement onCell={(index) => placeShip(selectedShipId, index)} previewCells={preview.cells} previewValid={preview.valid} label={`${mode === "local" ? `Hráč ${deploymentPlayer + 1}` : "Ty"} — tajné vody`} />
-          <p className={`mt-3 min-h-9 rounded-xl border px-3 py-2 text-center text-[10px] font-bold leading-relaxed ${placedCount === 5 ? "border-emerald-300/15 bg-emerald-400/[.07] text-emerald-200" : "border-white/[.07] bg-white/[.03] text-white/45"}`}>{notice}</p>
-        </section>
+        <section className="battle-placement-map mt-2 flex min-h-0 flex-1 flex-col items-center justify-center"><BattleGrid board={placementBoard} revealShips placement compact onCell={handlePlacementCellClick} onShipPointerDown={beginDrag} previewCells={preview.cells} previewValid={preview.valid} label={`${mode === "local" ? `Hráč ${deploymentPlayer + 1}` : "Ty"} — tajné vody`} /><p className={`battle-placement-notice mt-1 w-full rounded-lg border px-2 py-1 text-center text-[8px] font-bold leading-relaxed ${placedCount === 5 ? "border-emerald-300/15 bg-emerald-400/[.07] text-emerald-200" : "border-white/[.07] bg-white/[.03] text-white/45"}`}>{notice}</p></section>
 
-        <div className="mt-3 grid grid-cols-2 gap-2"><button onClick={randomizeFleet} className="rounded-xl border border-white/10 bg-white/[.05] py-3 text-[10px] font-black uppercase tracking-wider text-white/60">🎲 Náhodne</button><button onClick={clearFleet} className="rounded-xl border border-white/10 bg-white/[.05] py-3 text-[10px] font-black uppercase tracking-wider text-white/60">Vyčistiť</button></div>
-        <button onClick={confirmPlacement} disabled={placedCount !== FLEET.length || Boolean(drag)} className="party-shine relative mt-5 w-full overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-700 py-5 text-sm font-black uppercase tracking-[.12em] text-white shadow-xl shadow-cyan-500/15 transition active:scale-[.97] disabled:opacity-30">{mode === "local" ? deploymentPlayer === 0 ? "Uložiť a odovzdať hráčovi 2" : "Uložiť flotilu hráča 2" : "Začať bitku"}</button>
+        <div className="mt-2 grid shrink-0 grid-cols-2 gap-2"><button onClick={randomizeFleet} className="rounded-lg border border-white/10 bg-white/[.05] py-2 text-[8px] font-black uppercase tracking-wider text-white/60">🎲 Náhodne</button><button onClick={clearFleet} className="rounded-lg border border-white/10 bg-white/[.05] py-2 text-[8px] font-black uppercase tracking-wider text-white/60">Vyčistiť</button></div>
+        <button onClick={confirmPlacement} disabled={placedCount !== FLEET.length || Boolean(drag)} className="party-shine relative mt-2 shrink-0 w-full overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-700 py-3 text-[10px] font-black uppercase tracking-[.12em] text-white shadow-xl shadow-cyan-500/15 transition active:scale-[.97] disabled:opacity-30">{mode === "local" ? deploymentPlayer === 0 ? "Uložiť a odovzdať hráčovi 2" : "Uložiť flotilu hráča 2" : "Začať bitku"}</button>
       </div>
       {drag && <div className="battle-drag-ghost pointer-events-none fixed z-[200] -translate-x-1/2 -translate-y-1/2 rounded-xl border border-cyan-200/35 bg-[#102a3d]/95 px-3 py-2 shadow-2xl shadow-cyan-500/25" style={{ left: drag.x, top: drag.y }}><div className={`flex ${orientations[drag.shipId] === "vertical" ? "flex-col" : "flex-row"} gap-1`}>{Array.from({ length: FLEET.find((ship) => ship.id === drag.shipId)?.length ?? 0 }, (_, index) => <i key={index} className="h-3 w-3 rounded-[3px] bg-cyan-200" />)}</div></div>}
     </main>
@@ -565,34 +610,25 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
 
   const winnerName = winner === "player" ? "Hráč 1" : mode === "ai" ? "Robot" : "Hráč 2";
   return <PartyBackdrop>
-    <main className="h-full overflow-y-auto px-4 pb-10 pt-5 text-white">
-      <div className="mx-auto w-full max-w-md">
-        <header className="flex items-center justify-between"><button onClick={newGame} aria-label="Nová hra" className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[.06] text-white/70 transition active:scale-90"><Icons.chevronLeft size={21} /></button><PartyEyebrow>{phase === "finished" ? "Koniec hry" : `${activeName} je na ťahu`}</PartyEyebrow><div className="h-11 w-11" /></header>
+    <main className="battle-game-screen relative h-[100dvh] overflow-hidden px-3 py-3 text-white">
+      <div className="mx-auto flex h-full w-full max-w-md flex-col">
+        <header className="flex shrink-0 items-center justify-between"><button onClick={newGame} aria-label="Nová hra" className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[.06] text-white/70 transition active:scale-90"><Icons.chevronLeft size={19} /></button><PartyEyebrow>{phase === "finished" ? "Koniec hry" : `${activeName} je na ťahu`}</PartyEyebrow><div className="h-10 w-10" /></header>
 
-        <section className="mt-5 grid grid-cols-3 gap-2 text-center"><div className={`party-glass rounded-xl p-3 ${turn === "player" && phase === "playing" ? "battle-player-active" : ""}`}><p className="text-[7px] font-black uppercase tracking-wider text-white/30">Hráč 1</p><p className="mt-1 text-2xl font-black text-cyan-300">{playerRemaining}</p><p className="text-[7px] font-bold text-white/25">lodí</p></div><div className="party-glass rounded-xl p-3"><p className="text-[7px] font-black uppercase tracking-wider text-white/30">{mode === "ai" ? "Bilancia" : "Súboj"}</p><p className="mt-2 text-sm font-black">{mode === "ai" ? <><span className="text-emerald-300">{stats.wins} V</span> · <span className="text-rose-300">{stats.losses} P</span></> : <span className="text-white/55">1 vs 1</span>}</p></div><div className={`party-glass rounded-xl p-3 ${turn === "ai" && phase === "playing" ? "battle-player-active battle-player-two" : ""}`}><p className="text-[7px] font-black uppercase tracking-wider text-white/30">{mode === "ai" ? "Robot" : "Hráč 2"}</p><p className="mt-1 text-2xl font-black text-amber-300">{enemyRemaining}</p><p className="text-[7px] font-bold text-white/25">lodí</p></div></section>
+        <section className="battle-scoreboard mt-2 grid shrink-0 grid-cols-3 gap-1.5 text-center"><div className={`party-glass rounded-xl p-1.5 ${turn === "player" && phase === "playing" ? "battle-player-active" : ""}`}><p className="text-[6px] font-black uppercase tracking-wider text-white/30">Hráč 1</p><p className="mt-0.5 text-lg font-black text-cyan-300">{playerRemaining}</p><p className="text-[6px] font-bold text-white/25">lodí</p></div><div className="party-glass rounded-xl p-1.5"><p className="text-[6px] font-black uppercase tracking-wider text-white/30">{mode === "ai" ? "Bilancia" : "Súboj"}</p><p className="mt-1 text-[10px] font-black">{mode === "ai" ? <><span className="text-emerald-300">{stats.wins} V</span> · <span className="text-rose-300">{stats.losses} P</span></> : <span className="text-white/55">1 vs 1</span>}</p></div><div className={`party-glass rounded-xl p-1.5 ${turn === "ai" && phase === "playing" ? "battle-player-active battle-player-two" : ""}`}><p className="text-[6px] font-black uppercase tracking-wider text-white/30">{mode === "ai" ? "Robot" : "Hráč 2"}</p><p className="mt-0.5 text-lg font-black text-amber-300">{enemyRemaining}</p><p className="text-[6px] font-bold text-white/25">lodí</p></div></section>
 
-        <div className={`mt-3 min-h-12 rounded-2xl border px-4 py-3 text-center text-[11px] font-black leading-relaxed ${turn === "player" ? "border-cyan-300/15 bg-cyan-400/[.07] text-cyan-100" : "border-amber-300/15 bg-amber-400/[.07] text-amber-100"}`}>{phase === "finished" ? `${winnerName} potopil všetkých päť súperových lodí!` : notice}</div>
+        <div className={`battle-game-notice mt-2 shrink-0 rounded-xl border px-2 py-1 text-center text-[8px] font-black leading-relaxed ${turn === "player" ? "border-cyan-300/15 bg-cyan-400/[.07] text-cyan-100" : "border-amber-300/15 bg-amber-400/[.07] text-amber-100"}`}>{phase === "finished" ? `${winnerName} potopil všetkých päť súperových lodí!` : notice}</div>
 
-        {mode === "local" ? <>
-          <section className="party-glass mt-4 rounded-[1.7rem] p-3.5">
-            <BattleGrid board={playerBoard} revealShips={phase === "finished"} disabled={phase !== "playing" || turn !== "ai"} onCell={turn === "ai" ? shoot : undefined} lastShot={lastShot?.side === "ai" ? lastShot.index : null} label={turn === "ai" && phase === "playing" ? "Vody hráča 1 — sem strieľa hráč 2" : "Vody hráča 1"} emphasis={phase === "playing" ? turn === "ai" ? "active" : "muted" : "normal"} />
-            <div className="mt-3"><FleetStrip ships={playerBoard.ships} hidden color="cyan" /></div>
-          </section>
-          <section className="party-glass mt-4 rounded-[1.7rem] p-3.5">
-            <BattleGrid board={enemyBoard} revealShips={phase === "finished"} disabled={phase !== "playing" || turn !== "player"} onCell={turn === "player" ? shoot : undefined} lastShot={lastShot?.side === "player" ? lastShot.index : null} label={turn === "player" && phase === "playing" ? "Vody hráča 2 — sem strieľa hráč 1" : "Vody hráča 2"} emphasis={phase === "playing" ? turn === "player" ? "active" : "muted" : "normal"} />
-            <div className="mt-3"><FleetStrip ships={enemyBoard.ships} hidden color="amber" /></div>
-          </section>
-        </> : <>
-          <section className="party-glass mt-4 rounded-[1.7rem] p-3.5">
-            <BattleGrid board={targetBoard} revealShips={phase === "finished"} disabled={phase !== "playing" || turn === "ai"} onCell={shoot} lastShot={lastShot?.side === turn ? lastShot.index : null} label="Nepriateľské vody — strieľaj sem" />
-            <div className="mt-3"><FleetStrip ships={targetBoard.ships} hidden color={turn === "player" ? "amber" : "cyan"} /></div>
-          </section>
-          <section className="party-glass mt-4 rounded-[1.7rem] p-3.5 opacity-90"><BattleGrid board={playerBoard} revealShips disabled lastShot={lastShot?.side === "ai" ? lastShot.index : null} label="Tvoje vody" /><div className="mt-3"><FleetStrip ships={playerBoard.ships} /></div></section>
-        </>}
+        <section className="battle-play-boards mt-2 flex min-h-0 flex-1 flex-col items-center justify-between gap-1.5">
+          {mode === "local" ? <>
+            <BattleGrid board={playerBoard} revealShips={phase === "finished"} disabled={phase !== "playing" || turn !== "ai"} onCell={turn === "ai" ? shoot : undefined} lastShot={lastShot?.side === "ai" ? lastShot.index : null} label={turn === "ai" && phase === "playing" ? "Vody hráča 1 — cieľ hráča 2" : "Vody hráča 1"} emphasis={phase === "playing" ? turn === "ai" ? "active" : "muted" : "normal"} compact />
+            <BattleGrid board={enemyBoard} revealShips={phase === "finished"} disabled={phase !== "playing" || turn !== "player"} onCell={turn === "player" ? shoot : undefined} lastShot={lastShot?.side === "player" ? lastShot.index : null} label={turn === "player" && phase === "playing" ? "Vody hráča 2 — cieľ hráča 1" : "Vody hráča 2"} emphasis={phase === "playing" ? turn === "player" ? "active" : "muted" : "normal"} compact />
+          </> : <>
+            <BattleGrid board={targetBoard} revealShips={phase === "finished"} disabled={phase !== "playing" || turn === "ai"} onCell={shoot} lastShot={lastShot?.side === turn ? lastShot.index : null} label="Nepriateľské vody — strieľaj sem" emphasis={turn === "player" && phase === "playing" ? "active" : "muted"} compact />
+            <BattleGrid board={playerBoard} revealShips disabled lastShot={lastShot?.side === "ai" ? lastShot.index : null} label="Tvoje vody" emphasis="normal" compact />
+          </>}
+        </section>
 
-        {mode === "local" && phase === "playing" && <section className="mt-4 rounded-[1.5rem] border border-white/[.08] bg-white/[.035] p-4 text-center"><p className="text-[9px] font-black uppercase tracking-[.18em] text-white/35">Spoločná obrazovka</p><p className="mt-2 text-[11px] leading-relaxed text-white/45">Svetlejšia plocha je aktuálny cieľ. Po výstrele sa plochy hneď jemne vymenia — bez ďalšieho vyskakovacieho okna. Pozície lodí zostávajú skryté.</p></section>}
-
-        {phase === "finished" && <section className="battle-finale party-glass mt-5 overflow-hidden rounded-[2rem] border-cyan-300/20 p-6 text-center"><div className="battle-finale-icon text-6xl">🏆</div><p className="mt-4 text-[9px] font-black uppercase tracking-[.25em] text-cyan-300/65">Bitka sa skončila</p><h1 className="mt-2 text-3xl font-black">{winnerName} vyhráva!</h1><p className="mx-auto mt-2 max-w-xs text-xs leading-relaxed text-white/42">Všetkých päť súperových lodí je potopených. Flotila víťaza ovládla oceán.</p><button onClick={rematch} className="party-shine relative mt-5 w-full overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-700 py-4 text-sm font-black uppercase tracking-wider transition active:scale-95">{mode === "local" ? "Odveta s novým rozmiestnením" : "Odveta s rovnakou flotilou"}</button><button onClick={newGame} className="mt-2 w-full rounded-2xl border border-white/10 bg-white/[.04] py-4 text-xs font-black text-white/55 transition active:scale-95">Nová hra a rozmiestnenie</button></section>}
+        {phase === "finished" && <section className="battle-finale absolute inset-x-5 top-1/2 z-20 -translate-y-1/2 overflow-hidden rounded-[1.5rem] border border-cyan-300/20 bg-[#101827]/95 p-4 text-center shadow-2xl shadow-cyan-950/60 backdrop-blur"><div className="battle-finale-icon text-4xl">🏆</div><p className="mt-2 text-[8px] font-black uppercase tracking-[.25em] text-cyan-300/65">Bitka sa skončila</p><h1 className="mt-1 text-xl font-black">{winnerName} vyhráva!</h1><p className="mx-auto mt-1 max-w-xs text-[9px] leading-relaxed text-white/42">Všetkých päť súperových lodí je potopených.</p><button onClick={rematch} className="party-shine relative mt-3 w-full overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-700 py-2.5 text-[10px] font-black uppercase tracking-wider transition active:scale-95">{mode === "local" ? "Odveta s novým rozmiestnením" : "Odveta s rovnakou flotilou"}</button><button onClick={newGame} className="mt-1 w-full rounded-xl border border-white/10 bg-white/[.04] py-2 text-[9px] font-black text-white/55 transition active:scale-95">Nová hra a rozmiestnenie</button></section>}
       </div>
     </main>
   </PartyBackdrop>;
