@@ -788,12 +788,18 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 }
 .battle-mode-emblem { animation: battleModeBreathe 2.8s ease-in-out infinite; }
 .battle-handoff-icon { animation: battleHandoffFloat 3s ease-in-out infinite; }
-.battle-ship-tray { scrollbar-width: thin; scroll-snap-type: x proximity; overscroll-behavior-x: contain; }
-.battle-ship-block { scroll-snap-align: start; box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
+.battle-ship-tray { grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: stretch; }
+.battle-ship-block { min-width: 0; box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
 .battle-ship-block.is-selected { box-shadow: 0 16px 35px -24px rgba(34,211,238,.8), inset 0 1px 0 rgba(255,255,255,.08); transform: translateY(-2px); }
-.battle-ship-drag, .battle-placement-grid, .battle-placement-grid button { touch-action: none !important; user-select: none; -webkit-user-select: none; }
-.battle-ship-drag i, .battle-drag-ghost i { box-shadow: inset 0 1px 0 rgba(255,255,255,.48), 0 0 8px rgba(103,232,249,.25); }
+.battle-ship-select { touch-action: manipulation; -webkit-user-select: none; user-select: none; }
+.battle-ship-silhouette, .battle-placement-grid, .battle-placement-grid button { touch-action: none !important; user-select: none; -webkit-user-select: none; }
+.battle-ship-silhouette i, .battle-drag-ghost i { box-shadow: inset 0 1px 0 rgba(255,255,255,.48), 0 0 8px rgba(103,232,249,.25); }
 .battle-drag-ghost { animation: scaleIn .16s ease-out both; }
+.battle-board { transition: opacity .28s ease, filter .28s ease, transform .28s ease; }
+.battle-board-active { position: relative; z-index: 1; filter: brightness(1.12) saturate(1.1); transform: scale(1.008); }
+.battle-board-active .battle-grid { border-color: rgba(103,232,249,.42); box-shadow: 0 0 0 1px rgba(34,211,238,.1), 0 20px 42px -28px rgba(34,211,238,.72); }
+.battle-board-muted { opacity: .58; filter: brightness(.72) saturate(.74); transform: scale(.986); }
+.battle-board-muted .battle-grid { pointer-events: none; }
 .battle-preview-valid { border-color: rgba(52,211,153,.9) !important; background: rgba(16,185,129,.34) !important; box-shadow: inset 0 0 0 1px rgba(167,243,208,.45), 0 0 12px rgba(16,185,129,.2); }
 .battle-preview-invalid { border-color: rgba(251,113,133,.9) !important; background: rgba(244,63,94,.35) !important; box-shadow: inset 0 0 0 1px rgba(254,205,211,.38); }
 .battle-player-active { border-color: rgba(103,232,249,.38) !important; background: linear-gradient(145deg, rgba(34,211,238,.15), rgba(10,15,25,.88)); box-shadow: 0 16px 38px -26px rgba(34,211,238,.7); transform: translateY(-2px); }
