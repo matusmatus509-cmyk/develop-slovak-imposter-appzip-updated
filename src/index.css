@@ -774,3 +774,27 @@ html[data-theme="light"] main.party-hub-page > div:first-child [class*="text-eme
 html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-fuchsia-"] { color: #f0abfc !important; }
 html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-violet-"] { color: #c4b5fd !important; }
 html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-"] { color: #67e8f9 !important; }
+
+
+
+/* Battleship pass-and-play deployment. */
+@keyframes battleHandoffFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+@keyframes battleModeBreathe {
+  0%, 100% { box-shadow: 0 22px 55px -32px rgba(34,211,238,.34); }
+  50% { box-shadow: 0 25px 70px -28px rgba(34,211,238,.58); }
+}
+.battle-mode-emblem { animation: battleModeBreathe 2.8s ease-in-out infinite; }
+.battle-handoff-icon { animation: battleHandoffFloat 3s ease-in-out infinite; }
+.battle-ship-tray { scrollbar-width: thin; scroll-snap-type: x proximity; overscroll-behavior-x: contain; }
+.battle-ship-block { scroll-snap-align: start; box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
+.battle-ship-block.is-selected { box-shadow: 0 16px 35px -24px rgba(34,211,238,.8), inset 0 1px 0 rgba(255,255,255,.08); transform: translateY(-2px); }
+.battle-ship-drag, .battle-placement-grid, .battle-placement-grid button { touch-action: none !important; user-select: none; -webkit-user-select: none; }
+.battle-ship-drag i, .battle-drag-ghost i { box-shadow: inset 0 1px 0 rgba(255,255,255,.48), 0 0 8px rgba(103,232,249,.25); }
+.battle-drag-ghost { animation: scaleIn .16s ease-out both; }
+.battle-preview-valid { border-color: rgba(52,211,153,.9) !important; background: rgba(16,185,129,.34) !important; box-shadow: inset 0 0 0 1px rgba(167,243,208,.45), 0 0 12px rgba(16,185,129,.2); }
+.battle-preview-invalid { border-color: rgba(251,113,133,.9) !important; background: rgba(244,63,94,.35) !important; box-shadow: inset 0 0 0 1px rgba(254,205,211,.38); }
+.battle-player-active { border-color: rgba(103,232,249,.38) !important; background: linear-gradient(145deg, rgba(34,211,238,.15), rgba(10,15,25,.88)); box-shadow: 0 16px 38px -26px rgba(34,211,238,.7); transform: translateY(-2px); }
+.battle-player-active.battle-player-two { border-color: rgba(252,211,77,.38) !important; background: linear-gradient(145deg, rgba(245,158,11,.15), rgba(10,15,25,.88)); box-shadow: 0 16px 38px -26px rgba(245,158,11,.65); }
