@@ -1,13 +1,16 @@
 export type CharadesDifficulty = "lahke" | "stredne" | "tazke";
 
 /**
- * Katalóg výhradne pre Slovné šarády.
+ * Katalóg výhradne pre Slovné šarády — 2000 ručne pripravených kartičiek.
  *
  * Pravidlá pre každú vstavanú kartu:
- * - najviac tri slová,
- * - žiadne dvojbodky, náhodné scény ani nesúvisiace kombinácie,
- * - ľahké = konkrétne veci, stredné = bežné činnosti a situácie,
- * - ťažké = pojmy, emócie a známe ustálené spojenia.
+ * - dá sa zahrať iba pohybom tela a gestami, bez rozprávania a bez zvukov,
+ * - je to konkrétna vec, bytosť, miesto, postava, činnosť alebo scéna,
+ * - jedno až tri slová, žiadne dvojbodky ani celé vety,
+ * - žiadne abstraktné, odborné, politické, ekonomické, právne,
+ *   matematické ani informatické pojmy,
+ * - ľahké = úplne známe pojmy, stredné = náročnejšie, ťažké = najnáročnejšie,
+ *   no stále dobre zahrateľné.
  */
 const SCENE_VERBS = new Set([
   "beží", "bolí", "čaká", "číta", "drží", "hľadá", "hrá", "ide", "je", "kráča", "kreslí", "kupuje",
@@ -27,284 +30,300 @@ export function isValidCharadeText(value: string) {
   return Boolean(text) && words.length >= 1 && words.length <= 3 && !hasFiniteVerb && !/[:;|]/.test(text);
 }
 
-function phrases(prefix: string, endings: readonly string[]) {
-  return endings.map((ending) => `${prefix} ${ending}`);
-}
 
-function uniqueCards(cards: readonly string[]) {
-  const seen = new Set<string>();
-  return cards
-    .map((card) => card.trim().replace(/\s+/g, " "))
-    .filter((card) => {
-      const key = card.toLocaleLowerCase("sk");
-      if (!isValidCharadeText(card) || seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    });
-}
-
-const EASY_CONCRETE = [
+// ─── ĽAHKÉ (800) ──────────────────────────────────────────────────────────────
+const EASY_CARDS = [
   // Zvieratá
   "Pes", "Mačka", "Kôň", "Krava", "Ovca", "Koza", "Prasa", "Sliepka", "Kačka", "Hus",
   "Kohút", "Zajac", "Králik", "Myš", "Škrečok", "Morča", "Ježko", "Veverička", "Líška", "Vlk",
   "Medveď", "Lev", "Tiger", "Slon", "Žirafa", "Zebra", "Opica", "Gorila", "Panda", "Kengura",
   "Delfín", "Veľryba", "Žralok", "Tuleň", "Korytnačka", "Krokodíl", "Žaba", "Had", "Papagáj", "Sova",
   "Vrabec", "Holub", "Orol", "Páv", "Bocian", "Motýľ", "Včela", "Lienka", "Mravec", "Pavúk",
-  "Ryba", "Kapor", "Losos", "Krab", "Mucha", "Komár", "Slimák", "Jašterica", "Chameleón", "Netopier",
+  "Ryba", "Rak", "Krab", "Mucha", "Komár", "Slimák", "Jašterica", "Netopier", "Sokol", "Labuť",
+  "Kuriatko", "Šteniatko", "Mačiatko", "Teliatko", "Prasiatko", "Kozliatko", "Jahňa", "Žriebä", "Somár", "Ťava",
+  "Los", "Srnka", "Jeleň", "Diviak", "Bobor", "Vydra", "Rys", "Hyena", "Nosorožec", "Hroch",
+  "Krtko", "Lastovička", "Kukučka", "Ďateľ", "Straka", "Sýkorka", "Kanárik", "Tučniak", "Koala", "Lama",
+  "Chrobák", "Osa", "Kobylka", "Húsenica", "Dážďovka", "Medúza", "Chobotnica", "Hviezdica", "Morský koník", "Rybka",
+  "Jazvec", "Kuna", "Šimpanz", "Orangutan", "Leopard", "Gepard", "Puma", "Antilopa", "Byvol", "Sob",
+  "Sup", "Plameniak", "Pelikán", "Volavka", "Čajka", "Kačiatko", "Baran", "Vlčiak", "Buldog", "Pudel",
 
   // Jedlo a pitie
   "Jablko", "Hruška", "Banán", "Pomaranč", "Citrón", "Melón", "Jahoda", "Malina", "Čerešňa", "Slivka",
-  "Broskyňa", "Ananás", "Mango", "Kiwi", "Hrozno", "Mrkva", "Paradajka", "Paprika", "Uhorka", "Cibuľa",
-  "Cesnak", "Zemiak", "Tekvica", "Kapusta", "Brokolica", "Kukurica", "Hrášok", "Chlieb", "Rožok", "Syr",
-  "Maslo", "Med", "Džem", "Pizza", "Koláč", "Torta", "Palacinka", "Zmrzlina", "Čokoláda", "Hamburger",
-  "Halušky", "Polievka", "Guláš", "Rezeň", "Šalát", "Jogurt", "Káva", "Čaj", "Džús", "Voda",
+  "Broskyňa", "Ananás", "Mango", "Kiwi", "Hrozno", "Marhuľa", "Kokos", "Orech", "Mandarínka", "Brusnica",
+  "Mrkva", "Paradajka", "Paprika", "Uhorka", "Cibuľa", "Cesnak", "Zemiak", "Tekvica", "Kapusta", "Brokolica",
+  "Kukurica", "Hrášok", "Fazuľa", "Šampiňón", "Reďkovka", "Špenát", "Karfiol", "Cvikla", "Zeler", "Petržlen",
+  "Chlieb", "Rožok", "Bageta", "Syr", "Maslo", "Med", "Džem", "Vajce", "Slanina", "Klobása",
+  "Pizza", "Koláč", "Torta", "Palacinka", "Zmrzlina", "Čokoláda", "Hamburger", "Hotdog", "Cukrík", "Lízanka",
+  "Halušky", "Polievka", "Guláš", "Rezeň", "Šalát", "Jogurt", "Cestoviny", "Ryža", "Knedľa", "Zákusok",
+  "Káva", "Čaj", "Džús", "Voda", "Mlieko", "Limonáda", "Kakao", "Smoothie", "Sirup", "Minerálka",
+  "Popcorn", "Čipsy", "Keksy", "Croissant", "Šiška", "Perník", "Muffin", "Vafle", "Žuvačka", "Sušienka",
+  "Soľ", "Cukor", "Korenie", "Ocot", "Olej", "Kečup", "Horčica", "Majonéza", "Múka", "Cesto",
 
-  // Domácnosť a škola
+  // Domácnosť a bežné predmety
   "Stolička", "Stôl", "Posteľ", "Sedačka", "Kreslo", "Skriňa", "Komoda", "Polička", "Lampa", "Zrkadlo",
   "Vankúš", "Deka", "Koberec", "Záclona", "Dvere", "Okno", "Kľúč", "Zámok", "Schody", "Balkón",
   "Pohár", "Tanier", "Miska", "Lyžica", "Vidlička", "Nôž", "Hrniec", "Panvica", "Varecha", "Kanvica",
   "Metla", "Mop", "Vedro", "Špongia", "Mydlo", "Šampón", "Hrebeň", "Fén", "Uterák", "Zubná kefka",
   "Kniha", "Zošit", "Ceruzka", "Pero", "Guma", "Pravítko", "Nožnice", "Lepidlo", "Mapa", "Kalkulačka",
+  "Televízor", "Telefón", "Počítač", "Chladnička", "Práčka", "Sporák", "Mikrovlnka", "Vysávač", "Žehlička", "Budík",
+  "Hodiny", "Sviečka", "Baterka", "Žiarovka", "Zápalky", "Vypínač", "Zásuvka", "Nabíjačka", "Slúchadlá", "Rádio",
+  "Kôš", "Vrecko", "Krabica", "Taška", "Batoh", "Kufor", "Peňaženka", "Dáždnik", "Kľúčenka", "Košík",
+  "Kladivo", "Skrutkovač", "Klince", "Pílka", "Rebrík", "Lopata", "Hrable", "Vrtačka", "Meter", "Kliešte",
+  "Fľaša", "Slamka", "Obrus", "Servítka", "Otvárač", "Struhadlo", "Naberačka", "Sitko", "Váha", "Termoska",
 
-  // Doprava, šport, príroda a povolania
+
+  // Oblečenie a doplnky
+  "Tričko", "Nohavice", "Sukňa", "Šaty", "Sveter", "Kabát", "Bunda", "Košeľa", "Kravata", "Klobúk",
+  "Čiapka", "Šál", "Rukavice", "Ponožky", "Topánky", "Tenisky", "Čižmy", "Sandále", "Papuče", "Opasok",
+  "Plavky", "Pyžamo", "Župan", "Vesta", "Kraťasy", "Rifle", "Kabelka", "Náhrdelník", "Náramok", "Prsteň",
+  "Náušnice", "Okuliare", "Slnečné okuliare", "Hodinky", "Prilba", "Maska", "Šatka", "Kapucňa", "Zástera", "Uniforma",
+  "Korunka", "Plášť", "Overal", "Tepláky", "Legíny", "Baretka", "Šnúrky", "Gombík", "Zips", "Vreckovka",
+
+  // Doprava
   "Auto", "Bicykel", "Vlak", "Autobus", "Motorka", "Lietadlo", "Loď", "Traktor", "Taxík", "Sanitka",
-  "Električka", "Metro", "Lanovka", "Ponorka", "Kajak", "Padák", "Balón", "Kolobežka", "Helikoptéra", "Karavan",
-  "Lopta", "Hokejka", "Raketa", "Korčule", "Lyže", "Snowboard", "Sánky", "Švihadlo", "Medaila", "Trofej",
-  "Futbal", "Hokej", "Tenis", "Plávanie", "Beh", "Box", "Golf", "Šach", "Bowling", "Joga",
-  "Strom", "Kvet", "Tráva", "List", "Les", "Rieka", "Jazero", "Hora", "Dúha", "Snehuliak",
+  "Električka", "Metro", "Lanovka", "Kajak", "Kanoe", "Kolobežka", "Helikoptéra", "Karavan", "Nákladiak", "Bager",
+  "Hasičské auto", "Policajné auto", "Smetiarske auto", "Odťahové auto", "Horský bicykel", "Detský kočík", "Nákupný vozík", "Závodné auto", "Terénne auto", "Poštová dodávka",
+  "Plachetnica", "Parník", "Kompa", "Vor", "Horkovzdušný balón", "Padák", "Rogalo", "Vzducholoď", "Rýchlik", "Vozík",
+  "Sane", "Snežný skúter", "Štvorkolka", "Golfový vozík", "Šliapadlo", "Trajekt", "Rybárska loď", "Vláčik", "Vlečka", "Cisterna",
+
+  // Šport a hračky
+  "Lopta", "Hokejka", "Tenisová raketa", "Korčule", "Lyže", "Snowboard", "Sánky", "Švihadlo", "Medaila", "Trofej",
+  "Futbal", "Hokej", "Tenis", "Plávanie", "Beh", "Box", "Golf", "Bowling", "Joga", "Basketbal",
+  "Volejbal", "Bedminton", "Stolný tenis", "Karate", "Judo", "Šerm", "Lukostreľba", "Vzpieranie", "Gymnastika", "Krasokorčuľovanie",
+  "Kolieskové korčule", "Skateboard", "Trampolína", "Hojdačka", "Šmykľavka", "Kolotoč", "Pieskovisko", "Telocvičňa", "Preliezka", "Bránka",
+  "Bábika", "Autíčko", "Kocky", "Puzzle", "Bublifuk", "Šarkan", "Vodná pištoľ", "Plyšový medveď", "Stolná hra", "Karty",
+  "Šach", "Dáma", "Domino", "Kolky", "Obruč", "Jojo", "Frisbee", "Guľky", "Skrývačka", "Naháňačka",
+
+  // Povolania a známe postavy
   "Lekár", "Učiteľ", "Kuchár", "Hasič", "Policajt", "Pekár", "Poštár", "Čašník", "Farmár", "Zubár",
   "Kaderník", "Maliar", "Fotograf", "Herec", "Spevák", "Tanečník", "Klaun", "Pilot", "Rybár", "Veterinár",
+  "Vodič", "Predavač", "Murár", "Stolár", "Záhradník", "Elektrikár", "Mechanik", "Krajčír", "Mäsiar", "Plavčík",
+  "Sestrička", "Vojak", "Námorník", "Kúzelník", "Žonglér", "Akrobat", "Krotiteľ levov", "Dirigent", "Hudobník", "Bubeník",
+  "Cukrár", "Kominár", "Smetiar", "Kuriér", "Vrátnik", "Upratovačka", "Opatrovateľka", "Záchranár", "Baník", "Drevorubač",
+  "Kráľ", "Kráľovná", "Princezná", "Princ", "Rytier", "Pirát", "Kovboj", "Šerif", "Šašo", "Strážnik",
+
+  // Príroda
+  "Strom", "Kvet", "Tráva", "List", "Les", "Rieka", "Jazero", "Hora", "Dúha", "Snehuliak",
+  "Slnko", "Mesiac", "Hviezda", "Dážď", "Sneh", "Vietor", "Blesk", "Mrak", "Hmla", "Ľad",
+  "More", "Pláž", "Piesok", "Kameň", "Skala", "Jaskyňa", "Potok", "Vodopád", "Ostrov", "Lúka",
+  "Ruža", "Tulipán", "Slnečnica", "Sedmokráska", "Kaktus", "Palma", "Dub", "Breza", "Smrek", "Huba",
+  "Semienko", "Koreň", "Konár", "Púčik", "Žaluď", "Muchotrávka", "Papraď", "Lekno", "Vŕba", "Jabloň",
+
+
+  // Jednoduché činnosti
+  "Spánok", "Smiech", "Plač", "Tanec", "Kýchanie", "Zívanie", "Kašeľ", "Objatie", "Bozk", "Podanie ruky",
+  "Umývanie riadu", "Umývanie zubov", "Česanie vlasov", "Varenie polievky", "Pečenie torty", "Krájanie cibule", "Zametanie podlahy", "Vysávanie koberca", "Vešanie prádla", "Žehlenie košele",
+  "Zaväzovanie šnúrok", "Obliekanie kabáta", "Nasadzovanie čiapky", "Otváranie dverí", "Zatváranie okna", "Nosenie nákupu", "Balenie darčeka", "Kŕmenie psa", "Venčenie psa", "Kúpanie mačky",
+  "Písanie listu", "Čítanie knihy", "Kreslenie obrázka", "Fotografovanie", "Telefonovanie", "Šoférovanie", "Bicyklovanie", "Skákanie do vody", "Sánkovanie", "Lyžovanie",
+  "Hra na gitare", "Hra na klavíri", "Hra na bubnoch", "Hra na flaute", "Spievanie", "Dirigovanie", "Tlieskanie", "Mávanie", "Ukláňanie", "Salutovanie",
+  "Skákanie cez švihadlo", "Drepy", "Kliky", "Rozcvička", "Zdvíhanie závažia", "Šplhanie po lane", "Kotrmelec", "Stojka", "Premet", "Chôdza po špičkách",
+
+  // Rozprávky a slávne postavy
+  "Snehulienka", "Červená čiapočka", "Popoluška", "Šípková Ruženka", "Zlatovláska", "Janko Hraško", "Morská panna", "Snehová kráľovná", "Zlatá rybka", "Perinbaba",
+  "Drak", "Čarodejnica", "Víla", "Trpaslík", "Obor", "Vlkodlak", "Duch", "Strašiak", "Jednorožec", "Ježibaba",
+  "Mikuláš", "Anjel", "Čert", "Sob Rudolf", "Veľkonočný zajac", "Vianočný stromček", "Narodeninová torta", "Karnevalová maska", "Prskavka", "Balónik",
+  "Spider-Man", "Batman", "Superman", "Hulk", "Iron Man", "Harry Potter", "Šrek", "Leví kráľ", "Super Mario", "Mickey Mouse",
+  "Pán Bean", "Charlie Chaplin", "Tarzan", "Robin Hood", "Pinocchio", "Peter Pan", "Aladin", "Popeye", "Asterix", "Obelix",
+
+  // Miesta a bežné situácie
+  "Kino", "Divadlo", "Cirkus", "Zoo", "Múzeum", "Knižnica", "Škola", "Nemocnica", "Obchod", "Reštaurácia",
+  "Kaviareň", "Pekáreň", "Lekáreň", "Kaderníctvo", "Pošta", "Trh", "Štadión", "Hotel", "Bazén", "Park",
+  "Poštová schránka", "Dopravná značka", "Autobusová zastávka", "Železničná stanica", "Čerpacia stanica", "Nákupné centrum", "Detské ihrisko", "Futbalové ihrisko", "Školská tabuľa", "Školský zvonček",
+  "Gitara", "Klavír", "Bubon", "Flauta", "Mikrofón", "Ústna harmonika", "Píšťalka", "Zvonček", "Činely", "Noty",
+  "Sprcha", "Vaňa", "Umývadlo", "Toaleta", "Kohútik", "Drez", "Sušiak", "Plot", "Chodník", "Brána",
+  "Garáž", "Záhrada", "Terasa", "Pivnica", "Podkrovie", "Komín", "Strecha", "Studňa", "Stodola", "Farma",
+  "Domáca úloha", "Rodinná fotografia", "Narodeninová oslava", "Svadobný prsteň", "Vianočné darčeky", "Letná dovolenka", "Zimná bunda", "Slnečný deň", "Búrka", "Piknik",
+  "Nakupovanie", "Upratovanie", "Pranie prádla", "Vynášanie smetí", "Kosenie trávy", "Hrabanie listov", "Sadenie kvetov", "Polievanie záhrady", "Umývanie auta", "Čistenie okien",
+  "Maľovanie steny", "Zatĺkanie klinca", "Skladanie nábytku", "Výmena žiarovky", "Nafukovanie balóna", "Zapaľovanie sviečky", "Otváranie fľaše", "Miešanie cesta", "Nalievanie vody", "Krájanie chleba",
+  "Odomykanie dverí", "Zaklopanie na dvere", "Prezúvanie topánok", "Vyzliekanie kabáta", "Ustielanie postele", "Zabalenie kufra", "Zapínanie zipsu", "Viazanie kravaty", "Zapletanie vlasov", "Strihanie nechtov",
 ] as const;
 
-// Všetky podstatné mená sú mužského rodu. Preto sú aj prídavné mená vždy
-// gramaticky správne a výsledok zostáva bežnou, ľahko vysvetliteľnou vecou.
-const EASY_MASCULINE_OBJECTS = [
-  "bicykel", "batoh", "balón", "dáždnik", "kufor", "vankúš", "stôl", "hrniec", "tanier", "pohár",
-  "telefón", "počítač", "zošit", "zošit", "kľúč", "zámok", "traktor", "autobus", "vlak", "dom",
-  "hrad", "strom", "kvet", "pes", "kôň", "medveď", "lev", "slon", "robot", "snehuliak",
-  "klobúk", "kabát", "sveter", "darček", "koláč", "sendvič", "fotoaparát", "mikrofón", "bubon", "klavír",
-  "futbal", "hokej", "skateboard", "stan", "spací vak", "rebrík", "kočík", "košík", "vysávač", "budík",
-] as const;
-const EASY_DESCRIPTORS = ["červený", "modrý", "zelený", "žltý", "čierny", "biely", "malý", "veľký", "nový", "starý"] as const;
 
-const MEDIUM_ACTIVITY_GROUPS: ReadonlyArray<readonly [string, readonly string[]]> = [
-  ["Varenie", ["obeda", "večere", "polievky", "cestovín", "ryže", "vajec", "kávy", "čaju", "omáčky", "gulášu"]],
-  ["Pečenie", ["koláča", "torty", "pizze", "chleba", "bábovky", "medovníkov", "palaciniek", "sušienok", "muffinov", "rožkov"]],
-  ["Krájanie", ["cibule", "zeleniny", "chleba", "syra", "koláča", "mäsa", "ovocia", "papriky", "mrkvy", "zemiakov"]],
-  ["Umývanie", ["riadu", "okien", "auta", "vlasov", "rúk", "zrkadla", "podlahy", "zeleniny", "topánok", "bicykla"]],
-  ["Čistenie", ["zubov", "izby", "topánok", "akvária", "koberca", "sporáka", "kúpeľne", "chladničky", "stola", "terasy"]],
-  ["Hľadanie", ["kľúčov", "mobilu", "peňaženky", "okuliarov", "auta", "práce", "receptu", "cesty", "adresy", "parkovania"]],
-  ["Balenie", ["darčeka", "kufra", "desiaty", "nákupu", "balíka", "obeda", "oblečenia", "batoha", "sťahovania", "objednávky"]],
-  ["Otváranie", ["darčeka", "dverí", "okna", "fľaše", "konzervy", "balíka", "pošty", "peňaženky", "kufra", "skrinky"]],
-  ["Nosenie", ["nákupu", "kufra", "dieťaťa", "batoha", "dáždniku", "okuliarov", "kabáta", "krabice", "tašky", "vedierka"]],
-  ["Oprava", ["auta", "bicykla", "mobilu", "počítača", "práčky", "dverí", "strechy", "stoličky", "lampy", "vysávača"]],
-  ["Maľovanie", ["steny", "izby", "obrazu", "plotu", "nechtov", "domu", "stropu", "dverí", "kresby", "kvetov"]],
-  ["Skladanie", ["nábytku", "prádla", "stanu", "puzzle", "detskej postele", "krabice", "skrine", "stola", "hračiek", "bicykla"]],
-  ["Písanie", ["správy", "listu", "úlohy", "zoznamu", "receptu", "denníka", "pohľadnice", "životopisu", "poznámky", "priania"]],
-  ["Čítanie", ["knihy", "novín", "receptu", "správy", "mapy", "návodu", "časopisu", "listu", "rozprávky", "e-mailu"]],
-  ["Fotografovanie", ["rodiny", "prírody", "jedla", "západu slnka", "psa", "bábätka", "svadby", "výletu", "kvetov", "mesta"]],
-  ["Venčenie", ["psa", "šteniatka", "labradora", "jazvečíka", "pudla", "boxera", "ovčiaka", "retrievera", "terriera", "psíka"]],
-  ["Kŕmenie", ["mačky", "psa", "rybičiek", "papagája", "králika", "bábätka", "kačiek", "sliepok", "morčaťa", "koňa"]],
-  ["Polievanie", ["kvetov", "záhrady", "trávnika", "stromov", "byliniek", "paradajok", "papriky", "balkóna", "skleníka", "zeleniny"]],
-  ["Sadenie", ["kvetov", "stromu", "cesnaku", "cibule", "zemiakov", "jahôd", "byliniek", "paradajok", "papriky", "tulipánov"]],
-  ["Cvičenie", ["jogy", "brucha", "drepov", "rúk", "nôh", "chrbta", "rovnováhy", "strečingu", "pilatesu", "kondície"]],
-  ["Hranie", ["futbalu", "hokeja", "tenisu", "šachu", "kariet", "gitary", "klavíra", "florbal", "volejbalu", "basketbalu"]],
-  ["Jazda", ["autobusom", "vlakom", "taxíkom", "bicyklom", "motorkou", "autom", "lanovkou", "výťahom", "metrom", "električkou"]],
-  ["Cesta", ["vlakom", "lietadlom", "autobusom", "autom", "loďou", "taxíkom", "metrom", "bicyklom", "trajektom", "lanovkou"]],
-  ["Čakanie", ["na autobus", "na vlak", "na lekára", "na taxík", "na jedlo", "na balík", "na výťah", "na kamaráta", "na výsledok", "na kávu"]],
-  ["Návšteva", ["lekára", "zubára", "rodiny", "kamarátov", "knižnice", "múzea", "zoo", "obchodu", "pošty", "úradu"]],
-  ["Výmena", ["pneumatiky", "žiarovky", "batérie", "oleja", "plienky", "posteľnej bielizne", "hesla", "obliečky", "kolesa", "filtra"]],
-  ["Strihanie", ["vlasov", "papiera", "nechtov", "trávnika", "látky", "konárov", "živého plota", "pásky", "fotky", "účesu"]],
-  ["Upratovanie", ["izby", "kuchyne", "kúpeľne", "garáže", "pivnice", "balkóna", "auta", "skrine", "stola", "chodby"]],
-  ["Objednávanie", ["jedla", "pizze", "taxíka", "kávy", "knihy", "oblečenia", "lístka", "hotela", "darčeka", "kvetov"]],
-  ["Nakupovanie", ["potravín", "oblečenia", "darčekov", "topánok", "nábytku", "kníh", "liekov", "hračiek", "kvetov", "pečiva"]],
-];
+// ─── STREDNÉ (800) ────────────────────────────────────────────────────────────
+const MEDIUM_CARDS = [
+  // Postavy a povolania
+  "Astronaut", "Robot", "Zombie", "Ninja", "Detektív", "Špión", "Tajný agent", "Vedec", "Archeológ", "Bodyguard",
+  "Viking", "Samuraj", "Mušketier", "Rímsky vojak", "Egyptský faraón", "Stredoveký rytier", "Lovec pokladov", "Krotiteľ hadov", "Povrazolezec", "Žonglér s ohňom",
+  "Horolezec", "Jaskyniar", "Prieskumník", "Záchranár v horách", "Lyžiarsky inštruktor", "Plavecký tréner", "Futbalový rozhodca", "Hokejový brankár", "Tenisový hráč", "Basketbalista",
+  "Modelka", "Vizážistka", "Manikérka", "Masér", "Fitnes tréner", "Baletka", "Operný spevák", "Rocková hviezda", "Diskotékový DJ", "Pouličný umelec",
+  "Novinár", "Kameraman", "Režisér", "Moderátor", "Sprievodca v múzeu", "Letuška", "Kapitán lode", "Vlakový sprievodca", "Recepčný", "Poslíček",
+  "Upír", "Mimozemšťan", "Čarodej", "Škriatok", "Trol", "Netvor", "Kostlivec", "Strašidlo", "Yeti", "Vodník",
+  "Sherlock Holmes", "James Bond", "Indiana Jones", "Rocky Balboa", "Terminátor", "Yoda", "Darth Vader", "Frankenstein", "Drakula", "Robocop",
+  "Gandalf", "Hermiona", "Kapitán Hook", "Winnetou", "Rambo", "Zorro", "Godzilla", "King Kong", "Pikachu", "Sonic",
 
-const MEDIUM_EVERYDAY = [
-  "Pokazený mobil", "Stratený kufor", "Zmeškaný autobus", "Plný nákupný vozík", "Dlhý rad", "Zabudnutá peňaženka",
-  "Vybitý telefón", "Prasknuté zrkadlo", "Rozliata káva", "Pripálený obed", "Studená polievka", "Horúci čaj",
-  "Zamrznuté okno", "Otvorený dáždnik", "Prázdna chladnička", "Plná práčka", "Vytečená práčka", "Zabuchnuté dvere",
-  "Prasknutá žiarovka", "Pokazený výťah", "Vypnutý internet", "Pomalý počítač", "Plná schránka", "Tichý telefón",
-  "Rodinná oslava", "Nedeľný obed", "Detská párty", "Školský výlet", "Pracovná porada", "Prvý pracovný deň",
-  "Ranná zápcha", "Pracovný pohovor", "Školská skúška", "Triedne stretnutie", "Letná dovolenka", "Zimná dovolenka",
-  "Narodeninová torta", "Svadobný tanec", "Vianočný stromček", "Veľkonočné vajíčko", "Novoročný prípitok", "Karnevalová maska",
-  "Futbalový zápas", "Hokejový zápas", "Tenisový zápas", "Školský zvonček", "Hudobný koncert", "Filmová premiéra",
-  "Dopravná nehoda", "Dopravná značka", "Parkovací automat", "Čerpacia stanica", "Autobusová zastávka", "Železničná stanica",
-  "Letisková kontrola", "Hotelová recepcia", "Plážový slnečník", "Pieskový hrad", "Lyžiarsky vlek", "Sánkovanie z kopca",
-  "Kúpanie psa", "Výcvik psa", "Návšteva veterinára", "Čistenie akvária", "Stavanie búdky", "Jazda na koni",
-  "Futbalový rozhodca", "Hokejový brankár", "Tenisové podanie", "Basketbalový kôš", "Volejbalový blok", "Bowlingový strike",
-  "Kúzelnícke predstavenie", "Bábkové divadlo", "Tanečný súboj", "Hra na gitare", "Hra na klavíri", "Spievanie karaoke",
-  "Táborový oheň", "Stavanie stanu", "Spací vak", "Turistická mapa", "Horská chata", "Prechod potoka",
-  "Domáca úloha", "Písomná skúška", "Čítanie nahlas", "Krieda na tabuli", "Školská jedáleň", "Telesná výchova",
-  "Kancelárska tlačiareň", "Videohovor bez zvuku", "Prestávka na kávu", "Písanie životopisu", "Podpis zmluvy", "Firemný večierok",
-  "Skúšanie oblečenia", "Zľavový kupón", "Nákupná taška", "Pokladničný blok", "Platobná karta", "Otvorené trhovisko",
-  "Meranie teploty", "Horký liek", "Obväzovanie rany", "Vyšetrenie zraku", "Čakanie u zubára", "Zubná prehliadka",
-  "Skladanie puzzle", "Detské ihrisko", "Hojdačka v parku", "Jazda kolotočom", "Kŕmenie kačiek", "Prechádzka lesom",
-  "Nočná lampa", "Ranný budík", "Večerné správy", "Rodinná fotografia", "Domáci miláčik", "Kuchynský stôl",
-] as const;
+  // Záľuby a činnosti
+  "Kempovanie", "Karaoke", "Safari", "Karneval", "Rybárčenie", "Turistika", "Cyklistika", "Jazda na koni", "Horolezectvo", "Potápanie",
+  "Surfovanie", "Windsurfing", "Jachting", "Rafting", "Vodné lyžovanie", "Skoky na lyžiach", "Bežky", "Curling", "Hokejbal", "Ragby",
+  "Bungee jumping", "Parašutizmus", "Paragliding", "Lezenie na stene", "Parkour", "Vzdušná akrobacia", "Krasojazda", "Jazda na jednokolke", "Chôdza na chodúľoch", "Skoky do vody",
+  "Pletenie", "Šitie", "Vyšívanie", "Háčkovanie", "Keramika", "Modelovanie z hliny", "Origami", "Rezbárstvo", "Maľovanie na tvár", "Zdobenie torty",
+  "Sťahovanie nábytku", "Stavanie stanu", "Zakladanie ohňa", "Grilovanie", "Opekanie špekáčok", "Zaváranie ovocia", "Sušenie húb", "Zbieranie húb", "Zbieranie jabĺk", "Strihanie živého plota",
+  "Orchester", "Dychová hudba", "Rocková kapela", "Ľudový tanec", "Balet", "Stepovanie", "Break dance", "Salsa", "Tango", "Valčík",
+  "Ranná zápcha", "Zmeškaný autobus", "Dlhý rad", "Prasknutá pneumatika", "Vybitý telefón", "Pokazený výťah", "Zabuchnuté dvere", "Rozliata káva", "Pripálený obed", "Stratené kľúče",
+  "Návšteva zubára", "Očkovanie", "Meranie teploty", "Obväzovanie rany", "Prvá pomoc", "Röntgen", "Noha v sadre", "Barle", "Invalidný vozík", "Očné kvapky",
+  "Pracovný pohovor", "Prvý pracovný deň", "Pracovná porada", "Videohovor", "Písanie na klávesnici", "Tlačiareň bez papiera", "Prestávka na kávu", "Školská skúška", "Písomka", "Vysvedčenie",
+  "Letisková kontrola", "Colná kontrola", "Hotelová recepcia", "Turistická mapa", "Fotenie pamiatok", "Suvenír", "Plážový slnečník", "Nafukovací kruh", "Šnorchlovanie", "Pieskový hrad",
 
-const MEDIUM_ROLES = [
-  "Lekár v ambulancii", "Učiteľ v triede", "Kuchár v kuchyni", "Hasič pri zásahu", "Policajt v službe",
-  "Poštár s balíkom", "Čašník s táckou", "Pekár s chlebom", "Farmár na poli", "Zubár v ordinácii",
-  "Kaderník v salóne", "Maliar pri stene", "Fotograf s kamerou", "Pilot v lietadle", "Rybár pri jazere",
-  "Veterinár so psom", "Mechanik pri aute", "Vodič autobusu", "Predavač v obchode", "Plavčík pri bazéne",
-  "Tréner na ihrisku", "Knihovník s knihou", "Smetiar pri koši", "Kuriér s balíkom", "Stolár s doskou",
-  "Murár pri stene", "Záhradník s lopatou", "Elektrikár pri zásuvke", "Hudobník s gitarou", "Herec na javisku",
-] as const;
+  // Miesta
+  "Maják", "Ponorka", "Veterný mlyn", "Hrad", "Palác", "Kláštor", "Pyramída", "Rozhľadňa", "Most", "Tunel",
+  "Prístav", "Letisko", "Nástupište", "Lunapark", "Akvárium", "Planetárium", "Botanická záhrada", "Skanzen", "Amfiteáter", "Tržnica",
+  "Priehrada", "Kaňon", "Sopka", "Gejzír", "Bažina", "Prales", "Savana", "Oáza", "Korálový útes", "Ľadovec",
+  "Kuchyňa", "Kúpeľňa", "Spálňa", "Detská izba", "Obývačka", "Šatňa", "Kancelária", "Čakárňa", "Skúšobná kabínka", "Výťah",
+  "Autoumývačka", "Autoservis", "Pneuservis", "Čistiareň", "Kvetinárstvo", "Mäsiarstvo", "Papiernictvo", "Železiarstvo", "Zverimex", "Požičovňa lyží",
+  "Strašidelný dom", "Divoký západ", "Horská dráha", "Vesmírna loď", "Lietajúci koberec", "Tajná chodba", "Opustený hrad", "Pirátska loď", "Púštna karavána", "Stará truhlica",
+  "Fontána", "Pamätník", "Lavička v parku", "Priechod pre chodcov", "Kruhový objazd", "Parkovací automat", "Podchod", "Eskalátor", "Otočné dvere", "Turniket",
+  "Ohrada pre kone", "Psí útulok", "Vtáčia búdka", "Úľ", "Rybník", "Holubník", "Ovčí salaš", "Vinohrad", "Ovocný sad", "Maštaľ",
 
-const MEDIUM_CONTEXT_GROUPS: ReadonlyArray<readonly [string, readonly string[]]> = [
-  ["Príprava na", ["raňajky", "obed", "večeru", "výlet", "školu", "prácu", "oslavu", "tréning", "návštevu", "cestu"]],
-  ["Odchod do", ["školy", "práce", "obchodu", "mesta", "kina", "divadla", "zoo", "nemocnice", "knižnice", "parku"]],
-  ["Návrat z", ["práce", "školy", "obchodu", "výletu", "nemocnice", "kina", "dovolenky", "tréningu", "nákupu", "letiska"]],
-  ["Prechádzka so", ["psom", "sestrou", "bratom", "kamarátom", "mamou", "otcom", "dieťaťom", "kočíkom", "dáždnikom", "slúchadlami"]],
-  ["Rozhovor s", ["kamarátom", "mamou", "otcom", "učiteľom", "lekárom", "šéfom", "trénérom", "predavačom", "poštárom", "susedom"]],
-  ["Pomoc pri", ["varení", "učení", "upratovaní", "balení", "sťahovaní", "nákupoch", "oprave", "maľovaní", "sadení", "cvičení"]],
-  ["Učenie sa", ["jazykov", "tanca", "šoférovania", "varenia", "plávania", "kreslenia", "spevu", "matematiky", "hry", "korčuľovania"]],
-  ["Hra s", ["loptou", "mačkou", "psom", "bábikou", "autíčkom", "kockami", "kartami", "bratom", "dieťaťom", "loptou"]],
-  ["Výlet na", ["hrad", "farmu", "chatu", "hory", "pláž", "jazero", "trh", "štadión", "festival", "zámok"]],
-  ["Pobyt v", ["hoteli", "tábore", "nemocnici", "škole", "knižnici", "múzeu", "divadle", "reštaurácii", "obchode", "zoo"]],
-  ["Práca na", ["záhrade", "počítači", "stavbe", "projekte", "aute", "bicykli", "streche", "recepte", "úlohe", "obrázku"]],
-  ["Kontrola", ["lístka", "dokladov", "oleja", "pneumatík", "domácej úlohy", "teploty", "správy", "objednávky", "adresy", "účtu"]],
-  ["Dohoda o", ["stretnutí", "výlete", "obede", "nákupoch", "oslave", "termíne", "pomoci", "ceste", "hre", "práci"]],
-  ["Starostlivosť o", ["dieťa", "psa", "mačku", "záhradu", "auto", "dom", "bábätko", "rybičky", "rastliny", "zdravie"]],
-  ["Cesta cez", ["mesto", "les", "most", "tunel", "park", "dedinu", "námestie", "pole", "hranicu", "záhradu"]],
-  ["Sedenie pri", ["stole", "okne", "ohni", "počítači", "televízore", "bazéne", "jazere", "strome", "káve", "obede"]],
-  ["Beh cez", ["park", "les", "ihrisko", "cieľ", "mesto", "lúku", "most", "chodbu", "záhradu", "štadión"]],
-  ["Skok cez", ["kaluž", "lano", "prekážku", "plot", "švihadlo", "pneumatiku", "potok", "sneh", "tieň", "čiaru"]],
-  ["Triedenie", ["odpadu", "prádla", "fotiek", "hračiek", "papiera", "kníh", "oblečenia", "nákupu", "pošty", "náradia"]],
-  ["Plánovanie", ["výletu", "oslavy", "nákupu", "dovolenky", "obeda", "trasy", "rozpočtu", "tréningu", "stretnutia", "víkendu"]],
-] as const;
+  // Predmety a stroje
+  "Ďalekohľad", "Kompas", "Mikroskop", "Glóbus", "Presýpacie hodiny", "Slnečné hodiny", "Lupa", "Petrolejová lampa", "Lampión", "Vreckové hodinky",
+  "Harmonika", "Trúbka", "Saxofón", "Violončelo", "Husle", "Klarinet", "Harfa", "Xylofón", "Tamburína", "Gong",
+  "Šijací stroj", "Písací stroj", "Kosačka", "Motorová píla", "Miešačka", "Zváračka", "Žeriav", "Buldozér", "Valec", "Vysokozdvižný vozík",
+  "Dron", "Robotický vysávač", "Herná konzola", "Tablet", "Smart hodinky", "Selfie palica", "Bezdrôtové slúchadlá", "Klávesnica", "Webkamera", "Skener",
+  "Boxerské rukavice", "Boxovací vak", "Činka", "Bežecký pás", "Rotoped", "Hokejová prilba", "Chrániče na kolená", "Plavecké okuliare", "Šnorchel", "Plutvy",
+  "Mixér", "Hriankovač", "Kávovar", "Rýchlovarná kanvica", "Tlakový hrniec", "Fritéza", "Gril", "Forma na tortu", "Valček na cesto", "Mlynček na mäso",
+  "Hasiaci prístroj", "Lekárnička", "Záchranná vesta", "Hasičská hadica", "Reflexná vesta", "Výstražný trojuholník", "Autosedačka", "Snehové reťaze", "Kanister", "Štartovacie káble",
+  "Klaunský nos", "Kúzelnícky klobúk", "Pirátska šatka", "Rytierska zbroj", "Vesmírny skafander", "Potápačský oblek", "Baletné špičky", "Kovbojské čižmy", "Havajský veniec", "Karnevalové krídla",
 
-const HARD_CONCEPTS = [
-  "Dôvera", "Nedôvera", "Odvaha", "Strach", "Radosť", "Smútok", "Hnev", "Žiarlivosť", "Závisť", "Vďačnosť",
-  "Odpustenie", "Súcit", "Empatia", "Trpezlivosť", "Netrpezlivosť", "Zodpovednosť", "Spravodlivosť", "Sloboda", "Úprimnosť", "Pokora",
-  "Skromnosť", "Márnivosť", "Čestnosť", "Vernosť", "Zrada", "Rešpekt", "Hanba", "Hrdosť", "Vina", "Nevinnosť",
-  "Panika", "Úľava", "Napätie", "Pokoj", "Chaos", "Zmätenosť", "Samota", "Osamelosť", "Nádej", "Beznádej",
-  "Motivácia", "Inšpirácia", "Frustrácia", "Vytrvalosť", "Lenivosť", "Disciplína", "Tolerancia", "Intuícia", "Ambícia", "Nostalgia",
-  "Pochybnosť", "Zvedavosť", "Predsudok", "Svedomie", "Sebaúcta", "Sebavedomie", "Zmysel", "Rovnováha", "Harmónia", "Konflikt",
-  "Kompromis", "Spolupráca", "Priateľstvo", "Láska", "Sľub", "Tajomstvo", "Rozhodnutie", "Príležitosť", "Prekážka", "Výzva",
-  "Zmena", "Pokrok", "Neúspech", "Úspech", "Omyl", "Chyba", "Riziko", "Dôsledok", "Návyk", "Spomienka",
-  "Budúcnosť", "Minulosť", "Prítomnosť", "Identita", "Dôstojnosť", "Súkromie", "Bezpečie", "Istota", "Neistota", "Záväzok",
-  "Kritika", "Pochvala", "Podpora", "Pomoc", "Odmietnutie", "Zmierenie", "Rozlúčka", "Očakávanie", "Prekvapenie", "Skúsenosť",
+
+  // Šport a pohyb
+  "Penalta", "Rohový kop", "Hlavička", "Vhadzovanie", "Slalom", "Šprint", "Štafeta", "Maratón", "Skok do diaľky", "Skok do výšky",
+  "Hod oštepom", "Hod diskom", "Vrh guľou", "Trojskok", "Prekážkový beh", "Športová chôdza", "Časovka", "Cieľová rovinka", "Víťazné gesto", "Zahrievanie pred štartom",
+  "Tanečný súboj", "Kúzelnícky trik", "Žonglovanie", "Balansovanie", "Zápas v ringu", "Naťahovanie lanom", "Preskok cez kozu", "Šplh na tyči", "Skok o žrdi", "Trik na skateboarde",
+  "Chôdza proti vetru", "Chôdza po ľade", "Chôdza v bahne", "Preliezanie plotu", "Prechod cez potok", "Vyliezanie z okna", "Zatĺkanie kolíka", "Stavanie snehuliaka", "Odhŕňanie snehu", "Šliapanie do kopca",
+  "Nafukovanie matraca", "Vešanie hojdačky", "Zametanie dvora", "Rúbanie dreva", "Nosenie vody", "Kopanie jamy", "Hrabanie sena", "Zapaľovanie grilu", "Miešanie v kotle", "Nosenie dreva",
+  "Prenášanie torty", "Obliekanie skafandra", "Žmýkanie trička", "Vytieranie podlahy", "Leštenie auta", "Fúkanie sviečok", "Nafukovanie balónov", "Otváranie šampanského", "Rozdávanie kariet", "Podávanie taniera",
+
+  // Zvieratá
+  "Kolibrík", "Pštros", "Emu", "Kondor", "Tukan", "Ara", "Kakadu", "Bažant", "Prepelica", "Perlička",
+  "Lenochod", "Mravčiar", "Pásavec", "Tapír", "Kapybara", "Surikata", "Fretka", "Dikobraz", "Skunk", "Mangusta",
+  "Rejnok", "Barakuda", "Murena", "Piraňa", "Sumec", "Šťuka", "Úhor", "Treska", "Sardinka", "Ostriež",
+  "Kobra", "Štrkáč", "Anakonda", "Pytón", "Varan", "Gekón", "Kajman", "Aligátor", "Tarantula", "Škorpión",
+  "Vážka", "Modlivka", "Cvrček", "Svetluška", "Termit", "Čmeliak", "Chrúst", "Kliešť", "Blcha", "Stonožka",
+
+  // Známe názvy a scény
+  "Titanic", "Jurský park", "Hviezdne vojny", "Pán prsteňov", "Piráti z Karibiku", "Rýchlo a zbesilo", "Mission Impossible", "Matrix", "Avatar", "Votrelec",
+  "Ľadové kráľovstvo", "Doba ľadová", "Rybka Nemo", "Šmolkovia", "Madagaskar", "Ratatouille", "Coco", "Toy Story", "Blesk McQueen", "Mimoni",
+  "Eiffelova veža", "Šikmá veža", "Egyptské pyramídy", "Čínsky múr", "Socha slobody", "Big Ben", "Koloseum", "Bratislavský hrad", "Tatry", "Niagarské vodopády",
+  "Prvý bozk", "Prvé kroky", "Narodeninové prekvapenie", "Prvé rande", "Svadobný tanec", "Lúčenie na letisku", "Návrat domov", "Nečakaná návšteva", "Skupinová fotka", "Selfie s kamarátmi",
+  "Rozbitý pohár", "Pretečená vaňa", "Zaseknutý zips", "Roztrhnutá taška", "Zapadnuté auto", "Vypálená žiarovka", "Kľúče v aute", "Prázdna nádrž", "Studená sprcha", "Zlomený podpätok",
+  "Prudký dážď", "Krupobitie", "Silný vietor", "Snehová fujavica", "Poľadovica", "Horúce leto", "Mrazivé ráno", "Dusné popoludnie", "Prvý sneh", "Jesenné listy",
+  "Silvestrovský ohňostroj", "Vianočná kapustnica", "Veľkonočná šibačka", "Fašiangový sprievod", "Stavanie mája", "Vynášanie Morény", "Vinobranie", "Halloweenska tekvica", "Adventný venec", "Narodeninová sviečka",
+  "Grilovaná klobása", "Praženica", "Kotlíkový guláš", "Zapekané zemiaky", "Ovocný koláč", "Zmrzlinový kornút", "Cukrová vata", "Karamelové jablko", "Čokoládová fontána", "Trojposchodová torta",
+  "Mačka na strome", "Pes s loptou", "Kôň v galope", "Vták v klietke", "Ryba na udici", "Zajac v tráve", "Zvonec na krave", "Slon pri vode", "Šteniatko v koši", "Papagáj na ramene",
+  "Preplnený autobus", "Nočný vlak", "Zápcha na diaľnici", "Jazda na traktore", "Cyklista v daždi", "Motorka v zákrute", "Vzlet lietadla", "Pristátie lietadla", "Plavba na lodi", "Nástup do metra",
+  "Kuchár pri sporáku", "Čašník s táckou", "Poštár s balíkom", "Hasič s hadicou", "Policajt na križovatke", "Lekár so stetoskopom", "Učiteľ pri tabuli", "Murár s fúrikom", "Záhradník s hrabľami", "Maliar so štetkou",
+  "Prváčik s aktovkou", "Detský karneval", "Škola v prírode", "Lyžiarsky výcvik", "Plavecký kurz", "Školská akadémia", "Zber papiera", "Triedny výlet", "Fotenie triedy", "Rozdávanie vysvedčení",
+  "Sťahovanie", "Veľké pranie", "Jarné upratovanie", "Výmena kolesa", "Skladanie skrine", "Vešanie záclon", "Umývanie okien", "Čistenie komína", "Kúrenie v peci", "Vymetanie pece",
+  "Púšťanie šarkana", "Púšťanie lodičiek", "Kŕmenie kačiek", "Hľadanie štvorlístka", "Zbieranie mušlí", "Písanie do piesku", "Skákanie do kaluže", "Chytanie motýľov", "Púšťanie bublín", "Fotenie západu slnka",
+
+
+  // Podujatia a situácie
+  "Svadba", "Stužková", "Promócia", "Narodeniny", "Meniny", "Rozlúčka so slobodou", "Zásnuby", "Kolaudácia", "Rodinná oslava", "Prekvapenie na oslave",
+  "Koncert", "Festival", "Divadelné predstavenie", "Filmová premiéra", "Módna šou", "Cirkusové vystúpenie", "Ohňostroj", "Karnevalový ples", "Talentová šou", "Autogramiáda",
+  "Futbalový zápas", "Hokejový zápas", "Tenisový turnaj", "Olympiáda", "Štart maratónu", "Cyklistický pretek", "Šachový turnaj", "Bowlingový večer", "Golfový turnaj", "Preteky formuly",
+  "Súťaž v jedení", "Súťaž krásy", "Beh v pytliach", "Hod vajcom", "Skákanie v pytli", "Hľadanie vajíčok", "Tanečná súťaž", "Karaoke súťaž", "Kvízový večer", "Turnaj v šípkach",
+  "Požiar v kuchyni", "Výpadok elektriny", "Zaseknutý výťah", "Prasknutá rúra", "Zatopená pivnica", "Vytopený sused", "Poplach v škole", "Evakuácia", "Búrka v noci", "Zablúdenie v lese",
+  "Povodeň", "Snehová kalamita", "Silná búrka", "Horúčava", "Hustá hmla", "Padajúce lístie", "Kvitnúca lúka", "Zlatá jeseň", "Prvý mráz", "Topenie snehu",
+  "Nočná služba", "Ranné vstávanie", "Zaspávanie na gauči", "Kúpanie v jazere", "Opaľovanie na pláži", "Sauna", "Masáž", "Strihanie u holiča", "Manikúra", "Skúšanie šiat",
+
+  // Stroje a dopravné prostriedky
+  "Formula", "Motokára", "Rallyové auto", "Historické auto", "Limuzína", "Kabriolet", "Dodávka", "Dvojposchodový autobus", "Trolejbus", "Snežná rolba",
+  "Vetroň", "Dopravné lietadlo", "Prúdové lietadlo", "Raketoplán", "Kozmická raketa", "Lunárne vozidlo", "Satelit", "Vesmírna stanica", "Kozmická sonda", "Motorové rogalo",
+  "Veslica", "Motorový čln", "Vodný skúter", "Katamarán", "Gondola", "Nákladná loď", "Ľadoborec", "Záchranný čln", "Vlečná loď", "Vodné bicykle",
+  "Kombajn", "Sejačka", "Pluh", "Zberač sena", "Traktor s vlečkou", "Rýpadlo", "Nakladač", "Asfaltovací stroj", "Snehový pluh", "Cisterna na mlieko",
+  "Parná lokomotíva", "Rušeň", "Vagón", "Jedálny vozeň", "Spací vozeň", "Nákladný vagón", "Výhybka", "Železničné priecestie", "Koľajnice", "Depo",
+  "Reťazový kolotoč", "Ruské koleso", "Vodná skluzavka", "Autodrom", "Strelnica", "Skákací hrad", "Lanový park", "Simulátor letu", "Trenažér", "Vláčik v lunaparku",
+
+  // Bežný život
+  "Objednávanie jedla", "Servírovanie polievky", "Otváranie vína", "Prípitok", "Platenie účtu", "Prestieranie stola", "Nosenie tanierov", "Miešanie kokteilu", "Krájanie steaku", "Rezervácia stola",
+  "Tlačenie kočíka", "Prebaľovanie", "Kŕmenie bábätka", "Uspávanie dieťaťa", "Detská stolička", "Cumlík", "Dojčenská fľaška", "Hranie s hrkálkou", "Nosenie na ramenách", "Prvé zúbky",
+  "Kúpanie psa", "Strihanie srsti", "Čistenie klietky", "Čistenie akvária", "Ťahanie na vodítku", "Hodenie loptičky", "Hladenie mačky", "Podávanie labky", "Aportovanie", "Mačka v prepravke",
+  "Farbenie vlasov", "Sušenie fénom", "Holenie", "Líčenie", "Lakovanie nechtov", "Šitie gombíka", "Meranie postavy", "Prišívanie záplaty", "Pletenie šálu", "Skúšanie klobúka",
+  "Sánkovanie na kopci", "Guľovačka", "Stavanie iglu", "Korčuľovanie na rybníku", "Zbieranie orechov", "Sušenie ovocia", "Zber jahôd", "Kosenie sena", "Pálenie lístia", "Klopanie kobercov",
+  "Maskovaný hrdina", "Pavúčia sieť", "Laserový pohľad", "Superrýchly beh", "Železný oblek", "Hromové kladivo", "Kruhový štít", "Maska záporáka", "Tajná základňa", "Záchrana mesta",
+  "Slepá baba", "Tichá pošta", "Škôlka", "Skákanie do gumy", "Cvrnkanie guličiek", "Hádzanie žabiek", "Twister", "Šípky", "Biliard", "Stolný futbal",
+  "Nafukovanie bazéna", "Zapaľovanie prskavky", "Púšťanie balónov", "Písanie pohľadnice", "Lepenie známky", "Vhadzovanie listu", "Rozbaľovanie darčeka", "Krájanie torty", "Rozlievanie limonády", "Skupinové objatie",
 ] as const;
 
-const HARD_IDIOMS = [
-  "Kameň úrazu", "Bod zlomu", "Slepá ulička", "Čierna ovca", "Jablko sváru", "Zakopaný pes",
-  "Pandorina skrinka", "Damoklov meč", "Trojský kôň", "Gordický uzol", "Ariadnina niť", "Achillova päta",
-  "Medvedia služba", "Pyrrhovo víťazstvo", "Danajský dar", "Kolumbovo vajce", "Sizyfovská práca", "Labutia pieseň",
-  "Krokodílie slzy", "Vlčí hlad", "Tichá voda", "Červená niť", "Druhá šanca", "Posledná kvapka",
-  "Prvý dojem", "Dvojitá hra", "Falošný poplach", "Tajný plán", "Skrytý dôvod", "Veľké tajomstvo",
-  "Ťažké rozhodnutie", "Náhla zmena", "Vážny problém", "Tichá domácnosť", "Rodinný konflikt", "Pracovný stres",
-  "Strata dôvery", "Strata času", "Strata smeru", "Strata pamäti", "Hľadanie pravdy", "Hľadanie zmyslu",
-  "Vnútorný pokoj", "Vnútorný konflikt", "Verejný názor", "Osobný priestor", "Spoločný cieľ", "Skrytý talent",
-  "Čisté svedomie", "Falošný úsmev", "Tajná dohoda", "Verejné priznanie", "Tichý súhlas", "Silná vôľa",
-  "Zdravý rozum", "Správny smer", "Nový začiatok", "Životná zmena", "Veľký sen", "Dlhá cesta",
+
+// ─── ŤAŽKÉ (400) ──────────────────────────────────────────────────────────────
+const HARD_CARDS = [
+  // Prírodné javy, postavy a bytosti
+  "Lavína", "Tornádo", "Meteor", "Zemetrasenie", "Tsunami", "Smršť", "Zosuv pôdy", "Záplava", "Hurikán", "Piesočná búrka",
+  "Iluzionista", "Gladiátor", "Sochár", "Kaskadér", "Alchymista", "Astronóm", "Paleontológ", "Speleológ", "Hodinár", "Sklár",
+  "Múmia", "Chameleón", "Sfinga", "Minotaurus", "Kentaur", "Gryf", "Fénix", "Bazilisk", "Kraken", "Hydra",
+  "Mrakodrap", "Džungľa", "Púšť", "Tundra", "Kráter", "Labyrint", "Katakomby", "Zrúcanina", "Observatórium", "Akvadukt",
+  "Časostroj", "Snehová guľa", "Kaleidoskop", "Gramofón", "Metronóm", "Trezor", "Trojzubec", "Kuša", "Katapult", "Periskop",
+  "Ohňová šou", "Zaklínanie hada", "Chôdza po skle", "Únik z reťazí", "Vytiahnutie králika", "Levitácia", "Čítanie z ruky", "Krotenie tigra", "Hod nožom", "Kúzlo s kartami",
+  "Biatlon", "Triatlon", "Desaťboj", "Vodné pólo", "Synchronizované plávanie", "Skoky z mostíka", "Boby", "Skeleton", "Sumo", "Rodeo",
+  "Rytiersky turnaj", "Plavba Kolumba", "Pristátie na Mesiaci", "Egyptská hrobka", "Rímske kúpele", "Vikingská plavba", "Zlatá horúčka", "Kamenná doba", "Stredoveký trh", "Faraónova maska",
+  "Vesmírna prechádzka", "Beztiažový stav", "Zatmenie Slnka", "Polárna žiara", "Padajúca hviezda", "Kométa", "Prstence Saturna", "Mliečna cesta", "Slnečná sústava", "Kráter na Mesiaci",
+  "Mravenisko", "Termitisko", "Vosie hniezdo", "Bobria hrádza", "Pavučina", "Kokón", "Larva", "Kukla", "Kŕdeľ vtákov", "Roj včiel",
+
+  // Náročné scény
+  "Útek z väzenia", "Záchrana topiaceho", "Hasenie požiaru", "Vyprostenie z auta", "Zásah horskej služby", "Pátranie so psom", "Núdzové pristátie", "Vzbura na lodi", "Potopenie lode", "Svetlica",
+  "Hľadanie pokladu", "Výstup na Everest", "Prechod púšťou", "Plavba cez oceán", "Výprava do džungle", "Zdolanie vodopádu", "Nočný pochod", "Prežitie na ostrove", "Jazda na ťave", "Mapa pokladu",
+  "Tajná misia", "Odtlačok prsta", "Sledovanie podozrivého", "Ukrytý mikrofón", "Falošný pas", "Prevlek za čašníka", "Lúpež v múzeu", "Nočná hliadka", "Detektor lží", "Únik po lane",
+  "Salto na trapéze", "Lietajúci trapéz", "Klaunský pád", "Pyramída z ľudí", "Králik z klobúka", "Zmiznutie v dyme", "Kúzelnícka asistentka", "Ohňová obruč", "Slon na pódiu", "Tuleň s loptou",
+  "Trojský kôň", "Herkules", "Ikarove krídla", "Neptúnov trojzubec", "Cyklop", "Morské sirény", "Zlaté rúno", "Oživená socha", "Okrídlený kôň", "Trojhlavý drak",
+  "Kováč pri nákove", "Hrnčiar pri kruhu", "Tkáč pri stave", "Rezbár s dlátom", "Mlynár v mlyne", "Pastier so stádom", "Vinár pri lise", "Kominár na streche", "Zvonár vo veži", "Sklár pri peci",
+  "Operácia na sále", "Resuscitácia", "Prevoz sanitkou", "Odber krvi", "Zubná vrtačka", "Očný test", "Nasadenie sadry", "Prenos na nosidlách", "Zásah záchranárov", "Záchrana vrtuľníkom",
+  "Štart rakety", "Odpočítavanie pred štartom", "Pristátie modulu", "Vlajka na Mesiaci", "Oprava satelitu", "Návrat do atmosféry", "Prílet mimozemšťanov", "Letiaci tanier", "Robotické rameno", "Prilba astronauta",
+  "Trhlina v ľade", "Prasknutá priehrada", "Lesný požiar", "Zamrznutý vodopád", "Rozvodnená rieka", "Zosuv skál", "Búrka na mori", "Oko hurikánu", "Ľadové krúpy", "Blesk do stromu",
+  "Fotofiniš", "Cieľová páska", "Penaltový rozstrel", "Hattrick", "Knockout", "Zdvihnutie trofeje", "Olympijský oheň", "Nástup na pódium", "Červená karta", "Nosidlá na ihrisku",
+  "Sochanie z kameňa", "Maľovanie fresky", "Reštaurovanie obrazu", "Rytie do medi", "Fúkanie skla", "Odlievanie zvonu", "Vyrezávanie z dreva", "Pletenie košíkov", "Zdobenie kraslíc", "Šitie kroja",
+  "Nemý film", "Filmová klapka", "Kaskadérsky pád", "Zákulisie divadla", "Maskovanie herca", "Nápoveda v búdke", "Divadelná opona", "Sólo na javisku", "Búrlivý potlesk", "Generálna skúška",
+  "Umývač výškových okien", "Kaskadér na motorke", "Lanový záchranár", "Jaskynný potápač", "Horská služba", "Baník v šachte", "Rybár na oceáne", "Hasič v dyme", "Pyrotechnik", "Krotiteľ býkov",
+  "Sťahovanie klavíra", "Oprava strechy", "Vŕtanie do betónu", "Búranie steny", "Kladenie parkiet", "Betónovanie chodníka", "Presádzanie stromu", "Čistenie žľabov", "Sekanie ľadu", "Stavanie plota",
+  "Cúvanie s vlečkou", "Parkovanie do garáže", "Odtiahnutie auta", "Štartovanie z kopca", "Jazda po poľadovici", "Prejazd brodom", "Preprava koňa", "Nakladanie kontajnera", "Tlačenie pokazeného auta", "Nasadzovanie reťazí",
+  "Podkúvanie koňa", "Strihanie ovce", "Dojenie kozy", "Výcvik sokola", "Cvičenie delfína", "Kŕmenie krokodíla", "Ošetrenie zvieraťa", "Zbieranie medu", "Odchyt hada", "Vypúšťanie motýľov",
+  "Meč v kameni", "Čarovná palička", "Krištáľová guľa", "Lietajúca metla", "Neviditeľný plášť", "Truhlica s dukátmi", "Kúzelný prsteň", "Fľaška s elixírom", "Drakova jaskyňa", "Zaklínadlo nad kotlom",
+  "Dirigent pri pulte", "Klavírny recitál", "Operná ária", "Balet na špičkách", "Husľové sólo", "Sólo na bicie", "Spevácky zbor", "Ladenie klavíra", "Skúška orchestra", "Ukláňanie na javisku",
+  "Skok s padákom", "Skok z mosta", "Lezenie bez lana", "Prejazd ohnivou obručou", "Silák so závažím", "Ležanie na klincoch", "Ohýbanie tyče", "Chôdza po uhlíkoch", "Balansovanie s taniermi", "Hod sekerou",
+  "Ľadová socha", "Piesková socha", "Bludisko z kukurice", "Šou s bublinami", "Svetelná šou", "Tancujúca fontána", "Let balónom", "Tieňové divadlo", "Živá socha", "Sochy zo snehu",
+
+  // Najnáročnejšie pojmy a výjavy
+  "Zatmenie Mesiaca", "Prílivová vlna", "Vodný vír", "Rosa na tráve", "Námraza", "Duna", "Soľné jazero", "Termálny prameň", "Skalné okno", "Kvitnúci kaktus",
+  "Rosnička", "Salamandra", "Axolotl", "Ježura", "Vtákopysk", "Nosáľ", "Lemur", "Okapi", "Mlok", "Kamzík",
+  "Parný stroj", "Mlynské koleso", "Tkací stav", "Hrnčiarsky kruh", "Lis na hrozno", "Studňa s rumpálom", "Kováčske mechy", "Pluh za koňom", "Ručný mlynček", "Kolovrat",
+  "Visiaci most", "Skalné bralo", "Horský priesmyk", "Snežná pláň", "Slaná pláň", "Vyhliadka nad údolím", "Jaskynné jazero", "Podzemná rieka", "Ľadová jaskyňa", "Kamenné bludisko",
+  "Neviditeľná stena", "Neviditeľná stolička", "Chôdza po schodoch", "Lezenie po rebríku", "Prechod cez lávku", "Skrývanie pod dáždnikom", "Naháňanie muchy", "Vytiahnutie tŕňa", "Balansovanie s pohárom", "Ťahanie neviditeľného lana",
+  "Karneval v Riu", "Čajový obrad", "Flamenco", "Hula tanec", "Kozácky tanec", "Škótske gajdy", "Írsky step", "Indický tanec", "Africké bubny", "Čínsky dračí tanec",
+  "Vedec v laboratóriu", "Archeológ pri vykopávkach", "Astronóm pri teleskope", "Potápač pri vraku", "Geológ s kladivkom", "Meteorológ pri stanici", "Chemik so skúmavkou", "Botanik s lupou", "Zoológ v teréne", "Ornitológ s ďalekohľadom",
+  "Vysoké koleso", "Rikša", "Konský povoz", "Psí záprah", "Sobí záprah", "Plť na rieke", "Jazda na slonovi", "Vznášadlo", "Bicykel pre dvoch", "Motorka s košom",
+  "Zaseknutý v okne", "Prilepená ruka", "Zamotaný v hadici", "Zamotaný v kábloch", "Uviaznutý v bahne", "Zavesený na konári", "Kĺzanie po ľade", "Pošmyknutie na kôre", "Stúpenie na hrable", "Zapletený do švihadla",
+  "Ohňostroj nad mestom", "Slávnostná prehliadka", "Historický sprievod", "Otvorenie olympiády", "Olympijská pochodeň", "Odhalenie sochy", "Prestrihnutie stuhy", "Krst lode", "Ovácie na štadióne", "Záverečná poklona",
 ] as const;
 
-const HARD_CONTEXT_GROUPS: ReadonlyArray<readonly [string, readonly string[]]> = [
-  ["Strata", ["dôvery", "práce", "peňazí", "času", "priateľa", "telefónu", "smeru", "pamäti", "trpezlivosti", "istoty"]],
-  ["Hľadanie", ["zmyslu", "práce", "pravdy", "pokoja", "riešenia", "domova", "odpovede", "rovnováhy", "spravodlivosti", "príležitosti"]],
-  ["Budovanie", ["dôvery", "vzťahu", "kariéry", "rodiny", "budúcnosti", "priateľstva", "tímu", "sebadôvery", "návyku", "domova"]],
-  ["Prekonanie", ["strachu", "stresu", "prekážky", "krízy", "únavy", "neistoty", "hanby", "hnevu", "bolesti", "výzvy"]],
-  ["Prijatie", ["zmeny", "chyby", "kritiky", "porážky", "pomoci", "reality", "rozhodnutia", "zodpovednosti", "minulosti", "pravdy"]],
-  ["Udržanie", ["tajomstva", "rovnováhy", "pokoja", "sľubu", "priateľstva", "pozornosti", "nádeje", "disciplíny", "dôvery", "hraníc"]],
-  ["Obrana", ["názoru", "priateľa", "rodiny", "pravdy", "slobody", "súkromia", "domova", "hraníc", "dôstojnosti", "prírody"]],
-  ["Zmena", ["plánov", "práce", "školy", "mesta", "názoru", "života", "návyku", "smeru", "pravidiel", "budúcnosti"]],
-  ["Riešenie", ["problému", "konfliktu", "sporu", "krízy", "chyby", "dlhu", "nedorozumenia", "otázky", "výzvy", "situácie"]],
-  ["Rozvoj", ["talentu", "vzťahu", "dieťaťa", "tímu", "firmy", "kariéry", "schopností", "nápadu", "záujmu", "osobnosti"]],
-  ["Ochrana", ["rodiny", "detí", "prírody", "zdravia", "súkromia", "domova", "majetku", "dôstojnosti", "slobody", "zvierat"]],
-  ["Získanie", ["odvahy", "dôvery", "práce", "podpory", "skúsenosti", "nadhľadu", "slobody", "pokoja", "uznania", "rešpektu"]],
-  ["Vyjadrenie", ["názoru", "emócie", "vďaky", "kritiky", "súcitu", "radosti", "hnevu", "obavy", "podpory", "lásky"]],
-  ["Dodržanie", ["sľubu", "pravidiel", "termínu", "dohody", "plánu", "rozpočtu", "poriadku", "zákona", "hraníc", "záväzku"]],
-  ["Zdieľanie", ["radosti", "starosti", "tajomstva", "nápadu", "spomienky", "zodpovednosti", "úspechu", "skúsenosti", "názoru", "pomoci"]],
-  ["Návrat", ["domov", "do práce", "do školy", "k rodine", "k priateľom", "k športu", "k pokoju", "k prírode", "k sebe", "k plánu"]],
-  ["Prvý", ["krok", "úspech", "neúspech", "pokus", "deň", "dojem", "plat", "výlet", "bozk", "zápas"]],
-  ["Posledný", ["pokus", "termín", "deň", "zápas", "list", "telefonát", "krok", "vlak", "darček", "úsmev"]],
-  ["Spoločná", ["dohoda", "cesta", "práca", "radosť", "spomienka", "oslava", "večera", "fotografia", "hra", "budúcnosť"]],
-  ["Osobná", ["voľba", "hranica", "zmena", "skúsenosť", "výzva", "zodpovednosť", "sloboda", "kríza", "hodnota", "spomienka"]],
-] as const;
 
-const HARD_LIFE_GROUPS: ReadonlyArray<readonly [string, readonly string[]]> = [
-  ["Rozhovor o", ["budúcnosti", "vzťahu", "práci", "rodine", "zdraví", "škole", "peniazoch", "probléme", "zmene", "snoch"]],
-  ["Debata o", ["pravde", "slobode", "spravodlivosti", "rodine", "práci", "zdraví", "škole", "budúcnosti", "peniazoch", "prírode"]],
-  ["Obava z", ["budúcnosti", "chyby", "neúspechu", "zmeny", "samoty", "straty", "odmietnutia", "choroby", "tmy", "rizika"]],
-  ["Radosť z", ["úspechu", "pomoci", "výletu", "rodiny", "práce", "darčeka", "zmeny", "pokroku", "víťazstva", "stretnutia"]],
-  ["Skúsenosť s", ["prácou", "deťmi", "cestovaním", "učením", "pomocou", "chorobou", "výhrou", "prehrou", "rizikom", "chybou"]],
-  ["Vzťah k", ["rodine", "práci", "prírode", "peniazom", "škole", "zdraviu", "tradícii", "hudbe", "športu", "mestu"]],
-  ["Názor na", ["prácu", "školu", "rodinu", "peniaze", "budúcnosť", "zdravie", "šport", "hudbu", "prírodu", "zmenu"]],
-  ["Právo na", ["odpočinok", "pomoc", "súkromie", "chybu", "názor", "radosť", "bezpečie", "vzdelanie", "zdravie", "slobodu"]],
-  ["Potreba", ["pokoja", "pomoci", "zmeny", "odpočinku", "podpory", "istoty", "slobody", "blízkosti", "poriadku", "uznania"]],
-  ["Túžba po", ["slobode", "pokoji", "úspechu", "domove", "rodine", "uznaní", "zmene", "ceste", "poznaní", "rovnováhe"]],
-  ["Dôvera v", ["rodinu", "priateľa", "seba", "tím", "budúcnosť", "pomoc", "zmenu", "spravodlivosť", "plán", "úspech"]],
-  ["Podpora pre", ["rodinu", "priateľa", "dieťa", "tím", "školu", "prácu", "zmenu", "sen", "nápad", "rozhodnutie"]],
-  ["Úcta k", ["rodičom", "práci", "prírode", "pravde", "tradícii", "histórii", "životu", "zdraviu", "rodine", "názoru"]],
-  ["Rešpekt k", ["ľuďom", "pravidlám", "prírode", "práci", "rodine", "názoru", "času", "zdraviu", "hraniciam", "zákonu"]],
-  ["Nádej na", ["zmenu", "pomoc", "úspech", "pokoj", "návrat", "výhru", "odpoveď", "riešenie", "lepší deň", "budúcnosť"]],
-  ["Príležitosť na", ["zmenu", "pomoc", "rast", "úspech", "návrat", "oddych", "učenie", "prácu", "cestu", "rozhovor"]],
-  ["Zodpovednosť za", ["rodinu", "prácu", "chybu", "zdravie", "domov", "peniaze", "rozhodnutie", "tím", "budúcnosť", "dieťa"]],
-  ["Reakcia na", ["problém", "prosbu", "správu", "kritiku", "ponuku", "chybu", "zmenu", "výzvu", "spor", "otázku"]],
-  ["Otázka o", ["živote", "práci", "vzťahu", "budúcnosti", "rodine", "zdraví", "škole", "peniazoch", "zmene", "snoch"]],
-  ["Rozhodnutie o", ["práci", "škole", "ceste", "rodine", "peniazoch", "budúcnosti", "zmene", "pomoci", "zdraví", "bývaní"]],
-  ["Záujem o", ["prácu", "šport", "hudbu", "prírodu", "zdravie", "knihy", "históriu", "cestovanie", "učenie", "rodinu"]],
-  ["Spomienka na", ["detstvo", "rodinu", "školu", "výlet", "priateľa", "domov", "oslavu", "prácu", "leto", "zimu"]],
-  ["Plán na", ["víkend", "výlet", "zmenu", "prácu", "školu", "dovolenku", "nákup", "oslavu", "budúcnosť", "pomoc"]],
-  ["Dôvod na", ["zmenu", "pomoc", "odchod", "návrat", "radosť", "obavu", "prácu", "oddych", "cestu", "rozhovor"]],
-  ["Záväzok voči", ["rodine", "práci", "tímu", "priateľovi", "deťom", "sebe", "spoločnosti", "škole", "domovu", "prírode"]],
-] as const;
+const TARGETS: Record<CharadesDifficulty, number> = { lahke: 800, stredne: 800, tazke: 400 };
 
-const TARGETS: Record<CharadesDifficulty, number> = { lahke: 667, stredne: 667, tazke: 666 };
-
-function assembleTier(difficulty: CharadesDifficulty, cards: readonly string[], used: Set<string>) {
-  const tier = uniqueCards(cards).filter((card) => {
+/**
+ * Katalóg je ručne písaný, takže sa nič negeneruje ani nedopĺňa. Kontrola len
+ * potvrdí, že každá karta spĺňa pravidlá šarád a že v celej databáze nie je
+ * žiadny duplikát ani nesprávny počet kariet.
+ */
+function buildTier(difficulty: CharadesDifficulty, cards: readonly string[], used: Set<string>) {
+  const tier = cards.map((card) => card.trim().replace(/\s+/g, " "));
+  const invalid = tier.filter((card) => !isValidCharadeText(card));
+  if (invalid.length) throw new Error(`Neplatné šarády (${difficulty}): ${invalid.join(", ")}`);
+  const duplicates: string[] = [];
+  for (const card of tier) {
     const key = card.toLocaleLowerCase("sk");
-    if (used.has(key)) return false;
+    if (used.has(key)) duplicates.push(card);
     used.add(key);
-    return true;
-  });
-  const target = TARGETS[difficulty];
-  if (tier.length < target) throw new Error(`Nedostatok kariet pre šarády: ${difficulty} (${tier.length}/${target})`);
-  return tier.slice(0, target);
+  }
+  if (duplicates.length) throw new Error(`Duplicitné šarády (${difficulty}): ${duplicates.join(", ")}`);
+  if (tier.length !== TARGETS[difficulty]) {
+    throw new Error(`Nesprávny počet šarád: ${difficulty} (${tier.length}/${TARGETS[difficulty]})`);
+  }
+  return tier;
 }
-
-const EASY_CANDIDATES = [
-  ...EASY_CONCRETE,
-  ...EASY_DESCRIPTORS.flatMap((descriptor) => phrases(descriptor, EASY_MASCULINE_OBJECTS)),
-];
-
-const MEDIUM_CANDIDATES = [
-  ...MEDIUM_ACTIVITY_GROUPS.flatMap(([prefix, endings]) => phrases(prefix, endings)),
-  ...MEDIUM_CONTEXT_GROUPS.flatMap(([prefix, endings]) => phrases(prefix, endings)),
-  ...MEDIUM_EVERYDAY,
-  ...MEDIUM_ROLES,
-  ...phrases("Rodinný", ["výlet", "obed", "piknik", "film", "večer", "nákup", "portrét", "recept", "album", "dom"]),
-  ...phrases("Školský", ["projekt", "výlet", "zápisník", "časopis", "rozhovor", "turnaj", "ples", "obraz", "výkon", "poklad"]),
-  ...phrases("Pracovný", ["stôl", "kalendár", "telefón", "e-mail", "zošit", "plán", "úbor", "súbor", "tím", "deň"]),
-  ...phrases("Náročný", ["deň", "výlet", "tréning", "rozhovor", "nákup", "projekt", "presun", "zápas", "výstup", "návrat"]),
-  ...phrases("Večerný", ["film", "kúpeľ", "čaj", "beh", "výlet", "nákup", "program", "telefonát", "tréning", "odpočinok"]),
-  ...phrases("Ranný", ["budík", "beh", "čaj", "nákup", "vlak", "autobus", "telefonát", "program", "tréning", "odchod"]),
-];
-
-const HARD_CANDIDATES = [
-  ...HARD_CONCEPTS,
-  ...HARD_IDIOMS,
-  ...HARD_CONTEXT_GROUPS.flatMap(([prefix, endings]) => phrases(prefix, endings)),
-  ...HARD_LIFE_GROUPS.flatMap(([prefix, endings]) => phrases(prefix, endings)),
-  ...phrases("Silná", ["dôvera", "vôľa", "emócia", "podpora", "motivácia", "spomienka", "priateľka", "rodina", "osobnosť", "skúsenosť"]),
-  ...phrases("Veľká", ["zmena", "výzva", "príležitosť", "zodpovednosť", "radosť", "obava", "strata", "pomoc", "nádej", "chyba"]),
-  ...phrases("Tichá", ["radosť", "bolesť", "podpora", "prosba", "spomienka", "dohoda", "obava", "zmena", "kríza", "nádej"]),
-  ...phrases("Nečakaná", ["správa", "pomoc", "zmena", "návšteva", "ponuka", "výhra", "prehra", "chyba", "otázka", "odpoveď"]),
-  ...phrases("Dlhodobá", ["dôvera", "snaha", "práca", "bolesť", "zmena", "podpora", "spolupráca", "pamäť", "skúsenosť", "zodpovednosť"]),
-  ...phrases("Vážna", ["dohoda", "otázka", "chyba", "kríza", "správa", "obava", "choroba", "skúška", "porada", "voľba"]),
-  ...phrases("Skrytá", ["obava", "pravda", "chyba", "túžba", "podpora", "správa", "nádej", "kríza", "závisť", "motivácia"]),
-  ...phrases("Úprimné", ["ospravedlnenie", "priznanie", "poďakovanie", "želanie", "priateľstvo", "rozhodnutie", "gesto", "slovo", "objatie", "hodnotenie"]),
-  ...phrases("Správne", ["rozhodnutie", "riešenie", "načasovanie", "slovo", "správanie", "miesto", "tempo", "otázka", "odpoveď", "smer"]),
-];
 
 const globallyUsed = new Set<string>();
 export const SOLO_CHARADES_WORDS: Record<CharadesDifficulty, string[]> = {
-  lahke: assembleTier("lahke", EASY_CANDIDATES, globallyUsed),
-  stredne: assembleTier("stredne", MEDIUM_CANDIDATES, globallyUsed),
-  tazke: assembleTier("tazke", HARD_CANDIDATES, globallyUsed),
+  lahke: buildTier("lahke", EASY_CARDS, globallyUsed),
+  stredne: buildTier("stredne", MEDIUM_CARDS, globallyUsed),
+  tazke: buildTier("tazke", HARD_CARDS, globallyUsed),
 };
 
 // Zachovávame verejné exporty staršieho TeamBattle kódu, ale už obsahujú
