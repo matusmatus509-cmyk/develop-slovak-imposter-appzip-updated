@@ -58,6 +58,7 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
   const [mode, setMode] = useState<Mode>("ai");
   const [difficulty, setDifficulty] = useState<Difficulty>("master");
   const [board, setBoard] = useState<Cell[]>(Array(9).fill(null));
+  const [starter, setStarter] = useState<Mark>("X");
   const [turn, setTurn] = useState<Mark>("X");
   const [result, setResult] = useState<Result>(null);
   const [winningLine, setWinningLine] = useState<readonly number[]>([]);
@@ -99,6 +100,7 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
 
   function startGame() {
     setBoard(Array(9).fill(null));
+    setStarter("X");
     setTurn("X");
     setResult(null);
     setWinningLine([]);
@@ -108,8 +110,10 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
   }
 
   function nextRound() {
+    const nextStarter: Mark = starter === "X" ? "O" : "X";
     setBoard(Array(9).fill(null));
-    setTurn("X");
+    setStarter(nextStarter);
+    setTurn(nextStarter);
     setResult(null);
     setWinningLine([]);
     setRound((value) => value + 1);
@@ -175,8 +179,8 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
 
           <div className="tic-turn-panel relative mt-2 shrink-0 text-center">
             <button onClick={nextRound} aria-label="Nové kolo" className="absolute right-0 top-0 flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[.05] text-white/45 transition active:scale-90"><Icons.refresh size={15} /></button>
-            <p className="text-[8px] font-black uppercase tracking-[.22em] text-white/30">{result ? "Kolo skončilo" : aiThinking ? "Robot premýšľa…" : "Na ťahu"}</p>
-            <h1 className="mt-0.5 text-lg font-black">{result === "draw" ? "Remíza" : result ? `${names[result]} vyhráva!` : names[turn]}</h1>
+            <p className={`text-[8px] font-black uppercase tracking-[.22em] ${starter === "X" ? "text-cyan-200/70" : "text-fuchsia-200/70"}`}>Začína: {names[starter]}</p>
+            <h1 className="mt-0.5 text-lg font-black">{result === "draw" ? "Remíza" : result ? `${names[result]} vyhráva!` : aiThinking ? "Robot premýšľa…" : `Na ťahu: ${names[turn]}`}</h1>
           </div>
 
           <section className="tic-board tic-board-shape mx-auto mt-2 grid w-full shrink-0 grid-cols-3 gap-2 rounded-[1.6rem] border border-white/10 bg-black/20 p-2.5 shadow-2xl shadow-black/35">

@@ -172,13 +172,6 @@ function resultLabel(result: ShotResult, ship?: ShipState) {
   return "Všetky lode potopené!";
 }
 
-function DeploymentFleetStatus({ ships }: { ships: ShipState[] }) {
-  return <div className="battle-deployment-status grid grid-cols-5 gap-1" aria-label="Rozmiestnenie flotily">{FLEET.map((definition) => {
-    const placed = ships.some((ship) => ship.id === definition.id);
-    return <div key={definition.id} title={`${definition.name}: ${placed ? "umiestnená" : "ešte treba umiestniť"}`} className={`min-w-0 rounded-lg border px-1 py-1 text-center ${placed ? "border-emerald-300/30 bg-emerald-400/10 text-emerald-200" : "border-white/[.08] bg-white/[.035] text-white/40"}`}><span className="block text-[9px] font-black leading-none">{placed ? "✓" : definition.length}</span><span className="mt-0.5 block truncate text-[5px] font-black uppercase tracking-wide">{placed ? "hotovo" : definition.shortName}</span></div>;
-  })}</div>;
-}
-
 function BattleGrid({
   board,
   revealShips,
@@ -582,17 +575,16 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
         <header className="flex shrink-0 items-center justify-between"><button onClick={newGame} aria-label="Zrušiť hru" className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[.06] text-white/70 transition active:scale-90"><Icons.chevronLeft size={19} /></button><PartyEyebrow>{mode === "local" ? `Hráč ${deploymentPlayer + 1} · súkromne` : "Tvoja flotila"}</PartyEyebrow><div className="h-10 w-10" /></header>
         <section className="battle-placement-heading mt-2 shrink-0 text-center"><p className="text-[7px] font-black uppercase tracking-[.24em] text-cyan-300/60">Rozmiestnenie lodí</p><h1 className="mt-0.5 text-xl font-black">{mode === "local" ? `Flotila hráča ${deploymentPlayer + 1}` : "Priprav svoju flotilu"}</h1><p className="mt-0.5 text-[9px] leading-relaxed text-white/42">Ťahaj loď z lišty alebo už položenú loď priamo po mape.</p></section>
 
-        <section className="battle-placement-status mt-2 shrink-0 rounded-xl border border-white/[.08] bg-white/[.035] p-1.5"><div className="mb-1 flex items-center justify-between px-1"><p className="text-[7px] font-black uppercase tracking-[.18em] text-white/38">Stav flotily</p><span className="text-[8px] font-black text-cyan-200/65">{placedCount}/5</span></div><DeploymentFleetStatus ships={placementBoard.ships} /></section>
-
         <section className="battle-placement-tray mt-2 shrink-0 rounded-xl border border-white/[.08] bg-white/[.035] p-1.5">
+          <div className="mb-1 flex items-center justify-between px-1"><div><p className="text-[7px] font-black uppercase tracking-[.18em] text-white/38">Tvoja flotila</p><p className="mt-0.5 text-[6px] font-bold text-cyan-200/60">Modré polož · zelené sú už na mape</p></div><span className="rounded-full border border-emerald-300/15 bg-emerald-400/[.07] px-2 py-0.5 text-[7px] font-black text-emerald-200">{placedCount}/5 hotovo</span></div>
           <div className="battle-ship-tray grid grid-cols-5 gap-1">{FLEET.map((definition) => {
             const placed = placementBoard.ships.some((ship) => ship.id === definition.id);
             const selected = selectedShipId === definition.id;
             const vertical = orientations[definition.id] === "vertical";
-            return <article key={definition.id} className={`battle-ship-block min-w-0 rounded-lg border p-0.5 transition ${selected ? "is-selected border-cyan-300/45 bg-cyan-400/12" : placed ? "border-emerald-300/20 bg-emerald-400/[.07]" : "border-white/[.08] bg-white/[.035]"}`}>
-              <button type="button" onClick={() => { setSelectedShipId(definition.id); setNotice(`Vybraná: ${definition.name}. Klepni na mapu alebo ju presuň.`); }} className="battle-ship-select flex h-11 w-full flex-col items-center justify-center rounded-md bg-black/10" aria-label={`Vybrať ${definition.name}`}>
-                <span onPointerDown={(event) => beginDrag(definition.id, event)} className={`battle-ship-silhouette flex min-h-7 min-w-7 cursor-grab rounded-md border border-white/10 bg-black/20 p-1 active:cursor-grabbing ${vertical ? "flex-col" : "flex-row"} gap-px`} aria-label={`Presunúť ${definition.name}`}>{Array.from({ length: definition.length }, (_, index) => <i key={index} className={`h-1 w-1 rounded-[1px] ${placed ? "bg-emerald-300" : "bg-cyan-300"}`} />)}</span>
-                <small className="mt-0.5 max-w-full truncate px-0.5 text-[5px] font-black uppercase tracking-wide text-white/45">{definition.shortName}</small>
+            return <article key={definition.id} className={`battle-ship-block min-w-0 rounded-lg border p-0.5 transition ${placed ? "is-placed border-emerald-300/35 bg-emerald-400/[.12]" : "border-cyan-300/15 bg-cyan-400/[.045]"} ${selected ? "is-selected" : ""}`}>
+              <button type="button" onClick={() => { setSelectedShipId(definition.id); setNotice(placed ? `${definition.name} je už na mape. Môžeš ju presunúť.` : `Vybraná: ${definition.name}. Klepni na mapu alebo ju presuň.`); }} className="battle-ship-select flex h-11 w-full flex-col items-center justify-center rounded-md bg-black/10" aria-label={`Vybrať ${definition.name}`}>
+                <span onPointerDown={(event) => beginDrag(definition.id, event)} className={`battle-ship-silhouette flex min-h-7 min-w-7 cursor-grab rounded-md border p-1 active:cursor-grabbing ${placed ? "border-emerald-200/30 bg-emerald-400/[.12]" : "border-cyan-200/20 bg-cyan-400/[.08]"} ${vertical ? "flex-col" : "flex-row"} gap-px`} aria-label={`Presunúť ${definition.name}`}>{Array.from({ length: definition.length }, (_, index) => <i key={index} className={`h-1 w-1 rounded-[1px] ${placed ? "bg-emerald-200" : "bg-cyan-200"}`} />)}</span>
+                <small className={`mt-0.5 max-w-full truncate px-0.5 text-[5px] font-black uppercase tracking-wide ${placed ? "text-emerald-100" : "text-cyan-100/65"}`}>{placed ? "✓ hotovo" : definition.shortName}</small>
               </button>
               <button type="button" onClick={() => rotateShip(definition.id)} aria-label={`Otočiť ${definition.name} ${vertical ? "vodorovne" : "zvisle"}`} className="mt-1 w-full rounded border border-white/[.07] bg-white/[.04] py-0.5 text-[8px] font-black text-white/60">{vertical ? "↔" : "↕"}</button>
             </article>;
