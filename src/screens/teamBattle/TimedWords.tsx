@@ -14,6 +14,7 @@ import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGestur
 import { CircularTimer } from "./PartyChrome";
 import { vibrate } from "../../utils/deviceFeedback";
 import { useCountdown } from "../../hooks/useCountdown";
+import { TurnAnswerRecap, type TurnAnswer } from "../../components/TurnAnswerRecap";
 
 type SubPhase = "select-difficulty" | "ready" | "playing" | "team-done";
 
@@ -58,6 +59,7 @@ export default function TimedWords({
   const [scores, setScores] = useState<[number, number]>([0, 0]);
   const [flash, setFlash] = useState<"ok" | "skip" | null>(null);
   const [roundScore, setRoundScore] = useState(0);
+  const [roundAnswers, setRoundAnswers] = useState<TurnAnswer[]>([]);
 
   const [difficulty, setDifficulty] = useState<PantomimaDifficulty | null>(null);
   const [pantomimaWords, setPantomimaWords] = useState<string[]>([]);
@@ -71,6 +73,12 @@ export default function TimedWords({
   const doneRef = useRef(false);
   const correctRef = useRef(0);
   const actionLockedRef = useRef(false);
+  const answersRef = useRef<TurnAnswer[]>([]);
+
+  function recordAnswer(answer: string, outcome: TurnAnswer["outcome"]) {
+    if (!answer || answer === "—") return;
+    answersRef.current.push({ answer, outcome });
+  }
 
   const half = Math.ceil(words.length / 2);
   const sharedTeamWords = teamIdx === 0 ? words.slice(0, half) : words.slice(half);
@@ -124,6 +132,9 @@ export default function TimedWords({
     () => {
       if (doneRef.current) return;
       doneRef.current = true;
+      // The card still on screen when the clock reaches zero is explicitly shown as missed.
+      if (!actionLockedRef.current) recordAnswer(currentWord, "missed");
+      setRoundAnswers([...answersRef.current]);
       setRoundScore(isPantomima ? 0 : correctRef.current * pointsPerWord);
       setSubPhase("team-done");
     },
@@ -139,6 +150,8 @@ export default function TimedWords({
     setSkipCount(0);
     resetCountdown();
     setFlash(null);
+    setRoundAnswers([]);
+    answersRef.current = [];
     doneRef.current = false;
     correctRef.current = 0;
     actionLockedRef.current = false;
@@ -152,15 +165,18 @@ export default function TimedWords({
     if (isHadajKtoSom) vibrate(25);
     if (isPantomima) {
       doneRef.current = true;
+      recordAnswer(currentWord, "guessed");
       setFlash("ok");
       setTimeout(() => {
         setFlash(null);
+        setRoundAnswers([...answersRef.current]);
         setRoundScore(pendingPantomimaScore);
         setSubPhase("team-done");
       }, 500);
       return;
     }
     if (isSarady) {
+      recordAnswer(currentWord, "guessed");
       correctRef.current += 1;
       setFlash("ok");
       setTimeout(() => {
@@ -171,6 +187,7 @@ export default function TimedWords({
       return;
     }
     if (isHadajKtoSom) {
+      recordAnswer(currentWord, "guessed");
       correctRef.current += 1;
       setFlash("ok");
       setTimeout(() => {
@@ -180,12 +197,14 @@ export default function TimedWords({
       }, 500);
       return;
     }
+    recordAnswer(currentWord, "guessed");
     correctRef.current += 1;
     setFlash("ok");
     setTimeout(() => {
       setFlash(null);
       if (wordIdx + 1 >= teamWords.length) {
         doneRef.current = true;
+        setRoundAnswers([...answersRef.current]);
         setRoundScore(correctRef.current * pointsPerWord);
         setSubPhase("team-done");
       } else {
@@ -200,8 +219,10 @@ export default function TimedWords({
     actionLockedRef.current = true;
     if (isHadajKtoSom) vibrate(25);
     if (isPantomima) {
+      recordAnswer(currentWord, "skipped");
       if (wordIdx + 1 >= teamWords.length) {
         doneRef.current = true;
+        setRoundAnswers([...answersRef.current]);
         setRoundScore(0);
         setSubPhase("team-done");
         return;
@@ -216,6 +237,7 @@ export default function TimedWords({
       return;
     }
     if (isSarady || isHadajKtoSom) {
+      recordAnswer(currentWord, "skipped");
       setFlash("skip");
       setTimeout(() => {
         setFlash(null);
@@ -224,11 +246,13 @@ export default function TimedWords({
       }, 400);
       return;
     }
+    recordAnswer(currentWord, "skipped");
     setFlash("skip");
     setTimeout(() => {
       setFlash(null);
       if (wordIdx + 1 >= teamWords.length) {
         doneRef.current = true;
+        setRoundAnswers([...answersRef.current]);
         setRoundScore(correctRef.current * pointsPerWord);
         setSubPhase("team-done");
       } else {
@@ -496,7 +520,7 @@ export default function TimedWords({
 
   return (
     <div
-      className="party-backdrop fixed inset-0 flex flex-col items-center justify-center gap-7 overflow-hidden px-6 text-center"
+      className="party-backdrop fixed inset-0 flex flex-col items-center gap-7 overflow-y-auto px-6 py-7 text-center"
     >
       <div className="text-5xl" style={{ animation: "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1)" }}>⏰</div>
       <div style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}>
@@ -526,6 +550,8 @@ export default function TimedWords({
           </p>
         )}
       </div>
+
+      <TurnAnswerRecap answers={roundAnswers} />
 
       <button
         onClick={handleTeamDone}
