@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Icons } from "../../components/icons";
-import { GAME_LABELS } from "../../data/teamBattle";
 import { PartyBackdrop, PartyEyebrow } from "../teamBattle/PartyChrome";
 import { ForbiddenWordGame, GuessSongGame } from "../teamBattle/PassAndPlay";
+import MusicBuzzer from "../teamBattle/MusicBuzzer";
 import SoundBuzzer from "../teamBattle/SoundBuzzer";
 import { FiveInTenGame, LetterChallengeGame } from "../teamBattle/QuickChallenges";
 import { PARTY_PLAYER_COLORS, type QuickPlayMode } from "../teamBattle/quickGameShared";
@@ -13,11 +13,21 @@ import letterArt from "../../assets/party-letter.svg";
 import fiveTenArt from "../../assets/party-five-ten.svg";
 import { defaultPlayerName, defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 
-type QuickGameType = "zakazane" | "pesnicka" | "zvuk" | "pismeno" | "patzadesat";
+type QuickGameType = "zakazane" | "pesnicka" | "hudobny-kviz" | "zvuk" | "pismeno" | "patzadesat";
+
+const GAME_TITLES: Record<QuickGameType, string> = {
+  zakazane: "Zakázané slovo",
+  pesnicka: "Zahmkaj pesničku",
+  "hudobny-kviz": "Hudobný kvíz",
+  zvuk: "Uhádni zvuk",
+  pismeno: "Slovo na písmeno",
+  patzadesat: "5 za 10",
+};
 
 const GAME_ART: Record<QuickGameType, string> = {
   zakazane: forbiddenArt,
   pesnicka: songArt,
+  "hudobny-kviz": songArt,
   zvuk: soundArt,
   pismeno: letterArt,
   patzadesat: fiveTenArt,
@@ -26,6 +36,7 @@ const GAME_ART: Record<QuickGameType, string> = {
 const GAME_ACCENT: Record<QuickGameType, string> = {
   zakazane: "#fb7185",
   pesnicka: "#a78bfa",
+  "hudobny-kviz": "#d946ef",
   zvuk: "#22d3ee",
   pismeno: "#fbbf24",
   patzadesat: "#34d399",
@@ -44,6 +55,7 @@ interface GameOptions {
 const GAME_OPTIONS: Record<QuickGameType, GameOptions> = {
   zakazane: { rounds: [1, 2, 3, 4], defaultRounds: 1, times: [30, 45, 60, 90], defaultTime: 60, roundsLabel: "Kolá na hráča / tím", timeLabel: "Čas jedného kola", roundsArePerParticipant: true },
   pesnicka: { rounds: [1, 2, 3, 4], defaultRounds: 1, times: [30, 45, 60, 90], defaultTime: 60, roundsLabel: "Kolá na hráča / tím", timeLabel: "Čas jedného kola", roundsArePerParticipant: true },
+  "hudobny-kviz": { rounds: [5, 10, 15, 20], defaultRounds: 10, times: [7, 10, 15, 20], defaultTime: 10, roundsLabel: "Počet pesničiek", timeLabel: "Dĺžka ukážky", roundsArePerParticipant: false },
   zvuk: { rounds: [5, 10, 15, 20], defaultRounds: 10, times: [5, 7, 10, 15], defaultTime: 7, roundsLabel: "Počet zvukov", timeLabel: "Dĺžka ukážky", roundsArePerParticipant: false },
   pismeno: { rounds: [1, 2, 3, 4], defaultRounds: 2, times: [5, 7, 10, 15], defaultTime: 5, roundsLabel: "Kolá na hráča / tím", timeLabel: "Čas na odpoveď", roundsArePerParticipant: true },
   patzadesat: { rounds: [1, 2, 3, 4], defaultRounds: 2, times: [10, 15, 20, 30], defaultTime: 10, roundsLabel: "Kolá na hráča / tím", timeLabel: "Čas na výzvu", roundsArePerParticipant: true },
@@ -111,6 +123,7 @@ export default function TeamQuickGame({
     const shared = { key: run, participantNames: names, gameMode, rounds, timeSeconds, onDone: finish };
     if (game === "zakazane") return <ForbiddenWordGame {...shared} />;
     if (game === "pesnicka") return <GuessSongGame {...shared} />;
+    if (game === "hudobny-kviz") return <MusicBuzzer {...shared} />;
     if (game === "zvuk") return <SoundBuzzer {...shared} />;
     if (game === "pismeno") return <LetterChallengeGame {...shared} />;
     return <FiveInTenGame {...shared} />;
@@ -125,7 +138,7 @@ export default function TeamQuickGame({
         <main className="flex h-full flex-col items-center overflow-y-auto px-5 py-8 text-center">
           <PartyEyebrow>Koniec minihry</PartyEyebrow>
           <div className="mt-7 text-7xl">{draw ? "🤝" : "🏆"}</div>
-          <p className="mt-5 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">{GAME_LABELS[game]}</p>
+          <p className="mt-5 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">{GAME_TITLES[game]}</p>
           <h1 className="mt-2 text-4xl font-black text-white">{draw ? "Remíza!" : `${names[winners[0]]} vyhráva!`}</h1>
           <div className="mt-7 grid w-full max-w-sm grid-cols-2 gap-3">
             {names.map((name, index) => {
@@ -162,7 +175,7 @@ export default function TeamQuickGame({
           <div className="relative mt-6 h-48 overflow-hidden rounded-[2rem] border border-white/15 shadow-2xl">
             <img src={GAME_ART[game]} alt="" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#080b13] via-transparent to-transparent" />
-            <h1 className="absolute bottom-5 left-5 right-5 text-3xl font-black text-white">{GAME_LABELS[game]}</h1>
+            <h1 className="absolute bottom-5 left-5 right-5 text-3xl font-black text-white">{GAME_TITLES[game]}</h1>
           </div>
 
           {!gameMode ? (
