@@ -9,6 +9,7 @@ import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGestur
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
 import { useCountdown } from "../../hooks/useCountdown";
+import { TurnAnswerRecap, type TurnAnswer } from "../../components/TurnAnswerRecap";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -227,7 +228,7 @@ function PlayingScreen({
   priorityCards: Card[];
   timerSeconds: number;
   onWordGuessed?: (record: WordGuessRecordInput) => void;
-  onDone: (correct: number, skipped: number) => void;
+  onDone: (correct: number, skipped: number, answers: TurnAnswer[]) => void;
 }) {
   const { playFeedback } = useFeedback();
   const priorityQueueRef = useRef([...priorityCards]);
@@ -245,6 +246,7 @@ function PlayingScreen({
   const skippedRef = useRef(0);
   const tiltLocked = useRef(false);
   const doneRef = useRef(false);
+  const answersRef = useRef<TurnAnswer[]>([]);
   const cardStartedAtRef = useRef(performance.now());
   const wasCalibratingRef = useRef(false);
 
@@ -252,13 +254,16 @@ function PlayingScreen({
   const finishRound = useCallback(() => {
     if (doneRef.current) return;
     doneRef.current = true;
-    onDone(correctRef.current, skippedRef.current);
-  }, [onDone]);
+    // A card still visible at time-out was neither guessed nor deliberately skipped.
+    if (!tiltLocked.current && card?.word) answersRef.current.push({ answer: card.word, outcome: "missed" });
+    onDone(correctRef.current, skippedRef.current, [...answersRef.current]);
+  }, [card?.word, onDone]);
 
   const handleCorrect = useCallback(() => {
     if (doneRef.current || tiltLocked.current) return;
     tiltLocked.current = true;
     playFeedback("click");
+    if (card?.word) answersRef.current.push({ answer: card.word, outcome: "guessed" });
     if (card?.word) onWordGuessed?.({ word: card.word, milliseconds: Math.max(100, Math.round(performance.now() - cardStartedAtRef.current)), gameTitle: "Hádaj kto som" });
     correctRef.current += 1;
     setFlash("correct");
@@ -275,6 +280,7 @@ function PlayingScreen({
     if (doneRef.current || tiltLocked.current) return;
     tiltLocked.current = true;
     playFeedback("click");
+    if (card?.word) answersRef.current.push({ answer: card.word, outcome: "skipped" });
     skippedRef.current += 1;
     setFlash("wrong");
     setTimeout(() => {
@@ -284,7 +290,7 @@ function PlayingScreen({
       setCardIdx((value) => value + 1);
       tiltLocked.current = false;
     }, 600);
-  }, [drawNextCard, playFeedback]);
+  }, [card?.word, drawNextCard, playFeedback]);
 
   const tiltStatus = useTiltGesture(true, handleCorrect, handleSkip);
   const isCalibrating = tiltStatus === "calibrating";
@@ -470,6 +476,7 @@ export default function HadajKtoSom({
   const [priorityCards, setPriorityCards] = useState<Card[]>([]);
   const [currentPlayer, setCurrentPlayer] = useState(0);
   const [timerSeconds, setTimerSeconds] = useState(partyConfig?.timerSeconds ?? 60);
+  const [roundAnswers, setRoundAnswers] = useState<TurnAnswer[]>([]);
   const [allCatIds, setAllCatIds] = useState<string[]>(() => partyConfig
     ? categories.map((category) => category.id)
     : [categories[0].id]);
@@ -489,7 +496,8 @@ export default function HadajKtoSom({
     setPhase("playing");
   }
 
-  function handleRoundDone(correct: number, skipped: number) {
+  function handleRoundDone(correct: number, skipped: number, answers: TurnAnswer[]) {
+    setRoundAnswers(answers);
     setPlayers((prev) =>
       prev.map((p, i) =>
         i === currentPlayer ? { ...p, correct, skipped, played: true } : p
@@ -614,6 +622,8 @@ export default function HadajKtoSom({
               </div>
             </div>
           </div>
+
+          <TurnAnswerRecap answers={roundAnswers} />
 
           <Button fullWidth onClick={handleNext}>
             {isLast

@@ -12,6 +12,7 @@ import { Icons } from "../../components/icons";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
 import { useCountdown } from "../../hooks/useCountdown";
+import { TurnAnswerRecap, type TurnAnswer } from "../../components/TurnAnswerRecap";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -310,7 +311,7 @@ function PlayingScreen({
   maxSkips: number;
   teamMode: boolean;
   onWordGuessed?: (record: WordGuessRecordInput) => void;
-  onDone: (correct: number, skips: number) => void;
+  onDone: (correct: number, skips: number, answers: TurnAnswer[]) => void;
 }) {
   const priorityQueueRef = useRef([...priorityCards]);
   function drawNextCard() {
@@ -330,13 +331,16 @@ function PlayingScreen({
   const skipsRef = useRef(0);
   const doneRef = useRef(false);
   const actionLockedRef = useRef(false);
+  const answersRef = useRef<TurnAnswer[]>([]);
   const cardStartedAtRef = useRef(Date.now());
 
 
   function finish() {
     if (doneRef.current) return;
     doneRef.current = true;
-    onDone(correctRef.current, skipsRef.current);
+    // The unresolved visible card is an answer the team did not get before the turn ended.
+    if (!actionLockedRef.current && card?.word) answersRef.current.push({ answer: card.word, outcome: "missed" });
+    onDone(correctRef.current, skipsRef.current, [...answersRef.current]);
   }
 
   // Odpočet beží podľa reálneho času, takže ho animácie kariet ani skóre nespomalia.
@@ -358,6 +362,7 @@ function PlayingScreen({
 
   function handleCorrect() {
     if (!advance("correct")) return;
+    if (card?.word) answersRef.current.push({ answer: card.word, outcome: "guessed" });
     if (card?.word) onWordGuessed?.({ word: card.word, milliseconds: Math.max(100, Date.now() - cardStartedAtRef.current), gameTitle: "Slovné šarády" });
     correctRef.current += 1;
     setCorrect((c) => c + 1);
@@ -366,6 +371,7 @@ function PlayingScreen({
   function handleSkip() {
     if (skipsUsed >= maxSkips && maxSkips !== 99) return;
     if (!advance("skip")) return;
+    if (card?.word) answersRef.current.push({ answer: card.word, outcome: "skipped" });
     skipsRef.current += 1;
     setSkipsUsed((s) => s + 1);
   }
@@ -528,6 +534,7 @@ export default function SlovnaRosada({
   const [deck, setDeck] = useState<Card[]>(() => partyConfig ? buildDeck("all", extraCards) : []);
   const [roundCorrect, setRoundCorrect] = useState(0);
   const [roundSkips, setRoundSkips] = useState(0);
+  const [roundAnswers, setRoundAnswers] = useState<TurnAnswer[]>([]);
 
   function startGame(names: string[], timer: number, skips: number, teams: boolean, diff: string) {
     setTimerSecs(timer);
@@ -547,9 +554,10 @@ export default function SlovnaRosada({
     setPhase("who-starts");
   }
 
-  function handleRoundDone(correct: number, skips: number) {
+  function handleRoundDone(correct: number, skips: number, answers: TurnAnswer[]) {
     setRoundCorrect(correct);
     setRoundSkips(skips);
+    setRoundAnswers(answers);
     setPlayers((prev) =>
       prev.map((p, i) =>
         i === currentIdx ? { ...p, score: p.score + correct } : p
@@ -690,6 +698,8 @@ export default function SlovnaRosada({
               <div className="text-xs uppercase tracking-widest text-white/40 mt-1">Preskočené</div>
             </div>
           </div>
+
+          <TurnAnswerRecap answers={roundAnswers} />
 
           {/* Running scores */}
           {teamMode ? (

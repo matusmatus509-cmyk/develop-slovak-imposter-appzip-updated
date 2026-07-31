@@ -6,6 +6,7 @@ import { takePersistentItem } from "../../utils/persistentDeck";
 import { useLanguage } from "../../i18n/LanguageProvider";
 import { CircularTimer, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { useCountdown } from "../../hooks/useCountdown";
+import { TurnAnswerRecap, type TurnAnswer } from "../../components/TurnAnswerRecap";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
 import { soundsEnabled, vibrate } from "../../utils/deviceFeedback";
 
@@ -55,6 +56,8 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   const [turnScore, setTurnScore] = useState(0);
   const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
   const [songAwards, setSongAwards] = useState({ title: false, artist: false });
+  const [turnAnswers, setTurnAnswers] = useState<TurnAnswer[]>([]);
+  const turnAnswersRef = useRef<TurnAnswer[]>([]);
   const [preview, setPreview] = useState<{ url: string; link: string } | null>(null);
   const [previewStatus, setPreviewStatus] = useState<"loading" | "ready" | "playing" | "missing">("loading");
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -67,6 +70,25 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   const participantLabel = gameMode === "teams" ? "tím" : "hráč";
   const forbiddenCard = mode === "zakazane" ? card as ForbiddenCard | null : null;
   const songCard = mode === "pesnicka" ? card as SongCard | null : null;
+
+  function addTurnAnswer(answer: TurnAnswer) {
+    turnAnswersRef.current = [...turnAnswersRef.current, answer];
+    setTurnAnswers(turnAnswersRef.current);
+  }
+
+  function recordSongAnswer(unansweredOutcome: "skipped" | "missed") {
+    if (!songCard) return;
+    const outcome = songAwards.title && songAwards.artist
+      ? "guessed"
+      : songAwards.title || songAwards.artist
+        ? "partial"
+        : unansweredOutcome;
+    addTurnAnswer({
+      answer: `${songCard.title} — ${songCard.artist}`,
+      outcome,
+      detail: `Názov ${songAwards.title ? "✓" : "✕"} · Interpret ${songAwards.artist ? "✓" : "✕"}`,
+    });
+  }
 
   function drawCard() {
     if (mode === "zakazane") {
@@ -166,6 +188,8 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
     phase === "playing" && !isPreviewPlaying,
     () => {
       audioRef.current?.pause();
+      if (mode === "zakazane" && forbiddenCard) addTurnAnswer({ answer: forbiddenCard.word, outcome: "missed" });
+      if (mode === "pesnicka") recordSongAnswer("missed");
       setPhase("team-result");
     },
   );
@@ -182,6 +206,8 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   function startTurn() {
     setIndex(0);
     setTurnScore(0);
+    turnAnswersRef.current = [];
+    setTurnAnswers([]);
     resetCountdown();
     setSongAwards({ title: false, artist: false });
     drawCard();
@@ -190,6 +216,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
 
   function nextCard(correct: boolean) {
     stopPreview();
+    if (forbiddenCard) addTurnAnswer({ answer: forbiddenCard.word, outcome: correct ? "guessed" : "skipped" });
     if (correct) setTurnScore((value) => value + 1);
     drawCard();
     setIndex((value) => value + 1);
@@ -205,6 +232,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
 
   function nextSongCard() {
     stopPreview();
+    recordSongAnswer("skipped");
     setSongAwards({ title: false, artist: false });
     drawCard();
     setIndex((value) => value + 1);
@@ -288,7 +316,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   if (phase === "team-result") {
     return (
       <PartyBackdrop>
-        <main className="flex h-full flex-col items-center justify-center px-6 text-center">
+        <main className="flex h-full flex-col items-center overflow-y-auto px-6 py-8 text-center">
           <div className="text-6xl">{turnScore > 0 ? "🎉" : "⏱️"}</div>
           <p className="mt-6 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">Výsledok tímu</p>
           <h1 className="mt-2 text-3xl font-black" style={{ color: participantColor }}>{participantNames[participant]}</h1>
@@ -296,6 +324,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
             <p className="text-7xl font-black tabular-nums text-white">{turnScore}</p>
             <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-white/35">{copy.result}</p>
           </div>
+          <TurnAnswerRecap answers={turnAnswers} />
           <button
             onClick={continueAfterResult}
             className="party-shine mt-7 w-full max-w-xs overflow-hidden rounded-2xl px-6 py-5 text-base font-black text-white shadow-xl transition active:scale-[.97]"
