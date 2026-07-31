@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import songArt from "../../assets/party-song.svg";
 import { getSongCardsForLanguage } from "../../data/localizedSongs";
 import { FORBIDDEN_CARDS, type ForbiddenCard, type SongCard } from "../../data/teamBattleExtras";
@@ -9,6 +9,7 @@ import { useCountdown } from "../../hooks/useCountdown";
 import { TurnAnswerRecap, type TurnAnswer } from "../../components/TurnAnswerRecap";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
 import { soundsEnabled, vibrate } from "../../utils/deviceFeedback";
+import { useSongPreview } from "../../hooks/useSongPreview";
 
 type PassMode = "zakazane" | "pesnicka";
 type Phase = "ready" | "playing" | "team-result";
@@ -24,7 +25,7 @@ const MODE_COPY = {
     accent: "#fb7185",
   },
   pesnicka: {
-    eyebrow: "Uhádni pesničku",
+    eyebrow: "Zahmkaj pesničku",
     icon: "🎵",
     title: "Zahmkaj melódiu bez slov",
     instruction: "Názov vidí iba hráč s mobilom. Zahmká melódiu bez textu. Za názov sa získava bod a za interpreta ďalší bod.",
@@ -58,10 +59,6 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   const [songAwards, setSongAwards] = useState({ title: false, artist: false });
   const [turnAnswers, setTurnAnswers] = useState<TurnAnswer[]>([]);
   const turnAnswersRef = useRef<TurnAnswer[]>([]);
-  const [preview, setPreview] = useState<{ url: string; link: string } | null>(null);
-  const [previewStatus, setPreviewStatus] = useState<"loading" | "ready" | "playing" | "missing">("loading");
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const previewTimerRef = useRef<number | null>(null);
   const [card, setCard] = useState<ForbiddenCard | SongCard | null>(null);
   const participant = turn % participantNames.length;
   const totalTurns = participantNames.length * rounds;
@@ -70,6 +67,11 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   const participantLabel = gameMode === "teams" ? "tím" : "hráč";
   const forbiddenCard = mode === "zakazane" ? card as ForbiddenCard | null : null;
   const songCard = mode === "pesnicka" ? card as SongCard | null : null;
+  const {
+    status: previewStatus,
+    play: playSongPreview,
+    stop: stopSongPreview,
+  } = useSongPreview(songCard, soundAllowed && mode === "pesnicka" && phase === "playing", 8);
 
   function addTurnAnswer(answer: TurnAnswer) {
     turnAnswersRef.current = [...turnAnswersRef.current, answer];
@@ -102,106 +104,18 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
     ));
   }
 
-  useEffect(() => {
-    if (!soundAllowed || mode !== "pesnicka" || phase !== "playing" || !songCard) return;
-    const song = songCard;
-    const query = encodeURIComponent(`${song.title} ${song.artist}`);
-    const requestId = `${Date.now()}_${Math.random().toString(36).slice(2)}`;
-    const deezerCallback = `__partySongPreviewDeezer_${requestId}`;
-    const itunesCallback = `__partySongPreviewItunes_${requestId}`;
-    const jsonpWindow = window as unknown as Record<string, unknown>;
-    const scripts: HTMLScriptElement[] = [];
-    const timeouts: number[] = [];
-    let active = true;
-    let fallbackStarted = false;
-
-    setPreview(null);
-    setPreviewStatus("loading");
-
-    function clearRequestTimeouts() {
-      timeouts.forEach((timeout) => window.clearTimeout(timeout));
-      timeouts.length = 0;
-    }
-
-    function useDirectPreview(url: string, link: string) {
-      if (!active) return;
-      clearRequestTimeouts();
-      setPreview({ url, link });
-      setPreviewStatus("ready");
-    }
-
-    function markMissing() {
-      if (!active) return;
-      clearRequestTimeouts();
-      setPreviewStatus("missing");
-    }
-
-    function startItunesFallback() {
-      if (!active || fallbackStarted) return;
-      fallbackStarted = true;
-      clearRequestTimeouts();
-      const script = document.createElement("script");
-      scripts.push(script);
-      jsonpWindow[itunesCallback] = (result: { results?: Array<{ previewUrl?: string; trackViewUrl?: string }> }) => {
-        const match = result.results?.find((item) => item.previewUrl);
-        if (match?.previewUrl) {
-          useDirectPreview(match.previewUrl, match.trackViewUrl ?? "https://music.apple.com");
-        } else {
-          markMissing();
-        }
-      };
-      script.src = `https://itunes.apple.com/search?term=${query}&media=music&entity=song&limit=5&callback=${itunesCallback}`;
-      script.onerror = markMissing;
-      document.head.appendChild(script);
-      timeouts.push(window.setTimeout(markMissing, 7000));
-    }
-
-    const deezerScript = document.createElement("script");
-    scripts.push(deezerScript);
-    jsonpWindow[deezerCallback] = (result: { data?: Array<{ preview?: string; link?: string }> }) => {
-      if (!active || fallbackStarted) return;
-      const match = result.data?.find((item) => item.preview);
-      if (match?.preview) {
-        useDirectPreview(match.preview, match.link ?? "https://www.deezer.com");
-      } else {
-        startItunesFallback();
-      }
-    };
-    deezerScript.src = `https://api.deezer.com/search?q=${query}&limit=3&output=jsonp&callback=${deezerCallback}`;
-    deezerScript.onerror = startItunesFallback;
-    document.head.appendChild(deezerScript);
-    timeouts.push(window.setTimeout(startItunesFallback, 7000));
-
-    return () => {
-      active = false;
-      clearRequestTimeouts();
-      scripts.forEach((script) => script.remove());
-      delete jsonpWindow[deezerCallback];
-      delete jsonpWindow[itunesCallback];
-    };
-  }, [mode, phase, songCard, soundAllowed]);
-
   // Počas prehrávania ukážky pesničky sa čas zastaví, inak beží podľa reálneho času.
   const isPreviewPlaying = mode === "pesnicka" && previewStatus === "playing";
   const { secondsLeft: timeLeft, reset: resetCountdown } = useCountdown(
     timeSeconds,
     phase === "playing" && !isPreviewPlaying,
     () => {
-      audioRef.current?.pause();
+      stopSongPreview("ready");
       if (mode === "zakazane" && forbiddenCard) addTurnAnswer({ answer: forbiddenCard.word, outcome: "missed" });
       if (mode === "pesnicka") recordSongAnswer("missed");
       setPhase("team-result");
     },
   );
-
-  useEffect(() => () => {
-    if (previewTimerRef.current !== null) window.clearTimeout(previewTimerRef.current);
-    audioRef.current?.pause();
-  }, []);
-
-  useEffect(() => {
-    if (!soundAllowed) stopPreview();
-  }, [soundAllowed]);
 
   function startTurn() {
     setIndex(0);
@@ -239,31 +153,11 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   }
 
   function stopPreview() {
-    if (previewTimerRef.current !== null) window.clearTimeout(previewTimerRef.current);
-    previewTimerRef.current = null;
-    audioRef.current?.pause();
-    audioRef.current = null;
-    if (preview) setPreviewStatus("ready");
+    stopSongPreview("ready");
   }
 
-  async function playPreview() {
-    if (!preview || !soundAllowed) return;
-    stopPreview();
-    const audio = new Audio(preview.url);
-    audio.volume = 0.55;
-    audioRef.current = audio;
-    try {
-      await audio.play();
-      setPreviewStatus("playing");
-      previewTimerRef.current = window.setTimeout(() => {
-        audio.pause();
-        audio.currentTime = 0;
-        setPreviewStatus("ready");
-        audioRef.current = null;
-      }, 8000);
-    } catch {
-      setPreviewStatus("missing");
-    }
+  function playPreview() {
+    void playSongPreview();
   }
 
   function continueAfterResult() {

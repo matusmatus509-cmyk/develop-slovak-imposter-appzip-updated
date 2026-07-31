@@ -24,6 +24,7 @@ export type Screen =
   | "hadajemoji"
   | "zakazane"
   | "pesnicka"
+  | "hudobny-kviz"
   | "zvuk"
   | "pismeno"
   | "patzadesat"

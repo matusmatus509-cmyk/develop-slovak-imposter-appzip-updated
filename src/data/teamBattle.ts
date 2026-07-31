@@ -1027,7 +1027,7 @@ export const GAME_LABELS: Record<GameType, string> = {
   pingpong: "Slovný ping pong",
   hadajktosom: "Hádaj kto som",
   zakazane: "Zakázané slovo",
-  pesnicka: "Uhádni pesničku",
+  pesnicka: "Zahmkaj pesničku",
   zvuk: "Uhádni zvuk",
   pismeno: "Slovo na písmeno",
   patzadesat: "5 za 10",

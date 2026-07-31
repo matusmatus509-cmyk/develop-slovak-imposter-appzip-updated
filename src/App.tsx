@@ -106,7 +106,8 @@ const MINIGAMES: MenuGame[] = [
   { screen: "ktodostanebombu", title: "Kto dostane bombu", description: "Hovorte slová a podajte mobil skôr, než vybuchne.", icon: "zap", color: "from-orange-500 to-red-600" },
   { screen: "hadajemoji", title: "Hádaj emoji", description: "Uhádnite filmy, postavy, videohry či osobnosti z emoji.", icon: "smile", color: "from-amber-400 to-yellow-500" },
   { screen: "zakazane", title: "Zakázané slovo", description: "Vysvetľujte bez štyroch zakázaných výrazov.", icon: "messageSquare", color: "from-rose-500 to-red-700", badge: "Nové" },
-  { screen: "pesnicka", title: "Uhádni pesničku", description: "Hmkaním predveďte známe slovenské aj svetové skladby.", icon: "headphones", color: "from-violet-500 to-fuchsia-700", badge: "Nové" },
+  { screen: "pesnicka", title: "Zahmkaj pesničku", description: "Hmkaním predveďte známe slovenské aj svetové hity.", icon: "headphones", color: "from-violet-500 to-fuchsia-700", badge: "Nové" },
+  { screen: "hudobny-kviz", title: "Hudobný kvíz", description: "Pustite ukážku známej pesničky a získajte bod za názov aj interpreta.", icon: "headphones", color: "from-fuchsia-500 to-purple-700", badge: "Nové" },
   { screen: "zvuk", title: "Uhádni zvuk", description: "Počúvajte tajné zvuky a predbiehajte sa na bzučiaku.", icon: "bell", color: "from-cyan-500 to-blue-700", badge: "Nové" },
   { screen: "pismeno", title: "Slovo na písmeno", description: "Kategória, písmeno a iba päť sekúnd na odpoveď.", icon: "tag", color: "from-amber-400 to-orange-600", badge: "Nové" },
   { screen: "patzadesat", title: "5 za 10", description: "Vymenujte päť odpovedí za desať sekúnd.", icon: "timer", color: "from-emerald-400 to-green-700", badge: "Nové" },
@@ -736,6 +737,9 @@ export default function App() {
 
     case "pesnicka":
       return <TeamQuickGame game="pesnicka" onBack={() => returnFromActiveGame("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
+
+    case "hudobny-kviz":
+      return <TeamQuickGame game="hudobny-kviz" onBack={() => returnFromActiveGame("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
 
     case "zvuk":
       return <TeamQuickGame game="zvuk" onBack={() => returnFromActiveGame("minigames-menu")} onGameComplete={recordCorrectAnswers} />;
