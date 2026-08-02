@@ -172,9 +172,10 @@ export default function TeamQuickGame({
             <div className="h-11 w-11" />
           </header>
 
-          <div className="relative mt-6 h-48 overflow-hidden rounded-[2rem] border border-white/15 shadow-2xl">
-            <img src={GAME_ART[game]} alt="" className="h-full w-full object-cover" />
+          <div className="game-setup-hero relative mt-6 h-48 overflow-hidden rounded-[2rem] border border-white/15 shadow-2xl">
+            <img src={GAME_ART[game]} alt="" className="h-full w-full object-cover transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#080b13] via-transparent to-transparent" />
+            <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/20 blur-3xl" />
             <h1 className="absolute bottom-5 left-5 right-5 text-3xl font-black text-white">{GAME_TITLES[game]}</h1>
           </div>
 

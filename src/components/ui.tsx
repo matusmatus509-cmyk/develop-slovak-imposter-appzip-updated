@@ -429,11 +429,11 @@ export function TopBar({
   showBack = true,
 }: TopBarProps) {
   return (
-    <div className="relative z-30 mb-6 flex h-11 items-center justify-between">
+    <div className="relative z-30 mb-7 flex h-12 items-center justify-between">
       {showBack && onBack ? (
         <button
           onClick={onBack}
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-[#151b23]/95 text-lg shadow-lg shadow-black/25 transition-all hover:border-white/20 hover:bg-[#1b232d] active:scale-95"
+          className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/[.13] bg-[#101824]/88 text-lg shadow-[0_14px_30px_-20px_rgba(0,0,0,.95)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:border-white/25 hover:bg-[#1b2634] active:scale-95"
           aria-label="Späť"
         >
           <Icon name="chevronLeft" size={20} />
@@ -442,7 +442,7 @@ export function TopBar({
         <span className="w-10" />
       )}
       {title && (
-        <span className="px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[.14em] text-white/55">
+        <span className="rounded-full border border-white/[.08] bg-black/15 px-3.5 py-1.5 text-[10px] font-extrabold uppercase tracking-[.16em] text-white/60 shadow-inner shadow-white/[.02] backdrop-blur-md">
           {title}
         </span>
       )}
@@ -456,9 +456,11 @@ export function TopBar({
 function Background() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[var(--game-deep,#080d16)] transition-colors duration-700">
-      <img src={appTexture} alt="" className="absolute inset-0 h-full w-full object-cover opacity-55 saturate-75" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#080b10]/20 via-[var(--game-deep,#080d16)]/55 to-[#080b10]/95" />
+      <img src={appTexture} alt="" className="absolute inset-0 h-full w-full object-cover opacity-45 saturate-[.72]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(255,255,255,.07),transparent_28rem)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#080b10]/15 via-[var(--game-deep,#080d16)]/54 to-[#080b10]/95" />
       <div className="absolute -top-44 left-1/2 h-80 w-[34rem] -translate-x-1/2 rounded-full bg-[var(--game-accent-soft,rgba(139,92,246,.16))] blur-[125px]" />
+      <div className="absolute -bottom-44 -right-32 h-80 w-80 rounded-full bg-[var(--game-accent-soft,rgba(34,211,238,.12))] blur-[120px]" />
       <div className="absolute inset-0 shadow-[inset_0_0_140px_rgba(0,0,0,.45)]" />
     </div>
   );
@@ -466,9 +468,9 @@ function Background() {
 
 export function Shell({ children, className = "", noBackground = false }: ShellProps) {
   return (
-    <div className={cn("relative min-h-screen w-full bg-transparent text-white", className)}>
+    <div className={cn("relative isolate min-h-screen w-full overflow-hidden bg-transparent text-white", className)}>
       {!noBackground && <Background />}
-      <div className="mx-auto flex min-h-screen w-full max-w-[30rem] flex-col px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(1.25rem,env(safe-area-inset-top))]">
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[30rem] flex-col px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(1.25rem,env(safe-area-inset-top))]">
         {children}
       </div>
     </div>
@@ -510,8 +512,8 @@ export function Input({
         <input
           id={inputId}
           className={cn(
-            "w-full rounded-xl border border-white/10 bg-[#111821]/90 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none transition-all",
-            "focus:border-white/25 focus:ring-2 focus:ring-white/10",
+            "w-full rounded-2xl border border-white/[.11] bg-[#111821]/85 px-4 py-3 text-base font-semibold text-white placeholder-white/30 shadow-[inset_0_1px_0_rgba(255,255,255,.035)] outline-none backdrop-blur-md transition-all",
+            "focus:border-[var(--game-accent,#a78bfa)]/70 focus:ring-4 focus:ring-[var(--game-accent,#8b5cf6)]/10",
             "disabled:opacity-50 disabled:cursor-not-allowed",
             leftIcon && "pl-12",
             rightIcon && "pr-12",
