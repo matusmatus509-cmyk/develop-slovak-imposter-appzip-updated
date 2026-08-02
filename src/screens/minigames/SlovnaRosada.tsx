@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import {
   ALL_SOLO_CHARADES_WORDS,
+  CHARADES_CARDS_BY_DIFFICULTY,
   SOLO_CHARADES_WORDS,
   isValidCharadeText,
   type CharadesDifficulty,
@@ -44,8 +45,9 @@ function buildDeck(difficulty: string, extraCards: Array<{ id: string; word: str
     ? ["lahke", "stredne", "tazke"]
     : [difficulty as CharadesDifficulty];
   const cards = levels.flatMap((level) =>
-    (SOLO_CHARADES_WORDS[level] ?? []).map((word) => ({
-      word,
+    (CHARADES_CARDS_BY_DIFFICULTY[level] ?? []).map((card) => ({
+      id: card.id,
+      word: card.text,
       category: labels[level]?.name ?? "Šarády",
       categoryIcon: labels[level]?.icon ?? "💬",
     })),
@@ -57,12 +59,12 @@ function buildDeck(difficulty: string, extraCards: Array<{ id: string; word: str
     seen.add(key);
     return true;
   });
-  const fallback = ALL_SOLO_CHARADES_WORDS.map((word) => ({
+  const fallback: Card[] = ALL_SOLO_CHARADES_WORDS.map((word) => ({
     word,
     category: "Šarády",
     categoryIcon: "💬",
   }));
-  const pool = uniqueCards.length > 0 ? uniqueCards : fallback;
+  const pool: Card[] = uniqueCards.length > 0 ? uniqueCards : fallback;
   for (const { id, word } of extraCards) {
     const normalizedWord = word.trim().replace(/\s+/g, " ");
     const key = normalizedWord.toLocaleLowerCase("sk");

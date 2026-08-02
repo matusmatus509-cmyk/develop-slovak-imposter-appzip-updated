@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "validate:charades": "node scripts/validate-charades.mjs",
     "audit:content": "bun scripts/audit-content.mjs"
   },
   "dependencies": {
