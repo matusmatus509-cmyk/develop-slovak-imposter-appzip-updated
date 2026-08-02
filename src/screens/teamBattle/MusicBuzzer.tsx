@@ -16,13 +16,17 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
   const { language } = useLanguage();
   const { playFeedback } = useFeedback();
   const soundAllowed = soundsEnabled();
-  const catalogue = getSongCardsForLanguage(language);
-  const deck = useMemo(() => takePersistentItems(
-    `party:music-buzzer:${language}`,
-    catalogue,
-    catalogue.length,
-    (song) => `${song.title}|${song.artist}`.toLocaleLowerCase(),
-  ), [catalogue, language, rounds]);
+  // Keep one stable deck for the whole mounted game. Recreating the catalogue on
+  // every render used to reshuffle the active song after a score/state update.
+  const deck = useMemo(() => {
+    const catalogue = getSongCardsForLanguage(language);
+    return takePersistentItems(
+      `party:music-buzzer:${language}`,
+      catalogue,
+      catalogue.length,
+      (song) => `${song.title}|${song.artist}`.toLocaleLowerCase(),
+    );
+  }, [language]);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [deckIndex, setDeckIndex] = useState(0);
   const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
