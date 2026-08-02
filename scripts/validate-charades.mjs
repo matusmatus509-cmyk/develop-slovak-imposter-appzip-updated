@@ -26,6 +26,15 @@ const forbiddenStems = [
 ];
 const placeholders = /\b(?:TODO|TBD|Example|Test|Unknown)\b/i;
 const hasRandomJoin = /\s+a\s+/iu;
+const knownNaturalPhrases = new Set(["kráska a zviera"]);
+const untranslatedTitles = new Set([
+  "beauty and the beast", "big hero 6", "cars", "finding dory", "finding nemo", "inside out", "lilo & stitch",
+  "monsters university", "monsters inc", "oliver & company", "ralph breaks the internet", "sleeping beauty",
+  "the aristocats", "the emperor's new groove", "the good dinosaur", "the incredibles", "the jungle book",
+  "the lion king", "the little mermaid", "wreck-it ralph", "arrival", "braveheart", "dune", "interstellar",
+  "pirates of the caribbean", "star wars", "tenet", "the dark knight", "the hobbit", "the martian",
+  "the pianist", "the prestige", "the two towers", "toy story", "prince of persia",
+]);
 const normalize = (value) => value.trim().replace(/\s+/g, " ").toLocaleLowerCase("sk");
 const fold = (value) => normalize(value).normalize("NFD").replace(/\p{M}/gu, "").replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 const errors = [];
@@ -70,10 +79,11 @@ cards.forEach((card, index) => {
   assert(text === text.replace(/\s+/g, " "), `${label}: nadbytočné medzery v texte ${text}.`);
   assert(text.length <= 62, `${label}: text je príliš dlhý (${text.length}) ${text}.`);
   assert((text.match(/[\p{L}\p{N}][\p{L}\p{N}'’.-]*/gu) ?? []).length <= 5, `${label}: viac ako päť slov ${text}.`);
-  assert(!hasRandomJoin.test(text), `${label}: zakázaná náhodná kombinácia so spojkou „a“: ${text}.`);
+  assert(!hasRandomJoin.test(text) || knownNaturalPhrases.has(lower), `${label}: zakázaná náhodná kombinácia so spojkou „a“: ${text}.`);
   assert(!placeholders.test(text), `${label}: technický placeholder ${text}.`);
   assert(!/[:;|/()]/.test(text), `${label}: nepovolený technický oddeľovač ${text}.`);
   assert(!forbiddenStems.some((stem) => accentless.includes(fold(stem))), `${label}: zakázaný výraz ${text}.`);
+  assert(!untranslatedTitles.has(lower.replace(/[.,]/g, "")), `${label}: nepreložený cudzojazyčný názov ${text}.`);
   if (allowedDifficulties.has(card.difficulty)) counts[card.difficulty] += 1;
   categoryCounts.set(card.category, (categoryCounts.get(card.category) ?? 0) + 1);
 });
