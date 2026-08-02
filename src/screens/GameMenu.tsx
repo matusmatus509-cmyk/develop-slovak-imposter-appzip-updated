@@ -34,10 +34,11 @@ export default function GameMenu({
   return (
     <Shell className="bg-[#090c14]">
       <TopBar onBack={onBack} />
-      <header className="mb-7" style={{ animation: "slideUp .45s ease-out both" }}>
-        <p className="text-[10px] font-extrabold uppercase tracking-[.24em] text-white/35">Vyberte hru</p>
-        <h1 className="mt-2 text-4xl font-black tracking-[-.045em]">{title}</h1>
-        <p className="mt-2 max-w-xs text-sm leading-relaxed text-white/50">{subtitle}</p>
+      <header className="game-menu-heading relative mb-7 overflow-hidden rounded-[1.75rem] border border-white/[.08] px-5 py-5" style={{ animation: "slideUp .45s ease-out both" }}>
+        <div className="pointer-events-none absolute -right-12 -top-14 h-40 w-40 rounded-full bg-[var(--game-accent-soft,rgba(139,92,246,.16))] blur-3xl" />
+        <p className="relative text-[10px] font-extrabold uppercase tracking-[.24em] text-white/35">Vyberte hru</p>
+        <h1 className="relative mt-2 text-4xl font-black tracking-[-.045em]">{title}</h1>
+        <p className="relative mt-2 max-w-xs text-sm leading-relaxed text-white/50">{subtitle}</p>
       </header>
 
       <div className="grid grid-cols-1 gap-3 pb-5">
@@ -49,7 +50,7 @@ export default function GameMenu({
           return (
             <article
               key={game.screen}
-              className="group relative grid min-h-[122px] grid-cols-[108px_1fr] overflow-hidden rounded-[20px] border bg-[#111820] text-left shadow-lg shadow-black/25 transition duration-300 hover:-translate-y-0.5 active:translate-y-0 active:scale-[.985]"
+              className="game-menu-card group relative grid min-h-[134px] grid-cols-[122px_1fr] overflow-hidden rounded-[24px] border bg-[#111820] text-left shadow-lg shadow-black/25 transition duration-300 hover:-translate-y-0.5 active:translate-y-0 active:scale-[.985]"
               style={{
                 animation: `slideUp .45s ease-out ${70 + index * 55}ms both`,
                 borderColor: welcome ? `color-mix(in srgb, ${welcome.accent} 16%, rgba(255,255,255,.09))` : "rgba(255,255,255,.1)",
@@ -57,7 +58,7 @@ export default function GameMenu({
               }}
             >
               <button type="button" onClick={() => onNavigate(game.screen)} aria-label={`Spustiť ${game.title}`} className="absolute inset-0 z-[1] rounded-[20px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300" />
-              <div className="relative min-h-[122px] overflow-hidden bg-[#0c111a]">
+              <div className="relative min-h-[134px] overflow-hidden bg-[#0c111a]">
                 {welcome?.art && !welcome.artAtlas ? (
                   <img
                     src={welcome.art}
@@ -76,7 +77,8 @@ export default function GameMenu({
                 ) : (
                   <div className={`absolute inset-0 bg-gradient-to-br ${game.color} opacity-75`} />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-white/10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-white/10" />
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,.16),transparent_34%,transparent_66%,rgba(0,0,0,.32))]" />
                 <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-r from-transparent to-[#111722]" />
                 <span
                   className="absolute bottom-2.5 left-2.5 flex h-8 w-8 items-center justify-center rounded-xl border border-white/20 text-white shadow-lg backdrop-blur-md"

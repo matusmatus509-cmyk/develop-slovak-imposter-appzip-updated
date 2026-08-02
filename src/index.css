@@ -462,8 +462,15 @@ html[data-party-theme="galaxy"] .glass {
 .premium-eyebrow { font-size: .56rem; line-height: 1rem; font-weight: 900; letter-spacing: .2em; text-transform: uppercase; }
 .premium-icon { display: flex; width: 2.75rem; height: 2.75rem; flex: none; align-items: center; justify-content: center; border-radius: .9rem; border: 1px solid var(--hairline); background: rgba(255,255,255,.055); }
 .premium-card { border: 1px solid var(--hairline); border-radius: 1.5rem; background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(17,24,32,.88)); box-shadow: 0 20px 45px -36px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.035); }
-.settings-hero { background: linear-gradient(135deg, rgba(91,33,182,.35), rgba(14,17,33,.94) 56%, rgba(8,35,57,.78)); box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 26px 58px -38px rgba(76,29,149,.85); }
+.settings-hero { background-color: #12102a; background-image: linear-gradient(90deg, rgba(18,16,42,.98) 0%, rgba(18,16,42,.84) 48%, rgba(8,13,27,.28) 100%), url("./assets/settings-control-hero.png"); background-position: center right; background-size: cover; box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 26px 58px -38px rgba(76,29,149,.85); }
 .settings-hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: linear-gradient(115deg, rgba(255,255,255,.09), transparent 27%, transparent 70%, rgba(103,232,249,.08)); }
+.game-menu-heading { background: linear-gradient(135deg, rgba(255,255,255,.055), rgba(12,17,29,.82)); box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 22px 46px -38px rgba(0,0,0,.95); }
+.game-menu-card { box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 20px 42px -34px rgba(0,0,0,.95); }
+.game-menu-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: linear-gradient(105deg, rgba(255,255,255,.04), transparent 24%, transparent 77%, rgba(255,255,255,.025)); }
+.game-welcome-hero { box-shadow: 0 34px 70px -42px var(--welcome-accent), inset 0 1px 0 rgba(255,255,255,.12); }
+.game-welcome-hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; border: 1px solid rgba(255,255,255,.07); background: linear-gradient(120deg, rgba(255,255,255,.1), transparent 26%, transparent 68%, rgba(0,0,0,.16)); }
+.game-welcome-stat { box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 14px 32px -27px rgba(0,0,0,.9); }
+.game-welcome-rule { box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 18px 34px -29px rgba(0,0,0,.9); }
 .game-setup-hero { box-shadow: 0 26px 55px -32px color-mix(in srgb, var(--game-accent,#8b5cf6) 58%, transparent), inset 0 1px 0 rgba(255,255,255,.11); }
 .game-setup-hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; border: 1px solid rgba(255,255,255,.08); background: linear-gradient(120deg, rgba(255,255,255,.1), transparent 24%, transparent 68%, rgba(255,255,255,.045)); }
 @media (hover: hover) { .game-setup-hero:hover img { transform: scale(1.045); } }
