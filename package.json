@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "validate:charades": "node scripts/validate-charades.mjs",
     "validate:never-have-i-ever": "node scripts/validate-never-have-i-ever.mjs",
+    "validate:truth-or-dare": "node scripts/validate-truth-or-dare.mjs",
     "audit:never-have-i-ever": "node scripts/audit-never-have-i-ever.mjs",
     "audit:content": "bun scripts/audit-content.mjs"
   },
