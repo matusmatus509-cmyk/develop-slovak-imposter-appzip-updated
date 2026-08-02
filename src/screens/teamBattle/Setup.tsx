@@ -8,12 +8,8 @@ import {
   type GameType,
 } from "../../data/teamBattle";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
-import gameArt from "../../assets/game-art-sprite.jpg";
-import forbiddenArt from "../../assets/party-forbidden.svg";
-import songArt from "../../assets/party-song.svg";
-import soundArt from "../../assets/party-sound.svg";
-import letterArt from "../../assets/party-letter.svg";
-import fiveTenArt from "../../assets/party-five-ten.svg";
+import minigameArtAtlas from "../../assets/minigame-art-atlas.png";
+import partyMinigameAtlas from "../../assets/party-minigame-atlas.png";
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 
 const ALL_GAMES: GameType[] = [
@@ -25,24 +21,17 @@ export interface TeamBattleOptions {
   quickRounds: number;
   timeSeconds: number;
 }
-const GAME_ART: Record<GameType, string> = {
-  pantomima: "33.333% 0%",
-  sarady: "100% 0%",
-  zakazane: "100% 0%",
-  pesnicka: "33.333% 0%",
-  zvuk: "66.666% 50%",
-  pismeno: "66.666% 100%",
-  patzadesat: "0% 0%",
-  hadajktosom: "33.333% 50%",
-  quiz: "0% 0%",
-  pingpong: "0% 50%",
-};
-const CUSTOM_GAME_ART: Partial<Record<GameType, string>> = {
-  zakazane: forbiddenArt,
-  pesnicka: songArt,
-  zvuk: soundArt,
-  pismeno: letterArt,
-  patzadesat: fiveTenArt,
+const GAME_ART: Record<GameType, { src: string; position: string; size: string }> = {
+  pantomima: { src: partyMinigameAtlas, position: "33.333% 100%", size: "400% 300%" },
+  sarady: { src: partyMinigameAtlas, position: "0% 100%", size: "400% 300%" },
+  zakazane: { src: partyMinigameAtlas, position: "0% 50%", size: "400% 300%" },
+  pesnicka: { src: partyMinigameAtlas, position: "33.333% 50%", size: "400% 300%" },
+  zvuk: { src: partyMinigameAtlas, position: "100% 50%", size: "400% 300%" },
+  pismeno: { src: partyMinigameAtlas, position: "0% 0%", size: "400% 300%" },
+  patzadesat: { src: partyMinigameAtlas, position: "33.333% 0%", size: "400% 300%" },
+  hadajktosom: { src: partyMinigameAtlas, position: "66.667% 100%", size: "400% 300%" },
+  quiz: { src: partyMinigameAtlas, position: "100% 100%", size: "400% 300%" },
+  pingpong: { src: minigameArtAtlas, position: "50% 50%", size: "300% 300%" },
 };
 
 export default function TeamBattleSetup({
@@ -240,7 +229,7 @@ export default function TeamBattleSetup({
                 {ALL_GAMES.map((game) => {
                   const order = selectedGames.indexOf(game);
                   const selected = order >= 0;
-                  const customArt = CUSTOM_GAME_ART[game];
+                  const art = GAME_ART[game];
                   return (
                     <button
                       key={game}
@@ -251,31 +240,15 @@ export default function TeamBattleSetup({
                           : "border-white/10"
                       }`}
                     >
-                      {customArt ? (
-                        <img
-                          src={customArt}
-                          alt=""
-                          className={`absolute inset-0 h-full w-full object-cover transition duration-500 ${
-                            selected ? "scale-110 opacity-100" : "opacity-85 saturate-125"
-                          }`}
-                        />
-                      ) : (
-                        <span
-                          className={`absolute inset-0 bg-no-repeat transition duration-500 ${selected ? "scale-110" : "opacity-55 grayscale-[.25]"}`}
-                          style={{
-                            backgroundImage: `url(${gameArt})`,
-                            backgroundSize: "400% 300%",
-                            backgroundPosition: GAME_ART[game],
-                          }}
-                        />
-                      )}
+                      <span
+                        className={`absolute inset-0 bg-no-repeat transition duration-500 ${selected ? "scale-110" : "opacity-90 saturate-125"}`}
+                        style={{ backgroundImage: `url(${art.src})`, backgroundSize: art.size, backgroundPosition: art.position }}
+                      />
                       <span
                         className={`absolute inset-0 bg-gradient-to-t ${
                           selected
                             ? "from-cyan-950/95 via-slate-950/25"
-                            : customArt
-                              ? "from-[#080b13]/90 via-[#080b13]/10"
-                              : "from-[#080b13] via-[#080b13]/45"
+                            : "from-[#080b13]/90 via-[#080b13]/10"
                         } to-black/5`}
                       />
                       {selected && (

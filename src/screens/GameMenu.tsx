@@ -69,7 +69,7 @@ export default function GameMenu({
                     className="absolute inset-0 bg-no-repeat transition duration-700 group-hover:scale-[1.06]"
                     style={{
                       backgroundImage: `url(${welcome.artAtlas ? welcome.art : gameArt})`,
-                      backgroundSize: welcome.artAtlas ? "300% 300%" : "400% 300%",
+                      backgroundSize: welcome.artSize ?? (welcome.artAtlas ? "300% 300%" : "400% 300%"),
                       backgroundPosition: welcome.artPosition,
                     }}
                   />

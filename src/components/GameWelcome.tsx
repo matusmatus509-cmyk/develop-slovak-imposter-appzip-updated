@@ -1,14 +1,8 @@
 import type { CSSProperties } from "react";
 import type { Screen } from "../types";
 import gameArt from "../assets/game-art-sprite.jpg";
-import forbiddenArt from "../assets/party-forbidden.svg";
-import songArt from "../assets/party-song.svg";
-import soundArt from "../assets/party-sound.svg";
-import letterArt from "../assets/party-letter.svg";
-import fiveTenArt from "../assets/party-five-ten.svg";
-import ticTacToeArt from "../assets/tic-tac-toe-card.svg";
-import battleshipArt from "../assets/battleship-card.svg";
 import minigameArtAtlas from "../assets/minigame-art-atlas.png";
+import partyMinigameAtlas from "../assets/party-minigame-atlas.png";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -24,6 +18,7 @@ export interface GameWelcomeConfig {
   artPosition: string;
   art?: string;
   artAtlas?: boolean;
+  artSize?: string;
 }
 
 export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
@@ -199,8 +194,10 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#fb7185",
     accentSoft: "rgba(251,113,133,.24)",
     deep: "#2b0d18",
-    artPosition: "center",
-    art: forbiddenArt,
+    artPosition: "0% 50%",
+    art: partyMinigameAtlas,
+    artAtlas: true,
+    artSize: "400% 300%",
   },
   pesnicka: {
     eyebrow: "Melódia bez textu",
@@ -212,8 +209,10 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#a78bfa",
     accentSoft: "rgba(167,139,250,.24)",
     deep: "#1c1039",
-    artPosition: "center",
-    art: songArt,
+    artPosition: "33.333% 50%",
+    art: partyMinigameAtlas,
+    artAtlas: true,
+    artSize: "400% 300%",
   },
   "hudobny-kviz": {
     eyebrow: "Spoznaj hit po pár sekundách",
@@ -225,8 +224,10 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#d946ef",
     accentSoft: "rgba(217,70,239,.23)",
     deep: "#240b2f",
-    artPosition: "center",
-    art: songArt,
+    artPosition: "66.667% 50%",
+    art: partyMinigameAtlas,
+    artAtlas: true,
+    artSize: "400% 300%",
   },
   zvuk: {
     eyebrow: "Počúvaj a bzuč",
@@ -238,8 +239,10 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#22d3ee",
     accentSoft: "rgba(34,211,238,.22)",
     deep: "#062630",
-    artPosition: "center",
-    art: soundArt,
+    artPosition: "100% 50%",
+    art: partyMinigameAtlas,
+    artAtlas: true,
+    artSize: "400% 300%",
   },
   pismeno: {
     eyebrow: "Päť sekúnd na slovo",
@@ -251,8 +254,10 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#fbbf24",
     accentSoft: "rgba(251,191,36,.23)",
     deep: "#2b1d05",
-    artPosition: "center",
-    art: letterArt,
+    artPosition: "0% 0%",
+    art: partyMinigameAtlas,
+    artAtlas: true,
+    artSize: "400% 300%",
   },
   patzadesat: {
     eyebrow: "Päť odpovedí. Desať sekúnd.",
@@ -264,8 +269,10 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#34d399",
     accentSoft: "rgba(52,211,153,.22)",
     deep: "#06271c",
-    artPosition: "center",
-    art: fiveTenArt,
+    artPosition: "33.333% 0%",
+    art: partyMinigameAtlas,
+    artAtlas: true,
+    artSize: "400% 300%",
   },
   "tic-tac-toe": {
     eyebrow: "Tri symboly v rade",
@@ -277,8 +284,10 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#22d3ee",
     accentSoft: "rgba(34,211,238,.22)",
     deep: "#061d2c",
-    artPosition: "center",
-    art: ticTacToeArt,
+    artPosition: "66.667% 0%",
+    art: partyMinigameAtlas,
+    artAtlas: true,
+    artSize: "400% 300%",
   },
   battleship: {
     eyebrow: "Námorná bitka 10 × 10",
@@ -290,8 +299,10 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#38bdf8",
     accentSoft: "rgba(56,189,248,.22)",
     deep: "#051a2b",
-    artPosition: "center",
-    art: battleshipArt,
+    artPosition: "100% 0%",
+    art: partyMinigameAtlas,
+    artAtlas: true,
+    artSize: "400% 300%",
   },
 };
 
@@ -330,7 +341,7 @@ export default function GameWelcome({
               className="absolute inset-0 scale-[1.04] bg-no-repeat"
               style={{
                 backgroundImage: `url(${config.artAtlas ? config.art : gameArt})`,
-                backgroundSize: config.artAtlas ? "300% 300%" : "400% 300%",
+                backgroundSize: config.artSize ?? (config.artAtlas ? "300% 300%" : "400% 300%"),
                 backgroundPosition: config.artPosition,
               }}
             />
