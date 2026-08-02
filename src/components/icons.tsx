@@ -332,6 +332,8 @@ export const Icons = {
   bellOff: BellOff,
   alertTriangle: AlertTriangle,
   info: Info,
+  shield: Shield,
+  shieldCheck: ShieldCheck,
   share: Share,
   share2: Share2,
   download: Download,

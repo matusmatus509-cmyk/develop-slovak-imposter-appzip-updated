@@ -137,7 +137,7 @@ export default function TeamQuickGame({
       <PartyBackdrop>
         <main className="flex h-full flex-col items-center overflow-y-auto px-5 py-8 text-center">
           <PartyEyebrow>Koniec minihry</PartyEyebrow>
-          <div className="mt-7 text-7xl">{draw ? "🤝" : "🏆"}</div>
+          <div className="quick-result-emblem mx-auto mt-7 flex h-20 w-20 items-center justify-center rounded-[1.8rem] border border-white/15 bg-white/[.06] text-white">{draw ? <Icons.users size={36} /> : <Icons.trophy size={38} className="text-amber-200" />}</div>
           <p className="mt-5 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">{GAME_TITLES[game]}</p>
           <h1 className="mt-2 text-4xl font-black text-white">{draw ? "Remíza!" : `${names[winners[0]]} vyhráva!`}</h1>
           <div className="mt-7 grid w-full max-w-sm grid-cols-2 gap-3">
@@ -176,17 +176,17 @@ export default function TeamQuickGame({
             <img src={GAME_ART[game]} alt="" className="h-full w-full object-cover transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#080b13] via-transparent to-transparent" />
             <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/20 blur-3xl" />
-            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3"><div><p className="mb-1 text-[8px] font-black uppercase tracking-[.2em] text-white/55">Rýchla minihra</p><h1 className="text-3xl font-black text-white">{GAME_TITLES[game]}</h1></div><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-black/30 text-lg backdrop-blur">{gameMode === "teams" ? "👥" : "🎮"}</span></div>
+            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3"><div><p className="mb-1 text-[8px] font-black uppercase tracking-[.2em] text-white/55">Rýchla minihra</p><h1 className="text-3xl font-black text-white">{GAME_TITLES[game]}</h1></div><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-black/30 text-white/90 backdrop-blur">{gameMode === "teams" ? <Icons.users size={20} /> : <Icons.gamepad size={20} />}</span></div>
           </div>
 
           {!gameMode ? (
             <section className="quick-mode-panel mt-5 space-y-3 rounded-[1.8rem] border border-white/[.08] p-3">
               <p className="text-center text-sm leading-relaxed text-white/45">Vyberte si, či bude každý zbierať vlastné body, alebo budete hrať v dvoch tímoch.</p>
               <button onClick={() => chooseMode("players")} className="quick-mode-choice party-shine flex w-full items-center gap-4 overflow-hidden rounded-[1.45rem] border border-violet-300/20 bg-violet-500/15 p-4 text-left transition active:scale-[.98]">
-                <span className="text-4xl">👤</span><span><strong className="block text-lg font-black text-white">Každý za seba</strong><small className="mt-1 block text-xs text-white/45">2 až 8 hráčov, každý má vlastné skóre</small></span>
+                <span className="quick-mode-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-violet-200/20 bg-violet-300/[.12] text-violet-100"><Icons.user size={26} /></span><span><strong className="block text-lg font-black text-white">Každý za seba</strong><small className="mt-1 block text-xs text-white/45">2 až 8 hráčov, každý má vlastné skóre</small></span><Icons.chevronRight size={18} className="ml-auto text-violet-100/45" />
               </button>
               <button onClick={() => chooseMode("teams")} className="quick-mode-choice party-shine flex w-full items-center gap-4 overflow-hidden rounded-[1.45rem] border border-cyan-300/20 bg-cyan-500/15 p-4 text-left transition active:scale-[.98]">
-                <span className="text-4xl">👥</span><span><strong className="block text-lg font-black text-white">Tímový režim</strong><small className="mt-1 block text-xs text-white/45">Dva tímy súťažia proti sebe</small></span>
+                <span className="quick-mode-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-cyan-200/20 bg-cyan-300/[.12] text-cyan-100"><Icons.users size={27} /></span><span><strong className="block text-lg font-black text-white">Tímový režim</strong><small className="mt-1 block text-xs text-white/45">Dva tímy súťažia proti sebe</small></span><Icons.chevronRight size={18} className="ml-auto text-cyan-100/45" />
               </button>
             </section>
           ) : (
