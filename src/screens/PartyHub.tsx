@@ -6,6 +6,7 @@ import { ACHIEVEMENTS, DAILY_REWARD_XP, getLevelInfo, getNextPartyPassReward, is
 import type { FeedbackSettings, GameStatistics, PartyTheme, Screen, WorkshopCollection, WorkshopEntry } from "../types";
 import { useCurrentLocalDate } from "../hooks/useCurrentLocalDate";
 import PartyCollections from "./partyHub/PartyCollections";
+import partyHubHero from "../assets/party-hub-hero.png";
 
 const NAV_ITEMS = [
   ["discover", "Prehľad"], ["collections", "Balíčky"], ["style", "Štýl"],
@@ -92,6 +93,8 @@ export default function PartyHub({ statistics, settings, musicSupported, musicBl
         </nav>
 
         <section id="discover" className="light-keep-dark hub-hero party-hub-hero party-page-enter relative mt-4 scroll-mt-20 overflow-hidden rounded-[2rem] border border-white/12 p-5 shadow-2xl" style={{ animationDelay: "110ms" }}>
+          <img src={partyHubHero} alt="" className="pointer-events-none absolute inset-0 h-full w-full object-cover object-right opacity-60 saturate-[.86]" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(9,12,23,.98)_0%,rgba(9,12,23,.92)_38%,rgba(9,12,23,.48)_72%,rgba(9,12,23,.18)_100%)]" />
           <div className="party-hub-aurora" aria-hidden="true" />
           <div className="relative z-10">
             <div className="flex items-start justify-between gap-4">
