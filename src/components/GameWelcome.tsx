@@ -8,6 +8,7 @@ import letterArt from "../assets/party-letter.svg";
 import fiveTenArt from "../assets/party-five-ten.svg";
 import ticTacToeArt from "../assets/tic-tac-toe-card.svg";
 import battleshipArt from "../assets/battleship-card.svg";
+import minigameArtAtlas from "../assets/minigame-art-atlas.png";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -22,6 +23,7 @@ export interface GameWelcomeConfig {
   deep: string;
   artPosition: string;
   art?: string;
+  artAtlas?: boolean;
 }
 
 export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
@@ -36,6 +38,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accentSoft: "rgba(251,113,133,.24)",
     deep: "#2a0d1a",
     artPosition: "0% 0%",
+    art: minigameArtAtlas,
+    artAtlas: true,
   },
   "never-have-i-ever": {
     eyebrow: "Kto to už zažil?",
@@ -47,7 +51,9 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#34d399",
     accentSoft: "rgba(52,211,153,.22)",
     deep: "#07241d",
-    artPosition: "33.333% 0%",
+    artPosition: "50% 0%",
+    art: minigameArtAtlas,
+    artAtlas: true,
   },
   "would-you-rather": {
     eyebrow: "Dve cesty. Jedna voľba.",
@@ -59,7 +65,9 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#f59e0b",
     accentSoft: "rgba(245,158,11,.24)",
     deep: "#2b1704",
-    artPosition: "66.666% 0%",
+    artPosition: "100% 0%",
+    art: minigameArtAtlas,
+    artAtlas: true,
   },
   slovnarosada: {
     eyebrow: "Slová pod tlakom",
@@ -71,7 +79,9 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#a78bfa",
     accentSoft: "rgba(167,139,250,.24)",
     deep: "#1b1035",
-    artPosition: "100% 0%",
+    artPosition: "0% 50%",
+    art: minigameArtAtlas,
+    artAtlas: true,
   },
   pingpong: {
     eyebrow: "Postreh proti času",
@@ -83,7 +93,9 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#22d3ee",
     accentSoft: "rgba(34,211,238,.22)",
     deep: "#06242c",
-    artPosition: "0% 50%",
+    artPosition: "50% 50%",
+    art: minigameArtAtlas,
+    artAtlas: true,
   },
   hadajktosom: {
     eyebrow: "Telefón na čelo",
@@ -95,7 +107,9 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#38bdf8",
     accentSoft: "rgba(56,189,248,.22)",
     deep: "#071f34",
-    artPosition: "33.333% 50%",
+    artPosition: "100% 50%",
+    art: minigameArtAtlas,
+    artAtlas: true,
   },
   ibanepravda: {
     eyebrow: "Pravda je zakázaná",
@@ -107,7 +121,9 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#f43f5e",
     accentSoft: "rgba(244,63,94,.25)",
     deep: "#2b0913",
-    artPosition: "66.666% 50%",
+    artPosition: "0% 100%",
+    art: minigameArtAtlas,
+    artAtlas: true,
   },
   ktodostanebombu: {
     eyebrow: "Nikto nevie, kedy vybuchne",
@@ -119,7 +135,9 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#fb923c",
     accentSoft: "rgba(251,146,60,.25)",
     deep: "#2c1106",
-    artPosition: "100% 50%",
+    artPosition: "50% 100%",
+    art: minigameArtAtlas,
+    artAtlas: true,
   },
   hadajemoji: {
     eyebrow: "Obrázky namiesto slov",
@@ -131,7 +149,9 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#facc15",
     accentSoft: "rgba(250,204,21,.23)",
     deep: "#292005",
-    artPosition: "0% 100%",
+    artPosition: "100% 100%",
+    art: minigameArtAtlas,
+    artAtlas: true,
   },
   "impostor-setup": {
     eyebrow: "Tajné slovo. Tajný hráč.",
@@ -299,7 +319,7 @@ export default function GameWelcome({
 
       <div className="relative mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-7 pt-5">
         <div className="relative mb-6 h-[46vh] min-h-[320px] max-h-[450px] overflow-hidden rounded-[26px] border border-white/12 shadow-2xl animate-welcome-reveal">
-          {config.art ? (
+          {config.art && !config.artAtlas ? (
             <img
               src={config.art}
               alt=""
@@ -309,8 +329,8 @@ export default function GameWelcome({
             <div
               className="absolute inset-0 scale-[1.04] bg-no-repeat"
               style={{
-                backgroundImage: `url(${gameArt})`,
-                backgroundSize: "400% 300%",
+                backgroundImage: `url(${config.artAtlas ? config.art : gameArt})`,
+                backgroundSize: config.artAtlas ? "300% 300%" : "400% 300%",
                 backgroundPosition: config.artPosition,
               }}
             />

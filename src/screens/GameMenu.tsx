@@ -58,7 +58,7 @@ export default function GameMenu({
             >
               <button type="button" onClick={() => onNavigate(game.screen)} aria-label={`Spustiť ${game.title}`} className="absolute inset-0 z-[1] rounded-[20px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300" />
               <div className="relative min-h-[122px] overflow-hidden bg-[#0c111a]">
-                {welcome?.art ? (
+                {welcome?.art && !welcome.artAtlas ? (
                   <img
                     src={welcome.art}
                     alt=""
@@ -68,8 +68,8 @@ export default function GameMenu({
                   <div
                     className="absolute inset-0 bg-no-repeat transition duration-700 group-hover:scale-[1.06]"
                     style={{
-                      backgroundImage: `url(${gameArt})`,
-                      backgroundSize: "400% 300%",
+                      backgroundImage: `url(${welcome.artAtlas ? welcome.art : gameArt})`,
+                      backgroundSize: welcome.artAtlas ? "300% 300%" : "400% 300%",
                       backgroundPosition: welcome.artPosition,
                     }}
                   />
