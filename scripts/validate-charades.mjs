@@ -4,9 +4,11 @@ import { TextDecoder } from "node:util";
 
 const root = process.cwd();
 const databasePath = path.join(root, "src/data/charades.sk.json");
+const localizedPath = path.join(root, "src/data/charades.locales.json");
 const bytes = fs.readFileSync(databasePath);
 const source = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
 const cards = JSON.parse(source);
+const localized = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(fs.readFileSync(localizedPath)));
 
 const allowedDifficulties = new Set(["easy", "medium", "hard"]);
 const allowedCategories = new Set([
@@ -24,7 +26,9 @@ const forbiddenStems = [
   "jesse pinkman", "saul goodman", "gus fring", "albert wesker", "doom slayer", "the godfather", "pulp fiction",
   "shawshank", "fight club", "saving private ryan", "schindler's list",
 ];
-const placeholders = /\b(?:TODO|TBD|Example|Test|Unknown)\b/i;
+// These terms are only invalid when they are used as a card on their own.
+// For example, “Test tube” is a normal English charades card.
+const exactPlaceholder = /^(?:TODO|TBD|Example|Test|Unknown)$/i;
 const hasRandomJoin = /\s+a\s+/iu;
 const knownNaturalPhrases = new Set(["kráska a zviera"]);
 const untranslatedTitles = new Set([
@@ -80,7 +84,7 @@ cards.forEach((card, index) => {
   assert(text.length <= 62, `${label}: text je príliš dlhý (${text.length}) ${text}.`);
   assert((text.match(/[\p{L}\p{N}][\p{L}\p{N}'’.-]*/gu) ?? []).length <= 5, `${label}: viac ako päť slov ${text}.`);
   assert(!hasRandomJoin.test(text) || knownNaturalPhrases.has(lower), `${label}: zakázaná náhodná kombinácia so spojkou „a“: ${text}.`);
-  assert(!placeholders.test(text), `${label}: technický placeholder ${text}.`);
+  assert(!exactPlaceholder.test(text.trim()), `${label}: technický placeholder ${text}.`);
   assert(!/[:;|/()]/.test(text), `${label}: nepovolený technický oddeľovač ${text}.`);
   assert(!forbiddenStems.some((stem) => accentless.includes(fold(stem))), `${label}: zakázaný výraz ${text}.`);
   assert(!untranslatedTitles.has(lower.replace(/[.,]/g, "")), `${label}: nepreložený cudzojazyčný názov ${text}.`);
@@ -90,6 +94,20 @@ cards.forEach((card, index) => {
 
 for (const difficulty of allowedDifficulties) {
   assert(counts[difficulty] === 1000, `${difficulty}: očakáva sa 1000, nájdených ${counts[difficulty]}.`);
+}
+
+const localizedLanguages = ["en", "de", "es", "fr", "pt"];
+for (const language of localizedLanguages) {
+  const translations = localized[language];
+  assert(translations && typeof translations === "object" && !Array.isArray(translations), `${language}: chýba slovník prekladov.`);
+  if (!translations || typeof translations !== "object") continue;
+  assert(Object.keys(translations).length === cards.length, `${language}: neúplný slovník (${Object.keys(translations).length}/${cards.length}).`);
+  for (const card of cards) {
+    const text = translations[card.id];
+    assert(typeof text === "string" && text.trim().length > 0, `${language}/${card.id}: chýba text.`);
+    assert(typeof text !== "string" || text.trim().length <= 80, `${language}/${card.id}: text je príliš dlhý.`);
+    assert(typeof text !== "string" || !exactPlaceholder.test(text.trim()), `${language}/${card.id}: technický placeholder.`);
+  }
 }
 
 // Významové varianty, ktoré by v pantomíme predstavovali tú istú kartičku.
@@ -169,6 +187,7 @@ console.log("Slovné šarády: validácia úspešná.");
 console.log(`Počet: ${cards.length} (easy ${counts.easy}, medium ${counts.medium}, hard ${counts.hard})`);
 console.log(`Kategórie: ${[...categoryCounts.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([name, count]) => `${name}:${count}`).join(", ")}`);
 console.log("Obsahový audit: 100 easy + 100 medium + 100 hard kartičiek pripravených a skontrolovaných.");
+console.log("Lokalizácie: en, de, es, fr a pt majú po 3000 neprázdnych textov s rovnakými stabilnými ID.");
 console.log(`Kontrola podobných zápisov: preverovaných ${similarPairsChecked} blízkych párov; významové aliasy bez duplicít.`);
 if (process.argv.includes("--audit")) {
   for (const difficulty of allowedDifficulties) {

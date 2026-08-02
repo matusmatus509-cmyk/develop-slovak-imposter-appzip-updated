@@ -8,7 +8,8 @@ import {
   SARADY_DIFFICULTY_POINTS,
   SARADY_DIFFICULTY_LABELS,
 } from "../../data/teamBattle";
-import { SOLO_CHARADES_WORDS } from "../../data/charades";
+import { getCharadesWordsByDifficulty } from "../../data/charades";
+import { useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem, takePersistentItems } from "../../utils/persistentDeck";
 import { requestTiltPermission, useTiltGesture } from "../../hooks/useTiltGesture";
 import { CircularTimer } from "./PartyChrome";
@@ -46,6 +47,7 @@ export default function TimedWords({
   mode: GameType;
   onDone: (scores: [number, number]) => void;
 }) {
+  const { language } = useLanguage();
   const isPantomima = mode === "pantomima";
   const isSarady = mode === "sarady";
   const isHadajKtoSom = mode === "hadajktosom";
@@ -111,7 +113,7 @@ export default function TimedWords({
   function handlePickDifficulty(d: PantomimaDifficulty) {
     setDifficulty(d);
     if (isSarady) {
-      setSaradyWords(SOLO_CHARADES_WORDS[d]);
+      setSaradyWords(getCharadesWordsByDifficulty(language)[d]);
     } else {
       setPantomimaWords(takePersistentItems(`party:pantomime:${d}`, PANTOMIMA_WORDS_BY_DIFFICULTY[d], PANTOMIMA_WORDS_BY_DIFFICULTY[d].length));
     }

@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import {
   ALL_SOLO_CHARADES_WORDS,
-  CHARADES_CARDS_BY_DIFFICULTY,
+  getCharadesCardsByDifficulty,
   SOLO_CHARADES_WORDS,
   isValidCharadeText,
   type CharadesDifficulty,
@@ -10,7 +10,7 @@ import { Button, Shell, TopBar } from "../../components/ui";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
 import type { WordGuessRecordInput, WorkshopEntry } from "../../types";
 import { Icons } from "../../components/icons";
-import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
+import { defaultPlayerName, useLanguage, type AppLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
 import { useCountdown } from "../../hooks/useCountdown";
 import { TurnAnswerRecap, type TurnAnswer } from "../../components/TurnAnswerRecap";
@@ -35,7 +35,7 @@ interface Card {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function buildDeck(difficulty: string, extraCards: Array<{ id: string; word: string }> = []): Card[] {
+function buildDeck(difficulty: string, extraCards: Array<{ id: string; word: string }> = [], language: AppLanguage = "sk"): Card[] {
   const labels: Record<CharadesDifficulty, { name: string; icon: string }> = {
     lahke: { name: "Ľahké", icon: "🟢" },
     stredne: { name: "Stredné", icon: "🟡" },
@@ -44,8 +44,9 @@ function buildDeck(difficulty: string, extraCards: Array<{ id: string; word: str
   const levels: CharadesDifficulty[] = difficulty === "all"
     ? ["lahke", "stredne", "tazke"]
     : [difficulty as CharadesDifficulty];
+  const cardsByDifficulty = getCharadesCardsByDifficulty(language);
   const cards = levels.flatMap((level) =>
-    (CHARADES_CARDS_BY_DIFFICULTY[level] ?? []).map((card) => ({
+    (cardsByDifficulty[level] ?? []).map((card) => ({
       id: card.id,
       word: card.text,
       category: labels[level]?.name ?? "Šarády",
@@ -523,6 +524,7 @@ export default function SlovnaRosada({
   customControls?: CustomContentControls;
   onWordGuessed?: (record: WordGuessRecordInput) => void;
 }) {
+  const { language } = useLanguage();
   const extraCards = customEntries.map((entry) => ({ id: entry.id, word: entry.text }));
   const [phase, setPhase] = useState<Phase>(partyConfig ? "who-starts" : "setup");
   const [players, setPlayers] = useState<Player[]>(() => partyConfig
@@ -533,7 +535,7 @@ export default function SlovnaRosada({
   const [maxSkips, setMaxSkips] = useState(3);
   const [teamMode, setTeamMode] = useState(Boolean(partyConfig));
   const [difficulty, setDifficulty] = useState("all");
-  const [deck, setDeck] = useState<Card[]>(() => partyConfig ? buildDeck("all", extraCards) : []);
+  const [deck, setDeck] = useState<Card[]>(() => partyConfig ? buildDeck("all", extraCards, language) : []);
   const [roundCorrect, setRoundCorrect] = useState(0);
   const [roundSkips, setRoundSkips] = useState(0);
   const [roundAnswers, setRoundAnswers] = useState<TurnAnswer[]>([]);
@@ -543,7 +545,7 @@ export default function SlovnaRosada({
     setMaxSkips(skips);
     setTeamMode(teams);
     setDifficulty(diff);
-    setDeck(buildDeck(diff, extraCards));
+    setDeck(buildDeck(diff, extraCards, language));
     setPlayers(
       names.map((name, i) => ({
         name,
@@ -574,7 +576,7 @@ export default function SlovnaRosada({
       setPhase("final-result");
     } else {
       setCurrentIdx(next);
-      setDeck(buildDeck(difficulty, extraCards)); // fresh shuffled deck for each player
+      setDeck(buildDeck(difficulty, extraCards, language)); // fresh shuffled deck for each player
       setPhase("who-starts");
     }
   }
@@ -825,7 +827,7 @@ export default function SlovnaRosada({
             ) : (
               <>
                 <div className="flex gap-3">
-                  <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty, extraCards)); setPhase("who-starts"); }}>
+                  <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty, extraCards, language)); setPhase("who-starts"); }}>
                     🔄 Znova
                   </Button>
                   <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
@@ -881,7 +883,7 @@ export default function SlovnaRosada({
           </div>
 
           <div className="flex gap-3">
-            <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty, extraCards)); setPhase("who-starts"); }}>
+            <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty, extraCards, language)); setPhase("who-starts"); }}>
               🔄 Znova
             </Button>
             <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
