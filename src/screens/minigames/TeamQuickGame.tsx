@@ -172,20 +172,20 @@ export default function TeamQuickGame({
             <div className="h-11 w-11" />
           </header>
 
-          <div className="game-setup-hero relative mt-6 h-48 overflow-hidden rounded-[2rem] border border-white/15 shadow-2xl">
+          <div className="game-setup-hero relative mt-5 h-44 overflow-hidden rounded-[2rem] border border-white/15 shadow-2xl">
             <img src={GAME_ART[game]} alt="" className="h-full w-full object-cover transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#080b13] via-transparent to-transparent" />
             <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/20 blur-3xl" />
-            <h1 className="absolute bottom-5 left-5 right-5 text-3xl font-black text-white">{GAME_TITLES[game]}</h1>
+            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3"><div><p className="mb-1 text-[8px] font-black uppercase tracking-[.2em] text-white/55">Rýchla minihra</p><h1 className="text-3xl font-black text-white">{GAME_TITLES[game]}</h1></div><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-black/30 text-lg backdrop-blur">{gameMode === "teams" ? "👥" : "🎮"}</span></div>
           </div>
 
           {!gameMode ? (
-            <section className="mt-5 space-y-3">
+            <section className="quick-mode-panel mt-5 space-y-3 rounded-[1.8rem] border border-white/[.08] p-3">
               <p className="text-center text-sm leading-relaxed text-white/45">Vyberte si, či bude každý zbierať vlastné body, alebo budete hrať v dvoch tímoch.</p>
-              <button onClick={() => chooseMode("players")} className="party-shine flex w-full items-center gap-4 overflow-hidden rounded-[1.7rem] border border-violet-300/20 bg-violet-500/15 p-5 text-left transition active:scale-[.98]">
+              <button onClick={() => chooseMode("players")} className="quick-mode-choice party-shine flex w-full items-center gap-4 overflow-hidden rounded-[1.45rem] border border-violet-300/20 bg-violet-500/15 p-4 text-left transition active:scale-[.98]">
                 <span className="text-4xl">👤</span><span><strong className="block text-lg font-black text-white">Každý za seba</strong><small className="mt-1 block text-xs text-white/45">2 až 8 hráčov, každý má vlastné skóre</small></span>
               </button>
-              <button onClick={() => chooseMode("teams")} className="party-shine flex w-full items-center gap-4 overflow-hidden rounded-[1.7rem] border border-cyan-300/20 bg-cyan-500/15 p-5 text-left transition active:scale-[.98]">
+              <button onClick={() => chooseMode("teams")} className="quick-mode-choice party-shine flex w-full items-center gap-4 overflow-hidden rounded-[1.45rem] border border-cyan-300/20 bg-cyan-500/15 p-4 text-left transition active:scale-[.98]">
                 <span className="text-4xl">👥</span><span><strong className="block text-lg font-black text-white">Tímový režim</strong><small className="mt-1 block text-xs text-white/45">Dva tímy súťažia proti sebe</small></span>
               </button>
             </section>

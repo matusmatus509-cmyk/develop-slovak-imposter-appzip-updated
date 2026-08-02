@@ -251,7 +251,7 @@ function HandoffScreen({ kind, onContinue, onCancel }: { kind: HandoffKind; onCo
 export default function Battleship({ onBack }: { onBack: () => void }) {
   const { playFeedback } = useFeedback();
   const [phase, setPhase] = useState<Phase>("mode");
-  const [mode, setMode] = useState<GameMode>("ai");
+  const [mode, setMode] = useState<GameMode>("local");
   const [deploymentPlayer, setDeploymentPlayer] = useState<0 | 1>(0);
   const [handoffKind, setHandoffKind] = useState<HandoffKind>("player2");
   const [orientations, setOrientations] = useState<Record<string, Orientation>>(DEFAULT_ORIENTATIONS);
@@ -556,7 +556,7 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
       <div className="mx-auto w-full max-w-md">
         <header className="flex items-center justify-between"><button onClick={onBack} aria-label="Späť" className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[.06] text-white/70 transition active:scale-90"><Icons.chevronLeft size={21} /></button><PartyEyebrow>Vyberte režim</PartyEyebrow><div className="h-11 w-11" /></header>
         <section className="mt-7 text-center"><div className="battle-mode-emblem mx-auto flex h-28 w-28 items-center justify-center rounded-[2.2rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-400/15 to-blue-700/25 text-6xl shadow-2xl shadow-cyan-500/10">⚓</div><p className="mt-6 text-[9px] font-black uppercase tracking-[.25em] text-cyan-300/65">Námorná bitka 10 × 10</p><h1 className="mt-2 text-4xl font-black tracking-[-.04em]">Loďky</h1><p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-white/46">Rozmiestni päť lodí a potop súperovu flotilu skôr, než nájde tú tvoju.</p></section>
-        <section className="mt-7 grid grid-cols-2 gap-3">
+        <section className="mt-7 grid grid-cols-1 gap-3 [&>button:first-child]:hidden">
           <button onClick={() => startMode("ai")} className="party-shine relative overflow-hidden rounded-[1.7rem] border border-cyan-300/20 bg-cyan-400/[.08] p-5 text-left transition active:scale-[.97]"><span className="text-4xl">🤖</span><strong className="mt-4 block text-base font-black">Proti robotovi</strong><small className="mt-2 block text-[10px] leading-relaxed text-white/40">Sólo bitka so šikovným AI súperom</small></button>
           <button onClick={() => startMode("local")} className="party-shine relative overflow-hidden rounded-[1.7rem] border border-amber-300/20 bg-amber-400/[.08] p-5 text-left transition active:scale-[.97]"><span className="text-4xl">👥</span><strong className="mt-4 block text-base font-black">Dvaja hráči</strong><small className="mt-2 block text-[10px] leading-relaxed text-white/40">Súkromné flotily na jednom mobile</small></button>
         </section>

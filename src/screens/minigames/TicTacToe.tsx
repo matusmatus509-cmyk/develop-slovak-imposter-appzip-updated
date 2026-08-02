@@ -55,7 +55,7 @@ function chooseAiMove(board: Cell[], difficulty: Difficulty) {
 export default function TicTacToe({ onBack }: { onBack: () => void }) {
   const { playFeedback } = useFeedback();
   const [phase, setPhase] = useState<"setup" | "playing">("setup");
-  const [mode, setMode] = useState<Mode>("ai");
+  const [mode, setMode] = useState<Mode>("local");
   const [difficulty, setDifficulty] = useState<Difficulty>("master");
   const [board, setBoard] = useState<Cell[]>(Array(9).fill(null));
   const [starter, setStarter] = useState<Mark>("X");
@@ -144,7 +144,7 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
 
           <section className="party-glass mt-7 rounded-[1.8rem] p-5">
             <p className="text-[9px] font-black uppercase tracking-[.22em] text-white/35">Herný režim</p>
-            <div className="mt-3 grid grid-cols-2 gap-3">
+            <div className="mt-3 grid grid-cols-1 gap-3 [&>button:first-child]:hidden">
               {(["ai", "local"] as const).map((value) => <button key={value} onClick={() => setMode(value)} className={`rounded-2xl border p-4 text-left transition active:scale-95 ${mode === value ? "border-cyan-300/45 bg-cyan-400/12" : "border-white/8 bg-white/[.035]"}`}><span className="text-3xl">{value === "ai" ? "🤖" : "👥"}</span><strong className="mt-3 block text-sm font-black">{value === "ai" ? "Proti robotovi" : "Dvaja hráči"}</strong><small className="mt-1 block text-[10px] leading-relaxed text-white/38">{value === "ai" ? "Sólo hra na jednom mobile" : "Striedajte sa po každom ťahu"}</small></button>)}
             </div>
           </section>
