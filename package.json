@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "validate:charades": "node scripts/validate-charades.mjs",
+    "validate:never-have-i-ever": "node scripts/validate-never-have-i-ever.mjs",
     "audit:content": "bun scripts/audit-content.mjs"
   },
   "dependencies": {
