@@ -47,8 +47,8 @@ export const Menu = createIcon([["M3 12h18", "M3 6h18", "M3 18h18"]]);
 export const MoreHorizontal = createIcon([["M21 12h-18", "M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z", "M3 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"]]);
 
 // ── Game Icons ───────────────────────────────────────────────────────
-export const Gamepad = createIcon([["M12 2a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h6z", "M12 6v6", "M9 9h6", "M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z", "M9 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"]]);
-export const Users = createIcon([["M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2", "M9 11a4 4 0 0 0 0 8", "M23 21v-2a4 4 0 0 0-3-3.87", "M16 3.13a4 4 0 0 1 0 7.75"]]);
+export const Gamepad = createIcon([["M6 12h4", "M8 10v4", "M15 13h.01", "M18 11h.01", "M17.32 5H6.68a4 4 0 0 0-3.98 3.59l-.7 7A3 3 0 0 0 4.99 19h.79a2 2 0 0 0 1.56-.75L9 16h6l1.66 2.25a2 2 0 0 0 1.56.75h.79A3 3 0 0 0 22 15.59l-.7-7A4 4 0 0 0 17.32 5Z"]]);
+export const Users = createIcon([["M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", "M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z", "M22 21v-2a4 4 0 0 0-3-3.87", "M16 3.13a4 4 0 0 1 0 7.75"]]);
 export const UserPlus = createIcon([["M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", "M22 11a4 4 0 1 1-8 0 4 4 0 0 1 8 0z", "M22 16v6", "M19 19h-6"]]);
 export const UserMinus = createIcon([["M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", "M22 11a4 4 0 1 1-8 0 4 4 0 0 1 8 0z", "M19 19H9"]]);
 export const UserCheck = createIcon([["M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2", "M22 11a4 4 0 1 1-8 0 4 4 0 0 1 8 0z", "m22 16-2 2 4 4", "m22 16 6-6"]]);

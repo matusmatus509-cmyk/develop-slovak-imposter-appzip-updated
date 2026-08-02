@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { Icons } from "../../components/icons";
 import { PartyBackdrop, PartyEyebrow } from "../teamBattle/PartyChrome";
 import { ForbiddenWordGame, GuessSongGame } from "../teamBattle/PassAndPlay";
@@ -172,22 +172,25 @@ export default function TeamQuickGame({
             <div className="h-11 w-11" />
           </header>
 
-          <div className="game-setup-hero relative mt-5 h-44 overflow-hidden rounded-[2rem] border border-white/15 shadow-2xl">
+          <div className="game-setup-hero relative mt-5 h-48 overflow-hidden rounded-[2rem] border border-white/15 shadow-2xl" style={{ "--setup-accent": accent } as CSSProperties}>
             <img src={GAME_ART[game]} alt="" className="h-full w-full object-cover transition-transform duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#080b13] via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#080b13]/95 via-[#080b13]/35 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#080b13]/85 via-transparent to-black/10" />
             <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/20 blur-3xl" />
-            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3"><div><p className="mb-1 text-[8px] font-black uppercase tracking-[.2em] text-white/55">Rýchla minihra</p><h1 className="text-3xl font-black text-white">{GAME_TITLES[game]}</h1></div><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-black/30 text-white/90 backdrop-blur">{gameMode === "teams" ? <Icons.users size={20} /> : <Icons.gamepad size={20} />}</span></div>
+            <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-3"><div><span className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/25 px-3 py-1.5 text-[8px] font-black uppercase tracking-[.2em] text-white/65 backdrop-blur"><Icons.zap size={12} /> Rýchla minihra</span><h1 className="max-w-[16rem] text-[2rem] font-black leading-[.98] tracking-[-.04em] text-white">{GAME_TITLES[game]}</h1></div><span className="setup-player-badge inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-black/35 px-3 py-2 text-[9px] font-black uppercase tracking-wider text-white/80 backdrop-blur"><Icons.users size={15} /> 2–8</span></div>
           </div>
 
           {!gameMode ? (
-            <section className="quick-mode-panel mt-5 space-y-3 rounded-[1.8rem] border border-white/[.08] p-3">
-              <p className="text-center text-sm leading-relaxed text-white/45">Vyberte si, či bude každý zbierať vlastné body, alebo budete hrať v dvoch tímoch.</p>
-              <button onClick={() => chooseMode("players")} className="quick-mode-choice party-shine flex w-full items-center gap-4 overflow-hidden rounded-[1.45rem] border border-violet-300/20 bg-violet-500/15 p-4 text-left transition active:scale-[.98]">
-                <span className="quick-mode-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-violet-200/20 bg-violet-300/[.12] text-violet-100"><Icons.user size={26} /></span><span><strong className="block text-lg font-black text-white">Každý za seba</strong><small className="mt-1 block text-xs text-white/45">2 až 8 hráčov, každý má vlastné skóre</small></span><Icons.chevronRight size={18} className="ml-auto text-violet-100/45" />
-              </button>
-              <button onClick={() => chooseMode("teams")} className="quick-mode-choice party-shine flex w-full items-center gap-4 overflow-hidden rounded-[1.45rem] border border-cyan-300/20 bg-cyan-500/15 p-4 text-left transition active:scale-[.98]">
-                <span className="quick-mode-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-cyan-200/20 bg-cyan-300/[.12] text-cyan-100"><Icons.users size={27} /></span><span><strong className="block text-lg font-black text-white">Tímový režim</strong><small className="mt-1 block text-xs text-white/45">Dva tímy súťažia proti sebe</small></span><Icons.chevronRight size={18} className="ml-auto text-cyan-100/45" />
-              </button>
+            <section className="quick-mode-panel mt-5 rounded-[1.8rem] border border-white/[.08] p-3.5">
+              <div className="px-1 pb-3 pt-1"><p className="text-[9px] font-black uppercase tracking-[.22em]" style={{ color: accent }}>Spôsob bodovania</p><div className="mt-1 flex items-end justify-between gap-3"><h2 className="text-xl font-black tracking-[-.025em] text-white">Ako chcete hrať?</h2><span className="text-[9px] font-bold text-white/28">Vyber jednu možnosť</span></div></div>
+              <div className="space-y-3">
+                <button onClick={() => chooseMode("players")} className="quick-mode-choice quick-mode-choice-player party-shine group flex w-full items-center gap-4 overflow-hidden rounded-[1.45rem] border p-3.5 text-left transition active:scale-[.98]">
+                  <span className="quick-mode-index">01</span><span className="quick-mode-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-violet-100"><Icons.user size={27} /></span><span className="min-w-0 flex-1"><strong className="block text-[1.05rem] font-black text-white">Každý za seba</strong><small className="mt-1 block text-[11px] leading-snug text-white/45">2 až 8 hráčov · vlastné skóre</small></span><span className="quick-mode-arrow"><Icons.chevronRight size={18} /></span>
+                </button>
+                <button onClick={() => chooseMode("teams")} className="quick-mode-choice quick-mode-choice-team party-shine group flex w-full items-center gap-4 overflow-hidden rounded-[1.45rem] border p-3.5 text-left transition active:scale-[.98]">
+                  <span className="quick-mode-index">02</span><span className="quick-mode-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-cyan-100"><Icons.users size={28} /></span><span className="min-w-0 flex-1"><strong className="block text-[1.05rem] font-black text-white">Tímový režim</strong><small className="mt-1 block text-[11px] leading-snug text-white/45">Dva tímy · spoločné body</small></span><span className="quick-mode-arrow"><Icons.chevronRight size={18} /></span>
+                </button>
+              </div>
             </section>
           ) : (
             <>
