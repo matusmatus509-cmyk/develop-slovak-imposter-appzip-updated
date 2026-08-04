@@ -1,6 +1,6 @@
 import cards from "../src/data/truthOrDare.json" with { type: "json" };
 const languages = ["sk", "en", "de", "es", "fr", "pt"];
-const truthCategories = new Set(["school", "work", "friends", "family", "travel"]);
+const truthCategories = new Set(["friends", "family", "school", "work", "childhood", "memories", "embarrassing", "funny", "habits", "personality", "fears", "dreams", "future", "relationships", "travel", "holidays", "food", "cooking", "shopping", "money", "sports", "hobbies", "music", "movies", "series", "gaming", "internet", "social_media", "technology", "parties", "everyday_life", "mistakes", "achievements", "secrets", "opinions"]);
 const dareCategories = new Set(["acting", "pantomime", "singing", "dancing", "imitation", "storytelling", "word_games", "tongue_twisters", "drawing", "memory", "coordination", "reactions", "creativity", "voices", "movement", "comedy", "compliments", "group_interaction", "guessing", "challenges"]);
 const banned = /na tému|spojen[ýáé] s témou|pri téme|sex|porno|drogy|samovražd|sebapoškodz|znásilnen|rasizm|extrémizm|politic|nábožensk|krádež|zločin|vyzleč|pobozkaj|heslo|súkromn|kontaktuj cudz|zverejni/iu;
 function assert(ok, message) { if (!ok) throw new Error(message); }
