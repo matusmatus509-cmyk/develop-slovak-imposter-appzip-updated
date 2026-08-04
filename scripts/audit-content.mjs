@@ -34,7 +34,7 @@ const counts = {
 };
 
 const requirements = {
-  truths: [1000, 1000], dares: [1000, 1000], neverHaveIEver: [1500, 1500], wouldYouRather: [2000, 2000],
+  truths: [1000, 1000], dares: [1000, 1000], neverHaveIEver: [1500, 1500], wouldYouRather: [1500, 1500],
   guessWho: [3000, 3000], drawing: [3000, 3000], pantomime: [3000, 3000], forbiddenWords: [2000, 2000],
   pingPong: [300, 500], letterChallenges: [500, 1000], quiz: [5000, 5000], songs: [150, 300], sounds: [500, 1000],
   emoji: [2000, 2000], onlyLies: [1000, Infinity], bomb: [1000, Infinity], fiveInTen: [1000, Infinity], charades: [2000, 2000], impostor: [3000, 3000],
