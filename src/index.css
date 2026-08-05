@@ -910,3 +910,23 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 @media (max-height: 620px) {
   .tic-game-screen .tic-board-shape { inline-size: min(100%, 45dvh, 330px); }
 }
+
+/* Would you rather: a short transition that stays comfortable for motion-sensitive players. */
+@keyframes wouldRatherReveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.would-rather-shell .animate-\[fadeIn_\.22s_ease-out\] {
+  animation: wouldRatherReveal .22s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .would-rather-shell *,
+  .would-rather-shell *::before,
+  .would-rather-shell *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
