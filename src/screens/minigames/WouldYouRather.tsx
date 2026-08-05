@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { getWouldYouRatherForLanguage } from "../../data/localizedWouldYouRather";
 import { useLanguage } from "../../i18n/LanguageProvider";
-import { Button, Shell, TopBar } from "../../components/ui";
+import { Button, Shell } from "../../components/ui";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
 import { Icons } from "../../components/icons";
 import { cn } from "../../utils/designTokens";
@@ -66,40 +66,34 @@ export default function WouldYouRather({ onBack, customEntries = [], customContr
     { key: "b", title: pair.b, color: "from-sky-400/20 via-indigo-500/15 to-violet-500/25", muted: "border-sky-200/20", percent: shownB },
   ];
 
-  return <Shell className="would-rather-shell"><TopBar title="Čo by si radšej?" onBack={onBack} />
-    <main className={cn("mx-auto flex w-full max-w-xl flex-1 flex-col px-1 pb-5 pt-3 transition-all duration-150", entering && "translate-y-2 opacity-0")} aria-live="polite">
-      <header className="mb-5 text-center">
-        <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-[20px] border border-violet-200/15 bg-violet-500/10 shadow-[0_14px_35px_-20px_rgba(167,139,250,.85)]"><Icons.brain size={29} className="text-violet-200" /></div>
-        <p className="text-[10px] font-black uppercase tracking-[0.28em] text-violet-200/65">Rýchla dilema</p>
-        <h1 className="mt-1 text-3xl font-black tracking-tight text-white">Čo by si radšej?</h1>
-        <p className="mt-2 text-sm text-white/55">Vyber jednu možnosť. Až potom sa ukáže hlasovanie.</p>
-      </header>
-      {customControls && <div className="mb-4"><CustomContentSelector controls={customControls} compact /></div>}
-      {pair.source === "custom" && <span className="mx-auto mb-3 rounded-full border border-emerald-300/15 bg-emerald-400/10 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-emerald-200">Vlastná kartička</span>}
-      <section className="flex flex-1 flex-col justify-center gap-3" aria-label="Možnosti otázky">
+  return <Shell className="would-rather-shell"><main className={cn("relative mx-auto flex w-full max-w-xl flex-1 flex-col py-1 transition-all duration-150", entering && "translate-y-2 opacity-0")} aria-live="polite">
+      <button type="button" onClick={onBack} className="ml-auto flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-black/25 text-white/85 shadow-[0_12px_28px_-16px_rgba(0,0,0,.95)] backdrop-blur-xl transition hover:border-white/35 hover:bg-white/10 active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/30" aria-label="Zavrieť hru"><Icons.x size={25} /></button>
+      <h1 className="sr-only">Čo by si radšej?</h1>
+      <section className="flex flex-1 flex-col justify-center gap-3 py-4" aria-label="Možnosti otázky">
         {options.map((option, index) => {
           const selected = picked === option.key;
           const otherSelected = Boolean(picked && !selected);
           return <div key={option.key}>
             <button type="button" disabled={Boolean(picked)} onClick={() => choose(option.key)} aria-pressed={selected} className={cn(
-              "group relative min-h-40 w-full overflow-hidden rounded-[30px] border bg-gradient-to-br p-6 text-left outline-none transition-all duration-200 focus-visible:ring-4 focus-visible:ring-white/35 disabled:cursor-default",
+              "group relative min-h-[clamp(11rem,27dvh,17rem)] w-full overflow-hidden rounded-[30px] border bg-gradient-to-br px-6 py-7 text-center outline-none transition-all duration-200 focus-visible:ring-4 focus-visible:ring-white/35 disabled:cursor-default",
               option.color, option.muted,
               selected && "scale-[1.015] border-white/60 shadow-[0_22px_55px_-28px_rgba(255,255,255,.9)]",
               otherSelected && "scale-[0.985] opacity-45 grayscale-[.25]",
               !picked && "hover:-translate-y-0.5 hover:border-white/35 hover:shadow-[0_18px_40px_-28px_rgba(255,255,255,.75)] active:scale-[.985]",
             )}>
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_0%,rgba(255,255,255,.16),transparent_38%)]" />
-              <div className="relative flex h-full flex-col justify-between gap-5">
-                <div className="flex items-center justify-between"><span className="rounded-full bg-black/20 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-white/70">Možnosť {option.key.toUpperCase()}</span>{selected && <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-lg font-black text-white" aria-label="Vybraná možnosť">✓</span>}</div>
-                <p className="max-w-[31ch] text-[clamp(1.2rem,4.6vw,1.65rem)] font-black leading-[1.15] tracking-tight text-white" data-no-translate>{option.title}</p>
+              <div className="relative flex h-full flex-col items-center justify-center gap-5">
+                {selected && <span className="absolute right-0 top-0 flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-lg font-black text-white" aria-label="Vybraná možnosť">✓</span>}
+                <p className="max-w-[21ch] text-[clamp(1.45rem,6vw,2rem)] font-black leading-[1.13] tracking-tight text-white" data-no-translate>{option.title}</p>
                 {picked && <div className="flex items-center gap-3"><div className="h-1.5 flex-1 overflow-hidden rounded-full bg-black/20"><div className="h-full rounded-full bg-white/75 transition-all duration-500" style={{ width: `${option.percent}%` }} /></div><strong className="w-12 text-right text-xl font-black tabular-nums text-white">{option.percent}%</strong></div>}
               </div>
             </button>
-            {index === 0 && <div className="relative z-10 -my-1 flex justify-center"><span className="rounded-full border border-white/15 bg-[#111529] px-4 py-2 text-[10px] font-black tracking-[0.24em] text-white/65 shadow-xl">ALEBO</span></div>}
+            {index === 0 && <div className="relative z-10 -my-7 flex justify-center"><span className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/45 bg-gradient-to-br from-rose-300/75 to-sky-300/75 text-xs font-black tracking-wide text-white shadow-[0_14px_34px_-14px_rgba(96,165,250,.9)] backdrop-blur-xl">ALEBO</span></div>}
           </div>;
         })}
       </section>
-      {picked && <div className="mt-5 animate-[fadeIn_.22s_ease-out]"><Button fullWidth size="xl" onClick={next}>Ďalšia otázka</Button></div>}
+      {picked && <div className="mt-1 animate-[fadeIn_.22s_ease-out]"><Button fullWidth size="lg" onClick={next}>Ďalšia otázka</Button></div>}
+      {customControls && <details className="sr-only"><summary>Vlastný obsah</summary><CustomContentSelector controls={customControls} compact /></details>}
     </main>
   </Shell>;
 }
