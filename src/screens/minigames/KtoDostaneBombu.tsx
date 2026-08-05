@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { BOMB_CATEGORIES } from "../../data/prompts";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { getPassTheBombForLanguage, type BombTask } from "../../data/localizedPassTheBomb";
+import { useLanguage } from "../../i18n/LanguageProvider";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { takePersistentItem } from "../../utils/persistentDeck";
@@ -17,8 +18,12 @@ export default function KtoDostaneBombu({
   onBack: () => void;
   onRoundComplete?: () => void;
 }) {
+  const { language } = useLanguage();
+  const deck = useMemo<BombTask[]>(() => getPassTheBombForLanguage(language), [language]);
+  const draw = useCallback(() => takePersistentItem("pass-the-bomb", deck, (item) => item.id), [deck]);
+
   const [phase, setPhase] = useState<Phase>("ready");
-  const [category, setCategory] = useState<string>(() => takePersistentItem("bomb-categories", BOMB_CATEGORIES));
+  const [task, setTask] = useState<BombTask>(draw);
   const [pulse, setPulse] = useState(false);
   const [fuseSeconds, setFuseSeconds] = useState(randomFuseSeconds);
   const pulseRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -67,7 +72,7 @@ export default function KtoDostaneBombu({
     clearPulse();
     setPulse(false);
     resetFuse(fuseSeconds);
-    setCategory(takePersistentItem("bomb-categories", BOMB_CATEGORIES));
+    setTask(draw());
     setPhase("ready");
   }
 
@@ -100,12 +105,12 @@ export default function KtoDostaneBombu({
             style={{ animation: "slideUp 0.5s ease-out 0.2s both" }}
           >
             <p className="text-xs text-white/40 uppercase tracking-widest mb-1">
-              Kategória bola
+              Úloha bola
             </p>
-            <p className="text-lg font-bold text-white">{category}</p>
+            <p className="text-lg font-bold text-white" data-no-translate>{task.text}</p>
           </div>
           <Button fullWidth onClick={reset}>
-            Nová kategória 🔄
+            Nová úloha 🔄
           </Button>
         </div>
       </Shell>
@@ -140,7 +145,7 @@ export default function KtoDostaneBombu({
             className="text-xs font-bold uppercase tracking-widest text-white/40"
             style={{ animation: "fadeIn 0.5s ease-out 0.3s both" }}
           >
-            Povedzte slovo z kategórie a rýchlo podajte telefón ďalej
+            Povedzte slovo zo zadania a rýchlo podajte telefón ďalej
           </p>
         )}
 
@@ -167,9 +172,9 @@ export default function KtoDostaneBombu({
           }}
         >
           <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-2">
-            Kategória
+            Zadanie
           </p>
-          <p className="text-2xl font-bold text-white">{category}</p>
+          <p className="text-2xl font-bold text-white" data-no-translate>{task.text}</p>
         </div>
 
         {phase === "ready" && (
