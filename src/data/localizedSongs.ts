@@ -160,11 +160,11 @@ Can’t Stop the Feeling!|Justin Timberlake
 I Gotta Feeling|The Black Eyed Peas
 `);
 
-
 const LOCAL_HITS: Record<AppLanguage, SongCard[]> = {
   sk: parseSongs(`
 V dolinách|Karol Duchoň
 Čardáš dvoch sŕdc|Karol Duchoň
+Mám ťa rád|Karol Duchoň
 Po schodoch|Richard Müller
 Nebude to ľahké|Richard Müller
 Tlaková níž|Richard Müller
@@ -173,17 +173,23 @@ Nie sme zlí|Elán
 Stužková|Elán
 Vymyslená|Elán
 Kráľovná bielych tenisiek|Elán
+Sestrička z Kramárov|Elán
 Reklama na ticho|Team
 Držím ti miesto|Team
+Severanka|Team
+Lietam v tom tiež|Team
 Atlantída|Miroslav Žbirka
 Biely kvet|Miroslav Žbirka
 22 dní|Miroslav Žbirka
+Balada o poľných vtákoch|Miroslav Žbirka
 Vyznanie|Marika Gombitová
 Koloseum|Marika Gombitová
 Úsmev|Modus
+Sklíčka|Modus
 Čerešne|Hana Hegerová
 Opri sa o mňa|IMT Smile
 Cesty II. triedy|IMT Smile
+Ľudia nie sú zlí|IMT Smile
 Veselá pesnička|IMT Smile
 Žily|No Name
 Ty a tvoja sestra|No Name
@@ -193,19 +199,30 @@ Vyrobená pre mňa|Desmod
 Spomaľ|Peha
 Pokoj v duši|Jana Kirschner
 Bude mi ľahko|Jana Kirschner
+Modrá|Jana Kirschner
 Horehronie|Kristína
+Ta ne|Kristína
 Mám ťa rád|Adam Ďurica
 Neľutujem|Adam Ďurica
 Mandolína|Adam Ďurica
+Spolu|Adam Ďurica
 Všade tam, kde si|Peter Bič Project
 Žijeme len raz|Ego
 Príbeh|Tina a Rytmus
-Modrá|Jana Kirschner
 Keď sa zamiluješ|Hex
 Komplikovaná|Polemic
+Dnes|Tublatanka
+Silný refrén|Horkýže Slíže
+L.A.G. Song|Horkýže Slíže
+Macejko|Slovenská ľudová
+Prší, prší|Slovenská ľudová
+Tancuj, tancuj, vykrúcaj|Slovenská ľudová
+Slovenské mamičky|Slovenská ľudová
+Pásla kone na betóne|Slovenská ľudová
 Lady Carneval|Karel Gott
 Být stále mlád|Karel Gott
 Trezor|Karel Gott
+Když muž se ženou snídá|Karel Gott
 Jožin z bažin|Ivan Mládek
 Holubí dům|Jiří Schelinger
 Jasná zpráva|Olympic
@@ -213,6 +230,7 @@ Sladké mámení|Helena Vondráčková
 Dlouhá noc|Helena Vondráčková
 Nonstop|Michal David
 Pár přátel|Michal David
+Decibely lásky|Michal David
 Láska je láska|Lucie Bílá
 Amerika|Lucie
 Medvídek|Lucie
@@ -221,12 +239,68 @@ Pohoda|Kabát
 Burlaci|Kabát
 Tabáček|Chinaski
 Víno|Chinaski
+Klára|Chinaski
 Cesta|Kryštof a Tomáš Klus
 Anděl|Mirai
 Boky jako skříň|Ewa Farna
+Nafrněná|Barbora Poláková
+Cesta z města|Support Lesbiens
+Chci zas v tobě spát|Lucie
+Šrouby a matice|Mandrage
+František|Buty
 `),
-  en: [],
-
+  en: parseSongs(`
+Happy Birthday to You|Traditional
+Jingle Bells|James Lord Pierpont
+We Wish You a Merry Christmas|Traditional
+Silent Night|Franz Xaver Gruber
+Twinkle Twinkle Little Star|Traditional
+Old MacDonald Had a Farm|Traditional
+My Bonnie Lies over the Ocean|Traditional
+Amazing Grace|John Newton
+You Are My Sunshine|Jimmie Davis
+Sweet Caroline|Neil Diamond
+Hotel California|Eagles
+Yesterday|The Beatles
+Hey Jude|The Beatles
+Let It Be|The Beatles
+All You Need Is Love|The Beatles
+Imagine|John Lennon
+Stairway to Heaven|Led Zeppelin
+Purple Rain|Prince
+Mr. Brightside|The Killers
+Hallelujah|Leonard Cohen
+I Want to Hold Your Hand|The Beatles
+Wonderwall|Oasis
+Stay|The Kid LAROI & Justin Bieber
+Ring Around the Rosie|Traditional
+London Bridge Is Falling Down|Traditional
+Row, Row, Row Your Boat|Traditional
+The Wheels on the Bus|Traditional
+Danny Boy|Frederic Weatherly
+Stand by Me|Ben E. King
+My Way|Frank Sinatra
+Fly Me to the Moon|Frank Sinatra
+Can't Help Falling in Love|Elvis Presley
+Suspicious Minds|Elvis Presley
+Jolene|Dolly Parton
+Always on My Mind|Willie Nelson
+Sweet Child o' Mine|Guns N' Roses
+Blowin' in the Wind|Bob Dylan
+Rocket Man|Elton John
+Your Song|Elton John
+Piano Man|Billy Joel
+Dancing in the Dark|Bruce Springsteen
+Born in the U.S.A.|Bruce Springsteen
+Smells Like Teen Spirit|Nirvana
+Losing My Religion|R.E.M.
+Uptown Girl|Billy Joel
+Last Christmas|Wham!
+All I Want for Christmas Is You|Mariah Carey
+Perfect|Ed Sheeran
+Thinking Out Loud|Ed Sheeran
+Auld Lang Syne|Robert Burns
+`),
   de: parseSongs(`
 99 Luftballons|Nena
 Atemlos durch die Nacht|Helene Fischer
@@ -235,9 +309,12 @@ Komet|Udo Lindenberg a Apache 207
 Wildberry Lillet|Nina Chuba
 Friesenjung|Ski Aggu, Joost a Otto Waalkes
 Traum|Cro
+Easy|Cro
 Einmal um die Welt|Cro
 Haus am See|Peter Fox
+Schwarz zu Blau|Peter Fox
 Tage wie diese|Die Toten Hosen
+Altes Fieber|Die Toten Hosen
 Ein Kompliment|Sportfreunde Stiller
 Applaus, Applaus|Sportfreunde Stiller
 Lieblingsmensch|Namika
@@ -245,18 +322,45 @@ Barfuß am Klavier|AnnenMayKantereit
 Pocahontas|AnnenMayKantereit
 Nur noch kurz die Welt retten|Tim Bendzko
 Das Beste|Silbermond
+Symphonie|Silbermond
 Durch den Monsun|Tokio Hotel
 Astronaut|Sido feat. Andreas Bourani
 Auf uns|Andreas Bourani
+Major Tom (Völlig losgelöst)|Peter Schilling
+Verdammt, ich lieb' dich|Matthias Reim
+Sonderzug nach Pankow|Udo Lindenberg
+Jeanny|Falco
+Rock Me Amadeus|Falco
+Out of the Dark|Falco
+Griechischer Wein|Udo Jürgens
+Aber bitte mit Sahne|Udo Jürgens
+Marmor, Stein und Eisen bricht|Drafi Deutscher
+Skandal im Sperrbezirk|Spider Murphy Gang
+Du hast|Rammstein
+Sonne|Rammstein
+Ein Bett im Kornfeld|Jürgen Drews
+Sierra Madre|Schürzenjäger
+Wahnsinn|Wolfgang Petry
+Fliegerlied (So ein schöner Tag)|Donikkl
+Ein Stern (der deinen Namen trägt)|DJ Ötzi
+Bruttosozialprodukt|Geier Sturzflug
+Über sieben Brücken musst du gehn|Peter Maffay
+Hupf in Gatsch|Georg Danzer
+Schickeria|Spider Murphy Gang
+Guten Abend, gut' Nacht|Johannes Brahms
+O Tannenbaum|Traditional
+Stille Nacht, heilige Nacht|Franz Xaver Gruber
 `),
   es: parseSongs(`
 La Bamba|Ritchie Valens
 Bailando|Enrique Iglesias feat. Descemer Bueno a Gente de Zona
 Vivir Mi Vida|Marc Anthony
 La Camisa Negra|Juanes
+A Dios le Pido|Juanes
 Me Enamora|Juanes
-Waka Waka|Shakira
+Waka Waka (Esto es África)|Shakira
 La Tortura|Shakira feat. Alejandro Sanz
+Hips Don't Lie|Shakira
 Mi Gente|J Balvin a Willy William
 Pepas|Farruko
 Calma|Pedro Capó feat. Farruko
@@ -270,6 +374,34 @@ Hawái|Maluma
 Felices los 4|Maluma
 Robarte un Beso|Carlos Vives a Sebastián Yatra
 Ai Se Eu Te Pego|Michel Teló
+Guantanamera|Joseíto Fernández
+Cielito Lindo|Quirino Mendoza y Cortés
+Corazón Partío|Alejandro Sanz
+La Flaca|Jarabe de Palo
+Depende|Jarabe de Palo
+Eres Tú|Mocedades
+Amigo|Roberto Carlos
+Rayando El Sol|Maná
+Clavado En Un Bar|Maná
+En El Muelle De San Blas|Maná
+Livin' la Vida Loca|Ricky Martin
+La Copa de la Vida|Ricky Martin
+El Perdón|Nicky Jam feat. Enrique Iglesias
+Bamboléo|Gipsy Kings
+Volare|Gipsy Kings
+Danza Kuduro|Don Omar feat. Lucenzo
+Gasolina|Daddy Yankee
+Querida|Juan Gabriel
+El Rey|Vicente Fernández
+Bésame Mucho|Consuelo Velázquez
+Pedro|Raffaella Carrà
+Aserejé|Las Ketchup
+Macarena|Los del Río
+Amante Bandido|Miguel Bosé
+Devuélveme a mi chica|Hombres G
+Lamento Boliviano|Enanitos Verdes
+De Música Ligera|Soda Stereo
+Persiana Americana|Soda Stereo
 `),
   fr: parseSongs(`
 Alors on danse|Stromae
@@ -291,9 +423,36 @@ Moi... Lolita|Alizée
 Avenir|Louane
 Andalouse|Kendji Girac
 Tout oublier|Angèle feat. Roméo Elvis
+Fever|Dua Lipa a Angèle
 Sous le vent|Garou a Céline Dion
+Pour que tu m'aimes encore|Céline Dion
+Je te donne|Jean-Jacques Goldman a Michael Jones
+Champs-Élysées|Joe Dassin
+L'été indien|Joe Dassin
+Les Lacs du Connemara|Michel Sardou
+Mistral gagnant|Renaud
+La Bohème|Charles Aznavour
+Emmenez-moi|Charles Aznavour
+Ne me quitte pas|Jacques Brel
+Le plat pays|Jacques Brel
+Désenchantée|Mylène Farmer
+Je l'aime à mourir|Francis Cabrel
+La tribu de Dana|Manau
+Belle|Garou, Daniel Lavoie a Patrick Fiori
+Le lion est mort ce soir|Henri Salvador
+Alouette|Traditional
+Frère Jacques|Traditional
+Au clair de la lune|Traditional
+Aïcha|Khaled
+On écrit sur les murs|Kids United
+Sympathique (Je ne veux pas travailler)|Pink Martini
+La Corrida|Francis Cabrel
+Sensualité|Axelle Red
+Caravane|Raphael
+Respire|Mickey 3D
+Double Je|Christophe Willem
+Marly-Gomont|Kamini
 `),
-
   pt: parseSongs(`
 Ai Se Eu Te Pego|Michel Teló
 Balada|Gusttavo Lima
@@ -303,9 +462,12 @@ Mas Que Nada|Sérgio Mendes feat. The Black Eyed Peas
 Aquarela|Toquinho
 Não Quero Dinheiro|Tim Maia
 País Tropical|Jorge Ben Jor
+O Descobridor dos Sete Mares|Tim Maia
+Cheia de Manias|Raça Negra
 Anna Júlia|Los Hermanos
 A Minha Casinha|Xutos & Pontapés
 Não Sou o Único|Xutos & Pontapés
+Homem do Leme|Xutos & Pontapés
 Anda Comigo Ver os Aviões|Os Azeitonas
 Ó Gente da Minha Terra|Mariza
 Quem Me Dera|Mariza
@@ -315,6 +477,33 @@ Show das Poderosas|Anitta
 Infiel|Marília Mendonça
 Leão|Marília Mendonça
 Todo Mundo Vai Sofrer|Marília Mendonça
+Apaga a Luz e Toma|Tony Carreira
+Sonhos de Menino|Tony Carreira
+Mãe Querida|Tony Carreira
+Lambada (Chorando Se Foi)|Kaoma
+A Banda|Chico Buarque
+Fio de Cabelo|Chitãozinho & Xororó
+Cochichando|Pixinguinha
+Festa|Ivete Sangalo
+Sorte Grande|Ivete Sangalo
+Dança da Manivela|Asa de Águia
+Florentina|Tiririca
+Ilariê|Xuxa
+Baianidade Nagô|Banda Mel
+Amor I Love You|Marisa Monte
+Velha Infância|Tribalistas
+Já Sei Namorar|Tribalistas
+Whisky a Go-Go|Roupa Nova
+Menina Estás à Janela|Vitorino
+Chamar a Música|Sara Tavares
+Lusitana Paixão|Dulce Pontes
+Playback|Carlos Paião
+Estrela da Tarde|Carlos do Carmo
+Fado Tropical|Chico Buarque
+Desfolhada Portuguesa|Simone de Oliveira
+Anjo Selvagem|Santamaria
+Dunas|GNR
+Pronúncia do Norte|GNR
 `),
 };
 
