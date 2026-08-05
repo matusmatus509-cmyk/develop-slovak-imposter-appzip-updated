@@ -404,7 +404,103 @@ Mr. Brightside|The Killers
 All The Small Things|Fall Out Boy
 Wrecking Ball|Miley Cyrus
 Chasing Cars|Snow Patrol
-How to Save a Life|Snow Patrol\n`);
+How to Save a Life|Snow Patrol\nHey Brother|Avicii
+Waiting For Love|Avicii
+Levels|Avicii
+Without You|David Guetta feat. Usher
+Hey Mama|David Guetta
+Play Hard|David Guetta
+Feel So Close|Calvin Harris
+This Is What You Came For|Calvin Harris feat. Rihanna
+Blame|Calvin Harris
+Timber|Pitbull feat. Kesha
+Give Me Everything|Pitbull
+Low|Flo Rida
+My House|Flo Rida
+Thrift Shop|Macklemore & Ryan Lewis
+Can't Hold Us|Macklemore & Ryan Lewis
+In Da Club|50 Cent
+Candy Shop|50 Cent
+Young, Wild & Free|Snoop Dogg & Wiz Khalifa
+Boom Boom Pow|The Black Eyed Peas
+Meet Me Halfway|The Black Eyed Peas
+My Humps|The Black Eyed Peas
+Human|The Killers
+Read My Mind|The Killers
+Bleed It Out|Linkin Park
+Breaking the Habit|Linkin Park
+Basket Case|Green Day
+Wake Me Up When September Ends|Green Day
+All The Small Things|Blink-182
+I Miss You|Blink-182
+What's My Age Again?|Blink-182
+All I Want|The Offspring
+The Kids Aren't Alright|The Offspring
+Self Esteem|The Offspring
+Fat Lip|Sum 41
+In Too Deep|Sum 41
+Welcome to the Black Parade|My Chemical Romance
+Teenagers|My Chemical Romance
+Hells Bells|AC/DC
+You Shook Me All Night Long|AC/DC
+Enter Sandman|Metallica
+Master of Puppets|Metallica
+In Bloom|Nirvana
+Come As You Are|Nirvana
+Otherside|Red Hot Chili Peppers
+Dani California|Red Hot Chili Peppers
+By the Way|Red Hot Chili Peppers
+We Can't Stop|Miley Cyrus
+Peaches|Justin Bieber
+What Do You Mean?|Justin Bieber
+Anti-Hero|Taylor Swift
+You Belong With Me|Taylor Swift
+I Knew You Were Trouble|Taylor Swift
+We Are Never Ever Getting Back Together|Taylor Swift
+The Hills|The Weeknd
+Can't Feel My Face|The Weeknd
+Call Out My Name|The Weeknd
+Sign of the Times|Harry Styles
+New Rules|Dua Lipa
+Physical|Dua Lipa
+Dance The Night|Dua Lipa
+Take A Chance On Me|ABBA
+Chiquitita|ABBA
+Fernando|ABBA
+Man in the Mirror|Michael Jackson
+The Way You Make Me Feel|Michael Jackson
+La Isla Bonita|Madonna
+Because You Loved Me|Céline Dion
+It Must Have Been Love|Roxette
+Joyride|Roxette
+The Look|Roxette
+Please Forgive Me|Bryan Adams
+(Everything I Do) I Do It For You|Bryan Adams
+Bed of Roses|Bon Jovi
+I Don't Want to Miss a Thing|Aerosmith
+Crazy|Aerosmith
+Hot N Cold|Katy Perry
+Last Friday Night (T.G.I.F.)|Katy Perry
+Telephone|Lady Gaga
+Paparazzi|Lady Gaga
+Alejandro|Lady Gaga
+Something Just Like This|The Chainsmokers & Coldplay
+Adventure of a Lifetime|Coldplay
+Magic|Coldplay
+Natural|Imagine Dragons
+Whatever It Takes|Imagine Dragons
+Enemy|Imagine Dragons
+Galway Girl|Ed Sheeran
+Photograph|Ed Sheeran
+Shivers|Ed Sheeran
+Bad Habits|Ed Sheeran
+That's What I Like|Bruno Mars
+S&M|Rihanna
+Rude Boy|Rihanna
+Pon de Replay|Rihanna
+Disturbia|Rihanna
+Waka Waka (This Time for Africa)|Shakira
+Bailando|Enrique Iglesias\n`);
 
 const LOCAL_HITS: Record<AppLanguage, SongCard[]> = {
   sk: parseSongs(`\nV dolinách|Karol Duchoň
@@ -683,7 +779,107 @@ Boli sme raz milovaní|Pavol Habera
 Kým ťa mám|Pavol Habera
 V slepých uličkách|Miroslav Žbirka
 Mám rád|Miroslav Žbirka
-Prvá|Miroslav Žbirka\n`),
+Prvá|Miroslav Žbirka\nZlatokopky|Rytmus
+Deti stratenej generácie|Rytmus
+JBMNT|Kontrafakt
+Kým neskapem|Kontrafakt
+Som rád|Kali
+Nejsom ten pravý|Kali
+Primetime|Majk Spirit
+Ženy treba ľúbiť|Majk Spirit
+Všetko alebo nič|Dara Rolins
+Čaba neblázni|Elán
+Fero|Elán
+Od Tatier k Dunaju|Elán
+Ulica|Elán
+Zanedbaný sex|Elán
+Kapela|IMT Smile
+Vyvedený z miery|IMT Smile
+Niekto ako kráľ|IMT Smile
+Hľadám|No Name
+Biologické hodiny|No Name
+Večnosť|No Name
+Som na tebe závislý|Desmod
+Zostalo ticho|Desmod
+Pár dní|Desmod
+Kúpim si pekný deň|Gladiator
+Láska|Gladiator
+Nemôžem dýchať|Gladiator
+Keď sa rúcajú skaly|Gladiator
+Šlabikár|Tublatanka
+Dnes už viem|Tublatanka
+Špinavé objatie|Iné Kafe
+Právo na šťastie|Iné Kafe
+Prečo je to tak?|Iné Kafe
+Brďokoky|Horkýže Slíže
+RnB Soul|Horkýže Slíže
+Maštaľ|Horkýže Slíže
+Motorkárska|Horkýže Slíže
+Emanuel Bacigala|Horkýže Slíže
+Mám v p... na lehátku|Horkýže Slíže
+Puf a Muf|Zóna A
+Chleba|Zóna A
+Podvod|Slobodná Európa
+Unavený a zničený|Slobodná Európa
+Maťo a Linda|Hex
+Keď sme sami|Hex
+Život|Hex
+Ja som to vedel|Polemic
+Tancuj|Polemic
+Fajčiť treba|Smola a Hrušky
+Matura|Smola a Hrušky
+Cigaretka na 2 ťahy|Richard Müller
+Baroko|Richard Müller
+Štěstí je krásná věc|Richard Müller
+Rozeznávám|Richard Müller
+Šaty|Marika Gombitová
+Nespáľme to krásne v nás|Miroslav Žbirka
+Kým ťa mám|Pavol Habera
+Láska necestuj tým vlakom|Pavol Habera
+Boli sme raz milovaní|Pavol Habera
+Severanka|Team
+Mám na teba chuť|Team
+Nároční|Team
+Kráľovná bielych tenisiek|Elán
+Poupata|Michal David
+Céčka, sbírá céčka|Michal David
+Nenapovídej|Michal David
+S Láskou|Michal David
+Pátá|Helena Vondráčková
+Lásko má ja stůňu|Helena Vondráčková
+Žal se odkládá|Jiří Korn
+Snad jsem to zavinil já|Olympic
+Daj mi víc své lásky|Olympic
+Želva|Olympic
+Šrouby do hlavy|Lucie
+Sen|Lucie
+Klobouk ve křoví|Lucie
+Dotknu se ohně|Lucie
+Bára|Kabát
+Pohoda|Kabát
+Na sever|Kabát
+Kdoví jestli|Kabát
+Stará Lou|Kabát
+Zlatíčko|Chinaski
+Tabáček|Chinaski
+Víno|Chinaski
+Každý ráno|Chinaski
+Rubikon|Kryštof
+Zamilovaný/Nešťastná|Rybičky 48
+Sliby se maj plnit o Vánocích|Janek Ledecký
+Proklínám|Janek Ledecký
+Měls mě vůbec rád|Ewa Farna
+Boží mlejny melou|Amor
+Láska je tu s vami|Peter Nagy
+Sme svoji|Peter Nagy
+Korálky od Natálky|Peter Nagy
+Báječný chlap|Michal Tučný
+Tam u nebeských bran|Michal Tučný
+Zůstanu svůj|Karel Gott
+Kávu si osladím|Karel Gott
+Dám dělovou ránu|Karel Gott
+Když milenky pláčou|Karel Gott
+Zvonky štěstí|Karel Gott & Darinka Rolincová\n`),
   en: parseSongs(`\nHotel California|Eagles
 Yesterday|The Beatles
 Hey Jude|The Beatles
