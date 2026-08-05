@@ -328,7 +328,83 @@ Seven Nation Army|The White Stripes
 Can't Stop the Feeling!|Justin Timberlake
 I Gotta Feeling|The Black Eyed Peas
 Where Is The Love?|The Black Eyed Peas
-Let's Get It Started|The Black Eyed Peas\n`);
+Let's Get It Started|The Black Eyed Peas\nTeenage Dream|Katy Perry
+Dark Horse|Katy Perry
+California Gurls|Katy Perry
+24K Magic|Bruno Mars
+Treasure|Bruno Mars
+Fix You|Coldplay
+A Sky Full of Stars|Coldplay
+The Scientist|Coldplay
+Demons|Imagine Dragons
+Thunder|Imagine Dragons
+The Real Slim Shady|Eminem
+Stan|Eminem
+Don't Stop The Music|Rihanna
+Only Girl (In The World)|Rihanna
+Irreplaceable|Beyoncé
+If I Were A Boy|Beyoncé
+Set Fire to the Rain|Adele
+Skyfall|Adele
+Just Dance|Lady Gaga
+Born This Way|Lady Gaga
+Somebody Told Me|The Killers
+Roses|Outkast
+Feel Good Inc.|Gorillaz
+Clint Eastwood|Gorillaz
+Under the Bridge|Red Hot Chili Peppers
+Can't Stop|Red Hot Chili Peppers
+Snow (Hey Oh)|Red Hot Chili Peppers
+What I've Done|Linkin Park
+Faint|Linkin Park
+Back In Black|AC/DC
+Highway to Hell|AC/DC
+Thunderstruck|AC/DC
+T.N.T.|AC/DC
+Lithium|Nirvana
+Heart-Shaped Box|Nirvana
+Paradise City|Guns N' Roses
+November Rain|Guns N' Roses
+Sweet Emotion|Aerosmith
+Dream On|Aerosmith
+You Give Love A Bad Name|Bon Jovi
+Bad|Michael Jackson
+Don't Stop 'Til You Get Enough|Michael Jackson
+Fantasy|Mariah Carey
+Hero|Mariah Carey
+Because You Loved Me|Céline Dion
+In the Air Tonight|Phil Collins
+I'm Still Standing|Elton John
+Crazy Little Thing Called Love|Queen
+I Want to Break Free|Queen
+The Winner Takes It All|ABBA
+Champagne Supernova|Oasis
+Roxanne|The Police
+Take It Easy|Eagles
+Hold The Line|TOTO
+Everybody Wants to Rule the World|Tears for Fears
+Wake Me Up When September Ends|Green Day
+American Idiot|Green Day
+Hollaback Girl|Snoop Dogg
+Gold Digger|Kanye West
+Stronger|Kanye West
+Super Bass|Gwen Stefani
+I Gotta Feeling|Black Eyed Peas
+Pump It|Black Eyed Peas
+Promiscuous|Nelly Furtado
+Maneater|Nelly Furtado
+Sk8er Boi|Gwen Stefani
+Complicated|Avril Lavigne
+Since U Been Gone|Kelly Clarkson
+Sugar, We're Goin Down|Fall Out Boy
+Thnks fr th Mmrs|Fall Out Boy
+I Write Sins Not Tragedies|Panic! At The Disco
+Misery Business|Paramore
+Mr. Brightside|The Killers
+All The Small Things|Fall Out Boy
+Wrecking Ball|Miley Cyrus
+Chasing Cars|Snow Patrol
+How to Save a Life|Snow Patrol\n`);
 
 const LOCAL_HITS: Record<AppLanguage, SongCard[]> = {
   sk: parseSongs(`\nV dolinách|Karol Duchoň
@@ -542,7 +618,72 @@ Nafrněná|Barbora Poláková
 Cesta z města|Support Lesbiens
 Šrouby a matice|Mandrage
 František|Buty
-Nad stádem koní|Buty\n`),
+Nad stádem koní|Buty\nTanečnice z Lúčnice|Elán
+Kaskadér|Elán
+Zlodej slnečníc|Elán
+Smrtka na pražskom orloji|Elán
+Malá nočná búrka|Team
+Je to vo hviezdach|Team
+Ženská menom Panika|Team
+Ty, ja a môj brat|Modus
+Dievčatá|Modus
+Bozk|IMT Smile
+Viac|IMT Smile
+Tajné milovanie|IMT Smile
+Mám krásny sen|IMT Smile
+Lekná|No Name
+Ďakujem že si|No Name
+Nie alebo áno|No Name
+Starosta|No Name
+Niekto ti to povie skôr než ja|Desmod
+Hemeroidy|Desmod
+Lavíny|Desmod
+To nie je možné|Desmod
+Deň medzi nedeľou a pondelkom|Peha
+Slnečná balada|Peha
+Láska drž ma nad hladinou|Tublatanka
+Skúsime to cez vesmír|Tublatanka
+Žeravé znamenie osudu|Tublatanka
+Loď do neznáma|Tublatanka
+Spomienky na budúcnosť|Iné Kafe
+Vianoce|Iné Kafe
+30. február|Iné Kafe
+Vlak|Horkýže Slíže
+Logická hádanka|Horkýže Slíže
+Nazdar|Horkýže Slíže
+A ja sprostá|Horkýže Slíže
+Banda tupých hláv|Horkýže Slíže
+Nikdy nebolo lepšie|Hex
+V piatok podvečer|Hex
+Matura|Smola a Hrušky
+Kávu si osladím|Karel Gott
+Zůstanu svůj|Karel Gott
+Poupata|Michal David
+Pátá|Helena Vondráčková
+Žal se odkládá|Jiří Korn
+Snad jsem to zavinil já|Olympic
+Šrouby do hlavy|Lucie
+Daniela|Lucie
+Panic|Lucie
+Oheň|Lucie
+Malá dáma|Kabát
+Šaman|Kabát
+Bára|Kabát
+Drobná paralela|Chinaski
+Vrchlabí|Chinaski
+Klára|Chinaski
+Zlatíčko|Chinaski
+Obchodník s deštěm|Kryštof
+Atentát|Kryštof
+Srdce|Kryštof
+Brouk Pytlík|Karel Gott
+Kde si|Pavol Habera
+Láska necestuj tým vlakom|Pavol Habera
+Boli sme raz milovaní|Pavol Habera
+Kým ťa mám|Pavol Habera
+V slepých uličkách|Miroslav Žbirka
+Mám rád|Miroslav Žbirka
+Prvá|Miroslav Žbirka\n`),
   en: parseSongs(`\nHotel California|Eagles
 Yesterday|The Beatles
 Hey Jude|The Beatles
