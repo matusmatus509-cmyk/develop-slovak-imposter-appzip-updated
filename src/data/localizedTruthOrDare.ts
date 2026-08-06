@@ -25,3 +25,17 @@ export function getTruthsForLanguage(language: AppLanguage): string[] {
 export function getDaresForLanguage(language: AppLanguage): string[] {
   return DARE_CARDS.map((card) => card.translations[language] ?? card.translations.sk);
 }
+
+export const TRUTHS_BY_LANGUAGE = Object.fromEntries(
+  (["sk", "en", "de", "es", "fr", "pt"] as const).map((lang) => [
+    lang,
+    getTruthsForLanguage(lang),
+  ])
+) as Record<AppLanguage, string[]>;
+
+export const DARES_BY_LANGUAGE = Object.fromEntries(
+  (["sk", "en", "de", "es", "fr", "pt"] as const).map((lang) => [
+    lang,
+    getDaresForLanguage(lang),
+  ])
+) as Record<AppLanguage, string[]>;

@@ -12,6 +12,7 @@
     "validate:truth-or-dare": "node scripts/validate-truth-or-dare.mjs",
     "validate:pass-the-bomb": "node scripts/validate-pass-the-bomb.mjs",
     "validate:would-you-rather": "node scripts/validate-would-you-rather.mjs",
+    "validate:only-lies": "node scripts/validate-only-lies.mjs",
     "audit:never-have-i-ever": "node scripts/audit-never-have-i-ever.mjs",
     "audit:content": "bun scripts/audit-content.mjs"
   },

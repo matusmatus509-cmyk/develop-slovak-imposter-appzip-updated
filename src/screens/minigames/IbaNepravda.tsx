@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { ONLY_LIES } from "../../data/prompts";
+import { getOnlyLiesForLanguage, ONLY_LIES_CARDS, type OnlyLiesCard } from "../../data/localizedOnlyLies";
+import { useLanguage } from "../../i18n/LanguageProvider";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { takePersistentItem } from "../../utils/persistentDeck";
@@ -8,7 +9,11 @@ import { vibrate } from "../../utils/deviceFeedback";
 const ROUND_MS = 4000;
 
 export default function IbaNepravda({ onBack }: { onBack: () => void }) {
-  const [question, setQuestion] = useState(() => takePersistentItem("only-lies", ONLY_LIES));
+  const { language } = useLanguage();
+
+  const [card, setCard] = useState<OnlyLiesCard>(() =>
+    takePersistentItem("only-lies-card", ONLY_LIES_CARDS, (c) => c.id)
+  );
   const [roundId, setRoundId] = useState(0);
   const [timeLeftMs, setTimeLeftMs] = useState(ROUND_MS);
   const [lost, setLost] = useState(false);
@@ -33,18 +38,20 @@ export default function IbaNepravda({ onBack }: { onBack: () => void }) {
 
   function nextQuestion() {
     setLost(false);
-    setQuestion(takePersistentItem("only-lies", ONLY_LIES));
+    setCard(takePersistentItem("only-lies-card", ONLY_LIES_CARDS, (c) => c.id));
     setRoundId((id) => id + 1);
   }
 
   function restart() {
-    setQuestion(takePersistentItem("only-lies", ONLY_LIES));
+    setCard(takePersistentItem("only-lies-card", ONLY_LIES_CARDS, (c) => c.id));
     setLost(false);
     setRoundId((id) => id + 1);
   }
 
   const secondsLeft = Math.ceil(timeLeftMs / 100) / 10;
   const timePercent = Math.max(0, Math.min(100, (timeLeftMs / ROUND_MS) * 100));
+
+  const questionText = card.translations[language] ?? card.translations.sk;
 
   return (
     <Shell>
@@ -63,7 +70,7 @@ export default function IbaNepravda({ onBack }: { onBack: () => void }) {
             Pravidlo
           </p>
           <p className="mt-2 max-w-xs text-sm text-white/60">
-            Hráč, ktorý drží mobil, musí odpovedať{" "}
+            Hráč, ktorý drží mobil, must odpovedať{" "}
             <span className="font-black text-rose-400">iba klamstvami</span>.
             Ak odpoveď nestihne do 4 sekúnd, prehral. Po správnej nepravdivej
             odpovedi stlačte tlačidlo Správne.
@@ -93,10 +100,10 @@ export default function IbaNepravda({ onBack }: { onBack: () => void }) {
         <div
           className="glass w-full rounded-3xl border border-rose-500/30 bg-rose-500/10 p-7"
           style={{ animation: "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.2s both" }}
-          key={`${roundId}-${question}`}
+          key={`${roundId}-${card.id}`}
         >
-          <p className="text-xl font-bold leading-relaxed text-white">
-            {question}
+          <p className="text-xl font-bold leading-relaxed text-white" data-no-translate>
+            {questionText}
           </p>
         </div>
 

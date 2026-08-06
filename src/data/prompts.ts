@@ -305,20 +305,21 @@ import {
 import { DARES, TRUTHS } from "./localizedTruthOrDare";
 import { NEVER_HAVE_I_EVER as REBUILT_NEVER_HAVE_I_EVER } from "./localizedNeverHaveIEver";
 import { WOULD_YOU_RATHER } from "./localizedWouldYouRather";
+import { ONLY_LIES } from "./localizedOnlyLies";
 
-export { DARES, TRUTHS, WOULD_YOU_RATHER };
+export { DARES, TRUTHS, WOULD_YOU_RATHER, ONLY_LIES };
 
 function uniqueStrings(items: string[], target: number) {
   return [...new Set(items)].slice(0, target);
 }
 
-const LEGACY_TRUTHS: string[] = uniqueStrings([
+export const LEGACY_TRUTHS: string[] = uniqueStrings([
   ...TRUTHS_BASE,
   ...TRUTH_TOPICS.flatMap((topic) => TRUTH_FORMS.map((form) => form(topic))),
   ...GENERATED_TRUTHS,
 ], 2000);
 
-const LEGACY_DARES: string[] = uniqueStrings([
+export const LEGACY_DARES: string[] = uniqueStrings([
   ...DARES_BASE,
   ...DARE_TOPICS.flatMap((topic) => DARE_ACTIONS.map((action) => `${action} na tému „${topic}“.`)),
   ...GENERATED_DARES,
@@ -326,7 +327,7 @@ const LEGACY_DARES: string[] = uniqueStrings([
 
 export const NEVER_HAVE_I_EVER: string[] = REBUILT_NEVER_HAVE_I_EVER;
 
-const LEGACY_WOULD_YOU_RATHER: { a: string; b: string }[] = Array.from(new Map([
+export const LEGACY_WOULD_YOU_RATHER: { a: string; b: string }[] = Array.from(new Map([
   ...WOULD_YOU_RATHER_BASE,
   ...RATHER_TOPICS.flatMap((topic) =>
     RATHER_OPTIONS_A.map((optionA, index) => ({
@@ -337,90 +338,7 @@ const LEGACY_WOULD_YOU_RATHER: { a: string; b: string }[] = Array.from(new Map([
   ...GENERATED_RATHER,
 ].map((item) => [`${item.a}|${item.b}`, item])).values()).slice(0, 2000);
 
-const ONLY_LIES_BASE: string[] = [
-  "Aký je tvoj obľúbený film?",
-  "Čo si robil/a minulú sobotu večer?",
-  "Aké je tvoje obľúbené jedlo?",
-  "Kde by si najradšej žil/a?",
-  "Aká je tvoja obľúbená hudba?",
-  "Čo robíš, keď sa nudíš?",
-  "Aký je tvoj najväčší koníček?",
-  "Čo by si si objednal/a v reštaurácii?",
-  "Aká je tvoja obľúbená ročná doba?",
-  "Ako sa voláš?",
-  "Koľko máš rokov?",
-  "Odkiaľ pochádzaš?",
-  "Čo najradšej piješ?",
-  "Aký šport máš najradšej?",
-  "Čo by si urobil/a so miliónom eur?",
-  "Aká je tvoja obľúbená farba?",
-  "Akého zvieraťa sa bojíš?",
-  "Aký je tvoj najobľúbenejší predmet v škole alebo v práci?",
-  "Čo si naposledy čítal/a?",
-  "Kde si naposledy bol/a na dovolenke?",
-  "Aká je tvoja najväčšia chyba?",
-  "Čo by si zmenil/a na sebe?",
-  "Koho by si si vybral/a ako spolubývajúceho?",
-  "Aký je tvoj najhorší zvyk?",
-  "Čo robíš ráno ako prvé?",
-  "Ako trávite sviatky vo vašej rodine?",
-  "Aký darček by si chcel/a dostať?",
-  "Aký je tvoj obľúbený seriál?",
-  "Kto je tvoj obľúbený herec alebo herečka?",
-  "Čo si myslíš o svojich susedoch?",
-  "Akú superschopnosť by si chcel/a mať?",
-  "Kde by si chcel/a pracovať?",
-  "Aká je tvoja obľúbená časť dňa?",
-  "Čo by si zobral/a na opustený ostrov?",
-  "Aký je tvoj najobľúbenejší sviatok?",
-  "Čo by si robil/a celý deň, keby si nemusel/a pracovať?",
-  "Akú krajinu by si chcel/a navštíviť?",
-  "Čo ti najviac chýba z detstva?",
-  "Aká je tvoja tajná túžba?",
-  "Čo ťa robí šťastným/šťastnou?",
-];
 
-const ONLY_LIES_TOPICS = [
-  "filmy", "seriály", "hudba", "cestovanie", "škola", "práca", "jedlo", "šport",
-  "domáce zvieratá", "móda", "technológie", "sociálne siete", "hry", "knihy",
-  "rodinné oslavy", "víkendy", "dovolenky", "detstvo", "budúcnosť", "sny",
-  "superhrdinovia", "vesmír", "príroda", "mesto", "domov", "kamaráti", "randenie",
-  "zimné dni", "letné dni", "narodeniny",
-  "Vianoce", "Halloween", "školské výlety", "pracovné pohovory", "susedia",
-  "varenie", "upratovanie", "ranné vstávanie", "cvičenie", "nakupovanie",
-  "autá", "lietadlá", "more", "hory", "zvieratá v zoo",
-  "slávni ľudia", "rozprávky", "mobilné aplikácie", "fotografovanie", "tajné talenty",
-];
-
-const ONLY_LIES_QUESTION_FORMS = [
-  (topic: string) => `Čo sa ti na téme ${topic} páči najviac?`,
-  (topic: string) => `Čo sa ti na téme ${topic} nepáči?`,
-  (topic: string) => `Čo by si pri téme ${topic} urobil/a inak?`,
-  (topic: string) => `Akú najvtipnejšiu vec spájaš s témou ${topic}?`,
-  (topic: string) => `Aký je tvoj tajný názor na tému ${topic}?`,
-  (topic: string) => `Čo by si si pri téme ${topic} nikdy nevybral/a?`,
-  (topic: string) => `Čo by si pri téme ${topic} odporučil/a ostatným?`,
-  (topic: string) => `Ktorú vec spojenú s témou ${topic} by si chcel/a skúsiť?`,
-  (topic: string) => `Akú chybu by si pri téme ${topic} najskôr spravil/a?`,
-  (topic: string) => `Čo je podľa teba pri téme ${topic} najdôležitejšie?`,
-  (topic: string) => `Čo by sa pri téme ${topic} stalo v dokonalom svete?`,
-  (topic: string) => `Akú prezývku by mala téma ${topic}?`,
-  (topic: string) => `Čo by si o téme ${topic} povedal/a cudzincovi?`,
-  (topic: string) => `Akú otázku o téme ${topic} by si položil/a expertovi?`,
-  (topic: string) => `Čo by si pri téme ${topic} kúpil/a za milión eur?`,
-  (topic: string) => `Čo by si o téme ${topic} nakrútil/a vo filme?`,
-  (topic: string) => `Čo by si v téme ${topic} zaradil/a na prvé miesto?`,
-  (topic: string) => `Akú superschopnosť by si chcel/a pri téme ${topic}?`,
-  (topic: string) => `Čo by bolo pri téme ${topic} úplne zakázané?`,
-  (topic: string) => `Čo by si o téme ${topic} napísal/a do denníka?`,
-];
-
-export const ONLY_LIES: string[] = [
-  ...ONLY_LIES_BASE,
-  ...ONLY_LIES_TOPICS.flatMap((topic) =>
-    ONLY_LIES_QUESTION_FORMS.map((createQuestion) => createQuestion(topic))
-  ),
-];
 
 export const EMOJI_PUZZLES: { emoji: string; answer: string }[] = [
   { emoji: "🦁👑", answer: "Leví kráľ" },

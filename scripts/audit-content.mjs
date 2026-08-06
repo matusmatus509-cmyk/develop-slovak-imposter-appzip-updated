@@ -1,6 +1,9 @@
 #!/usr/bin/env bun
 
-import { TRUTHS, DARES, NEVER_HAVE_I_EVER, WOULD_YOU_RATHER, ONLY_LIES, BOMB_CATEGORIES } from "../src/data/prompts.ts";
+import { TRUTHS, DARES, NEVER_HAVE_I_EVER, WOULD_YOU_RATHER, ONLY_LIES } from "../src/data/prompts.ts";
+import { getPassTheBombForLanguage } from "../src/data/localizedPassTheBomb.ts";
+
+const BOMB_CATEGORIES = getPassTheBombForLanguage("sk").map((item) => item.text);
 import { PANTOMIMA_WORDS_BY_DIFFICULTY, QUIZ_QUESTIONS } from "../src/data/teamBattle.ts";
 import { FORBIDDEN_CARDS, SOUND_CLUES, LETTER_CHALLENGES, FIVE_IN_TEN_PROMPTS } from "../src/data/teamBattleExtras.ts";
 import { CURATED_WORLD_HITS, getSongCardsForLanguage, SONG_COUNTS_BY_LANGUAGE } from "../src/data/localizedSongs.ts";
@@ -36,8 +39,8 @@ const counts = {
 const requirements = {
   truths: [1000, 1000], dares: [1000, 1000], neverHaveIEver: [1500, 1500], wouldYouRather: [1500, 1500],
   guessWho: [3000, 3000], drawing: [3000, 3000], pantomime: [3000, 3000], forbiddenWords: [2000, 2000],
-  pingPong: [300, 500], letterChallenges: [500, 1000], quiz: [5000, 5000], songs: [150, 300], sounds: [500, 1000],
-  emoji: [2000, 2000], onlyLies: [1000, Infinity], bomb: [1000, Infinity], fiveInTen: [1000, Infinity], charades: [2000, 2000], impostor: [3000, 3000],
+  pingPong: [300, 500], letterChallenges: [500, 1000], quiz: [5000, 5000], songs: [150, 1000], sounds: [500, 1000],
+  emoji: [2000, 2000], onlyLies: [1000, Infinity], bomb: [1000, Infinity], fiveInTen: [1000, Infinity], charades: [2000, 3000], impostor: [3000, 3000],
 };
 
 const wordCatalogues = [
@@ -53,12 +56,21 @@ const neverLanguageIssues = Object.entries(NEVER_HAVE_I_EVER_BY_LANGUAGE).flatMa
   const malformed = cards.filter((card) => !card.endsWith(".") || /\.\.\./.test(card) || /\s{2,}/.test(card));
   return [...problems, ...malformed.map((card) => `${language}: ${card}`)];
 });
+const endsWithPunctuation = (text, kind) => {
+  let cleaned = text.trim();
+  const last = cleaned.slice(-1);
+  if (last === "'" || last === '"' || last === "”" || last === "“" || last === "»" || last === "’") {
+    cleaned = cleaned.slice(0, -1).trim();
+  }
+  return kind === "truth" ? cleaned.endsWith("?") : (cleaned.endsWith(".") || cleaned.endsWith("!") || cleaned.endsWith(";") || cleaned.endsWith("?"));
+};
+
 const truthDareLanguageIssues = [
   ["truth", TRUTHS_BY_LANGUAGE],
   ["dare", DARES_BY_LANGUAGE],
 ].flatMap(([kind, decks]) => Object.entries(decks).flatMap(([language, cards]) => {
   const uniqueCards = new Set(cards.map((card) => card.toLocaleLowerCase()));
-  const malformedCards = cards.filter((card) => !card.endsWith(kind === "truth" ? "?" : ".") || /\.\.\./.test(card) || /\s{2,}/.test(card));
+  const malformedCards = cards.filter((card) => !endsWithPunctuation(card, kind) || /\.\.\./.test(card) || /\s{2,}/.test(card));
   return [
     ...(cards.length === 1000 && uniqueCards.size === 1000 ? [] : [`${kind}/${language}: ${cards.length} cards, ${uniqueCards.size} unique`]),
     ...malformedCards.map((card) => `${kind}/${language}: ${card}`),
