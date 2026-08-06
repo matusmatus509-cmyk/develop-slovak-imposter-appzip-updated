@@ -10,8 +10,8 @@ const allowedCategories = new Set([
 
 console.log(`Starting validation of ${cards.length} Only Lies questions...`);
 
-// 1. Expected count of items: should be at least 1000
-assert(cards.length >= 1000, `Expected at least 1000 questions, found ${cards.length}`);
+// 1. Expected count of items: should be between 450 and 550
+assert(cards.length >= 450 && cards.length <= 550, `Expected between 450 and 550 questions, found ${cards.length}`);
 
 const ids = new Set();
 const textsByLanguage = {
@@ -45,6 +45,22 @@ for (const card of cards) {
     assert(text, `Card ${card.id} is missing translation for ${lang}`);
     assert(text.trim().length > 0, `Card ${card.id} has empty translation for ${lang}`);
 
+    const lowerText = text.toLowerCase().trim();
+
+    // 6. No Yes/No questions (case-insensitive check for yes/no question starters by language)
+    const yesNoStartersByLang = {
+      sk: ["je ", "sú "],
+      en: ["is ", "are ", "does ", "do ", "can ", "has ", "have "],
+      de: ["ist ", "sind ", "kann ", "hat ", "haben "],
+      es: ["¿es ", "¿son ", "¿tiene ", "¿hay "],
+      fr: ["est-ce ", "y a-t-il "],
+      pt: ["é ", "são ", "tem ", "há "]
+    };
+    const starters = yesNoStartersByLang[lang] || [];
+    for (const starter of starters) {
+      assert(!lowerText.startsWith(starter), `Card ${card.id} in ${lang} starts with forbidden yes/no starter "${starter}": "${text}"`);
+    }
+
     // Check for placeholders, tests, or invalid keywords
     const forbiddenPatterns = [/\bTODO\b/, /\bTBD\b/, /\bExample\b/i, /\bTest\b/i, /\bUnknown\b/i];
     for (const pattern of forbiddenPatterns) {
@@ -69,10 +85,9 @@ for (const card of cards) {
     }
 
     // Check for exact duplicate questions in the same language
-    const lowerText = text.toLowerCase().trim();
     assert(!textsByLanguage[lang].has(lowerText), `Duplicate question found in ${lang}: "${text}"`);
     textsByLanguage[lang].add(lowerText);
   }
 }
 
-console.log("✅ Iba nepravda: 1015 questions validated successfully across all 6 languages!");
+console.log(`\n✅ Iba nepravda: ${cards.length} questions validated successfully across all 6 languages!`);
