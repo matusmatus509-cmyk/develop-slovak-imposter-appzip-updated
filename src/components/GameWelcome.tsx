@@ -19,6 +19,7 @@ export interface GameWelcomeConfig {
   art?: string;
   artAtlas?: boolean;
   artSize?: string;
+  variant?: "default" | "song";
 }
 
 export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
@@ -215,6 +216,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     art: partyMinigameAtlas,
     artAtlas: true,
     artSize: "400% 300%",
+    variant: "song",
   },
   "hudobny-kviz": {
     eyebrow: "Spoznaj hit po pár sekundách",
@@ -325,13 +327,13 @@ export default function GameWelcome({
 
   return (
     <main
-      className="game-welcome relative min-h-screen overflow-hidden text-white"
+      className={`game-welcome relative min-h-screen overflow-hidden text-white ${config.variant === "song" ? "game-welcome-song" : ""}`}
       style={{ ...style, background: `linear-gradient(180deg, ${config.deep}, #080b10 68%)` }}
     >
       <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_50%_5%,var(--welcome-soft),transparent_38%)]" />
 
       <div className="relative mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-7 pt-5">
-        <div className="game-welcome-hero relative mb-6 h-[46vh] min-h-[320px] max-h-[450px] overflow-hidden rounded-[30px] border border-white/12 shadow-2xl animate-welcome-reveal">
+        <div className={`game-welcome-hero relative mb-6 h-[46vh] min-h-[320px] max-h-[450px] overflow-hidden rounded-[30px] border border-white/12 shadow-2xl animate-welcome-reveal ${config.variant === "song" ? "game-welcome-song-hero" : ""}`}>
           {config.art && !config.artAtlas ? (
             <img
               src={config.art}
@@ -351,6 +353,7 @@ export default function GameWelcome({
           <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-[#080b12]" />
           <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[var(--welcome-soft)] blur-3xl" />
           <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(255,255,255,.12),transparent_28%,transparent_70%,rgba(0,0,0,.35))]" />
+          {config.variant === "song" && <div className="song-welcome-equalizer pointer-events-none absolute bottom-[7.3rem] right-5 flex h-10 items-end gap-1 opacity-80" aria-hidden="true">{[16, 28, 20, 36, 25, 32, 18].map((height, index) => <i key={index} style={{ height }} />)}</div>}
 
           <button
             type="button"
@@ -397,7 +400,7 @@ export default function GameWelcome({
             className="mt-auto flex min-h-14 w-full items-center justify-between rounded-xl border border-white/10 px-5 text-left font-extrabold text-white shadow-xl transition hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 active:scale-[.98]"
             style={{ background: `linear-gradient(135deg, ${config.accent}, color-mix(in srgb, ${config.accent} 70%, #202a38))`, boxShadow: `0 18px 34px -24px ${config.accent}` }}
           >
-            <span>Pripraviť hru</span>
+            <span>{config.variant === "song" ? "Pripraviť hudobné kolo" : "Pripraviť hru"}</span>
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/18"><Icons.chevronRight size={20} /></span>
           </button>
         </section>

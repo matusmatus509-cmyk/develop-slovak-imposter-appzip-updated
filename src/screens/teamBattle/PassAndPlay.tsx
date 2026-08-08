@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import songArt from "../../assets/party-song.svg";
 import { getSongCardsForLanguage } from "../../data/localizedSongs";
 import { FORBIDDEN_CARDS, type ForbiddenCard, type SongCard } from "../../data/teamBattleExtras";
 import { takePersistentItem } from "../../utils/persistentDeck";
@@ -10,6 +9,8 @@ import { TurnAnswerRecap, type TurnAnswer } from "../../components/TurnAnswerRec
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
 import { soundsEnabled, vibrate } from "../../utils/deviceFeedback";
 import { useSongPreview } from "../../hooks/useSongPreview";
+import SongGameArtwork from "../../components/SongGameArtwork";
+import { Icons } from "../../components/icons";
 
 type PassMode = "zakazane" | "pesnicka";
 type Phase = "ready" | "playing" | "team-result";
@@ -175,29 +176,32 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   if (phase === "ready") {
     return (
       <PartyBackdrop>
-        <main className="flex h-full flex-col items-center justify-center px-6 text-center">
+        <main className={`flex h-full flex-col items-center overflow-y-auto px-6 py-7 text-center ${mode === "pesnicka" ? "song-ready-screen" : "justify-center"}`}>
           <PartyEyebrow>{copy.eyebrow}</PartyEyebrow>
           {mode === "pesnicka" ? (
-            <div className="relative mt-7 h-36 w-full max-w-sm overflow-hidden rounded-[2rem] border border-violet-300/20 shadow-[0_22px_60px_rgba(0,0,0,.35)]">
-              <img src={songArt} alt="Farebná ilustrácia hudobnej minihry" className="h-full w-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0715]/80 via-transparent to-violet-500/10" />
-              <span className="absolute bottom-4 left-5 text-4xl drop-shadow-lg">{copy.icon}</span>
+            <div className="song-ready-hero relative mt-5 h-48 w-full max-w-sm overflow-hidden rounded-[2.1rem] border border-violet-200/20 shadow-[0_28px_70px_-32px_rgba(167,139,250,.9)]">
+              <SongGameArtwork className="h-full w-full" labelled />
+              <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-3 text-left">
+                <div><p className="text-[9px] font-black uppercase tracking-[.24em] text-violet-200/65">Melódia bez slov</p><h1 className="mt-1 text-2xl font-black leading-none text-white">Zahmkaj pesničku</h1></div>
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-black/35 text-violet-100 backdrop-blur-xl"><Icons.music size={23} /></span>
+              </div>
             </div>
           ) : (
             <div className="relative mt-7 flex h-24 w-24 items-center justify-center rounded-[2rem] border border-white/15 bg-white/[0.07] text-5xl shadow-[0_22px_60px_rgba(0,0,0,.35)]">
               {copy.icon}
             </div>
           )}
-          <p className="mt-7 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">{turn === 0 ? "Začína" : "Na rade je"} • {Math.floor(turn / participantNames.length) + 1}/{rounds}</p>
-          <h1 className="mt-2 text-4xl font-black" style={{ color: participantColor }}>{participantNames[participant]}</h1>
-          <section className="party-glass mt-6 max-w-sm rounded-[1.8rem] p-5">
+          <p className="mt-6 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">{turn === 0 ? "Začína" : "Na rade je"} • kolo {Math.floor(turn / participantNames.length) + 1}/{rounds}</p>
+          <h2 className="mt-2 text-4xl font-black" style={{ color: participantColor }}>{participantNames[participant]}</h2>
+          <section className={`party-glass mt-5 w-full max-w-sm rounded-[1.8rem] p-5 ${mode === "pesnicka" ? "song-instruction-card" : ""}`}>
             <h2 className="text-lg font-black text-white">{copy.title}</h2>
             <p className="mt-2 text-sm leading-relaxed text-white/45">{copy.instruction}</p>
+            {mode === "pesnicka" && <div className="mt-4 grid grid-cols-2 gap-2"><span className="rounded-xl border border-violet-300/15 bg-violet-400/[.07] px-3 py-2.5 text-[10px] font-black uppercase tracking-wider text-violet-200/70">Názov +1 bod</span><span className="rounded-xl border border-fuchsia-300/15 bg-fuchsia-400/[.07] px-3 py-2.5 text-[10px] font-black uppercase tracking-wider text-fuchsia-200/70">Interpret +1 bod</span></div>}
             {turn > 0 && <p className="mt-3 text-xs font-bold text-white/30">Aktuálne skóre: {scores[participant]} bodov</p>}
           </section>
           <button
             onClick={startTurn}
-            className="party-shine mt-7 w-full max-w-sm overflow-hidden rounded-2xl px-6 py-5 text-base font-black uppercase tracking-wider text-white shadow-xl transition active:scale-[.97]"
+            className="party-shine mt-5 w-full max-w-sm overflow-hidden rounded-2xl px-6 py-5 text-base font-black uppercase tracking-wider text-white shadow-xl transition active:scale-[.97]"
             style={{ background: `linear-gradient(135deg, ${participantColor}, ${copy.accent})` }}
           >
             Spustiť {timeSeconds} sekúnd
@@ -210,11 +214,11 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   if (phase === "team-result") {
     return (
       <PartyBackdrop>
-        <main className="flex h-full flex-col items-center overflow-y-auto px-6 py-8 text-center">
-          <div className="text-6xl">{turnScore > 0 ? "🎉" : "⏱️"}</div>
+        <main className={`flex h-full flex-col items-center overflow-y-auto px-6 py-8 text-center ${mode === "pesnicka" ? "song-result-screen" : ""}`}>
+          {mode === "pesnicka" ? <div className="relative h-28 w-full max-w-xs overflow-hidden rounded-[1.8rem] border border-violet-200/20"><SongGameArtwork className="h-full w-full" /><span className="absolute inset-0 flex items-center justify-center"><span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-black/40 text-amber-200 backdrop-blur-xl">{turnScore > 0 ? <Icons.trophy size={30} /> : <Icons.clock size={28} />}</span></span></div> : <div className="text-6xl">{turnScore > 0 ? "🎉" : "⏱️"}</div>}
           <p className="mt-6 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">Výsledok tímu</p>
           <h1 className="mt-2 text-3xl font-black" style={{ color: participantColor }}>{participantNames[participant]}</h1>
-          <div className="party-glass mt-7 w-full max-w-xs rounded-[2rem] p-8">
+          <div className={`party-glass mt-7 w-full max-w-xs rounded-[2rem] p-8 ${mode === "pesnicka" ? "song-result-score" : ""}`}>
             <p className="text-7xl font-black tabular-nums text-white">{turnScore}</p>
             <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-white/35">{copy.result}</p>
           </div>
@@ -232,9 +236,9 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
   }
 
   return (
-    <div className="fixed inset-0 flex flex-col overflow-hidden" style={{ background: `radial-gradient(circle at 50% 28%, ${copy.accent}22, transparent 45%), #070711` }}>
+    <div className={`fixed inset-0 flex flex-col overflow-hidden ${mode === "pesnicka" ? "song-playing-screen" : ""}`} style={{ background: `radial-gradient(circle at 50% 28%, ${copy.accent}22, transparent 45%), #070711` }}>
       <div className="party-grid pointer-events-none absolute inset-0 opacity-20" />
-      <header className="relative z-10 m-3 flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/[0.055] px-4 py-3 backdrop-blur-xl">
+      <header className={`relative z-10 m-3 flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/[0.055] px-4 py-3 backdrop-blur-xl ${mode === "pesnicka" ? "song-round-header" : ""}`}>
         <div className="min-w-0 text-left">
           <p className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">Hrá {participantLabel}</p>
           <p className="truncate text-base font-black" style={{ color: participantColor }}>{participantNames[participant]}</p>
@@ -247,7 +251,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
       </header>
 
       <main className="relative z-10 flex flex-1 items-center justify-center overflow-y-auto px-5 py-3 text-center">
-        <section key={index} className="party-glass party-shine w-full max-w-md overflow-hidden rounded-[2.2rem] px-6 py-8" style={{ animation: "popIn .3s ease-out both" }}>
+        <section key={index} className={`party-glass party-shine w-full max-w-md overflow-hidden rounded-[2.2rem] px-6 py-8 ${mode === "pesnicka" ? "song-round-card" : ""}`} style={{ animation: "popIn .3s ease-out both" }}>
           {mode === "zakazane" ? (
             <>
               <span className="text-4xl">{copy.icon}</span>
@@ -262,10 +266,9 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
             </>
           ) : (
             <>
-              <div className="relative -mx-6 -mt-8 mb-5 h-28 overflow-hidden border-b border-violet-300/15">
-                <img src={songArt} alt="Hudobná ilustrácia" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#100b20] via-[#100b20]/20 to-transparent" />
-                <span className="absolute bottom-3 left-1/2 -translate-x-1/2 text-4xl drop-shadow-lg">{copy.icon}</span>
+              <div className="relative -mx-6 -mt-8 mb-5 h-36 overflow-hidden border-b border-violet-300/15">
+                <SongGameArtwork className="h-full w-full" labelled />
+                <span className="absolute bottom-3 left-1/2 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-xl border border-white/20 bg-black/35 text-violet-100 backdrop-blur-xl"><Icons.music size={21} /></span>
               </div>
               <p className="text-[10px] font-black uppercase tracking-[0.24em] text-violet-300/65">Zahmkaj bez slov</p>
               <h1 className="mx-auto mt-3 max-w-sm text-3xl font-black leading-tight text-white">{songCard?.title}</h1>
@@ -274,8 +277,8 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
                 <span className={`rounded-full border px-3 py-1.5 text-[9px] font-black uppercase tracking-wider ${songAwards.title ? "border-emerald-300/40 bg-emerald-400/15 text-emerald-200" : "border-white/10 bg-white/[0.04] text-white/30"}`}>Názov {songAwards.title ? "✓" : "+1"}</span>
                 <span className={`rounded-full border px-3 py-1.5 text-[9px] font-black uppercase tracking-wider ${songAwards.artist ? "border-emerald-300/40 bg-emerald-400/15 text-emerald-200" : "border-white/10 bg-white/[0.04] text-white/30"}`}>Interpret {songAwards.artist ? "✓" : "+1"}</span>
               </div>
-              <div className="mt-5 rounded-2xl border border-violet-300/15 bg-violet-400/[0.07] p-3">
-                <p className="text-[10px] font-bold leading-relaxed text-white/35">Nepoznáš ju podľa názvu? Prilož mobil k uchu a pusti si krátku ukážku priamo v aplikácii.</p>
+              <div className="song-preview-panel mt-5 rounded-2xl border border-violet-300/15 bg-violet-400/[0.07] p-3">
+                <div className="flex items-center gap-3 text-left"><span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-400/15 text-violet-200"><Icons.headphones size={18} /></span><p className="text-[10px] font-bold leading-relaxed text-white/42">Nepoznáš ju podľa názvu? Prilož mobil k uchu a pusti si krátku ukážku.</p></div>
                 <button
                   onClick={previewStatus === "playing" ? stopPreview : playPreview}
                   disabled={!soundAllowed || previewStatus === "loading" || previewStatus === "missing"}
@@ -294,9 +297,9 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
 
       {mode === "pesnicka" ? (
         <footer className="relative z-10 grid shrink-0 grid-cols-3 gap-2 px-4 pb-7 pt-3">
-          <button onClick={nextSongCard} className="party-glass rounded-2xl py-4 text-xs font-black text-white/55 transition active:scale-95">Ďalšia →</button>
-          <button onClick={() => awardSongPart("title")} disabled={songAwards.title} className="party-shine overflow-hidden rounded-2xl bg-violet-600 py-4 text-xs font-black text-white shadow-lg transition active:scale-95 disabled:bg-emerald-700 disabled:opacity-70">{songAwards.title ? "✓ Názov" : "+1 Názov"}</button>
-          <button onClick={() => awardSongPart("artist")} disabled={songAwards.artist} className="party-shine overflow-hidden rounded-2xl bg-fuchsia-600 py-4 text-xs font-black text-white shadow-lg transition active:scale-95 disabled:bg-emerald-700 disabled:opacity-70">{songAwards.artist ? "✓ Interpret" : "+1 Interpret"}</button>
+          <button onClick={nextSongCard} className="party-glass rounded-2xl py-4 text-xs font-black text-white/65 transition active:scale-95">Ďalšia</button>
+          <button onClick={() => awardSongPart("title")} disabled={songAwards.title} className="party-shine overflow-hidden rounded-2xl bg-violet-600 py-4 text-xs font-black text-white shadow-lg transition active:scale-95 disabled:bg-emerald-700 disabled:opacity-80">{songAwards.title ? "✓ Názov" : "+1 Názov"}</button>
+          <button onClick={() => awardSongPart("artist")} disabled={songAwards.artist} className="party-shine overflow-hidden rounded-2xl bg-fuchsia-600 py-4 text-xs font-black text-white shadow-lg transition active:scale-95 disabled:bg-emerald-700 disabled:opacity-80">{songAwards.artist ? "✓ Interpret" : "+1 Interpret"}</button>
         </footer>
       ) : (
         <footer className="relative z-10 flex shrink-0 gap-3 px-4 pb-7 pt-3">
