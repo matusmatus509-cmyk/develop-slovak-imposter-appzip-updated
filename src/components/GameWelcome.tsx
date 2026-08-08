@@ -3,6 +3,7 @@ import type { Screen } from "../types";
 import gameArt from "../assets/game-art-sprite.jpg";
 import minigameArtAtlas from "../assets/minigame-art-atlas.png";
 import partyMinigameAtlas from "../assets/party-minigame-atlas.png";
+import songGameHero from "../assets/party-song-hero-v2.png";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -212,10 +213,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#a78bfa",
     accentSoft: "rgba(167,139,250,.24)",
     deep: "#1c1039",
-    artPosition: "33.333% 50%",
-    art: partyMinigameAtlas,
-    artAtlas: true,
-    artSize: "400% 300%",
+    artPosition: "50% 50%",
+    art: songGameHero,
     variant: "song",
   },
   "hudobny-kviz": {
