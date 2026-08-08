@@ -182,18 +182,12 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
             </span>
           </button>
 
-          <div className="absolute bottom-4 left-1/2 z-10 w-[calc(100%-2rem)] max-w-[15rem] -translate-x-1/2">
-            {phase.type === "question" && soundAllowed && played && status !== "missing" && status !== "error" && (
-              <DualAction onClick={() => { stop("ready"); setPhase({ type: "revealed", participant: null }); }} className="bg-gradient-to-r from-slate-700 to-slate-600">Nikto nevie</DualAction>
-            )}
+          <div className="absolute left-1/2 top-[calc(50%+5rem)] z-10 w-[calc(100%-2rem)] max-w-[13rem] -translate-x-1/2">
             {phase.type === "question" && (!soundAllowed || status === "missing" || status === "error") && (
               <DualAction onClick={skipUnavailable} className="bg-gradient-to-r from-slate-700 to-slate-600">Ďalšia pesnička</DualAction>
             )}
             {phase.type === "buzzed" && (
               <DualAction onClick={() => setPhase({ type: "revealed", participant: phase.participant })} className="bg-gradient-to-r from-violet-600 to-fuchsia-500">Odhaliť odpoveď</DualAction>
-            )}
-            {phase.type === "revealed" && phase.participant === null && (
-              <DualAction onClick={() => resolve(false, false)} className="bg-gradient-to-r from-slate-700 to-slate-600">Ďalšia pesnička</DualAction>
             )}
           </div>
         </section>
