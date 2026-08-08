@@ -4,6 +4,8 @@ import gameArt from "../assets/game-art-sprite.jpg";
 import minigameArtAtlas from "../assets/minigame-art-atlas.png";
 import partyMinigameAtlas from "../assets/party-minigame-atlas.png";
 import songGameHero from "../assets/party-song-hero-v2.png";
+import letterGameHero from "../assets/party-letter-hero-v2.png";
+import fiveTenGameHero from "../assets/party-five-ten-hero-v2.png";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -257,10 +259,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#fbbf24",
     accentSoft: "rgba(251,191,36,.23)",
     deep: "#2b1d05",
-    artPosition: "0% 0%",
-    art: partyMinigameAtlas,
-    artAtlas: true,
-    artSize: "400% 300%",
+    artPosition: "50% 50%",
+    art: letterGameHero,
   },
   patzadesat: {
     eyebrow: "Päť odpovedí. Desať sekúnd.",
@@ -272,10 +272,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#34d399",
     accentSoft: "rgba(52,211,153,.22)",
     deep: "#06271c",
-    artPosition: "33.333% 0%",
-    art: partyMinigameAtlas,
-    artAtlas: true,
-    artSize: "400% 300%",
+    artPosition: "50% 50%",
+    art: fiveTenGameHero,
   },
   "tic-tac-toe": {
     eyebrow: "Tri symboly v rade",

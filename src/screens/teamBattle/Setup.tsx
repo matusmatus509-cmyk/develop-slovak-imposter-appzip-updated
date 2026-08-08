@@ -11,6 +11,8 @@ import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import minigameArtAtlas from "../../assets/minigame-art-atlas.png";
 import partyMinigameAtlas from "../../assets/party-minigame-atlas.png";
 import songGameHero from "../../assets/party-song-hero-v2.png";
+import letterGameHero from "../../assets/party-letter-hero-v2.png";
+import fiveTenGameHero from "../../assets/party-five-ten-hero-v2.png";
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 
 const ALL_GAMES: GameType[] = [
@@ -28,8 +30,8 @@ const GAME_ART: Record<GameType, { src: string; position: string; size: string }
   zakazane: { src: partyMinigameAtlas, position: "0% 50%", size: "400% 300%" },
   pesnicka: { src: songGameHero, position: "50% 50%", size: "cover" },
   zvuk: { src: partyMinigameAtlas, position: "100% 50%", size: "400% 300%" },
-  pismeno: { src: partyMinigameAtlas, position: "0% 0%", size: "400% 300%" },
-  patzadesat: { src: partyMinigameAtlas, position: "33.333% 0%", size: "400% 300%" },
+  pismeno: { src: letterGameHero, position: "50% 50%", size: "cover" },
+  patzadesat: { src: fiveTenGameHero, position: "50% 50%", size: "cover" },
   hadajktosom: { src: partyMinigameAtlas, position: "66.667% 100%", size: "400% 300%" },
   quiz: { src: partyMinigameAtlas, position: "100% 100%", size: "400% 300%" },
   pingpong: { src: minigameArtAtlas, position: "50% 50%", size: "300% 300%" },
