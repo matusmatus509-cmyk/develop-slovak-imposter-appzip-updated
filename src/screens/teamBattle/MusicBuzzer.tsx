@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import songArt from "../../assets/party-music-quiz-hero-v2.png";
 import { getSongCardsForLanguage } from "../../data/localizedSongs";
 import { useLanguage } from "../../i18n/LanguageProvider";
@@ -32,6 +32,7 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
   const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
   const [phase, setPhase] = useState<Phase>({ type: "question" });
   const [played, setPlayed] = useState(false);
+  const autoStartedFor = useRef<number | null>(null);
   const song = deck[deckIndex] ?? null;
   const { status, source, play, stop } = useSongPreview(song, soundAllowed, timeSeconds);
   const participantWord = gameMode === "teams" ? "Tím" : "Hráč";
@@ -39,6 +40,12 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
   async function playPreview() {
     if (await play()) setPlayed(true);
   }
+
+  useEffect(() => {
+    if (!soundAllowed || status !== "ready" || autoStartedFor.current === deckIndex) return;
+    autoStartedFor.current = deckIndex;
+    void playPreview();
+  }, [deckIndex, soundAllowed, status]);
 
   function resetQuestion() {
     setPhase({ type: "question" });
@@ -121,7 +128,7 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
 
           <div className="mt-3 shrink-0">
             {phase.type === "question" && soundAllowed && status !== "missing" && status !== "error" && (
-              <div className={`grid gap-2 ${participantNames.length > 4 ? "grid-cols-4" : "grid-cols-2"}`}>
+              <div className="grid grid-cols-2 gap-2">
                 {participantNames.map((name, participant) => {
                   const color = PARTY_PLAYER_COLORS[participant % PARTY_PLAYER_COLORS.length];
                   return (
@@ -129,7 +136,7 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
                       key={`${name}-${participant}`}
                       disabled={!played}
                       onClick={() => { stop("ready"); playFeedback("buzzer"); setPhase({ type: "buzzed", participant }); }}
-                      className="party-shine overflow-hidden rounded-2xl py-3 text-sm font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30"
+                      className={`party-shine overflow-hidden rounded-2xl py-3 text-sm font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30 ${participant < 2 ? "rotate-180" : ""}`}
                       style={{ background: color }}
                     >
                       🔔<span className="mt-1 block truncate px-2 text-sm">{name}</span>

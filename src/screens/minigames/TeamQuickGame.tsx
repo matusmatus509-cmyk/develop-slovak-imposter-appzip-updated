@@ -60,12 +60,13 @@ interface GameOptions {
   roundsLabel: string;
   timeLabel: string;
   roundsArePerParticipant: boolean;
+  maxPlayers?: number;
 }
 
 const GAME_OPTIONS: Record<QuickGameType, GameOptions> = {
   zakazane: { rounds: [1, 2, 3, 4], defaultRounds: 1, times: [30, 45, 60, 90], defaultTime: 60, roundsLabel: "Kolá na hráča / tím", timeLabel: "Čas jedného kola", roundsArePerParticipant: true },
   pesnicka: { rounds: [1, 2, 3, 4], defaultRounds: 1, times: [30, 45, 60, 90], defaultTime: 60, roundsLabel: "Kolá na hráča / tím", timeLabel: "Čas jedného kola", roundsArePerParticipant: true },
-  "hudobny-kviz": { rounds: [5, 10, 15, 20], defaultRounds: 10, times: [7, 10, 15, 20], defaultTime: 10, roundsLabel: "Počet pesničiek", timeLabel: "Dĺžka ukážky", roundsArePerParticipant: false },
+  "hudobny-kviz": { rounds: [5, 10, 15, 20], defaultRounds: 10, times: [7, 10, 15, 20], defaultTime: 10, roundsLabel: "Počet pesničiek", timeLabel: "Dĺžka ukážky", roundsArePerParticipant: false, maxPlayers: 4 },
   zvuk: { rounds: [5, 10, 15, 20], defaultRounds: 10, times: [5, 7, 10, 15], defaultTime: 7, roundsLabel: "Počet zvukov", timeLabel: "Dĺžka ukážky", roundsArePerParticipant: false },
   pismeno: { rounds: [1, 2, 3, 4], defaultRounds: 2, times: [5, 7, 10, 15], defaultTime: 5, roundsLabel: "Kolá na hráča / tím", timeLabel: "Čas na odpoveď", roundsArePerParticipant: true },
   patzadesat: { rounds: [1, 2, 3, 4], defaultRounds: 2, times: [10, 15, 20, 30], defaultTime: 10, roundsLabel: "Kolá na hráča / tím", timeLabel: "Čas na výzvu", roundsArePerParticipant: true },
@@ -97,6 +98,7 @@ export default function TeamQuickGame({
   const options = GAME_OPTIONS[game];
   const [rounds, setRounds] = useState(options.defaultRounds);
   const [timeSeconds, setTimeSeconds] = useState(options.defaultTime);
+  const maxPlayers = options.maxPlayers ?? 8;
 
   function chooseMode(mode: QuickPlayMode) {
     setGameMode(mode);
@@ -110,7 +112,7 @@ export default function TeamQuickGame({
   }
 
   function addPlayer() {
-    if (names.length >= 8) return;
+    if (names.length >= maxPlayers) return;
     setNames((current) => [...current, defaultPlayerName(language, current.length + 1)]);
   }
 
@@ -210,7 +212,7 @@ export default function TeamQuickGame({
               <section className="mt-5 space-y-3">
                 <div className="flex items-center justify-between">
                   <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">{gameMode === "teams" ? "Pomenujte tímy" : "Mená hráčov"}</p>
-                  {gameMode === "players" && <span className="text-[10px] font-black text-white/30">{names.length}/8</span>}
+                  {gameMode === "players" && <span className="text-[10px] font-black text-white/30">{names.length}/{maxPlayers}</span>}
                 </div>
                 {names.map((name, index) => {
                   const color = PARTY_PLAYER_COLORS[index % PARTY_PLAYER_COLORS.length];
@@ -222,7 +224,7 @@ export default function TeamQuickGame({
                     </label>
                   );
                 })}
-                {gameMode === "players" && names.length < 8 && <button onClick={addPlayer} className="party-glass w-full rounded-2xl py-4 text-sm font-black text-white/60 transition active:scale-95">+ Pridať hráča</button>}
+                {gameMode === "players" && names.length < maxPlayers && <button onClick={addPlayer} className="party-glass w-full rounded-2xl py-4 text-sm font-black text-white/60 transition active:scale-95">+ Pridať hráča</button>}
               </section>
 
               <section className="party-glass mt-5 rounded-[1.8rem] p-5">
