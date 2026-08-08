@@ -20,10 +20,10 @@ const CORNERS = [
 
 function TableReadout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex w-full flex-col items-center gap-3">
-      <div className="w-full rotate-180 text-center">{children}</div>
-      <div className="h-px w-20 bg-gradient-to-r from-transparent via-violet-300/55 to-transparent" />
-      <div className="w-full text-center">{children}</div>
+    <div className="absolute inset-0 flex flex-col">
+      <div className="flex flex-1 items-center justify-center px-5 pb-20 text-center rotate-180">{children}</div>
+      <div className="relative h-px shrink-0 bg-gradient-to-r from-transparent via-violet-300/70 to-transparent" />
+      <div className="flex flex-1 items-center justify-center px-5 pt-20 text-center">{children}</div>
     </div>
   );
 }
@@ -162,19 +162,19 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
           </button>
         ))}
 
-        <section className="party-glass absolute left-1/2 top-1/2 flex h-[min(58dvh,31rem)] w-[min(72vw,20rem)] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center overflow-hidden rounded-[2.4rem] border-violet-300/20 px-4 py-4 shadow-[0_0_90px_rgba(139,92,246,.2)]">
+        <section className="party-glass absolute left-1/2 top-1/2 h-[min(70dvh,36rem)] w-[min(80vw,24rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[2.7rem] border-violet-300/25 shadow-[0_0_100px_rgba(139,92,246,.25)]">
           <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-300 to-transparent" />
           <TableReadout>
             <p className="text-[8px] font-black uppercase tracking-[.22em] text-violet-300/65">Hudobný kvíz · {questionIndex + 1}/{rounds}</p>
-            <h1 className="mt-1 text-base font-black leading-tight text-white sm:text-lg">{readoutTitle}</h1>
-            <p className="mt-1 text-[10px] font-bold leading-snug text-white/45">{readoutDetail}</p>
+            <h1 className="mt-1 text-xl font-black leading-tight text-white sm:text-2xl">{readoutTitle}</h1>
+            <p className="mt-2 text-xs font-bold leading-snug text-white/50">{readoutDetail}</p>
           </TableReadout>
 
           <button
             onClick={status === "playing" ? () => stop("ready") : playPreview}
             disabled={!soundAllowed || status === "loading" || status === "missing"}
             aria-label={status === "playing" ? "Zastaviť pesničku" : "Prehrať pesničku"}
-            className="party-shine relative my-3 h-24 w-24 shrink-0 overflow-hidden rounded-full border border-violet-300/30 shadow-[0_0_55px_rgba(217,70,239,.28)] transition active:scale-95 disabled:opacity-55"
+            className="party-shine absolute left-1/2 top-1/2 z-10 h-28 w-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border border-violet-300/30 shadow-[0_0_70px_rgba(217,70,239,.34)] transition active:scale-95 disabled:opacity-55"
           >
             <img src={songArt} alt="" className="h-full w-full object-cover" />
             <span className={`absolute inset-0 flex items-center justify-center bg-black/30 text-2xl ${status === "loading" || status === "playing" ? "animate-pulse" : ""}`}>
@@ -182,7 +182,7 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
             </span>
           </button>
 
-          <div className="w-full max-w-[14rem]">
+          <div className="absolute bottom-4 left-1/2 z-10 w-[calc(100%-2rem)] max-w-[15rem] -translate-x-1/2">
             {phase.type === "question" && soundAllowed && played && status !== "missing" && status !== "error" && (
               <DualAction onClick={() => { stop("ready"); setPhase({ type: "revealed", participant: null }); }} className="bg-gradient-to-r from-slate-700 to-slate-600">Nikto nevie</DualAction>
             )}
