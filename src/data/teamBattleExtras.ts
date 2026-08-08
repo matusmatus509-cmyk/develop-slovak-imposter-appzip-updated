@@ -2618,30 +2618,7 @@ slov, ktoré sa rýmujú so slovom pes
 slov, ktoré sa rýmujú so slovom noc
 `.trim().split("\n");
 
-const FIVE_IN_TEN_TOPICS = [
-  "leto", "zima", "jar", "jeseň", "Vianoce", "Veľká noc", "Halloween", "narodeniny", "svadba", "festival",
-  "škola", "práca", "dovolenka", "cestovanie", "lietanie", "stanovanie", "turistika", "lyžovanie", "plávanie", "futbal",
-  "hokej", "tenis", "varenie", "pečenie", "upratovanie", "záhrada", "farma", "les", "džungľa", "more",
-  "vesmír", "počasie", "internet", "mobil", "videohry", "kino", "divadlo", "hudba", "tanec", "fotografovanie",
-  "priateľstvo", "láska", "strach", "radosť", "smiech", "detstvo", "rodina", "mesto", "dedina", "budúcnosť",
-  "kuchyňa", "kúpeľňa", "spálňa", "obývačka", "garáž", "škola", "nemocnica", "letisko", "hotel", "reštaurácia",
-  "karneval", "silvester", "promócie", "pracovný pohovor", "prvé rande", "rodinný výlet", "školský výlet", "cesta vlakom", "cesta autom", "plavba loďou",
-  "raňajky", "obed", "večera", "grilovanie", "pikantné jedlá", "sladkosti", "ovocie", "zelenina", "nápoje", "dezerty",
-  "superhrdinovia", "filmoví zloduchovia", "animované postavy", "rozprávky", "komiksy", "knihy", "detektívky", "fantasy", "sci-fi", "horory",
-  "psy", "mačky", "kone", "vtáky", "hmyz", "dinosaury", "morské zvieratá", "domáce zvieratá", "zvieratá zo zoo", "zvieratá z farmy",
-  "autá", "vlaky", "lietadlá", "lode", "bicykle", "motorky", "verejná doprava", "dopravné značky", "cestná premávka", "preteky",
-  "móda", "oblečenie", "obuv", "účesy", "kozmetika", "šperky", "farby", "tvary", "materiály", "vynálezy",
-];
-
-const GENERATED_FIVE_IN_TEN_PROMPTS = FIVE_IN_TEN_TOPICS.flatMap((topic) => [
-  `slov spojených s témou „${topic}“`,
-  `vecí typických pre tému „${topic}“`,
-  `činností spojených s témou „${topic}“`,
-  `miest, ľudí alebo postáv spojených s témou „${topic}“`,
-]);
-
 export const FIVE_IN_TEN_PROMPTS = [...new Set([
   ...CORE_FIVE_IN_TEN_PROMPTS,
   ...EXTRA_FIVE_IN_TEN_LIBRARY,
-  ...GENERATED_FIVE_IN_TEN_PROMPTS,
 ])];

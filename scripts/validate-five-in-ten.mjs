@@ -1,93 +1,68 @@
-import assert from "assert";
-import fs from "fs";
-import path from "path";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 
-const dbPath = path.resolve("src/data/fiveInTen.json");
-if (!fs.existsSync(dbPath)) {
-  console.error("Database file not found:", dbPath);
-  process.exit(1);
+const dataPath = path.resolve("src/data/teamBattleExtras.ts");
+const source = fs.readFileSync(dataPath, "utf8");
+
+function extractPrompts() {
+  const coreSource = source.match(/const CORE_FIVE_IN_TEN_PROMPTS = \[([\s\S]*?)\];/)?.[1] ?? "";
+  const core = [...coreSource.matchAll(/"([^"\\]*(?:\\.[^"\\]*)*)"/g)].map((match) => match[1]);
+  const library = (source.match(/const EXTRA_FIVE_IN_TEN_LIBRARY = `([\s\S]*?)`\.trim\(\)\.split/)?.[1] ?? "")
+    .trim()
+    .split("\n")
+    .filter(Boolean);
+  return [...new Set([...core, ...library])];
 }
 
-const cards = JSON.parse(fs.readFileSync(dbPath, "utf-8"));
-const languages = ["sk", "en", "de", "es", "fr", "pt"];
+const dictionaries = Object.fromEntries(
+  ["en", "de", "es", "fr", "pt"].map((language) => [
+    language,
+    JSON.parse(fs.readFileSync(path.resolve(`src/i18n/translations.${language}.json`), "utf8")),
+  ]),
+);
 
-console.log(`Starting validation of ${cards.length} Five in Ten prompts...`);
+function translatedPrompt(prompt, language) {
+  const dictionary = dictionaries[language];
+  if (dictionary[prompt]) return dictionary[prompt];
+  return Object.entries(dictionary)
+    .filter(([sourceText, target]) => sourceText !== target && sourceText.length >= 2)
+    .sort(([left], [right]) => right.length - left.length)
+    .reduce((text, [sourceText, target]) => text.split(sourceText).join(target), prompt);
+}
 
-assert(cards.length === 1000, `Expected exactly 1000 items, found ${cards.length}`);
+const prompts = extractPrompts();
+const languages = ["en", "de", "es", "fr", "pt"];
+const forbidden = [
+  /\bTODO\b/, /\bTBD\b/, /\bExample\b/, /\bTest\b/, /\bUnknown\b/,
+  /spojených s témou/i, /typických pre tému/i, /miest, ľudí alebo postáv spojených/i,
+  /ktoré si pamätáš/i, /na ktoré si spomenieš/i, /ktoré poznáš/i, /ktoré ti napadnú/i,
+  /ktoré dokážeš vymenovať/i, /o ktorých vieš/i,
+];
+const slovakResidue = /\b(vecí|zvierat|ktoré|slovenských|druhov|športov|povolaní|jedál|miest|potrebuješ|môžeš|nájdeš|začínajúcich)\b/i;
 
-const ids = new Set();
-const textsByLanguage = {
-  sk: new Set(),
-  en: new Set(),
-  de: new Set(),
-  es: new Set(),
-  fr: new Set(),
-  pt: new Set(),
-};
+assert(prompts.length >= 500, `Expected at least 500 curated prompts, found ${prompts.length}`);
+assert(!source.includes("GENERATED_FIVE_IN_TEN_PROMPTS"), "Generated topic templates must not be part of the Five in Ten library");
 
+const seen = new Set();
 let letterPromptCount = 0;
+for (const prompt of prompts) {
+  assert(prompt.trim(), "Prompt must not be empty");
+  const normalized = prompt.trim().toLocaleLowerCase("sk");
+  assert(!seen.has(normalized), `Duplicate prompt: ${prompt}`);
+  seen.add(normalized);
+  for (const pattern of forbidden) assert(!pattern.test(prompt), `Forbidden template or placeholder: ${prompt}`);
+  if (/\bpísmeno\b|začínajúcich na/i.test(prompt)) letterPromptCount += 1;
 
-for (const card of cards) {
-  assert(card.id, "Missing ID");
-  assert(card.id.startsWith("five_in_ten_"), `Invalid ID format: ${card.id}`);
-  assert(!ids.has(card.id), `Duplicate ID found: ${card.id}`);
-  ids.add(card.id);
-
-  assert(!("difficulty" in card), `Card ${card.id} has forbidden field 'difficulty'`);
-  assert(!("level" in card), `Card ${card.id} has forbidden field 'level'`);
-  assert(!("intensity" in card), `Card ${card.id} has forbidden field 'intensity'`);
-
-  assert(card.translations, `Card ${card.id} is missing translations`);
-
-  let isLetterPrompt = false;
-
-  for (const lang of languages) {
-    const text = card.translations[lang];
-    assert(text, `Card ${card.id} is missing translation for ${lang}`);
-    assert(text.trim().length > 0, `Card ${card.id} has empty translation for ${lang}`);
-
-    const lowerText = text.toLowerCase().trim();
-
-    // Check for placeholders or invalid keywords
-    const forbiddenPatterns = [/\btodo\b/i, /\btbd\b/i, /\bexample\b/i, /\btest\b/i, /\bunknown\b/i];
-    for (const pattern of forbiddenPatterns) {
-      assert(!pattern.test(text), `Card ${card.id} contains forbidden word in ${lang}: ${text}`);
-    }
-
-    // Check for bad phrases ("ktoré si pamätáš", etc.)
-    const badPhrasesSk = ["ktoré si pamätáš", "na ktoré si spomenieš", "ktoré poznáš", "ktoré ti napadnú", "ktoré dokážeš vymenovať", "o ktorých vieš", "hovor 5", "povedz päť kusov", "daj 5 príkladov", "vymenujte 5", "zaujímavé", "zaujímavých", "dobré", "dobrých", "pekné", "pekných", "náhodné", "náhodných"];
-    if (lang === "sk") {
-      assert(lowerText.startsWith("vymenuj 5 "), `Card ${card.id} must start with 'Vymenuj 5 ' in SK. Found: ${text}`);
-      for (const bad of badPhrasesSk) {
-        assert(!lowerText.includes(bad), `Card ${card.id} contains forbidden phrase '${bad}' in SK: ${text}`);
-      }
-      if (lowerText.includes("na písmeno") || lowerText.includes("začínajúcich na")) {
-        isLetterPrompt = true;
-      }
-    }
-
-    if (lang === "en") {
-      const badPhrasesEn = ["you remember", "you know", "you can think of", "say five pieces", "tell 5 items"];
-      for (const bad of badPhrasesEn) {
-        assert(!lowerText.includes(bad), `Card ${card.id} contains forbidden phrase '${bad}' in EN: ${text}`);
-      }
-    }
-
-    // Question marks and yes/no
-    assert(!text.includes("?"), `Card ${card.id} contains a question mark, but it should be a prompt. Found in ${lang}: ${text}`);
-
-    // Check for exact duplicate prompts in the same language
-    assert(!textsByLanguage[lang].has(lowerText), `Duplicate prompt found in ${lang}: "${text}" (ID: ${card.id})`);
-    textsByLanguage[lang].add(lowerText);
-  }
-
-  if (isLetterPrompt) {
-    letterPromptCount++;
+  for (const language of languages) {
+    const localized = translatedPrompt(prompt, language);
+    assert(localized.trim(), `Missing ${language} localization: ${prompt}`);
+    assert(localized !== prompt, `Untranslated ${language} localization: ${prompt}`);
+    assert(!slovakResidue.test(localized), `Likely Slovak residue in ${language}: ${localized}`);
+    for (const pattern of forbidden.slice(0, 5)) assert(!pattern.test(localized), `Placeholder in ${language}: ${localized}`);
   }
 }
 
-const maxLetterPrompts = 100; // max 10%
-assert(letterPromptCount <= maxLetterPrompts, `Too many letter prompts: found ${letterPromptCount}, maximum is ${maxLetterPrompts}`);
-
-console.log(`\n✅ 5 za 10: ${cards.length} prompts validated successfully across all 6 languages!`);
-console.log(`Letter prompts: ${letterPromptCount} (Max allowed: ${maxLetterPrompts})`);
+assert(letterPromptCount <= Math.floor(prompts.length * 0.1), `Too many letter prompts: ${letterPromptCount}`);
+console.log(`✅ 5 za 10: ${prompts.length} curated prompts validated in Slovak and all five localized outputs.`);
+console.log(`✅ Letter prompts: ${letterPromptCount} (${((letterPromptCount / prompts.length) * 100).toFixed(1)}%).`);
