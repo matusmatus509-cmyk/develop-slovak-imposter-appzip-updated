@@ -14,7 +14,8 @@
     "validate:would-you-rather": "node scripts/validate-would-you-rather.mjs",
     "validate:only-lies": "node scripts/validate-only-lies.mjs",
     "audit:never-have-i-ever": "node scripts/audit-never-have-i-ever.mjs",
-    "audit:content": "bun scripts/audit-content.mjs"
+    "audit:content": "bun scripts/audit-content.mjs",
+    "validate:five-in-ten": "node scripts/validate-five-in-ten.mjs"
   },
   "dependencies": {
     "@google/genai": "^2.15.0",

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type {
   CustomContentGame,
   FeedbackSettings,
@@ -218,6 +218,29 @@ export default function App() {
     const game = PLAYABLE_GAMES.find((item) => item.id === id);
     return game ? [game] : [];
   });
+  const [recentlyPlayedScreens, setRecentlyPlayedScreens] = useLocalStorage<string[]>(
+    "podvodnik-recently-played-screens-v1",
+    []
+  );
+  const sortedMinigames = useMemo(() => {
+    const validRecentlyPlayed = Array.isArray(recentlyPlayedScreens) ? recentlyPlayedScreens : [];
+    return [...MINIGAMES].sort((a, b) => {
+      const indexA = validRecentlyPlayed.indexOf(a.screen);
+      const indexB = validRecentlyPlayed.indexOf(b.screen);
+      if (indexA >= 0 && indexB >= 0) {
+        return indexA - indexB;
+      }
+      if (indexA >= 0) {
+        return -1;
+      }
+      if (indexB >= 0) {
+        return 1;
+      }
+      const origIndexA = MINIGAMES.findIndex((g) => g.screen === a.screen);
+      const origIndexB = MINIGAMES.findIndex((g) => g.screen === b.screen);
+      return origIndexA - origIndexB;
+    });
+  }, [recentlyPlayedScreens]);
   const music = usePartyMusic(Boolean(safeFeedbackSettings.musicEnabled && safeFeedbackSettings.soundsEnabled));
   const gameSessionActiveRef = useRef(false);
   const gameReturnScreenRef = useRef<Screen>("home");
@@ -363,6 +386,14 @@ export default function App() {
     gameSessionActiveRef.current = true;
     const gameId = PLAYABLE_GAMES.find((game) => game.screen === gameScreen)?.id;
     setStatistics((current) => applyStatisticsEvent(current, { gamesStarted: 1, gameId }));
+
+    const isMinigame = MINIGAMES.some((g) => g.screen === gameScreen);
+    if (isMinigame) {
+      setRecentlyPlayedScreens((current) => {
+        const filtered = Array.isArray(current) ? current.filter((s) => s !== gameScreen) : [];
+        return [gameScreen, ...filtered];
+      });
+    }
   }
 
   function recordCorrectAnswers(correctAnswers: number) {
@@ -560,7 +591,7 @@ export default function App() {
         <GameMenu
           title="Minihry"
           subtitle="Rýchle hry bez dlhého nastavovania. Stačí si vybrať a začať."
-          games={MINIGAMES}
+          games={sortedMinigames}
           onBack={() => setScreen("home")}
           onNavigate={navigateFromMenu}
           favoriteIds={favoriteIds}
