@@ -15,7 +15,8 @@
     "validate:only-lies": "node scripts/validate-only-lies.mjs",
     "audit:never-have-i-ever": "node scripts/audit-never-have-i-ever.mjs",
     "audit:content": "bun scripts/audit-content.mjs",
-    "validate:five-in-ten": "node scripts/validate-five-in-ten.mjs"
+    "validate:five-in-ten": "node scripts/validate-five-in-ten.mjs",
+    "validate:guess-who": "node scripts/validate-guess-who.mjs"
   },
   "dependencies": {
     "@google/genai": "^2.15.0",

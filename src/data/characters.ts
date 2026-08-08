@@ -9,6 +9,97 @@ export interface CharacterCategory {
   characters: string[];
 }
 
+type CategoryLabels = Record<AppLanguage, string>;
+
+/** Labels are kept separate from the decks so changing the app language never
+ * creates another copy of the "all" deck. */
+const CATEGORY_LABELS: Record<string, CategoryLabels> = {
+  all: { sk: "Všetko", en: "All", de: "Alles", es: "Todo", fr: "Tout", pt: "Tudo" },
+  "world-personalities": { sk: "Svetové osobnosti", en: "World personalities", de: "Weltberühmte Persönlichkeiten", es: "Personalidades del mundo", fr: "Personnalités du monde", pt: "Personalidades mundiais" },
+  "world-athletes": { sk: "Svetoví športovci", en: "World athletes", de: "Weltklasse-Sportler", es: "Deportistas mundiales", fr: "Sportifs du monde", pt: "Atletas mundiais" },
+  "world-youtubers": { sk: "Svetoví YouTuberi", en: "World YouTubers", de: "YouTuber aus aller Welt", es: "YouTubers del mundo", fr: "YouTubeurs du monde", pt: "YouTubers do mundo" },
+  "slovak-personalities": { sk: "Slovenské osobnosti a herci", en: "Slovak personalities and actors", de: "Slowakische Persönlichkeiten und Schauspieler", es: "Personalidades y actores eslovacos", fr: "Personnalités et acteurs slovaques", pt: "Personalidades e atores eslovacos" },
+  "slovak-athletes": { sk: "Slovenskí športovci", en: "Slovak athletes", de: "Slowakische Sportler", es: "Deportistas eslovacos", fr: "Sportifs slovaques", pt: "Atletas eslovacos" },
+  "movie-characters": { sk: "Filmové postavy", en: "Movie characters", de: "Filmfiguren", es: "Personajes de cine", fr: "Personnages de films", pt: "Personagens de filmes" },
+  "animated-characters": { sk: "Animované postavičky", en: "Animated characters", de: "Zeichentrickfiguren", es: "Personajes animados", fr: "Personnages animés", pt: "Personagens animadas" },
+  "series-characters": { sk: "Postavy zo seriálov", en: "TV series characters", de: "Serienfiguren", es: "Personajes de series", fr: "Personnages de séries", pt: "Personagens de séries" },
+  "video-game-characters": { sk: "Postavy z videohier", en: "Video game characters", de: "Videospielcharaktere", es: "Personajes de videojuegos", fr: "Personnages de jeux vidéo", pt: "Personagens de videojogos" },
+  "world-movies": { sk: "Svetové filmy", en: "World movies", de: "Internationale Filme", es: "Películas del mundo", fr: "Films du monde", pt: "Filmes do mundo" },
+  "animated-movies": { sk: "Animované filmy", en: "Animated movies", de: "Animationsfilme", es: "Películas de animación", fr: "Films d’animation", pt: "Filmes de animação" },
+  "heroes-villains": { sk: "Hrdinovia a zloduchovia", en: "Heroes and villains", de: "Helden und Schurken", es: "Héroes y villanos", fr: "Héros et méchants", pt: "Heróis e vilões" },
+  "character-archetypes": { sk: "Postavy a archetypy", en: "Roles and archetypes", de: "Rollen und Archetypen", es: "Roles y arquetipos", fr: "Rôles et archétypes", pt: "Papéis e arquétipos" },
+  professions: { sk: "Povolania", en: "Professions", de: "Berufe", es: "Profesiones", fr: "Métiers", pt: "Profissões" },
+  food: { sk: "Jedlo a nápoje", en: "Food and drinks", de: "Essen und Getränke", es: "Comida y bebidas", fr: "Nourriture et boissons", pt: "Comida e bebidas" },
+  objects: { sk: "Predmety", en: "Objects", de: "Gegenstände", es: "Objetos", fr: "Objets", pt: "Objetos" },
+  "places-landmarks": { sk: "Miesta a pamiatky", en: "Places and landmarks", de: "Orte und Sehenswürdigkeiten", es: "Lugares y monumentos", fr: "Lieux et monuments", pt: "Lugares e monumentos" },
+  "mythical-creatures": { sk: "Mýtické bytosti", en: "Mythical creatures", de: "Mythische Wesen", es: "Criaturas míticas", fr: "Créatures mythiques", pt: "Criaturas míticas" },
+};
+
+type LocalizedDeck = Omit<CharacterCategory, "name" | "characters"> & {
+  labels: CategoryLabels;
+  characters: Record<AppLanguage, string[]>;
+};
+
+/** New, language-complete cards. Every row is deliberately a familiar,
+ * easy-to-question concept rather than a generated word combination. */
+const LOCALIZED_ADDITIONAL_CATEGORIES: LocalizedDeck[] = [
+  {
+    id: "professions", icon: "💼", labels: CATEGORY_LABELS.professions,
+    characters: {
+      sk: ["Lekár", "Hasič", "Policajt", "Pilot", "Astronaut", "Kuchár", "Učiteľ", "Detektív", "Kúzelník", "Veterinár", "Fotograf", "Architekt", "Hudobník", "Herec", "Športovec", "Vedec", "Farmár", "Pekár", "Kaderník", "Záchranár", "Poštár", "Stavbár", "Mechanik", "Novinár", "Cirkusant"],
+      en: ["Doctor", "Firefighter", "Police officer", "Pilot", "Astronaut", "Chef", "Teacher", "Detective", "Magician", "Veterinarian", "Photographer", "Architect", "Musician", "Actor", "Athlete", "Scientist", "Farmer", "Baker", "Hairdresser", "Paramedic", "Postman", "Builder", "Mechanic", "Journalist", "Circus performer"],
+      de: ["Arzt", "Feuerwehrmann", "Polizist", "Pilot", "Astronaut", "Koch", "Lehrer", "Detektiv", "Zauberer", "Tierarzt", "Fotograf", "Architekt", "Musiker", "Schauspieler", "Sportler", "Wissenschaftler", "Landwirt", "Bäcker", "Friseur", "Sanitäter", "Postbote", "Bauarbeiter", "Mechaniker", "Journalist", "Zirkusartist"],
+      es: ["Médico", "Bombero", "Policía", "Piloto", "Astronauta", "Cocinero", "Profesor", "Detective", "Mago", "Veterinario", "Fotógrafo", "Arquitecto", "Músico", "Actor", "Deportista", "Científico", "Granjero", "Panadero", "Peluquero", "Paramédico", "Cartero", "Albañil", "Mecánico", "Periodista", "Artista de circo"],
+      fr: ["Médecin", "Pompier", "Policier", "Pilote", "Astronaute", "Cuisinier", "Professeur", "Détective", "Magicien", "Vétérinaire", "Photographe", "Architecte", "Musicien", "Acteur", "Sportif", "Scientifique", "Agriculteur", "Boulanger", "Coiffeur", "Ambulancier", "Facteur", "Ouvrier du bâtiment", "Mécanicien", "Journaliste", "Artiste de cirque"],
+      pt: ["Médico", "Bombeiro", "Polícia", "Piloto", "Astronauta", "Cozinheiro", "Professor", "Detetive", "Mágico", "Veterinário", "Fotógrafo", "Arquiteto", "Músico", "Ator", "Atleta", "Cientista", "Agricultor", "Padeiro", "Cabeleireiro", "Paramédico", "Carteiro", "Operário da construção", "Mecânico", "Jornalista", "Artista de circo"],
+    },
+  },
+  {
+    id: "food", icon: "🍕", labels: CATEGORY_LABELS.food,
+    characters: {
+      sk: ["Pizza", "Hamburger", "Sushi", "Špagety", "Zmrzlina", "Popcorn", "Palacinky", "Hot dog", "Hranolky", "Tacos", "Lasagne", "Šalát", "Čokoláda", "Koláč", "Jablko", "Banán", "Jahoda", "Melón", "Mrkva", "Chlieb", "Syr", "Káva", "Čaj", "Limonáda", "Milkshake"],
+      en: ["Pizza", "Hamburger", "Sushi", "Spaghetti", "Ice cream", "Popcorn", "Pancakes", "Hot dog", "French fries", "Tacos", "Lasagna", "Salad", "Chocolate", "Cake", "Apple", "Banana", "Strawberry", "Watermelon", "Carrot", "Bread", "Cheese", "Coffee", "Tea", "Lemonade", "Milkshake"],
+      de: ["Pizza", "Hamburger", "Sushi", "Spaghetti", "Eis", "Popcorn", "Pfannkuchen", "Hotdog", "Pommes frites", "Tacos", "Lasagne", "Salat", "Schokolade", "Kuchen", "Apfel", "Banane", "Erdbeere", "Wassermelone", "Karotte", "Brot", "Käse", "Kaffee", "Tee", "Limonade", "Milchshake"],
+      es: ["Pizza", "Hamburguesa", "Sushi", "Espaguetis", "Helado", "Palomitas", "Tortitas", "Perrito caliente", "Patatas fritas", "Tacos", "Lasaña", "Ensalada", "Chocolate", "Pastel", "Manzana", "Plátano", "Fresa", "Sandía", "Zanahoria", "Pan", "Queso", "Café", "Té", "Limonada", "Batido"],
+      fr: ["Pizza", "Hamburger", "Sushi", "Spaghettis", "Glace", "Pop-corn", "Crêpes", "Hot-dog", "Frites", "Tacos", "Lasagnes", "Salade", "Chocolat", "Gâteau", "Pomme", "Banane", "Fraise", "Pastèque", "Carotte", "Pain", "Fromage", "Café", "Thé", "Limonade", "Milk-shake"],
+      pt: ["Pizza", "Hambúrguer", "Sushi", "Esparguete", "Gelado", "Pipocas", "Panquecas", "Cachorro-quente", "Batatas fritas", "Tacos", "Lasanha", "Salada", "Chocolate", "Bolo", "Maçã", "Banana", "Morango", "Melancia", "Cenoura", "Pão", "Queijo", "Café", "Chá", "Limonada", "Batido"],
+    },
+  },
+  {
+    id: "objects", icon: "🎒", labels: CATEGORY_LABELS.objects,
+    characters: {
+      sk: ["Telefón", "Dáždnik", "Fotoaparát", "Gitara", "Vysávač", "Zubná kefka", "Kľúč", "Hodiny", "Bicykel", "Kufor", "Batoh", "Okuliare", "Zrkadlo", "Sviečka", "Lampa", "Mikrofón", "Diaľkový ovládač", "Budík", "Kniha", "Lopta", "Kefa na vlasy", "Lyžica", "Nožnice", "Hrebeň", "Skateboard"],
+      en: ["Phone", "Umbrella", "Camera", "Guitar", "Vacuum cleaner", "Toothbrush", "Key", "Clock", "Bicycle", "Suitcase", "Backpack", "Glasses", "Mirror", "Candle", "Lamp", "Microphone", "Remote control", "Alarm clock", "Book", "Ball", "Hairbrush", "Spoon", "Scissors", "Comb", "Skateboard"],
+      de: ["Telefon", "Regenschirm", "Kamera", "Gitarre", "Staubsauger", "Zahnbürste", "Schlüssel", "Uhr", "Fahrrad", "Koffer", "Rucksack", "Brille", "Spiegel", "Kerze", "Lampe", "Mikrofon", "Fernbedienung", "Wecker", "Buch", "Ball", "Haarbürste", "Löffel", "Schere", "Kamm", "Skateboard"],
+      es: ["Teléfono", "Paraguas", "Cámara", "Guitarra", "Aspiradora", "Cepillo de dientes", "Llave", "Reloj", "Bicicleta", "Maleta", "Mochila", "Gafas", "Espejo", "Vela", "Lámpara", "Micrófono", "Mando a distancia", "Despertador", "Libro", "Pelota", "Cepillo de pelo", "Cuchara", "Tijeras", "Peine", "Monopatín"],
+      fr: ["Téléphone", "Parapluie", "Appareil photo", "Guitare", "Aspirateur", "Brosse à dents", "Clé", "Horloge", "Vélo", "Valise", "Sac à dos", "Lunettes", "Miroir", "Bougie", "Lampe", "Microphone", "Télécommande", "Réveil", "Livre", "Ballon", "Brosse à cheveux", "Cuillère", "Ciseaux", "Peigne", "Skateboard"],
+      pt: ["Telemóvel", "Guarda-chuva", "Câmara fotográfica", "Guitarra", "Aspirador", "Escova de dentes", "Chave", "Relógio", "Bicicleta", "Mala", "Mochila", "Óculos", "Espelho", "Vela", "Candeeiro", "Microfone", "Comando", "Despertador", "Livro", "Bola", "Escova de cabelo", "Colher", "Tesoura", "Pente", "Skate"],
+    },
+  },
+  {
+    id: "places-landmarks", icon: "🗺️", labels: CATEGORY_LABELS["places-landmarks"],
+    characters: {
+      sk: ["Eiffelova veža", "Koloseum", "Big Ben", "Socha slobody", "Mount Everest", "Veľký čínsky múr", "Pyramídy v Gíze", "Tádž Mahal", "Machu Picchu", "Niagarské vodopády", "Opera v Sydney", "Sagrada Família", "Louvre", "Disneyland", "Vatikán", "Times Square", "Grand Canyon", "Benátky", "Paríž", "New York", "Londýn", "Rím", "Tokio", "Rio de Janeiro", "Sahara"],
+      en: ["Eiffel Tower", "Colosseum", "Big Ben", "Statue of Liberty", "Mount Everest", "Great Wall of China", "Pyramids of Giza", "Taj Mahal", "Machu Picchu", "Niagara Falls", "Sydney Opera House", "Sagrada Família", "Louvre Museum", "Disneyland", "Vatican City", "Times Square", "Grand Canyon", "Venice", "Paris", "New York", "London", "Rome", "Tokyo", "Rio de Janeiro", "Sahara Desert"],
+      de: ["Eiffelturm", "Kolosseum", "Big Ben", "Freiheitsstatue", "Mount Everest", "Chinesische Mauer", "Pyramiden von Gizeh", "Taj Mahal", "Machu Picchu", "Niagarafälle", "Oper von Sydney", "Sagrada Família", "Louvre", "Disneyland", "Vatikanstadt", "Times Square", "Grand Canyon", "Venedig", "Paris", "New York", "London", "Rom", "Tokio", "Rio de Janeiro", "Sahara"],
+      es: ["Torre Eiffel", "Coliseo", "Big Ben", "Estatua de la Libertad", "Monte Everest", "Gran Muralla China", "Pirámides de Guiza", "Taj Mahal", "Machu Picchu", "Cataratas del Niágara", "Ópera de Sídney", "Sagrada Familia", "Museo del Louvre", "Disneyland", "Ciudad del Vaticano", "Times Square", "Gran Cañón", "Venecia", "París", "Nueva York", "Londres", "Roma", "Tokio", "Río de Janeiro", "Sáhara"],
+      fr: ["Tour Eiffel", "Colisée", "Big Ben", "Statue de la Liberté", "mont Everest", "Grande Muraille de Chine", "pyramides de Gizeh", "Taj Mahal", "Machu Picchu", "chutes du Niagara", "opéra de Sydney", "Sagrada Família", "musée du Louvre", "Disneyland", "Cité du Vatican", "Times Square", "Grand Canyon", "Venise", "Paris", "New York", "Londres", "Rome", "Tokyo", "Rio de Janeiro", "Sahara"],
+      pt: ["Torre Eiffel", "Coliseu", "Big Ben", "Estátua da Liberdade", "Monte Everest", "Grande Muralha da China", "Pirâmides de Gizé", "Taj Mahal", "Machu Picchu", "Cataratas do Niágara", "Ópera de Sydney", "Sagrada Família", "Museu do Louvre", "Disneyland", "Cidade do Vaticano", "Times Square", "Grande Canhão", "Veneza", "Paris", "Nova Iorque", "Londres", "Roma", "Tóquio", "Rio de Janeiro", "Sahara"],
+    },
+  },
+  {
+    id: "mythical-creatures", icon: "🐉", labels: CATEGORY_LABELS["mythical-creatures"],
+    characters: {
+      sk: ["Drak", "Jednorožec", "Morská panna", "Upír", "Vlkodlak", "Fénix", "Minotaurus", "Kentaur", "Grifon", "Hydra", "Kraken", "Pegas", "Morský koník", "Obor", "Troll", "Škriatok", "Víla", "Elf", "Goblin", "Golem", "Medúza", "Kyklop", "Sfinga", "Yeti", "Lochnesská príšera"],
+      en: ["Dragon", "Unicorn", "Mermaid", "Vampire", "Werewolf", "Phoenix", "Minotaur", "Centaur", "Griffin", "Hydra", "Kraken", "Pegasus", "Seahorse", "Giant", "Troll", "Goblin", "Fairy", "Elf", "Hobgoblin", "Golem", "Medusa", "Cyclops", "Sphinx", "Yeti", "Loch Ness Monster"],
+      de: ["Drache", "Einhorn", "Meerjungfrau", "Vampir", "Werwolf", "Phönix", "Minotaurus", "Zentaur", "Greif", "Hydra", "Krake", "Pegasus", "Seepferdchen", "Riese", "Troll", "Kobold", "Fee", "Elf", "Goblin", "Golem", "Medusa", "Zyklop", "Sphinx", "Yeti", "Ungeheuer von Loch Ness"],
+      es: ["Dragón", "Unicornio", "Sirena", "Vampiro", "Hombre lobo", "Fénix", "Minotauro", "Centauro", "Grifo", "Hidra", "Kraken", "Pegaso", "Caballito de mar", "Gigante", "Trol", "Duende", "Hada", "Elfo", "Goblin", "Gólem", "Medusa", "Cíclope", "Esfinge", "Yeti", "Monstruo del lago Ness"],
+      fr: ["Dragon", "Licorne", "Sirène", "Vampire", "Loup-garou", "Phénix", "Minotaure", "Centaure", "Griffon", "Hydre", "Kraken", "Pégase", "Hippocampe", "Géant", "Troll", "Lutin", "Fée", "Elfe", "Gobelin", "Golem", "Méduse", "Cyclope", "Sphinx", "Yéti", "Monstre du Loch Ness"],
+      pt: ["Dragão", "Unicórnio", "Sereia", "Vampiro", "Lobisomem", "Fénix", "Minotauro", "Centauro", "Grifo", "Hidra", "Kraken", "Pégaso", "Cavalo-marinho", "Gigante", "Troll", "Duende", "Fada", "Elfo", "Goblin", "Golem", "Medusa", "Ciclope", "Esfinge", "Yeti", "Monstro do Lago Ness"],
+    },
+  },
+];
+
 // Karty su rozdelene podla typu, aby si hraci mohli vybrat tematicky balik.
 const CHARACTER_CATEGORIES_BASE: CharacterCategory[] = [
   {
@@ -391,6 +482,19 @@ function uniqueCards(characters: string[]) {
   return [...new Set(characters)];
 }
 
+function localizedCategory(category: CharacterCategory, language: AppLanguage): CharacterCategory {
+  return { ...category, name: CATEGORY_LABELS[category.id]?.[language] ?? category.name };
+}
+
+function additionalCategories(language: AppLanguage): CharacterCategory[] {
+  return LOCALIZED_ADDITIONAL_CATEGORIES.map((category) => ({
+    id: category.id,
+    name: category.labels[language],
+    icon: category.icon,
+    characters: category.characters[language],
+  }));
+}
+
 export const CHARACTER_CATEGORIES: CharacterCategory[] = [
   {
     id: "world-personalities",
@@ -476,6 +580,15 @@ export function getCharacterCategories(languageOrIncludeSlovak: AppLanguage | bo
   const language: AppLanguage = typeof languageOrIncludeSlovak === "boolean"
     ? languageOrIncludeSlovak ? "sk" : "en"
     : languageOrIncludeSlovak;
-  const globalCategories = CHARACTER_CATEGORIES.filter((category) => !category.id.startsWith("slovak-"));
-  return [...globalCategories, LOCAL_PERSONALITY_CATEGORIES[language]];
+  const globalCategories = CHARACTER_CATEGORIES
+    .filter((category) => !category.id.startsWith("slovak-"))
+    .map((category) => localizedCategory(category, language));
+  const allCategory: CharacterCategory = {
+    id: "all",
+    name: CATEGORY_LABELS.all[language],
+    icon: "✦",
+    // "All" is a virtual filter. It deliberately owns no second copy of cards.
+    characters: [],
+  };
+  return [allCategory, ...globalCategories, ...additionalCategories(language), LOCAL_PERSONALITY_CATEGORIES[language]];
 }

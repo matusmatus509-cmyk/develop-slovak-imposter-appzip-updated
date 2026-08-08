@@ -31,7 +31,9 @@ interface Card {
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function buildDeck(categories: CharacterCategory[], catIds: string[], extraCards: Array<{ id: string; word: string }> = []): Card[] {
-  const cats = categories.filter((c) => catIds.includes(c.id));
+  const cats = catIds.includes("all")
+    ? categories.filter((category) => category.id !== "all")
+    : categories.filter((category) => catIds.includes(category.id));
   const cards: Card[] = [];
   const seen = new Set<string>();
   for (const cat of cats) {
@@ -73,14 +75,23 @@ function SetupScreen({
   const [timer, setTimer] = useState(60);
 
   function toggleCat(id: string) {
+    if (id === "all") {
+      setSelectedCats(["all"]);
+      return;
+    }
     setSelectedCats((prev) =>
-      prev.includes(id)
-        ? prev.length > 1
+      (prev.includes("all") ? [] : prev).includes(id)
+        ? (prev.includes("all") ? [] : prev).length > 1
           ? prev.filter((c) => c !== id)
           : prev
-        : [...prev, id]
+        : [...prev.filter((categoryId) => categoryId !== "all"), id]
     );
   }
+
+  const allCardsCount = useMemo(
+    () => categories.filter((category) => category.id !== "all").reduce((total, category) => total + category.characters.length, 0),
+    [categories],
+  );
 
   function start() {
     const trimmedNames = names
@@ -129,7 +140,7 @@ function SetupScreen({
               <span className="flex-1">
                 <span className="block font-bold">{cat.name}</span>
                 <span className="mt-0.5 block text-xs font-semibold text-white/35">
-                  {cat.characters.length} kariet
+                  {cat.id === "all" ? allCardsCount : cat.characters.length} kariet
                 </span>
               </span>
               {selectedCats.includes(cat.id) && (
