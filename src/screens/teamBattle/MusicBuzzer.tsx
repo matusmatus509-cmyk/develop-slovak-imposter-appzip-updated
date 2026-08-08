@@ -117,7 +117,7 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
     ? "Zvuky sú vypnuté"
     : status === "missing" ? "Ukážka nie je dostupná"
     : status === "error" ? "Prehrávanie sa nepodarilo"
-    : phase.type === "question" ? "Keď skladbu spoznáš, stlač svoj roh"
+    : phase.type === "question" ? ""
     : phase.type === "buzzed" ? `${participantWord} povie názov aj interpreta`
     : `${song?.artist} · 1 bod názov · 1 bod interpret`;
 
@@ -166,8 +166,8 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
           <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-300 to-transparent" />
           <TableReadout>
             <p className="text-[10px] font-black uppercase tracking-[.2em] text-violet-300/70">Hudobný kvíz · {questionIndex + 1}/{rounds}</p>
-            <h1 className="mt-2 text-2xl font-black leading-[1.02] tracking-[-.03em] text-white sm:text-3xl">{readoutTitle}</h1>
-            <p className="mt-2 text-sm font-bold leading-snug text-white/55">{readoutDetail}</p>
+            <h1 className="mt-2 text-3xl font-black leading-[.98] tracking-[-.04em] text-white sm:text-4xl">{readoutTitle}</h1>
+            {readoutDetail && <p className="mt-3 text-base font-bold leading-snug text-white/55">{readoutDetail}</p>}
           </TableReadout>
 
           <button
