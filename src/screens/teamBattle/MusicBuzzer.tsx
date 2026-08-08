@@ -21,9 +21,9 @@ const CORNERS = [
 function TableReadout({ children }: { children: ReactNode }) {
   return (
     <div className="absolute inset-0 flex flex-col">
-      <div className="flex flex-1 items-center justify-center px-5 pb-20 text-center rotate-180">{children}</div>
+      <div className="flex flex-1 rotate-180 flex-col items-center justify-center px-6 pb-20 text-center">{children}</div>
       <div className="relative h-px shrink-0 bg-gradient-to-r from-transparent via-violet-300/70 to-transparent" />
-      <div className="flex flex-1 items-center justify-center px-5 pt-20 text-center">{children}</div>
+      <div className="flex flex-1 flex-col items-center justify-center px-6 pt-20 text-center">{children}</div>
     </div>
   );
 }
@@ -165,8 +165,8 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
         <section className="party-glass absolute left-1/2 top-1/2 h-[min(70dvh,36rem)] w-[min(80vw,24rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[2.7rem] border-violet-300/25 shadow-[0_0_100px_rgba(139,92,246,.25)]">
           <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-300 to-transparent" />
           <TableReadout>
-            <p className="text-[10px] font-black uppercase tracking-[.2em] text-violet-300/70">Hudobný kvíz · {questionIndex + 1}/{rounds}</p>
-            <h1 className="mt-2 text-3xl font-black leading-[.98] tracking-[-.04em] text-white sm:text-4xl">{readoutTitle}</h1>
+            <p className="text-[11px] font-black uppercase tracking-[.22em] text-violet-300/75">Hudobný kvíz · {questionIndex + 1}/{rounds}</p>
+            <h1 className="mt-3 max-w-[16rem] text-[2.2rem] font-black leading-[.94] tracking-[-.045em] text-white sm:text-[2.65rem]">{readoutTitle}</h1>
             {readoutDetail && <p className="mt-3 text-base font-bold leading-snug text-white/55">{readoutDetail}</p>}
           </TableReadout>
 
