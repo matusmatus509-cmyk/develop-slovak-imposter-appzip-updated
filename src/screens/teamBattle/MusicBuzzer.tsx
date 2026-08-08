@@ -28,13 +28,13 @@ function TableReadout({ children }: { children: ReactNode }) {
   );
 }
 
-function DualAction({ children, onClick, className = "" }: { children: ReactNode; onClick: () => void; className?: string }) {
+function MirroredAction({ children, onClick, className = "" }: { children: ReactNode; onClick: () => void; className?: string }) {
+  const buttonClass = `party-shine w-full rounded-2xl px-4 py-3 text-sm font-black text-white shadow-xl transition active:scale-95 ${className}`;
   return (
-    <button onClick={onClick} className={`party-shine flex w-full flex-col items-center rounded-2xl px-4 py-2.5 text-xs font-black text-white shadow-xl transition active:scale-95 ${className}`}>
-      <span className="rotate-180">{children}</span>
-      <span className="my-1 h-px w-12 bg-white/25" />
-      <span>{children}</span>
-    </button>
+    <>
+      <div className="absolute inset-x-5 top-4 z-10 rotate-180"><button onClick={onClick} className={buttonClass}>{children}</button></div>
+      <div className="absolute inset-x-5 bottom-4 z-10"><button onClick={onClick} className={buttonClass}>{children}</button></div>
+    </>
   );
 }
 
@@ -165,9 +165,9 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
         <section className="party-glass absolute left-1/2 top-1/2 h-[min(70dvh,36rem)] w-[min(80vw,24rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[2.7rem] border-violet-300/25 shadow-[0_0_100px_rgba(139,92,246,.25)]">
           <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-300 to-transparent" />
           <TableReadout>
-            <p className="text-[8px] font-black uppercase tracking-[.22em] text-violet-300/65">Hudobný kvíz · {questionIndex + 1}/{rounds}</p>
-            <h1 className="mt-1 text-xl font-black leading-tight text-white sm:text-2xl">{readoutTitle}</h1>
-            <p className="mt-2 text-xs font-bold leading-snug text-white/50">{readoutDetail}</p>
+            <p className="text-[10px] font-black uppercase tracking-[.2em] text-violet-300/70">Hudobný kvíz · {questionIndex + 1}/{rounds}</p>
+            <h1 className="mt-2 text-2xl font-black leading-[1.02] tracking-[-.03em] text-white sm:text-3xl">{readoutTitle}</h1>
+            <p className="mt-2 text-sm font-bold leading-snug text-white/55">{readoutDetail}</p>
           </TableReadout>
 
           <button
@@ -182,14 +182,12 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
             </span>
           </button>
 
-          <div className="absolute left-1/2 top-[calc(50%+5rem)] z-10 w-[calc(100%-2rem)] max-w-[13rem] -translate-x-1/2">
-            {phase.type === "question" && (!soundAllowed || status === "missing" || status === "error") && (
-              <DualAction onClick={skipUnavailable} className="bg-gradient-to-r from-slate-700 to-slate-600">Ďalšia pesnička</DualAction>
-            )}
-            {phase.type === "buzzed" && (
-              <DualAction onClick={() => setPhase({ type: "revealed", participant: phase.participant })} className="bg-gradient-to-r from-violet-600 to-fuchsia-500">Odhaliť odpoveď</DualAction>
-            )}
-          </div>
+          {phase.type === "question" && (!soundAllowed || status === "missing" || status === "error") && (
+            <MirroredAction onClick={skipUnavailable} className="bg-gradient-to-r from-slate-700 to-slate-600">Ďalšia pesnička</MirroredAction>
+          )}
+          {phase.type === "buzzed" && (
+            <MirroredAction onClick={() => setPhase({ type: "revealed", participant: phase.participant })} className="bg-gradient-to-r from-violet-600 to-fuchsia-500">Odhaliť odpoveď</MirroredAction>
+          )}
         </section>
       </main>
     </PartyBackdrop>
