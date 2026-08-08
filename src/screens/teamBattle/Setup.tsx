@@ -13,6 +13,7 @@ import partyMinigameAtlas from "../../assets/party-minigame-atlas.png";
 import songGameHero from "../../assets/party-song-hero-v2.png";
 import letterGameHero from "../../assets/party-letter-hero-v2.png";
 import fiveTenGameHero from "../../assets/party-five-ten-hero-v2.png";
+import musicQuizGameHero from "../../assets/party-music-quiz-hero-v2.png";
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 
 const ALL_GAMES: GameType[] = [
@@ -33,7 +34,7 @@ const GAME_ART: Record<GameType, { src: string; position: string; size: string }
   pismeno: { src: letterGameHero, position: "50% 50%", size: "cover" },
   patzadesat: { src: fiveTenGameHero, position: "50% 50%", size: "cover" },
   hadajktosom: { src: partyMinigameAtlas, position: "66.667% 100%", size: "400% 300%" },
-  quiz: { src: partyMinigameAtlas, position: "100% 100%", size: "400% 300%" },
+  quiz: { src: musicQuizGameHero, position: "50% 50%", size: "cover" },
   pingpong: { src: minigameArtAtlas, position: "50% 50%", size: "300% 300%" },
 };
 

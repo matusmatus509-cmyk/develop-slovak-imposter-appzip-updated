@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import songArt from "../../assets/party-song.svg";
+import songArt from "../../assets/party-music-quiz-hero-v2.png";
 import { getSongCardsForLanguage } from "../../data/localizedSongs";
 import { useLanguage } from "../../i18n/LanguageProvider";
 import { useSongPreview } from "../../hooks/useSongPreview";
@@ -78,17 +78,17 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
 
   return (
     <PartyBackdrop>
-      <main className="flex h-full flex-col overflow-y-auto px-4 pb-6 pt-5 text-center">
-        <div className="mx-auto flex w-full max-w-md flex-1 flex-col">
+      <main className="flex h-[100dvh] flex-col overflow-hidden px-4 pb-4 pt-3 text-center">
+        <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col">
           <ParticipantScoreStrip names={participantNames} scores={scores} colors={PARTY_PLAYER_COLORS} activeIndex={phase.type === "question" || phase.participant === null ? undefined : phase.participant} />
-          <div className="mt-5 flex items-center justify-between">
+          <div className="mt-3 flex items-center justify-between">
             <PartyEyebrow>Hudobný kvíz</PartyEyebrow>
             <span className="text-[10px] font-black uppercase tracking-wider text-white/30">{questionIndex + 1}/{rounds}</span>
           </div>
 
-          <section className="party-glass relative mt-5 flex flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.2rem] px-6 py-7">
+          <section className="party-glass relative mt-3 flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.2rem] px-5 py-4">
             <div className="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/70 to-transparent" />
-            <div className="relative h-40 w-full max-w-sm shrink-0 overflow-hidden rounded-[1.8rem] border border-violet-300/20 shadow-[0_0_70px_rgba(167,139,250,.18)]">
+            <div className="relative h-28 w-full max-w-sm shrink-0 overflow-hidden rounded-[1.6rem] border border-violet-300/20 shadow-[0_0_70px_rgba(167,139,250,.18)] sm:h-32">
               <img src={songArt} alt="Ilustrácia hudobného kvízu" className="h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#120b24]/80 via-transparent to-violet-400/10" />
               <button
@@ -97,31 +97,31 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
                 aria-label={status === "playing" ? "Zastaviť pesničku" : "Prehrať pesničku"}
                 className="party-shine absolute inset-0 flex items-center justify-center transition active:scale-95 disabled:opacity-55"
               >
-                <span className={`flex h-24 w-24 items-center justify-center rounded-full border border-white/25 bg-black/40 text-5xl shadow-2xl backdrop-blur-md ${status === "loading" || status === "playing" ? "animate-pulse" : ""}`}>
+                <span className={`flex h-16 w-16 items-center justify-center rounded-full border border-white/25 bg-black/40 text-3xl shadow-2xl backdrop-blur-md ${status === "loading" || status === "playing" ? "animate-pulse" : ""}`}>
                   {status === "loading" ? "⌛" : status === "playing" ? "⏹️" : played ? "🎶" : "▶️"}
                 </span>
               </button>
             </div>
 
-            <h1 className="mt-5 text-2xl font-black text-white">
+            <h1 className="mt-3 text-xl font-black text-white sm:text-2xl">
               {phase.type === "question" ? (played ? "Kto pozná túto pesničku?" : "Prehrajte ukážku") : phase.type === "buzzed" ? `${participantNames[phase.participant]} odpovedá` : song?.title}
             </h1>
-            <p className="mt-2 max-w-xs text-sm leading-relaxed text-white/40">
+            <p className="mt-1 max-w-xs text-xs leading-relaxed text-white/45">
               {!soundAllowed ? "Zvuky sú vypnuté. Zapnite ich v nastaveniach alebo túto skladbu preskočte." : status === "missing" ? "Pre túto skladbu poskytovatelia nenašli ukážku. Preskočte ju bez straty bodov." : status === "error" ? "Ukážku sa nepodarilo prehrať. Skúste ju znova alebo skladbu preskočte." : phase.type === "question" ? `Keď ${gameMode === "teams" ? "tím" : "hráč"} spozná skladbu, stlačí svoj bzučiak.` : phase.type === "buzzed" ? `${participantWord} povie názov aj interpreta a moderátor potom odhalí odpoveď.` : `${song?.artist} · 1 bod za názov a 1 bod za interpreta`}
             </p>
             {phase.type === "revealed" && (
-              <div className="mt-5 rounded-2xl border border-violet-300/20 bg-violet-400/[.08] px-5 py-4">
-                <p className="text-xl font-black text-white">{song?.title}</p>
-                <p className="mt-1 text-sm font-bold text-violet-200/75">{song?.artist}</p>
+              <div className="mt-3 rounded-2xl border border-violet-300/20 bg-violet-400/[.08] px-4 py-3">
+                <p className="text-lg font-black text-white">{song?.title}</p>
+                <p className="mt-1 text-xs font-bold text-violet-200/75">{song?.artist}</p>
                 {source && <a href={source.link} target="_blank" rel="noreferrer" className="mt-2 block text-[9px] font-bold text-white/25 underline">Ukážka od hudobného poskytovateľa</a>}
               </div>
             )}
           </section>
 
 
-          <div className="mt-4">
+          <div className="mt-3 shrink-0">
             {phase.type === "question" && soundAllowed && status !== "missing" && status !== "error" && (
-              <div className="grid grid-cols-2 gap-3">
+              <div className={`grid gap-2 ${participantNames.length > 4 ? "grid-cols-4" : "grid-cols-2"}`}>
                 {participantNames.map((name, participant) => {
                   const color = PARTY_PLAYER_COLORS[participant % PARTY_PLAYER_COLORS.length];
                   return (
@@ -129,7 +129,7 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
                       key={`${name}-${participant}`}
                       disabled={!played}
                       onClick={() => { stop("ready"); playFeedback("buzzer"); setPhase({ type: "buzzed", participant }); }}
-                      className="party-shine overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30"
+                      className="party-shine overflow-hidden rounded-2xl py-3 text-sm font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30"
                       style={{ background: color }}
                     >
                       🔔<span className="mt-1 block truncate px-2 text-sm">{name}</span>

@@ -6,6 +6,7 @@ import partyMinigameAtlas from "../assets/party-minigame-atlas.png";
 import songGameHero from "../assets/party-song-hero-v2.png";
 import letterGameHero from "../assets/party-letter-hero-v2.png";
 import fiveTenGameHero from "../assets/party-five-ten-hero-v2.png";
+import musicQuizGameHero from "../assets/party-music-quiz-hero-v2.png";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -229,10 +230,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#d946ef",
     accentSoft: "rgba(217,70,239,.23)",
     deep: "#240b2f",
-    artPosition: "66.667% 50%",
-    art: partyMinigameAtlas,
-    artAtlas: true,
-    artSize: "400% 300%",
+    artPosition: "50% 50%",
+    art: musicQuizGameHero,
   },
   zvuk: {
     eyebrow: "Počúvaj a bzuč",

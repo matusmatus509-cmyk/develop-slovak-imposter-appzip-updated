@@ -10,7 +10,7 @@ import forbiddenArt from "../../assets/party-forbidden.svg";
 import soundArt from "../../assets/party-sound.svg";
 import letterArt from "../../assets/party-letter-hero-v2.png";
 import fiveTenArt from "../../assets/party-five-ten-hero-v2.png";
-import musicQuizArt from "../../assets/party-music-quiz.svg";
+import musicQuizArt from "../../assets/party-music-quiz-hero-v2.png";
 import { defaultPlayerName, defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 import SongGameArtwork from "../../components/SongGameArtwork";
 
