@@ -99,6 +99,8 @@ export default function TeamQuickGame({
   const [rounds, setRounds] = useState(options.defaultRounds);
   const [timeSeconds, setTimeSeconds] = useState(options.defaultTime);
   const maxPlayers = options.maxPlayers ?? 8;
+  const playerRange = `2–${maxPlayers}`;
+  const playerRangeDescription = maxPlayers === 4 ? "2 až 4 hráči" : "2 až 8 hráčov";
 
   function chooseMode(mode: QuickPlayMode) {
     setGameMode(mode);
@@ -192,7 +194,7 @@ export default function TeamQuickGame({
             <div className="absolute inset-0 bg-gradient-to-r from-[#080b13]/95 via-[#080b13]/35 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#080b13]/85 via-transparent to-black/10" />
             <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/20 blur-3xl" />
-            <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-3"><div><span className="quick-game-signature mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[8px] font-black uppercase tracking-[.2em] backdrop-blur"><GameGlyph game={game} size={12} /> {theme.eyebrow}</span><h1 className="max-w-[16rem] text-[2rem] font-black leading-[.98] tracking-[-.04em] text-white">{GAME_TITLES[game]}</h1></div><span className="setup-player-badge inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-black/35 px-3 py-2 text-[9px] font-black uppercase tracking-wider text-white/80 backdrop-blur"><Icons.users size={15} /> 2–8</span></div>
+            <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-3"><div><span className="quick-game-signature mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[8px] font-black uppercase tracking-[.2em] backdrop-blur"><GameGlyph game={game} size={12} /> {theme.eyebrow}</span><h1 className="max-w-[16rem] text-[2rem] font-black leading-[.98] tracking-[-.04em] text-white">{GAME_TITLES[game]}</h1></div><span className="setup-player-badge inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-black/35 px-3 py-2 text-[9px] font-black uppercase tracking-wider text-white/80 backdrop-blur"><Icons.users size={15} /> {playerRange}</span></div>
           </div>
 
           {!gameMode ? (
@@ -200,7 +202,7 @@ export default function TeamQuickGame({
               <div className="px-1 pb-3 pt-1"><p className="text-[9px] font-black uppercase tracking-[.22em]" style={{ color: accent }}>Spôsob bodovania</p><h2 className="mt-1 text-xl font-black tracking-[-.025em] text-white">Ako chcete hrať?</h2><p className="mt-1 text-[11px] font-medium leading-relaxed text-white/38">{theme.prompt}</p></div>
               <div className="space-y-3">
                 <button onClick={() => chooseMode("players")} className="quick-mode-choice quick-mode-choice-solo party-shine group flex w-full items-center gap-4 overflow-hidden rounded-[1.45rem] border p-3.5 text-left transition active:scale-[.98]">
-                  <span className="quick-mode-index">01</span><span className="quick-mode-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"><Icons.user size={27} /></span><span className="min-w-0 flex-1"><strong className="block text-[1.05rem] font-black text-white">Každý za seba</strong><small className="mt-1 block text-[11px] leading-snug text-white/45">2 až 8 hráčov · vlastné skóre</small></span><span className="quick-mode-arrow"><Icons.chevronRight size={18} /></span>
+                  <span className="quick-mode-index">01</span><span className="quick-mode-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"><Icons.user size={27} /></span><span className="min-w-0 flex-1"><strong className="block text-[1.05rem] font-black text-white">Každý za seba</strong><small className="mt-1 block text-[11px] leading-snug text-white/45">{playerRangeDescription} · vlastné skóre</small></span><span className="quick-mode-arrow"><Icons.chevronRight size={18} /></span>
                 </button>
                 <button onClick={() => chooseMode("teams")} className="quick-mode-choice quick-mode-choice-team party-shine group flex w-full items-center gap-4 overflow-hidden rounded-[1.45rem] border p-3.5 text-left transition active:scale-[.98]">
                   <span className="quick-mode-index">02</span><span className="quick-mode-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"><Icons.users size={28} /></span><span className="min-w-0 flex-1"><strong className="block text-[1.05rem] font-black text-white">Tímový režim</strong><small className="mt-1 block text-[11px] leading-snug text-white/45">Dva tímy · spoločné body</small></span><span className="quick-mode-arrow"><Icons.chevronRight size={18} /></span>
