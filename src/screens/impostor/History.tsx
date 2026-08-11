@@ -1,5 +1,6 @@
 import type { RoundHistoryEntry } from "../../types";
 import { Button, Shell, TopBar } from "../../components/ui";
+import { Icons } from "../../components/icons";
 import { formatTime } from "../../utils/format";
 
 export default function History({
@@ -26,7 +27,7 @@ export default function History({
           className="mx-auto mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-white/8 text-2xl"
           style={{ animation: "float 3s ease-in-out infinite" }}
         >
-          🕘
+          <Icons.clock size={25} />
         </div>
         <h1 className="text-2xl font-black">Histéria odohraných kôl</h1>
       </div>
@@ -38,7 +39,7 @@ export default function History({
           style={{ animation: "scaleIn 0.4s ease-out both" }}
         >
           <div className="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-full bg-sky-500/20 text-lg">
-            ⏱️
+            <Icons.timer size={18} />
           </div>
           <p className="text-xs font-bold uppercase tracking-wide text-sky-300">
             Herný čas
@@ -50,7 +51,7 @@ export default function History({
           style={{ animation: "scaleIn 0.4s ease-out 0.1s both" }}
         >
           <div className="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500/20 text-lg">
-            🏆
+            <Icons.trophy size={18} />
           </div>
           <p className="text-xs font-bold uppercase tracking-wide text-emerald-300">
             Úspešnosť
@@ -103,7 +104,7 @@ export default function History({
                     : "border-red-500/40 text-red-300"
                 }`}
               >
-                🏆
+                <Icons.trophy size={18} />
               </span>
             </div>
             <div className="mt-3 flex flex-wrap gap-2">
@@ -112,7 +113,7 @@ export default function History({
                   key={name}
                   className="flex items-center gap-1 rounded-full bg-red-500/15 px-2.5 py-1 text-xs font-bold text-red-300"
                 >
-                  🥸 {name}
+                  <Icons.mask size={14} /> {name}
                 </span>
               ))}
             </div>

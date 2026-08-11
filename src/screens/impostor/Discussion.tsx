@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { GameSettings } from "../../types";
 import { Button, Shell, TopBar } from "../../components/ui";
+import { Icons } from "../../components/icons";
 import { formatTime } from "../../utils/format";
 import { useCountdown, useStopwatch } from "../../hooks/useCountdown";
 
@@ -125,12 +126,12 @@ export default function Discussion({
           onClick={() => setPaused((p) => !p)}
           className="rounded-2xl border border-white/15 bg-white/8 px-6 py-2.5 text-sm font-bold transition-all hover:bg-white/12 active:scale-95"
         >
-          {paused ? "▶ Pokračovať" : "⏸ Pozastaviť"}
+          <span className="inline-flex items-center gap-2">{paused ? <Icons.play size={16} /> : <Icons.pause size={16} />}{paused ? "Pokračovať" : "Pozastaviť"}</span>
         </button>
       </div>
 
       <Button fullWidth variant="secondary" onClick={() => finish(elapsed)}>
-        Prejsť na hlasovanie 🗳️
+        <span className="inline-flex items-center gap-2">Prejsť na hlasovanie <Icons.users size={18} /></span>
       </Button>
     </Shell>
   );

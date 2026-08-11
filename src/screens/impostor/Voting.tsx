@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { GameSettings } from "../../types";
 import { Button, Shell, TopBar } from "../../components/ui";
+import { Icons } from "../../components/icons";
 import { cn } from "../../utils/designTokens";
 
 export default function Voting({
@@ -19,7 +20,8 @@ export default function Voting({
       <TopBar title="Hlasovanie" onBack={onExit} />
 
       <div className="mb-6 text-center" style={{ animation: "fadeIn 0.5s ease-out" }}>
-        <h1 className="text-2xl font-black">Na koho hlasujete? 🗳️</h1>
+        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl border border-fuchsia-300/20 bg-fuchsia-500/10 text-fuchsia-200"><Icons.users size={23} /></div>
+        <h1 className="text-2xl font-black">Na koho hlasujete?</h1>
         <p className="mt-2 text-sm text-white/50">
           Nahlas prediskutujte a vyberte hráča, ktorého skupina podozrieva z
           toho, že je podvodník.
@@ -45,7 +47,7 @@ export default function Voting({
                 className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-fuchsia-500/40 text-white"
                 style={{ animation: "popIn 0.3s ease-out" }}
               >
-                ✓
+                <Icons.circleCheck size={15} />
               </span>
             )}
             <span
@@ -65,7 +67,7 @@ export default function Voting({
 
       <div className="mt-3 flex flex-col gap-3">
         <Button fullWidth disabled={selected === null} onClick={() => onConfirm(selected)}>
-          Odhaliť podvodníka 🔍
+          <span className="inline-flex items-center gap-2">Odhaliť podvodníka <Icons.eye size={18} /></span>
         </Button>
         <Button fullWidth variant="ghost" onClick={() => onConfirm(null)}>
           Preskočiť hlasovanie

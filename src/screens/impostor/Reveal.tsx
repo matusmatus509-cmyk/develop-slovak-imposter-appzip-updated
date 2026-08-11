@@ -154,7 +154,7 @@ export default function Reveal({
           </div>
 
           <Button fullWidth onClick={handleDoneViewing}>
-            Hotovo ✓
+            <span className="inline-flex items-center gap-2">Hotovo <Icons.circleCheck size={18} /></span>
           </Button>
         </div>
       </Shell>
@@ -205,7 +205,7 @@ export default function Reveal({
                       : "bg-white/10 text-white/40"
                   )}
                 >
-                  {done ? "✓" : <Icons.helpCircle size={16} />}
+                  {done ? <Icons.circleCheck size={16} /> : <Icons.helpCircle size={16} />}
                 </span>
 
                 {/* avatar */}
