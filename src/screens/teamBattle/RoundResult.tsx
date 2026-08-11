@@ -1,4 +1,5 @@
 import type { BattleRound } from "../../data/teamBattle";
+import { Icons } from "../../components/icons";
 import { GAME_ICONS, GAME_LABELS, TEAM_COLORS } from "../../data/teamBattle";
 import { PartyBackdrop, PartyEyebrow, PartyScoreboard } from "./PartyChrome";
 
@@ -32,7 +33,7 @@ export default function RoundResult({
         <div className="mx-auto flex w-full max-w-md flex-col gap-5">
           <header>
             <PartyEyebrow>Výsledok {round.index + 1}. kola</PartyEyebrow>
-            <div className="mt-6 text-5xl">{roundWinner === null ? "🤝" : "🏆"}</div>
+            <div className="mx-auto mt-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-400/10 text-amber-200">{roundWinner === null ? <Icons.users size={31} /> : <Icons.trophy size={31} />}</div>
             <p className="mt-4 text-[10px] font-black uppercase tracking-[0.22em] text-white/35">
               {GAME_ICONS[round.game]} {GAME_LABELS[round.game]}
             </p>

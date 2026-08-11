@@ -48,7 +48,7 @@ function buildDeck(categories: CharacterCategory[], catIds: string[], extraCards
     const key = word.trim().toLocaleLowerCase("sk");
     if (!key || seen.has(key)) continue;
     seen.add(key);
-    cards.push({ id: `custom:${id}`, word, categoryName: "✨ Vlastná téma" });
+      cards.push({ id: `custom:${id}`, word, categoryName: "Vlastná téma" });
   }
   return cards;
 }
@@ -220,7 +220,7 @@ function SetupScreen({
       </div>
 
       <Button fullWidth onClick={start} className="hover:scale-[1.02] active:scale-95">
-        🎭 Začať hru
+        <span className="inline-flex items-center gap-2"><Icons.mask size={18} /> Začať hru</span>
       </Button>
     </Shell>
   );
@@ -570,7 +570,7 @@ export default function HadajKtoSom({
             </p>
           </div>
           <Button fullWidth onClick={startPlaying}>
-            🚀 Začať!
+            <span className="inline-flex items-center gap-2"><Icons.play size={18} /> Začať!</span>
           </Button>
         </div>
       </Shell>
@@ -637,9 +637,7 @@ export default function HadajKtoSom({
           <TurnAnswerRecap answers={roundAnswers} />
 
           <Button fullWidth onClick={handleNext}>
-            {isLast
-              ? "🏆 Zobraziť výsledky"
-              : `➡️ Ďalší: ${nextName}`}
+            <span className="inline-flex items-center gap-2">{isLast ? <Icons.trophy size={18} /> : <Icons.chevronRight size={18} />}{isLast ? "Zobraziť výsledky" : `Ďalší: ${nextName}`}</span>
           </Button>
         </div>
       </Shell>
@@ -684,9 +682,7 @@ export default function HadajKtoSom({
                 }`}
                 style={{ animation: `slideUp 0.5s ease-out ${0.1 + rank * 0.08}s both` }}
               >
-                <span className="text-xl w-8 text-center">
-                  {rank === 0 ? "🥇" : rank === 1 ? "🥈" : rank === 2 ? "🥉" : `${rank + 1}.`}
-                </span>
+                <span className={`flex h-8 w-8 items-center justify-center rounded-xl border text-xs font-black ${rank === 0 ? "border-yellow-300/30 bg-yellow-300/10 text-yellow-200" : "border-white/10 bg-white/5 text-white/50"}`}>{rank === 0 ? <Icons.trophy size={16} /> : rank + 1}</span>
                 <span className="flex-1 font-bold">{p.name}</span>
                 <span className="text-green-400 font-black text-xl">{p.correct}</span>
                 <span className="text-white/30 text-sm">
@@ -704,7 +700,7 @@ export default function HadajKtoSom({
                 players[1]?.correct ?? 0,
               ])}
             >
-              🏁 Pokračovať v Party mode
+              <span className="inline-flex items-center gap-2"><Icons.chevronRight size={17} /> Pokračovať v Party mode</span>
             </Button>
           ) : (
             <>
@@ -716,7 +712,7 @@ export default function HadajKtoSom({
                     setPhase("who-starts");
                   }}
                 >
-                  🔄 Hrať znova
+                  <span className="inline-flex items-center gap-2"><Icons.refresh size={17} /> Hrať znova</span>
                 </Button>
                 <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
                   Nastavenia

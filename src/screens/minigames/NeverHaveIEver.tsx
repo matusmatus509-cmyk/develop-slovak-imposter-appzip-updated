@@ -31,11 +31,14 @@ export default function NeverHaveIEver({ onBack, customEntries = [], customContr
   function next() { setCard(draw()); }
 
   return <Shell><TopBar title="Nikdy som nikdy" onBack={onBack} /><div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-    <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-emerald-500/20 to-teal-500/20"><Icons.wine size={46} className="text-emerald-400" /></div>
+    <div className="relative flex h-24 w-24 items-center justify-center rounded-[2rem] border border-emerald-200/20 bg-gradient-to-br from-emerald-400/20 via-teal-400/10 to-cyan-500/15 shadow-[0_20px_55px_rgba(16,185,129,.18)]">
+      <span className="absolute inset-2 rounded-[1.55rem] border border-white/[.07]" />
+      <Icons.wine size={48} className="relative text-emerald-200 drop-shadow-[0_6px_16px_rgba(52,211,153,.35)]" />
+    </div>
     {customControls && <div className="w-full"><CustomContentSelector controls={customControls} compact /></div>}
     <p className="text-xs font-bold uppercase tracking-widest text-white/40">Ak si to robil/a, napi sa alebo zdvihni prst</p>
-    {card.source === "custom" && <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-[9px] font-black text-emerald-300">✨ Vlastná kartička</span>}
+    {card.source === "custom" && <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-3 py-1 text-[9px] font-black text-emerald-300"><Icons.sparkles size={12} /> Vlastná kartička</span>}
     <div className="glass w-full rounded-3xl border border-emerald-500/30 bg-emerald-500/10 p-8"><p className="text-xl font-bold leading-relaxed" data-no-translate>{card.text}</p></div>
-    <p className="text-xs text-white/40">Karty sa neopakujú, kým sa neminú všetky</p><Button fullWidth onClick={next}>Ďalší výrok ➡️</Button>
+    <p className="text-xs text-white/40">Karty sa neopakujú, kým sa neminú všetky</p><Button fullWidth onClick={next}><span className="inline-flex items-center gap-2">Ďalší výrok <Icons.chevronRight size={17} /></span></Button>
   </div></Shell>;
 }

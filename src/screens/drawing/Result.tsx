@@ -1,4 +1,5 @@
 import type { GameSettings, RoundAssignment } from "../../types";
+import { Icons } from "../../components/icons";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { cn } from "../../utils/designTokens";
 
@@ -72,7 +73,7 @@ export default function DrawingResult({
           style={{ animation: "popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both" }}
         >
           <span style={playersWon ? { animation: "tada 0.8s ease-in-out 0.3s 2" } : undefined}>
-            {playersWon ? "🏆" : "😈"}
+            {playersWon ? <Icons.trophy size={38} /> : <Icons.mask size={38} />}
           </span>
         </div>
 
@@ -128,7 +129,7 @@ export default function DrawingResult({
                     animationDelay: `${300 + i * 80}ms`,
                   }}
                 >
-                  🥸 {name}
+                  <Icons.mask size={15} /> {name}
                 </span>
               ))}
             </div>
@@ -145,7 +146,7 @@ export default function DrawingResult({
           onClick={onNewRound}
           className="transition-transform duration-200 hover:scale-[1.02] active:scale-95"
         >
-          Ďalšie kolo 🔁
+          <span className="inline-flex items-center gap-2">Ďalšie kolo <Icons.refresh size={17} /></span>
         </Button>
         <Button
           fullWidth

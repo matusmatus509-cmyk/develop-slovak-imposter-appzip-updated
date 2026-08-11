@@ -5,6 +5,7 @@ import CustomContentSelector, { type CustomContentControls } from "../../compone
 import { useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
 import type { WorkshopEntry } from "../../types";
+import { Icons } from "../../components/icons";
 
 export default function HadajEmoji({ onBack, customEntries = [], customControls }: { onBack: () => void; customEntries?: WorkshopEntry[]; customControls?: CustomContentControls }) {
   const { language } = useLanguage();
@@ -44,9 +45,9 @@ export default function HadajEmoji({ onBack, customEntries = [], customControls 
     {customControls && <div className="w-full"><CustomContentSelector controls={customControls} compact /></div>}
     <div className="w-full"><p className="mb-3 text-xs font-bold uppercase tracking-widest text-white/40">Vyber kategóriu</p><div className="flex flex-wrap justify-center gap-2">{categories.map((item) => <button key={item.id} onClick={() => selectCategory(item)} className={`rounded-2xl border px-3 py-2 text-sm font-bold ${item.id === categoryId ? "border-amber-300/70 bg-amber-400/20 text-amber-200" : "border-white/10 bg-white/5 text-white/55"}`}>{item.icon} {item.title}</button>)}</div></div>
     <div><p className="text-xs font-bold uppercase tracking-widest text-amber-300/70">{category.icon} {category.title}</p><p className="mt-1 text-xs text-white/40">Čo tieto emoji znamenajú?</p></div>
-    {category.id === "custom" && <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-[9px] font-black text-emerald-300">✨ Vlastná kartička</span>}
+    {category.id === "custom" && <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-3 py-1 text-[9px] font-black text-emerald-300"><Icons.sparkles size={12} /> Vlastná kartička</span>}
     <div className="glass w-full rounded-3xl border border-amber-400/20 bg-amber-400/10 p-10" key={`${categoryId}-${puzzle.answer}`}><p className="text-5xl leading-tight tracking-widest sm:text-6xl">{puzzle.emoji}</p></div>
-    {!revealed ? <button onClick={() => setRevealed(true)} className="w-full rounded-2xl border border-white/15 bg-white/8 py-4 text-base font-bold text-white/70">Odhaliť odpoveď 👁️</button> : <div className="glass w-full rounded-3xl border border-green-400/40 bg-green-400/10 p-6"><p className="mb-2 text-xs font-bold uppercase tracking-widest text-green-400/70">Odpoveď</p><p className="text-3xl font-black">{puzzle.answer}</p></div>}
-    <Button fullWidth onClick={next}>Ďalší ➡️</Button>
+    {!revealed ? <button onClick={() => setRevealed(true)} className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/8 py-4 text-base font-bold text-white/70"><Icons.eye size={19} /> Odhaliť odpoveď</button> : <div className="glass w-full rounded-3xl border border-green-400/40 bg-green-400/10 p-6"><p className="mb-2 text-xs font-bold uppercase tracking-widest text-green-400/70">Odpoveď</p><p className="text-3xl font-black">{puzzle.answer}</p></div>}
+    <Button fullWidth onClick={next}><span className="inline-flex items-center gap-2">Ďalší <Icons.chevronRight size={17} /></span></Button>
   </div></Shell>;
 }

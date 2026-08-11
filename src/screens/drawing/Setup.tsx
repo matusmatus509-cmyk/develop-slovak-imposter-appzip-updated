@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Icons } from "../../components/icons";
 import { DRAWING_CATEGORIES } from "../../data/drawingCategories";
 import type { GameSettings } from "../../types";
 import { Button, Chip, Shell, Stepper, TopBar } from "../../components/ui";
@@ -202,7 +203,7 @@ export default function DrawingSetup({
         className="mt-4 transition-transform duration-200 hover:scale-[1.02] active:scale-95"
         style={{ animation: "slideUp 0.5s ease-out 250ms both" }}
       >
-        Spustiť kreslenie 🎨
+        <span className="inline-flex items-center gap-2">Spustiť kreslenie <Icons.palette size={18} /></span>
       </Button>
     </Shell>
   );
