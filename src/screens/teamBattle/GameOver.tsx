@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Icons } from "../../components/icons";
 import { TEAM_COLORS } from "../../data/teamBattle";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { useFeedback } from "../../feedback/FeedbackProvider";
@@ -113,8 +114,8 @@ export default function GameOver({
           <section className={`mt-7 w-full transition-all duration-700 ${revealed ? "translate-y-0 scale-100 opacity-100" : "translate-y-8 scale-75 opacity-0"}`} aria-live="polite">
             <div className={`party-winner-trophy relative mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-amber-200/30 bg-gradient-to-br from-amber-300/25 via-fuchsia-500/15 to-violet-700/20 shadow-[0_0_75px_rgba(251,191,36,.25)] ${celebrating ? "is-celebrating" : ""}`}>
               <div className="absolute inset-2 rounded-full border border-dashed border-white/15 animate-spin [animation-duration:12s]" />
-              <span className={`relative text-6xl ${isDraw ? "" : "animate-bounce"}`} style={!isDraw ? { animationDuration: "1.15s" } : undefined}>
-                {isDraw ? "🤝" : "🏆"}
+              <span className={`relative text-amber-200 ${isDraw ? "" : "animate-bounce"}`} style={!isDraw ? { animationDuration: "1.15s" } : undefined}>
+                {isDraw ? <Icons.users size={52} /> : <Icons.trophy size={52} />}
               </span>
             </div>
             <p className="mt-6 text-[10px] font-black uppercase tracking-[0.3em] text-amber-300/70">

@@ -30,16 +30,15 @@ interface Card {
   id?: string;
   word: string;
   category: string;
-  categoryIcon: string;
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function buildDeck(difficulty: string, extraCards: Array<{ id: string; word: string }> = [], language: AppLanguage = "sk"): Card[] {
-  const labels: Record<CharadesDifficulty, { name: string; icon: string }> = {
-    lahke: { name: "Ľahké", icon: "🟢" },
-    stredne: { name: "Stredné", icon: "🟡" },
-    tazke: { name: "Ťažké", icon: "🔴" },
+  const labels: Record<CharadesDifficulty, { name: string }> = {
+    lahke: { name: "Ľahké" },
+    stredne: { name: "Stredné" },
+    tazke: { name: "Ťažké" },
   };
   const levels: CharadesDifficulty[] = difficulty === "all"
     ? ["lahke", "stredne", "tazke"]
@@ -50,7 +49,6 @@ function buildDeck(difficulty: string, extraCards: Array<{ id: string; word: str
       id: card.id,
       word: card.text,
       category: labels[level]?.name ?? "Šarády",
-      categoryIcon: labels[level]?.icon ?? "💬",
     })),
   );
   const seen = new Set<string>();
@@ -63,7 +61,6 @@ function buildDeck(difficulty: string, extraCards: Array<{ id: string; word: str
   const fallback: Card[] = ALL_SOLO_CHARADES_WORDS.map((word) => ({
     word,
     category: "Šarády",
-    categoryIcon: "💬",
   }));
   const pool: Card[] = uniqueCards.length > 0 ? uniqueCards : fallback;
   for (const { id, word } of extraCards) {
@@ -72,7 +69,7 @@ function buildDeck(difficulty: string, extraCards: Array<{ id: string; word: str
     // Vlastné/importované šarády dodržiavajú rovnaké pravidlá ako vstavané.
     if (!isValidCharadeText(normalizedWord) || seen.has(key)) continue;
     seen.add(key);
-    pool.push({ id: `custom:${id}`, word: normalizedWord, category: "Vlastná téma", categoryIcon: "✨" });
+    pool.push({ id: `custom:${id}`, word: normalizedWord, category: "Vlastná téma" });
   }
   return pool;
 }
@@ -148,10 +145,10 @@ function SetupScreen({
         </p>
         <div className="flex gap-2">
           {[
-            { key: "all", label: "Všetky", icon: "📦", count: ALL_SOLO_CHARADES_WORDS.length },
-            { key: "lahke", label: "Ľahké", icon: "🟢", count: SOLO_CHARADES_WORDS.lahke.length },
-            { key: "stredne", label: "Stredné", icon: "🟡", count: SOLO_CHARADES_WORDS.stredne.length },
-            { key: "tazke", label: "Ťažké", icon: "🔴", count: SOLO_CHARADES_WORDS.tazke.length },
+            { key: "all", label: "Všetky", tone: "bg-purple-300", count: ALL_SOLO_CHARADES_WORDS.length },
+            { key: "lahke", label: "Ľahké", tone: "bg-emerald-300", count: SOLO_CHARADES_WORDS.lahke.length },
+            { key: "stredne", label: "Stredné", tone: "bg-amber-300", count: SOLO_CHARADES_WORDS.stredne.length },
+            { key: "tazke", label: "Ťažké", tone: "bg-rose-300", count: SOLO_CHARADES_WORDS.tazke.length },
           ].map((d) => (
             <button
               key={d.key}
@@ -162,7 +159,7 @@ function SetupScreen({
                   : "border-white/10 bg-white/5 text-white/50"
               }`}
             >
-              <span>{d.icon} {d.label}</span>
+              <span className="inline-flex items-center gap-1.5"><i className={`h-2 w-2 rounded-full ${d.tone}`} />{d.label}</span>
               <span className="text-[10px] font-semibold opacity-55">{d.count} kariet</span>
             </button>
           ))}
@@ -287,7 +284,7 @@ function SetupScreen({
           )
         }
       >
-        🎭 Začať šarády
+        <span className="inline-flex items-center gap-2"><Icons.mask size={18} /> Začať šarády</span>
       </Button>
     </Shell>
   );
@@ -446,7 +443,7 @@ function PlayingScreen({
           style={{ animation: "popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both" }}
         >
           <p className="mb-3 text-xs font-bold uppercase tracking-widest text-gray-400">
-            {card?.categoryIcon} {card?.category}
+              <span className="inline-flex items-center gap-1.5"><Icons.mask size={14} /> {card?.category}</span>
           </p>
           <p
             className="font-black text-gray-900 leading-tight break-words hyphens-auto"
@@ -640,7 +637,7 @@ export default function SlovnaRosada({
             Čas: <strong className="text-white">{timerSecs}s</strong>.
           </div>
           <Button fullWidth onClick={() => setPhase("playing")}>
-            🚀 Štart!
+            <span className="inline-flex items-center gap-2"><Icons.play size={18} /> Štart!</span>
           </Button>
         </div>
       </Shell>
@@ -743,9 +740,7 @@ export default function SlovnaRosada({
           )}
 
           <Button fullWidth onClick={handleNext}>
-            {isLast
-              ? "🏆 Výsledky"
-              : `➡️ Ďalší: ${nextPlayer?.name}`}
+            <span className="inline-flex items-center gap-2">{isLast ? <Icons.trophy size={18} /> : <Icons.chevronRight size={18} />}{isLast ? "Výsledky" : `Ďalší: ${nextPlayer?.name}`}</span>
           </Button>
         </div>
       </Shell>
@@ -798,7 +793,7 @@ export default function SlovnaRosada({
                       team === 0 ? "text-blue-300" : "text-orange-300"
                     }`}
                   >
-                    {team === winner.team ? "🥇 " : "🥈 "}Tím {team + 1}
+                    <span className="inline-flex items-center gap-2">{team === winner.team && <Icons.trophy size={17} />}Tím {team + 1}</span>
                   </span>
                   <span className="text-2xl font-black text-white">{score}</span>
                 </div>
@@ -822,13 +817,13 @@ export default function SlovnaRosada({
                   partyConfig.onDone(scores);
                 }}
               >
-                🏁 Pokračovať v Party mode
+                <span className="inline-flex items-center gap-2"><Icons.chevronRight size={17} /> Pokračovať v Party mode</span>
               </Button>
             ) : (
               <>
                 <div className="flex gap-3">
                   <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty, extraCards, language)); setPhase("who-starts"); }}>
-                    🔄 Znova
+                    <span className="inline-flex items-center gap-2"><Icons.refresh size={17} /> Znova</span>
                   </Button>
                   <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
                     Nastavenia
@@ -873,9 +868,7 @@ export default function SlovnaRosada({
                 }`}
                 style={{ animation: `slideUp 0.5s ease-out ${0.1 + rank * 0.08}s both` }}
               >
-                <span className="text-xl w-8 text-center">
-                  {rank === 0 ? "🥇" : rank === 1 ? "🥈" : rank === 2 ? "🥉" : `${rank + 1}.`}
-                </span>
+                <span className={`flex h-8 w-8 items-center justify-center rounded-xl border text-xs font-black ${rank === 0 ? "border-yellow-300/30 bg-yellow-300/10 text-yellow-200" : "border-white/10 bg-white/5 text-white/50"}`}>{rank === 0 ? <Icons.trophy size={16} /> : rank + 1}</span>
                 <span className="flex-1 font-bold">{p.name}</span>
                 <span className="text-green-400 font-black text-xl">{p.score}</span>
               </div>
@@ -884,7 +877,7 @@ export default function SlovnaRosada({
 
           <div className="flex gap-3">
             <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty, extraCards, language)); setPhase("who-starts"); }}>
-              🔄 Znova
+              <span className="inline-flex items-center gap-2"><Icons.refresh size={17} /> Znova</span>
             </Button>
             <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
               Nastavenia

@@ -1,4 +1,5 @@
 import type { WorkshopCollection, WorkshopSelection } from "../types";
+import { Icons } from "./icons";
 
 export interface CustomContentControls {
   collections: WorkshopCollection[];
@@ -31,7 +32,7 @@ export default function CustomContentSelector({ controls, compact = false }: { c
         aria-pressed={selection.enabled}
         className="flex w-full items-center gap-3 text-left disabled:opacity-50"
       >
-        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-300/12 text-lg">✨</span>
+        <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-emerald-200/15 bg-emerald-300/12 text-emerald-200"><Icons.sparkles size={18} /></span>
         <span className="min-w-0 flex-1">
           <strong className="block text-xs font-black text-white">Vlastné kartičky</strong>
           <small className="mt-0.5 block text-[10px] text-white/45">

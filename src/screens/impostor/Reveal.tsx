@@ -78,7 +78,7 @@ export default function Reveal({
               )}
               style={{ animation: "ring 1.5s ease-in-out infinite" }}
             >
-              {isImpostor ? "🥸" : "🙂"}
+              {isImpostor ? <Icons.mask size={44} /> : <Icons.smile size={44} />}
             </div>
 
             {isImpostor ? (
@@ -244,7 +244,7 @@ export default function Reveal({
             </p>
           </div>
           <Button fullWidth onClick={onDone}>
-            {mode === "drawing" ? "Začať kreslenie 🎨" : "Začať diskusiu 💬"}
+            <span className="inline-flex items-center gap-2">{mode === "drawing" ? <Icons.palette size={18} /> : <Icons.messageCircle size={18} />}{mode === "drawing" ? "Začať kreslenie" : "Začať diskusiu"}</span>
           </Button>
         </div>
       )}

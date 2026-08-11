@@ -38,7 +38,7 @@ export const ChevronUp = createIcon([["M18 15l-6-6-6 6"]]);
 export const ChevronDown = createIcon([["M6 9l6 6 6-6"]]);
 
 export const X = createIcon([["M18 6L6 18", "M6 6l12 12"]]);
-export const XCircle = createIcon([["M22 2C13.7 2 7 8.7 7 17s6.7 15 15 15 15-6.7 15-15S30.3 2 22 2z", "M15 9l6 6", "M9 15l6-6"]]);
+export const XCircle = createIcon([["M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z", "m15 9-6 6", "m9 9 6 6"]]);
 
 export const Home = createIcon([["M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z", "M9 22V12h6v10"]]);
 export const Settings = createIcon([["M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z", "M12 14a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"]]);
@@ -47,7 +47,7 @@ export const Menu = createIcon([["M3 12h18", "M3 6h18", "M3 18h18"]]);
 export const MoreHorizontal = createIcon([["M21 12h-18", "M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z", "M3 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"]]);
 
 // ── Game Icons ───────────────────────────────────────────────────────
-export const Gamepad = createIcon([["M6 12h4", "M8 10v4", "M15 13h.01", "M18 11h.01", "M17.32 5H6.68a4 4 0 0 0-3.98 3.59l-.7 7A3 3 0 0 0 4.99 19h.79a2 2 0 0 0 1.56-.75L9 16h6l1.66 2.25a2 2 0 0 0 1.56.75h.79A3 3 0 0 0 22 15.59l-.7-7A4 4 0 0 0 17.32 5Z"]]);
+export const Gamepad = createIcon([["M6 11h4", "M8 9v4", "M15 12h.01", "M18 10h.01", "M17.3 5H6.7a4 4 0 0 0-3.98 3.6l-.7 7A3 3 0 0 0 5 19h.8a2 2 0 0 0 1.56-.75L9 16h6l1.64 2.25A2 2 0 0 0 17.2 19h.8a3 3 0 0 0 2.98-3.4l-.7-7A4 4 0 0 0 17.3 5Z"]]);
 export const Users = createIcon([["M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", "M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z", "M22 21v-2a4 4 0 0 0-3-3.87", "M16 3.13a4 4 0 0 1 0 7.75"]]);
 export const UserPlus = createIcon([["M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", "M22 11a4 4 0 1 1-8 0 4 4 0 0 1 8 0z", "M22 16v6", "M19 19h-6"]]);
 export const UserMinus = createIcon([["M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", "M22 11a4 4 0 1 1-8 0 4 4 0 0 1 8 0z", "M19 19H9"]]);
@@ -55,17 +55,17 @@ export const UserCheck = createIcon([["M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2
 export const UserX = createIcon([["M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2", "M22 11a4 4 0 1 1-8 0 4 4 0 0 1 8 0z", "M22 16l-6 6", "M16 16l6 6"]]);
 
 export const Star = createIcon([["M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"]]);
-export const Award = createIcon([["M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"]]);
-export const Trophy = createIcon([["M6 9H4.5a2.5 2.5 0 0 1 0-5H15", "M18 9h1.5a2.5 2.5 0 0 0 0-5H9", "M4 22h16", "M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.16 6 19.48 6 22h16c0-2.52-1.85-3.84-3.03-3.79-.5-.23-.97-.66-.97-1.21V14.66", "M18 2H6"]]);
-export const Crown = createIcon([["M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"]]);
+export const Award = createIcon([["M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z", "M8.2 13.8 7 22l5-3 5 3-1.2-8.2", "m9.5 8.5 1.5 1.5 3.5-3.5"]]);
+export const Trophy = createIcon([["M8 21h8", "M12 17v4", "M7 4h10v4a5 5 0 0 1-10 0V4Z", "M7 6H4v1a4 4 0 0 0 4 4", "M17 6h3v1a4 4 0 0 1-4 4"]]);
+export const Crown = createIcon([["m3 6 3 12h12l3-12-6 4-3-6-3 6-6-4Z", "M6 22h12", "M6 18h12"]]);
 
-export const Target = createIcon([["M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z", "M12 20c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z", "M12 6c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6z"]]);
+export const Target = createIcon([["M22 12a10 10 0 1 1-10-10", "M18 12a6 6 0 1 1-6-6", "M14 12a2 2 0 1 1-2-2", "M22 2 12 12", "M16 2h6v6"]]);
 export const Zap = createIcon([["M4 14a1 1 0 0 1-.78-1.63l9.9-10.27a.5.5 0 0 1 .86.03l9.8 10.27a1 1 0 0 1-.79 1.63H14.56l-2.25 2.74a1 1 0 0 1-.14.05H6.48a1 1 0 0 1-.9-.64L4 14z"]]);
-export const Sparkles = createIcon([["M12 2l1 4", "M22 12l-4 1", "M12 22l-1-4", "M2 12l4-1", "M5 5l2 2", "M17 5l-2 2", "M5 19l2-2", "M17 19l-2-2"]]);
+export const Sparkles = createIcon([["m12 3-1.2 3.3L7.5 7.5l3.3 1.2L12 12l1.2-3.3 3.3-1.2-3.3-1.2L12 3Z", "m5 14-.8 2.2L2 17l2.2.8L5 20l.8-2.2L8 17l-2.2-.8L5 14Z", "m19 13-1 2.7-2.7 1 2.7 1 1 2.7 1-2.7 2.7-1-2.7-1-1-2.7Z"]]);
 
 export const MessageCircle = createIcon([["M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"]]);
 export const MessageSquare = createIcon([["M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"]]);
-export const Bell = createIcon([["M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9", "M13.73 21a2 2 0 0 1-3.46 0"]]);
+export const Bell = createIcon([["M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9", "M13.73 21a2 2 0 0 1-3.46 0"]]);
 export const BellOff = createIcon([["M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9", "M13.73 21a2 2 0 0 1-3.46 0", "M10 8a6 6 0 0 1 12 0", "M6 8a6 6 0 0 0 12 0", "M22 2l-10 10"]]);
 
 export const AlertTriangle = createIcon([["M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z", "M12 9v4", "M12 17h.01"]]);
@@ -80,7 +80,7 @@ export const Circle = createIcon([["M22 12h-4", "M2 12h4", "M12 2v4", "M12 22v-4
 export const Heart = createIcon([["M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"]]);
 export const HeartHandshake = createIcon([["M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"]]);
 
-export const Music = createIcon([["M9 18V5l12-2v13", "M9 9h12v6H9z"]]);
+export const Music = createIcon([["M9 18V5l12-2v13", "M9 9l12-2", "M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z", "M18 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"]]);
 export const Volume2 = createIcon([["M11 4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h4", "M15.54 8.46a5 5 0 0 1 0 7.07", "M19.07 4.93a10 10 0 0 1 0 14.14"]]);
 export const VolumeX = createIcon([["M11 4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h4", "M15.54 8.46a5 5 0 0 1 0 7.07", "M17 17l-5-5", "M12 12l5 5"]]);
 
@@ -95,11 +95,11 @@ export const Puzzle = createIcon([["M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4a2 2 
 export const Shield = createIcon([["M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"]]);
 export const ShieldCheck = createIcon([["M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z", "M9 12l2 2 4-4"]]);
 
-export const Sword = createIcon([["M18 6 3 21", "M6 18l12-12", "M15 3l5 5", "M21 9l-5 5"]]);
+export const Sword = createIcon([["m14.5 5.5 4-4 4 4-4 4", "M13 7 3 17l4 4L17 11", "M2 22l5-1-4-4-1 5Z"]]);
 export const Crosshair = createIcon([["M22 12h-4", "M2 12h4", "M12 2v4", "M12 22v-4", "M12 12a10 10 0 0 0-10 10", "M22 12a10 10 0 0 1-10 10"]]);
 
-export const Clock = createIcon([["M12 6v6l4 2"]]);
-export const Timer = createIcon([["M10 2h4", "M4.5 11a7 7 0 0 0 1.5 2.5l3.5 3.5", "M15 2v4"]]);
+export const Clock = createIcon([["M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z", "M12 6v6l4 2"]]);
+export const Timer = createIcon([["M10 2h4", "M12 14l3-3", "M12 6a8 8 0 1 0 8 8", "M18 4l2 2"]]);
 export const Hourglass = createIcon([["M6 2v4", "M10 2v4", "M14 2v4", "M18 2v4", "M6 18v4", "M10 18v4", "M14 18v4", "M18 18v4", "M8 6h8", "M16 6v8", "M8 16h8", "M16 10v8"]]);
 
 export const Calendar = createIcon([["M8 2v4", "M16 2v4", "M21 13V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6", "M3 10h18"]]);
@@ -124,7 +124,7 @@ export const Video = createIcon([["M23 9l-7 7 7 7V5l-7 7 7 7v-14z", "M17 17l5 5 
 export const Film = createIcon([["M2 2h20a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z", "M2 10h20", "M2 14h20", "M10 2v20", "M14 2v20"]]);
 export const Play = createIcon([["M5 3l14 9-14 9z"]]);
 export const Pause = createIcon([["M6 4h4v16H6V4z", "M14 4h4v16h-4V4z"]]);
-export const StopCircle = createIcon([["M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0z", "M12 8v8", "M8 12h8"]]);
+export const StopCircle = createIcon([["M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z", "M9 9h6v6H9Z"]]);
 
 // ── Categories & Tags ────────────────────────────────────────────────
 export const Tag = createIcon([["M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z", "M7 7a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"]]);
@@ -147,7 +147,7 @@ export const Cookie = createIcon([["M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z", 
 export const Cake = createIcon([["M20 21v-7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7", "M4 16v7", "M20 16v7", "M4 8h16", "M12 12v8", "M12 4v4", "M8 12h8"]]);
 
 export const Utensils = createIcon([["M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2", "M7 2v20", "M21 15V2a5 5 0 0 0-5-5v6c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"]]);
-export const Wine = createIcon([["M8 22h8", "M12 11v11", "M7 10a2 2 0 0 0-2 2v10", "M17 10a2 2 0 0 1 2 2v10", "M9 10v5a7 7 0 0 0 14 0v-5"]]);
+export const Wine = createIcon([["M8 2h8l-1 7a3 3 0 0 1-6 0L8 2Z", "M9 7h6", "M12 12v8", "M8 22h8"]]);
 export const Beer = createIcon([["M1 4v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4", "M5 12v4", "M11 8v8", "M17 12v4"]]);
 
 // ── Nature & Weather ────────────────────────────────────────────────
@@ -160,6 +160,7 @@ export const CloudLightning = createIcon([["M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5
 export const Wind = createIcon([["M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"]]);
 export const Droplets = createIcon([["M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"]]);
 export const Flame = createIcon([["M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"]]);
+export const Bomb = createIcon([["M13 7c1-3 3-3 5-3", "M16 2h4v4", "m19 3 2-2", "M13.5 6.5a8 8 0 1 1-7 7 8 8 0 0 1 7-7Z", "M8 11h.01"]]);
 
 export const TreePine = createIcon([["M12 2v20", "M12 2v20", "M17 16l-5-8-5 8", "M17 10l-5-8-5 8", "M17 4l-5-2-5 2", "M12 22v-2"]]);
 export const Flower = createIcon([["M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20Z", "M12 6v4", "M12 14v4", "M6 12h4", "M14 12h4", "M18.5 3.5a5 5 0 1 1-7 7", "M3.5 18.5a5 5 0 1 1 7-7"]]);
@@ -177,15 +178,15 @@ export const Medal = createIcon([["M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z", "
 export const Car = createIcon([["M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 13.5 10h-7A5 5 0 0 0 6 15v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h2", "M7 17a2 2 0 1 1 4 0", "M17 17a2 2 0 1 1 4 0"]]);
 export const Truck = createIcon([["M5 6v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6", "M5 6h14", "M9 6V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4", "M15 10a2 2 0 0 1-4 0", "M17 16a2 2 0 1 1 4 0"]]);
 export const Plane = createIcon([["M17.8 17.5a1.5 1.5 0 0 1 .4 1.1l1.6 6.1a.7.7 0 0 1-1.2.6L11.8 20.8l-7.4 3.7a.7.7 0 0 1-.6-.6L11 15.5l-5.5-2.3a.7.7 0 0 1-.2-1.3l10.5-7.7a.7.7 0 0 1 1.2.2l6.1 4.5a.7.7 0 0 1 .2 1.3z"]]);
-export const Ship = createIcon([["M2 16a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4Z", "M18 16h2a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2", "M2 20h20", "M14 16v4", "M14 12a2 2 0 1 1 4 0"]]);
+export const Ship = createIcon([["M4 10h16l-2 8H6l-2-8Z", "M12 2v8", "M8 6h8", "M2 21c2 1 4 1 6 0s4-1 6 0 4 1 8 0"]]);
 export const Bike = createIcon([["M12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10Z", "M12 7a12 12 0 0 0 0 24", "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z"]]);
 
 // ── Technology ──────────────────────────────────────────────────────
-export const Smartphone = createIcon([["M5 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H5Z", "M12 18h.01", "M12 6h.01"]]);
+export const Smartphone = createIcon([["M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z", "M9 5h6", "M11 18h2"]]);
 export const Laptop = createIcon([["M20 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v6", "M4 14h16", "M12 18h.01"]]);
 export const Monitor = createIcon([["M22 12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h20Z", "M8 16h8", "M12 12v8", "M12 4v4"]]);
 export const Tablet = createIcon([["M4 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4Z", "M12 18h.01"]]);
-export const Headphones = createIcon([["M3 18v-6a9 9 0 0 1 18 0v6", "M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3z"]]);
+export const Headphones = createIcon([["M4 14v-2a8 8 0 0 1 16 0v2", "M4 14H3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3v-7H4Z", "M20 14h1a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3v-7h2Z"]]);
 export const Keyboard = createIcon([["M8 4h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z", "M6 8h12", "M6 12h12", "M6 16h12"]]);
 export const Mouse = createIcon([["M12 2a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8Z", "M12 6v12"]]);
 export const Cpu = createIcon([["M4 4h16", "M4 20h16", "M4 4v16", "M20 4v16", "M12 8v8", "M8 12h8"]]);
@@ -200,7 +201,7 @@ export const Usb = createIcon([["M15 4h-2l-2 4h-2l2-4h-2l2 4h-2l-2-4H5a2 2 0 0 0
 export const CreditCard = createIcon([["M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5Z", "M2 10h20", "M2 14h20"]]);
 export const Wallet = createIcon([["M21 12V7H5a2 2 0 0 1 0-4h14v4", "M3 5v14a2 2 0 0 0 2 2h14"]]);
 export const Banknote = createIcon([["M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z", "M12 8v8", "M8 12h8"]]);
-export const Coins = createIcon([["M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z", "M12 8v8", "M8 12h8", "M18 14a4 4 0 1 1-8 0"]]);
+export const Coins = createIcon([["M11 6c0 1.7-2.2 3-5 3S1 7.7 1 6s2.2-3 5-3 5 1.3 5 3Z", "M1 6v5c0 1.7 2.2 3 5 3 1.1 0 2.1-.2 3-.5", "M1 11v5c0 1.7 2.2 3 5 3", "M23 14c0 1.7-2.2 3-5 3s-5-1.3-5-3 2.2-3 5-3 5 1.3 5 3Z", "M13 14v5c0 1.7 2.2 3 5 3s5-1.3 5-3v-5"]]);
 export const Receipt = createIcon([["M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1-2 1V2l-2-1-2 1-2-1-2 1-2-1-2 1-2-1-2-1Z", "M12 6v12", "M12 10h.01", "M12 14h.01"]]);
 export const ShoppingCart = createIcon([["M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z", "M3 6h18", "M16 10a4 4 0 0 1 0 8", "M12 18h.01"]]);
 export const ShoppingBag = createIcon([["M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z", "M3 6h18", "M12 18h.01", "M9 6v12", "M15 6v12"]]);
@@ -293,7 +294,7 @@ export const User = createIcon([["M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2", "M
 export const HelpCircle = createIcon([["M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3", "M12 17h.01"], ["M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z"]]);
 export const TouchApp = createIcon([["M9 11V6a2 2 0 0 1 4 0v5", "M9 11V8a2 2 0 0 1 4 0v3", "M9 11h6.5a3 3 0 0 1 3 3v3a4 4 0 0 1-4 4H10c-2 0-3-1-4-3l-3-5a2 2 0 0 1 4-1l1 1"]]);
 export const Dice1 = createIcon([["M3 3h18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z", "M12 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"]]);
-export const Mask = createIcon([["M3 5a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3 3 3 0 0 1-3 3h-5l-1 2-1-2H6a3 3 0 0 1-3-3z", "M9 5h6"]]);
+export const Mask = createIcon([["M3 5.5C6 3.5 9 3 12 4c3-1 6-.5 9 1.5v6c0 5-3.5 8.5-9 10-5.5-1.5-9-5-9-10v-6Z", "M7 10c1-1 2-1 3 0", "M14 10c1-1 2-1 3 0", "M8 15c2.5 2 5.5 2 8 0"]]);
 
 // ── Export all ───────────────────────────────────────────────────────
 export const Icons = {
@@ -384,6 +385,7 @@ export const Icons = {
   wind: Wind,
   droplets: Droplets,
   flame: Flame,
+  bomb: Bomb,
   treePine: TreePine,
   flower: Flower,
   leaf: Leaf,

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Icons } from "../../components/icons";
 import type { GameSettings, RoundAssignment } from "../../types";
 import { vibrate } from "../../utils/deviceFeedback";
 
@@ -183,7 +184,7 @@ export default function DrawingCanvas({
 
       <header className="relative z-10 shrink-0 px-4 pb-3 pt-[max(.9rem,env(safe-area-inset-top))]">
         <div className="flex items-center justify-between">
-          <button onClick={onExit} aria-label="Ukončiť hru" className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-white/65 backdrop-blur-xl transition active:scale-90">✕</button>
+        <button onClick={onExit} aria-label="Ukončiť hru" className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-white/65 backdrop-blur-xl transition active:scale-90"><Icons.x size={18} /></button>
           <div className="text-center">
             <p className="text-[9px] font-black uppercase tracking-[0.26em] text-violet-300/70">Imposter kreslenie</p>
             <p className="mt-0.5 text-xs font-black text-white/75">Ťah {turn + 1} z {totalTurns}</p>
@@ -248,7 +249,7 @@ export default function DrawingCanvas({
       {showFinishConfirm && (
         <div className="absolute inset-0 z-50 flex items-end bg-black/70 p-4 backdrop-blur-sm" onClick={() => setShowFinishConfirm(false)}>
           <div className="animate-slide-up w-full rounded-[2rem] border border-white/12 bg-[#111522] p-5 text-center shadow-2xl" onClick={(event) => event.stopPropagation()}>
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-400/15 text-3xl">🎨</div>
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-400/15 text-amber-200 shadow-lg shadow-amber-950/20"><Icons.palette size={26} /></div>
             <h2 className="mt-4 text-xl font-black">Už chcete hlasovať?</h2>
             <p className="mt-2 text-sm leading-relaxed text-white/45">Nevyužité ťahy sa preskočia a kresbu už nebude možné doplniť.</p>
             <div className="mt-5 grid grid-cols-2 gap-3">

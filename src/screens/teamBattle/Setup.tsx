@@ -162,7 +162,7 @@ export default function TeamBattleSetup({
                 }`}
               >
                 {selectionType === "ordered" && <span className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-cyan-400 text-xs font-black text-[#071318]">✓</span>}
-                <span className="text-3xl">☝️</span>
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-300/20 bg-cyan-400/10 text-cyan-200"><Icons.menu size={22} /></span>
                 <span className="mt-3 block text-base font-black text-white">Vybrať hry</span>
                 <span className="mt-1 block text-[10px] leading-relaxed text-white/40">Určíte hry aj ich poradie</span>
               </button>
@@ -176,7 +176,7 @@ export default function TeamBattleSetup({
                 }`}
               >
                 {selectionType === "random" && <span className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-fuchsia-400 text-xs font-black text-white">✓</span>}
-                <span className="text-3xl">🎲</span>
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-fuchsia-300/20 bg-fuchsia-400/10 text-fuchsia-200"><Icons.dice1 size={22} /></span>
                 <span className="mt-3 block text-base font-black text-white">Náhodne</span>
                 <span className="mt-1 block text-[10px] leading-relaxed text-white/40">Aplikácia vyberie zostavu</span>
               </button>

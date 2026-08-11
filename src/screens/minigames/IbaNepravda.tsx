@@ -112,7 +112,7 @@ export default function IbaNepravda({ onBack }: { onBack: () => void }) {
         </p>
 
         <Button fullWidth onClick={nextQuestion} disabled={lost}>
-          ✅ Správne
+          <span className="inline-flex items-center gap-2"><Icons.circleCheck size={18} /> Správne</span>
         </Button>
       </div>
 
@@ -122,7 +122,7 @@ export default function IbaNepravda({ onBack }: { onBack: () => void }) {
             className="glass w-full max-w-sm rounded-3xl border border-red-500/40 bg-red-500/10 p-7 text-center"
             style={{ animation: "popIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both" }}
           >
-            <div className="mb-3 text-6xl">⏰</div>
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-red-200/15 bg-red-400/10 text-red-200"><Icons.timer size={34} /></div>
             <p className="text-xs font-bold uppercase tracking-widest text-red-300/70">
               Čas vypršal
             </p>
@@ -131,7 +131,7 @@ export default function IbaNepravda({ onBack }: { onBack: () => void }) {
               Hráč, ktorý drží mobil, nestihol odpovedať do 4 sekúnd.
             </p>
             <Button fullWidth onClick={restart}>
-              🔄 Nová hra
+              <span className="inline-flex items-center gap-2"><Icons.refresh size={17} /> Nová hra</span>
             </Button>
             <Button fullWidth variant="ghost" onClick={onBack} className="mt-2">
               Domov

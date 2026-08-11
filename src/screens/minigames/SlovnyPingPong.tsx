@@ -4,6 +4,7 @@ import { PING_PONG_PROMPTS } from "../../data/pingPongPrompts";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
 import { vibrate } from "../../utils/deviceFeedback";
+import { Icons } from "../../components/icons";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -98,7 +99,7 @@ function SetupScreen({
       </div>
 
       <Button fullWidth onClick={() => onStart(name1.trim() || defaultPlayerName(language, 1), name2.trim() || defaultPlayerName(language, 2), speed)}>
-        🏓 Hrať!
+        <span className="inline-flex items-center gap-2"><Icons.zap size={18} /> Hrať!</span>
       </Button>
     </Shell>
   );
@@ -366,7 +367,7 @@ export function SlovnyPingPongGame({
       {result && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/75">
           <div className="mx-6 flex flex-col items-center gap-5 rounded-3xl border border-white/15 bg-white/10 p-8 text-center backdrop-blur-md">
-            <div className="text-6xl">🏆</div>
+            <div className="flex h-20 w-20 items-center justify-center rounded-[1.7rem] border border-amber-200/20 bg-amber-300/10 text-amber-200 shadow-xl shadow-amber-950/20"><Icons.trophy size={40} /></div>
             <div>
               <p className="text-lg font-bold text-white/60 mb-1">Vyhráva</p>
               <p className="text-4xl font-black text-white">
@@ -381,7 +382,7 @@ export function SlovnyPingPongGame({
                 onClick={() => onWinner(result.loser === 0 ? 1 : 0)}
                 className="w-full rounded-2xl bg-white/20 py-3.5 font-bold text-white active:scale-95 transition"
               >
-                🏁 Pokračovať v Party mode
+                <span className="inline-flex items-center gap-2"><Icons.chevronRight size={17} /> Pokračovať v Party mode</span>
               </button>
             ) : (
               <div className="flex w-full gap-3">
@@ -389,7 +390,7 @@ export function SlovnyPingPongGame({
                   onClick={restart}
                   className="flex-1 rounded-2xl bg-white/20 py-3.5 font-bold text-white active:scale-95 transition"
                 >
-                  🔄 Znova
+                  <span className="inline-flex items-center gap-2"><Icons.refresh size={16} /> Znova</span>
                 </button>
                 <button
                   onClick={onBack}

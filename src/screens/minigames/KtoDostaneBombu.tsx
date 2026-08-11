@@ -89,7 +89,7 @@ export default function KtoDostaneBombu({
             style={{ animation: "tada 0.8s ease-out 0.1s both" }}
           >
             <div style={{ animation: "float 3s ease-in-out 0.9s infinite" }}>
-              <Icons.flame size={88} className="text-rose-400" />
+              <Icons.bomb size={76} className="text-rose-300 drop-shadow-[0_10px_24px_rgba(251,113,133,.32)]" />
             </div>
           </div>
           <div style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}>
@@ -110,7 +110,7 @@ export default function KtoDostaneBombu({
             <p className="text-lg font-bold text-white" data-no-translate>{task.text}</p>
           </div>
           <Button fullWidth onClick={reset}>
-            Nová úloha 🔄
+            <span className="inline-flex items-center gap-2">Nová úloha <Icons.refresh size={17} /></span>
           </Button>
         </div>
       </Shell>
@@ -137,7 +137,7 @@ export default function KtoDostaneBombu({
                 : "float 3s ease-in-out infinite",
           }}
         >
-          <Icons.flame size={88} className="text-rose-400" />
+          <Icons.bomb size={76} className="text-rose-300 drop-shadow-[0_10px_24px_rgba(251,113,133,.32)]" />
         </div>
 
         {phase === "ready" && (
@@ -154,7 +154,7 @@ export default function KtoDostaneBombu({
             className="text-xs font-bold uppercase tracking-widest transition-colors"
             style={{ color: pulse ? "#f87171" : "rgba(255,255,255,0.4)" }}
           >
-            ⏱ Tikáme… podávajte rýchlo!
+            <span className="inline-flex items-center gap-2"><Icons.timer size={15} /> Tikáme… podávajte rýchlo!</span>
           </p>
         )}
 
@@ -179,7 +179,7 @@ export default function KtoDostaneBombu({
 
         {phase === "ready" && (
           <Button fullWidth onClick={startBomb}>
-            Štart 💣
+            <span className="inline-flex items-center gap-2">Štart <Icons.bomb size={18} /></span>
           </Button>
         )}
 

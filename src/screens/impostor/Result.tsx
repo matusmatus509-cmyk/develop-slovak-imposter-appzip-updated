@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Icons } from "../../components/icons";
 import type { GameSettings, RoundAssignment } from "../../types";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { Button, Shell, TopBar } from "../../components/ui";
@@ -63,7 +64,7 @@ export default function Result({
             animation: playersWon ? "tada 0.8s ease-in-out" : "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1)",
           }}
         >
-          {playersWon ? "🏆" : "😈"}
+          {playersWon ? <Icons.trophy size={38} /> : <Icons.mask size={38} />}
         </div>
 
         <div style={{ animation: "slideUp 0.5s ease-out 0.15s both" }}>
@@ -113,7 +114,7 @@ export default function Result({
                   className="flex items-center gap-1.5 rounded-full bg-red-500/20 px-4 py-2 text-sm font-bold text-red-300 border border-red-500/30"
                   style={{ animation: `popIn 0.4s ease-out ${0.5 + i * 0.1}s both` }}
                 >
-                  🥸 {name}
+                  <Icons.mask size={15} /> {name}
                 </span>
               ))}
             </div>
@@ -123,11 +124,11 @@ export default function Result({
 
       <div className="mt-4 flex flex-col gap-3" style={{ animation: "fadeIn 0.5s ease-out 0.5s both" }}>
         <Button fullWidth onClick={onNewRound}>
-          Ďalšie kolo 🔁
+          <span className="inline-flex items-center gap-2">Ďalšie kolo <Icons.refresh size={17} /></span>
         </Button>
         <div className="flex gap-3">
           <Button fullWidth variant="secondary" onClick={onHistory}>
-            📊 Štatistiky
+            <span className="inline-flex items-center gap-2"><Icons.layoutDashboard size={16} /> Štatistiky</span>
           </Button>
           <Button fullWidth variant="ghost" onClick={onHome}>
             Domov

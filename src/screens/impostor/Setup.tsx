@@ -201,7 +201,7 @@ export default function Setup({
       </div>
 
       <Button fullWidth onClick={handleStart} className="mt-4">
-        Spustiť hru 🎮
+        <span className="inline-flex items-center gap-2">Spustiť hru <Icons.gamepad size={18} /></span>
       </Button>
     </Shell>
   );
