@@ -12,15 +12,15 @@
   "categories": ["games", "entertainment"],
   "icons": [
     {
-      "src": "party-box-icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "icon.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "party-box-maskable.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "icon.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
       "purpose": "maskable"
     }
   ]
