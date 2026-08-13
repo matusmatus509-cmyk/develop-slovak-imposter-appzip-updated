@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { Icons } from "../../components/icons";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
 import {
@@ -9,12 +9,7 @@ import {
   type QuizDifficulty,
 } from "../../data/teamBattle";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
-import minigameArtAtlas from "../../assets/minigame-art-atlas.png";
-import partyMinigameAtlas from "../../assets/party-minigame-atlas.png";
-import songGameHero from "../../assets/party-song-hero-v2.png";
-import letterGameHero from "../../assets/party-letter-hero-v2.png";
-import fiveTenGameHero from "../../assets/party-five-ten-hero-v2.png";
-import musicQuizGameHero from "../../assets/party-music-quiz-hero-v2.png";
+import quizBattleArt from "../../assets/party-quiz-battle-v3.png";
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 
 const ALL_GAMES: GameType[] = [
@@ -27,17 +22,17 @@ export interface TeamBattleOptions {
   timeSeconds: number;
   quizDifficulty: QuizDifficulty;
 }
-const GAME_ART: Record<GameType, { src: string; position: string; size: string }> = {
-  pantomima: { src: partyMinigameAtlas, position: "33.333% 100%", size: "400% 300%" },
-  sarady: { src: partyMinigameAtlas, position: "0% 100%", size: "400% 300%" },
-  zakazane: { src: partyMinigameAtlas, position: "0% 50%", size: "400% 300%" },
-  pesnicka: { src: songGameHero, position: "50% 50%", size: "cover" },
-  zvuk: { src: partyMinigameAtlas, position: "100% 50%", size: "400% 300%" },
-  pismeno: { src: letterGameHero, position: "50% 50%", size: "cover" },
-  patzadesat: { src: fiveTenGameHero, position: "50% 50%", size: "cover" },
-  hadajktosom: { src: partyMinigameAtlas, position: "66.667% 100%", size: "400% 300%" },
-  quiz: { src: musicQuizGameHero, position: "50% 50%", size: "cover" },
-  pingpong: { src: minigameArtAtlas, position: "50% 50%", size: "300% 300%" },
+const GAME_META: Record<GameType, { description: string; accent: string; glow: string }> = {
+  pantomima: { description: "Predveď slovo bez jediného zvuku", accent: "#f59e0b", glow: "rgba(245,158,11,.25)" },
+  sarady: { description: "Vysvetľuj a zbieraj rýchle body", accent: "#8b5cf6", glow: "rgba(139,92,246,.28)" },
+  zakazane: { description: "Opisuj bez zakázaných výrazov", accent: "#f43f5e", glow: "rgba(244,63,94,.25)" },
+  pesnicka: { description: "Zahmkaj hit svojmu tímu", accent: "#d946ef", glow: "rgba(217,70,239,.28)" },
+  zvuk: { description: "Spoznaj zvuk skôr než súper", accent: "#06b6d4", glow: "rgba(6,182,212,.27)" },
+  pismeno: { description: "Nájdi slovo na dané písmeno", accent: "#fb923c", glow: "rgba(251,146,60,.25)" },
+  patzadesat: { description: "Päť odpovedí za desať sekúnd", accent: "#22c55e", glow: "rgba(34,197,94,.25)" },
+  hadajktosom: { description: "Uhádni osobnosť podľa indícií", accent: "#38bdf8", glow: "rgba(56,189,248,.26)" },
+  quiz: { description: "Súboj vedomostí na bzučiakoch", accent: "#fbbf24", glow: "rgba(251,191,36,.32)" },
+  pingpong: { description: "Striedajte slová bez zaváhania", accent: "#34d399", glow: "rgba(52,211,153,.26)" },
 };
 
 export default function TeamBattleSetup({
@@ -261,41 +256,40 @@ export default function TeamBattleSetup({
                 Prvá kliknutá hra bude prvá, druhá bude druhá. Kliknutím na označenú hru ju z výberu odstránite.
               </p>
 
-              <div className="mt-4 grid grid-cols-2 gap-2">
+              <div className="mt-4 grid grid-cols-2 gap-3">
                 {ALL_GAMES.map((game) => {
                   const order = selectedGames.indexOf(game);
                   const selected = order >= 0;
-                  const art = GAME_ART[game];
+                  const meta = GAME_META[game];
+                  const isQuiz = game === "quiz";
                   return (
                     <button
                       key={game}
                       onClick={() => toggleSelectedGame(game)}
-                      className={`relative min-h-[8rem] overflow-hidden rounded-2xl border px-3 py-4 text-center transition active:scale-[.96] ${
+                      aria-pressed={selected}
+                      className={`party-game-picker group relative min-h-[10.5rem] overflow-hidden rounded-[1.5rem] border p-3 text-left transition duration-300 active:scale-[.97] ${
                         selected
-                          ? "border-cyan-300/70 shadow-[0_12px_32px_rgba(34,211,238,.2)]"
-                          : "border-white/10"
+                          ? "is-selected border-white/45 bg-white/[.1]"
+                          : "border-white/10 bg-[#0b111c]/90 hover:border-white/20"
                       }`}
+                      style={{ "--picker-accent": meta.accent, "--picker-glow": meta.glow } as CSSProperties}
                     >
-                      <span
-                        className={`absolute inset-0 bg-no-repeat transition duration-500 ${selected ? "scale-110" : "opacity-90 saturate-125"}`}
-                        style={{ backgroundImage: `url(${art.src})`, backgroundSize: art.size, backgroundPosition: art.position }}
-                      />
-                      <span
-                        className={`absolute inset-0 bg-gradient-to-t ${
-                          selected
-                            ? "from-cyan-950/95 via-slate-950/25"
-                            : "from-[#080b13]/90 via-[#080b13]/10"
-                        } to-black/5`}
-                      />
+                      <span className="pointer-events-none absolute inset-x-0 top-0 h-20 opacity-80" style={{ background: `radial-gradient(circle at 50% 0%, ${meta.glow}, transparent 70%)` }} />
+                      {isQuiz && <img src={quizBattleArt} alt="" className="pointer-events-none absolute inset-x-0 top-0 h-[6.6rem] w-full object-cover object-center opacity-90 transition duration-500 group-hover:scale-[1.04]" />}
+                      {isQuiz && <span className="pointer-events-none absolute inset-x-0 top-0 h-[6.7rem] bg-gradient-to-t from-[#0b111c] via-[#0b111c]/15 to-transparent" />}
                       {selected && (
-                        <span className="absolute right-2 top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-cyan-300 text-sm font-black text-[#071318] shadow-[0_0_18px_rgba(103,232,249,.55)]">
+                        <span className="absolute right-2.5 top-2.5 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white text-sm font-black text-[#071318] shadow-[0_0_22px_var(--picker-glow)]">
                           {order + 1}
                         </span>
                       )}
-                      <span className="absolute bottom-3 left-3 right-3 z-10 flex items-end gap-2 text-left">
-                        <span className="text-2xl drop-shadow-lg">{GAME_ICONS[game]}</span>
-                        <span className={`text-[11px] font-black leading-tight ${selected ? "text-white" : "text-white/70"}`}>{GAME_LABELS[game]}</span>
+                      <span className={`relative z-10 flex h-full flex-col ${isQuiz ? "justify-end pt-[5.2rem]" : "justify-between"}`}>
+                        {!isQuiz && <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/[.06] text-2xl shadow-inner" style={{ color: meta.accent }}>{GAME_ICONS[game]}</span>}
+                        <span className={isQuiz ? "" : "mt-5"}>
+                          <span className="block text-[13px] font-black leading-tight text-white">{GAME_LABELS[game]}</span>
+                          <span className="mt-1.5 block text-[9px] font-semibold leading-snug text-white/42">{meta.description}</span>
+                        </span>
                       </span>
+                      <span className={`absolute inset-x-3 bottom-0 h-[2px] origin-left rounded-full bg-[var(--picker-accent)] transition duration-300 group-hover:scale-x-100 ${selected ? "scale-x-100" : "scale-x-0"}`} />
                     </button>
                   );
                 })}

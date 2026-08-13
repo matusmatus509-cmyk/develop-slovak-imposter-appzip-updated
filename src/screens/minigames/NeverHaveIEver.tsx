@@ -30,7 +30,7 @@ export default function NeverHaveIEver({ onBack, customEntries = [], customContr
 
   function next() { setCard(draw()); }
 
-  return <Shell><TopBar title="Nikdy som nikdy" onBack={onBack} /><div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
+  return <Shell><TopBar title="Nikdy som nikdy" onBack={onBack} /><div className="game-center-stack flex flex-1 flex-col items-center justify-center gap-6 text-center">
     <div className="relative flex h-24 w-24 items-center justify-center rounded-[2rem] border border-emerald-200/20 bg-gradient-to-br from-emerald-400/20 via-teal-400/10 to-cyan-500/15 shadow-[0_20px_55px_rgba(16,185,129,.18)]">
       <span className="absolute inset-2 rounded-[1.55rem] border border-white/[.07]" />
       <Icons.wine size={48} className="relative text-emerald-200 drop-shadow-[0_6px_16px_rgba(52,211,153,.35)]" />

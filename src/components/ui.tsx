@@ -429,7 +429,7 @@ export function TopBar({
   showBack = true,
 }: TopBarProps) {
   return (
-    <div className="relative z-30 mb-7 flex h-12 items-center justify-between">
+    <div className="app-topbar relative z-30 mb-7 flex h-12 items-center justify-between">
       {showBack && onBack ? (
         <button
           onClick={onBack}
@@ -468,9 +468,9 @@ function Background() {
 
 export function Shell({ children, className = "", noBackground = false }: ShellProps) {
   return (
-    <div className={cn("relative isolate min-h-screen w-full overflow-hidden bg-transparent text-white", className)}>
+    <div className={cn("app-shell relative isolate min-h-[100dvh] w-full overflow-hidden bg-transparent text-white", className)}>
       {!noBackground && <Background />}
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[30rem] flex-col px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(1.25rem,env(safe-area-inset-top))]">
+      <div className="app-shell-content relative z-10 mx-auto flex min-h-[100dvh] w-full max-w-[30rem] flex-col px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(1.25rem,env(safe-area-inset-top))]">
         {children}
       </div>
     </div>

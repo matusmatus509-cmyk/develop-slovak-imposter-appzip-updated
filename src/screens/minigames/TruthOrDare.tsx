@@ -30,12 +30,12 @@ export default function TruthOrDare({ onBack, customEntries = [], customControls
   function shuffleAgain() { if (mode !== "choose") setPrompt(draw(mode)); }
 
   return <Shell><TopBar title="Pravda alebo výzva" onBack={onBack} />
-    {mode === "choose" ? <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
+    {mode === "choose" ? <div className="game-center-stack flex flex-1 flex-col items-center justify-center gap-6 text-center">
       <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-gradient-to-br from-sky-500/20 to-indigo-500/20" style={{ animation: "float 3s ease-in-out infinite" }}><Icons.target size={56} className="text-sky-400" /></div>
       <div><h1 className="text-2xl font-black">Čo si vyberieš?</h1><p className="mt-2 max-w-xs text-sm text-white/50">Buď úprimný alebo odvážny. Balík sa neopakuje, kým sa neminie.</p></div>
       {customControls && <div className="w-full"><CustomContentSelector controls={customControls} compact /></div>}
       <div className="grid w-full grid-cols-2 gap-4"><button onClick={() => choose("truth")} className="flex flex-col items-center gap-3 rounded-3xl border border-sky-500/30 bg-sky-500/10 p-7 transition active:scale-95"><span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-sky-200/15 bg-sky-300/10 text-sky-200"><Icons.messageCircle size={29} /></span><span className="font-black">PRAVDA</span></button><button onClick={() => choose("dare")} className="flex flex-col items-center gap-3 rounded-3xl border border-rose-500/30 bg-rose-500/10 p-7 transition active:scale-95"><span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-rose-200/15 bg-rose-300/10 text-rose-200"><Icons.flame size={29} /></span><span className="font-black">VÝZVA</span></button></div>
-    </div> : <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
+    </div> : <div className="game-center-stack flex flex-1 flex-col items-center justify-center gap-6 text-center">
       <span className={cn("inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest", mode === "truth" ? "bg-sky-500/20 text-sky-300" : "bg-rose-500/20 text-rose-300")}>{mode === "truth" ? <Icons.messageCircle size={14} /> : <Icons.flame size={14} />}{mode === "truth" ? "Pravda" : "Výzva"}</span>
       {prompt?.source === "custom" && <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-3 py-1 text-[9px] font-black text-emerald-300"><Icons.sparkles size={12} /> Vlastná kartička</span>}
       <div className={cn("glass w-full rounded-3xl border p-8", mode === "truth" ? "border-sky-500/30 bg-sky-500/5" : "border-rose-500/30 bg-rose-500/5")}><p className="text-xl font-bold leading-relaxed" data-no-translate>{prompt?.text}</p></div>

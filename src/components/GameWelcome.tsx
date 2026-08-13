@@ -323,13 +323,13 @@ export default function GameWelcome({
 
   return (
     <main
-      className={`game-welcome relative min-h-screen overflow-hidden text-white ${config.variant === "song" ? "game-welcome-song" : ""}`}
+      className={`game-welcome relative h-[100dvh] overflow-hidden text-white ${config.variant === "song" ? "game-welcome-song" : ""}`}
       style={{ ...style, background: `linear-gradient(180deg, ${config.deep}, #080b10 68%)` }}
     >
       <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_50%_5%,var(--welcome-soft),transparent_38%)]" />
 
-      <div className="relative mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pb-7 pt-5">
-        <div className={`game-welcome-hero relative mb-6 h-[46vh] min-h-[320px] max-h-[450px] overflow-hidden rounded-[30px] border border-white/12 shadow-2xl animate-welcome-reveal ${config.variant === "song" ? "game-welcome-song-hero" : ""}`}>
+      <div className="game-welcome-content relative mx-auto flex h-full w-full max-w-md flex-col px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))]">
+        <div className={`game-welcome-hero relative mb-4 h-[min(42dvh,390px)] min-h-[250px] shrink-0 overflow-hidden rounded-[30px] border border-white/12 shadow-2xl animate-welcome-reveal ${config.variant === "song" ? "game-welcome-song-hero" : ""}`}>
           {config.art && !config.artAtlas ? (
             <img
               src={config.art}
@@ -370,9 +370,9 @@ export default function GameWelcome({
         </div>
 
         <section className="flex flex-1 flex-col animate-welcome-content">
-          <p className="text-[15px] font-medium leading-relaxed text-white/62">{config.description}</p>
+          <p className="game-welcome-description text-[14px] font-medium leading-relaxed text-white/62">{config.description}</p>
 
-          <div className="my-5 grid grid-cols-2 gap-2.5">
+          <div className="game-welcome-stats my-3 grid grid-cols-2 gap-2.5">
             <div className="game-welcome-stat rounded-2xl border border-white/10 bg-[#121922]/90 px-3.5 py-3">
               <p className="text-[9px] font-black uppercase tracking-[.17em] text-white/35">Hráči</p>
               <p className="mt-1 text-sm font-extrabold text-white/85">{config.players}</p>
@@ -383,7 +383,7 @@ export default function GameWelcome({
             </div>
           </div>
 
-          <div className="game-welcome-rule mb-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0d131a]/75 px-4 py-3.5">
+          <div className="game-welcome-rule mb-3 flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0d131a]/75 px-4 py-3">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg" style={{ background: config.accentSoft, color: config.accent }}>
               <Icons.sparkles size={18} />
             </span>

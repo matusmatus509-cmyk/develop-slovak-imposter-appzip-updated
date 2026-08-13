@@ -158,6 +158,34 @@ const NON_GAME_SCREENS: Screen[] = [
   "settings",
 ];
 
+const ONE_SCREEN_GAME_SCREENS = new Set<Screen>([
+  "impostor-reveal",
+  "impostor-discussion",
+  "impostor-voting",
+  "impostor-result",
+  "drawing-reveal",
+  "drawing-canvas",
+  "drawing-vote",
+  "drawing-result",
+  "truth-or-dare",
+  "never-have-i-ever",
+  "would-you-rather",
+  "slovnarosada",
+  "pingpong",
+  "hadajktosom",
+  "ibanepravda",
+  "ktodostanebombu",
+  "hadajemoji",
+  "zakazane",
+  "pesnicka",
+  "hudobny-kviz",
+  "zvuk",
+  "pismeno",
+  "patzadesat",
+  "tic-tac-toe",
+  "battleship",
+]);
+
 const DEFAULT_SETTINGS: GameSettings = {
   playerNames: ["Hráč 1", "Hráč 2", "Hráč 3", "Hráč 4"],
   categoryIds: CATEGORIES.map((c) => c.id),
@@ -539,14 +567,16 @@ export default function App() {
   if (welcomeScreen === screen && activeTheme) {
     return (
       <FeedbackProvider settings={safeFeedbackSettings}>
-        <GameWelcome
-          config={activeTheme}
-          onBack={() => backFromWelcome(screen)}
-          onStart={() => {
-            startGameSession(screen);
-            setWelcomeScreen(null);
-          }}
-        />
+        <div className="app-screen-frame game-welcome-frame" data-screen={screen}>
+          <GameWelcome
+            config={activeTheme}
+            onBack={() => backFromWelcome(screen)}
+            onStart={() => {
+              startGameSession(screen);
+              setWelcomeScreen(null);
+            }}
+          />
+        </div>
       </FeedbackProvider>
     );
   }
@@ -797,7 +827,12 @@ export default function App() {
 
   return (
     <FeedbackProvider settings={safeFeedbackSettings}>
-      {renderScreen()}
+      <div
+        className={`app-screen-frame ${ONE_SCREEN_GAME_SCREENS.has(screen) ? "is-game-stage" : "is-scroll-stage"}`}
+        data-screen={screen}
+      >
+        {renderScreen()}
+      </div>
       {canExitActiveGame && (
         <button
           type="button"

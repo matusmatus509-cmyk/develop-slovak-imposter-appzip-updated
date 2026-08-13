@@ -53,7 +53,7 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
       <div className="pointer-events-none fixed inset-0 bg-gradient-to-b from-[#080b10]/20 via-[#080b10]/72 to-[#080b10]" />
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,246,225,.06),transparent_28%)]" />
 
-      <div className="relative mx-auto flex min-h-[100dvh] w-full max-w-md flex-col px-5 pb-4 pt-4">
+      <div className="home-content relative mx-auto flex min-h-[100dvh] w-full max-w-md flex-col px-5 pb-4 pt-4">
         <div className="flex h-10 items-center justify-between">
           <span className="text-[10px] font-black uppercase tracking-[.22em] text-white/38">Párty hry</span>
           <div className="flex items-center gap-2">
@@ -64,7 +64,7 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
           </div>
         </div>
 
-        <header className="mt-4" style={{ animation: "slideUp .45s ease-out both" }}>
+        <header className="home-heading mt-4" style={{ animation: "slideUp .45s ease-out both" }}>
           <h1 className="text-[2.15rem] font-black leading-[.95] tracking-[-.055em]">Vyberte si hru.<span className="text-white/45"> Zábava začína.</span></h1>
         </header>
 
@@ -72,7 +72,7 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
           type="button"
           onClick={() => onNavigate("statistics")}
           aria-label={`Otvoriť herný profil, level ${level.level}`}
-          className="home-mode-card group relative mt-4 w-full overflow-hidden rounded-[1.3rem] border border-violet-300/20 bg-[#141525]/95 p-3 text-left shadow-[0_18px_52px_-34px_rgba(139,92,246,.9)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-violet-300/35 active:scale-[.985]"
+          className="home-profile-card home-mode-card group relative mt-4 w-full overflow-hidden rounded-[1.3rem] border border-violet-300/20 bg-[#141525]/95 p-3 text-left shadow-[0_18px_52px_-34px_rgba(139,92,246,.9)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-violet-300/35 active:scale-[.985]"
           style={{ animation: "slideUp .45s ease-out 70ms both" }}
         >
           <span className="pointer-events-none absolute -right-10 -top-14 h-32 w-32 rounded-full bg-violet-500/20 blur-3xl" />
@@ -95,7 +95,7 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
           </section>
         )}
 
-        <section className="mt-3 flex min-h-[420px] flex-1 flex-col gap-2.5" aria-label="Herné režimy">
+        <section className="home-game-grid mt-3 flex min-h-[420px] flex-1 flex-col gap-2.5" aria-label="Herné režimy">
           {SECTIONS.map((section, index) => {
             const Icon = Icons[section.icon];
             return (

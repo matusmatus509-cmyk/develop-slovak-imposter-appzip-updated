@@ -57,7 +57,7 @@ export default function IbaNepravda({ onBack }: { onBack: () => void }) {
     <Shell>
       <TopBar title="Iba nepravda" onBack={onBack} />
 
-      <div className="flex flex-1 flex-col items-center justify-center gap-5 text-center">
+      <div className="game-center-stack flex flex-1 flex-col items-center justify-center gap-5 text-center">
         <div
           className="flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-rose-500/20 to-pink-500/20"
           style={{ animation: "float 3s ease-in-out infinite" }}

@@ -109,7 +109,7 @@ export default function TeamQuiz({
         <button
           onClick={() => buzz(0)}
           aria-label={`${teamNames[0]} chce odpovedať`}
-          className="group relative z-20 flex h-[7.25rem] w-full shrink-0 items-center justify-center overflow-hidden rounded-b-[2rem] border-b border-white/30 text-white shadow-[0_16px_45px_rgba(0,0,0,.4)] transition active:scale-[.985] active:brightness-125"
+          className="group relative z-20 flex h-[5.5rem] w-full shrink-0 items-center justify-center overflow-hidden rounded-b-[1.7rem] border-b border-white/30 text-white shadow-[0_16px_45px_rgba(0,0,0,.4)] transition active:scale-[.985] active:brightness-125"
           style={{
             paddingTop: "max(.35rem, env(safe-area-inset-top))",
             background: `linear-gradient(120deg, #071a33 0%, ${a} 48%, #174a85 100%)`,
@@ -118,20 +118,19 @@ export default function TeamQuiz({
         >
           <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(255,255,255,.22),transparent_28%)]" />
           <span className="pointer-events-none absolute -bottom-12 -right-8 h-32 w-32 rounded-full border-[18px] border-white/10" />
-          <span className="relative flex rotate-180 items-center gap-4">
-            <span className="flex h-16 w-16 items-center justify-center rounded-full border-4 border-white/70 bg-white/15 text-3xl shadow-[inset_0_3px_12px_rgba(255,255,255,.3),0_5px_20px_rgba(0,0,0,.28)] transition group-active:scale-90">
+            <span className="relative flex rotate-180 items-center gap-3">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full border-4 border-white/70 bg-white/15 text-2xl shadow-[inset_0_3px_12px_rgba(255,255,255,.3),0_5px_20px_rgba(0,0,0,.28)] transition group-active:scale-90">
               🔵
             </span>
             <span className="text-left">
-              <span className="block text-[9px] font-black uppercase tracking-[0.24em] text-white/70">Stlač, ak vieš</span>
-              <span className="mt-1 block max-w-[13rem] truncate text-xl font-black leading-none">{teamNames[0]}</span>
+              <span className="block max-w-[13rem] truncate text-lg font-black leading-none">{teamNames[0]}</span>
             </span>
           </span>
         </button>
       )}
 
       {/* Score bar */}
-      <div className="relative z-10 m-3 flex shrink-0 items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/[0.055] px-4 py-3 backdrop-blur-xl">
+      <div className="relative z-10 mx-3 my-2 flex shrink-0 items-center justify-between rounded-[1.25rem] border border-white/10 bg-white/[0.055] px-4 py-2 backdrop-blur-xl">
         {([0, 1] as const).map((idx, i) => (
           <div
             key={idx}
@@ -157,7 +156,7 @@ export default function TeamQuiz({
           {q.category}
         </p>
         <div
-          className="party-glass party-shine relative w-full overflow-hidden rounded-[2rem] border p-7 text-center transition-all duration-300"
+          className="party-glass party-shine relative w-full overflow-hidden rounded-[1.6rem] border p-4 text-center transition-all duration-300"
           style={{
             background: bgColor,
             borderColor,
@@ -167,18 +166,18 @@ export default function TeamQuiz({
         >
           <p
             className="font-black text-white leading-snug"
-            style={{ fontSize: "clamp(1.3rem, 5vw, 2rem)" }}
+            style={{ fontSize: "clamp(1.15rem, 4.5vw, 1.65rem)" }}
           >
             {q.question}
           </p>
 
-          {/* Multiple-choice: show option texts while everyone can still read them */}
+          {/* Pred prihlásením tímu sú vždy viditeľné všetky štyri možnosti. */}
           {q.options && phase.t === "question" && (
-            <div className="mt-6 space-y-2 text-left" style={{ animation: "slideUp 0.4s ease-out" }}>
+            <div className="mt-3 space-y-1.5 text-left" style={{ animation: "slideUp 0.4s ease-out" }}>
               {q.options.map((opt, i) => (
                 <div
                   key={i}
-                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 flex gap-3 items-baseline"
+                  className="flex gap-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2 items-baseline"
                 >
                   <span className="font-black text-white/40">{LETTERS[i]}</span>
                   <span className="text-white/80 font-semibold text-sm">{opt}</span>
@@ -187,12 +186,8 @@ export default function TeamQuiz({
             </div>
           )}
 
-          {/* Multiple-choice: answers hidden as soon as a team buzzes in */}
           {q.options && phase.t === "selecting" && (
-            <p
-              className="mt-6 text-sm font-bold text-white/40"
-              style={{ animation: "fadeIn 0.3s ease-out" }}
-            >
+            <p className="mt-4 text-sm font-bold text-white/40" style={{ animation: "fadeIn 0.3s ease-out" }}>
               Možnosti sú skryté — vyberte písmeno naspamäť!
             </p>
           )}
@@ -267,7 +262,7 @@ export default function TeamQuiz({
           <button
             onClick={() => buzz(1)}
             aria-label={`${teamNames[1]} chce odpovedať`}
-            className="group relative flex h-[7.25rem] w-full items-center justify-center overflow-hidden rounded-t-[2rem] border-t border-white/30 text-white shadow-[0_-16px_45px_rgba(0,0,0,.4)] transition active:scale-[.985] active:brightness-125"
+            className="group relative flex h-[5.5rem] w-full items-center justify-center overflow-hidden rounded-t-[1.7rem] border-t border-white/30 text-white shadow-[0_-16px_45px_rgba(0,0,0,.4)] transition active:scale-[.985] active:brightness-125"
             style={{
               background: `linear-gradient(120deg, #7f1d2d 0%, ${b} 50%, #350916 100%)`,
               boxShadow: `0 -15px 44px ${b}55`,
@@ -275,12 +270,11 @@ export default function TeamQuiz({
           >
             <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(255,255,255,.22),transparent_28%)]" />
             <span className="pointer-events-none absolute -left-8 -top-12 h-32 w-32 rounded-full border-[18px] border-white/10" />
-            <span className="relative flex items-center gap-4">
+            <span className="relative flex items-center gap-3">
               <span className="text-right">
-                <span className="block text-[9px] font-black uppercase tracking-[0.24em] text-white/70">Stlač, ak vieš</span>
-                <span className="mt-1 block max-w-[13rem] truncate text-xl font-black leading-none">{teamNames[1]}</span>
+                <span className="block max-w-[13rem] truncate text-lg font-black leading-none">{teamNames[1]}</span>
               </span>
-              <span className="flex h-16 w-16 items-center justify-center rounded-full border-4 border-white/70 bg-white/15 text-3xl shadow-[inset_0_3px_12px_rgba(255,255,255,.3),0_5px_20px_rgba(0,0,0,.28)] transition group-active:scale-90">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full border-4 border-white/70 bg-white/15 text-2xl shadow-[inset_0_3px_12px_rgba(255,255,255,.3),0_5px_20px_rgba(0,0,0,.28)] transition group-active:scale-90">
                 🔴
               </span>
             </span>

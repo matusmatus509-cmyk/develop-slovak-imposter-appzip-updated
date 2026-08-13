@@ -770,6 +770,27 @@ html[data-theme="light"] .settings-screen [class*="text-emerald-"] { color: #047
 .party-leader-crown { display: inline-block; color: #fde68a; animation: partyCrownFloat 2s ease-in-out infinite; }
 .party-winner-trophy::before { content: ""; position: absolute; inset: -1.4rem; z-index: -1; border-radius: 999px; background: conic-gradient(from 0deg, transparent, rgba(251,191,36,.18), transparent 35%, rgba(232,121,249,.16), transparent 70%); animation: spin 8s linear infinite; }
 
+.party-game-picker {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.045), 0 18px 36px -30px var(--picker-glow);
+}
+.party-game-picker::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,.075), transparent 32%, transparent 70%, var(--picker-glow));
+  opacity: .55;
+  transition: opacity .25s ease;
+}
+.party-game-picker.is-selected {
+  border-color: color-mix(in srgb, var(--picker-accent) 72%, white);
+  background: color-mix(in srgb, var(--picker-accent) 11%, #0b111c);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 20px 42px -24px var(--picker-glow), 0 0 0 1px color-mix(in srgb, var(--picker-accent) 18%, transparent);
+  transform: translateY(-2px);
+}
+.party-game-picker.is-selected::after { opacity: .9; }
+
 .home-screen .home-mode-card { transition: transform .28s cubic-bezier(.2,.8,.2,1), border-color .28s ease, box-shadow .28s ease; }
 .home-screen .home-mode-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, transparent 25%, rgba(255,255,255,.055) 48%, transparent 70%); transform: translateX(-115%); transition: transform .8s ease; }
 
@@ -1035,4 +1056,134 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 @media (prefers-reduced-motion: reduce) {
   .song-game-art-shine,
   .song-welcome-equalizer i { animation: none !important; }
+}
+
+/* Unified mobile stage ----------------------------------------------------- */
+.app-screen-frame {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  isolation: isolate;
+}
+
+.app-screen-frame.is-game-stage,
+.game-welcome-frame {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: manipulation;
+}
+
+.is-game-stage > *,
+.game-welcome-frame > * {
+  height: 100%;
+  min-height: 0;
+}
+
+.is-game-stage .app-shell {
+  height: 100%;
+  min-height: 0;
+}
+
+.is-game-stage .app-shell-content {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  padding-top: max(.8rem, env(safe-area-inset-top));
+  padding-bottom: max(.8rem, env(safe-area-inset-bottom));
+}
+
+.is-game-stage .app-topbar {
+  height: 2.75rem;
+  margin-bottom: .8rem;
+  flex: none;
+}
+
+.is-game-stage .app-topbar > button {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: .9rem;
+}
+
+.app-screen-frame button:not(:disabled) {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.app-screen-frame button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--game-accent, #a78bfa) 68%, white);
+  outline-offset: 3px;
+}
+
+.app-shell-content > main,
+.app-shell-content > section {
+  min-height: 0;
+}
+
+/* Consistent depth without changing each game's identity. */
+.is-game-stage .glass,
+.is-game-stage .party-glass {
+  border-color: rgba(255,255,255,.13);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 22px 50px -34px rgba(0,0,0,.92);
+}
+
+.is-game-stage button[class*="bg-gradient"],
+.is-game-stage .app-button {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.2),
+    0 16px 32px -22px color-mix(in srgb, var(--game-accent, #8b5cf6) 70%, transparent);
+}
+
+/* Home always fits on a normal phone; only optional favourites scroll sideways. */
+@media (max-height: 760px) {
+  .home-content { padding-top: .65rem; padding-bottom: .65rem; }
+  .home-content > div:first-child { height: 2.25rem; }
+  .home-heading { margin-top: .65rem; }
+  .home-heading h1 { font-size: 1.72rem; line-height: .98; }
+  .home-profile-card { margin-top: .65rem; padding: .6rem; }
+  .home-profile-card > span > span:first-child { width: 2.35rem; height: 2.35rem; }
+  .home-game-grid { min-height: 0; margin-top: .65rem; gap: .45rem; }
+  .home-game-grid .home-mode-card { border-radius: 1.15rem; }
+  .home-game-grid .home-mode-card > div:last-child { padding: .7rem; }
+  .home-game-grid .home-mode-card h2 { margin-top: .35rem; font-size: 1.1rem; }
+  .home-game-grid .home-party-featured h2 { font-size: 1.3rem; }
+  .home-game-grid .home-mode-card p:last-child { font-size: .55rem; }
+}
+
+/* Welcome pages use the whole screen, with progressive compaction by height. */
+@media (max-height: 760px) {
+  .game-welcome-content { padding-left: 1rem; padding-right: 1rem; }
+  .game-welcome-hero { min-height: 210px; height: 35dvh; margin-bottom: .75rem; border-radius: 1.45rem; }
+  .game-welcome-hero > div:last-child { padding: 1rem; }
+  .game-welcome-hero h1 { font-size: 1.9rem; }
+  .game-welcome-description { font-size: .74rem; line-height: 1.42; }
+  .game-welcome-stats { margin-block: .55rem; }
+  .game-welcome-stat { padding-block: .55rem; }
+  .game-welcome-rule { margin-bottom: .55rem; padding-block: .6rem; }
+  .game-welcome-rule > span { width: 2rem; height: 2rem; }
+}
+
+@media (max-height: 640px) {
+  .game-welcome-hero { min-height: 170px; height: 31dvh; }
+  .game-welcome-description { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+  .game-welcome-stat { padding-block: .4rem; }
+  .game-welcome-rule { padding-block: .45rem; }
+  .is-game-stage .app-shell-content { padding-inline: .85rem; }
+}
+
+/* Compact common game content on short landscape-like mobile viewports. */
+@media (max-height: 680px) {
+  .is-game-stage .app-topbar { height: 2.35rem; margin-bottom: .45rem; }
+  .is-game-stage .app-topbar > button { width: 2.35rem; height: 2.35rem; }
+  .is-game-stage .app-shell-content { padding-top: max(.45rem, env(safe-area-inset-top)); padding-bottom: max(.45rem, env(safe-area-inset-bottom)); }
+  .is-game-stage .glass { border-radius: 1rem; }
+  .is-game-stage .app-button { min-height: 2.6rem; height: 2.6rem !important; }
+  .is-game-stage .game-center-stack { gap: .65rem; }
+  .is-game-stage .game-center-stack > :is(.h-20, .h-24) { width: 3.5rem; height: 3.5rem; border-radius: 1.1rem; }
+  .is-game-stage .game-center-stack > :is(.h-20, .h-24) svg { width: 2rem; height: 2rem; }
+  .is-game-stage .game-center-stack > .glass { padding: 1rem; }
+  .is-game-stage .game-center-stack > p.text-xs { font-size: .62rem; }
 }

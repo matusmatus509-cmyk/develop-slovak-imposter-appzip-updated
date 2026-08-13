@@ -41,7 +41,7 @@ export default function HadajEmoji({ onBack, customEntries = [], customControls 
   function selectCategory(next: EmojiCategory) { setCategoryId(next.id); setRevealed(false); }
   function next() { setRevealed(false); setPuzzle(takePersistentItem(`emoji:${language}:${category.id}`, category.puzzles, (item) => item.id ?? `${item.emoji}|${item.answer}`)); }
 
-  return <Shell><TopBar title="Hádaj emoji" onBack={onBack} /><div className="flex flex-1 flex-col items-center justify-center gap-5 text-center">
+  return <Shell><TopBar title="Hádaj emoji" onBack={onBack} /><div className="game-center-stack flex flex-1 flex-col items-center justify-center gap-5 text-center">
     {customControls && <div className="w-full"><CustomContentSelector controls={customControls} compact /></div>}
     <div className="w-full"><p className="mb-3 text-xs font-bold uppercase tracking-widest text-white/40">Vyber kategóriu</p><div className="flex flex-wrap justify-center gap-2">{categories.map((item) => <button key={item.id} onClick={() => selectCategory(item)} className={`rounded-2xl border px-3 py-2 text-sm font-bold ${item.id === categoryId ? "border-amber-300/70 bg-amber-400/20 text-amber-200" : "border-white/10 bg-white/5 text-white/55"}`}>{item.icon} {item.title}</button>)}</div></div>
     <div><p className="text-xs font-bold uppercase tracking-widest text-amber-300/70">{category.icon} {category.title}</p><p className="mt-1 text-xs text-white/40">Čo tieto emoji znamenajú?</p></div>
