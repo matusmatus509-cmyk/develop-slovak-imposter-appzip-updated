@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
 import {
   generateBattleRounds,
-  QUIZ_QUESTIONS,
+  QUIZ_QUESTIONS_BY_DIFFICULTY,
   type BattleRound,
   type GameType,
+  type QuizDifficulty,
   type QuizQuestion,
 } from "../../data/teamBattle";
 
@@ -57,9 +58,10 @@ export default function TeamBattle({
   customControls?: CustomContentControls;
 }) {
   const { language } = useLanguage();
-  function chooseQuizQuestions() {
-    const pool = [...QUIZ_QUESTIONS, ...customQuestions];
-    return takePersistentItems("party:quiz", pool, 5, (item) => item.id ?? item.question);
+  function chooseQuizQuestions(difficulty: QuizDifficulty) {
+    const customPool = customQuestions.filter((question) => question.difficulty === difficulty);
+    const pool = [...QUIZ_QUESTIONS_BY_DIFFICULTY[difficulty], ...customPool];
+    return takePersistentItems(`party:quiz:${difficulty}`, pool, 5, (item) => item.id ?? item.question);
   }
   const [phase, setPhase] = useState<Phase>("setup");
   const [teamNames, setTeamNames] = useState<[string, string]>([
@@ -71,6 +73,7 @@ export default function TeamBattle({
   const [totalScores, setTotalScores] = useState<[number, number]>([0, 0]);
   const [roundScores, setRoundScores] = useState<[number, number]>([0, 0]);
   const [quickRounds, setQuickRounds] = useState(2);
+  const [quizDifficulty, setQuizDifficulty] = useState<QuizDifficulty>("lahke");
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const completionReportedRef = useRef(false);
   const partyStartedAtRef = useRef<number | null>(null);
@@ -85,6 +88,7 @@ export default function TeamBattle({
   function handleSetupStart(names: [string, string], selection: number | GameType[], options: TeamBattleOptions) {
     setTeamNames(names);
     setQuickRounds(options.quickRounds);
+    setQuizDifficulty(options.quizDifficulty);
     setRounds(generateBattleRounds(selection).map((round) => ({
       ...round,
       timeSeconds: ["pantomima", "sarady", "zakazane", "pesnicka", "hadajktosom"].includes(round.game)
@@ -109,7 +113,7 @@ export default function TeamBattle({
     const r = rounds[idx];
     if (!r) return;
     if (r.game === "quiz") {
-      setRoundQuestions(chooseQuizQuestions());
+      setRoundQuestions(chooseQuizQuestions(quizDifficulty));
     }
   }
 

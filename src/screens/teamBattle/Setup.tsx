@@ -6,6 +6,7 @@ import {
   GAME_LABELS,
   TEAM_COLORS,
   type GameType,
+  type QuizDifficulty,
 } from "../../data/teamBattle";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import minigameArtAtlas from "../../assets/minigame-art-atlas.png";
@@ -24,6 +25,7 @@ type BattleSelection = "ordered" | "random";
 export interface TeamBattleOptions {
   quickRounds: number;
   timeSeconds: number;
+  quizDifficulty: QuizDifficulty;
 }
 const GAME_ART: Record<GameType, { src: string; position: string; size: string }> = {
   pantomima: { src: partyMinigameAtlas, position: "33.333% 100%", size: "400% 300%" },
@@ -57,6 +59,7 @@ export default function TeamBattleSetup({
   const [selectedGames, setSelectedGames] = useState<GameType[]>([]);
   const [quickRounds, setQuickRounds] = useState(2);
   const [timeSeconds, setTimeSeconds] = useState(60);
+  const [quizDifficulty, setQuizDifficulty] = useState<QuizDifficulty>("lahke");
   const [blue, red] = TEAM_COLORS;
 
   function setName(index: 0 | 1, value: string) {
@@ -284,6 +287,34 @@ export default function TeamBattleSetup({
 
           <section className="party-glass mt-4 rounded-[1.75rem] p-5">
             <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-amber-300/70">Úroveň Kvízu</p>
+              <p className="mt-1 text-sm font-bold text-white/70">Vyberte náročnosť otázok pre kvízové kolo</p>
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-2">
+              {([
+                { value: "lahke", label: "🟢 Ľahšie", note: "Základné a známe fakty" },
+                { value: "tazke", label: "🔴 Ťažšie", note: "Náročnejšie vedomostné výzvy" },
+              ] as const).map(({ value, label, note }) => (
+                <button
+                  key={value}
+                  onClick={() => setQuizDifficulty(value)}
+                  className={`rounded-2xl border p-3 text-left transition active:scale-95 ${
+                    quizDifficulty === value
+                      ? value === "lahke"
+                        ? "border-emerald-300/70 bg-emerald-400/15 text-white"
+                        : "border-rose-300/70 bg-rose-400/15 text-white"
+                      : "border-white/10 bg-white/[0.035] text-white/45"
+                  }`}
+                >
+                  <span className="block text-sm font-black">{label}</span>
+                  <span className="mt-1 block text-[9px] leading-relaxed opacity-65">{note}</span>
+                </button>
+              ))}
+            </div>
+          </section>
+
+          <section className="party-glass mt-4 rounded-[1.75rem] p-5">
+            <div>
               <p className="text-[10px] font-black uppercase tracking-[0.24em] text-emerald-300/70">Pravidlá kôl</p>
               <p className="mt-1 text-sm font-bold text-white/70">Nastavte tempo celej bitky</p>
             </div>
@@ -327,7 +358,7 @@ export default function TeamBattleSetup({
           </section>
 
           <button
-            onClick={() => onStart(names, selectionType === "random" ? randomRounds : selectedGames, { quickRounds, timeSeconds })}
+            onClick={() => onStart(names, selectionType === "random" ? randomRounds : selectedGames, { quickRounds, timeSeconds, quizDifficulty })}
             disabled={!canStart}
             className="party-shine mt-6 w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 via-fuchsia-500 to-pink-500 px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white shadow-[0_18px_50px_rgba(168,85,247,.35)] transition active:scale-[.97] disabled:opacity-40"
           >

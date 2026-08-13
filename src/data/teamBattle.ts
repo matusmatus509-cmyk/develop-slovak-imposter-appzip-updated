@@ -5,6 +5,13 @@ import {
 import { getCharacterCategories } from "./characters";
 import type { AppLanguage } from "../i18n/LanguageProvider";
 import { GENERATED_PANTOMIME_BY_DIFFICULTY, GENERATED_QUIZ_QUESTIONS } from "./expandedContent";
+import {
+  QUIZ_MASTER_QUESTIONS,
+  QUIZ_MASTER_QUESTIONS_BY_DIFFICULTY,
+  type QuizDifficulty,
+} from "./quizMaster";
+
+export type { QuizDifficulty } from "./quizMaster";
 
 // ── Pantomíma words (act it out, no speaking) ────────────────────────────────
 // Split into difficulty tiers — each tier is worth a different point value.
@@ -443,6 +450,8 @@ export interface QuizQuestion {
   question: string;
   answer: string;
   category: string;
+  /** Voliteľná úroveň používaná pri výbere nového tímového Kvízu. */
+  difficulty?: QuizDifficulty;
   // Multiple-choice questions (A/B/C/D). When present, the quiz screen
   // hides the answer texts as soon as a team buzzes in and only shows
   // the four letters — the team must pick blind from memory.
@@ -909,7 +918,14 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = Array.from(new Map([
   ...EXTRA_QUIZ_QUESTIONS,
   ...EXPANDED_QUIZ_QUESTIONS,
   ...GENERATED_QUIZ_QUESTIONS,
+  ...QUIZ_MASTER_QUESTIONS,
 ].map((item) => [item.question, item])).values()).slice(0, 5000);
+
+/** Overené slovenské otázky pre dva samostatné výbery v tímovom Kvíze. */
+export const QUIZ_QUESTIONS_BY_DIFFICULTY: Record<QuizDifficulty, QuizQuestion[]> = {
+  lahke: QUIZ_MASTER_QUESTIONS_BY_DIFFICULTY.lahke,
+  tazke: QUIZ_MASTER_QUESTIONS_BY_DIFFICULTY.tazke,
+};
 
 // ── Ping pong categories (team mode) ─────────────────────────────────────────
 export const TEAM_PINGPONG_CATEGORIES: string[] = [
