@@ -237,19 +237,28 @@ export default function TeamQuiz({
       {/* Buttons */}
       <div className="relative z-10 shrink-0 space-y-3 px-4 pb-6 pt-2">
         {phase.t === "question" && (
-          <div className="flex gap-3">
+          <div className="-mx-4 grid grid-cols-2 gap-2 border-y border-white/10 bg-black/25 p-2 sm:gap-3 sm:p-3">
             {([0, 1] as const).map((idx) => (
               <button
                 key={idx}
                 onClick={() => buzz(idx)}
-                className="party-shine flex-1 overflow-hidden rounded-2xl py-7 text-xl font-black text-white shadow-lg transition active:scale-[0.97] hover:brightness-110"
+                className="group relative min-h-40 overflow-hidden rounded-[1.55rem] border border-white/25 px-3 py-5 text-center text-white shadow-[0_14px_34px_rgba(0,0,0,.35)] transition duration-200 active:scale-[.97] hover:brightness-110"
                 style={{
-                  background: idx === 0 ? a : b,
-                  boxShadow: `0 0 24px ${(idx === 0 ? a : b)}55`,
+                  background: `linear-gradient(145deg, ${(idx === 0 ? a : b)} 0%, ${(idx === 0 ? a : b)}bb 58%, #111827 150%)`,
+                  boxShadow: `0 0 32px ${(idx === 0 ? a : b)}66`,
                 }}
               >
-                {idx === 0 ? "🔵" : "🔴"}<br />
-                <span className="text-sm mt-1 block">{teamNames[idx]}</span>
+                <span className="absolute inset-x-0 top-0 h-1 bg-white/45" />
+                <span className="absolute -right-6 -top-9 text-8xl opacity-20 transition duration-200 group-hover:scale-110">
+                  {idx === 0 ? "🔵" : "🔴"}
+                </span>
+                <span className="relative flex h-full flex-col items-center justify-center">
+                  <span className="text-[10px] font-black uppercase tracking-[0.18em] text-white/75">Chcem odpovedať</span>
+                  <span className="mt-3 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/40 bg-black/15 text-2xl shadow-inner">
+                    {idx === 0 ? "🔵" : "🔴"}
+                  </span>
+                  <span className="mt-3 line-clamp-2 text-lg font-black leading-tight sm:text-xl">{teamNames[idx]}</span>
+                </span>
               </button>
             ))}
           </div>
