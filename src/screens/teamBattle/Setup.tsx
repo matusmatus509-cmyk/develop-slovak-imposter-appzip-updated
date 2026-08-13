@@ -2,7 +2,6 @@ import { useState, type CSSProperties } from "react";
 import { Icons } from "../../components/icons";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
 import {
-  GAME_ICONS,
   GAME_LABELS,
   TEAM_COLORS,
   type GameType,
@@ -297,9 +296,6 @@ export default function TeamBattleSetup({
                         style={{ backgroundImage: `url(${art.src})`, backgroundPosition: art.position, backgroundSize: art.size }}
                       />
                       <span className="pointer-events-none absolute inset-x-0 top-0 h-[6.9rem] bg-gradient-to-t from-[#0b111c] via-[#0b111c]/10 to-black/5" />
-                      <span className="absolute left-2.5 top-2.5 z-20 flex h-8 w-8 items-center justify-center rounded-xl border border-white/20 bg-black/45 text-base shadow-lg backdrop-blur-md" style={{ color: meta.accent }}>
-                        {GAME_ICONS[game]}
-                      </span>
                       {selected && (
                         <span className="absolute right-2.5 top-2.5 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white text-sm font-black text-[#071318] shadow-[0_0_22px_var(--picker-glow)]">
                           {order + 1}
