@@ -126,7 +126,7 @@ export default function TeamBattleSetup({
 
   return (
     <PartyBackdrop>
-      <main className="h-full overflow-y-auto px-5 pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]">
+      <main className="modern-party-setup party-battle-setup h-full overflow-y-auto px-5 pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]">
         <div className="mx-auto w-full max-w-md">
           <header className="flex items-center justify-between">
             <button

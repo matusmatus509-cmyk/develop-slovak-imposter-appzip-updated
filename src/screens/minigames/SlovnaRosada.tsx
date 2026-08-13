@@ -96,7 +96,7 @@ function SetupScreen({
   const [difficulty, setDifficulty] = useState("all");
 
   return (
-    <Shell>
+    <Shell className="setup-screen setup-charades">
       <TopBar title="Slovné šarády" onBack={onBack} />
 
       <div

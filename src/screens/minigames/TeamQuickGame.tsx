@@ -179,7 +179,7 @@ export default function TeamQuickGame({
 
   return (
     <PartyBackdrop>
-      <main className={`quick-setup-screen quick-setup-${game} h-full overflow-y-auto px-5 pb-8 pt-5`} style={{ "--quick-primary": theme.primary, "--quick-secondary": theme.secondary } as CSSProperties}>
+      <main className={`modern-party-setup quick-setup-screen quick-setup-${game} h-full overflow-y-auto px-5 pb-8 pt-5`} style={{ "--quick-primary": theme.primary, "--quick-secondary": theme.secondary } as CSSProperties}>
         <div className="mx-auto w-full max-w-md">
           <header className="flex items-center justify-between">
             <button onClick={gameMode ? () => setGameMode(null) : onBack} aria-label="Späť" className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-white/70 backdrop-blur-xl transition active:scale-90"><Icons.arrowLeft size={20} /></button>

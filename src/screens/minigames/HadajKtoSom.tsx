@@ -101,7 +101,7 @@ function SetupScreen({
   }
 
   return (
-    <Shell>
+    <Shell className="setup-screen setup-guess-who">
       <TopBar title="Hádaj kto som" onBack={onBack} />
 
       <div

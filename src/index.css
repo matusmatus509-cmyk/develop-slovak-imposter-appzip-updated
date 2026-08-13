@@ -1187,3 +1187,249 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   .is-game-stage .game-center-stack > .glass { padding: 1rem; }
   .is-game-stage .game-center-stack > p.text-xs { font-size: .62rem; }
 }
+
+/* --------------------------------------------------------------------------
+   Setup system — quiet, tactile and consistent across every minigame.
+   The game colour is used as information, never as decoration.
+   -------------------------------------------------------------------------- */
+.setup-screen {
+  --setup-accent: #8b9dff;
+  --game-accent: var(--setup-accent);
+  --setup-panel: #121922;
+  --setup-panel-strong: #171f29;
+  --setup-line: #29333f;
+  --setup-muted: #8994a3;
+}
+
+.setup-impostor { --setup-accent: #f08b63; }
+.setup-drawing { --setup-accent: #58b9c6; }
+.setup-guess-who { --setup-accent: #45b8b0; }
+.setup-charades { --setup-accent: #a88bd4; }
+.setup-ping-pong { --setup-accent: #6dbb8a; }
+
+.setup-screen > div.fixed { background: #0c1117 !important; }
+.setup-screen > div.fixed > img { opacity: .1 !important; filter: grayscale(1); }
+.setup-screen > div.fixed > div { opacity: 0 !important; }
+.setup-screen .app-shell-content { max-width: 36rem; padding-inline: 1rem; }
+.setup-screen .app-topbar { height: 2.75rem; margin-bottom: 1rem; }
+.setup-screen .app-topbar > button {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: .8rem;
+  border-color: var(--setup-line);
+  background: var(--setup-panel);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.setup-screen .app-topbar > span {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  color: #aeb7c3;
+  letter-spacing: .12em;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.setup-screen .app-shell-content > .flex-1 {
+  scrollbar-width: none;
+  padding-right: 1px;
+}
+.setup-screen .app-shell-content > .flex-1::-webkit-scrollbar { display: none; }
+
+.setup-screen .app-shell-content > .flex-1 > section,
+.setup-screen .glass {
+  border: 1px solid var(--setup-line) !important;
+  border-radius: 1.05rem !important;
+  background: var(--setup-panel) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.setup-screen .app-shell-content > .flex-1 > section { padding: 1rem; }
+.setup-screen .app-shell-content > .flex-1 > section + section { margin-top: .7rem; }
+.setup-screen .glass { margin-bottom: .7rem; }
+
+.setup-screen .glass[class*="leading-relaxed"] {
+  border-left: 3px solid var(--setup-accent) !important;
+  background: var(--setup-panel-strong) !important;
+  color: #aeb7c3 !important;
+  font-size: .75rem;
+  line-height: 1.55;
+}
+.setup-screen h2,
+.setup-screen p[class*="uppercase"] {
+  color: var(--setup-muted) !important;
+  font-size: .65rem !important;
+  letter-spacing: .14em !important;
+}
+.setup-screen input[type="text"],
+.setup-screen input:not([type]) {
+  min-height: 2.85rem;
+  border: 1px solid var(--setup-line) !important;
+  border-radius: .8rem !important;
+  background: #0d131a !important;
+  padding-inline: .9rem;
+  box-shadow: none !important;
+}
+.setup-screen input:focus { border-color: var(--setup-accent) !important; }
+
+.setup-screen button {
+  box-shadow: none !important;
+  transition: border-color .18s ease, background-color .18s ease, color .18s ease, transform .12s ease !important;
+}
+.setup-screen button:hover { transform: none !important; }
+.setup-screen button:active { transform: scale(.985) !important; }
+.setup-screen button[class*="rounded-2xl"],
+.setup-screen button[class*="rounded-xl"] { border-radius: .75rem !important; }
+.setup-screen button[class*="bg-white/5"],
+.setup-screen button[class*="bg-white/[0.05]"] {
+  border-color: var(--setup-line) !important;
+  background: #0d131a !important;
+}
+.setup-screen button[class*="bg-cyan-500"],
+.setup-screen button[class*="bg-purple-500"],
+.setup-screen button[class*="bg-green-500"] {
+  border-color: var(--setup-accent) !important;
+  background: color-mix(in srgb, var(--setup-accent) 14%, #111821) !important;
+  color: #f7f9fb !important;
+}
+.setup-screen .app-button {
+  min-height: 3.25rem;
+  height: 3.25rem !important;
+  border: 1px solid color-mix(in srgb, var(--setup-accent) 75%, white 8%);
+  border-radius: .9rem !important;
+  background: var(--setup-accent) !important;
+  color: #081016 !important;
+  font-size: .85rem !important;
+  box-shadow: none !important;
+}
+.setup-screen .app-button span { white-space: normal !important; }
+
+/* Party setup screens use the same visual language, while preserving artwork. */
+.modern-party-setup {
+  --setup-accent: var(--quick-primary, var(--game-accent, #8b9dff));
+  background: #0c1117;
+  color: #f5f7fa;
+}
+.modern-party-setup header > button {
+  border-color: #29333f !important;
+  border-radius: .8rem !important;
+  background: #141b24 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.modern-party-setup .party-eyebrow {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding-inline: 0;
+  color: #aeb7c3;
+  letter-spacing: .14em;
+  backdrop-filter: none;
+}
+.modern-party-setup .party-live-dot { border-radius: 2px; }
+.modern-party-setup .party-glass,
+.modern-party-setup .quick-mode-panel {
+  border: 1px solid #29333f !important;
+  border-radius: 1.05rem !important;
+  background: #121922 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.modern-party-setup .game-setup-hero {
+  height: 10.5rem;
+  border-color: #33404d !important;
+  border-radius: 1.1rem !important;
+  box-shadow: none !important;
+}
+.modern-party-setup .game-setup-hero::after { display: none; }
+.modern-party-setup .game-setup-hero img { filter: saturate(.78) contrast(1.04); }
+.modern-party-setup .quick-game-signature {
+  border: 0;
+  border-radius: .35rem;
+  background: #f4f6f8;
+  color: #111820 !important;
+  backdrop-filter: none;
+}
+.modern-party-setup .setup-player-badge {
+  border-radius: .5rem;
+  background: #111820;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.modern-party-setup .quick-mode-choice {
+  border: 1px solid #2b3642 !important;
+  border-radius: .9rem !important;
+  background: #171f29 !important;
+  box-shadow: none !important;
+}
+.modern-party-setup .quick-mode-choice:hover { border-color: var(--setup-accent) !important; transform: none; }
+.modern-party-setup .quick-mode-icon {
+  border: 1px solid #34404d;
+  border-radius: .75rem;
+  background: #0d131a;
+  color: var(--setup-accent);
+}
+.modern-party-setup .quick-mode-index { color: #6f7b89; }
+.modern-party-setup label.party-glass { border-radius: .85rem !important; }
+.modern-party-setup label.party-glass > span:first-child { border-radius: .55rem !important; box-shadow: none !important; }
+.modern-party-setup button { box-shadow: none !important; }
+.modern-party-setup button:hover { transform: none !important; }
+.modern-party-setup button:active { transform: scale(.985) !important; }
+.modern-party-setup button[class*="bg-gradient"],
+.modern-party-setup button.party-shine:not(.quick-mode-choice) {
+  border: 1px solid color-mix(in srgb, var(--setup-accent) 70%, white 10%) !important;
+  border-radius: .85rem !important;
+  background: var(--setup-accent) !important;
+  color: #071016 !important;
+  box-shadow: none !important;
+}
+.modern-party-setup .party-shine::after { display: none; }
+
+/* Party battle picker: artwork-led cards with simple editorial labels. */
+.party-battle-setup > div > section:nth-of-type(1) { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.party-battle-setup .party-game-picker {
+  min-height: 10rem;
+  border-color: #29333f !important;
+  border-radius: .9rem !important;
+  background: #10161e !important;
+  box-shadow: none !important;
+}
+.party-battle-setup .party-game-picker::after { display: none; }
+.party-battle-setup .party-game-picker > span:first-child { opacity: .76; filter: saturate(.72) contrast(1.05); }
+.party-battle-setup .party-game-picker.is-selected {
+  border-color: var(--picker-accent) !important;
+  background: #151d26 !important;
+  box-shadow: inset 0 -3px 0 var(--picker-accent) !important;
+}
+.party-battle-setup .party-game-picker.is-selected > span:nth-of-type(3) {
+  border-radius: .45rem;
+  background: #f4f6f8;
+  box-shadow: none;
+}
+
+.classic-minigame-setup .tic-hero,
+.classic-minigame-setup .battle-mode-emblem {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 1rem;
+  border-color: #33404d;
+  background: #151d26;
+  box-shadow: none;
+}
+.classic-minigame-setup section.party-glass,
+.classic-minigame-setup .battle-rules-card {
+  border-color: #29333f !important;
+  border-radius: 1rem !important;
+  background: #121922 !important;
+  box-shadow: none !important;
+}
+
+@media (max-height: 720px) {
+  .modern-party-setup .game-setup-hero { height: 8rem; margin-top: .75rem; }
+  .modern-party-setup .game-setup-hero h1 { font-size: 1.55rem; }
+  .classic-minigame-setup .tic-hero,
+  .classic-minigame-setup .battle-mode-emblem { width: 4.5rem; height: 4.5rem; }
+  .classic-minigame-setup section.mt-7 { margin-top: 1rem; }
+  .setup-screen .app-shell-content { padding-top: max(.75rem, env(safe-area-inset-top)); }
+}
