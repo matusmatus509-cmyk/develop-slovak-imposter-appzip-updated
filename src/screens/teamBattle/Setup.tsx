@@ -83,6 +83,34 @@ export default function TeamBattleSetup({
   const canStart = Boolean(
     names[0].trim() && names[1].trim() && (selectionType === "random" || selectedGames.length > 0),
   );
+  const quizDifficultyControls = (
+    <div className="mt-5 border-t border-white/10 pt-4">
+      <p className="text-[10px] font-black uppercase tracking-[0.24em] text-amber-300/70">Náročnosť kvízu</p>
+      <p className="mt-1 text-sm font-bold text-white/70">Zvoľte otázky pre kvízové kolo</p>
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        {([
+          { value: "lahke", label: "🟢 Ľahšie", note: "Základné a známe fakty" },
+          { value: "tazke", label: "🔴 Ťažšie", note: "Náročnejšie vedomostné výzvy" },
+        ] as const).map(({ value, label, note }) => (
+          <button
+            key={value}
+            onClick={() => setQuizDifficulty(value)}
+            aria-pressed={quizDifficulty === value}
+            className={`rounded-2xl border p-3 text-left transition active:scale-95 ${
+              quizDifficulty === value
+                ? value === "lahke"
+                  ? "border-emerald-300/70 bg-emerald-400/15 text-white"
+                  : "border-rose-300/70 bg-rose-400/15 text-white"
+                : "border-white/10 bg-white/[0.035] text-white/45"
+            }`}
+          >
+            <span className="block text-sm font-black">{label}</span>
+            <span className="mt-1 block text-[9px] leading-relaxed opacity-65">{note}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <PartyBackdrop>
@@ -213,6 +241,7 @@ export default function TeamBattleSetup({
               <p className="mt-4 text-center text-[10px] leading-relaxed text-white/30">
                 Hry a poradie vyberie aplikácia náhodne. Posledné kolo bude kvízové finále.
               </p>
+              {quizDifficultyControls}
             </section>
           ) : (
             <section className="party-glass mt-4 rounded-[1.75rem] p-5">
@@ -280,38 +309,11 @@ export default function TeamBattleSetup({
               <p className="mt-4 text-center text-[10px] leading-relaxed text-white/25">
                 Posledná vybraná minihra bude finále s trojnásobnými bodmi.
               </p>
+              {selectedGames.includes("quiz") && quizDifficultyControls}
             </section>
           )}
 
           {customControls && <div className="mt-4"><CustomContentSelector controls={customControls} compact /></div>}
-
-          <section className="party-glass mt-4 rounded-[1.75rem] p-5">
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-amber-300/70">Úroveň Kvízu</p>
-              <p className="mt-1 text-sm font-bold text-white/70">Vyberte náročnosť otázok pre kvízové kolo</p>
-            </div>
-            <div className="mt-4 grid grid-cols-2 gap-2">
-              {([
-                { value: "lahke", label: "🟢 Ľahšie", note: "Základné a známe fakty" },
-                { value: "tazke", label: "🔴 Ťažšie", note: "Náročnejšie vedomostné výzvy" },
-              ] as const).map(({ value, label, note }) => (
-                <button
-                  key={value}
-                  onClick={() => setQuizDifficulty(value)}
-                  className={`rounded-2xl border p-3 text-left transition active:scale-95 ${
-                    quizDifficulty === value
-                      ? value === "lahke"
-                        ? "border-emerald-300/70 bg-emerald-400/15 text-white"
-                        : "border-rose-300/70 bg-rose-400/15 text-white"
-                      : "border-white/10 bg-white/[0.035] text-white/45"
-                  }`}
-                >
-                  <span className="block text-sm font-black">{label}</span>
-                  <span className="mt-1 block text-[9px] leading-relaxed opacity-65">{note}</span>
-                </button>
-              ))}
-            </div>
-          </section>
 
           <section className="party-glass mt-4 rounded-[1.75rem] p-5">
             <div>
