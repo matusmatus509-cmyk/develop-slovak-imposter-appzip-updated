@@ -103,6 +103,33 @@ export default function TeamQuiz({
       style={{ background: "radial-gradient(circle at 50% 30%, rgba(168,85,247,.15), transparent 45%), #070711" }}
     >
       <div className="party-grid pointer-events-none absolute inset-0 opacity-20" />
+
+      {/* Horný buzzer je otočený k tímu sediacemu oproti telefónu. */}
+      {phase.t === "question" && (
+        <button
+          onClick={() => buzz(0)}
+          aria-label={`${teamNames[0]} chce odpovedať`}
+          className="group relative z-20 flex h-[7.25rem] w-full shrink-0 items-center justify-center overflow-hidden rounded-b-[2rem] border-b border-white/30 text-white shadow-[0_16px_45px_rgba(0,0,0,.4)] transition active:scale-[.985] active:brightness-125"
+          style={{
+            paddingTop: "max(.35rem, env(safe-area-inset-top))",
+            background: `linear-gradient(120deg, #071a33 0%, ${a} 48%, #174a85 100%)`,
+            boxShadow: `0 15px 44px ${a}55`,
+          }}
+        >
+          <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(255,255,255,.22),transparent_28%)]" />
+          <span className="pointer-events-none absolute -bottom-12 -right-8 h-32 w-32 rounded-full border-[18px] border-white/10" />
+          <span className="relative flex rotate-180 items-center gap-4">
+            <span className="flex h-16 w-16 items-center justify-center rounded-full border-4 border-white/70 bg-white/15 text-3xl shadow-[inset_0_3px_12px_rgba(255,255,255,.3),0_5px_20px_rgba(0,0,0,.28)] transition group-active:scale-90">
+              🔵
+            </span>
+            <span className="text-left">
+              <span className="block text-[9px] font-black uppercase tracking-[0.24em] text-white/70">Stlač, ak vieš</span>
+              <span className="mt-1 block max-w-[13rem] truncate text-xl font-black leading-none">{teamNames[0]}</span>
+            </span>
+          </span>
+        </button>
+      )}
+
       {/* Score bar */}
       <div className="relative z-10 m-3 flex shrink-0 items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/[0.055] px-4 py-3 backdrop-blur-xl">
         {([0, 1] as const).map((idx, i) => (
@@ -125,7 +152,7 @@ export default function TeamQuiz({
       </div>
 
       {/* Question card */}
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-4 px-5">
+      <div className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-4 overflow-y-auto px-5 py-3">
         <p className="text-xs font-bold uppercase tracking-widest text-white/30">
           {q.category}
         </p>
@@ -235,33 +262,29 @@ export default function TeamQuiz({
       </div>
 
       {/* Buttons */}
-      <div className="relative z-10 shrink-0 space-y-3 px-4 pb-6 pt-2">
+      <div className={`relative z-10 shrink-0 ${phase.t === "question" ? "px-0 pb-[max(.35rem,env(safe-area-inset-bottom))] pt-0" : "space-y-3 px-4 pb-6 pt-2"}`}>
         {phase.t === "question" && (
-          <div className="-mx-4 grid grid-cols-2 gap-2 border-y border-white/10 bg-black/25 p-2 sm:gap-3 sm:p-3">
-            {([0, 1] as const).map((idx) => (
-              <button
-                key={idx}
-                onClick={() => buzz(idx)}
-                className="group relative min-h-40 overflow-hidden rounded-[1.55rem] border border-white/25 px-3 py-5 text-center text-white shadow-[0_14px_34px_rgba(0,0,0,.35)] transition duration-200 active:scale-[.97] hover:brightness-110"
-                style={{
-                  background: `linear-gradient(145deg, ${(idx === 0 ? a : b)} 0%, ${(idx === 0 ? a : b)}bb 58%, #111827 150%)`,
-                  boxShadow: `0 0 32px ${(idx === 0 ? a : b)}66`,
-                }}
-              >
-                <span className="absolute inset-x-0 top-0 h-1 bg-white/45" />
-                <span className="absolute -right-6 -top-9 text-8xl opacity-20 transition duration-200 group-hover:scale-110">
-                  {idx === 0 ? "🔵" : "🔴"}
-                </span>
-                <span className="relative flex h-full flex-col items-center justify-center">
-                  <span className="text-[10px] font-black uppercase tracking-[0.18em] text-white/75">Chcem odpovedať</span>
-                  <span className="mt-3 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/40 bg-black/15 text-2xl shadow-inner">
-                    {idx === 0 ? "🔵" : "🔴"}
-                  </span>
-                  <span className="mt-3 line-clamp-2 text-lg font-black leading-tight sm:text-xl">{teamNames[idx]}</span>
-                </span>
-              </button>
-            ))}
-          </div>
+          <button
+            onClick={() => buzz(1)}
+            aria-label={`${teamNames[1]} chce odpovedať`}
+            className="group relative flex h-[7.25rem] w-full items-center justify-center overflow-hidden rounded-t-[2rem] border-t border-white/30 text-white shadow-[0_-16px_45px_rgba(0,0,0,.4)] transition active:scale-[.985] active:brightness-125"
+            style={{
+              background: `linear-gradient(120deg, #7f1d2d 0%, ${b} 50%, #350916 100%)`,
+              boxShadow: `0 -15px 44px ${b}55`,
+            }}
+          >
+            <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(255,255,255,.22),transparent_28%)]" />
+            <span className="pointer-events-none absolute -left-8 -top-12 h-32 w-32 rounded-full border-[18px] border-white/10" />
+            <span className="relative flex items-center gap-4">
+              <span className="text-right">
+                <span className="block text-[9px] font-black uppercase tracking-[0.24em] text-white/70">Stlač, ak vieš</span>
+                <span className="mt-1 block max-w-[13rem] truncate text-xl font-black leading-none">{teamNames[1]}</span>
+              </span>
+              <span className="flex h-16 w-16 items-center justify-center rounded-full border-4 border-white/70 bg-white/15 text-3xl shadow-[inset_0_3px_12px_rgba(255,255,255,.3),0_5px_20px_rgba(0,0,0,.28)] transition group-active:scale-90">
+                🔴
+              </span>
+            </span>
+          </button>
         )}
 
         {phase.t === "selecting" && (
