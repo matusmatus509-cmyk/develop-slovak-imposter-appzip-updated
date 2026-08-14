@@ -1854,3 +1854,15 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
     transition-duration: .01ms !important;
   }
 }
+
+@media (max-height: 720px) {
+  .home-screen .home-content { padding-top: max(.55rem, env(safe-area-inset-top)); padding-bottom: max(.55rem, env(safe-area-inset-bottom)); }
+  .home-screen .home-heading { margin-top: .55rem; }
+  .home-screen .home-heading > p { display: none; }
+  .home-screen .home-heading h1 { margin-top: 0; font-size: 1.7rem; line-height: .96; }
+  .home-screen .home-showcase { margin-top: .55rem; gap: .45rem; }
+  .home-screen .home-showcase > div { gap: .45rem; }
+  .home-screen .home-showcase article { border-radius: 1rem; }
+  .home-screen .home-showcase article p:last-child { display: none; }
+  .home-screen .home-level-bar { height: 2.65rem; margin-top: .45rem; }
+}

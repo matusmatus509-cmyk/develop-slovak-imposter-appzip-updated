@@ -16,12 +16,11 @@ const SECTIONS: Array<{
   description: string;
   image: string;
   accent: string;
-  glow: string;
   featured?: boolean;
 }> = [
-  { screen: "teambattle", eyebrow: "Tím proti tímu", title: "Party mode", description: "Kompletný súboj 2 tímov · body · finále", image: partyModeArt, accent: "from-violet-500 to-indigo-500", glow: "rgba(124, 58, 237, .38)", featured: true },
-  { screen: "impostor-menu", eyebrow: "Kto z vás klame?", title: "Imposter", description: "Klasická hra aj kreslenie", image: imposterArt, accent: "from-orange-400 to-rose-500", glow: "rgba(244, 63, 94, .34)" },
-  { screen: "minigames-menu", eyebrow: "Rýchle hry", title: "Minihry", description: "Krátke kolá pre každú partiu", image: minigamesArt, accent: "from-cyan-400 to-teal-500", glow: "rgba(6, 182, 212, .32)" },
+  { screen: "teambattle", eyebrow: "Tím proti tímu", title: "Party mode", description: "Kompletný večer plný minihier, bodov a veľkého finále.", image: partyModeArt, accent: "#8b5cf6", featured: true },
+  { screen: "impostor-menu", eyebrow: "Odhaľ klamára", title: "Imposter", description: "Slová aj kreslenie", image: imposterArt, accent: "#f97316" },
+  { screen: "minigames-menu", eyebrow: "Rýchla zábava", title: "Minihry", description: "Hry na pár minút", image: minigamesArt, accent: "#06b6d4" },
 ];
 
 const LANGUAGES: { code: AppLanguage; mark: string; label: string }[] = [
@@ -51,9 +50,9 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
       <img src={appBackground} alt="" className="pointer-events-none fixed inset-0 h-full w-full object-cover opacity-55" />
       <div className="pointer-events-none fixed inset-0 bg-gradient-to-b from-[#080b10]/42 via-[#080b10]/72 to-[#080b10]/96" />
 
-      <div className="home-content relative mx-auto flex min-h-[100dvh] w-full max-w-md flex-col px-5 pb-4 pt-4">
-        <div className="flex h-10 items-center justify-between">
-          <span className="text-[10px] font-black uppercase tracking-[.22em] text-white/38">Párty hry</span>
+      <div className="home-content relative mx-auto flex h-[100dvh] w-full max-w-md flex-col overflow-hidden px-4 pb-[max(.8rem,env(safe-area-inset-bottom))] pt-[max(.8rem,env(safe-area-inset-top))]">
+        <div className="flex h-10 shrink-0 items-center justify-between">
+          <span className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[.2em] text-white/72"><span className="h-2 w-2 rounded-sm bg-violet-400" /> Párty hry</span>
           <div className="flex items-center gap-2">
             <button type="button" onClick={() => onNavigate("party-hub")} aria-label="Otvoriť Party Hub" className="flex h-10 items-center rounded-xl border border-white/12 bg-[#111820]/92 px-3 text-[9px] font-black uppercase tracking-wider text-white/72 transition active:scale-95">Party Hub</button>
             <button type="button" onClick={() => setIsMenuOpen(true)} aria-label="Otvoriť menu" aria-expanded={isMenuOpen} className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/12 bg-[#111820]/95 text-white/70 shadow-xl transition hover:border-white/25 hover:text-white active:scale-95">
@@ -62,62 +61,51 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
           </div>
         </div>
 
-        <header className="home-heading mt-4" style={{ animation: "slideUp .45s ease-out both" }}>
-          <h1 className="text-[2.15rem] font-black leading-[.95] tracking-[-.055em]">Vyberte si hru.<span className="text-white/45"> Zábava začína.</span></h1>
+        <header className="home-heading mt-4 shrink-0" style={{ animation: "slideUp .32s ease-out both" }}>
+          <p className="text-[9px] font-black uppercase tracking-[.2em] text-violet-300/80">Jeden mobil. Celá partia.</p>
+          <h1 className="mt-1.5 text-[2.15rem] font-black leading-[.96] tracking-[-.052em]">Čo si dnes<br /><span className="text-white/48">zahráme?</span></h1>
         </header>
 
-        <button
-          type="button"
-          onClick={() => onNavigate("statistics")}
-          aria-label={`Otvoriť herný profil, level ${level.level}`}
-          className="home-profile-card home-mode-card group relative mt-4 w-full overflow-hidden rounded-[1.3rem] border border-violet-300/20 bg-[#141525]/95 p-3 text-left shadow-[0_18px_52px_-34px_rgba(139,92,246,.9)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-violet-300/35 active:scale-[.985]"
-          style={{ animation: "slideUp .45s ease-out 70ms both" }}
-        >
-          <span className="pointer-events-none absolute -right-10 -top-14 h-32 w-32 rounded-full bg-violet-500/20 blur-3xl" />
-          <span className="relative flex items-center gap-2.5">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/12 bg-[#202938] text-sm font-black tabular-nums text-white">{level.level}</span>
-            <span className="min-w-0 flex-1">
-              <span className="flex items-baseline gap-2"><strong className="text-[1.3rem] font-black leading-none tracking-[-.04em]">Level {level.level}</strong><small className="truncate text-[9px] font-bold text-white/42">{level.level === 100 ? "Maximálny level" : `${xpRemaining} XP do ďalšieho`}</small></span>
-              <span className="mt-2 flex items-center gap-2"><span className="block h-1.5 flex-1 overflow-hidden rounded-full bg-black/40 ring-1 ring-white/[.07]"><span className="block h-full rounded-full bg-gradient-to-r from-violet-500 via-fuchsia-400 to-cyan-400 transition-[width] duration-700" style={{ width: `${level.progressPercent}%` }} /></span><small className="shrink-0 text-[8px] font-black text-white/32">{level.xpIntoLevel}/{level.xpForNextLevel} XP</small></span>
-            </span>
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[.055] text-white/45 transition group-hover:translate-x-0.5"><Icons.chevronRight size={16} /></span>
-          </span>
-        </button>
-
         {favoriteGames.length > 0 && (
-          <section className="mt-3" aria-label="Obľúbené hry">
-            <div className="mb-2 flex items-center gap-2"><Icons.heart size={13} className="text-rose-300" /><h2 className="text-[9px] font-black uppercase tracking-[.18em] text-white/45">Pripnuté obľúbené</h2></div>
-            <div className="flex gap-2 overflow-x-auto pb-1">
-              {favoriteGames.map((game) => <div key={game.id} className="flex shrink-0 items-center rounded-xl border border-white/10 bg-[#111820]/95 p-1"><button type="button" onClick={() => onNavigate(game.screen)} className="flex items-center px-2 py-2 text-[10px] font-black">{game.title}</button><button type="button" onClick={() => onToggleFavorite(game.id)} aria-pressed="true" aria-label={`Odobrať ${game.title} z obľúbených`} className="flex h-7 w-7 items-center justify-center rounded-lg text-rose-300"><Icons.heart size={13} fill="currentColor" /></button></div>)}
+          <section className="mt-2.5 flex shrink-0 items-center gap-2 overflow-hidden" aria-label="Obľúbené hry">
+            <span className="shrink-0 text-[8px] font-black uppercase tracking-[.16em] text-white/35">Obľúbené</span>
+            <div className="flex min-w-0 gap-1.5 overflow-x-auto">
+              {favoriteGames.slice(0, 3).map((game) => <button key={game.id} type="button" onClick={() => onNavigate(game.screen)} className="shrink-0 rounded-lg border border-white/10 bg-[#111820]/88 px-2.5 py-1.5 text-[9px] font-bold text-white/68">{game.title}</button>)}
             </div>
           </section>
         )}
 
-        <section className="home-game-grid mt-3 flex min-h-[420px] flex-1 flex-col gap-2.5" aria-label="Herné režimy">
-          {SECTIONS.map((section, index) => {
-            return (
-              <article
-                key={section.screen}
-                className={`home-mode-card group relative min-h-0 overflow-hidden rounded-[1.45rem] border text-left shadow-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20 active:scale-[.985] ${section.featured ? "home-party-featured flex-[1.35] border-violet-300/30 bg-[#141525]" : "flex-1 border-white/[.11] bg-[#11171e]"}`}
-                style={{ animation: `slideUp .45s ease-out ${120 + index * 65}ms both`, boxShadow: `0 18px 42px -31px ${section.glow}` }}
-              >
-                <button type="button" onClick={() => onNavigate(section.screen)} aria-label={`Otvoriť ${section.title}`} className="absolute inset-0 z-[1] rounded-[1.25rem] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300" />
-                <img src={section.image} alt="" className="absolute inset-0 h-full w-full object-cover object-center opacity-66 saturate-[.78] transition duration-500 group-hover:scale-[1.025] group-hover:opacity-82" />
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,#10161d_0%,rgba(16,22,29,.97)_38%,rgba(16,22,29,.62)_70%,rgba(16,22,29,.1)_100%)]" />
-                <div className={`absolute inset-y-0 left-0 w-1 bg-gradient-to-b ${section.accent}`} />
-                <div className="relative flex h-full items-center p-4">
-                  <div className="w-[76%] min-w-0">
-                    <div className="flex items-center gap-2"><p className="text-[8px] font-extrabold uppercase tracking-[.16em] text-white/58">{section.eyebrow}</p>{section.featured && <span className="ml-1 rounded-md border border-white/14 bg-black/30 px-2 py-1 text-[7px] font-black uppercase tracking-wider text-white/68">Hlavná hra</span>}</div>
-                    <h2 className={`mt-2 font-extrabold leading-none tracking-[-.045em] ${section.featured ? "text-[1.65rem]" : "text-[1.3rem]"}`}>{section.title}</h2>
-                    <p className="mt-1 text-[10px] font-semibold leading-snug text-white/55">{section.description}</p>
-                  </div>
-                  {section.screen === "teambattle" && <button type="button" onClick={() => onToggleFavorite("teambattle")} aria-pressed={favoriteGames.some((game) => game.id === "teambattle")} aria-label={favoriteGames.some((game) => game.id === "teambattle") ? "Odobrať Party mode z obľúbených" : "Pridať Party mode medzi obľúbené"} className={`absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-lg border ${favoriteGames.some((game) => game.id === "teambattle") ? "border-rose-300/25 bg-rose-400/15 text-rose-300" : "border-white/12 bg-[#111820]/75 text-white/55"}`}><Icons.heart size={14} fill={favoriteGames.some((game) => game.id === "teambattle") ? "currentColor" : "none"} /></button>}
-                  <span className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-lg border border-white/12 bg-[#111820]/80 text-white/65 shadow-lg transition group-hover:translate-x-0.5 group-hover:text-white"><Icons.chevronRight size={17} /></span>
-                </div>
+        <section className={`home-showcase mt-3 min-h-0 flex-1 grid-rows-[1.28fr_1fr] gap-2.5 ${favoriteGames.length > 0 ? "" : "mt-4"} grid`} aria-label="Herné režimy">
+          <article className="home-mode-card home-party-featured group relative min-h-0 overflow-hidden rounded-[1.55rem] border border-violet-300/25 bg-[#111820]" style={{ animation: "slideUp .34s ease-out 60ms both" }}>
+            <button type="button" onClick={() => onNavigate(SECTIONS[0].screen)} aria-label="Otvoriť Party mode" className="absolute inset-0 z-[1] rounded-[1.55rem] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300" />
+            <img src={SECTIONS[0].image} alt="" className="absolute inset-0 h-full w-full object-cover object-center opacity-90 transition duration-500 group-hover:scale-[1.02]" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(5,8,13,.06)_20%,rgba(5,8,13,.34)_52%,rgba(5,8,13,.97)_100%)]" />
+            <div className="absolute left-4 top-4 flex gap-2"><span className="rounded-lg border border-white/14 bg-black/45 px-2.5 py-1.5 text-[8px] font-black uppercase tracking-[.14em] text-white/78">Hlavná hra</span><span className="rounded-lg border border-white/14 bg-black/45 px-2.5 py-1.5 text-[8px] font-black uppercase tracking-[.14em] text-white/78">4+ hráči</span></div>
+            <button type="button" onClick={() => onToggleFavorite("teambattle")} aria-pressed={favoriteGames.some((game) => game.id === "teambattle")} aria-label={favoriteGames.some((game) => game.id === "teambattle") ? "Odobrať Party mode z obľúbených" : "Pridať Party mode medzi obľúbené"} className={`absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-xl border ${favoriteGames.some((game) => game.id === "teambattle") ? "border-rose-300/30 bg-rose-400/18 text-rose-200" : "border-white/14 bg-black/45 text-white/70"}`}><Icons.heart size={16} fill={favoriteGames.some((game) => game.id === "teambattle") ? "currentColor" : "none"} /></button>
+            <div className="absolute inset-x-0 bottom-0 p-4">
+              <p className="text-[8px] font-black uppercase tracking-[.18em] text-violet-200/85">{SECTIONS[0].eyebrow}</p>
+              <div className="mt-1 flex items-end justify-between gap-3"><div><h2 className="text-[1.8rem] font-black leading-none tracking-[-.045em]">{SECTIONS[0].title}</h2><p className="mt-1.5 max-w-[16rem] text-[10px] font-semibold leading-snug text-white/62">{SECTIONS[0].description}</p></div><span className="flex h-10 shrink-0 items-center rounded-xl bg-white px-4 text-[10px] font-black uppercase tracking-wide text-[#0a0d12]">Hrať</span></div>
+            </div>
+          </article>
+
+          <div className="grid min-h-0 grid-cols-2 gap-2.5">
+            {SECTIONS.slice(1).map((section, index) => (
+              <article key={section.screen} className="home-mode-card group relative min-h-0 overflow-hidden rounded-[1.35rem] border border-white/12 bg-[#111820]" style={{ animation: `slideUp .34s ease-out ${120 + index * 55}ms both` }}>
+                <button type="button" onClick={() => onNavigate(section.screen)} aria-label={`Otvoriť ${section.title}`} className="absolute inset-0 z-[1] rounded-[1.35rem] focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/70" />
+                <img src={section.image} alt="" className="absolute inset-0 h-full w-full object-cover object-center opacity-88 transition duration-500 group-hover:scale-[1.025]" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(5,8,13,.04)_16%,rgba(5,8,13,.3)_46%,rgba(5,8,13,.96)_100%)]" />
+                <span className="absolute left-3 top-3 h-1.5 w-8 rounded-full" style={{ background: section.accent }} />
+                <div className="absolute inset-x-0 bottom-0 p-3.5"><p className="text-[7px] font-black uppercase tracking-[.15em] text-white/58">{section.eyebrow}</p><h2 className="mt-1 text-[1.25rem] font-black leading-none tracking-[-.035em]">{section.title}</h2><p className="mt-1 text-[9px] font-semibold text-white/52">{section.description}</p></div>
               </article>
-            );
-          })}
+            ))}
+          </div>
         </section>
+
+        <button type="button" onClick={() => onNavigate("statistics")} aria-label={`Otvoriť herný profil, level ${level.level}`} className="home-level-bar mt-2.5 flex h-12 shrink-0 items-center gap-3 rounded-xl border border-white/10 bg-[#111820]/94 px-3 text-left active:scale-[.99]">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-violet-500 text-xs font-black tabular-nums text-white">{level.level}</span>
+          <span className="min-w-0 flex-1"><span className="flex items-center justify-between gap-2"><strong className="text-[10px] font-black">Level {level.level}</strong><small className="truncate text-[8px] font-bold text-white/38">{level.level === 100 ? "Maximálny level" : `${xpRemaining} XP do ďalšieho`}</small></span><span className="mt-1.5 block h-1 overflow-hidden rounded-full bg-black/40"><span className="block h-full rounded-full bg-violet-400" style={{ width: `${level.progressPercent}%` }} /></span></span>
+          <Icons.chevronRight size={16} className="shrink-0 text-white/35" />
+        </button>
       </div>
 
       {isMenuOpen && (
