@@ -329,7 +329,7 @@ export default function GameWelcome({
       <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_50%_5%,var(--welcome-soft),transparent_38%)]" />
 
       <div className="game-welcome-content relative mx-auto flex h-full w-full max-w-lg flex-col px-4 pb-[max(.75rem,env(safe-area-inset-bottom))] pt-[max(.75rem,env(safe-area-inset-top))]">
-        <div className={`game-welcome-hero relative mb-3 h-[min(59dvh,650px)] min-h-[330px] shrink-0 overflow-hidden rounded-[26px] border border-white/12 shadow-2xl animate-welcome-reveal ${config.variant === "song" ? "game-welcome-song-hero" : ""}`}>
+        <div className={`game-welcome-hero relative mb-3 min-h-0 flex-1 overflow-hidden rounded-[26px] border border-white/12 shadow-2xl animate-welcome-reveal ${config.variant === "song" ? "game-welcome-song-hero" : ""}`}>
           {config.art && !config.artAtlas ? (
             <img
               src={config.art}
@@ -369,7 +369,7 @@ export default function GameWelcome({
           </div>
         </div>
 
-        <section className="flex flex-col animate-welcome-content">
+        <section className="game-welcome-details flex shrink-0 flex-col animate-welcome-content">
           <p className="game-welcome-description text-[13px] font-medium leading-[1.5] text-white/62">{config.description}</p>
 
           <div className="game-welcome-stats my-2 grid grid-cols-2 gap-2">
