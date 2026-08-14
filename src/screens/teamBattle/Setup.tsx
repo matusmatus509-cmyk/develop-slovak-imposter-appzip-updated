@@ -126,7 +126,7 @@ export default function TeamBattleSetup({
 
   return (
     <PartyBackdrop>
-      <main className="h-full overflow-y-auto px-5 pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]">
+      <main className="mobile-settings mobile-party-settings party-battle-settings h-full overflow-y-auto px-5 pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]">
         <div className="mx-auto w-full max-w-md">
           <header className="flex items-center justify-between">
             <button
@@ -140,7 +140,7 @@ export default function TeamBattleSetup({
             <div className="h-11 w-11" />
           </header>
 
-          <section className="pb-7 pt-8 text-center">
+          <section className="party-battle-hero pb-7 pt-8 text-center">
             <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-[1.7rem] border border-white/15 bg-gradient-to-br from-violet-500/40 to-fuchsia-500/15 shadow-[0_20px_55px_rgba(168,85,247,.3)]">
               <Icons.sword size={39} className="text-white" />
             </div>
@@ -151,7 +151,7 @@ export default function TeamBattleSetup({
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="party-team-fields space-y-3">
             {([0, 1] as const).map((index) => {
               const color = index === 0 ? blue : red;
               return (
@@ -184,7 +184,7 @@ export default function TeamBattleSetup({
             })}
           </section>
 
-          <section className="mt-5">
+          <section className="party-selection-block mt-5">
             <div className="mb-3 flex items-end justify-between">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">Zostava hier</p>
@@ -198,7 +198,7 @@ export default function TeamBattleSetup({
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => setSelectionType("ordered")}
-                className={`relative overflow-hidden rounded-[1.6rem] border p-5 text-left transition active:scale-[.97] ${
+                className={`party-selection-card relative overflow-hidden rounded-[1.6rem] border p-5 text-left transition active:scale-[.97] ${
                   selectionType === "ordered"
                     ? "border-cyan-300/65 bg-cyan-500/15 shadow-[0_15px_45px_rgba(34,211,238,.2)]"
                     : "border-white/10 bg-white/[0.045]"
@@ -212,7 +212,7 @@ export default function TeamBattleSetup({
 
               <button
                 onClick={() => setSelectionType("random")}
-                className={`relative overflow-hidden rounded-[1.6rem] border p-5 text-left transition active:scale-[.97] ${
+                className={`party-selection-card relative overflow-hidden rounded-[1.6rem] border p-5 text-left transition active:scale-[.97] ${
                   selectionType === "random"
                     ? "border-fuchsia-300/65 bg-fuchsia-500/20 shadow-[0_15px_45px_rgba(168,85,247,.25)]"
                     : "border-white/10 bg-white/[0.045]"
@@ -227,7 +227,7 @@ export default function TeamBattleSetup({
           </section>
 
           {selectionType === "random" ? (
-            <section className="party-glass mt-4 rounded-[1.75rem] p-5">
+            <section className="party-glass party-setup-panel mt-4 rounded-[1.75rem] p-5">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-[0.24em] text-fuchsia-300/65">Náhodný výber</p>
                 <p className="mt-1 text-sm font-bold text-white/70">Vyberte počet kôl</p>
@@ -256,7 +256,7 @@ export default function TeamBattleSetup({
               {quizDifficultyControls}
             </section>
           ) : (
-            <section className="party-glass mt-4 rounded-[1.75rem] p-5">
+            <section className="party-glass party-setup-panel mt-4 rounded-[1.75rem] p-5">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-[0.24em] text-cyan-300/70">Výber hier</p>
@@ -327,7 +327,7 @@ export default function TeamBattleSetup({
 
           {customControls && <div className="mt-4"><CustomContentSelector controls={customControls} compact /></div>}
 
-          <section className="party-glass mt-4 rounded-[1.75rem] p-5">
+          <section className="party-glass party-setup-panel mt-4 rounded-[1.75rem] p-5">
             <div>
               <p className="text-[10px] font-black uppercase tracking-[0.24em] text-emerald-300/70">Pravidlá kôl</p>
               <p className="mt-1 text-sm font-bold text-white/70">Nastavte tempo celej bitky</p>
@@ -374,7 +374,7 @@ export default function TeamBattleSetup({
           <button
             onClick={() => onStart(names, selectionType === "random" ? randomRounds : selectedGames, { quickRounds, timeSeconds, quizDifficulty })}
             disabled={!canStart}
-            className="party-shine mt-6 w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 via-fuchsia-500 to-pink-500 px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white shadow-[0_18px_50px_rgba(168,85,247,.35)] transition active:scale-[.97] disabled:opacity-40"
+            className="party-setup-start party-shine mt-6 w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 via-fuchsia-500 to-pink-500 px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white shadow-[0_18px_50px_rgba(168,85,247,.35)] transition active:scale-[.97] disabled:opacity-40"
           >
             Začať party hru
           </button>

@@ -1336,3 +1336,121 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   .mobile-party-settings .game-setup-hero { height: 8.5rem; margin-top: .8rem; }
   .mobile-party-settings .game-setup-hero h1 { font-size: 1.55rem; }
 }
+
+/* Party battle setup follows the same mobile-first settings language. */
+.party-battle-settings { --settings-accent: #a78bfa; }
+.party-battle-settings > div { max-width: 31rem; }
+.party-battle-settings .party-battle-hero {
+  padding-top: 1.5rem;
+  padding-bottom: 1.35rem;
+}
+.party-battle-settings .party-battle-hero > div {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 1rem;
+  border-color: var(--settings-line);
+  background: #151d27;
+  box-shadow: none;
+}
+.party-battle-settings .party-battle-hero > div svg { width: 2rem; height: 2rem; }
+.party-battle-settings .party-battle-hero > p:first-of-type {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, .45) !important;
+}
+.party-battle-settings .party-battle-hero h1 {
+  margin-top: .35rem;
+  font-size: 1.75rem;
+  line-height: 1.05;
+  letter-spacing: -.025em;
+}
+.party-battle-settings .party-battle-hero h1 + p {
+  margin-top: .55rem;
+  font-size: .75rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, .48);
+}
+.party-battle-settings .party-team-fields label {
+  min-height: 4.4rem;
+  padding: .75rem;
+  border-radius: 1rem !important;
+  background: var(--settings-surface) !important;
+}
+.party-battle-settings .party-team-fields label > span:first-child {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: .7rem;
+  box-shadow: none !important;
+}
+.party-battle-settings .party-team-fields input {
+  min-height: auto;
+  border: 0 !important;
+  background: transparent !important;
+  padding: 0;
+}
+.party-battle-settings .party-selection-block { margin-top: 1rem; }
+.party-battle-settings .party-selection-card {
+  min-height: 7.5rem;
+  padding: .85rem;
+  border-radius: 1rem !important;
+  border-color: var(--settings-line) !important;
+  background: #111820 !important;
+}
+.party-battle-settings .party-selection-card[class*="border-cyan"],
+.party-battle-settings .party-selection-card[class*="border-fuchsia"] {
+  border-color: var(--settings-accent) !important;
+  background: color-mix(in srgb, var(--settings-accent) 14%, #111820) !important;
+}
+.party-battle-settings .party-selection-card > span[class*="h-11"] {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: .65rem;
+}
+.party-battle-settings .party-selection-card > span[class*="text-base"] {
+  margin-top: .7rem;
+  font-size: .85rem;
+}
+.party-battle-settings .party-setup-panel { padding: 1rem; }
+.party-battle-settings .party-game-picker {
+  min-height: 9.5rem;
+  border-radius: .95rem !important;
+  border-color: var(--settings-line) !important;
+  background: #0d131a !important;
+  box-shadow: none !important;
+}
+.party-battle-settings .party-game-picker::after { display: none; }
+.party-battle-settings .party-game-picker > span:first-child {
+  opacity: .75;
+  filter: saturate(.72) contrast(1.05);
+}
+.party-battle-settings .party-game-picker.is-selected {
+  border-color: var(--picker-accent) !important;
+  background: #141c25 !important;
+  box-shadow: inset 0 -3px 0 var(--picker-accent) !important;
+}
+.party-battle-settings .party-game-picker.is-selected > span:nth-of-type(3) {
+  border-radius: .5rem;
+  box-shadow: none;
+}
+.party-battle-settings .party-setup-panel button[class*="rounded-xl"] {
+  min-height: 2.9rem;
+  border-radius: .75rem !important;
+}
+.party-battle-settings .party-setup-start {
+  min-height: 3.5rem;
+  margin-top: 1rem;
+  font-size: .82rem;
+  letter-spacing: .06em;
+}
+
+@media (max-width: 370px) {
+  .party-battle-settings { padding-inline: .85rem; }
+  .party-battle-settings .party-game-picker { min-height: 9rem; padding: .65rem; }
+  .party-battle-settings .party-game-picker span[class*="text-[13px]"] { font-size: .72rem; }
+}
+
+@media (max-height: 700px) {
+  .party-battle-settings .party-battle-hero { padding-top: .85rem; padding-bottom: 1rem; }
+  .party-battle-settings .party-battle-hero > div { width: 3.75rem; height: 3.75rem; }
+  .party-battle-settings .party-battle-hero h1 { font-size: 1.5rem; }
+  .party-battle-settings .party-battle-hero h1 + p { display: none; }
+}
