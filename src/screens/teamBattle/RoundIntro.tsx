@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { BattleRound } from "../../data/teamBattle";
-import { GAME_ICONS, GAME_LABELS, TEAM_COLORS } from "../../data/teamBattle";
+import { GAME_LABELS, TEAM_COLORS } from "../../data/teamBattle";
+import { Icons, type IconsType } from "../../components/icons";
 import { PartyBackdrop, PartyEyebrow, PartyScoreboard } from "./PartyChrome";
 
 const GAME_DESC: Record<string, string> = {
@@ -16,10 +17,23 @@ const GAME_DESC: Record<string, string> = {
   patzadesat: "Vymenujte päť vecí zo zadanej témy skôr, než uplynie desať sekúnd.",
 };
 
-const SPECIAL_LABELS: Record<string, { label: string; icon: string; color: string }> = {
-  double: { label: "Dvojité body", icon: "★", color: "#f59e0b" },
-  lightning: { label: "Bleskové kolo", icon: "⚡", color: "#22d3ee" },
-  final: { label: "Finálové kolo", icon: "♛", color: "#e879f9" },
+const SPECIAL_LABELS: Record<string, { label: string; icon: keyof IconsType; color: string }> = {
+  double: { label: "Dvojité body", icon: "star", color: "#f59e0b" },
+  lightning: { label: "Bleskové kolo", icon: "zap", color: "#22d3ee" },
+  final: { label: "Finálové kolo", icon: "crown", color: "#e879f9" },
+};
+
+const ROUND_ICONS: Record<string, keyof IconsType> = {
+  pantomima: "users",
+  sarady: "messageSquare",
+  quiz: "brain",
+  pingpong: "rotateCcw",
+  hadajktosom: "user",
+  zakazane: "messageSquare",
+  pesnicka: "music",
+  zvuk: "bell",
+  pismeno: "tag",
+  patzadesat: "timer",
 };
 
 export default function RoundIntro({
@@ -39,6 +53,8 @@ export default function RoundIntro({
   const [countdown, setCountdown] = useState(3);
   const [blue, red] = TEAM_COLORS;
   const special = SPECIAL_LABELS[round.special];
+  const RoundIcon = Icons[ROUND_ICONS[round.game] ?? "gamepad"];
+  const SpecialIcon = special ? Icons[special.icon] : null;
 
   useEffect(() => {
     if (!starting) return;
@@ -55,7 +71,7 @@ export default function RoundIntro({
       <PartyBackdrop>
         <main className="flex h-full flex-col items-center justify-center px-6 text-center">
           <PartyEyebrow>Kolo {round.index + 1}</PartyEyebrow>
-          <div className="mt-10 text-7xl drop-shadow-[0_0_32px_rgba(255,255,255,.22)]">{GAME_ICONS[round.game]}</div>
+          <div className="mt-10 flex h-20 w-20 items-center justify-center rounded-2xl border border-white/12 bg-white/[.05] text-white"><RoundIcon size={38} /></div>
           <h2 className="mt-4 text-xl font-black text-white">{GAME_LABELS[round.game]}</h2>
           <div className="relative mt-10 flex h-48 w-48 items-center justify-center rounded-full border border-fuchsia-300/30 bg-fuchsia-500/10 shadow-[0_0_80px_rgba(217,70,239,.28),inset_0_0_35px_rgba(255,255,255,.05)]">
             <div className="absolute inset-3 rounded-full border border-dashed border-white/15 animate-spin [animation-duration:7s]" />
@@ -94,7 +110,7 @@ export default function RoundIntro({
               className="party-glass flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-black uppercase tracking-[0.12em]"
               style={{ borderColor: `${special.color}55`, background: `${special.color}12`, color: special.color }}
             >
-              <span className="text-xl">{special.icon}</span>
+              {SpecialIcon && <SpecialIcon size={18} />}
               {special.label}
               {round.pointMultiplier > 1 && <span className="opacity-60">×{round.pointMultiplier}</span>}
             </div>
@@ -102,8 +118,8 @@ export default function RoundIntro({
 
           <section className="party-glass relative overflow-hidden rounded-[2rem] px-6 py-8 text-center">
             <div className="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-fuchsia-300/70 to-transparent" />
-            <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-[1.8rem] border border-white/10 bg-gradient-to-br from-white/10 to-white/[0.025] text-6xl shadow-[0_22px_60px_rgba(0,0,0,.35)]">
-              {GAME_ICONS[round.game]}
+            <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-[1.4rem] border border-white/10 bg-white/[.05] text-white">
+              <RoundIcon size={42} />
             </div>
             <p className="mt-6 text-[10px] font-black uppercase tracking-[0.25em] text-fuchsia-300/65">Nasleduje</p>
             <h1 className="mt-2 text-3xl font-black tracking-tight text-white">{GAME_LABELS[round.game]}</h1>

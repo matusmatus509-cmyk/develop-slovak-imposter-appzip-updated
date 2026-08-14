@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { GameStatistics, Screen } from "../types";
 import { getLevelInfo, normalizeStatistics } from "../utils/gameStats";
 import { Icons } from "../components/icons";
-import partyTableBackground from "../assets/party-table-bg.png";
+import appBackground from "../assets/app-background-v2.webp";
 import partyModeArt from "../assets/party-mode-card.jpg";
 import imposterArt from "../assets/imposter-card.jpg";
 import minigamesArt from "../assets/minigames-card.jpg";
@@ -14,24 +14,23 @@ const SECTIONS: Array<{
   eyebrow: string;
   title: string;
   description: string;
-  icon: "users" | "userCheck" | "gamepad";
   image: string;
   accent: string;
   glow: string;
   featured?: boolean;
 }> = [
-  { screen: "teambattle", eyebrow: "Tím proti tímu", title: "Party mode", description: "Kompletný súboj 2 tímov · body · finále", icon: "users", image: partyModeArt, accent: "from-violet-500 to-indigo-500", glow: "rgba(124, 58, 237, .38)", featured: true },
-  { screen: "impostor-menu", eyebrow: "Kto z vás klame?", title: "Imposter", description: "Klasická hra aj kreslenie", icon: "userCheck", image: imposterArt, accent: "from-orange-400 to-rose-500", glow: "rgba(244, 63, 94, .34)" },
-  { screen: "minigames-menu", eyebrow: "Rýchle hry", title: "Minihry", description: "Krátke kolá pre každú partiu", icon: "gamepad", image: minigamesArt, accent: "from-cyan-400 to-teal-500", glow: "rgba(6, 182, 212, .32)" },
+  { screen: "teambattle", eyebrow: "Tím proti tímu", title: "Party mode", description: "Kompletný súboj 2 tímov · body · finále", image: partyModeArt, accent: "from-violet-500 to-indigo-500", glow: "rgba(124, 58, 237, .38)", featured: true },
+  { screen: "impostor-menu", eyebrow: "Kto z vás klame?", title: "Imposter", description: "Klasická hra aj kreslenie", image: imposterArt, accent: "from-orange-400 to-rose-500", glow: "rgba(244, 63, 94, .34)" },
+  { screen: "minigames-menu", eyebrow: "Rýchle hry", title: "Minihry", description: "Krátke kolá pre každú partiu", image: minigamesArt, accent: "from-cyan-400 to-teal-500", glow: "rgba(6, 182, 212, .32)" },
 ];
 
-const LANGUAGES: { code: AppLanguage; flag: string; label: string }[] = [
-  { code: "sk", flag: "🇸🇰", label: "Slovenčina" },
-  { code: "en", flag: "🇬🇧", label: "English" },
-  { code: "de", flag: "🇩🇪", label: "Deutsch" },
-  { code: "es", flag: "🇪🇸", label: "Español" },
-  { code: "fr", flag: "🇫🇷", label: "Français" },
-  { code: "pt", flag: "🇵🇹", label: "Português" },
+const LANGUAGES: { code: AppLanguage; mark: string; label: string }[] = [
+  { code: "sk", mark: "SK", label: "Slovenčina" },
+  { code: "en", mark: "EN", label: "English" },
+  { code: "de", mark: "DE", label: "Deutsch" },
+  { code: "es", mark: "ES", label: "Español" },
+  { code: "fr", mark: "FR", label: "Français" },
+  { code: "pt", mark: "PT", label: "Português" },
 ];
 
 export default function Home({ onNavigate, statistics, onSettings, favoriteGames, onToggleFavorite }: { onNavigate: (screen: Screen) => void; statistics: GameStatistics; onSettings: () => void; favoriteGames: PlayableGame[]; onToggleFavorite: (id: string) => void }) {
@@ -49,15 +48,14 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
 
   return (
     <main className="home-screen relative min-h-[100dvh] bg-[#080b10] text-white">
-      <img src={partyTableBackground} alt="" className="pointer-events-none fixed inset-0 h-full w-full object-cover opacity-38 saturate-75" />
-      <div className="pointer-events-none fixed inset-0 bg-gradient-to-b from-[#080b10]/20 via-[#080b10]/72 to-[#080b10]" />
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,246,225,.06),transparent_28%)]" />
+      <img src={appBackground} alt="" className="pointer-events-none fixed inset-0 h-full w-full object-cover opacity-55" />
+      <div className="pointer-events-none fixed inset-0 bg-gradient-to-b from-[#080b10]/42 via-[#080b10]/72 to-[#080b10]/96" />
 
       <div className="home-content relative mx-auto flex min-h-[100dvh] w-full max-w-md flex-col px-5 pb-4 pt-4">
         <div className="flex h-10 items-center justify-between">
           <span className="text-[10px] font-black uppercase tracking-[.22em] text-white/38">Párty hry</span>
           <div className="flex items-center gap-2">
-            <button type="button" onClick={() => onNavigate("party-hub")} aria-label="Otvoriť Party Hub" className="flex h-10 items-center gap-2 rounded-xl border border-violet-300/15 bg-violet-500/10 px-3 text-[9px] font-black uppercase tracking-wider text-violet-200 shadow-xl transition hover:border-violet-300/30 active:scale-95"><Icons.sparkles size={16} /> Hub</button>
+            <button type="button" onClick={() => onNavigate("party-hub")} aria-label="Otvoriť Party Hub" className="flex h-10 items-center rounded-xl border border-white/12 bg-[#111820]/92 px-3 text-[9px] font-black uppercase tracking-wider text-white/72 transition active:scale-95">Party Hub</button>
             <button type="button" onClick={() => setIsMenuOpen(true)} aria-label="Otvoriť menu" aria-expanded={isMenuOpen} className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/12 bg-[#111820]/95 text-white/70 shadow-xl transition hover:border-white/25 hover:text-white active:scale-95">
               <Icons.menu size={20} />
             </button>
@@ -77,7 +75,7 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
         >
           <span className="pointer-events-none absolute -right-10 -top-14 h-32 w-32 rounded-full bg-violet-500/20 blur-3xl" />
           <span className="relative flex items-center gap-2.5">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-gradient-to-br from-violet-500 to-indigo-600 text-white shadow-lg shadow-violet-950/45"><Icons.crown size={20} /></span>
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/12 bg-[#202938] text-sm font-black tabular-nums text-white">{level.level}</span>
             <span className="min-w-0 flex-1">
               <span className="flex items-baseline gap-2"><strong className="text-[1.3rem] font-black leading-none tracking-[-.04em]">Level {level.level}</strong><small className="truncate text-[9px] font-bold text-white/42">{level.level === 100 ? "Maximálny level" : `${xpRemaining} XP do ďalšieho`}</small></span>
               <span className="mt-2 flex items-center gap-2"><span className="block h-1.5 flex-1 overflow-hidden rounded-full bg-black/40 ring-1 ring-white/[.07]"><span className="block h-full rounded-full bg-gradient-to-r from-violet-500 via-fuchsia-400 to-cyan-400 transition-[width] duration-700" style={{ width: `${level.progressPercent}%` }} /></span><small className="shrink-0 text-[8px] font-black text-white/32">{level.xpIntoLevel}/{level.xpForNextLevel} XP</small></span>
@@ -90,14 +88,13 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
           <section className="mt-3" aria-label="Obľúbené hry">
             <div className="mb-2 flex items-center gap-2"><Icons.heart size={13} className="text-rose-300" /><h2 className="text-[9px] font-black uppercase tracking-[.18em] text-white/45">Pripnuté obľúbené</h2></div>
             <div className="flex gap-2 overflow-x-auto pb-1">
-              {favoriteGames.map((game) => <div key={game.id} className="flex shrink-0 items-center rounded-xl border border-white/10 bg-[#111820]/95 p-1"><button type="button" onClick={() => onNavigate(game.screen)} className="flex items-center gap-2 px-2 py-2 text-[10px] font-black"><span>{game.icon}</span>{game.title}</button><button type="button" onClick={() => onToggleFavorite(game.id)} aria-pressed="true" aria-label={`Odobrať ${game.title} z obľúbených`} className="flex h-7 w-7 items-center justify-center rounded-lg text-rose-300"><Icons.heart size={13} fill="currentColor" /></button></div>)}
+              {favoriteGames.map((game) => <div key={game.id} className="flex shrink-0 items-center rounded-xl border border-white/10 bg-[#111820]/95 p-1"><button type="button" onClick={() => onNavigate(game.screen)} className="flex items-center px-2 py-2 text-[10px] font-black">{game.title}</button><button type="button" onClick={() => onToggleFavorite(game.id)} aria-pressed="true" aria-label={`Odobrať ${game.title} z obľúbených`} className="flex h-7 w-7 items-center justify-center rounded-lg text-rose-300"><Icons.heart size={13} fill="currentColor" /></button></div>)}
             </div>
           </section>
         )}
 
         <section className="home-game-grid mt-3 flex min-h-[420px] flex-1 flex-col gap-2.5" aria-label="Herné režimy">
           {SECTIONS.map((section, index) => {
-            const Icon = Icons[section.icon];
             return (
               <article
                 key={section.screen}
@@ -110,7 +107,7 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
                 <div className={`absolute inset-y-0 left-0 w-1 bg-gradient-to-b ${section.accent}`} />
                 <div className="relative flex h-full items-center p-4">
                   <div className="w-[76%] min-w-0">
-                    <div className="flex items-center gap-2"><span className={`flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br ${section.accent} shadow-lg`}><Icon size={15} className="text-white" /></span><p className="text-[8px] font-extrabold uppercase tracking-[.16em] text-white/52">{section.eyebrow}</p>{section.featured && <span className="party-live-mark ml-1 !px-2 !py-1"><span /> TOP</span>}</div>
+                    <div className="flex items-center gap-2"><p className="text-[8px] font-extrabold uppercase tracking-[.16em] text-white/58">{section.eyebrow}</p>{section.featured && <span className="ml-1 rounded-md border border-white/14 bg-black/30 px-2 py-1 text-[7px] font-black uppercase tracking-wider text-white/68">Hlavná hra</span>}</div>
                     <h2 className={`mt-2 font-extrabold leading-none tracking-[-.045em] ${section.featured ? "text-[1.65rem]" : "text-[1.3rem]"}`}>{section.title}</h2>
                     <p className="mt-1 text-[10px] font-semibold leading-snug text-white/55">{section.description}</p>
                   </div>
@@ -129,8 +126,8 @@ export default function Home({ onNavigate, statistics, onSettings, favoriteGames
           <aside className="absolute bottom-0 left-0 top-0 flex w-[min(86vw,340px)] flex-col border-r border-white/10 bg-[#111820]/98 p-5 shadow-2xl" style={{ animation: "slideInFromRight .28s ease-out both" }}>
             <div className="flex items-center justify-between"><div><p className="text-[9px] font-black uppercase tracking-[.2em] text-violet-300">Menu</p><h2 className="mt-1 text-xl font-black">Nastavenia hry</h2></div><button type="button" onClick={() => setIsMenuOpen(false)} aria-label="Zavrieť" className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[.06] text-white/65"><Icons.x size={19} /></button></div>
             <button type="button" onClick={openSettings} className="mt-7 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[.055] p-4 text-left transition hover:bg-white/[.09]"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/15 text-violet-200"><Icons.settings size={19} /></span><span><strong className="block text-sm font-black">Nastavenia</strong><small className="mt-0.5 block text-[10px] font-semibold text-white/40">Zvuky, vibrácie a animácie</small></span><Icons.chevronRight size={18} className="ml-auto text-white/35" /></button>
-            <div className="mt-7"><p className="text-[9px] font-black uppercase tracking-[.2em] text-white/35">Jazyk</p><div data-no-translate className="mt-3 grid grid-cols-2 gap-2">{LANGUAGES.map((option) => <button key={option.code} type="button" onClick={() => { setLanguage(option.code); setIsMenuOpen(false); }} className={`flex items-center gap-2 rounded-xl border px-3 py-3 text-left text-xs font-bold transition ${language === option.code ? "border-violet-300/35 bg-violet-500/15 text-white" : "border-white/[.08] bg-white/[.035] text-white/58 hover:bg-white/[.08]"}`}><span className="text-base">{option.flag}</span><span className="truncate">{option.label}</span></button>)}</div></div>
-            <div className="mt-auto rounded-2xl border border-white/[.08] bg-white/[.035] p-4"><p className="text-[10px] font-black text-white/70">{activeLanguage.flag} {activeLanguage.label}</p><p className="mt-1 text-[10px] leading-relaxed text-white/35">Nastavenia sa ukladajú priamo v tomto zariadení.</p></div>
+            <div className="mt-7"><p className="text-[9px] font-black uppercase tracking-[.2em] text-white/35">Jazyk</p><div data-no-translate className="mt-3 grid grid-cols-2 gap-2">{LANGUAGES.map((option) => <button key={option.code} type="button" onClick={() => { setLanguage(option.code); setIsMenuOpen(false); }} className={`flex items-center gap-2 rounded-xl border px-3 py-3 text-left text-xs font-bold transition ${language === option.code ? "border-violet-300/35 bg-violet-500/15 text-white" : "border-white/[.08] bg-white/[.035] text-white/58 hover:bg-white/[.08]"}`}><span className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-black/20 text-[9px] font-black tracking-wide">{option.mark}</span><span className="truncate">{option.label}</span></button>)}</div></div>
+            <div className="mt-auto rounded-2xl border border-white/[.08] bg-white/[.035] p-4"><p className="text-[10px] font-black text-white/70">{activeLanguage.mark} · {activeLanguage.label}</p><p className="mt-1 text-[10px] leading-relaxed text-white/35">Nastavenia sa ukladajú priamo v tomto zariadení.</p></div>
           </aside>
         </div>
       )}

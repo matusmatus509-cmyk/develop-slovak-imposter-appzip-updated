@@ -5,6 +5,7 @@ import { FIVE_IN_TEN_PROMPTS, LETTER_CHALLENGES } from "../../data/teamBattleExt
 import { CircularTimer, ParticipantScoreStrip, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
 import { vibrate } from "../../utils/deviceFeedback";
+import { Icons } from "../../components/icons";
 
 const LETTER_TURNS = 10;
 const FIVE_TURNS = 6;
@@ -126,8 +127,8 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds
 
             {phase === "result" && feedback && (
               <div className="animate-pop-in relative z-10">
-                <div className={`mx-auto flex h-28 w-28 items-center justify-center rounded-full border text-6xl ${feedback.success ? "border-emerald-300/40 bg-emerald-400/15" : "border-rose-300/35 bg-rose-400/10"}`}>
-                  {feedback.success ? "🎉" : "⏳"}
+                <div className={`mx-auto flex h-24 w-24 items-center justify-center rounded-2xl border ${feedback.success ? "border-emerald-300/40 bg-emerald-400/15 text-emerald-200" : "border-rose-300/35 bg-rose-400/10 text-rose-200"}`}>
+                  {feedback.success ? <Icons.circleCheck size={42} /> : <Icons.clock size={40} />}
                 </div>
                 <h1 className="mt-5 text-3xl font-black text-white">{feedback.success ? "Super odpoveď!" : "Kolo končí"}</h1>
                 <p className="mt-2 text-sm font-bold" style={{ color: feedback.scorer === null ? "rgba(255,255,255,.4)" : PARTY_PLAYER_COLORS[feedback.scorer % PARTY_PLAYER_COLORS.length] }}>
@@ -139,14 +140,14 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds
 
           <div className="mt-4 min-h-[4.1rem]">
             {phase === "ready" && (
-              <button onClick={start} className="party-shine w-full overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95" style={{ background: `linear-gradient(135deg, ${activeColor}, #f59e0b)` }}>
-                ⚡ Odhaliť zadanie a spustiť
+              <button onClick={start} className="party-shine flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95" style={{ background: `linear-gradient(135deg, ${activeColor}, #f59e0b)` }}>
+                <Icons.play size={18} /> Odhaliť zadanie a spustiť
               </button>
             )}
             {phase === "playing" && (
               <div className="grid grid-cols-[.8fr_1.2fr] gap-3">
-                <button onClick={() => finish(false)} className="party-glass rounded-2xl py-5 text-sm font-black text-rose-200 transition active:scale-95">✕ Neplatí</button>
-                <button onClick={() => finish(true)} className="party-shine overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-green-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95">✓ Správne!</button>
+                <button onClick={() => finish(false)} className="party-glass flex items-center justify-center gap-2 rounded-2xl py-5 text-sm font-black text-rose-200 transition active:scale-95"><Icons.x size={17} /> Neplatí</button>
+                <button onClick={() => finish(true)} className="party-shine flex items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-green-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95"><Icons.circleCheck size={18} /> Správne</button>
               </div>
             )}
             {phase === "result" && (
@@ -230,7 +231,7 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
                 <h1 className="mx-auto mt-3 max-w-sm text-3xl font-black leading-[1.08] text-white">{prompts[turn]}</h1>
 
                 <div className="mt-7 flex items-center gap-2 rounded-2xl border border-emerald-300/20 bg-emerald-400/[0.07] px-4 py-3 text-left">
-                  <span className="text-2xl">✋</span>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-emerald-300/20 text-sm font-black text-emerald-200">5</span>
                   <p className="text-[11px] font-bold leading-relaxed text-white/50">Po vyslovení piatich správnych odpovedí stlačte tlačidlo iba raz.</p>
                 </div>
               </div>
@@ -238,8 +239,8 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
 
             {phase === "result" && (
               <div className="animate-pop-in relative z-10">
-                <div className={`mx-auto flex h-28 w-28 items-center justify-center rounded-full border text-6xl ${success ? "border-emerald-300/45 bg-emerald-400/15" : "border-amber-300/35 bg-amber-400/10"}`}>
-                  {success ? "🏆" : "⏱️"}
+                <div className={`mx-auto flex h-24 w-24 items-center justify-center rounded-2xl border ${success ? "border-emerald-300/45 bg-emerald-400/15 text-emerald-200" : "border-amber-300/35 bg-amber-400/10 text-amber-200"}`}>
+                  {success ? <Icons.trophy size={42} /> : <Icons.clock size={40} />}
                 </div>
                 <h1 className="mt-5 text-3xl font-black text-white">{success ? "Päť z piatich!" : "Tesne vedľa!"}</h1>
                 <p className="mt-2 text-sm font-bold" style={{ color: success ? activeColor : "rgba(255,255,255,.45)" }}>
@@ -251,13 +252,13 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
 
           <div className="mt-4 min-h-[4.1rem]">
             {phase === "ready" && (
-              <button onClick={start} className="party-shine w-full overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95" style={{ background: `linear-gradient(135deg, ${activeColor}, #10b981)` }}>
-                🚀 Odhaliť výzvu a spustiť
+              <button onClick={start} className="party-shine flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95" style={{ background: `linear-gradient(135deg, ${activeColor}, #10b981)` }}>
+                <Icons.play size={18} /> Odhaliť výzvu a spustiť
               </button>
             )}
             {phase === "playing" && (
-              <button onClick={() => finish(true)} className="party-shine w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95">
-                ✓ Všetkých 5 správne
+              <button onClick={() => finish(true)} className="party-shine flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95">
+                <Icons.circleCheck size={18} /> Všetkých 5 správne
               </button>
             )}
             {phase === "result" && (

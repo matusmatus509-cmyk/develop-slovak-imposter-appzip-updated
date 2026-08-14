@@ -101,8 +101,8 @@ export default function TeamBattleSetup({
       <p className="mt-1 text-sm font-bold text-white/70">Zvoľte otázky pre kvízové kolo</p>
       <div className="mt-3 grid grid-cols-2 gap-2">
         {([
-          { value: "lahke", label: "🟢 Ľahšie", note: "Základné a známe fakty" },
-          { value: "tazke", label: "🔴 Ťažšie", note: "Náročnejšie vedomostné výzvy" },
+          { value: "lahke", label: "Ľahšie", note: "Základné a známe fakty" },
+          { value: "tazke", label: "Ťažšie", note: "Náročnejšie vedomostné výzvy" },
         ] as const).map(({ value, label, note }) => (
           <button
             key={value}

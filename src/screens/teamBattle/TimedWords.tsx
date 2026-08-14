@@ -16,6 +16,7 @@ import { CircularTimer } from "./PartyChrome";
 import { vibrate } from "../../utils/deviceFeedback";
 import { useCountdown } from "../../hooks/useCountdown";
 import { TurnAnswerRecap, type TurnAnswer } from "../../components/TurnAnswerRecap";
+import { Icons } from "../../components/icons";
 
 type SubPhase = "select-difficulty" | "ready" | "playing" | "team-done";
 
@@ -384,7 +385,7 @@ export default function TimedWords({
           className="party-shine w-full max-w-xs overflow-hidden rounded-2xl py-5 text-lg font-black uppercase tracking-wide text-white shadow-xl transition-all hover:scale-[1.02] active:scale-95"
           style={{ background: color, animation: "slideUp 0.5s ease-out 0.3s both", boxShadow: `0 4px 24px ${color}55` }}
         >
-          Štart ⏱
+          Štart
         </button>
       </div>
     );
@@ -402,7 +403,7 @@ export default function TimedWords({
             >
               <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-400/10">
                 <div className="absolute inset-2 rounded-full border-2 border-cyan-300/20 border-t-cyan-300 animate-spin" />
-                <span className="text-3xl">📱</span>
+                <Icons.smartphone size={30} className="text-cyan-200" />
               </div>
               <div>
                 <p className="text-xl font-black text-white">Drž mobil rovno</p>
@@ -560,7 +561,7 @@ export default function TimedWords({
         className="w-full rounded-2xl py-5 text-base font-black text-white active:scale-95 transition"
         style={{ background: color, animation: "slideUp 0.5s ease-out 0.4s both", boxShadow: `0 4px 20px ${color}44` }}
       >
-        {teamIdx === 0 ? `➡️ ${teamNames[1]} na rad!` : "🏁 Zobraziť výsledky"}
+        {teamIdx === 0 ? `${teamNames[1]} na rad` : "Zobraziť výsledky"}
       </button>
     </div>
   );

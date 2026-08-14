@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
+import { Icons } from "../../components/icons";
 
 export function PartyBackdrop({
   children,
@@ -87,7 +88,7 @@ export function PartyScoreboard({
       <div className="mt-5 grid grid-cols-[1fr_auto_1fr] items-end gap-3">
         {([0, 1] as const).map((index) => {
           const leading = highlightLeader && leader === index;
-          return <div key={index} className={index === 1 ? "text-right" : ""} style={{ gridColumn: index === 0 ? 1 : 3 }}><div className={`flex items-center gap-2 ${index === 1 ? "flex-row-reverse" : ""}`}><span className="flex h-8 w-8 items-center justify-center rounded-xl text-[10px] font-black text-white" style={{ background: colors[index], boxShadow: `0 0 18px ${colors[index]}66` }}>{index === 0 ? "A" : "B"}</span>{leading && <span className="party-leader-crown text-sm" aria-label="Vedúci tím">♛</span>}</div><p className="mt-2 truncate text-[10px] font-black uppercase tracking-wider" style={{ color: colors[index] }}>{teamNames[index]}</p><p className="mt-1 text-4xl font-black tabular-nums text-white">{scores[index]}</p><p className="text-[8px] font-black uppercase tracking-[0.18em] text-white/25">bodov</p></div>;
+          return <div key={index} className={index === 1 ? "text-right" : ""} style={{ gridColumn: index === 0 ? 1 : 3 }}><div className={`flex items-center gap-2 ${index === 1 ? "flex-row-reverse" : ""}`}><span className="flex h-8 w-8 items-center justify-center rounded-xl text-[10px] font-black text-white" style={{ background: colors[index], boxShadow: `0 0 18px ${colors[index]}66` }}>{index === 0 ? "A" : "B"}</span>{leading && <span className="party-leader-crown text-amber-200" aria-label="Vedúci tím"><Icons.crown size={14} /></span>}</div><p className="mt-2 truncate text-[10px] font-black uppercase tracking-wider" style={{ color: colors[index] }}>{teamNames[index]}</p><p className="mt-1 text-4xl font-black tabular-nums text-white">{scores[index]}</p><p className="text-[8px] font-black uppercase tracking-[0.18em] text-white/25">bodov</p></div>;
         })}
         <span className="col-start-2 row-start-1 self-center pb-2 text-[9px] font-black uppercase tracking-widest text-white/20">vs</span>
       </div>

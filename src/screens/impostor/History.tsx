@@ -93,7 +93,7 @@ export default function History({
                     <span>
                       {round.categoryIcon} {round.categoryName}
                     </span>
-                    <span>· ⏱ {formatTime(round.timeSeconds)}</span>
+                    <span className="inline-flex items-center gap-1">· <Icons.clock size={12} /> {formatTime(round.timeSeconds)}</span>
                   </p>
                 </div>
               </div>

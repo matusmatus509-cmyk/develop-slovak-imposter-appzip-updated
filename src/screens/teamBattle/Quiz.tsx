@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { QuizQuestion } from "../../data/teamBattle";
 import { TEAM_COLORS } from "../../data/teamBattle";
+import { Icons } from "../../components/icons";
 
 type QuizPhase =
   | { t: "question" }
@@ -120,7 +121,7 @@ export default function TeamQuiz({
           <span className="pointer-events-none absolute -bottom-12 -right-8 h-32 w-32 rounded-full border-[18px] border-white/10" />
             <span className="relative flex rotate-180 items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-full border-4 border-white/70 bg-white/15 text-2xl shadow-[inset_0_3px_12px_rgba(255,255,255,.3),0_5px_20px_rgba(0,0,0,.28)] transition group-active:scale-90">
-              🔵
+              <span className="h-5 w-5 rounded-full bg-blue-300" />
             </span>
             <span className="text-left">
               <span className="block max-w-[13rem] truncate text-lg font-black leading-none">{teamNames[0]}</span>
@@ -141,7 +142,7 @@ export default function TeamQuiz({
               animation: `slideUp 0.5s ease-out ${i * 0.1}s both`,
             }}
           >
-            <span style={{ color: idx === 0 ? a : b }}>{idx === 0 ? "🔵" : "🔴"}</span>
+            <span className="h-3 w-3 rounded-full" style={{ background: idx === 0 ? a : b }} />
             <span className="text-white text-lg">{scores[idx]}</span>
           </div>
         ))}
@@ -275,7 +276,7 @@ export default function TeamQuiz({
                 <span className="block max-w-[13rem] truncate text-lg font-black leading-none">{teamNames[1]}</span>
               </span>
               <span className="flex h-12 w-12 items-center justify-center rounded-full border-4 border-white/70 bg-white/15 text-2xl shadow-[inset_0_3px_12px_rgba(255,255,255,.3),0_5px_20px_rgba(0,0,0,.28)] transition group-active:scale-90">
-                🔴
+                <span className="h-5 w-5 rounded-full bg-rose-300" />
               </span>
             </span>
           </button>
@@ -323,7 +324,7 @@ export default function TeamQuiz({
                 className="w-full rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition"
                 style={{ background: "linear-gradient(135deg, #7c3aed, #a855f7)" }}
               >
-                👁 Ukázať správnu odpoveď
+                <span className="flex items-center justify-center gap-2"><Icons.eye size={18} /> Ukázať správnu odpoveď</span>
               </button>
             ) : (
               <div className="flex gap-3">

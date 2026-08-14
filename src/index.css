@@ -1058,6 +1058,135 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   .song-welcome-equalizer i { animation: none !important; }
 }
 
+/* App-wide product finish — photographic, restrained and mobile-first. */
+:root {
+  --app-surface: #111820;
+  --app-surface-raised: #17212b;
+  --app-line: rgba(255, 255, 255, .11);
+  --app-muted: rgba(255, 255, 255, .52);
+  --app-radius: 1.1rem;
+}
+
+.app-shell,
+.home-screen,
+.game-welcome {
+  background-color: #080c11 !important;
+}
+
+.app-shell button,
+.home-screen button,
+.game-welcome button {
+  transition-duration: 160ms !important;
+  transition-timing-function: ease-out !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .app-shell button:hover,
+  .home-screen button:hover,
+  .game-welcome button:hover,
+  .game-menu-card:hover,
+  .home-mode-card:hover {
+    transform: none !important;
+  }
+}
+
+.app-shell .glass,
+.app-shell .card,
+.app-shell [class*="backdrop-blur"],
+.home-screen [class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+}
+
+.app-shell .glass,
+.app-shell .card {
+  border-color: var(--app-line) !important;
+  background: var(--app-surface) !important;
+  box-shadow: none !important;
+}
+
+.app-shell [class*="blur-3xl"],
+.home-screen [class*="blur-3xl"] {
+  display: none !important;
+}
+
+.app-shell .text-gradient,
+.home-screen .text-gradient {
+  background: none !important;
+  color: #f7f8fa !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+.app-topbar > button {
+  border: 1px solid var(--app-line) !important;
+  border-radius: .85rem !important;
+  background: var(--app-surface) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.app-topbar > span {
+  border-color: var(--app-line) !important;
+  background: rgba(17, 24, 32, .92) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.game-menu-heading {
+  border-color: var(--app-line) !important;
+  background: rgba(17, 24, 32, .94) !important;
+  box-shadow: none !important;
+}
+
+.game-menu-card {
+  border-color: var(--app-line) !important;
+  background: var(--app-surface) !important;
+  box-shadow: none !important;
+}
+
+.game-menu-card::after,
+.home-screen .home-mode-card::after,
+.game-welcome-hero::after {
+  display: none !important;
+}
+
+.home-screen .home-mode-card,
+.home-screen .home-profile-card {
+  border-color: var(--app-line) !important;
+  background: rgba(17, 24, 32, .94) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.home-screen .home-party-featured {
+  border-color: rgba(167, 139, 250, .28) !important;
+}
+
+.game-welcome-hero,
+.game-welcome-stat,
+.game-welcome-rule {
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.game-welcome-stat,
+.game-welcome-rule {
+  border-color: var(--app-line) !important;
+  background: rgba(17, 24, 32, .94) !important;
+}
+
+.game-welcome-hero img,
+.game-menu-card img,
+.home-mode-card img {
+  filter: saturate(.82) contrast(1.04);
+}
+
+@media (max-width: 390px) {
+  .app-shell-content { padding-inline: 1rem; }
+  .game-menu-card { grid-template-columns: 42% 1fr; min-height: 138px; }
+  .game-menu-card > div:first-of-type { min-height: 138px; }
+}
+
 /* Unified mobile stage ----------------------------------------------------- */
 .app-screen-frame {
   position: relative;

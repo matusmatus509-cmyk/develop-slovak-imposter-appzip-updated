@@ -145,7 +145,7 @@ export default function GameOver({
                     transitionDelay: `${index * 100}ms`,
                   }}
                 >
-                  {won && <span className="party-winner-crown absolute -top-5 left-1/2 -translate-x-1/2 text-4xl">♛</span>}
+                  {won && <span className="party-winner-crown absolute -top-5 left-1/2 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-xl border border-amber-200/25 bg-[#151a22] text-amber-200"><Icons.crown size={19} /></span>}
                   <span
                     className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl text-base font-black text-white"
                     style={{ background: colors[index], boxShadow: `0 0 25px ${colors[index]}66` }}

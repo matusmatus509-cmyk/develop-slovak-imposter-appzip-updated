@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode, SVGProps } from "react";
 import { Icons, type IconsType } from "./icons";
 import { designTokens } from "../utils/designTokens";
-import appTexture from "../assets/app-texture.jpg";
+import appBackground from "../assets/app-background-v2.webp";
 
 // ── Type Definitions ──────────────────────────────────────────────────
 
@@ -456,12 +456,8 @@ export function TopBar({
 function Background() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[var(--game-deep,#080d16)] transition-colors duration-700">
-      <img src={appTexture} alt="" className="absolute inset-0 h-full w-full object-cover opacity-45 saturate-[.72]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(255,255,255,.07),transparent_28rem)]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#080b10]/15 via-[var(--game-deep,#080d16)]/54 to-[#080b10]/95" />
-      <div className="absolute -top-44 left-1/2 h-80 w-[34rem] -translate-x-1/2 rounded-full bg-[var(--game-accent-soft,rgba(139,92,246,.16))] blur-[125px]" />
-      <div className="absolute -bottom-44 -right-32 h-80 w-80 rounded-full bg-[var(--game-accent-soft,rgba(34,211,238,.12))] blur-[120px]" />
-      <div className="absolute inset-0 shadow-[inset_0_0_140px_rgba(0,0,0,.45)]" />
+      <img src={appBackground} alt="" className="absolute inset-0 h-full w-full object-cover opacity-38" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[var(--game-deep,#080d16)]/60 via-[#080b10]/78 to-[#080b10]/96" />
     </div>
   );
 }

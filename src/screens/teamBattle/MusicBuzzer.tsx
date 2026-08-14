@@ -8,6 +8,7 @@ import { soundsEnabled, vibrate } from "../../utils/deviceFeedback";
 import { takePersistentItems } from "../../utils/persistentDeck";
 import { PartyBackdrop } from "./PartyChrome";
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
+import { Icons } from "../../components/icons";
 
 type Phase = { type: "question" } | { type: "buzzed"; participant: number } | { type: "revealed"; participant: number | null };
 
@@ -178,7 +179,7 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
           >
             <img src={songArt} alt="" className="h-full w-full object-cover" />
             <span className={`absolute inset-0 flex items-center justify-center bg-black/30 text-2xl ${status === "loading" || status === "playing" ? "animate-pulse" : ""}`}>
-              {status === "loading" ? "◌" : status === "playing" ? "Ⅱ" : "▶"}
+              {status === "loading" ? <Icons.hourglass size={34} /> : status === "playing" ? <Icons.pause size={36} /> : <Icons.play size={36} />}
             </span>
           </button>
 

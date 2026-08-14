@@ -6,6 +6,7 @@ import { ParticipantScoreStrip, PartyBackdrop, PartyEyebrow } from "./PartyChrom
 import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { soundsEnabled } from "../../utils/deviceFeedback";
+import { Icons } from "../../components/icons";
 
 type Phase = { type: "question" } | { type: "buzzed"; participant: number } | { type: "revealed"; participant: number };
 type AudioStatus = "idle" | "loading" | "playing" | "ready" | "error";
@@ -144,7 +145,7 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds
                 className="party-shine absolute inset-0 flex items-center justify-center transition active:scale-95"
               >
                 <span className={`flex h-24 w-24 items-center justify-center rounded-full border border-white/25 bg-black/40 text-5xl shadow-2xl backdrop-blur-md ${audioStatus === "loading" || audioStatus === "playing" ? "animate-pulse" : ""}`}>
-                  {audioStatus === "loading" ? "⌛" : audioStatus === "playing" ? "⏹️" : played ? "🔊" : "▶️"}
+                  {audioStatus === "loading" ? <Icons.hourglass size={38} /> : audioStatus === "playing" ? <Icons.stopCircle size={40} /> : played ? <Icons.music size={40} /> : <Icons.play size={40} />}
                 </span>
               </button>
             </div>
@@ -173,7 +174,7 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds
               <div className="grid grid-cols-2 gap-3">
                 {participantNames.map((name, participant) => {
                   const color = PARTY_PLAYER_COLORS[participant % PARTY_PLAYER_COLORS.length];
-                  return <button key={`${name}-${participant}`} disabled={!played} onClick={() => { stopAudio("ready"); playFeedback("buzzer"); setPhase({ type: "buzzed", participant }); }} className="party-shine overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30" style={{ background: color }}>🔔<span className="mt-1 block truncate px-2 text-sm">{name}</span></button>;
+                  return <button key={`${name}-${participant}`} disabled={!played} onClick={() => { stopAudio("ready"); playFeedback("buzzer"); setPhase({ type: "buzzed", participant }); }} className="party-shine flex flex-col items-center justify-center overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95 disabled:opacity-30" style={{ background: color }}><Icons.bell size={20} /><span className="mt-1 block truncate px-2 text-sm">{name}</span></button>;
                 })}
               </div>
             )}

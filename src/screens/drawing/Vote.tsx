@@ -22,7 +22,7 @@ export default function DrawingVote({
         className="mb-6 text-center"
         style={{ animation: "slideDown 0.5s ease-out both" }}
       >
-        <h1 className="text-gradient text-2xl font-black">Kto je podvodník? 🗳️</h1>
+        <h1 className="text-2xl font-black text-white">Kto je podvodník?</h1>
         <p className="mt-2 text-sm text-white/50">
           Prediskutujte obrázok a hlasujte za hráča, ktorý podľa vás nevedel
           tajné slovo.
@@ -107,7 +107,7 @@ export default function DrawingVote({
           onClick={() => onConfirm(selected)}
           className="transition-transform duration-200 hover:scale-[1.02] active:scale-95"
         >
-          Odhaliť podvodníka 🔍
+          Odhaliť podvodníka
         </Button>
         <Button
           fullWidth

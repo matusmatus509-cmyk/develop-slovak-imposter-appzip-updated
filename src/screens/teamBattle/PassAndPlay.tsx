@@ -18,7 +18,7 @@ type Phase = "ready" | "playing" | "team-result";
 const MODE_COPY = {
   zakazane: {
     eyebrow: "Zakázané slovo",
-    icon: "🚫",
+    icon: "messageSquare",
     title: "Vysvetľuj bez zakázaných slov",
     instruction: "Jeden hráč opisuje hlavné slovo. Nesmie použiť žiadne zo štyroch slov na karte ani ich odvodeniny.",
     correct: "Uhádnuté",
@@ -27,7 +27,7 @@ const MODE_COPY = {
   },
   pesnicka: {
     eyebrow: "Zahmkaj pesničku",
-    icon: "🎵",
+    icon: "music",
     title: "Zahmkaj melódiu bez slov",
     instruction: "Názov vidí iba hráč s mobilom. Zahmká melódiu bez textu. Za názov sa získava bod a za interpreta ďalší bod.",
     correct: "Uhádnutá",
@@ -51,6 +51,7 @@ interface SharedProps extends QuickParticipantsProps {
 function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDone, mode }: SharedProps & { mode: PassMode }) {
   const { language } = useLanguage();
   const copy = MODE_COPY[mode];
+  const ModeIcon = Icons[copy.icon];
   const soundAllowed = soundsEnabled();
   const [turn, setTurn] = useState(0);
   const [phase, setPhase] = useState<Phase>("ready");
@@ -188,7 +189,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
             </div>
           ) : (
             <div className="relative mt-7 flex h-24 w-24 items-center justify-center rounded-[2rem] border border-white/15 bg-white/[0.07] text-5xl shadow-[0_22px_60px_rgba(0,0,0,.35)]">
-              {copy.icon}
+              <ModeIcon size={42} />
             </div>
           )}
           <p className="mt-6 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">{turn === 0 ? "Začína" : "Na rade je"} • kolo {Math.floor(turn / participantNames.length) + 1}/{rounds}</p>
@@ -215,7 +216,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
     return (
       <PartyBackdrop>
         <main className={`flex h-full flex-col items-center overflow-y-auto px-6 py-8 text-center ${mode === "pesnicka" ? "song-result-screen" : ""}`}>
-          {mode === "pesnicka" ? <div className="relative h-28 w-full max-w-xs overflow-hidden rounded-[1.8rem] border border-violet-200/20"><SongGameArtwork className="h-full w-full" /><span className="absolute inset-0 flex items-center justify-center"><span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-black/40 text-amber-200 backdrop-blur-xl">{turnScore > 0 ? <Icons.trophy size={30} /> : <Icons.clock size={28} />}</span></span></div> : <div className="text-6xl">{turnScore > 0 ? "🎉" : "⏱️"}</div>}
+          {mode === "pesnicka" ? <div className="relative h-28 w-full max-w-xs overflow-hidden rounded-[1.8rem] border border-violet-200/20"><SongGameArtwork className="h-full w-full" /><span className="absolute inset-0 flex items-center justify-center"><span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-black/40 text-amber-200 backdrop-blur-xl">{turnScore > 0 ? <Icons.trophy size={30} /> : <Icons.clock size={28} />}</span></span></div> : <div className="flex h-24 w-24 items-center justify-center rounded-2xl border border-white/12 bg-white/[.05] text-amber-200">{turnScore > 0 ? <Icons.trophy size={42} /> : <Icons.clock size={40} />}</div>}
           <p className="mt-6 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">Výsledok tímu</p>
           <h1 className="mt-2 text-3xl font-black" style={{ color: participantColor }}>{participantNames[participant]}</h1>
           <div className={`party-glass mt-7 w-full max-w-xs rounded-[2rem] p-8 ${mode === "pesnicka" ? "song-result-score" : ""}`}>
@@ -254,7 +255,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
         <section key={index} className={`party-glass party-shine w-full max-w-md overflow-hidden rounded-[2.2rem] px-6 py-8 ${mode === "pesnicka" ? "song-round-card" : ""}`} style={{ animation: "popIn .3s ease-out both" }}>
           {mode === "zakazane" ? (
             <>
-              <span className="text-4xl">{copy.icon}</span>
+              <ModeIcon size={34} className="text-rose-200" />
               <p className="mt-4 text-[10px] font-black uppercase tracking-[0.24em] text-rose-300/65">Vysvetli slovo</p>
               <h1 className="mt-2 text-4xl font-black tracking-tight text-white">{forbiddenCard?.word}</h1>
               <div className="mt-6 rounded-[1.5rem] border border-rose-400/20 bg-rose-500/[0.09] p-4">
@@ -284,7 +285,7 @@ function PassAndPlay({ participantNames, gameMode, timeSeconds, rounds = 1, onDo
                   disabled={!soundAllowed || previewStatus === "loading" || previewStatus === "missing"}
                   className="mt-3 w-full rounded-xl border border-violet-300/20 bg-violet-400/15 px-3 py-3 text-xs font-black text-violet-100 transition active:scale-95 disabled:opacity-40"
                 >
-                  {previewStatus === "loading" ? "Hľadám ukážku…" : previewStatus === "missing" ? "Ukážka sa nenašla" : previewStatus === "playing" ? "■ Zastaviť ukážku" : "▶ Pustiť 8 s ukážku"}
+                  {previewStatus === "loading" ? "Hľadám ukážku…" : previewStatus === "missing" ? "Ukážka sa nenašla" : previewStatus === "playing" ? "Zastaviť ukážku" : "Pustiť 8 s ukážku"}
                 </button>
                 {previewStatus === "missing" && <p className="mt-2 text-[9px] font-bold text-white/25">Deezer ani iTunes nemajú pre túto skladbu dostupný audio preview.</p>}
               </div>
