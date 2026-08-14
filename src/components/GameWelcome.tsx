@@ -328,8 +328,8 @@ export default function GameWelcome({
     >
       <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_50%_5%,var(--welcome-soft),transparent_38%)]" />
 
-      <div className="game-welcome-content relative mx-auto flex h-full w-full max-w-md flex-col px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))]">
-        <div className={`game-welcome-hero relative mb-4 h-[min(42dvh,390px)] min-h-[250px] shrink-0 overflow-hidden rounded-[30px] border border-white/12 shadow-2xl animate-welcome-reveal ${config.variant === "song" ? "game-welcome-song-hero" : ""}`}>
+      <div className="game-welcome-content relative mx-auto flex h-full w-full max-w-lg flex-col px-4 pb-[max(.75rem,env(safe-area-inset-bottom))] pt-[max(.75rem,env(safe-area-inset-top))]">
+        <div className={`game-welcome-hero relative mb-3 h-[min(59dvh,650px)] min-h-[330px] shrink-0 overflow-hidden rounded-[26px] border border-white/12 shadow-2xl animate-welcome-reveal ${config.variant === "song" ? "game-welcome-song-hero" : ""}`}>
           {config.art && !config.artAtlas ? (
             <img
               src={config.art}
@@ -360,19 +360,19 @@ export default function GameWelcome({
             <Icons.chevronLeft size={23} />
           </button>
 
-          <div className="absolute inset-x-0 bottom-0 p-6">
+          <div className="absolute inset-x-0 bottom-0 p-5">
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/12 bg-[#0d1218]/70 px-3 py-1.5">
               <span className="h-2 w-2 rounded-full" style={{ background: config.accent }} />
               <span className="text-[10px] font-black uppercase tracking-[.19em] text-white/75">{config.eyebrow}</span>
             </div>
-            <h1 className="max-w-[330px] text-[2.45rem] font-extrabold leading-[.96] tracking-[-.045em] drop-shadow-xl">{config.title}</h1>
+            <h1 className="max-w-[360px] text-[2.35rem] font-extrabold leading-[.96] tracking-[-.045em] drop-shadow-xl">{config.title}</h1>
           </div>
         </div>
 
-        <section className="flex flex-1 flex-col animate-welcome-content">
-          <p className="game-welcome-description text-[14px] font-medium leading-relaxed text-white/62">{config.description}</p>
+        <section className="flex flex-col animate-welcome-content">
+          <p className="game-welcome-description text-[13px] font-medium leading-[1.5] text-white/62">{config.description}</p>
 
-          <div className="game-welcome-stats my-3 grid grid-cols-2 gap-2.5">
+          <div className="game-welcome-stats my-2 grid grid-cols-2 gap-2">
             <div className="game-welcome-stat rounded-2xl border border-white/10 bg-[#121922]/90 px-3.5 py-3">
               <p className="text-[9px] font-black uppercase tracking-[.17em] text-white/35">Hráči</p>
               <p className="mt-1 text-sm font-extrabold text-white/85">{config.players}</p>
@@ -383,7 +383,7 @@ export default function GameWelcome({
             </div>
           </div>
 
-          <div className="game-welcome-rule mb-3 flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0d131a]/75 px-4 py-3">
+          <div className="game-welcome-rule mb-2 flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0d131a]/75 px-4 py-3">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg" style={{ background: config.accentSoft, color: config.accent }}>
               <Icons.sparkles size={18} />
             </span>
@@ -393,7 +393,7 @@ export default function GameWelcome({
           <button
             type="button"
             onClick={onStart}
-            className="mt-auto flex min-h-14 w-full items-center justify-between rounded-xl border border-white/10 px-5 text-left font-extrabold text-white shadow-xl transition hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 active:scale-[.98]"
+            className="mt-1 flex min-h-14 w-full items-center justify-between rounded-xl border border-white/10 px-5 text-left font-extrabold text-white shadow-xl transition hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 active:scale-[.98]"
             style={{ background: `linear-gradient(135deg, ${config.accent}, color-mix(in srgb, ${config.accent} 70%, #202a38))`, boxShadow: `0 18px 34px -24px ${config.accent}` }}
           >
             <span>{config.variant === "song" ? "Pripraviť hudobné kolo" : "Pripraviť hru"}</span>

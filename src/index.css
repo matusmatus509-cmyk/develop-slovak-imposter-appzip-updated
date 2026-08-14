@@ -1156,7 +1156,7 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 /* Welcome pages use the whole screen, with progressive compaction by height. */
 @media (max-height: 760px) {
   .game-welcome-content { padding-left: 1rem; padding-right: 1rem; }
-  .game-welcome-hero { min-height: 210px; height: 35dvh; margin-bottom: .75rem; border-radius: 1.45rem; }
+  .game-welcome-hero { min-height: 220px; height: 40dvh; margin-bottom: .65rem; border-radius: 1.45rem; }
   .game-welcome-hero > div:last-child { padding: 1rem; }
   .game-welcome-hero h1 { font-size: 1.9rem; }
   .game-welcome-description { font-size: .74rem; line-height: 1.42; }
@@ -1167,7 +1167,7 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 }
 
 @media (max-height: 640px) {
-  .game-welcome-hero { min-height: 170px; height: 31dvh; }
+  .game-welcome-hero { min-height: 170px; height: 33dvh; }
   .game-welcome-description { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
   .game-welcome-stat { padding-block: .4rem; }
   .game-welcome-rule { padding-block: .45rem; }
