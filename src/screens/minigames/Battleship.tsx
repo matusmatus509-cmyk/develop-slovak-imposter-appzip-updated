@@ -552,7 +552,7 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
   }
 
   if (phase === "mode") return <PartyBackdrop>
-    <main className="modern-party-setup classic-minigame-setup h-full overflow-y-auto px-5 pb-9 pt-5 text-white">
+    <main className="h-full overflow-y-auto px-5 pb-9 pt-5 text-white">
       <div className="mx-auto w-full max-w-md">
         <header className="flex items-center justify-between"><button onClick={onBack} aria-label="Späť" className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[.06] text-white/70 transition active:scale-90"><Icons.chevronLeft size={21} /></button><PartyEyebrow>Hra pre dvoch</PartyEyebrow><div className="h-11 w-11" /></header>
         <section className="battle-mode-hero mt-6 text-center"><div className="battle-mode-emblem mx-auto flex h-28 w-28 items-center justify-center rounded-[2.2rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-400/15 to-blue-700/25 shadow-2xl shadow-cyan-500/10"><Icons.ship size={56} className="text-cyan-100" /></div><p className="mt-5 text-[9px] font-black uppercase tracking-[.25em] text-cyan-300/65">Námorná bitka 10 × 10</p><h1 className="mt-2 text-4xl font-black tracking-[-.04em]">Loďky</h1><p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-white/46">Rozmiestnite vlastné flotily v súkromí a potopte súperove lode.</p></section>

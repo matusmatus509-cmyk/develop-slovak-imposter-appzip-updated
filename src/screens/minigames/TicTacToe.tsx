@@ -126,7 +126,7 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
 
   if (phase === "setup") return (
     <PartyBackdrop>
-      <main className="modern-party-setup classic-minigame-setup h-full overflow-y-auto px-5 pb-9 pt-5 text-white">
+      <main className="h-full overflow-y-auto px-5 pb-9 pt-5 text-white">
         <div className="mx-auto w-full max-w-md">
           <header className="flex items-center justify-between">
             <button onClick={onBack} aria-label="Späť" className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[.06] text-white/70 transition active:scale-90"><Icons.chevronLeft size={21} /></button>

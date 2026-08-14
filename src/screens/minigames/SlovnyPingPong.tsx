@@ -35,7 +35,7 @@ function SetupScreen({
   const [speed, setSpeed] = useState(4); // seconds for ball to reach edge from centre
 
   return (
-    <Shell className="setup-screen setup-ping-pong">
+    <Shell>
       <TopBar title="Slovný Ping Pong" onBack={onBack} />
 
       <div className="mb-5 rounded-3xl border border-green-500/20 bg-green-500/10 p-4 text-sm text-white/70 leading-relaxed">
