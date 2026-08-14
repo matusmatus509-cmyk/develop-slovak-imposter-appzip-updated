@@ -79,7 +79,7 @@ export default function Setup({
   }
 
   return (
-    <Shell>
+    <Shell className="mobile-settings mobile-settings-impostor">
       <TopBar title="Nastavenie hry" onBack={onBack} />
 
       <div className="flex-1 space-y-7 overflow-y-auto pb-4">

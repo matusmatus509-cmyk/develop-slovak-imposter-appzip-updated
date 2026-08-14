@@ -101,7 +101,7 @@ function SetupScreen({
   }
 
   return (
-    <Shell>
+    <Shell className="mobile-settings mobile-settings-guess-who">
       <TopBar title="Hádaj kto som" onBack={onBack} />
 
       <div

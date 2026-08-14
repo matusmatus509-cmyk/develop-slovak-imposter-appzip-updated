@@ -74,7 +74,7 @@ export default function DrawingSetup({
   }
 
   return (
-    <Shell>
+    <Shell className="mobile-settings mobile-settings-drawing">
       <TopBar title="Kreslenie — nastavenie" onBack={onBack} />
 
       <div className="flex-1 space-y-7 overflow-y-auto pb-4">

@@ -1187,3 +1187,152 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   .is-game-stage .game-center-stack > .glass { padding: 1rem; }
   .is-game-stage .game-center-stack > p.text-xs { font-size: .62rem; }
 }
+
+/* Mobile settings: intentional, calm controls after the unchanged game welcome. */
+.mobile-settings {
+  --settings-accent: var(--game-accent, #8b5cf6);
+  --settings-surface: #121820;
+  --settings-surface-raised: #18212b;
+  --settings-line: rgba(255, 255, 255, .12);
+}
+.mobile-settings-impostor { --settings-accent: #f97316; }
+.mobile-settings-drawing { --settings-accent: #06b6d4; }
+.mobile-settings-guess-who { --settings-accent: #22d3ee; }
+.mobile-settings-charades { --settings-accent: #a78bfa; }
+.mobile-settings-ping-pong { --settings-accent: #34d399; }
+
+.mobile-settings.app-shell > div.fixed { background: #090d12; }
+.mobile-settings.app-shell > div.fixed > img { opacity: .18; filter: saturate(.45) contrast(1.05); }
+.mobile-settings .app-shell-content { max-width: 31rem; padding-inline: 1rem; }
+.mobile-settings .app-topbar { margin-bottom: 1rem; }
+.mobile-settings .app-topbar > button {
+  border-radius: .85rem;
+  border-color: var(--settings-line);
+  background: rgba(18, 24, 32, .9);
+  box-shadow: none;
+}
+.mobile-settings .app-topbar > span {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: rgba(255, 255, 255, .65);
+}
+
+.mobile-settings .app-shell-content > .flex-1 > section,
+.mobile-settings .glass {
+  border: 1px solid var(--settings-line) !important;
+  border-radius: 1.15rem !important;
+  background: var(--settings-surface) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.mobile-settings .app-shell-content > .flex-1 > section { padding: 1rem; }
+.mobile-settings .app-shell-content > .flex-1 { gap: .8rem !important; }
+.mobile-settings .glass { margin-bottom: .75rem; }
+.mobile-settings .glass[class*="leading-relaxed"] {
+  border-left: 3px solid var(--settings-accent) !important;
+  background: var(--settings-surface-raised) !important;
+  color: rgba(255, 255, 255, .68) !important;
+}
+.mobile-settings h2,
+.mobile-settings p[class*="uppercase"] {
+  color: rgba(255, 255, 255, .52) !important;
+  font-size: .66rem !important;
+  letter-spacing: .12em !important;
+}
+
+.mobile-settings input[type="text"],
+.mobile-settings input:not([type]) {
+  min-height: 2.9rem;
+  border: 1px solid var(--settings-line) !important;
+  border-radius: .8rem !important;
+  background: #0c1117 !important;
+  box-shadow: none !important;
+}
+.mobile-settings input:focus { border-color: var(--settings-accent) !important; }
+.mobile-settings button { box-shadow: none !important; }
+.mobile-settings button:hover { transform: none !important; }
+.mobile-settings button:active { transform: scale(.985) !important; }
+.mobile-settings button[class*="bg-white/5"],
+.mobile-settings button[class*="bg-white/[0.05]"] {
+  border-color: var(--settings-line) !important;
+  background: #0c1117 !important;
+}
+.mobile-settings button[class*="bg-cyan-500"],
+.mobile-settings button[class*="bg-purple-500"],
+.mobile-settings button[class*="bg-green-500"] {
+  border-color: color-mix(in srgb, var(--settings-accent) 72%, white 10%) !important;
+  background: color-mix(in srgb, var(--settings-accent) 16%, #111820) !important;
+  color: #fff !important;
+}
+.mobile-settings .app-button {
+  min-height: 3.35rem;
+  height: 3.35rem !important;
+  border: 1px solid color-mix(in srgb, var(--settings-accent) 80%, white 10%);
+  border-radius: .95rem !important;
+  background: var(--settings-accent) !important;
+  color: #071015 !important;
+  box-shadow: none !important;
+}
+
+/* Settings inside Party mode keep the artwork, but the controls stay practical. */
+.mobile-party-settings {
+  --settings-accent: var(--quick-primary, #a78bfa);
+  background: #0a0f15;
+}
+.mobile-party-settings .party-eyebrow {
+  border-color: var(--settings-line);
+  background: rgba(16, 22, 32, .88);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.mobile-party-settings header > button {
+  border-color: var(--settings-line) !important;
+  border-radius: .85rem !important;
+  background: #121820 !important;
+  box-shadow: none !important;
+}
+.mobile-party-settings .party-glass,
+.mobile-party-settings .quick-mode-panel {
+  border: 1px solid var(--settings-line) !important;
+  border-radius: 1.15rem !important;
+  background: var(--settings-surface) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.mobile-party-settings .game-setup-hero {
+  height: 10.5rem;
+  border-radius: 1.15rem;
+  border-color: var(--settings-line);
+  box-shadow: none;
+}
+.mobile-party-settings .game-setup-hero::after,
+.mobile-party-settings .party-shine::after { display: none; }
+.mobile-party-settings .game-setup-hero img { filter: saturate(.78) contrast(1.04); }
+.mobile-party-settings .quick-mode-choice {
+  border: 1px solid var(--settings-line) !important;
+  border-radius: .95rem !important;
+  background: #141c25 !important;
+  box-shadow: none !important;
+}
+.mobile-party-settings .quick-mode-icon {
+  border-radius: .75rem;
+  border: 1px solid var(--settings-line);
+  background: #0c1117;
+  color: var(--settings-accent);
+}
+.mobile-party-settings .quick-mode-choice:hover { border-color: var(--settings-accent) !important; }
+.mobile-party-settings button[class*="bg-gradient"],
+.mobile-party-settings button.party-shine:not(.quick-mode-choice) {
+  border: 1px solid color-mix(in srgb, var(--settings-accent) 80%, white 10%) !important;
+  border-radius: .95rem !important;
+  background: var(--settings-accent) !important;
+  color: #071015 !important;
+  box-shadow: none !important;
+}
+
+@media (max-height: 720px) {
+  .mobile-settings .app-shell-content { padding-top: max(.75rem, env(safe-area-inset-top)); }
+  .mobile-party-settings .game-setup-hero { height: 8.5rem; margin-top: .8rem; }
+  .mobile-party-settings .game-setup-hero h1 { font-size: 1.55rem; }
+}
