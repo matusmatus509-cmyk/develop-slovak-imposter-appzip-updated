@@ -59,28 +59,19 @@ export default function Home({ onNavigate, statistics, onSettings }: { onNavigat
         </header>
 
         <section className="mt-5 flex min-h-0 flex-1 flex-col gap-3" aria-label="Herné režimy">
-          <div className="flex min-h-0 flex-[2.45] flex-col gap-3">
-            {SECTIONS.slice(0, 2).map((section, index) => (
-              <button key={section.screen} type="button" onClick={() => onNavigate(section.screen)} className="group relative min-h-0 flex-1 overflow-hidden rounded-[1.5rem] border border-white/12 bg-[#111820] text-left shadow-[0_16px_36px_rgba(0,0,0,.28)] transition active:scale-[.99]" style={{ animation: `slideUp .35s ease-out ${60 + index * 55}ms both`, borderColor: `${section.accent}55` }}>
-                <img src={section.image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-92 transition duration-500 group-hover:scale-[1.02]" />
-                <span className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,9,13,.94)_0%,rgba(7,9,13,.7)_48%,rgba(7,9,13,.1)_100%)]" />
-                <span className="absolute inset-y-0 left-0 flex w-[72%] flex-col justify-end p-5"><strong className="text-[1.7rem] font-black leading-none tracking-[-.04em]">{section.title}</strong><span className="mt-2 text-[10px] font-semibold leading-relaxed text-white/58">{section.description}</span></span>
-                <span className="absolute bottom-5 right-5 text-[9px] font-black uppercase tracking-[.12em] text-white/72">Otvoriť</span>
-              </button>
-            ))}
-          </div>
-
-          <button type="button" onClick={() => onNavigate(SECTIONS[2].screen)} className="group flex min-h-[76px] flex-[.72] items-center overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#111820]/95 p-2.5 text-left transition active:scale-[.99]" style={{ animation: "slideUp .35s ease-out 175ms both" }}>
-            <span className="relative h-full w-[28%] shrink-0 overflow-hidden rounded-[.9rem]"><img src={SECTIONS[2].image} alt="" className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" /></span>
-            <span className="min-w-0 flex-1 px-4"><strong className="block text-base font-black">Minihry</strong><span className="mt-1 block text-[9px] font-semibold text-white/45">{SECTIONS[2].description}</span></span>
-            <span className="pr-2 text-[9px] font-bold text-white/42">Otvoriť</span>
-          </button>
+          {SECTIONS.map((section, index) => (
+            <button key={section.screen} type="button" onClick={() => onNavigate(section.screen)} className="group relative min-h-0 flex-1 overflow-hidden rounded-[1.45rem] border border-white/12 bg-[#111820] text-left shadow-[0_14px_32px_rgba(0,0,0,.26)] transition active:scale-[.99]" style={{ animation: `slideUp .35s ease-out ${60 + index * 55}ms both`, borderColor: `${section.accent}55` }}>
+              <img src={section.image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-92 transition duration-500 group-hover:scale-[1.02]" />
+              <span className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,9,13,.94)_0%,rgba(7,9,13,.68)_50%,rgba(7,9,13,.08)_100%)]" />
+              <span className="absolute inset-y-0 left-0 flex w-[75%] flex-col justify-end p-5"><strong className="text-[1.55rem] font-black leading-none tracking-[-.04em]">{section.title}</strong><span className="mt-2 text-[10px] font-semibold leading-relaxed text-white/58">{section.description}</span></span>
+              <span className="absolute bottom-5 right-5 text-[9px] font-black uppercase tracking-[.12em] text-white/72">Otvoriť</span>
+            </button>
+          ))}
         </section>
 
-        <nav className="mt-4 grid h-12 shrink-0 grid-cols-3 border-t border-white/[.08]" aria-label="Hlavná navigácia">
-          <button type="button" onClick={() => onNavigate("party-hub")} className="text-[9px] font-bold text-white/46">Party Hub</button>
-          <button type="button" onClick={() => onNavigate("statistics")} className="border-x border-white/[.08] text-[9px] font-bold text-white/46">Profil · {level.level}</button>
-          <button type="button" onClick={() => setIsMenuOpen(true)} className="text-[9px] font-bold text-white/46">Nastavenia</button>
+        <nav className="mt-3 grid h-14 shrink-0 grid-cols-2 overflow-hidden rounded-[1.2rem] border border-white/10 bg-[#111820]/92 shadow-[0_12px_30px_rgba(0,0,0,.28)]" aria-label="Hlavná navigácia">
+          <button type="button" onClick={() => onNavigate("party-hub")} className="text-[10px] font-bold text-white/62 transition active:bg-white/[.06]">Party Hub</button>
+          <button type="button" onClick={() => onNavigate("statistics")} className="border-l border-white/10 text-[10px] font-bold text-white/62 transition active:bg-white/[.06]">Profil <span className="ml-1 text-violet-300">Level {level.level}</span></button>
         </nav>
       </div>
 
