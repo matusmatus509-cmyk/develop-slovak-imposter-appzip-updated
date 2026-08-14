@@ -818,7 +818,7 @@ export default function App() {
       return <Battleship onBack={() => returnFromActiveGame("minigames-menu")} />;
 
     case "teambattle":
-      return <TeamBattle onHome={() => returnFromActiveGame("home")} onGameComplete={recordPartyResult} onWordGuessed={recordFastestGuess} customQuestions={workshopEntriesToQuiz(customEntries("teambattle"))} customControls={customControls("teambattle")} />;
+      return <div className="party-mode-experience h-full"><TeamBattle onHome={() => returnFromActiveGame("home")} onGameComplete={recordPartyResult} onWordGuessed={recordFastestGuess} customQuestions={workshopEntriesToQuiz(customEntries("teambattle"))} customControls={customControls("teambattle")} /></div>;
 
     default:
       return <Home onNavigate={navigateFromMenu} statistics={statistics} onSettings={() => navigateFromMenu("settings")} favoriteGames={favoriteGames} onToggleFavorite={toggleFavorite} />;

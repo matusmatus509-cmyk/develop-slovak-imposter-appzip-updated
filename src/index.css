@@ -1454,3 +1454,272 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   .party-battle-settings .party-battle-hero h1 { font-size: 1.5rem; }
   .party-battle-settings .party-battle-hero h1 + p { display: none; }
 }
+
+/* --------------------------------------------------------------------------
+   Party mode 2026 — calm mobile surfaces and purposeful motion.
+   -------------------------------------------------------------------------- */
+@keyframes partyModernEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes partyModernCount {
+  0% { opacity: 0; transform: scale(.9); }
+  55% { opacity: 1; transform: scale(1.035); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes partyModernModal {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes partyModernCrown {
+  from { opacity: 0; transform: translate(-50%, -8px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.party-mode-experience {
+  --party-surface: #111820;
+  --party-surface-2: #17212b;
+  --party-surface-3: #0b1118;
+  --party-line: rgba(255, 255, 255, .12);
+  --party-muted: rgba(255, 255, 255, .48);
+  --party-radius: 1rem;
+  color: #f7f8fa;
+}
+.party-mode-experience .party-backdrop {
+  background: color-mix(in srgb, var(--theme-bg, #080b10) 82%, #090e14) !important;
+}
+.party-mode-experience .party-orb,
+.party-mode-experience .party-beam { display: none; }
+.party-mode-experience .party-grid {
+  opacity: .055;
+  animation: none;
+  background-size: 34px 34px;
+  mask-image: linear-gradient(to bottom, black, transparent 76%);
+}
+.party-mode-experience .party-grain { opacity: .025; }
+.party-mode-experience .party-backdrop > div[class*="bg-gradient-to-b"] { opacity: .25; }
+.party-mode-experience .party-stage-enter,
+.party-mode-experience .party-phase-shell {
+  animation: partyModernEnter .26s ease-out both !important;
+}
+
+.party-mode-experience .party-glass,
+.party-mode-experience .glass {
+  border: 1px solid var(--party-line) !important;
+  border-radius: var(--party-radius) !important;
+  background: var(--party-surface) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.party-mode-experience .party-glass::before,
+.party-mode-experience .party-glass::after,
+.party-mode-experience .party-scoreboard::before { display: none; }
+.party-mode-experience .party-eyebrow {
+  gap: .45rem;
+  border: 1px solid var(--party-line);
+  border-radius: .6rem;
+  background: var(--party-surface);
+  padding: .55rem .7rem;
+  color: rgba(255, 255, 255, .62);
+  letter-spacing: .13em;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.party-mode-experience .party-live-dot {
+  width: .38rem;
+  height: .38rem;
+  border-radius: 2px;
+  animation: none;
+}
+
+.party-mode-experience button {
+  transition-duration: 150ms !important;
+  transition-timing-function: ease-out !important;
+}
+.party-mode-experience button:hover { transform: none !important; }
+.party-mode-experience button:active { transform: scale(.985) !important; }
+.party-mode-experience .party-shine { box-shadow: none !important; }
+.party-mode-experience .party-shine::after { display: none !important; }
+.party-mode-experience button[class*="from-violet-600"][class*="to-pink-500"] {
+  border: 1px solid color-mix(in srgb, var(--theme-a, #8b5cf6) 75%, white 12%) !important;
+  border-radius: .9rem !important;
+  background: var(--theme-a, #8b5cf6) !important;
+  color: white !important;
+  box-shadow: none !important;
+}
+.party-mode-experience button[class*="bg-white/[0.05]"] {
+  border-color: var(--party-line) !important;
+  background: var(--party-surface) !important;
+  backdrop-filter: none !important;
+}
+
+.party-mode-experience .party-team-badge {
+  border-radius: .85rem !important;
+  background: var(--party-surface) !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transition: border-color .15s ease, background-color .15s ease !important;
+}
+.party-mode-experience .party-team-badge.is-active {
+  transform: none;
+  background: var(--party-surface-2) !important;
+}
+.party-mode-experience .party-team-badge span[style*="box-shadow"] { box-shadow: none !important; }
+.party-mode-experience .party-scoreboard { overflow: hidden; }
+.party-mode-experience .party-scoreboard > div:last-child { box-shadow: none !important; }
+.party-mode-experience .party-leader-crown { animation: none; }
+
+.party-mode-experience .party-timer {
+  box-shadow: none !important;
+  filter: none !important;
+}
+.party-mode-experience .party-timer > div {
+  border-color: var(--party-line);
+  background: var(--party-surface-3);
+  box-shadow: none;
+}
+.party-mode-experience .party-countdown-pop {
+  animation: partyModernCount .28s ease-out both !important;
+  text-shadow: none !important;
+}
+
+.party-mode-experience h1 { text-shadow: none !important; }
+.party-mode-experience [style*="text-shadow"] { text-shadow: none !important; }
+.party-mode-experience [style*="box-shadow"] { box-shadow: none !important; }
+.party-mode-experience .party-finale-reveal,
+.party-mode-experience .party-winner-trophy,
+.party-mode-experience .party-winner-name,
+.party-mode-experience .party-podium.winner {
+  animation: partyModernEnter .3s ease-out both !important;
+  text-shadow: none !important;
+  transform: none;
+}
+.party-mode-experience .party-winner-trophy::before { display: none; }
+.party-mode-experience .party-winner-crown {
+  animation: partyModernCrown .28s ease-out both !important;
+}
+
+.party-mode-experience main { scrollbar-width: none; }
+.party-mode-experience main::-webkit-scrollbar { display: none; }
+.party-mode-experience section[class*="rounded-[2rem]"],
+.party-mode-experience section[class*="rounded-[1.8rem]"],
+.party-mode-experience section[class*="rounded-[1.75rem]"] {
+  border-radius: var(--party-radius) !important;
+}
+.party-mode-experience [class*="blur-3xl"] { display: none; }
+.party-mode-experience [class*="shadow-[0_0_"] { box-shadow: none !important; }
+
+/* Party Hub is the front door of the mode and uses the same restrained system. */
+.party-hub-page {
+  --hub-surface: #111820;
+  --hub-surface-2: #17212b;
+  --hub-line: rgba(255,255,255,.12);
+  background:
+    linear-gradient(to bottom, color-mix(in srgb, var(--theme-a) 8%, #090e14), #090e14 24rem) !important;
+}
+.party-hub-page .party-page-enter {
+  animation: partyModernEnter .26s ease-out both !important;
+}
+.party-hub-page .party-hub-aurora { display: none; }
+.party-hub-page .party-hub-hero {
+  min-height: 18.5rem;
+  border-radius: 1.1rem;
+  border-color: var(--hub-line);
+  background: #0d131b;
+  box-shadow: none;
+}
+.party-hub-page .party-hub-hero > img {
+  opacity: .48;
+  filter: saturate(.65) contrast(1.04);
+}
+.party-hub-page .party-gradient-text {
+  background: none;
+  color: #fff;
+  -webkit-text-fill-color: currentColor;
+}
+.party-hub-page .party-live-mark {
+  border-radius: .5rem;
+  border-color: var(--hub-line);
+  background: rgba(9,14,20,.8);
+  box-shadow: none;
+}
+.party-hub-page .party-live-mark span { animation: none; border-radius: 2px; }
+.party-hub-page nav {
+  border-radius: .9rem;
+  border-color: var(--hub-line);
+  background: rgba(9,14,20,.94);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.party-hub-page .premium-card,
+.party-hub-page .premium-section > article,
+.party-hub-page section[class*="border"]:not(.party-hub-hero) {
+  border-color: var(--hub-line) !important;
+  border-radius: 1rem !important;
+  background: var(--hub-surface) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.party-hub-page .party-hover-card,
+.party-hub-page .party-theme-card,
+.party-hub-page .party-metric {
+  transition: border-color .15s ease, background-color .15s ease !important;
+}
+.party-hub-page .party-hover-card:hover,
+.party-hub-page .party-theme-card:hover,
+.party-hub-page .party-metric:hover { transform: none; box-shadow: none; }
+.party-hub-page .party-theme-card.is-active {
+  border-color: var(--theme-a) !important;
+  background: color-mix(in srgb, var(--theme-a) 12%, var(--hub-surface)) !important;
+  box-shadow: inset 0 -2px 0 var(--theme-a) !important;
+}
+.party-hub-page .party-primary-action {
+  border: 1px solid color-mix(in srgb, var(--theme-a) 72%, white 12%);
+  border-radius: .9rem;
+  background: var(--theme-a);
+  box-shadow: none;
+}
+.party-hub-page .party-primary-action::after { display: none; }
+.party-hub-page .party-primary-action > span:last-child {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: .65rem;
+  box-shadow: none;
+}
+.party-hub-page button { transition-duration: 150ms !important; }
+.party-hub-page button:hover { transform: none !important; }
+.party-hub-page button:active { transform: scale(.985) !important; }
+.party-hub-page .party-modal-enter {
+  animation: partyModernModal .22s ease-out both !important;
+  border-radius: 1rem !important;
+  border-color: var(--hub-line) !important;
+  background: #0d131b !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.party-hub-page .party-wheel { box-shadow: none; }
+
+@media (max-width: 370px) {
+  .party-hub-page > div { padding-inline: .75rem; }
+  .party-hub-page .party-hub-hero { min-height: 17rem; padding: 1rem; }
+  .party-hub-page .party-hub-hero h1 { font-size: 1.7rem; }
+  .party-mode-experience main { padding-inline: .85rem; }
+}
+
+@media (max-height: 700px) {
+  .party-mode-experience .party-eyebrow { padding-block: .42rem; }
+  .party-mode-experience main[class*="pt-10"],
+  .party-mode-experience main[class*="pt-8"] { padding-top: .8rem; }
+  .party-mode-experience h1[class*="text-4xl"] { font-size: 1.75rem; }
+  .party-mode-experience h1[class*="text-3xl"] { font-size: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .party-mode-experience *,
+  .party-hub-page * {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

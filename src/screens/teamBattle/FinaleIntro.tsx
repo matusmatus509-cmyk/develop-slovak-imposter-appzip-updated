@@ -23,7 +23,7 @@ export default function FinaleIntro({
 
           <section className="party-finale-reveal mt-8 w-full">
             <div className="relative mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-fuchsia-300/30 bg-fuchsia-500/10 shadow-[0_0_80px_rgba(217,70,239,.3)]">
-              <div className="absolute inset-2 rounded-full border border-dashed border-white/20 animate-spin [animation-duration:10s]" />
+              <div className="absolute inset-2 rounded-full border border-white/20" />
               <span className="text-fuchsia-200"><Icons.crown size={52} /></span>
             </div>
             <p className="mt-6 text-[10px] font-black uppercase tracking-[0.3em] text-fuchsia-300/70">Posledná šanca zmeniť výsledok</p>

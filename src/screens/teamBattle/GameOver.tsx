@@ -6,13 +6,13 @@ import { useFeedback } from "../../feedback/FeedbackProvider";
 
 function Confetti() {
   const pieces = useMemo(
-    () => Array.from({ length: 52 }, (_, index) => ({
+    () => Array.from({ length: 28 }, (_, index) => ({
       id: index,
       left: `${Math.random() * 100}%`,
       delay: `${Math.random() * 1.2}s`,
       color: ["#e879f9", "#60a5fa", "#f87171", "#fbbf24", "#34d399"][index % 5],
       size: `${5 + Math.random() * 8}px`,
-      duration: `${2.4 + Math.random() * 1.8}s`,
+      duration: `${1.9 + Math.random() * 1.1}s`,
       rotate: `${Math.random() * 180}deg`,
     })),
     [],
@@ -111,10 +111,10 @@ export default function GameOver({
         <div className="mx-auto flex min-h-full w-full max-w-md flex-col items-center">
           <PartyEyebrow>Výsledky Party mode</PartyEyebrow>
 
-          <section className={`mt-7 w-full transition-all duration-700 ${revealed ? "translate-y-0 scale-100 opacity-100" : "translate-y-8 scale-75 opacity-0"}`} aria-live="polite">
+          <section className={`mt-7 w-full transition-all duration-300 ${revealed ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`} aria-live="polite">
             <div className={`party-winner-trophy relative mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-amber-200/30 bg-gradient-to-br from-amber-300/25 via-fuchsia-500/15 to-violet-700/20 shadow-[0_0_75px_rgba(251,191,36,.25)] ${celebrating ? "is-celebrating" : ""}`}>
-              <div className="absolute inset-2 rounded-full border border-dashed border-white/15 animate-spin [animation-duration:12s]" />
-              <span className={`relative text-amber-200 ${isDraw ? "" : "animate-bounce"}`} style={!isDraw ? { animationDuration: "1.15s" } : undefined}>
+              <div className="absolute inset-2 rounded-full border border-white/15" />
+              <span className="relative text-amber-200">
                 {isDraw ? <Icons.users size={52} /> : <Icons.trophy size={52} />}
               </span>
             </div>
@@ -145,7 +145,7 @@ export default function GameOver({
                     transitionDelay: `${index * 100}ms`,
                   }}
                 >
-                  {won && <span className="party-winner-crown absolute -top-5 left-1/2 -translate-x-1/2 text-4xl animate-pulse">♛</span>}
+                  {won && <span className="party-winner-crown absolute -top-5 left-1/2 -translate-x-1/2 text-4xl">♛</span>}
                   <span
                     className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl text-base font-black text-white"
                     style={{ background: colors[index], boxShadow: `0 0 25px ${colors[index]}66` }}
