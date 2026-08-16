@@ -136,7 +136,7 @@ export default function SoundBuzzer({ participantNames, gameMode, onDone, rounds
           <section className="party-glass relative mt-5 flex flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.2rem] px-6 py-7">
             <div className="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent" />
             <div className="relative h-40 w-full max-w-sm shrink-0 overflow-hidden rounded-[1.8rem] border border-cyan-300/20 shadow-[0_0_70px_rgba(34,211,238,.18)]">
-<img src={soundArt} alt="Ilustrácia zvukovej minihry" className="h-full w-full object-cover object-[center_42%]" />
+<img src={soundArt} alt="Ilustrácia zvukovej minihry" className="h-full w-full object-cover object-[center_38%]" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#07131b]/75 via-transparent to-cyan-400/10" />
               <button
                 onClick={audioStatus === "playing" ? () => stopAudio("ready") : play}
