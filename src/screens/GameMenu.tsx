@@ -61,11 +61,11 @@ export default function GameMenu({
                   <img
                     src={welcome.art}
                     alt=""
-                  className="absolute inset-0 h-full w-full object-cover saturate-[.82] transition duration-700 group-hover:scale-[1.035]"
+                  className="absolute inset-0 h-full w-full scale-[1.08] object-cover object-[center_42%] saturate-[.82] transition duration-700 group-hover:scale-[1.12]"
                   />
                 ) : welcome ? (
                   <div
-                    className="absolute inset-0 bg-no-repeat transition duration-700 group-hover:scale-[1.06]"
+                    className="absolute inset-0 scale-[1.1] origin-center bg-no-repeat transition duration-700 group-hover:scale-[1.14]"
                     style={{
                       backgroundImage: `url(${welcome.artAtlas ? welcome.art : gameArt})`,
                       backgroundSize: welcome.artSize ?? (welcome.artAtlas ? "300% 300%" : "400% 300%"),
