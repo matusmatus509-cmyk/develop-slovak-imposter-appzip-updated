@@ -334,11 +334,11 @@ export default function GameWelcome({
             <img
               src={config.art}
               alt=""
-              className="absolute inset-0 h-full w-full scale-[1.1] object-cover object-[center_42%] saturate-[.9]"
+              className="absolute inset-0 h-full w-full scale-[1.02] object-cover saturate-[.9]"
             />
           ) : (
             <div
-              className="absolute inset-0 scale-[1.1] origin-center bg-no-repeat"
+              className="absolute inset-0 scale-[1.04] bg-no-repeat"
               style={{
                 backgroundImage: `url(${config.artAtlas ? config.art : gameArt})`,
                 backgroundSize: config.artSize ?? (config.artAtlas ? "300% 300%" : "400% 300%"),

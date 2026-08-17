@@ -190,7 +190,7 @@ export default function TeamQuickGame({
           <div className="game-setup-hero relative mt-5 h-48 overflow-hidden rounded-[2rem] border border-white/15 shadow-2xl" style={{ "--setup-accent": accent } as CSSProperties}>
             {game === "pesnicka"
               ? <SongGameArtwork className="h-full w-full transition-transform duration-700" labelled />
-          : <img src={GAME_ART[game]} alt="" className="h-full w-full object-cover object-[center_42%] transition-transform duration-700" />}
+              : <img src={GAME_ART[game]} alt="" className="h-full w-full object-cover transition-transform duration-700" />}
             <div className="absolute inset-0 bg-gradient-to-r from-[#080b13]/95 via-[#080b13]/35 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#080b13]/85 via-transparent to-black/10" />
             <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/20 blur-3xl" />

@@ -18,7 +18,7 @@ export default function SongGameArtwork({
       <img
         src={songGameHero}
         alt=""
-        className="absolute inset-0 h-full w-full scale-[1.08] object-cover object-[center_42%]"
+        className="absolute inset-0 h-full w-full scale-[1.015] object-cover object-center"
         draggable={false}
       />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_24%,rgba(240,171,252,.18),transparent_34%)]" />

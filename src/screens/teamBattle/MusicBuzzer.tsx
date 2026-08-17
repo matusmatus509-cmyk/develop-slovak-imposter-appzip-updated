@@ -177,7 +177,7 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
             aria-label={status === "playing" ? "Zastaviť pesničku" : "Prehrať pesničku"}
             className="party-shine absolute left-1/2 top-1/2 z-10 h-28 w-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border border-violet-300/30 shadow-[0_0_70px_rgba(217,70,239,.34)] transition active:scale-95 disabled:opacity-55"
           >
-<img src={songArt} alt="" className="h-full w-full object-cover object-[center_42%]" />
+            <img src={songArt} alt="" className="h-full w-full object-cover" />
             <span className={`absolute inset-0 flex items-center justify-center bg-black/30 text-2xl ${status === "loading" || status === "playing" ? "animate-pulse" : ""}`}>
               {status === "loading" ? <Icons.hourglass size={34} /> : status === "playing" ? <Icons.pause size={36} /> : <Icons.play size={36} />}
             </span>
