@@ -1,7 +1,7 @@
 import type { Screen } from "../types";
 import { Icons, type IconsType } from "../components/icons";
 import { Shell, TopBar } from "../components/ui";
-import { GAME_WELCOMES, getFocusedArtworkPosition } from "../components/GameWelcome";
+import { GAME_WELCOMES } from "../components/GameWelcome";
 import gameArt from "../assets/game-art-sprite.jpg";
 import { PLAYABLE_GAMES } from "../data/engagement";
 
@@ -61,15 +61,15 @@ export default function GameMenu({
                   <img
                     src={welcome.art}
                     alt=""
-                  className="absolute inset-0 h-full w-full scale-[1.14] object-cover object-[center_38%] saturate-[.82] transition duration-700 group-hover:scale-[1.18]"
+                  className="absolute inset-0 h-full w-full scale-[1.08] object-cover object-[center_42%] saturate-[.82] transition duration-700 group-hover:scale-[1.12]"
                   />
                 ) : welcome ? (
                   <div
-                    className="absolute inset-0 scale-[1.16] origin-center bg-no-repeat transition duration-700 group-hover:scale-[1.2]"
+                    className="absolute inset-0 scale-[1.1] origin-center bg-no-repeat transition duration-700 group-hover:scale-[1.14]"
                     style={{
                       backgroundImage: `url(${welcome.artAtlas ? welcome.art : gameArt})`,
                       backgroundSize: welcome.artSize ?? (welcome.artAtlas ? "300% 300%" : "400% 300%"),
-                      backgroundPosition: getFocusedArtworkPosition(welcome.artPosition),
+                      backgroundPosition: welcome.artPosition,
                     }}
                   />
                 ) : (

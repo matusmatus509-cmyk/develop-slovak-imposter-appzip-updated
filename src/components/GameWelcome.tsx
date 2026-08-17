@@ -26,13 +26,6 @@ export interface GameWelcomeConfig {
   variant?: "default" | "song";
 }
 
-/** Keeps the subject inside atlas tiles away from their empty outer edges. */
-export function getFocusedArtworkPosition(position: string) {
-  const [horizontal = "50%", vertical = "50%"] = position.trim().split(/\s+/);
-  const focusedVertical = vertical === "0%" ? "8%" : vertical === "100%" ? "92%" : vertical;
-  return `${horizontal} ${focusedVertical}`;
-}
-
 export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
   "truth-or-dare": {
     eyebrow: "Otázky bez filtra",
@@ -341,15 +334,15 @@ export default function GameWelcome({
             <img
               src={config.art}
               alt=""
-              className="absolute inset-0 h-full w-full scale-[1.16] object-cover object-[center_38%] saturate-[.9]"
+              className="absolute inset-0 h-full w-full scale-[1.1] object-cover object-[center_42%] saturate-[.9]"
             />
           ) : (
             <div
-              className="absolute inset-0 scale-[1.16] origin-center bg-no-repeat"
+              className="absolute inset-0 scale-[1.1] origin-center bg-no-repeat"
               style={{
                 backgroundImage: `url(${config.artAtlas ? config.art : gameArt})`,
                 backgroundSize: config.artSize ?? (config.artAtlas ? "300% 300%" : "400% 300%"),
-                backgroundPosition: getFocusedArtworkPosition(config.artPosition),
+                backgroundPosition: config.artPosition,
               }}
             />
           )}
