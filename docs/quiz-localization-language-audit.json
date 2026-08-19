@@ -1,0 +1,243 @@
+{
+  "sourceQuestions": 1400,
+  "auditedLanguages": [
+    "en",
+    "de",
+    "es",
+    "fr",
+    "pt"
+  ],
+  "issueCount": 46,
+  "issues": [
+    {
+      "id": "quiz-01-101",
+      "language": "pt",
+      "reason": "Option \"Loira\" is incorrect in Portuguese — it reads as the adjective 'loira'. The river Loire should be rendered as \"Loire\" (or \"rio Loire\")."
+    },
+    {
+      "id": "quiz-01-076",
+      "language": "pt",
+      "reason": "Option 'Amazónia' refers to the Amazon region/forest, while the Slovak option 'Amazonka' denotes the Amazon River. This changes the meaning — should be 'Amazonas' or 'Rio Amazonas' to match the source."
+    },
+    {
+      "id": "quiz-02-104",
+      "language": "de",
+      "reason": "Ungrammatical wording: 'das innere Erdkern' is incorrect German. Should be 'der innere Erdkern' (also adjust word order: 'Aus welchen zwei Elementen besteht der innere Erdkern?')."
+    },
+    {
+      "id": "quiz-03-007",
+      "language": "pt",
+      "reason": "Pergunta em português apresenta construção estranha: \"em Cnossos, na Creta?\". Em português europeu o mais natural é \"em Cnossos, em Creta\" (ou \"em Cnossos, na ilha de Creta\"); o uso de \"na Creta\" e a pontuação são inadequados."
+    },
+    {
+      "id": "quiz-03-126",
+      "language": "fr",
+      "reason": "Option 'Ordre tuscan' is incorrect French; should be 'Ordre toscan' (wrong word form/mistranslation)."
+    },
+    {
+      "id": "quiz-03-126",
+      "language": "pt",
+      "reason": "Option 'Ordem tuscana' is incorrect in Portuguese; should be 'Ordem toscana' (wrong word form)."
+    },
+    {
+      "id": "quiz-04-014",
+      "language": "de",
+      "reason": "Unnatürliches/fehlerhaftes Deutsch: Formulierung 'in der Gerätekunstturnen' ist grammatisch falsch/ungebräuchlich (z. B. sollte es 'im Gerätturnen der Frauen' oder ähnlich heißen)."
+    },
+    {
+      "id": "quiz-04-021",
+      "language": "fr",
+      "reason": "Unnaturalité/Redundanz: «course automobile de 24 heures des 24 Heures du Mans» duplique «24 heures» et est maladroite; devrait être par ex. «la course des 24 Heures du Mans»."
+    },
+    {
+      "id": "quiz-04-071",
+      "language": "es",
+      "reason": "Gramática incorrecta: usa el artículo masculino 'el jabalina'. En español 'jabalina' es femenino — debe ser 'la jabalina'."
+    },
+    {
+      "id": "quiz-04-046",
+      "language": "fr",
+      "reason": "Traduction maladroite/grammaire non naturelle : «Quel est le poids du poids de compétition…» (litt. «le poids du poids») — formulation incorrecte/ambiguë en français."
+    },
+    {
+      "id": "quiz-04-101",
+      "language": "pt",
+      "reason": "Mistranslation: uses 'decátlon' (Spanish-influenced/incorrect). In European Portuguese the correct term is 'decatlo' (so question should read e.g. 'Quantas disciplinas inclui o decatlo masculino?')."
+    },
+    {
+      "id": "quiz-02-141",
+      "language": "pt",
+      "reason": "Portuguese uses Brazilian spelling 'eletromagnética' — should use European Portuguese 'electromagnética'."
+    },
+    {
+      "id": "quiz-02-149",
+      "language": "pt",
+      "reason": "Uses Brazilian Portuguese 'atividade' — European Portuguese spelling is 'actividade'."
+    },
+    {
+      "id": "quiz-02-145",
+      "language": "pt",
+      "reason": "Uses non‑European spelling 'eletrónica' (Brazilian variant) in 'degenerescência eletrónica' — European Portuguese uses 'electrónica'."
+    },
+    {
+      "id": "quiz-05-111",
+      "language": "pt",
+      "reason": "Portuguese question uses the feminine article 'a protagonista' for Neo (male). Should be 'o protagonista' or use a gender-neutral phrasing like 'que personagem é o protagonista?'"
+    },
+    {
+      "id": "quiz-05-093",
+      "language": "pt",
+      "reason": "Grammatical error in Portuguese: 'Em que ano foi lançado a Cinderela da Disney?' has incorrect gender agreement. Should be 'foi lançada a Cinderela da Disney' (or remove the article and keep 'lançado')."
+    },
+    {
+      "id": "quiz-06-049",
+      "language": "es",
+      "reason": "Se cambió una opción: en la fuente la opción es 'DJ scratching', pero la traducción añade 'Turntablism/DJ scratching', incorporando 'Turntablism' (término adicional que altera el significado de la opción respecto al original)."
+    },
+    {
+      "id": "quiz-07-049",
+      "language": "pt",
+      "reason": "Frase pouco natural em português europeu: «o público sabe mais informações do que as personagens em palco». Melhor: «o público sabe mais do que as personagens em palco» alebo «o público tem mais informações do que as personagens»."
+    },
+    {
+      "id": "quiz-07-052",
+      "language": "fr",
+      "reason": "Option 'les couleurs sont appliquées en épais couches d'huile' is grammatically incorrect — agreement error; should be 'en épaisses couches d'huile'."
+    },
+    {
+      "id": "quiz-07-052",
+      "language": "de",
+      "reason": "Option 'es ist eine drucktechnik auf Steinbasis' has a German grammar/capitalization error: 'drucktechnik' should be capitalized ('Drucktechnik')."
+    },
+    {
+      "id": "quiz-07-068",
+      "language": "es",
+      "reason": "Option 'Coser decorativo con aguja sobre tejido creando patrones' uses the verb 'Coser' (infinitive) where the source uses a noun; unnatural phrasing — should be e.g. 'Costura decorativa con aguja sobre tejido creando patrones'."
+    },
+    {
+      "id": "quiz-alt-1068",
+      "language": "de",
+      "reason": "Frage grammatisch falsch: „Welche Kinderreim handelt…?“ sollte korrekt heißen „Welcher Kinderreim handelt…?\""
+    },
+    {
+      "id": "quiz-alt-0997",
+      "language": "pt",
+      "reason": "Translation is in English rather than European Portuguese — answer and all options use the English title 'Through the Looking-Glass' instead of a Portuguese form (e.g. 'Através do Espelho')."
+    },
+    {
+      "id": "quiz-alt-1047",
+      "language": "pt",
+      "reason": "Question uses 'Digite o nome do filme...' — 'Digite' means 'type' (enter text) and changes the instruction from 'Name the film' to 'Type the film name'. Also reads as interface/Brazilian phrasing and is unnatural for European Portuguese; should be e.g. 'Nomeie o filme' or 'Indique o filme'."
+    },
+    {
+      "id": "quiz-alt-1106",
+      "language": "de",
+      "reason": "Die deutsche Übersetzung des Zitats ist grammatisch unnatürlich/holprig – die Formulierung „waren stolz darauf zu sagen, dass sie völlig normal wären, danke sehr“ (Konjunktiv 'wären') entspricht nicht einer natürlichen deutschen Wiedergabe des Originalsatzes."
+    },
+    {
+      "id": "quiz-alt-1121",
+      "language": "es",
+      "reason": "La redacción en español es inadecuada/antiecológica: «¿Qué palabra tiene la tabla plana que un artista usa…?» es gramaticalmente extraña. Debería ser algo como «¿Cómo se llama la tabla plana que un artista usa…?» o «¿Qué palabra se usa para la tabla plana…?\""
+    },
+    {
+      "id": "quiz-alt-1015",
+      "language": "de",
+      "reason": "Changed option meaning/gender: Slovak 'Jej priateľ' (her male friend) and 'Jej učiteľ' (her male teacher) were translated as feminine forms ('ihre Freundin', 'ihre Lehrerin'), altering the original gendered meaning."
+    },
+    {
+      "id": "quiz-alt-1015",
+      "language": "es",
+      "reason": "Changed option meaning/gender: Slovak 'Jej priateľ' and 'Jej učiteľ' were translated as feminine forms ('a su amiga', 'a su profesora'), changing the original gendered meaning."
+    },
+    {
+      "id": "quiz-alt-1015",
+      "language": "fr",
+      "reason": "Changed option meaning/gender: Slovak 'Jej priateľ' and 'Jej učiteľ' were translated as feminine forms ('son amie', 'sa maîtresse'), which changes the original gendered meaning."
+    },
+    {
+      "id": "quiz-alt-1015",
+      "language": "pt",
+      "reason": "Two problems: (1) Changed option meaning/gender — Slovak 'Jej priateľ' and 'Jej učiteľ' were translated as feminine ('A sua amiga', 'A sua professora'), altering the original gendered meaning. (2) Unnatural grammar in the question: 'A quem o Chapeuzinho Vermelho visita?' is ungrammatical in European Portuguese; it should be phrased like 'Quem o Chapeuzinho Vermelho visita?' or similar."
+    },
+    {
+      "id": "quiz-alt-1017",
+      "language": "pt",
+      "reason": "Variant/register issue: Portuguese uses 'Faça você mesmo' (Brazilian 'você' form). Portuguese translations must be European Portuguese — prefer forms without 'você' (e.g. 'Faz tu mesmo' or a neutral construction)."
+    },
+    {
+      "id": "quiz-alt-1205",
+      "language": "de",
+      "reason": "Unnatural/incorrect German phrasing: 'Sorten namens Maine und Stachelig' is ungrammatical and misleading. 'Stachelig' is not the correct form here — should indicate the 'spiny' variety (e.g. 'stachelige' or use the proper term 'Stachelhummer' / 'spiny lobster') to match the Slovak 'ostnaté'."
+    },
+    {
+      "id": "quiz-alt-1134",
+      "language": "en",
+      "reason": "Mistranslation: Slovak option \"Markíza\" (meaning an awning) was translated as \"Marquee\" in English, which changes the meaning; other translations use awning equivalents (e.g. 'Toldo', 'Markise', 'Auvent')."
+    },
+    {
+      "id": "quiz-alt-1172",
+      "language": "fr",
+      "reason": "Mistranslation in options: 'Poignet barrel' leaves the English word 'barrel' and is not correct French; the term for 'barrel cuff' should use 'manchette' (e.g. 'manchette droite' or similar). Also using 'Poignet' for these cuff types is awkward—prefer 'manchette'."
+    },
+    {
+      "id": "quiz-alt-1175",
+      "language": "en",
+      "reason": "Unnatural / ungrammatical option: 'And down' is not a valid English answer option (literal translation of Slovak 'A dole')."
+    },
+    {
+      "id": "quiz-alt-1175",
+      "language": "de",
+      "reason": "Unnatural / ungrammatical option: 'Und unten' is not a proper German answer option (literal 'and down')."
+    },
+    {
+      "id": "quiz-alt-1175",
+      "language": "es",
+      "reason": "Unnatural / ungrammatical option: 'Y abajo' is not a proper Spanish answer option (literal 'and down')."
+    },
+    {
+      "id": "quiz-alt-1175",
+      "language": "fr",
+      "reason": "Unnatural / ungrammatical option: 'Et en bas' is not a proper French answer option (literal 'and down')."
+    },
+    {
+      "id": "quiz-alt-1175",
+      "language": "pt",
+      "reason": "Unnatural / ungrammatical option: 'E abaixo' is not a proper Portuguese answer option (literal 'and below')."
+    },
+    {
+      "id": "quiz-alt-1361",
+      "language": "de",
+      "reason": "In der deutschen Übersetzung steht ‚Er ist im Loch!‘ (‚He is in the hole!‘) statt korrektem ‚Es ist im Loch!‘ (‚It’s in the hole!‘) – falsches Pronomen, Bedeutungsänderung/mistranslation."
+    },
+    {
+      "id": "quiz-alt-1316",
+      "language": "en",
+      "reason": "Unnatural/redundant phrasing: question repeats the word 'name' ('What name did Temujin change his name to?') — should be e.g. 'What name did Temujin change to?' or 'What name did Temujin take?'."
+    },
+    {
+      "id": "quiz-alt-1272",
+      "language": "en",
+      "reason": "Option 1 reads 'It is used as oscillators in radios, watches.' — grammatically incorrect/unnatural English (plural 'oscillators' with singular construction); should be 'It is used as an oscillator in radios and watches.'"
+    },
+    {
+      "id": "quiz-alt-1272",
+      "language": "de",
+      "reason": "Option 1 reads 'Es wird als Oszillatoren in Radios, Uhren verwendet.' — grammatically incorrect German (number/agreement and word order); should be 'Es wird als Oszillator in Radios und Uhren verwendet.'"
+    },
+    {
+      "id": "quiz-alt-1272",
+      "language": "es",
+      "reason": "Option 1 reads 'Se utiliza como osciladores en radios, relojes.' — grammatically unnatural Spanish (plural 'osciladores' with singular usage); should be 'Se utiliza como oscilador en radios y relojes.'"
+    },
+    {
+      "id": "quiz-alt-1272",
+      "language": "fr",
+      "reason": "Option 1 reads 'Il est utilisé comme oscillateurs dans les radios, montres.' — grammatically incorrect French (plural 'oscillateurs' and agreement); should be 'Il est utilisé comme oscillateur dans les radios et les montres.'"
+    },
+    {
+      "id": "quiz-alt-1272",
+      "language": "pt",
+      "reason": "Option 1 reads 'É usado como osciladores em rádios, relógios.' — grammatically unnatural in European Portuguese (plural 'osciladores'); should be 'É usado como oscilador em rádios e relógios.'"
+    }
+  ]
+}

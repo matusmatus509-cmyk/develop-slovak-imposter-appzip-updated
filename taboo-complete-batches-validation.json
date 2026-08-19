@@ -1,0 +1,95 @@
+{
+  "valid": false,
+  "summary": [
+    {
+      "category": "Jedlo a nápoje",
+      "locales_checked": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "pt"
+      ],
+      "master_cards": 150
+    },
+    {
+      "category": "Zvieratá",
+      "locales_checked": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "pt"
+      ],
+      "master_cards": 150
+    },
+    {
+      "category": "Miesta a cestovanie",
+      "locales_checked": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "pt"
+      ],
+      "master_cards": 150
+    },
+    {
+      "category": "Ľudia a povolania",
+      "locales_checked": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "pt"
+      ],
+      "master_cards": 150
+    }
+  ],
+  "error_count": 43,
+  "errors": [
+    "Zvieratá/en: duplicate target words: ['squirrel', 'beaver', 'migration', 'camouflage']",
+    "Zvieratá/en: duplicate forbidden combinations: [('jump', 'nut', 'tail', 'tree')]",
+    "Zvieratá/de: duplicate target words: ['eichhörnchen', 'bau', 'biber', 'reh', 'moor', 'tarnung']",
+    "Zvieratá/de: duplicate forbidden combinations: [('baum', 'nuss', 'schwanz', 'sprung')]",
+    "Zvieratá/es: duplicate target words: ['ardilla', 'castor', 'pantano', 'migración']",
+    "Zvieratá/es: duplicate forbidden combinations: [('cola', 'nuez', 'salto', 'árbol')]",
+    "Zvieratá/fr/82: target word repeated among forbidden words",
+    "Zvieratá/fr: duplicate target words: ['écureuil', 'castor', 'marais', 'migration', 'camouflage']",
+    "Zvieratá/fr: duplicate forbidden combinations: [('arbre', 'noix', 'queue', 'saut')]",
+    "Zvieratá/pt: duplicate target words: ['esquilo', 'toca', 'castor', 'corça', 'migração', 'camuflagem']",
+    "Miesta a cestovanie/en/78: target word repeated among forbidden words",
+    "Miesta a cestovanie/en: duplicate target words: ['camp', 'dormitory']",
+    "Miesta a cestovanie/en: duplicate forbidden combinations: [('accommodation', 'guest', 'lodging', 'reservation')]",
+    "Miesta a cestovanie/de/56: target word repeated among forbidden words",
+    "Miesta a cestovanie/de/75: target word repeated among forbidden words",
+    "Miesta a cestovanie/de/109: target word repeated among forbidden words",
+    "Miesta a cestovanie/de: duplicate target words: ['campingplatz']",
+    "Miesta a cestovanie/de: duplicate forbidden combinations: [('gast', 'reservierung', 'unterkunft', 'übernachtung')]",
+    "Miesta a cestovanie/es/54: target word repeated among forbidden words",
+    "Miesta a cestovanie/es/75: target word repeated among forbidden words",
+    "Miesta a cestovanie/es/79: target word repeated among forbidden words",
+    "Miesta a cestovanie/es/129: target word repeated among forbidden words",
+    "Miesta a cestovanie/es: duplicate target words: ['desvío', 'pasarela', 'campamento']",
+    "Miesta a cestovanie/es: duplicate forbidden combinations: [('alojamiento', 'huésped', 'pernocta', 'reserva')]",
+    "Miesta a cestovanie/fr/54: target word repeated among forbidden words",
+    "Miesta a cestovanie/fr: duplicate target words: ['passerelle', 'quai', 'observatoire', 'camp']",
+    "Miesta a cestovanie/fr: duplicate forbidden combinations: [('hébergement', 'hôte', 'nuitée', 'réservation')]",
+    "Miesta a cestovanie/pt/109: target word repeated among forbidden words",
+    "Miesta a cestovanie/pt/129: duplicate forbidden word",
+    "Miesta a cestovanie/pt: duplicate target words: ['acampamento', 'desvio', 'alfândega', 'mirante', 'passarela']",
+    "Miesta a cestovanie/pt: duplicate forbidden combinations: [('acomodação', 'hóspede', 'pernoite', 'reserva')]",
+    "Ľudia a povolania/en: duplicate target words: ['waiter', 'director', 'lawyer', 'pharmacist', 'nurse', 'carpenter', 'instructor']",
+    "Ľudia a povolania/en: duplicate forbidden combinations: [('orbit', 'rocket', 'space', 'suit')]",
+    "Ľudia a povolania/de: duplicate target words: ['kellner', 'apotheker', 'krankenschwester', 'berater', 'designer']",
+    "Ľudia a povolania/de: duplicate forbidden combinations: [('rakete', 'raumanzug', 'umlaufbahn', 'weltraum')]",
+    "Ľudia a povolania/es/64: target word repeated among forbidden words",
+    "Ľudia a povolania/es/139: target word repeated among forbidden words",
+    "Ľudia a povolania/es: duplicate target words: ['profesor', 'camarero', 'director', 'abogado', 'farmacéutico', 'carpintero', 'instructor', 'diseñador']",
+    "Ľudia a povolania/es: duplicate forbidden combinations: [('cohete', 'espacio', 'traje espacial', 'órbita')]",
+    "Ľudia a povolania/fr/58: duplicate forbidden word",
+    "Ľudia a povolania/fr: duplicate target words: ['serveur', 'pharmacien', 'designer']",
+    "Ľudia a povolania/pt: duplicate target words: ['carpinteiro', 'instrutor', 'consultor', 'designer']",
+    "Ľudia a povolania/pt: duplicate forbidden combinations: [('espaço', 'foguete', 'traje espacial', 'órbita')]"
+  ]
+}

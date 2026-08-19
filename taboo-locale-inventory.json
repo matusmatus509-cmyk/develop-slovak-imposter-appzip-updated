@@ -1,0 +1,163 @@
+{
+  "categories": [
+    {
+      "category": "Jedlo a nápoje",
+      "complete": true,
+      "present_locales": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "pt"
+      ],
+      "missing_locales": [],
+      "files": {
+        "de": {
+          "path": "client/src/data/taboo-locales/food.de.json",
+          "cards": 150
+        },
+        "en": {
+          "path": "client/src/data/taboo-locales/food.en.json",
+          "cards": 150
+        },
+        "es": {
+          "path": "client/src/data/taboo-locales/food.es.json",
+          "cards": 150
+        },
+        "fr": {
+          "path": "client/src/data/taboo-locales/food.fr.json",
+          "cards": 150
+        },
+        "pt": {
+          "path": "client/src/data/taboo-locales/food.pt.json",
+          "cards": 150
+        }
+      }
+    },
+    {
+      "category": "Miesta a cestovanie",
+      "complete": true,
+      "present_locales": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "pt"
+      ],
+      "missing_locales": [],
+      "files": {
+        "de": {
+          "path": "client/src/data/taboo-locales/miesta-a-cestovanie.de.json",
+          "cards": 150
+        },
+        "en": {
+          "path": "client/src/data/taboo-locales/miesta-a-cestovanie.en.json",
+          "cards": 150
+        },
+        "es": {
+          "path": "client/src/data/taboo-locales/miesta-a-cestovanie.es.json",
+          "cards": 150
+        },
+        "fr": {
+          "path": "client/src/data/taboo-locales/miesta-a-cestovanie.fr.json",
+          "cards": 150
+        },
+        "pt": {
+          "path": "client/src/data/taboo-locales/miesta-a-cestovanie.pt.json",
+          "cards": 150
+        }
+      }
+    },
+    {
+      "category": "Predmety a domácnosť",
+      "complete": false,
+      "present_locales": [
+        "de",
+        "en"
+      ],
+      "missing_locales": [
+        "es",
+        "fr",
+        "pt"
+      ],
+      "files": {
+        "de": {
+          "path": "client/src/data/taboo-locales/predmety-a-dom-cnos.de.json",
+          "cards": 150
+        },
+        "en": {
+          "path": "client/src/data/taboo-locales/predmety-a-dom-cnos.en.json",
+          "cards": 150
+        }
+      }
+    },
+    {
+      "category": "Zvieratá",
+      "complete": true,
+      "present_locales": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "pt"
+      ],
+      "missing_locales": [],
+      "files": {
+        "de": {
+          "path": "client/src/data/taboo-locales/zvierat.de.json",
+          "cards": 150
+        },
+        "en": {
+          "path": "client/src/data/taboo-locales/zvierat.en.json",
+          "cards": 150
+        },
+        "es": {
+          "path": "client/src/data/taboo-locales/zvierat.es.json",
+          "cards": 150
+        },
+        "fr": {
+          "path": "client/src/data/taboo-locales/zvierat.fr.json",
+          "cards": 150
+        },
+        "pt": {
+          "path": "client/src/data/taboo-locales/zvierat.pt.json",
+          "cards": 150
+        }
+      }
+    },
+    {
+      "category": "Ľudia a povolania",
+      "complete": true,
+      "present_locales": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "pt"
+      ],
+      "missing_locales": [],
+      "files": {
+        "de": {
+          "path": "client/src/data/taboo-locales/udia-a-povolania.de.json",
+          "cards": 150
+        },
+        "en": {
+          "path": "client/src/data/taboo-locales/udia-a-povolania.en.json",
+          "cards": 150
+        },
+        "es": {
+          "path": "client/src/data/taboo-locales/udia-a-povolania.es.json",
+          "cards": 150
+        },
+        "fr": {
+          "path": "client/src/data/taboo-locales/udia-a-povolania.fr.json",
+          "cards": 150
+        },
+        "pt": {
+          "path": "client/src/data/taboo-locales/udia-a-povolania.pt.json",
+          "cards": 150
+        }
+      }
+    }
+  ]
+}

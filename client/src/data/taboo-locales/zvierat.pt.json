@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "pt",
+  "category": "Zvieratá",
+  "cards": [
+    {
+      "id": "taboo_sk_0051",
+      "category": "Animais",
+      "word": "cão",
+      "forbidden": [
+        "trela",
+        "pelo",
+        "guarda",
+        "elogio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0052",
+      "category": "Animais",
+      "word": "gato",
+      "forbidden": [
+        "rato",
+        "miau",
+        "noturno",
+        "acariciar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0053",
+      "category": "Animais",
+      "word": "cavalo",
+      "forbidden": [
+        "ferradura",
+        "estábulo",
+        "cavaleiro",
+        "potro"
+      ]
+    },
+    {
+      "id": "taboo_sk_0054",
+      "category": "Animais",
+      "word": "vaca",
+      "forbidden": [
+        "curral",
+        "feno",
+        "bezerro",
+        "amamentação"
+      ]
+    },
+    {
+      "id": "taboo_sk_0055",
+      "category": "Animais",
+      "word": "ovelha",
+      "forbidden": [
+        "lã",
+        "tosquia",
+        "pasto",
+        "rebanho"
+      ]
+    },
+    {
+      "id": "taboo_sk_0056",
+      "category": "Animais",
+      "word": "cabra",
+      "forbidden": [
+        "chifres",
+        "montanhas",
+        "pastor",
+        "barba"
+      ]
+    },
+    {
+      "id": "taboo_sk_0057",
+      "category": "Animais",
+      "word": "porco",
+      "forbidden": [
+        "lama",
+        "chiqueiro",
+        "ração",
+        "engordar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0058",
+      "category": "Animais",
+      "word": "javali",
+      "forbidden": [
+        "presas",
+        "floresta",
+        "noturno",
+        "caça"
+      ]
+    },
+    {
+      "id": "taboo_sk_0059",
+      "category": "Animais",
+      "word": "lebre",
+      "forbidden": [
+        "orelhas",
+        "salto",
+        "cenoura",
+        "toca"
+      ]
+    },
+    {
+      "id": "taboo_sk_0060",
+      "category": "Animais",
+      "word": "esquilo",
+      "forbidden": [
+        "noz",
+        "árvore",
+        "rabo",
+        "salto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0061",
+      "category": "Animais",
+      "word": "raposa",
+      "forbidden": [
+        "pelo",
+        "rabo",
+        "astuta",
+        "toca"
+      ]
+    },
+    {
+      "id": "taboo_sk_0062",
+      "category": "Animais",
+      "word": "urso",
+      "forbidden": [
+        "toca",
+        "pelagem",
+        "hibernação",
+        "forte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0063",
+      "category": "Animais",
+      "word": "lobo",
+      "forbidden": [
+        "alcateia",
+        "uivo",
+        "floresta",
+        "caça"
+      ]
+    },
+    {
+      "id": "taboo_sk_0064",
+      "category": "Animais",
+      "word": "veado",
+      "forbidden": [
+        "galhadas",
+        "corça",
+        "floresta",
+        "brama"
+      ]
+    },
+    {
+      "id": "taboo_sk_0065",
+      "category": "Animais",
+      "word": "alce",
+      "forbidden": [
+        "pântano",
+        "galhadas",
+        "lago",
+        "nórdico"
+      ]
+    },
+    {
+      "id": "taboo_sk_0066",
+      "category": "Animais",
+      "word": "lince",
+      "forbidden": [
+        "orelhas",
+        "manchas",
+        "silencioso",
+        "predador"
+      ]
+    },
+    {
+      "id": "taboo_sk_0067",
+      "category": "Animais",
+      "word": "coruja",
+      "forbidden": [
+        "noturna",
+        "olhos",
+        "sabedoria",
+        "virar a cabeça"
+      ]
+    },
+    {
+      "id": "taboo_sk_0068",
+      "category": "Animais",
+      "word": "águia",
+      "forbidden": [
+        "asas",
+        "rapina",
+        "alto",
+        "visão"
+      ]
+    },
+    {
+      "id": "taboo_sk_0069",
+      "category": "Animais",
+      "word": "abutre",
+      "forbidden": [
+        "carcaça",
+        "planar",
+        "penas",
+        "lixo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0070",
+      "category": "Animais",
+      "word": "andorinha",
+      "forbidden": [
+        "ninho",
+        "migração",
+        "voo",
+        "insetos"
+      ]
+    },
+    {
+      "id": "taboo_sk_0071",
+      "category": "Animais",
+      "word": "beija-flor",
+      "forbidden": [
+        "néctar",
+        "asas",
+        "rápido",
+        "florescer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0072",
+      "category": "Animais",
+      "word": "pelicano",
+      "forbidden": [
+        "saco",
+        "peixe",
+        "margem",
+        "molhado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0073",
+      "category": "Animais",
+      "word": "tubarão",
+      "forbidden": [
+        "dente",
+        "oceano",
+        "barbatana",
+        "perigoso"
+      ]
+    },
+    {
+      "id": "taboo_sk_0074",
+      "category": "Animais",
+      "word": "golfinho",
+      "forbidden": [
+        "oceano",
+        "inteligente",
+        "nadar",
+        "ecolocalização"
+      ]
+    },
+    {
+      "id": "taboo_sk_0075",
+      "category": "Animais",
+      "word": "baleia",
+      "forbidden": [
+        "oceano",
+        "canto",
+        "nadar",
+        "gigante"
+      ]
+    },
+    {
+      "id": "taboo_sk_0076",
+      "category": "Animais",
+      "word": "foca",
+      "forbidden": [
+        "gelo",
+        "nadadeiras",
+        "nadar",
+        "peixe"
+      ]
+    },
+    {
+      "id": "taboo_sk_0077",
+      "category": "Animais",
+      "word": "pinguim",
+      "forbidden": [
+        "gelo",
+        "anda",
+        "colônia",
+        "krill"
+      ]
+    },
+    {
+      "id": "taboo_sk_0078",
+      "category": "Animais",
+      "word": "tartaruga",
+      "forbidden": [
+        "casco",
+        "lento",
+        "mar",
+        "nadar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0079",
+      "category": "Animais",
+      "word": "crocodilo",
+      "forbidden": [
+        "pântano",
+        "dente",
+        "rio",
+        "escamas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0080",
+      "category": "Animais",
+      "word": "cobra",
+      "forbidden": [
+        "escamas",
+        "réptil",
+        "veneno",
+        "rastejar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0081",
+      "category": "Animais",
+      "word": "rã",
+      "forbidden": [
+        "salto",
+        "coaxar",
+        "lagoa",
+        "girino"
+      ]
+    },
+    {
+      "id": "taboo_sk_0082",
+      "category": "Animais",
+      "word": "salamandra",
+      "forbidden": [
+        "úmido",
+        "regeneração",
+        "floresta",
+        "escuro"
+      ]
+    },
+    {
+      "id": "taboo_sk_0083",
+      "category": "Animais",
+      "word": "borboleta",
+      "forbidden": [
+        "asas",
+        "casulo",
+        "néctar",
+        "voo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0084",
+      "category": "Animais",
+      "word": "abelha",
+      "forbidden": [
+        "colmeia",
+        "polinização",
+        "ferrão",
+        "flor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0085",
+      "category": "Animais",
+      "word": "mosquito",
+      "forbidden": [
+        "picada",
+        "sangue",
+        "inseto",
+        "luz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0086",
+      "category": "Animais",
+      "word": "formiga",
+      "forbidden": [
+        "formigueiro",
+        "forte",
+        "trabalhadora",
+        "colônia"
+      ]
+    },
+    {
+      "id": "taboo_sk_0087",
+      "category": "Animais",
+      "word": "aranha",
+      "forbidden": [
+        "teia",
+        "rede",
+        "oito",
+        "apanhar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0088",
+      "category": "Animais",
+      "word": "avestruz",
+      "forbidden": [
+        "correr",
+        "não voa",
+        "pernas longas",
+        "grande"
+      ]
+    },
+    {
+      "id": "taboo_sk_0089",
+      "category": "Animais",
+      "word": "zebra",
+      "forbidden": [
+        "listras",
+        "África",
+        "manada",
+        "casco"
+      ]
+    },
+    {
+      "id": "taboo_sk_0090",
+      "category": "Animais",
+      "word": "leão",
+      "forbidden": [
+        "juba",
+        "savana",
+        "presa",
+        "força"
+      ]
+    },
+    {
+      "id": "taboo_sk_0091",
+      "category": "Animais",
+      "word": "tigre",
+      "forbidden": [
+        "listras",
+        "selva",
+        "presa",
+        "solitário"
+      ]
+    },
+    {
+      "id": "taboo_sk_0092",
+      "category": "Animais",
+      "word": "elefante",
+      "forbidden": [
+        "tromba",
+        "presas",
+        "savana",
+        "memória"
+      ]
+    },
+    {
+      "id": "taboo_sk_0093",
+      "category": "Animais",
+      "word": "rinoceronte",
+      "forbidden": [
+        "chifre",
+        "pele",
+        "savana",
+        "ameaçado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0094",
+      "category": "Animais",
+      "word": "antílope",
+      "forbidden": [
+        "ágil",
+        "salto",
+        "manada",
+        "chifres"
+      ]
+    },
+    {
+      "id": "taboo_sk_0095",
+      "category": "Animais",
+      "word": "hiena",
+      "forbidden": [
+        "risada",
+        "carniceiro",
+        "noturna",
+        "safari"
+      ]
+    },
+    {
+      "id": "taboo_sk_0096",
+      "category": "Animais",
+      "word": "porquinho-da-índia",
+      "forbidden": [
+        "gaiola",
+        "cenoura",
+        "pequeno",
+        "doméstico"
+      ]
+    },
+    {
+      "id": "taboo_sk_0097",
+      "category": "Animais",
+      "word": "ganso",
+      "forbidden": [
+        "migração",
+        "grasnar",
+        "fazenda",
+        "asas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0098",
+      "category": "Animais",
+      "word": "cisne",
+      "forbidden": [
+        "branco",
+        "lago",
+        "lindo",
+        "casal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0099",
+      "category": "Animais",
+      "word": "toca",
+      "forbidden": [
+        "buraco",
+        "abrigo",
+        "urso",
+        "escuro"
+      ]
+    },
+    {
+      "id": "taboo_sk_0100",
+      "category": "Animais",
+      "word": "hibernação",
+      "forbidden": [
+        "inverno",
+        "sono",
+        "toca",
+        "lentidão"
+      ]
+    },
+    {
+      "id": "taboo_sk_0293",
+      "category": "Animais",
+      "word": "caranguejo",
+      "forbidden": [
+        "pinças",
+        "mar",
+        "praia",
+        "carapaça"
+      ]
+    },
+    {
+      "id": "taboo_sk_0294",
+      "category": "Animais",
+      "word": "lagosta",
+      "forbidden": [
+        "fundo do mar",
+        "pinças",
+        "pescador",
+        "oceano"
+      ]
+    },
+    {
+      "id": "taboo_sk_0295",
+      "category": "Animais",
+      "word": "polvo",
+      "forbidden": [
+        "tentáculos",
+        "tinta",
+        "oceano",
+        "recifes"
+      ]
+    },
+    {
+      "id": "taboo_sk_0296",
+      "category": "Animais",
+      "word": "enguia",
+      "forbidden": [
+        "rio",
+        "cobra",
+        "marinho",
+        "correntes"
+      ]
+    },
+    {
+      "id": "taboo_sk_0297",
+      "category": "Animais",
+      "word": "salmão",
+      "forbidden": [
+        "migração",
+        "rio",
+        "rio acima",
+        "pescador"
+      ]
+    },
+    {
+      "id": "taboo_sk_0298",
+      "category": "Animais",
+      "word": "bagre",
+      "forbidden": [
+        "rio",
+        "noturno",
+        "fundo",
+        "isca"
+      ]
+    },
+    {
+      "id": "taboo_sk_0299",
+      "category": "Animais",
+      "word": "carpa",
+      "forbidden": [
+        "lagoa",
+        "vara",
+        "alimentação",
+        "escamas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0300",
+      "category": "Animais",
+      "word": "carpa-dourada",
+      "forbidden": [
+        "lagoa",
+        "pequeno",
+        "escamas",
+        "pescador"
+      ]
+    },
+    {
+      "id": "taboo_sk_0301",
+      "category": "Animais",
+      "word": "bacalhau",
+      "forbidden": [
+        "oceano",
+        "filete",
+        "congelado",
+        "nadar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0302",
+      "category": "Animais",
+      "word": "morsa",
+      "forbidden": [
+        "presas",
+        "ártico",
+        "gelo",
+        "marinho"
+      ]
+    },
+    {
+      "id": "taboo_sk_0303",
+      "category": "Animais",
+      "word": "corvo",
+      "forbidden": [
+        "preto",
+        "penas",
+        "cidade",
+        "roubar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0304",
+      "category": "Animais",
+      "word": "pombo",
+      "forbidden": [
+        "praça",
+        "correio",
+        "grão",
+        "penas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0305",
+      "category": "Animais",
+      "word": "pardal",
+      "forbidden": [
+        "pequeno",
+        "pátio",
+        "comedouro",
+        "canto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0306",
+      "category": "Animais",
+      "word": "tordo",
+      "forbidden": [
+        "canto",
+        "minhoca",
+        "morango",
+        "floresta"
+      ]
+    },
+    {
+      "id": "taboo_sk_0307",
+      "category": "Animais",
+      "word": "cormorão",
+      "forbidden": [
+        "mergulho",
+        "peixe",
+        "asas",
+        "molhado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0308",
+      "category": "Animais",
+      "word": "pega",
+      "forbidden": [
+        "brilho",
+        "roubar",
+        "penas",
+        "árvore"
+      ]
+    },
+    {
+      "id": "taboo_sk_0309",
+      "category": "Animais",
+      "word": "cegonha",
+      "forbidden": [
+        "ninho",
+        "pernas longas",
+        "filhote",
+        "lagoa"
+      ]
+    },
+    {
+      "id": "taboo_sk_0310",
+      "category": "Animais",
+      "word": "falcão",
+      "forbidden": [
+        "velocidade",
+        "caça",
+        "garras",
+        "visão"
+      ]
+    },
+    {
+      "id": "taboo_sk_0311",
+      "category": "Animais",
+      "word": "rato-do-campo",
+      "forbidden": [
+        "prado",
+        "toca",
+        "dentes",
+        "praga"
+      ]
+    },
+    {
+      "id": "taboo_sk_0312",
+      "category": "Animais",
+      "word": "esquilo-terrestre",
+      "forbidden": [
+        "toca",
+        "prado",
+        "grão",
+        "buracos"
+      ]
+    },
+    {
+      "id": "taboo_sk_0313",
+      "category": "Animais",
+      "word": "castor",
+      "forbidden": [
+        "rio",
+        "represa",
+        "madeira",
+        "cauda"
+      ]
+    },
+    {
+      "id": "taboo_sk_0314",
+      "category": "Animais",
+      "word": "furão",
+      "forbidden": [
+        "cheiro",
+        "noturno",
+        "toca",
+        "carcaça"
+      ]
+    },
+    {
+      "id": "taboo_sk_0315",
+      "category": "Animais",
+      "word": "coelho",
+      "forbidden": [
+        "cenoura",
+        "orelhas longas",
+        "gaiola",
+        "salto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0316",
+      "category": "Animais",
+      "word": "corça",
+      "forbidden": [
+        "floresta",
+        "galhadas",
+        "velocidade",
+        "tímido"
+      ]
+    },
+    {
+      "id": "taboo_sk_0317",
+      "category": "Animais",
+      "word": "grilo",
+      "forbidden": [
+        "relva",
+        "canto",
+        "noturno",
+        "inseto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0318",
+      "category": "Animais",
+      "word": "gafanhoto",
+      "forbidden": [
+        "salto",
+        "prado",
+        "asas",
+        "verde"
+      ]
+    },
+    {
+      "id": "taboo_sk_0319",
+      "category": "Animais",
+      "word": "vespa",
+      "forbidden": [
+        "picada",
+        "ninho",
+        "agressiva",
+        "doces"
+      ]
+    },
+    {
+      "id": "taboo_sk_0320",
+      "category": "Animais",
+      "word": "joaninha",
+      "forbidden": [
+        "pintas",
+        "vermelho",
+        "pulgões",
+        "folha"
+      ]
+    },
+    {
+      "id": "taboo_sk_0321",
+      "category": "Animais",
+      "word": "sapo",
+      "forbidden": [
+        "úmido",
+        "pele áspera",
+        "salto",
+        "noturno"
+      ]
+    },
+    {
+      "id": "taboo_sk_0322",
+      "category": "Animais",
+      "word": "iguana",
+      "forbidden": [
+        "réptil",
+        "calor",
+        "escamas",
+        "cauda"
+      ]
+    },
+    {
+      "id": "taboo_sk_0323",
+      "category": "Animais",
+      "word": "lagarto",
+      "forbidden": [
+        "escamas",
+        "cauda",
+        "sol",
+        "camuflagem"
+      ]
+    },
+    {
+      "id": "taboo_sk_0324",
+      "category": "Animais",
+      "word": "pântano",
+      "forbidden": [
+        "brejo",
+        "lama",
+        "turfa",
+        "mosquitos"
+      ]
+    },
+    {
+      "id": "taboo_sk_0325",
+      "category": "Animais",
+      "word": "floresta tropical",
+      "forbidden": [
+        "selva",
+        "chuva",
+        "árvores grandes",
+        "mata densa"
+      ]
+    },
+    {
+      "id": "taboo_sk_0326",
+      "category": "Animais",
+      "word": "prado",
+      "forbidden": [
+        "grama",
+        "flores",
+        "pastagem",
+        "ervas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0327",
+      "category": "Animais",
+      "word": "estepe",
+      "forbidden": [
+        "planície",
+        "grama",
+        "seco",
+        "aberto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0328",
+      "category": "Animais",
+      "word": "turfeira",
+      "forbidden": [
+        "turfa",
+        "brejo",
+        "lama",
+        "ecossistema raro"
+      ]
+    },
+    {
+      "id": "taboo_sk_0329",
+      "category": "Animais",
+      "word": "costa",
+      "forbidden": [
+        "areia",
+        "onda",
+        "praia",
+        "mar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0330",
+      "category": "Animais",
+      "word": "rio",
+      "forbidden": [
+        "corrente",
+        "margem",
+        "vale",
+        "foz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0331",
+      "category": "Animais",
+      "word": "lago",
+      "forbidden": [
+        "margem",
+        "profundidade",
+        "peixes",
+        "barco"
+      ]
+    },
+    {
+      "id": "taboo_sk_0332",
+      "category": "Animais",
+      "word": "oceano",
+      "forbidden": [
+        "profundo",
+        "onda",
+        "sal",
+        "navio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0333",
+      "category": "Animais",
+      "word": "migração",
+      "forbidden": [
+        "primavera",
+        "manadas",
+        "distância",
+        "estação"
+      ]
+    },
+    {
+      "id": "taboo_sk_0334",
+      "category": "Animais",
+      "word": "nidificação",
+      "forbidden": [
+        "pássaros",
+        "ovos",
+        "filhote",
+        "construção"
+      ]
+    },
+    {
+      "id": "taboo_sk_0335",
+      "category": "Animais",
+      "word": "reprodução",
+      "forbidden": [
+        "acasalamento",
+        "filhote",
+        "estação",
+        "comportamento"
+      ]
+    },
+    {
+      "id": "taboo_sk_0336",
+      "category": "Animais",
+      "word": "alimentação",
+      "forbidden": [
+        "alimento",
+        "tigela",
+        "saciedade",
+        "caça"
+      ]
+    },
+    {
+      "id": "taboo_sk_0337",
+      "category": "Animais",
+      "word": "mergulho",
+      "forbidden": [
+        "profundidade",
+        "natação",
+        "respiração",
+        "cilindro"
+      ]
+    },
+    {
+      "id": "taboo_sk_0338",
+      "category": "Animais",
+      "word": "camuflagem",
+      "forbidden": [
+        "ocultação",
+        "cor",
+        "predador",
+        "proteção"
+      ]
+    },
+    {
+      "id": "taboo_sk_0339",
+      "category": "Animais",
+      "word": "colônia",
+      "forbidden": [
+        "formigas",
+        "assentamento",
+        "sociedade",
+        "grupo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0340",
+      "category": "Animais",
+      "word": "rebanho",
+      "forbidden": [
+        "pastejo",
+        "muitos",
+        "pastagem",
+        "migração"
+      ]
+    },
+    {
+      "id": "taboo_sk_0542",
+      "category": "Animais",
+      "word": "ouriço",
+      "forbidden": [
+        "espinhos",
+        "noturno",
+        "jardim",
+        "insetos"
+      ]
+    },
+    {
+      "id": "taboo_sk_0543",
+      "category": "Animais",
+      "word": "texugo",
+      "forbidden": [
+        "toca",
+        "buraco",
+        "noturno",
+        "garra"
+      ]
+    },
+    {
+      "id": "taboo_sk_0544",
+      "category": "Animais",
+      "word": "guaxinim",
+      "forbidden": [
+        "máscara",
+        "lixo",
+        "noturno",
+        "mãos"
+      ]
+    },
+    {
+      "id": "taboo_sk_0545",
+      "category": "Animais",
+      "word": "morcego",
+      "forbidden": [
+        "ecolocalização",
+        "caverna",
+        "asas",
+        "noturno"
+      ]
+    },
+    {
+      "id": "taboo_sk_0546",
+      "category": "Animais",
+      "word": "girafa",
+      "forbidden": [
+        "pescoço",
+        "alta",
+        "folhas",
+        "savana"
+      ]
+    },
+    {
+      "id": "taboo_sk_0547",
+      "category": "Animais",
+      "word": "panda",
+      "forbidden": [
+        "bambu",
+        "China",
+        "preto",
+        "ameaçado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0548",
+      "category": "Animais",
+      "word": "canguru",
+      "forbidden": [
+        "bolsa",
+        "Austrália",
+        "saltar",
+        "patas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0549",
+      "category": "Animais",
+      "word": "gorila",
+      "forbidden": [
+        "macaco",
+        "forte",
+        "família",
+        "proteção"
+      ]
+    },
+    {
+      "id": "taboo_sk_0550",
+      "category": "Animais",
+      "word": "chimpanzé",
+      "forbidden": [
+        "inteligente",
+        "ferramentas",
+        "macaco",
+        "rosto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0551",
+      "category": "Animais",
+      "word": "gaivota",
+      "forbidden": [
+        "mar",
+        "praia",
+        "voar",
+        "roubar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0552",
+      "category": "Animais",
+      "word": "pato",
+      "forbidden": [
+        "água",
+        "penas",
+        "nadar",
+        "pescoço"
+      ]
+    },
+    {
+      "id": "taboo_sk_0553",
+      "category": "Animais",
+      "word": "galinha",
+      "forbidden": [
+        "galinheiro",
+        "ovo",
+        "penas",
+        "bico"
+      ]
+    },
+    {
+      "id": "taboo_sk_0554",
+      "category": "Animais",
+      "word": "migração",
+      "forbidden": [
+        "pássaros",
+        "estação",
+        "direção",
+        "distância"
+      ]
+    },
+    {
+      "id": "taboo_sk_0555",
+      "category": "Animais",
+      "word": "gatinho",
+      "forbidden": [
+        "gato",
+        "filhote",
+        "miau",
+        "patas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0556",
+      "category": "Animais",
+      "word": "cachorrinho",
+      "forbidden": [
+        "cão",
+        "filhote",
+        "latir",
+        "patas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0557",
+      "category": "Animais",
+      "word": "papagaio",
+      "forbidden": [
+        "ave",
+        "penas",
+        "gaiola",
+        "falar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0558",
+      "category": "Animais",
+      "word": "cauda",
+      "forbidden": [
+        "animal",
+        "pelo",
+        "abanar",
+        "corpo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0559",
+      "category": "Animais",
+      "word": "pegadas",
+      "forbidden": [
+        "patas",
+        "solo",
+        "floresta",
+        "rastrear"
+      ]
+    },
+    {
+      "id": "taboo_sk_0591",
+      "category": "Animais",
+      "word": "lêmure",
+      "forbidden": [
+        "Madagáscar",
+        "cauda",
+        "árvore",
+        "primata"
+      ]
+    },
+    {
+      "id": "taboo_sk_0592",
+      "category": "Animais",
+      "word": "corça",
+      "forbidden": [
+        "tímida",
+        "pastagem",
+        "filhote",
+        "floresta"
+      ]
+    },
+    {
+      "id": "taboo_sk_0593",
+      "category": "Animais",
+      "word": "águas-vivas",
+      "forbidden": [
+        "transparente",
+        "queimadura",
+        "nadar",
+        "oceano"
+      ]
+    },
+    {
+      "id": "taboo_sk_0594",
+      "category": "Animais",
+      "word": "peixe",
+      "forbidden": [
+        "escamas",
+        "nadar",
+        "água",
+        "brânquias"
+      ]
+    },
+    {
+      "id": "taboo_sk_0595",
+      "category": "Animais",
+      "word": "deserto",
+      "forbidden": [
+        "areia",
+        "seco",
+        "cacto",
+        "oásis"
+      ]
+    },
+    {
+      "id": "taboo_sk_0596",
+      "category": "Animais",
+      "word": "savana",
+      "forbidden": [
+        "seca",
+        "grama",
+        "safari",
+        "manadas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0597",
+      "category": "Animais",
+      "word": "tundra",
+      "forbidden": [
+        "gelo",
+        "frio",
+        "grama",
+        "permafrost"
+      ]
+    },
+    {
+      "id": "taboo_sk_0598",
+      "category": "Animais",
+      "word": "brejo",
+      "forbidden": [
+        "lama",
+        "turfa",
+        "raso",
+        "juncos"
+      ]
+    },
+    {
+      "id": "taboo_sk_0599",
+      "category": "Animais",
+      "word": "ninho",
+      "forbidden": [
+        "galho",
+        "ovo",
+        "pássaro",
+        "nidificação"
+      ]
+    },
+    {
+      "id": "taboo_sk_0600",
+      "category": "Animais",
+      "word": "toca",
+      "forbidden": [
+        "buraco",
+        "abrigo",
+        "filhote",
+        "cavar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0601",
+      "category": "Animais",
+      "word": "camuflagem",
+      "forbidden": [
+        "esconder",
+        "cor",
+        "animal",
+        "ambiente"
+      ]
+    },
+    {
+      "id": "taboo_sk_0602",
+      "category": "Animais",
+      "word": "inseto",
+      "forbidden": [
+        "asas",
+        "pequeno",
+        "natureza",
+        "patas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0628",
+      "category": "Animais",
+      "word": "rato",
+      "forbidden": [
+        "esgoto",
+        "roer",
+        "apanhar",
+        "noite"
+      ]
+    },
+    {
+      "id": "taboo_sk_0629",
+      "category": "Animais",
+      "word": "bando",
+      "forbidden": [
+        "pássaros",
+        "juntos",
+        "voo",
+        "sincronização"
+      ]
+    },
+    {
+      "id": "taboo_sk_0630",
+      "category": "Animais",
+      "word": "escorpião",
+      "forbidden": [
+        "câmara",
+        "ferrão",
+        "deserto",
+        "noite"
+      ]
+    },
+    {
+      "id": "taboo_sk_0631",
+      "category": "Animais",
+      "word": "toupeira",
+      "forbidden": [
+        "túneis",
+        "terra",
+        "cavar",
+        "noite"
+      ]
+    },
+    {
+      "id": "taboo_sk_0632",
+      "category": "Animais",
+      "word": "marta",
+      "forbidden": [
+        "floresta",
+        "noturno",
+        "alimento",
+        "chaveiro"
+      ]
+    },
+    {
+      "id": "taboo_sk_0633",
+      "category": "Animais",
+      "word": "castor",
+      "forbidden": [
+        "represa",
+        "árvore",
+        "cauda",
+        "rio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0634",
+      "category": "Animais",
+      "word": "marmota",
+      "forbidden": [
+        "montanha",
+        "rochosas",
+        "hibernação",
+        "assobio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0635",
+      "category": "Animais",
+      "word": "floresta",
+      "forbidden": [
+        "árvores",
+        "sombra",
+        "sub-bosque",
+        "caminhada"
+      ]
+    },
+    {
+      "id": "taboo_sk_0636",
+      "category": "Animais",
+      "word": "voo",
+      "forbidden": [
+        "asas",
+        "pairar",
+        "migração",
+        "pássaros"
+      ]
+    },
+    {
+      "id": "taboo_sk_0717",
+      "category": "Animais",
+      "word": "pavão",
+      "forbidden": [
+        "penas",
+        "cauda",
+        "colorido",
+        "exibir"
+      ]
+    },
+    {
+      "id": "taboo_sk_0718",
+      "category": "Animais",
+      "word": "besouro",
+      "forbidden": [
+        "élitros",
+        "larva",
+        "inseto",
+        "comer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0719",
+      "category": "Animais",
+      "word": "tritão",
+      "forbidden": [
+        "cauda",
+        "réptil",
+        "úmido",
+        "floresta"
+      ]
+    },
+    {
+      "id": "taboo_sk_0720",
+      "category": "Animais",
+      "word": "caracol",
+      "forbidden": [
+        "limo",
+        "concha",
+        "lento",
+        "jardim"
+      ]
+    },
+    {
+      "id": "taboo_sk_0721",
+      "category": "Animais",
+      "word": "coala",
+      "forbidden": [
+        "eucalipto",
+        "árvore",
+        "Austrália",
+        "dorme"
+      ]
+    },
+    {
+      "id": "taboo_sk_0722",
+      "category": "Animais",
+      "word": "rena",
+      "forbidden": [
+        "pelagem",
+        "galhadas",
+        "ártico",
+        "neve"
+      ]
+    },
+    {
+      "id": "taboo_sk_0723",
+      "category": "Animais",
+      "word": "burro",
+      "forbidden": [
+        "carga",
+        "teimoso",
+        "estábulo",
+        "cavaleiro"
+      ]
+    },
+    {
+      "id": "taboo_sk_0724",
+      "category": "Animais",
+      "word": "mosca",
+      "forbidden": [
+        "zumbido",
+        "sujeira",
+        "janela",
+        "alimento"
+      ]
+    },
+    {
+      "id": "taboo_sk_0725",
+      "category": "Animais",
+      "word": "esquilo",
+      "forbidden": [
+        "noz",
+        "árvore",
+        "cauda",
+        "salto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0830",
+      "category": "Animais",
+      "word": "hipopótamo",
+      "forbidden": [
+        "África",
+        "rio",
+        "grande",
+        "boca"
+      ]
+    },
+    {
+      "id": "taboo_sk_0831",
+      "category": "Animais",
+      "word": "lhama",
+      "forbidden": [
+        "Andes",
+        "lã",
+        "cuspe",
+        "manada"
+      ]
+    },
+    {
+      "id": "taboo_sk_0832",
+      "category": "Animais",
+      "word": "suricato",
+      "forbidden": [
+        "deserto",
+        "toca",
+        "África",
+        "ficar de pé"
+      ]
+    },
+    {
+      "id": "taboo_sk_0833",
+      "category": "Animais",
+      "word": "flamingo",
+      "forbidden": [
+        "rosa",
+        "pernas longas",
+        "lago",
+        "ave"
+      ]
+    }
+  ]
+}

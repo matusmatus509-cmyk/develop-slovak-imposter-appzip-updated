@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "en",
+  "category": "Predmety a domácnosť",
+  "cards": [
+    {
+      "id": "taboo_sk_0196",
+      "category": "Household items",
+      "word": "hoodie",
+      "forbidden": [
+        "hood",
+        "zipper",
+        "sweatpants",
+        "hanger"
+      ]
+    },
+    {
+      "id": "taboo_sk_0197",
+      "category": "Household items",
+      "word": "t-shirt",
+      "forbidden": [
+        "cotton",
+        "print",
+        "sleeve",
+        "collar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0198",
+      "category": "Household items",
+      "word": "pants",
+      "forbidden": [
+        "waist",
+        "pockets",
+        "elastic",
+        "jeans"
+      ]
+    },
+    {
+      "id": "taboo_sk_0199",
+      "category": "Household items",
+      "word": "skirt",
+      "forbidden": [
+        "slit",
+        "pleats",
+        "length",
+        "waist"
+      ]
+    },
+    {
+      "id": "taboo_sk_0200",
+      "category": "Household items",
+      "word": "jacket",
+      "forbidden": [
+        "zipper",
+        "hood",
+        "waterproof",
+        "sleeve"
+      ]
+    },
+    {
+      "id": "taboo_sk_0201",
+      "category": "Household items",
+      "word": "coat",
+      "forbidden": [
+        "buttons",
+        "collar",
+        "pockets",
+        "long"
+      ]
+    },
+    {
+      "id": "taboo_sk_0202",
+      "category": "Household items",
+      "word": "beanie",
+      "forbidden": [
+        "ears",
+        "cold",
+        "pom‑pom",
+        "wool"
+      ]
+    },
+    {
+      "id": "taboo_sk_0203",
+      "category": "Household items",
+      "word": "gloves",
+      "forbidden": [
+        "fingers",
+        "cold",
+        "leather",
+        "pair"
+      ]
+    },
+    {
+      "id": "taboo_sk_0204",
+      "category": "Household items",
+      "word": "socks",
+      "forbidden": [
+        "pair",
+        "shoes",
+        "hole",
+        "cotton"
+      ]
+    },
+    {
+      "id": "taboo_sk_0205",
+      "category": "Household items",
+      "word": "shoes",
+      "forbidden": [
+        "sole",
+        "laces",
+        "size",
+        "zipper"
+      ]
+    },
+    {
+      "id": "taboo_sk_0206",
+      "category": "Household items",
+      "word": "slippers",
+      "forbidden": [
+        "at home",
+        "soft",
+        "hallway",
+        "comfort"
+      ]
+    },
+    {
+      "id": "taboo_sk_0207",
+      "category": "Household items",
+      "word": "sandals",
+      "forbidden": [
+        "straps",
+        "summer",
+        "open",
+        "beach"
+      ]
+    },
+    {
+      "id": "taboo_sk_0208",
+      "category": "Household items",
+      "word": "belt",
+      "forbidden": [
+        "buckle",
+        "holes",
+        "leather",
+        "loops"
+      ]
+    },
+    {
+      "id": "taboo_sk_0209",
+      "category": "Household items",
+      "word": "tie",
+      "forbidden": [
+        "knot",
+        "shirt",
+        "suit",
+        "formal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0210",
+      "category": "Household items",
+      "word": "pajamas",
+      "forbidden": [
+        "sleep",
+        "night",
+        "comfort",
+        "cotton"
+      ]
+    },
+    {
+      "id": "taboo_sk_0211",
+      "category": "Household items",
+      "word": "swimsuit",
+      "forbidden": [
+        "pool",
+        "sea",
+        "beach",
+        "wet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0212",
+      "category": "Household items",
+      "word": "towel",
+      "forbidden": [
+        "drying",
+        "bath",
+        "wet",
+        "cotton"
+      ]
+    },
+    {
+      "id": "taboo_sk_0213",
+      "category": "Household items",
+      "word": "pillow",
+      "forbidden": [
+        "sleep",
+        "head",
+        "feathers",
+        "cover"
+      ]
+    },
+    {
+      "id": "taboo_sk_0214",
+      "category": "Household items",
+      "word": "blanket",
+      "forbidden": [
+        "duvet",
+        "warmth",
+        "bed",
+        "cold"
+      ]
+    },
+    {
+      "id": "taboo_sk_0215",
+      "category": "Household items",
+      "word": "mattress",
+      "forbidden": [
+        "springs",
+        "foam",
+        "firm",
+        "bed"
+      ]
+    },
+    {
+      "id": "taboo_sk_0216",
+      "category": "Household items",
+      "word": "bed",
+      "forbidden": [
+        "frame",
+        "slats",
+        "sleep",
+        "night"
+      ]
+    },
+    {
+      "id": "taboo_sk_0217",
+      "category": "Household items",
+      "word": "rug",
+      "forbidden": [
+        "hairs",
+        "pattern",
+        "clean",
+        "floor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0218",
+      "category": "Household items",
+      "word": "curtain",
+      "forbidden": [
+        "window",
+        "rod",
+        "washable",
+        "see‑through"
+      ]
+    },
+    {
+      "id": "taboo_sk_0219",
+      "category": "Household items",
+      "word": "blinds",
+      "forbidden": [
+        "light",
+        "control",
+        "slat",
+        "window"
+      ]
+    },
+    {
+      "id": "taboo_sk_0220",
+      "category": "Household items",
+      "word": "lamp",
+      "forbidden": [
+        "bulb",
+        "light",
+        "table",
+        "night"
+      ]
+    },
+    {
+      "id": "taboo_sk_0221",
+      "category": "Household items",
+      "word": "side table",
+      "forbidden": [
+        "night",
+        "top",
+        "legs",
+        "drawer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0222",
+      "category": "Household items",
+      "word": "sofa",
+      "forbidden": [
+        "living room",
+        "sofa bed",
+        "cushions",
+        "leather"
+      ]
+    },
+    {
+      "id": "taboo_sk_0223",
+      "category": "Household items",
+      "word": "armchair",
+      "forbidden": [
+        "backrest",
+        "comfort",
+        "swivel",
+        "footstool"
+      ]
+    },
+    {
+      "id": "taboo_sk_0224",
+      "category": "Household items",
+      "word": "dresser",
+      "forbidden": [
+        "drawers",
+        "storage",
+        "surface",
+        "bedroom"
+      ]
+    },
+    {
+      "id": "taboo_sk_0225",
+      "category": "Household items",
+      "word": "wardrobe",
+      "forbidden": [
+        "hanger",
+        "shelves",
+        "doors",
+        "sliding"
+      ]
+    },
+    {
+      "id": "taboo_sk_0226",
+      "category": "Household items",
+      "word": "display case",
+      "forbidden": [
+        "glass",
+        "display",
+        "furniture",
+        "items"
+      ]
+    },
+    {
+      "id": "taboo_sk_0227",
+      "category": "Household items",
+      "word": "mirror",
+      "forbidden": [
+        "reflection",
+        "glass",
+        "frame",
+        "hallway"
+      ]
+    },
+    {
+      "id": "taboo_sk_0228",
+      "category": "Household items",
+      "word": "door",
+      "forbidden": [
+        "handle",
+        "frame",
+        "entrance",
+        "hallway"
+      ]
+    },
+    {
+      "id": "taboo_sk_0229",
+      "category": "Household items",
+      "word": "key",
+      "forbidden": [
+        "lock",
+        "turn",
+        "metal",
+        "lose"
+      ]
+    },
+    {
+      "id": "taboo_sk_0230",
+      "category": "Household items",
+      "word": "lock",
+      "forbidden": [
+        "security",
+        "padlock",
+        "combination",
+        "metal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0231",
+      "category": "Household items",
+      "word": "television",
+      "forbidden": [
+        "remote",
+        "picture",
+        "channel",
+        "living room"
+      ]
+    },
+    {
+      "id": "taboo_sk_0232",
+      "category": "Household items",
+      "word": "cell phone",
+      "forbidden": [
+        "calling",
+        "texting",
+        "battery",
+        "pocket"
+      ]
+    },
+    {
+      "id": "taboo_sk_0233",
+      "category": "Household items",
+      "word": "charger",
+      "forbidden": [
+        "cable",
+        "battery",
+        "adapter",
+        "socket"
+      ]
+    },
+    {
+      "id": "taboo_sk_0234",
+      "category": "Household items",
+      "word": "computer",
+      "forbidden": [
+        "monitor",
+        "keyboard",
+        "mouse",
+        "internet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0235",
+      "category": "Household items",
+      "word": "mouse",
+      "forbidden": [
+        "cursor",
+        "click",
+        "wired",
+        "wireless"
+      ]
+    },
+    {
+      "id": "taboo_sk_0236",
+      "category": "Household items",
+      "word": "keyboard",
+      "forbidden": [
+        "keys",
+        "typing",
+        "USB",
+        "computer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0237",
+      "category": "Household items",
+      "word": "vacuum cleaner",
+      "forbidden": [
+        "suction",
+        "dust",
+        "filter",
+        "hose"
+      ]
+    },
+    {
+      "id": "taboo_sk_0238",
+      "category": "Household items",
+      "word": "iron",
+      "forbidden": [
+        "steam",
+        "board",
+        "hot",
+        "shirt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0239",
+      "category": "Household items",
+      "word": "microwave",
+      "forbidden": [
+        "heating",
+        "plate",
+        "quick",
+        "popcorn"
+      ]
+    },
+    {
+      "id": "taboo_sk_0240",
+      "category": "Household items",
+      "word": "blender",
+      "forbidden": [
+        "blades",
+        "container",
+        "speed",
+        "smoothie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0241",
+      "category": "Household items",
+      "word": "toaster",
+      "forbidden": [
+        "slice",
+        "toast",
+        "breakfast",
+        "electric"
+      ]
+    },
+    {
+      "id": "taboo_sk_0242",
+      "category": "Household items",
+      "word": "kettle",
+      "forbidden": [
+        "electric",
+        "boil",
+        "filter",
+        "cord"
+      ]
+    },
+    {
+      "id": "taboo_sk_0243",
+      "category": "Household items",
+      "word": "hair dryer",
+      "forbidden": [
+        "drying",
+        "hair",
+        "cold",
+        "salon"
+      ]
+    },
+    {
+      "id": "taboo_sk_0244",
+      "category": "Household items",
+      "word": "clock",
+      "forbidden": [
+        "tick",
+        "time",
+        "alarm",
+        "dial"
+      ]
+    },
+    {
+      "id": "taboo_sk_0245",
+      "category": "Household items",
+      "word": "trash can",
+      "forbidden": [
+        "garbage",
+        "bag",
+        "throw away",
+        "smell"
+      ]
+    },
+    {
+      "id": "taboo_sk_0341",
+      "category": "Household items",
+      "word": "fork",
+      "forbidden": [
+        "cutlery",
+        "food",
+        "table",
+        "salad"
+      ]
+    },
+    {
+      "id": "taboo_sk_0342",
+      "category": "Household items",
+      "word": "spoon",
+      "forbidden": [
+        "soup",
+        "tea",
+        "dessert",
+        "ice cream"
+      ]
+    },
+    {
+      "id": "taboo_sk_0343",
+      "category": "Household items",
+      "word": "knife",
+      "forbidden": [
+        "bread",
+        "cutting",
+        "kitchen",
+        "slice"
+      ]
+    },
+    {
+      "id": "taboo_sk_0344",
+      "category": "Household items",
+      "word": "plate",
+      "forbidden": [
+        "food",
+        "lunch",
+        "bowl",
+        "serve"
+      ]
+    },
+    {
+      "id": "taboo_sk_0345",
+      "category": "Household items",
+      "word": "bowl",
+      "forbidden": [
+        "soup",
+        "salad",
+        "serve",
+        "table"
+      ]
+    },
+    {
+      "id": "taboo_sk_0346",
+      "category": "Household items",
+      "word": "glass",
+      "forbidden": [
+        "drink",
+        "glassware",
+        "wine",
+        "table"
+      ]
+    },
+    {
+      "id": "taboo_sk_0347",
+      "category": "Household items",
+      "word": "bottle",
+      "forbidden": [
+        "cap",
+        "wine",
+        "plastic",
+        "drink"
+      ]
+    },
+    {
+      "id": "taboo_sk_0348",
+      "category": "Household items",
+      "word": "flowerpot",
+      "forbidden": [
+        "plant",
+        "soil",
+        "window",
+        "water"
+      ]
+    },
+    {
+      "id": "taboo_sk_0349",
+      "category": "Household items",
+      "word": "flower",
+      "forbidden": [
+        "scent",
+        "water",
+        "bouquet",
+        "vase"
+      ]
+    },
+    {
+      "id": "taboo_sk_0350",
+      "category": "Household items",
+      "word": "shirt",
+      "forbidden": [
+        "button",
+        "sleeve",
+        "clothes",
+        "tie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0351",
+      "category": "Household items",
+      "word": "blazer",
+      "forbidden": [
+        "clothes",
+        "occasion",
+        "button",
+        "coat"
+      ]
+    },
+    {
+      "id": "taboo_sk_0352",
+      "category": "Household items",
+      "word": "scarf",
+      "forbidden": [
+        "neck",
+        "warm",
+        "cold",
+        "wool"
+      ]
+    },
+    {
+      "id": "taboo_sk_0353",
+      "category": "Household items",
+      "word": "bag",
+      "forbidden": [
+        "handle",
+        "shopping",
+        "shoulder",
+        "wallet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0354",
+      "category": "Household items",
+      "word": "hammer",
+      "forbidden": [
+        "hammering",
+        "wood",
+        "nail",
+        "construction"
+      ]
+    },
+    {
+      "id": "taboo_sk_0355",
+      "category": "Household items",
+      "word": "screwdriver",
+      "forbidden": [
+        "screws",
+        "assemble",
+        "Phillips",
+        "hand"
+      ]
+    },
+    {
+      "id": "taboo_sk_0356",
+      "category": "Household items",
+      "word": "pliers",
+      "forbidden": [
+        "grip",
+        "wire",
+        "cutting",
+        "tool"
+      ]
+    },
+    {
+      "id": "taboo_sk_0357",
+      "category": "Household items",
+      "word": "drill",
+      "forbidden": [
+        "drilling",
+        "bit",
+        "electric",
+        "holes"
+      ]
+    },
+    {
+      "id": "taboo_sk_0358",
+      "category": "Household items",
+      "word": "candlestick",
+      "forbidden": [
+        "table",
+        "decoration",
+        "candle",
+        "romance"
+      ]
+    },
+    {
+      "id": "taboo_sk_0359",
+      "category": "Household items",
+      "word": "candle",
+      "forbidden": [
+        "flame",
+        "scent",
+        "romance",
+        "candlestick"
+      ]
+    },
+    {
+      "id": "taboo_sk_0360",
+      "category": "Household items",
+      "word": "refrigerator",
+      "forbidden": [
+        "food",
+        "freeze",
+        "kitchen",
+        "temperature"
+      ]
+    },
+    {
+      "id": "taboo_sk_0361",
+      "category": "Household items",
+      "word": "stove",
+      "forbidden": [
+        "cooking",
+        "flame",
+        "oven",
+        "hob"
+      ]
+    },
+    {
+      "id": "taboo_sk_0362",
+      "category": "Household items",
+      "word": "sink",
+      "forbidden": [
+        "wash",
+        "water",
+        "kitchen",
+        "drain"
+      ]
+    },
+    {
+      "id": "taboo_sk_0363",
+      "category": "Household items",
+      "word": "apron",
+      "forbidden": [
+        "cooking",
+        "dirty",
+        "kitchen",
+        "protection"
+      ]
+    },
+    {
+      "id": "taboo_sk_0364",
+      "category": "Household items",
+      "word": "ironing board",
+      "forbidden": [
+        "clothes",
+        "ironing",
+        "iron",
+        "steamer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0365",
+      "category": "Household items",
+      "word": "opener",
+      "forbidden": [
+        "can",
+        "bottle",
+        "lever",
+        "open"
+      ]
+    },
+    {
+      "id": "taboo_sk_0366",
+      "category": "Household items",
+      "word": "scissors",
+      "forbidden": [
+        "cut",
+        "paper",
+        "fabric",
+        "sharp"
+      ]
+    },
+    {
+      "id": "taboo_sk_0367",
+      "category": "Household items",
+      "word": "glue",
+      "forbidden": [
+        "stick",
+        "paper",
+        "model",
+        "dry"
+      ]
+    },
+    {
+      "id": "taboo_sk_0368",
+      "category": "Household items",
+      "word": "tape",
+      "forbidden": [
+        "sticky",
+        "package",
+        "stick",
+        "repair"
+      ]
+    },
+    {
+      "id": "taboo_sk_0369",
+      "category": "Household items",
+      "word": "book",
+      "forbidden": [
+        "page",
+        "reading",
+        "author",
+        "novel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0370",
+      "category": "Household items",
+      "word": "turtleneck",
+      "forbidden": [
+        "warm",
+        "neck",
+        "sweater",
+        "winter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0371",
+      "category": "Household items",
+      "word": "sewing machine",
+      "forbidden": [
+        "thread",
+        "patch",
+        "fabric",
+        "button"
+      ]
+    },
+    {
+      "id": "taboo_sk_0372",
+      "category": "Household items",
+      "word": "basket",
+      "forbidden": [
+        "shopping",
+        "wicker",
+        "handle",
+        "fruit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0373",
+      "category": "Household items",
+      "word": "alarm clock",
+      "forbidden": [
+        "morning",
+        "sound",
+        "get up",
+        "time"
+      ]
+    },
+    {
+      "id": "taboo_sk_0374",
+      "category": "Household items",
+      "word": "rack",
+      "forbidden": [
+        "shelf",
+        "books",
+        "organize",
+        "wall"
+      ]
+    },
+    {
+      "id": "taboo_sk_0375",
+      "category": "Household items",
+      "word": "hanger",
+      "forbidden": [
+        "clothes",
+        "wardrobe",
+        "shoulder",
+        "hang"
+      ]
+    },
+    {
+      "id": "taboo_sk_0376",
+      "category": "Household items",
+      "word": "light bulb",
+      "forbidden": [
+        "light",
+        "lamp",
+        "replace",
+        "socket"
+      ]
+    },
+    {
+      "id": "taboo_sk_0377",
+      "category": "Household items",
+      "word": "extension cord",
+      "forbidden": [
+        "socket",
+        "cable",
+        "electricity",
+        "appliance"
+      ]
+    },
+    {
+      "id": "taboo_sk_0378",
+      "category": "Household items",
+      "word": "laundry basket",
+      "forbidden": [
+        "laundry",
+        "washer",
+        "dirty",
+        "transport"
+      ]
+    },
+    {
+      "id": "taboo_sk_0379",
+      "category": "Household items",
+      "word": "dryer",
+      "forbidden": [
+        "laundry",
+        "heat",
+        "washer",
+        "fast"
+      ]
+    },
+    {
+      "id": "taboo_sk_0380",
+      "category": "Household items",
+      "word": "mop",
+      "forbidden": [
+        "floor",
+        "water",
+        "wipe",
+        "clean"
+      ]
+    },
+    {
+      "id": "taboo_sk_0381",
+      "category": "Household items",
+      "word": "broom",
+      "forbidden": [
+        "dustpan",
+        "floor",
+        "sweep",
+        "bristles"
+      ]
+    },
+    {
+      "id": "taboo_sk_0382",
+      "category": "Household items",
+      "word": "bucket",
+      "forbidden": [
+        "water",
+        "clean",
+        "container",
+        "carry"
+      ]
+    },
+    {
+      "id": "taboo_sk_0383",
+      "category": "Household items",
+      "word": "photo frame",
+      "forbidden": [
+        "photo",
+        "wall",
+        "memory",
+        "wood"
+      ]
+    },
+    {
+      "id": "taboo_sk_0384",
+      "category": "Household items",
+      "word": "lighter",
+      "forbidden": [
+        "fire",
+        "smoke",
+        "cigarette",
+        "flame"
+      ]
+    },
+    {
+      "id": "taboo_sk_0385",
+      "category": "Household items",
+      "word": "bookmark",
+      "forbidden": [
+        "book",
+        "place",
+        "page",
+        "read"
+      ]
+    },
+    {
+      "id": "taboo_sk_0386",
+      "category": "Household items",
+      "word": "cutting board",
+      "forbidden": [
+        "bread",
+        "vegetables",
+        "knife",
+        "kitchen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0479",
+      "category": "Household items",
+      "word": "colander",
+      "forbidden": [
+        "pasta",
+        "water",
+        "sieve",
+        "sink"
+      ]
+    },
+    {
+      "id": "taboo_sk_0480",
+      "category": "Household items",
+      "word": "grater",
+      "forbidden": [
+        "cheese",
+        "carrot",
+        "crumbs",
+        "kitchen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0481",
+      "category": "Household items",
+      "word": "coffee maker",
+      "forbidden": [
+        "coffee",
+        "espresso",
+        "filter",
+        "morning"
+      ]
+    },
+    {
+      "id": "taboo_sk_0482",
+      "category": "Household items",
+      "word": "freezer",
+      "forbidden": [
+        "ice",
+        "ice cream",
+        "frozen",
+        "cold"
+      ]
+    },
+    {
+      "id": "taboo_sk_0483",
+      "category": "Household items",
+      "word": "range hood",
+      "forbidden": [
+        "smell",
+        "steam",
+        "fan",
+        "kitchen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0484",
+      "category": "Household items",
+      "word": "baking tray",
+      "forbidden": [
+        "baking",
+        "cake",
+        "oven",
+        "greasy"
+      ]
+    },
+    {
+      "id": "taboo_sk_0485",
+      "category": "Household items",
+      "word": "oven mitt",
+      "forbidden": [
+        "glove",
+        "hot",
+        "oven",
+        "protect"
+      ]
+    },
+    {
+      "id": "taboo_sk_0486",
+      "category": "Household items",
+      "word": "baking pan",
+      "forbidden": [
+        "cake",
+        "silicone",
+        "baking",
+        "Bundt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0487",
+      "category": "Household items",
+      "word": "bread slicer",
+      "forbidden": [
+        "bread",
+        "knife",
+        "slice",
+        "kitchen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0488",
+      "category": "Household items",
+      "word": "scale",
+      "forbidden": [
+        "kilogram",
+        "digital",
+        "kitchen",
+        "accurate"
+      ]
+    },
+    {
+      "id": "taboo_sk_0489",
+      "category": "Household items",
+      "word": "container",
+      "forbidden": [
+        "lid",
+        "food",
+        "plastic",
+        "glass"
+      ]
+    },
+    {
+      "id": "taboo_sk_0490",
+      "category": "Household items",
+      "word": "spice jar",
+      "forbidden": [
+        "salt",
+        "spice",
+        "grinder",
+        "kitchen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0491",
+      "category": "Household items",
+      "word": "chair",
+      "forbidden": [
+        "sit",
+        "kitchen",
+        "backrest",
+        "leg"
+      ]
+    },
+    {
+      "id": "taboo_sk_0492",
+      "category": "Household items",
+      "word": "tray",
+      "forbidden": [
+        "serve",
+        "glass",
+        "cafe",
+        "platter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0493",
+      "category": "Household items",
+      "word": "flashlight",
+      "forbidden": [
+        "night",
+        "batteries",
+        "light",
+        "outage"
+      ]
+    },
+    {
+      "id": "taboo_sk_0494",
+      "category": "Household items",
+      "word": "calculator",
+      "forbidden": [
+        "numbers",
+        "school",
+        "calculate",
+        "button"
+      ]
+    },
+    {
+      "id": "taboo_sk_0495",
+      "category": "Household items",
+      "word": "toothbrush",
+      "forbidden": [
+        "paste",
+        "teeth",
+        "morning",
+        "bathroom"
+      ]
+    },
+    {
+      "id": "taboo_sk_0496",
+      "category": "Household items",
+      "word": "soap",
+      "forbidden": [
+        "foam",
+        "washing",
+        "bathroom",
+        "solid"
+      ]
+    },
+    {
+      "id": "taboo_sk_0497",
+      "category": "Household items",
+      "word": "shower",
+      "forbidden": [
+        "water",
+        "bathroom",
+        "shampoo",
+        "wall"
+      ]
+    },
+    {
+      "id": "taboo_sk_0498",
+      "category": "Household items",
+      "word": "toothpaste",
+      "forbidden": [
+        "tube",
+        "foam",
+        "mint",
+        "teeth"
+      ]
+    },
+    {
+      "id": "taboo_sk_0499",
+      "category": "Household items",
+      "word": "brush",
+      "forbidden": [
+        "dust",
+        "bristles",
+        "clean",
+        "handle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0500",
+      "category": "Household items",
+      "word": "rag",
+      "forbidden": [
+        "dust",
+        "wet",
+        "window",
+        "cleaning"
+      ]
+    },
+    {
+      "id": "taboo_sk_0501",
+      "category": "Household items",
+      "word": "squeegee",
+      "forbidden": [
+        "window",
+        "water",
+        "rubber",
+        "cleaning"
+      ]
+    },
+    {
+      "id": "taboo_sk_0502",
+      "category": "Household items",
+      "word": "toilet paper",
+      "forbidden": [
+        "roll",
+        "bathroom",
+        "soft",
+        "toilet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0503",
+      "category": "Household items",
+      "word": "wallet",
+      "forbidden": [
+        "money",
+        "cards",
+        "zipper",
+        "documents"
+      ]
+    },
+    {
+      "id": "taboo_sk_0504",
+      "category": "Household items",
+      "word": "glasses",
+      "forbidden": [
+        "frame",
+        "lenses",
+        "see",
+        "nose"
+      ]
+    },
+    {
+      "id": "taboo_sk_0505",
+      "category": "Household items",
+      "word": "thermos",
+      "forbidden": [
+        "hot",
+        "keep",
+        "travel",
+        "stainless"
+      ]
+    },
+    {
+      "id": "taboo_sk_0506",
+      "category": "Household items",
+      "word": "napkin",
+      "forbidden": [
+        "food",
+        "table",
+        "paper",
+        "wipe"
+      ]
+    },
+    {
+      "id": "taboo_sk_0507",
+      "category": "Household items",
+      "word": "saw",
+      "forbidden": [
+        "wood",
+        "cut",
+        "chainsaw",
+        "workshop"
+      ]
+    },
+    {
+      "id": "taboo_sk_0508",
+      "category": "Household items",
+      "word": "corkscrew",
+      "forbidden": [
+        "wine",
+        "cork",
+        "bottle",
+        "bar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0509",
+      "category": "Household items",
+      "word": "measuring cup",
+      "forbidden": [
+        "kitchen",
+        "amount",
+        "liquid",
+        "cooking"
+      ]
+    },
+    {
+      "id": "taboo_sk_0510",
+      "category": "Household items",
+      "word": "wrench",
+      "forbidden": [
+        "nut",
+        "tighten",
+        "tool",
+        "size"
+      ]
+    },
+    {
+      "id": "taboo_sk_0511",
+      "category": "Household items",
+      "word": "ruler",
+      "forbidden": [
+        "centimeters",
+        "draw",
+        "school",
+        "measure"
+      ]
+    },
+    {
+      "id": "taboo_sk_0512",
+      "category": "Household items",
+      "word": "button",
+      "forbidden": [
+        "coat",
+        "sew",
+        "fasten",
+        "garment"
+      ]
+    },
+    {
+      "id": "taboo_sk_0513",
+      "category": "Household items",
+      "word": "pin",
+      "forbidden": [
+        "sewing",
+        "fabric",
+        "sharp",
+        "attach"
+      ]
+    },
+    {
+      "id": "taboo_sk_0514",
+      "category": "Household items",
+      "word": "filter",
+      "forbidden": [
+        "coffee",
+        "water",
+        "purifier",
+        "dust"
+      ]
+    },
+    {
+      "id": "taboo_sk_0515",
+      "category": "Household items",
+      "word": "dish towel",
+      "forbidden": [
+        "dishes",
+        "wash",
+        "dry",
+        "cloth"
+      ]
+    },
+    {
+      "id": "taboo_sk_0516",
+      "category": "Household items",
+      "word": "ladle",
+      "forbidden": [
+        "soup",
+        "bowl",
+        "serve",
+        "large"
+      ]
+    },
+    {
+      "id": "taboo_sk_0517",
+      "category": "Household items",
+      "word": "scarf",
+      "forbidden": [
+        "neck",
+        "bandage",
+        "head",
+        "fashion"
+      ]
+    },
+    {
+      "id": "taboo_sk_0518",
+      "category": "Household items",
+      "word": "mouse pad",
+      "forbidden": [
+        "mouse",
+        "table",
+        "rubber",
+        "protection"
+      ]
+    },
+    {
+      "id": "taboo_sk_0519",
+      "category": "Household items",
+      "word": "plug",
+      "forbidden": [
+        "socket",
+        "electricity",
+        "cable",
+        "plug in"
+      ]
+    },
+    {
+      "id": "taboo_sk_0520",
+      "category": "Household items",
+      "word": "fan",
+      "forbidden": [
+        "wind",
+        "cool",
+        "summer",
+        "blades"
+      ]
+    },
+    {
+      "id": "taboo_sk_0521",
+      "category": "Household items",
+      "word": "hot water bottle",
+      "forbidden": [
+        "hot",
+        "pain",
+        "blanket",
+        "water"
+      ]
+    },
+    {
+      "id": "taboo_sk_0522",
+      "category": "Household items",
+      "word": "shampoo",
+      "forbidden": [
+        "hair",
+        "foam",
+        "washing",
+        "bathroom"
+      ]
+    },
+    {
+      "id": "taboo_sk_0581",
+      "category": "Household items",
+      "word": "blanket",
+      "forbidden": [
+        "warm",
+        "sofa",
+        "knitted",
+        "night"
+      ]
+    },
+    {
+      "id": "taboo_sk_0582",
+      "category": "Household items",
+      "word": "duvet",
+      "forbidden": [
+        "down",
+        "feathers",
+        "warm",
+        "bed"
+      ]
+    },
+    {
+      "id": "taboo_sk_0583",
+      "category": "Household items",
+      "word": "remote control",
+      "forbidden": [
+        "button",
+        "batteries",
+        "channel",
+        "switch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0584",
+      "category": "Household items",
+      "word": "radio",
+      "forbidden": [
+        "station",
+        "frequency",
+        "antenna",
+        "broadcast"
+      ]
+    },
+    {
+      "id": "taboo_sk_0585",
+      "category": "Household items",
+      "word": "picture",
+      "forbidden": [
+        "frame",
+        "painting",
+        "gallery",
+        "wall"
+      ]
+    },
+    {
+      "id": "taboo_sk_0586",
+      "category": "Household items",
+      "word": "floor",
+      "forbidden": [
+        "parquet",
+        "tiles",
+        "cleaning",
+        "shoes"
+      ]
+    },
+    {
+      "id": "taboo_sk_0587",
+      "category": "Household items",
+      "word": "drape",
+      "forbidden": [
+        "window",
+        "rod",
+        "fabric",
+        "draw"
+      ]
+    },
+    {
+      "id": "taboo_sk_0588",
+      "category": "Household items",
+      "word": "vase",
+      "forbidden": [
+        "flowers",
+        "glass",
+        "arrangement",
+        "table"
+      ]
+    },
+    {
+      "id": "taboo_sk_0589",
+      "category": "Household items",
+      "word": "bin",
+      "forbidden": [
+        "trash",
+        "lid",
+        "recycle",
+        "plastic"
+      ]
+    },
+    {
+      "id": "taboo_sk_0590",
+      "category": "Household items",
+      "word": "dishwasher",
+      "forbidden": [
+        "dishes",
+        "tablets",
+        "program",
+        "machine"
+      ]
+    }
+  ]
+}

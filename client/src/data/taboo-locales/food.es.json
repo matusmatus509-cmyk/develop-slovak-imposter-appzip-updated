@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "es",
+  "category": "Jedlo a nápoje",
+  "cards": [
+    {
+      "id": "taboo_sk_0001",
+      "category": "Comida y bebida",
+      "word": "pan",
+      "forbidden": [
+        "bollería",
+        "rebanada",
+        "tostada",
+        "trigo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0002",
+      "category": "Comida y bebida",
+      "word": "mantequilla",
+      "forbidden": [
+        "untar",
+        "nata",
+        "grasa",
+        "pan"
+      ]
+    },
+    {
+      "id": "taboo_sk_0003",
+      "category": "Comida y bebida",
+      "word": "queso",
+      "forbidden": [
+        "lácteo",
+        "loncha",
+        "duro",
+        "azul"
+      ]
+    },
+    {
+      "id": "taboo_sk_0004",
+      "category": "Comida y bebida",
+      "word": "jamón",
+      "forbidden": [
+        "cerdo",
+        "loncha",
+        "sándwich",
+        "ahumado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0005",
+      "category": "Comida y bebida",
+      "word": "huevo",
+      "forbidden": [
+        "yema",
+        "clara",
+        "cáscara",
+        "tortilla"
+      ]
+    },
+    {
+      "id": "taboo_sk_0006",
+      "category": "Comida y bebida",
+      "word": "leche",
+      "forbidden": [
+        "vaca",
+        "blanco",
+        "lactosa",
+        "vaso"
+      ]
+    },
+    {
+      "id": "taboo_sk_0007",
+      "category": "Comida y bebida",
+      "word": "yogur",
+      "forbidden": [
+        "agrio",
+        "tarrina",
+        "cucharilla",
+        "de fruta"
+      ]
+    },
+    {
+      "id": "taboo_sk_0008",
+      "category": "Comida y bebida",
+      "word": "café",
+      "forbidden": [
+        "cafeína",
+        "granos",
+        "espresso",
+        "taza"
+      ]
+    },
+    {
+      "id": "taboo_sk_0009",
+      "category": "Comida y bebida",
+      "word": "té",
+      "forbidden": [
+        "hojas",
+        "bolsita",
+        "de hierbas",
+        "tetera"
+      ]
+    },
+    {
+      "id": "taboo_sk_0010",
+      "category": "Comida y bebida",
+      "word": "agua",
+      "forbidden": [
+        "grifo",
+        "vaso",
+        "mineral",
+        "beber"
+      ]
+    },
+    {
+      "id": "taboo_sk_0011",
+      "category": "Comida y bebida",
+      "word": "cerveza",
+      "forbidden": [
+        "espuma",
+        "lúpulo",
+        "vaso",
+        "bar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0012",
+      "category": "Comida y bebida",
+      "word": "vino",
+      "forbidden": [
+        "uva",
+        "copa",
+        "tinto",
+        "blanco"
+      ]
+    },
+    {
+      "id": "taboo_sk_0013",
+      "category": "Comida y bebida",
+      "word": "sopa",
+      "forbidden": [
+        "caldo",
+        "cuchara",
+        "cuenco",
+        "fideos"
+      ]
+    },
+    {
+      "id": "taboo_sk_0014",
+      "category": "Comida y bebida",
+      "word": "pizza",
+      "forbidden": [
+        "masa",
+        "salsa",
+        "queso",
+        "cortar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0015",
+      "category": "Comida y bebida",
+      "word": "pasta",
+      "forbidden": [
+        "espaguetis",
+        "salsa",
+        "colador",
+        "cocinar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0016",
+      "category": "Comida y bebida",
+      "word": "arroz",
+      "forbidden": [
+        "granos",
+        "blanco",
+        "olla",
+        "Asia"
+      ]
+    },
+    {
+      "id": "taboo_sk_0017",
+      "category": "Comida y bebida",
+      "word": "patata",
+      "forbidden": [
+        "cáscara",
+        "puré",
+        "patatas fritas",
+        "asada"
+      ]
+    },
+    {
+      "id": "taboo_sk_0018",
+      "category": "Comida y bebida",
+      "word": "tomate",
+      "forbidden": [
+        "rojo",
+        "ketchup",
+        "ensalada",
+        "semillas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0019",
+      "category": "Comida y bebida",
+      "word": "pepino",
+      "forbidden": [
+        "verde",
+        "agrio",
+        "ensalada",
+        "en conserva"
+      ]
+    },
+    {
+      "id": "taboo_sk_0020",
+      "category": "Comida y bebida",
+      "word": "cebolla",
+      "forbidden": [
+        "lágrimas",
+        "cortar",
+        "freír",
+        "olor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0021",
+      "category": "Comida y bebida",
+      "word": "ajo",
+      "forbidden": [
+        "diente",
+        "aroma",
+        "vampiro",
+        "prensa"
+      ]
+    },
+    {
+      "id": "taboo_sk_0022",
+      "category": "Comida y bebida",
+      "word": "pimiento",
+      "forbidden": [
+        "picante",
+        "goulash",
+        "verdura",
+        "semillas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0023",
+      "category": "Comida y bebida",
+      "word": "manzana",
+      "forbidden": [
+        "corazón",
+        "piel",
+        "tarta",
+        "árbol"
+      ]
+    },
+    {
+      "id": "taboo_sk_0024",
+      "category": "Comida y bebida",
+      "word": "plátano",
+      "forbidden": [
+        "amarillo",
+        "piel",
+        "mono",
+        "batido"
+      ]
+    },
+    {
+      "id": "taboo_sk_0025",
+      "category": "Comida y bebida",
+      "word": "naranja",
+      "forbidden": [
+        "cítrico",
+        "zumo",
+        "piel",
+        "gajos"
+      ]
+    },
+    {
+      "id": "taboo_sk_0026",
+      "category": "Comida y bebida",
+      "word": "limón",
+      "forbidden": [
+        "ácido",
+        "amarillo",
+        "limonada",
+        "piel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0027",
+      "category": "Comida y bebida",
+      "word": "fresa",
+      "forbidden": [
+        "rojo",
+        "semillas",
+        "nata",
+        "huerto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0028",
+      "category": "Comida y bebida",
+      "word": "chocolate",
+      "forbidden": [
+        "cacao",
+        "tableta",
+        "dulce",
+        "postre"
+      ]
+    },
+    {
+      "id": "taboo_sk_0029",
+      "category": "Comida y bebida",
+      "word": "pastel",
+      "forbidden": [
+        "horneado",
+        "relleno",
+        "cortar",
+        "bandeja"
+      ]
+    },
+    {
+      "id": "taboo_sk_0030",
+      "category": "Comida y bebida",
+      "word": "crepe",
+      "forbidden": [
+        "fina",
+        "sartén",
+        "mermelada",
+        "masa"
+      ]
+    },
+    {
+      "id": "taboo_sk_0031",
+      "category": "Comida y bebida",
+      "word": "goulash",
+      "forbidden": [
+        "ternera",
+        "caldero",
+        "pimentón",
+        "espeso"
+      ]
+    },
+    {
+      "id": "taboo_sk_0032",
+      "category": "Comida y bebida",
+      "word": "knödel",
+      "forbidden": [
+        "al vapor",
+        "rodajas",
+        "salsa",
+        "guarnición"
+      ]
+    },
+    {
+      "id": "taboo_sk_0033",
+      "category": "Comida y bebida",
+      "word": "col",
+      "forbidden": [
+        "ácida",
+        "cabeza",
+        "segedín",
+        "hojas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0034",
+      "category": "Comida y bebida",
+      "word": "salchicha",
+      "forbidden": [
+        "ahumada",
+        "picante",
+        "parrilla",
+        "carne"
+      ]
+    },
+    {
+      "id": "taboo_sk_0035",
+      "category": "Comida y bebida",
+      "word": "miel",
+      "forbidden": [
+        "abejas",
+        "endulzante",
+        "tarro",
+        "pegajoso"
+      ]
+    },
+    {
+      "id": "taboo_sk_0036",
+      "category": "Comida y bebida",
+      "word": "azúcar",
+      "forbidden": [
+        "dulce",
+        "cubo",
+        "blanco",
+        "cucharilla"
+      ]
+    },
+    {
+      "id": "taboo_sk_0037",
+      "category": "Comida y bebida",
+      "word": "sal",
+      "forbidden": [
+        "salado",
+        "cristales",
+        "molino",
+        "pizca"
+      ]
+    },
+    {
+      "id": "taboo_sk_0038",
+      "category": "Comida y bebida",
+      "word": "especia",
+      "forbidden": [
+        "aromático",
+        "molido",
+        "molino",
+        "picante"
+      ]
+    },
+    {
+      "id": "taboo_sk_0039",
+      "category": "Comida y bebida",
+      "word": "aceite",
+      "forbidden": [
+        "girasol",
+        "sartén",
+        "freír",
+        "líquido"
+      ]
+    },
+    {
+      "id": "taboo_sk_0040",
+      "category": "Comida y bebida",
+      "word": "vinagre",
+      "forbidden": [
+        "ácido",
+        "ensalada",
+        "botella",
+        "olor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0041",
+      "category": "Comida y bebida",
+      "word": "sartén",
+      "forbidden": [
+        "mango",
+        "freír",
+        "antiadherente",
+        "aceite"
+      ]
+    },
+    {
+      "id": "taboo_sk_0042",
+      "category": "Comida y bebida",
+      "word": "olla",
+      "forbidden": [
+        "tapa",
+        "cocinar",
+        "sopa",
+        "fondo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0043",
+      "category": "Comida y bebida",
+      "word": "horno",
+      "forbidden": [
+        "hornear",
+        "bandeja",
+        "temperatura",
+        "puerta"
+      ]
+    },
+    {
+      "id": "taboo_sk_0044",
+      "category": "Comida y bebida",
+      "word": "parrilla",
+      "forbidden": [
+        "carbón",
+        "rejilla",
+        "verano",
+        "carne"
+      ]
+    },
+    {
+      "id": "taboo_sk_0045",
+      "category": "Comida y bebida",
+      "word": "cortar",
+      "forbidden": [
+        "cuchillo",
+        "tabla",
+        "lonchas",
+        "cubos"
+      ]
+    },
+    {
+      "id": "taboo_sk_0046",
+      "category": "Comida y bebida",
+      "word": "mezclar",
+      "forbidden": [
+        "cuchara",
+        "cuenco",
+        "masa",
+        "cucharón"
+      ]
+    },
+    {
+      "id": "taboo_sk_0047",
+      "category": "Comida y bebida",
+      "word": "batir",
+      "forbidden": [
+        "varilla",
+        "merengue",
+        "nata",
+        "batidora"
+      ]
+    },
+    {
+      "id": "taboo_sk_0048",
+      "category": "Comida y bebida",
+      "word": "cocinar",
+      "forbidden": [
+        "agua",
+        "olla",
+        "hervir",
+        "cocina"
+      ]
+    },
+    {
+      "id": "taboo_sk_0049",
+      "category": "Comida y bebida",
+      "word": "hornear",
+      "forbidden": [
+        "horno",
+        "bandeja",
+        "masa",
+        "pastel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0050",
+      "category": "Comida y bebida",
+      "word": "freír",
+      "forbidden": [
+        "aceite",
+        "sartén",
+        "salpicar",
+        "crujiente"
+      ]
+    },
+    {
+      "id": "taboo_sk_0387",
+      "category": "Comida y bebida",
+      "word": "sándwich",
+      "forbidden": [
+        "lonchas",
+        "relleno",
+        "almuerzo",
+        "mayonesa"
+      ]
+    },
+    {
+      "id": "taboo_sk_0388",
+      "category": "Comida y bebida",
+      "word": "baguette",
+      "forbidden": [
+        "francesa",
+        "crujiente",
+        "panecillo",
+        "relleno"
+      ]
+    },
+    {
+      "id": "taboo_sk_0389",
+      "category": "Comida y bebida",
+      "word": "muesli",
+      "forbidden": [
+        "desayuno",
+        "copos",
+        "deshidratado",
+        "granola"
+      ]
+    },
+    {
+      "id": "taboo_sk_0390",
+      "category": "Comida y bebida",
+      "word": "copos",
+      "forbidden": [
+        "desayuno",
+        "gachas",
+        "muesli",
+        "saludable"
+      ]
+    },
+    {
+      "id": "taboo_sk_0391",
+      "category": "Comida y bebida",
+      "word": "cereales",
+      "forbidden": [
+        "desayuno",
+        "muesli",
+        "granola",
+        "granos"
+      ]
+    },
+    {
+      "id": "taboo_sk_0392",
+      "category": "Comida y bebida",
+      "word": "batido",
+      "forbidden": [
+        "licuadora",
+        "fruta",
+        "frío",
+        "saludable"
+      ]
+    },
+    {
+      "id": "taboo_sk_0393",
+      "category": "Comida y bebida",
+      "word": "limonada",
+      "forbidden": [
+        "con gas",
+        "dulce",
+        "refrescante",
+        "vaso"
+      ]
+    },
+    {
+      "id": "taboo_sk_0394",
+      "category": "Comida y bebida",
+      "word": "zumo",
+      "forbidden": [
+        "exprimidor",
+        "fresco",
+        "concentrado",
+        "fruta"
+      ]
+    },
+    {
+      "id": "taboo_sk_0395",
+      "category": "Comida y bebida",
+      "word": "cacao",
+      "forbidden": [
+        "caliente",
+        "polvo",
+        "leche",
+        "dulce"
+      ]
+    },
+    {
+      "id": "taboo_sk_0396",
+      "category": "Comida y bebida",
+      "word": "jarabe",
+      "forbidden": [
+        "dulce",
+        "vaso",
+        "saborizante",
+        "hielo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0397",
+      "category": "Comida y bebida",
+      "word": "harina",
+      "forbidden": [
+        "hornear",
+        "fina",
+        "pasteles",
+        "masa"
+      ]
+    },
+    {
+      "id": "taboo_sk_0398",
+      "category": "Comida y bebida",
+      "word": "levadura",
+      "forbidden": [
+        "fermentación",
+        "masa madre",
+        "panadero",
+        "activar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0399",
+      "category": "Comida y bebida",
+      "word": "alubia",
+      "forbidden": [
+        "legumbre",
+        "cocinar",
+        "chili",
+        "ensalada"
+      ]
+    },
+    {
+      "id": "taboo_sk_0400",
+      "category": "Comida y bebida",
+      "word": "lenteja",
+      "forbidden": [
+        "legumbre",
+        "cocinar",
+        "roja",
+        "nutritiva"
+      ]
+    },
+    {
+      "id": "taboo_sk_0401",
+      "category": "Comida y bebida",
+      "word": "garbanzo",
+      "forbidden": [
+        "hummus",
+        "legumbre",
+        "tostado",
+        "falafel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0402",
+      "category": "Comida y bebida",
+      "word": "almendra",
+      "forbidden": [
+        "fruto seco",
+        "mazapán",
+        "tostada",
+        "saludable"
+      ]
+    },
+    {
+      "id": "taboo_sk_0403",
+      "category": "Comida y bebida",
+      "word": "anacardo",
+      "forbidden": [
+        "fruto seco",
+        "tostado",
+        "exótico",
+        "crujiente"
+      ]
+    },
+    {
+      "id": "taboo_sk_0404",
+      "category": "Comida y bebida",
+      "word": "requesón",
+      "forbidden": [
+        "postre",
+        "relleno",
+        "ácido",
+        "repostería"
+      ]
+    },
+    {
+      "id": "taboo_sk_0405",
+      "category": "Comida y bebida",
+      "word": "paté",
+      "forbidden": [
+        "untar",
+        "lata",
+        "pasta",
+        "picnic"
+      ]
+    },
+    {
+      "id": "taboo_sk_0406",
+      "category": "Comida y bebida",
+      "word": "coliflor",
+      "forbidden": [
+        "verdura",
+        "blanca",
+        "asada",
+        "brócoli"
+      ]
+    },
+    {
+      "id": "taboo_sk_0407",
+      "category": "Comida y bebida",
+      "word": "brócoli",
+      "forbidden": [
+        "verdura",
+        "saludable",
+        "caliente",
+        "coliflor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0408",
+      "category": "Comida y bebida",
+      "word": "zanahoria",
+      "forbidden": [
+        "naranja",
+        "ensalada",
+        "cruda",
+        "dulce"
+      ]
+    },
+    {
+      "id": "taboo_sk_0409",
+      "category": "Comida y bebida",
+      "word": "ensalada",
+      "forbidden": [
+        "verdura",
+        "aderezo",
+        "almuerzo",
+        "cuenco"
+      ]
+    },
+    {
+      "id": "taboo_sk_0410",
+      "category": "Comida y bebida",
+      "word": "aderezo",
+      "forbidden": [
+        "mayonesa",
+        "yogur",
+        "cremoso",
+        "ensalada"
+      ]
+    },
+    {
+      "id": "taboo_sk_0411",
+      "category": "Comida y bebida",
+      "word": "salsa",
+      "forbidden": [
+        "espesa",
+        "condimento",
+        "plato",
+        "caliente"
+      ]
+    },
+    {
+      "id": "taboo_sk_0412",
+      "category": "Comida y bebida",
+      "word": "bechamel",
+      "forbidden": [
+        "blanco",
+        "salsa",
+        "harina",
+        "mantequilla"
+      ]
+    },
+    {
+      "id": "taboo_sk_0413",
+      "category": "Comida y bebida",
+      "word": "carne",
+      "forbidden": [
+        "proteínas",
+        "asado",
+        "plato",
+        "crudo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0414",
+      "category": "Comida y bebida",
+      "word": "remoulade",
+      "forbidden": [
+        "frío",
+        "hierbas",
+        "acompañamiento",
+        "mayonesa"
+      ]
+    },
+    {
+      "id": "taboo_sk_0415",
+      "category": "Comida y bebida",
+      "word": "fondue",
+      "forbidden": [
+        "tenedor",
+        "derretido",
+        "compartido",
+        "caliente"
+      ]
+    },
+    {
+      "id": "taboo_sk_0416",
+      "category": "Comida y bebida",
+      "word": "nata",
+      "forbidden": [
+        "postre",
+        "crema",
+        "tubo",
+        "frío"
+      ]
+    },
+    {
+      "id": "taboo_sk_0417",
+      "category": "Comida y bebida",
+      "word": "hamburguesa",
+      "forbidden": [
+        "comida rápida",
+        "panecillo",
+        "patatas fritas",
+        "kétchup"
+      ]
+    },
+    {
+      "id": "taboo_sk_0418",
+      "category": "Comida y bebida",
+      "word": "perrito caliente",
+      "forbidden": [
+        "salchicha",
+        "panecillo",
+        "kétchup",
+        "puesto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0419",
+      "category": "Comida y bebida",
+      "word": "filete",
+      "forbidden": [
+        "carne",
+        "poco hecho",
+        "tostado",
+        "plato"
+      ]
+    },
+    {
+      "id": "taboo_sk_0420",
+      "category": "Comida y bebida",
+      "word": "helado",
+      "forbidden": [
+        "cucurucho",
+        "copa",
+        "dulce",
+        "verano"
+      ]
+    },
+    {
+      "id": "taboo_sk_0421",
+      "category": "Comida y bebida",
+      "word": "polo",
+      "forbidden": [
+        "barrita",
+        "congelado",
+        "palo",
+        "verano"
+      ]
+    },
+    {
+      "id": "taboo_sk_0422",
+      "category": "Comida y bebida",
+      "word": "sorbete",
+      "forbidden": [
+        "frutal",
+        "helado",
+        "sin lácteos",
+        "refrescante"
+      ]
+    },
+    {
+      "id": "taboo_sk_0423",
+      "category": "Comida y bebida",
+      "word": "tortilla francesa",
+      "forbidden": [
+        "desayuno",
+        "mezcla",
+        "rellena",
+        "rápida"
+      ]
+    },
+    {
+      "id": "taboo_sk_0424",
+      "category": "Comida y bebida",
+      "word": "bagel",
+      "forbidden": [
+        "bollería",
+        "queso crema",
+        "relleno",
+        "desayuno"
+      ]
+    },
+    {
+      "id": "taboo_sk_0425",
+      "category": "Comida y bebida",
+      "word": "cruasán",
+      "forbidden": [
+        "desayuno",
+        "francés",
+        "mantecoso",
+        "capas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0426",
+      "category": "Comida y bebida",
+      "word": "pudin",
+      "forbidden": [
+        "postre",
+        "vainilla",
+        "espeso",
+        "lácteo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0427",
+      "category": "Comida y bebida",
+      "word": "caramelo",
+      "forbidden": [
+        "dulce",
+        "pegajoso",
+        "jarabe",
+        "cobertura"
+      ]
+    },
+    {
+      "id": "taboo_sk_0428",
+      "category": "Comida y bebida",
+      "word": "vainilla",
+      "forbidden": [
+        "sabor",
+        "vaina",
+        "pudin",
+        "aromático"
+      ]
+    },
+    {
+      "id": "taboo_sk_0429",
+      "category": "Comida y bebida",
+      "word": "cóctel",
+      "forbidden": [
+        "licuadora",
+        "bar",
+        "copa",
+        "decoración"
+      ]
+    },
+    {
+      "id": "taboo_sk_0430",
+      "category": "Comida y bebida",
+      "word": "guacamole",
+      "forbidden": [
+        "aguacate",
+        "tortilla",
+        "tostada",
+        "picante"
+      ]
+    },
+    {
+      "id": "taboo_sk_0431",
+      "category": "Comida y bebida",
+      "word": "hummus",
+      "forbidden": [
+        "garbanzo",
+        "tahini",
+        "pita",
+        "dip"
+      ]
+    },
+    {
+      "id": "taboo_sk_0432",
+      "category": "Comida y bebida",
+      "word": "salsa picante",
+      "forbidden": [
+        "picante",
+        "mexicana",
+        "dip",
+        "chips"
+      ]
+    },
+    {
+      "id": "taboo_sk_0433",
+      "category": "Comida y bebida",
+      "word": "pesto",
+      "forbidden": [
+        "albahaca",
+        "piñones",
+        "salsa",
+        "verde"
+      ]
+    },
+    {
+      "id": "taboo_sk_0434",
+      "category": "Comida y bebida",
+      "word": "crema",
+      "forbidden": [
+        "relleno",
+        "postre",
+        "suave",
+        "lácteo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0435",
+      "category": "Comida y bebida",
+      "word": "gratinado",
+      "forbidden": [
+        "horneado",
+        "costra",
+        "fuente",
+        "dorado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0560",
+      "category": "Comida y bebida",
+      "word": "panecillo",
+      "forbidden": [
+        "bollería",
+        "mantequilla",
+        "desayuno",
+        "sésamo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0561",
+      "category": "Comida y bebida",
+      "word": "tarta",
+      "forbidden": [
+        "celebración",
+        "rebanada",
+        "capas",
+        "pastelero"
+      ]
+    },
+    {
+      "id": "taboo_sk_0562",
+      "category": "Comida y bebida",
+      "word": "mermelada",
+      "forbidden": [
+        "fruta",
+        "frasco",
+        "dulce",
+        "untar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0563",
+      "category": "Comida y bebida",
+      "word": "aceitunas",
+      "forbidden": [
+        "Mediterráneo",
+        "saladas",
+        "hueso",
+        "aceite"
+      ]
+    },
+    {
+      "id": "taboo_sk_0564",
+      "category": "Comida y bebida",
+      "word": "patatas fritas",
+      "forbidden": [
+        "freír",
+        "sal",
+        "kétchup",
+        "comida rápida"
+      ]
+    },
+    {
+      "id": "taboo_sk_0565",
+      "category": "Comida y bebida",
+      "word": "sushi",
+      "forbidden": [
+        "arroz",
+        "wasabi",
+        "nori",
+        "frío"
+      ]
+    },
+    {
+      "id": "taboo_sk_0566",
+      "category": "Comida y bebida",
+      "word": "queso de oveja",
+      "forbidden": [
+        "ovino",
+        "salado",
+        "untar",
+        "halušky"
+      ]
+    },
+    {
+      "id": "taboo_sk_0567",
+      "category": "Comida y bebida",
+      "word": "halušky",
+      "forbidden": [
+        "bryndza",
+        "patatas",
+        "tradicional",
+        "plato"
+      ]
+    },
+    {
+      "id": "taboo_sk_0568",
+      "category": "Comida y bebida",
+      "word": "sopa de col",
+      "forbidden": [
+        "col",
+        "festiva",
+        "salchicha",
+        "ácida"
+      ]
+    },
+    {
+      "id": "taboo_sk_0569",
+      "category": "Comida y bebida",
+      "word": "ron",
+      "forbidden": [
+        "Caribe",
+        "cóctel",
+        "caña",
+        "piratas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0570",
+      "category": "Comida y bebida",
+      "word": "whisky",
+      "forbidden": [
+        "Escocia",
+        "malta",
+        "botella",
+        "hielo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0571",
+      "category": "Comida y bebida",
+      "word": "berenjena",
+      "forbidden": [
+        "morado",
+        "asar",
+        "lonchas",
+        "gratinado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0572",
+      "category": "Comida y bebida",
+      "word": "aguacate",
+      "forbidden": [
+        "guacamole",
+        "cremoso",
+        "hueso",
+        "verde"
+      ]
+    },
+    {
+      "id": "taboo_sk_0573",
+      "category": "Comida y bebida",
+      "word": "nuez",
+      "forbidden": [
+        "nogal",
+        "pelar",
+        "pastel",
+        "crujir"
+      ]
+    },
+    {
+      "id": "taboo_sk_0574",
+      "category": "Comida y bebida",
+      "word": "coco",
+      "forbidden": [
+        "tropical",
+        "leche",
+        "cáscara",
+        "fibra"
+      ]
+    },
+    {
+      "id": "taboo_sk_0575",
+      "category": "Comida y bebida",
+      "word": "tofu",
+      "forbidden": [
+        "soja",
+        "vegano",
+        "insípido",
+        "untar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0576",
+      "category": "Comida y bebida",
+      "word": "kétchup",
+      "forbidden": [
+        "tomate",
+        "agridulce",
+        "patatas fritas",
+        "botella"
+      ]
+    },
+    {
+      "id": "taboo_sk_0577",
+      "category": "Comida y bebida",
+      "word": "mostaza",
+      "forbidden": [
+        "picante",
+        "amarilla",
+        "a la antigua",
+        "botella"
+      ]
+    },
+    {
+      "id": "taboo_sk_0578",
+      "category": "Comida y bebida",
+      "word": "horneado",
+      "forbidden": [
+        "horno",
+        "masa",
+        "tiempo",
+        "temperatura"
+      ]
+    },
+    {
+      "id": "taboo_sk_0579",
+      "category": "Comida y bebida",
+      "word": "parrillada",
+      "forbidden": [
+        "carbón",
+        "humo",
+        "verano",
+        "brocheta"
+      ]
+    },
+    {
+      "id": "taboo_sk_0580",
+      "category": "Comida y bebida",
+      "word": "mezcla",
+      "forbidden": [
+        "batidor",
+        "recipiente",
+        "a mano",
+        "ingredientes"
+      ]
+    },
+    {
+      "id": "taboo_sk_0683",
+      "category": "Comida y bebida",
+      "word": "tostada",
+      "forbidden": [
+        "tostar",
+        "mantequilla",
+        "desayuno",
+        "rebanada"
+      ]
+    },
+    {
+      "id": "taboo_sk_0684",
+      "category": "Comida y bebida",
+      "word": "champiñones",
+      "forbidden": [
+        "sombrero",
+        "freír",
+        "salsa",
+        "hongo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0685",
+      "category": "Comida y bebida",
+      "word": "pollo",
+      "forbidden": [
+        "asado",
+        "hueso",
+        "parrilla",
+        "ala"
+      ]
+    },
+    {
+      "id": "taboo_sk_0686",
+      "category": "Comida y bebida",
+      "word": "canela",
+      "forbidden": [
+        "aromática",
+        "corteza",
+        "polvo",
+        "strudel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0687",
+      "category": "Comida y bebida",
+      "word": "desayuno",
+      "forbidden": [
+        "mañana",
+        "café",
+        "tostada",
+        "aperitivo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0688",
+      "category": "Comida y bebida",
+      "word": "compra",
+      "forbidden": [
+        "tienda",
+        "lista",
+        "caja registradora",
+        "mercado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0689",
+      "category": "Comida y bebida",
+      "word": "congelación",
+      "forbidden": [
+        "enfriar",
+        "congelador",
+        "larga duración",
+        "hielo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0690",
+      "category": "Comida y bebida",
+      "word": "tocino",
+      "forbidden": [
+        "ahumado",
+        "desayuno",
+        "cerdo",
+        "salado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0691",
+      "category": "Comida y bebida",
+      "word": "sésamo",
+      "forbidden": [
+        "semillas",
+        "hummus",
+        "salado",
+        "masa"
+      ]
+    },
+    {
+      "id": "taboo_sk_0692",
+      "category": "Comida y bebida",
+      "word": "granola",
+      "forbidden": [
+        "avena",
+        "desayuno",
+        "miel",
+        "crujiente"
+      ]
+    },
+    {
+      "id": "taboo_sk_0693",
+      "category": "Comida y bebida",
+      "word": "chips",
+      "forbidden": [
+        "salado",
+        "bolsa",
+        "fiesta",
+        "patata"
+      ]
+    },
+    {
+      "id": "taboo_sk_0694",
+      "category": "Comida y bebida",
+      "word": "caldo",
+      "forbidden": [
+        "huesos",
+        "cocinar",
+        "colador",
+        "fuerte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0695",
+      "category": "Comida y bebida",
+      "word": "dulces",
+      "forbidden": [
+        "azúcar",
+        "postre",
+        "confitería",
+        "galletas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0696",
+      "category": "Comida y bebida",
+      "word": "revuelto",
+      "forbidden": [
+        "huevos",
+        "mantequilla",
+        "desayuno",
+        "mezclar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0697",
+      "category": "Comida y bebida",
+      "word": "atún",
+      "forbidden": [
+        "lata",
+        "sushi",
+        "filete",
+        "mar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0698",
+      "category": "Comida y bebida",
+      "word": "bollo de media luna",
+      "forbidden": [
+        "fresco",
+        "bollería",
+        "mantequilla",
+        "corteza"
+      ]
+    },
+    {
+      "id": "taboo_sk_0816",
+      "category": "Comida y bebida",
+      "word": "hierbas",
+      "forbidden": [
+        "albahaca",
+        "hoja",
+        "seco",
+        "aroma"
+      ]
+    },
+    {
+      "id": "taboo_sk_0817",
+      "category": "Comida y bebida",
+      "word": "almendras",
+      "forbidden": [
+        "tostadas",
+        "dulces",
+        "mazapán",
+        "postre"
+      ]
+    },
+    {
+      "id": "taboo_sk_0818",
+      "category": "Comida y bebida",
+      "word": "jengibre",
+      "forbidden": [
+        "raíz",
+        "picante",
+        "té",
+        "miel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0819",
+      "category": "Comida y bebida",
+      "word": "almuerzo",
+      "forbidden": [
+        "principal",
+        "pausa",
+        "sopa",
+        "comedor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0820",
+      "category": "Comida y bebida",
+      "word": "postre",
+      "forbidden": [
+        "dulce",
+        "ración",
+        "cremoso",
+        "pastelito"
+      ]
+    },
+    {
+      "id": "taboo_sk_0821",
+      "category": "Comida y bebida",
+      "word": "prosciutto",
+      "forbidden": [
+        "jamón",
+        "Italia",
+        "carne",
+        "lonchas finas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0822",
+      "category": "Comida y bebida",
+      "word": "rábano picante",
+      "forbidden": [
+        "raíz",
+        "picante",
+        "salsa",
+        "acompañamiento"
+      ]
+    },
+    {
+      "id": "taboo_sk_0823",
+      "category": "Comida y bebida",
+      "word": "mayonesa",
+      "forbidden": [
+        "huevo",
+        "aceite",
+        "cremosa",
+        "untar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0824",
+      "category": "Comida y bebida",
+      "word": "aliño",
+      "forbidden": [
+        "vinagre",
+        "aceite",
+        "hierbas",
+        "sazonar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0825",
+      "category": "Comida y bebida",
+      "word": "aperitivo",
+      "forbidden": [
+        "pequeño",
+        "tapa",
+        "servir",
+        "abrir"
+      ]
+    },
+    {
+      "id": "taboo_sk_0826",
+      "category": "Comida y bebida",
+      "word": "trenza navideña",
+      "forbidden": [
+        "bollería",
+        "harina",
+        "desayuno",
+        "mantequilla"
+      ]
+    },
+    {
+      "id": "taboo_sk_0827",
+      "category": "Comida y bebida",
+      "word": "trdelník",
+      "forbidden": [
+        "dulce",
+        "masa",
+        "azúcar",
+        "callejero"
+      ]
+    },
+    {
+      "id": "taboo_sk_0828",
+      "category": "Comida y bebida",
+      "word": "bizcocho",
+      "forbidden": [
+        "molde",
+        "esponjoso",
+        "vainilla",
+        "horno"
+      ]
+    },
+    {
+      "id": "taboo_sk_0829",
+      "category": "Comida y bebida",
+      "word": "pastel de amapola",
+      "forbidden": [
+        "semillas",
+        "repostería",
+        "relleno",
+        "dulce"
+      ]
+    }
+  ]
+}

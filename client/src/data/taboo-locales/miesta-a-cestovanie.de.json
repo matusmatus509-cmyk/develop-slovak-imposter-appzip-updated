@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "de",
+  "category": "Miesta a cestovanie",
+  "cards": [
+    {
+      "id": "taboo_sk_0101",
+      "category": "Orte und Reisen",
+      "word": "Flughafen",
+      "forbidden": [
+        "Flugzeug",
+        "Abflug",
+        "Terminal",
+        "Landung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0102",
+      "category": "Orte und Reisen",
+      "word": "Bahnhof",
+      "forbidden": [
+        "Zug",
+        "Bahnsteig",
+        "Abfahrt",
+        "Gebäude"
+      ]
+    },
+    {
+      "id": "taboo_sk_0103",
+      "category": "Orte und Reisen",
+      "word": "Hafen",
+      "forbidden": [
+        "Schiff",
+        "Kaimauer",
+        "Ankerplatz",
+        "Fluss"
+      ]
+    },
+    {
+      "id": "taboo_sk_0104",
+      "category": "Orte und Reisen",
+      "word": "Bus",
+      "forbidden": [
+        "Fahrer",
+        "Haltestelle",
+        "Linie",
+        "Verkehr"
+      ]
+    },
+    {
+      "id": "taboo_sk_0105",
+      "category": "Orte und Reisen",
+      "word": "Zug",
+      "forbidden": [
+        "Gleise",
+        "Lokomotive",
+        "Wagon",
+        "Verbindung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0106",
+      "category": "Orte und Reisen",
+      "word": "U-Bahn",
+      "forbidden": [
+        "Tunnel",
+        "Untergrund",
+        "Linie",
+        "Gleis"
+      ]
+    },
+    {
+      "id": "taboo_sk_0107",
+      "category": "Orte und Reisen",
+      "word": "Straßenbahn",
+      "forbidden": [
+        "Schienen",
+        "Oberleitung",
+        "Fahrzeug",
+        "städtisch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0108",
+      "category": "Orte und Reisen",
+      "word": "Taxi",
+      "forbidden": [
+        "Taxameter",
+        "Fahrer",
+        "Anruf",
+        "Taxistand"
+      ]
+    },
+    {
+      "id": "taboo_sk_0109",
+      "category": "Orte und Reisen",
+      "word": "Fähre",
+      "forbidden": [
+        "Deck",
+        "Schiff",
+        "Überfahrt",
+        "Autos"
+      ]
+    },
+    {
+      "id": "taboo_sk_0110",
+      "category": "Orte und Reisen",
+      "word": "Flugzeug",
+      "forbidden": [
+        "Flügel",
+        "Pilot",
+        "Kabine",
+        "Passagier"
+      ]
+    },
+    {
+      "id": "taboo_sk_0111",
+      "category": "Orte und Reisen",
+      "word": "Pass",
+      "forbidden": [
+        "Identität",
+        "Visum",
+        "Foto",
+        "Grenze"
+      ]
+    },
+    {
+      "id": "taboo_sk_0112",
+      "category": "Orte und Reisen",
+      "word": "Visum",
+      "forbidden": [
+        "Pass",
+        "Botschaft",
+        "Erlaubnis",
+        "Einreise"
+      ]
+    },
+    {
+      "id": "taboo_sk_0113",
+      "category": "Orte und Reisen",
+      "word": "Karte",
+      "forbidden": [
+        "Legende",
+        "Maßstab",
+        "Norden",
+        "Plan"
+      ]
+    },
+    {
+      "id": "taboo_sk_0114",
+      "category": "Orte und Reisen",
+      "word": "Kompass",
+      "forbidden": [
+        "Nadel",
+        "Magnet",
+        "Norden",
+        "Richtungen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0115",
+      "category": "Orte und Reisen",
+      "word": "Richtung",
+      "forbidden": [
+        "Norden",
+        "Wegweiser",
+        "Orientierung",
+        "Weg"
+      ]
+    },
+    {
+      "id": "taboo_sk_0116",
+      "category": "Orte und Reisen",
+      "word": "Reservierung",
+      "forbidden": [
+        "Bestätigung",
+        "Datum",
+        "Zahlung",
+        "Stornierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0117",
+      "category": "Orte und Reisen",
+      "word": "Hotel",
+      "forbidden": [
+        "Zimmer",
+        "Rezeption",
+        "Frühstück",
+        "Pool"
+      ]
+    },
+    {
+      "id": "taboo_sk_0118",
+      "category": "Orte und Reisen",
+      "word": "Hostel",
+      "forbidden": [
+        "Mehrbettzimmer",
+        "Bett",
+        "günstig",
+        "Küche"
+      ]
+    },
+    {
+      "id": "taboo_sk_0119",
+      "category": "Orte und Reisen",
+      "word": "Campingplatz",
+      "forbidden": [
+        "Zelt",
+        "Wohnwagen",
+        "Platz",
+        "Lagerfeuer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0120",
+      "category": "Orte und Reisen",
+      "word": "Zelt",
+      "forbidden": [
+        "Heringe",
+        "Plane",
+        "Schlafen",
+        "Camping"
+      ]
+    },
+    {
+      "id": "taboo_sk_0121",
+      "category": "Orte und Reisen",
+      "word": "Rucksack",
+      "forbidden": [
+        "Träger",
+        "Reißverschluss",
+        "Wandern",
+        "Gewicht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0122",
+      "category": "Orte und Reisen",
+      "word": "Gepäck",
+      "forbidden": [
+        "Koffer",
+        "Gurt",
+        "Anhänger",
+        "Check-in"
+      ]
+    },
+    {
+      "id": "taboo_sk_0123",
+      "category": "Orte und Reisen",
+      "word": "Check-in",
+      "forbidden": [
+        "Flugticket",
+        "Wiegen",
+        "Gate",
+        "Pass"
+      ]
+    },
+    {
+      "id": "taboo_sk_0124",
+      "category": "Orte und Reisen",
+      "word": "Terminal",
+      "forbidden": [
+        "Gate",
+        "Abflug",
+        "Gebäude",
+        "Ankunft"
+      ]
+    },
+    {
+      "id": "taboo_sk_0125",
+      "category": "Orte und Reisen",
+      "word": "Ticket",
+      "forbidden": [
+        "Preis",
+        "Kontrolle",
+        "Gültigkeit",
+        "Sitzplatz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0126",
+      "category": "Orte und Reisen",
+      "word": "Reise",
+      "forbidden": [
+        "Fahrt",
+        "Ziel",
+        "Kilometer",
+        "Route"
+      ]
+    },
+    {
+      "id": "taboo_sk_0127",
+      "category": "Orte und Reisen",
+      "word": "Urlaub",
+      "forbidden": [
+        "Erholung",
+        "Meer",
+        "Strand",
+        "Reisebüro"
+      ]
+    },
+    {
+      "id": "taboo_sk_0128",
+      "category": "Orte und Reisen",
+      "word": "Route",
+      "forbidden": [
+        "Beschilderung",
+        "Punkte",
+        "Kilometer",
+        "Karte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0129",
+      "category": "Orte und Reisen",
+      "word": "Reiseplan",
+      "forbidden": [
+        "Plan",
+        "Tag",
+        "Reservierung",
+        "Reihenfolge"
+      ]
+    },
+    {
+      "id": "taboo_sk_0130",
+      "category": "Orte und Reisen",
+      "word": "Orientierung",
+      "forbidden": [
+        "Kompass",
+        "Karte",
+        "Richtung",
+        "Gelände"
+      ]
+    },
+    {
+      "id": "taboo_sk_0131",
+      "category": "Orte und Reisen",
+      "word": "Schild",
+      "forbidden": [
+        "Verkehrszeichen",
+        "Symbol",
+        "Verbot",
+        "Geschwindigkeit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0132",
+      "category": "Orte und Reisen",
+      "word": "Autobahn",
+      "forbidden": [
+        "Geschwindigkeit",
+        "Maut",
+        "Fahrspur",
+        "Ausfahrt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0133",
+      "category": "Orte und Reisen",
+      "word": "Brücke",
+      "forbidden": [
+        "Pfeiler",
+        "Fluss",
+        "Steg",
+        "Durchfahrt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0134",
+      "category": "Orte und Reisen",
+      "word": "Haltestelle",
+      "forbidden": [
+        "Warten",
+        "Schild",
+        "Bus",
+        "Unterstand"
+      ]
+    },
+    {
+      "id": "taboo_sk_0135",
+      "category": "Orte und Reisen",
+      "word": "Tourist",
+      "forbidden": [
+        "Führer",
+        "Rucksack",
+        "Fotoapparat",
+        "Sehenswürdigkeit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0136",
+      "category": "Orte und Reisen",
+      "word": "Reiseführer",
+      "forbidden": [
+        "Informationen",
+        "Karte",
+        "Route",
+        "Sprache"
+      ]
+    },
+    {
+      "id": "taboo_sk_0137",
+      "category": "Orte und Reisen",
+      "word": "Navigation",
+      "forbidden": [
+        "GPS",
+        "Satellit",
+        "Stimme",
+        "Anzeige"
+      ]
+    },
+    {
+      "id": "taboo_sk_0138",
+      "category": "Orte und Reisen",
+      "word": "Ampel",
+      "forbidden": [
+        "Rot",
+        "Grün",
+        "Zebrastreifen",
+        "Signal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0139",
+      "category": "Orte und Reisen",
+      "word": "Kreuzung",
+      "forbidden": [
+        "Abbiegen",
+        "Lichter",
+        "Hauptstraße",
+        "Straße"
+      ]
+    },
+    {
+      "id": "taboo_sk_0140",
+      "category": "Orte und Reisen",
+      "word": "Abzweigung",
+      "forbidden": [
+        "Pfeil",
+        "Richtung",
+        "Einfahrt",
+        "Schild"
+      ]
+    },
+    {
+      "id": "taboo_sk_0141",
+      "category": "Orte und Reisen",
+      "word": "Parkplatz",
+      "forbidden": [
+        "Parken",
+        "Platz",
+        "Gebühr",
+        "Wächter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0142",
+      "category": "Orte und Reisen",
+      "word": "Zollstelle",
+      "forbidden": [
+        "Kontrolle",
+        "Zollgebühr",
+        "Deklaration",
+        "Grenze"
+      ]
+    },
+    {
+      "id": "taboo_sk_0143",
+      "category": "Orte und Reisen",
+      "word": "Transit",
+      "forbidden": [
+        "Umsteigen",
+        "Abflug",
+        "Warten",
+        "Flughafen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0144",
+      "category": "Orte und Reisen",
+      "word": "Unterstand",
+      "forbidden": [
+        "Dach",
+        "Bank",
+        "Haltestelle",
+        "Schutz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0145",
+      "category": "Orte und Reisen",
+      "word": "Abflug",
+      "forbidden": [
+        "Flugticket",
+        "Gate",
+        "Zeit",
+        "Check-in"
+      ]
+    },
+    {
+      "id": "taboo_sk_0146",
+      "category": "Orte und Reisen",
+      "word": "Ankunft",
+      "forbidden": [
+        "Landung",
+        "Pass",
+        "Gepäck",
+        "Begrüßung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0147",
+      "category": "Orte und Reisen",
+      "word": "Reisebüro",
+      "forbidden": [
+        "Angebot",
+        "Pauschalreise",
+        "Reservierung",
+        "Agent"
+      ]
+    },
+    {
+      "id": "taboo_sk_0148",
+      "category": "Orte und Reisen",
+      "word": "Schifffahrt",
+      "forbidden": [
+        "Schiff",
+        "Meer",
+        "Deck",
+        "Kapitän"
+      ]
+    },
+    {
+      "id": "taboo_sk_0149",
+      "category": "Orte und Reisen",
+      "word": "Deck",
+      "forbidden": [
+        "Kapitän",
+        "Aussicht",
+        "Schiff",
+        "Passagiere"
+      ]
+    },
+    {
+      "id": "taboo_sk_0150",
+      "category": "Orte und Reisen",
+      "word": "Kapitän",
+      "forbidden": [
+        "Schiff",
+        "Befehl",
+        "Deck",
+        "Erfahrung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0246",
+      "category": "Orte und Reisen",
+      "word": "Kathedrale",
+      "forbidden": [
+        "Altar",
+        "Orgel",
+        "Bischof",
+        "Buntglas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0247",
+      "category": "Orte und Reisen",
+      "word": "Museum",
+      "forbidden": [
+        "Exponat",
+        "Kurator",
+        "Ausstellung",
+        "Schau"
+      ]
+    },
+    {
+      "id": "taboo_sk_0248",
+      "category": "Orte und Reisen",
+      "word": "Galerie",
+      "forbidden": [
+        "Bilder",
+        "Skulpturen",
+        "Vernissage",
+        "Kurator"
+      ]
+    },
+    {
+      "id": "taboo_sk_0249",
+      "category": "Orte und Reisen",
+      "word": "Platz",
+      "forbidden": [
+        "Brunnen",
+        "Markt",
+        "Denkmal",
+        "Pflaster"
+      ]
+    },
+    {
+      "id": "taboo_sk_0250",
+      "category": "Orte und Reisen",
+      "word": "Promenade",
+      "forbidden": [
+        "Uferpromenade",
+        "Spaziergang",
+        "Laternen",
+        "verbinden"
+      ]
+    },
+    {
+      "id": "taboo_sk_0251",
+      "category": "Orte und Reisen",
+      "word": "Aussichtspunkt",
+      "forbidden": [
+        "Fernrohr",
+        "Gipfel",
+        "Horizont",
+        "Treppen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0252",
+      "category": "Orte und Reisen",
+      "word": "Mauer",
+      "forbidden": [
+        "Befestigung",
+        "Mauer",
+        "Tor",
+        "Wache"
+      ]
+    },
+    {
+      "id": "taboo_sk_0253",
+      "category": "Orte und Reisen",
+      "word": "Steg",
+      "forbidden": [
+        "Fluss",
+        "Geländer",
+        "Fußgänger",
+        "hölzern"
+      ]
+    },
+    {
+      "id": "taboo_sk_0254",
+      "category": "Orte und Reisen",
+      "word": "Dorf",
+      "forbidden": [
+        "Häuser",
+        "Landschaft",
+        "Straße",
+        "Einwohner"
+      ]
+    },
+    {
+      "id": "taboo_sk_0255",
+      "category": "Orte und Reisen",
+      "word": "Fußgängerzone",
+      "forbidden": [
+        "Geschäfte",
+        "Fußgänger",
+        "Cafés",
+        "Verbot"
+      ]
+    },
+    {
+      "id": "taboo_sk_0256",
+      "category": "Orte und Reisen",
+      "word": "Botanischer Garten",
+      "forbidden": [
+        "Gewächshaus",
+        "Pflanzen",
+        "Herbar",
+        "Bank"
+      ]
+    },
+    {
+      "id": "taboo_sk_0257",
+      "category": "Orte und Reisen",
+      "word": "Zoo",
+      "forbidden": [
+        "Gehege",
+        "Käfig",
+        "Fütterung",
+        "Bildung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0258",
+      "category": "Orte und Reisen",
+      "word": "Wasserpark",
+      "forbidden": [
+        "Rutsche",
+        "Wasserrutsche",
+        "Becken",
+        "Whirlpool"
+      ]
+    },
+    {
+      "id": "taboo_sk_0259",
+      "category": "Orte und Reisen",
+      "word": "Thermalbäder",
+      "forbidden": [
+        "Quelle",
+        "heilend",
+        "Wellness",
+        "mineralisch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0260",
+      "category": "Orte und Reisen",
+      "word": "Dampfschiff",
+      "forbidden": [
+        "Schornstein",
+        "Donau",
+        "Deck",
+        "Passagiere"
+      ]
+    },
+    {
+      "id": "taboo_sk_0261",
+      "category": "Orte und Reisen",
+      "word": "Festung",
+      "forbidden": [
+        "Kanonen",
+        "Wälle",
+        "Verteidigung",
+        "Kaserne"
+      ]
+    },
+    {
+      "id": "taboo_sk_0262",
+      "category": "Orte und Reisen",
+      "word": "Ruinen",
+      "forbidden": [
+        "Ausgrabungen",
+        "Mauer",
+        "antik",
+        "Archäologie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0263",
+      "category": "Orte und Reisen",
+      "word": "Seilbahn",
+      "forbidden": [
+        "Gondel",
+        "Seile",
+        "Hang",
+        "Gipfel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0264",
+      "category": "Orte und Reisen",
+      "word": "Höhle",
+      "forbidden": [
+        "Stalaktit",
+        "dunkel",
+        "Stalagmit",
+        "Untergrund"
+      ]
+    },
+    {
+      "id": "taboo_sk_0265",
+      "category": "Orte und Reisen",
+      "word": "Leuchtturm",
+      "forbidden": [
+        "Licht",
+        "Küste",
+        "Wache",
+        "Signal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0266",
+      "category": "Orte und Reisen",
+      "word": "Wanderung",
+      "forbidden": [
+        "Aufstieg",
+        "Anstieg",
+        "Pause",
+        "Übergang"
+      ]
+    },
+    {
+      "id": "taboo_sk_0267",
+      "category": "Orte und Reisen",
+      "word": "Hütte",
+      "forbidden": [
+        "Kamin",
+        "Schlafplatz",
+        "Feuerstelle",
+        "bergig"
+      ]
+    },
+    {
+      "id": "taboo_sk_0268",
+      "category": "Orte und Reisen",
+      "word": "Wegweiser",
+      "forbidden": [
+        "Pfeil",
+        "Schild",
+        "Entfernung",
+        "Abzweigung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0269",
+      "category": "Orte und Reisen",
+      "word": "Gebirgspass",
+      "forbidden": [
+        "Sattel",
+        "Hang",
+        "Durchgang",
+        "bergig"
+      ]
+    },
+    {
+      "id": "taboo_sk_0270",
+      "category": "Orte und Reisen",
+      "word": "Pier",
+      "forbidden": [
+        "Fischer",
+        "Deck",
+        "Promenade",
+        "hölzern"
+      ]
+    },
+    {
+      "id": "taboo_sk_0271",
+      "category": "Orte und Reisen",
+      "word": "Bucht",
+      "forbidden": [
+        "Bucht",
+        "Strand",
+        "Unterschlupf",
+        "Ankerplatz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0272",
+      "category": "Orte und Reisen",
+      "word": "Halbinsel",
+      "forbidden": [
+        "Festland",
+        "Wasser",
+        "schmal",
+        "Spitze"
+      ]
+    },
+    {
+      "id": "taboo_sk_0273",
+      "category": "Orte und Reisen",
+      "word": "Tal",
+      "forbidden": [
+        "Fluss",
+        "Hänge",
+        "Weide",
+        "grün"
+      ]
+    },
+    {
+      "id": "taboo_sk_0274",
+      "category": "Orte und Reisen",
+      "word": "Quelle",
+      "forbidden": [
+        "Brunnen",
+        "mineralisch",
+        "Ursprung",
+        "kühl"
+      ]
+    },
+    {
+      "id": "taboo_sk_0275",
+      "category": "Orte und Reisen",
+      "word": "Ebene",
+      "forbidden": [
+        "Flachland",
+        "Wiese",
+        "Weide",
+        "Weite"
+      ]
+    },
+    {
+      "id": "taboo_sk_0276",
+      "category": "Orte und Reisen",
+      "word": "Strand",
+      "forbidden": [
+        "Sand",
+        "Sonnenschirm",
+        "Flut",
+        "Wellen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0277",
+      "category": "Orte und Reisen",
+      "word": "Fahrrad",
+      "forbidden": [
+        "Kette",
+        "Pedale",
+        "Sattel",
+        "Lenker"
+      ]
+    },
+    {
+      "id": "taboo_sk_0278",
+      "category": "Orte und Reisen",
+      "word": "Tretroller",
+      "forbidden": [
+        "Rad",
+        "Trittbrett",
+        "Verleih",
+        "elektrisch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0279",
+      "category": "Orte und Reisen",
+      "word": "Gondel",
+      "forbidden": [
+        "Venedig",
+        "Kanal",
+        "Paddel",
+        "Romantik"
+      ]
+    },
+    {
+      "id": "taboo_sk_0280",
+      "category": "Orte und Reisen",
+      "word": "Yacht",
+      "forbidden": [
+        "Segel",
+        "Besatzung",
+        "Kai",
+        "Luxus"
+      ]
+    },
+    {
+      "id": "taboo_sk_0281",
+      "category": "Orte und Reisen",
+      "word": "Ausflugsschiff",
+      "forbidden": [
+        "Deck",
+        "Abendessen",
+        "Salon",
+        "Rundfahrt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0282",
+      "category": "Orte und Reisen",
+      "word": "Kajak",
+      "forbidden": [
+        "Paddel",
+        "Einer",
+        "Fluss",
+        "Kanusport"
+      ]
+    },
+    {
+      "id": "taboo_sk_0283",
+      "category": "Orte und Reisen",
+      "word": "Freilichtmuseum",
+      "forbidden": [
+        "Holzbauten",
+        "Wohnhäuser",
+        "Handwerk",
+        "Ausstellung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0284",
+      "category": "Orte und Reisen",
+      "word": "Resort",
+      "forbidden": [
+        "Pool",
+        "Wellness",
+        "Villa",
+        "Entspannung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0285",
+      "category": "Orte und Reisen",
+      "word": "Marina",
+      "forbidden": [
+        "Yachtfahrer",
+        "Kai",
+        "Ankern",
+        "Hafen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0286",
+      "category": "Orte und Reisen",
+      "word": "Anker",
+      "forbidden": [
+        "Eisen",
+        "Tiefe",
+        "Kette",
+        "Schiff"
+      ]
+    },
+    {
+      "id": "taboo_sk_0287",
+      "category": "Orte und Reisen",
+      "word": "Felsklippe",
+      "forbidden": [
+        "Fels",
+        "steil",
+        "Sturm",
+        "Küste"
+      ]
+    },
+    {
+      "id": "taboo_sk_0288",
+      "category": "Orte und Reisen",
+      "word": "Rezeption",
+      "forbidden": [
+        "Anmeldung",
+        "Schlüssel",
+        "Gäste",
+        "Informationen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0289",
+      "category": "Orte und Reisen",
+      "word": "Turm",
+      "forbidden": [
+        "Höhe",
+        "Treppen",
+        "Bau",
+        "Aussicht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0290",
+      "category": "Orte und Reisen",
+      "word": "Segway",
+      "forbidden": [
+        "elektrisch",
+        "Räder",
+        "stehend",
+        "Verleih"
+      ]
+    },
+    {
+      "id": "taboo_sk_0291",
+      "category": "Orte und Reisen",
+      "word": "Standseilbahn",
+      "forbidden": [
+        "Gleise",
+        "Hang",
+        "Kabine",
+        "Seile"
+      ]
+    },
+    {
+      "id": "taboo_sk_0292",
+      "category": "Orte und Reisen",
+      "word": "Geocache",
+      "forbidden": [
+        "Versteck",
+        "GPS",
+        "Fund",
+        "Rätsel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0834",
+      "category": "Orte und Reisen",
+      "word": "Mautstelle",
+      "forbidden": [
+        "Autobahn",
+        "Gebühr",
+        "Auto",
+        "Schranke"
+      ]
+    },
+    {
+      "id": "taboo_sk_0835",
+      "category": "Orte und Reisen",
+      "word": "Rastplatz",
+      "forbidden": [
+        "Autobahn",
+        "Toilette",
+        "Pause",
+        "Parken"
+      ]
+    },
+    {
+      "id": "taboo_sk_0836",
+      "category": "Orte und Reisen",
+      "word": "Radweg",
+      "forbidden": [
+        "Fahrrad",
+        "Helm",
+        "Beschilderung",
+        "Ausflug"
+      ]
+    },
+    {
+      "id": "taboo_sk_0837",
+      "category": "Orte und Reisen",
+      "word": "Grenzübergang",
+      "forbidden": [
+        "Pass",
+        "Staat",
+        "Zöllner",
+        "Grenze"
+      ]
+    },
+    {
+      "id": "taboo_sk_0838",
+      "category": "Orte und Reisen",
+      "word": "Taxifahrer",
+      "forbidden": [
+        "Auto",
+        "Fahrt",
+        "Fahrer",
+        "gelb"
+      ]
+    },
+    {
+      "id": "taboo_sk_0839",
+      "category": "Orte und Reisen",
+      "word": "Autovermietung",
+      "forbidden": [
+        "Fahrzeug",
+        "Miete",
+        "Schlüssel",
+        "Vertrag"
+      ]
+    },
+    {
+      "id": "taboo_sk_0840",
+      "category": "Orte und Reisen",
+      "word": "Zollamt",
+      "forbidden": [
+        "Grenze",
+        "Waren",
+        "Kontrolle",
+        "Pass"
+      ]
+    },
+    {
+      "id": "taboo_sk_0841",
+      "category": "Orte und Reisen",
+      "word": "Autowaschanlage",
+      "forbidden": [
+        "Fahrzeug",
+        "Wasser",
+        "Shampoo",
+        "Reinigung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0842",
+      "category": "Orte und Reisen",
+      "word": "Umsteigen",
+      "forbidden": [
+        "Zug",
+        "Bus",
+        "wechseln",
+        "Bahnhof"
+      ]
+    },
+    {
+      "id": "taboo_sk_0843",
+      "category": "Orte und Reisen",
+      "word": "Unterführung",
+      "forbidden": [
+        "Treppen",
+        "Tunnel",
+        "Fußgänger",
+        "Bahnhof"
+      ]
+    },
+    {
+      "id": "taboo_sk_0844",
+      "category": "Orte und Reisen",
+      "word": "Überführung",
+      "forbidden": [
+        "Brücke",
+        "Treppen",
+        "Fußgänger",
+        "Höhe"
+      ]
+    },
+    {
+      "id": "taboo_sk_0845",
+      "category": "Orte und Reisen",
+      "word": "Gehweg",
+      "forbidden": [
+        "zu Fuß",
+        "Pflaster",
+        "Fußgänger",
+        "Park"
+      ]
+    },
+    {
+      "id": "taboo_sk_0846",
+      "category": "Orte und Reisen",
+      "word": "Ufer",
+      "forbidden": [
+        "Fluss",
+        "Ufer",
+        "Spaziergang",
+        "Bank"
+      ]
+    },
+    {
+      "id": "taboo_sk_0847",
+      "category": "Orte und Reisen",
+      "word": "Kurve",
+      "forbidden": [
+        "Lenkrad",
+        "Auto",
+        "Straße",
+        "langsamer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0848",
+      "category": "Orte und Reisen",
+      "word": "Umleitung",
+      "forbidden": [
+        "Sperrung",
+        "Schild",
+        "Route",
+        "Verkehr"
+      ]
+    },
+    {
+      "id": "taboo_sk_0849",
+      "category": "Orte und Reisen",
+      "word": "Zebrastreifen",
+      "forbidden": [
+        "Fußgängerstreifen",
+        "Ampel",
+        "Straße",
+        "Fußgänger"
+      ]
+    },
+    {
+      "id": "taboo_sk_0850",
+      "category": "Orte und Reisen",
+      "word": "Denkmal",
+      "forbidden": [
+        "Geschichte",
+        "Statue",
+        "Erinnerung",
+        "Öffentlichkeit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0851",
+      "category": "Orte und Reisen",
+      "word": "Drehkreuz",
+      "forbidden": [
+        "Eingang",
+        "Ticket",
+        "U-Bahn",
+        "Schranke"
+      ]
+    },
+    {
+      "id": "taboo_sk_0852",
+      "category": "Orte und Reisen",
+      "word": "Stau",
+      "forbidden": [
+        "Autos",
+        "Verkehr",
+        "verspätet",
+        "Straße"
+      ]
+    },
+    {
+      "id": "taboo_sk_0853",
+      "category": "Orte und Reisen",
+      "word": "Informationszentrum",
+      "forbidden": [
+        "Tourist",
+        "Karte",
+        "Prospekt",
+        "Ratschläge"
+      ]
+    },
+    {
+      "id": "taboo_sk_0854",
+      "category": "Orte und Reisen",
+      "word": "Aussichtswarte",
+      "forbidden": [
+        "Aussicht",
+        "Fernrohr",
+        "Vögel",
+        "Turm"
+      ]
+    },
+    {
+      "id": "taboo_sk_0855",
+      "category": "Orte und Reisen",
+      "word": "Pension",
+      "forbidden": [
+        "Unterkunft",
+        "Übernachtung",
+        "Gast",
+        "Reservierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0856",
+      "category": "Orte und Reisen",
+      "word": "Apartment",
+      "forbidden": [
+        "Unterkunft",
+        "Übernachtung",
+        "Gast",
+        "Reservierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0857",
+      "category": "Orte und Reisen",
+      "word": "Campingplatz",
+      "forbidden": [
+        "Zelt",
+        "Übernachtung",
+        "Natur",
+        "Feuer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0858",
+      "category": "Orte und Reisen",
+      "word": "Herberge",
+      "forbidden": [
+        "Unterkunft",
+        "Übernachtung",
+        "Gast",
+        "Reservierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0859",
+      "category": "Orte und Reisen",
+      "word": "Lager",
+      "forbidden": [
+        "Zelt",
+        "Sommer",
+        "Kinder",
+        "Feuer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0860",
+      "category": "Orte und Reisen",
+      "word": "Übernachtung",
+      "forbidden": [
+        "Hotel",
+        "Bett",
+        "übernachten",
+        "Abend"
+      ]
+    },
+    {
+      "id": "taboo_sk_0861",
+      "category": "Orte und Reisen",
+      "word": "Touristenhütte",
+      "forbidden": [
+        "Unterkunft",
+        "Übernachtung",
+        "Gast",
+        "Reservierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0862",
+      "category": "Orte und Reisen",
+      "word": "Hotelzimmer",
+      "forbidden": [
+        "Unterkunft",
+        "Übernachtung",
+        "Gast",
+        "Reservierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0863",
+      "category": "Orte und Reisen",
+      "word": "Kochnische",
+      "forbidden": [
+        "Kochen",
+        "Geschirr",
+        "Zimmer",
+        "Essen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0864",
+      "category": "Orte und Reisen",
+      "word": "Speisesaal",
+      "forbidden": [
+        "Mittagessen",
+        "Tisch",
+        "Tablett",
+        "Essen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0865",
+      "category": "Orte und Reisen",
+      "word": "Aufzug",
+      "forbidden": [
+        "Stockwerk",
+        "Tür",
+        "Knopf",
+        "steigen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0866",
+      "category": "Orte und Reisen",
+      "word": "Tor",
+      "forbidden": [
+        "Eingang",
+        "Zaun",
+        "Tür",
+        "Zugang"
+      ]
+    },
+    {
+      "id": "taboo_sk_0867",
+      "category": "Orte und Reisen",
+      "word": "Lobby",
+      "forbidden": [
+        "Unterkunft",
+        "Übernachtung",
+        "Gast",
+        "Reservierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0868",
+      "category": "Orte und Reisen",
+      "word": "Gepäckaufbewahrung",
+      "forbidden": [
+        "Gepäck",
+        "Schließfach",
+        "Schlüssel",
+        "lassen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0869",
+      "category": "Orte und Reisen",
+      "word": "Souvenir",
+      "forbidden": [
+        "Geschenk",
+        "Tourist",
+        "Andenken",
+        "Laden"
+      ]
+    },
+    {
+      "id": "taboo_sk_0870",
+      "category": "Orte und Reisen",
+      "word": "Miete",
+      "forbidden": [
+        "Fahrrad",
+        "Ausleihen",
+        "zurückgeben",
+        "Geld"
+      ]
+    },
+    {
+      "id": "taboo_sk_0871",
+      "category": "Orte und Reisen",
+      "word": "Wohnwagen",
+      "forbidden": [
+        "Auto",
+        "Camping",
+        "Anhänger",
+        "Übernachtung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0872",
+      "category": "Orte und Reisen",
+      "word": "Zeltplatz",
+      "forbidden": [
+        "Unterkunft",
+        "Übernachtung",
+        "Gast",
+        "Reservierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0873",
+      "category": "Orte und Reisen",
+      "word": "Studentenwohnheim",
+      "forbidden": [
+        "Student",
+        "Schule",
+        "Zimmer",
+        "Bett"
+      ]
+    },
+    {
+      "id": "taboo_sk_0874",
+      "category": "Orte und Reisen",
+      "word": "Koffer",
+      "forbidden": [
+        "Gepäck",
+        "Kleidung",
+        "Schloss",
+        "Rollen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0875",
+      "category": "Orte und Reisen",
+      "word": "Sternwarte",
+      "forbidden": [
+        "Sterne",
+        "Teleskop",
+        "Weltraum",
+        "Planeten"
+      ]
+    },
+    {
+      "id": "taboo_sk_0876",
+      "category": "Orte und Reisen",
+      "word": "Zollkontrolle",
+      "forbidden": [
+        "Unterkunft",
+        "Übernachtung",
+        "Gast",
+        "Reservierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0877",
+      "category": "Orte und Reisen",
+      "word": "Sicherheitskontrolle",
+      "forbidden": [
+        "Unterkunft",
+        "Übernachtung",
+        "Gast",
+        "Reservierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0878",
+      "category": "Orte und Reisen",
+      "word": "Passkontrolle",
+      "forbidden": [
+        "Unterkunft",
+        "Übernachtung",
+        "Gast",
+        "Reservierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0879",
+      "category": "Orte und Reisen",
+      "word": "Gepäckanhänger",
+      "forbidden": [
+        "Gepäck",
+        "Flughafen",
+        "Koffer",
+        "Name"
+      ]
+    },
+    {
+      "id": "taboo_sk_0880",
+      "category": "Orte und Reisen",
+      "word": "Wartezimmer",
+      "forbidden": [
+        "Unterkunft",
+        "Übernachtung",
+        "Gast",
+        "Reservierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0881",
+      "category": "Orte und Reisen",
+      "word": "Bahnsteig",
+      "forbidden": [
+        "Unterkunft",
+        "Übernachtung",
+        "Gast",
+        "Reservierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0882",
+      "category": "Orte und Reisen",
+      "word": "Rathaus",
+      "forbidden": [
+        "Bürgermeister",
+        "Amt",
+        "Platz",
+        "Trauung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0883",
+      "category": "Orte und Reisen",
+      "word": "Markt",
+      "forbidden": [
+        "Stand",
+        "Obst",
+        "Verkäufer",
+        "Einkauf"
+      ]
+    },
+    {
+      "id": "taboo_sk_0884",
+      "category": "Orte und Reisen",
+      "word": "Stadtpark",
+      "forbidden": [
+        "Bäume",
+        "Bank",
+        "Rasen",
+        "Spaziergang"
+      ]
+    },
+    {
+      "id": "taboo_sk_0885",
+      "category": "Orte und Reisen",
+      "word": "Kulturhaus",
+      "forbidden": [
+        "Veranstaltung",
+        "Saal",
+        "Konzert",
+        "Bühne"
+      ]
+    },
+    {
+      "id": "taboo_sk_0886",
+      "category": "Orte und Reisen",
+      "word": "Club",
+      "forbidden": [
+        "Mitglieder",
+        "Treffen",
+        "Leute",
+        "Freizeit"
+      ]
+    }
+  ]
+}

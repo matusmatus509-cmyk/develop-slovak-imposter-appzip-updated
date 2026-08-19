@@ -1,0 +1,7 @@
+{
+  "viewport": "390x844",
+  "firstPrompt": "Čo by si urobil, keby si zistil, že tvoj najlepší priateľ robí niečo nelegálne?",
+  "nextPrompt": "Čo by si si kúpil ako prvé, keby si vyhral v lotérii?",
+  "promptChanged": true,
+  "choiceVisibleAfterBack": true
+}

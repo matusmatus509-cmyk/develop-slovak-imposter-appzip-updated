@@ -1,0 +1,118 @@
+
+== Battleship.tsx ==
+lines: 626
+14:import { PartyBackdrop, PartyEyebrow } from "../teamBattle/PartyChrome";
+235:  return <PartyBackdrop>
+242:      <h1 className="mt-5 max-w-sm text-4xl font-black tracking-[-.04em]">{title}</h1>
+243:      <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/48">{description}</p>
+248:  </PartyBackdrop>;
+554:  if (phase === "mode") return <PartyBackdrop>
+558:        <section className="battle-mode-hero mt-6 text-center"><div className="battle-mode-emblem mx-auto flex h-28 w-28 items-center justify-center rounded-[2.2rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-400/15 to-blue-700/25 shadow-2xl shadow-cyan-500/10"><Icons.ship size={56} className="text-cyan-100" /></div><p className="mt-5 text-[9px] font-black uppercase tracking-[.25em] text-cyan-300/65">Námorná bitka 10 × 10</p><h1 className="mt-2 text-4xl font-black tracking-[-.04em]">Loďky</h1><p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-white/46">Rozmiestnite vlastné flotily v súkromí a potopte súperove lode.</p></section>
+562:        <section className="battle-rules-card party-glass mt-4 rounded-[1.6rem] p-4"><div className="mb-2 flex items-center gap-2"><span className="flex h-7 w-7 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-200"><Icons.shieldCheck size={15} /></span><p className="text-[9px] font-black uppercase tracking-[.2em] text-white/42">Pravidlá bitky</p></div><label className="flex cursor-pointer items-center justify-between gap-3 py-2"><span><strong className="block text-xs font-black">Lode sa nedotýkajú</strong><small className="text-[9px] text-white/35">Ani bokmi, ani rohmi</small></span><input type="checkbox" checked={noTouching} onChange={(event: ChangeEvent<HTMLInputElement>) => setNoTouching(event.target.checked)} className="battle-rule-check" /></label><label className="flex cursor-pointer items-center justify-between gap-3 border-t border-white/[.07] py-2"><span><strong className="block text-xs font-black">Zásah = ďalší výstrel</strong><small className="text-[9px] text-white/35">Úspešný strelec pokračuje</small></span><input type="checkbox" checked={hitKeepsTurn} onChange={(event: ChangeEvent<HTMLInputElement>) => setHitKeepsTurn(event.target.checked)} className="battle-rule-check" /></label></section>
+565:  </PartyBackdrop>;
+569:  if (phase === "deploying") return <PartyBackdrop><main className="flex h-full flex-col items-center justify-center px-6 text-center text-white"><div className="battle-radar relative flex h-44 w-44 items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-400/[.06]"><span className="battle-radar-sweep" /><Icons.ship size={58} className="text-cyan-100" /></div><div className="mt-7"><PartyEyebrow>Čakanie na súpera</PartyEyebrow></div><h1 className="mt-5 text-3xl font-black">Flotily vyplávajú</h1><p className="mt-3 max-w-xs text-sm leading-relaxed text-white/45">Robot tajne rozmiestňuje svoje lode. Priprav delá!</p></main></PartyBackdrop>;
+571:  if (phase === "placement") return <PartyBackdrop>
+575:        <section className="battle-placement-heading mt-2 shrink-0 text-center"><p className="text-[7px] font-black uppercase tracking-[.24em] text-cyan-300/60">Rozmiestnenie lodí</p><h1 className="mt-0.5 text-xl font-black">{mode === "local" ? `Flotila hráča ${deploymentPlayer + 1}` : "Priprav svoju flotilu"}</h1><p className="mt-0.5 text-[9px] leading-relaxed text-white/42">Ťahaj loď z lišty alebo už položenú loď priamo po mape.</p></section>
+
+== HadajEmoji.tsx ==
+lines: 53
+3:import { Button, Shell, TopBar } from "../../components/ui";
+44:  return <Shell><TopBar title="Hádaj emoji" onBack={onBack} /><div className="game-center-stack flex flex-1 flex-col items-center justify-center gap-5 text-center">
+46:    <div className="w-full"><p className="mb-3 text-xs font-bold uppercase tracking-widest text-white/40">Vyber kategóriu</p><div className="flex flex-wrap justify-center gap-2">{categories.map((item) => <button key={item.id} onClick={() => selectCategory(item)} className={`rounded-2xl border px-3 py-2 text-sm font-bold ${item.id === categoryId ? "border-amber-300/70 bg-amber-400/20 text-amber-200" : "border-white/10 bg-white/5 text-white/55"}`}>{item.icon} {item.title}</button>)}</div></div>
+47:    <div><p className="text-xs font-bold uppercase tracking-widest text-amber-300/70">{category.icon} {category.title}</p><p className="mt-1 text-xs text-white/40">Čo tieto emoji znamenajú?</p></div>
+50:    {!revealed ? <button onClick={() => setRevealed(true)} className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/8 py-4 text-base font-bold text-white/70"><Icons.eye size={19} /> Odhaliť odpoveď</button> : <div className="glass w-full rounded-3xl border border-green-400/40 bg-green-400/10 p-6"><p className="mb-2 text-xs font-bold uppercase tracking-widest text-green-400/70">Odpoveď</p><p className="text-3xl font-black">{puzzle.answer}</p></div>}
+
+== HadajKtoSom.tsx ==
+lines: 732
+3:import { Button, Shell, TopBar } from "../../components/ui";
+105:      <TopBar title="Hádaj kto som" onBack={onBack} />
+124:        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
+159:        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
+184:        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
+337:              <p className="mt-1 max-w-[230px] text-xs font-semibold leading-relaxed text-white/50">
+390:          <p className="text-xs font-bold tracking-widest text-white/30 uppercase">
+429:            <p className="mt-4 text-xs font-black uppercase tracking-[.2em] text-cyan-200/80 animate-pulse">
+541:        <TopBar title="Hádaj kto som" onBack={partyConfig ? undefined : () => setPhase("setup")} />
+601:        <TopBar title="Výsledok kola" />
+654:        <TopBar title="Koniec hry" />
+665:              <p className="text-white/50 text-sm mt-1">
+
+== IbaNepravda.tsx ==
+lines: 103
+4:import { Button, Shell, TopBar } from "../../components/ui";
+58:      <TopBar title="Iba nepravda" onBack={onBack} />
+
+== KtoDostaneBombu.tsx ==
+lines: 194
+4:import { Button, Shell, TopBar } from "../../components/ui";
+85:        <TopBar title="Kto dostane bombu" onBack={onBack} />
+107:            <p className="text-xs text-white/40 uppercase tracking-widest mb-1">
+123:      <TopBar title="Kto dostane bombu" onBack={onBack} />
+174:          <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-2">
+187:          <p className="text-sm text-white/30">
+
+== NeverHaveIEver.tsx ==
+lines: 41
+4:import { Button, Shell, TopBar } from "../../components/ui";
+33:  return <Shell className="prompt-game-shell prompt-game-never"><TopBar title="Nikdy som nikdy" onBack={onBack} /><div className="prompt-game-stage game-center-stack flex flex-1 flex-col items-center justify-center gap-5 text-center">
+
+== SlovnaRosada.tsx ==
+lines: 893
+9:import { Button, Shell, TopBar } from "../../components/ui";
+100:      <TopBar title="Slovné šarády" onBack={onBack} />
+122:            <p className="text-xs text-white/40 mt-0.5">Hráči sa striedajú v 2 tímoch</p>
+143:        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
+174:        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
+230:        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
+255:        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
+445:          <p className="mb-3 text-xs font-bold uppercase tracking-widest text-gray-400">
+597:        <TopBar title="Slovné šarády" onBack={partyConfig ? undefined : () => setPhase("setup")} />
+671:        <TopBar title="Výsledok kola" />
+711:              <p className="mb-3 text-xs uppercase tracking-widest text-white/40">Skóre tímov</p>
+729:              <p className="mb-3 text-xs uppercase tracking-widest text-white/40">Priebežné skóre</p>
+
+== SlovnyPingPong.tsx ==
+lines: 452
+2:import { Button, Shell, TopBar } from "../../components/ui";
+39:      <TopBar title="Slovný Ping Pong" onBack={onBack} />
+50:        <p className="mb-2 text-xs font-bold uppercase tracking-widest text-white/40">
+63:        <p className="mb-2 text-xs font-bold uppercase tracking-widest text-white/40">
+76:        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
+275:            <p className="text-white/70 font-bold text-sm animate-pulse">
+336:            <p className="text-white/70 font-bold text-sm animate-pulse">
+361:            <p className="mt-3 whitespace-nowrap text-sm font-bold text-white/70">Pripravte sa!</p>
+377:            <p className="text-sm text-white/50">
+
+== TeamQuickGame.tsx ==
+lines: 282
+3:import { PartyBackdrop, PartyEyebrow } from "../teamBattle/PartyChrome";
+151:      <PartyBackdrop>
+156:          <h1 className="mt-2 text-4xl font-black text-white">{draw ? "Remíza!" : `${names[winners[0]]} vyhráva!`}</h1>
+175:      </PartyBackdrop>
+180:    <PartyBackdrop>
+196:            <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-3"><div><span className="quick-game-signature mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[8px] font-black uppercase tracking-[.2em] backdrop-blur"><GameGlyph game={game} size={12} /> {theme.eyebrow}</span><h1 className="max-w-[16rem] text-[2rem] font-black leading-[.98] tracking-[-.04em] text-white">{GAME_TITLES[game]}</h1></div><span className="setup-player-badge inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-black/35 px-3 py-2 text-[9px] font-black uppercase tracking-wider text-white/80 backdrop-blur"><Icons.users size={15} /> {playerRange}</span></div>
+228:                    <p className="mt-1 text-sm font-bold text-white/65">Prispôsobte si tempo a dĺžku</p>
+278:    </PartyBackdrop>
+
+== TicTacToe.tsx ==
+lines: 200
+4:import { PartyBackdrop, PartyEyebrow } from "../teamBattle/PartyChrome";
+128:    <PartyBackdrop>
+141:            <h1 className="mt-2 text-4xl font-black tracking-[-.04em]">Piškvorky</h1>
+142:            <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-white/48">Klasický súboj X a O s jemnými animáciami. Zahrajte si na jednom mobile alebo vyzvite robota.</p>
+162:    </PartyBackdrop>
+166:    <PartyBackdrop>
+183:            <h1 className="mt-0.5 text-lg font-black">{result === "draw" ? "Remíza" : result ? `${names[result]} vyhráva!` : aiThinking ? "Robot premýšľa…" : `Na ťahu: ${names[turn]}`}</h1>
+198:    </PartyBackdrop>
+
+== TruthOrDare.tsx ==
+lines: 45
+4:import { Button, Shell, TopBar } from "../../components/ui";
+32:  return <Shell className="prompt-game-shell prompt-game-truth"><TopBar title="Pravda alebo výzva" onBack={onBack} />
+33:    {mode === "choose" ? <div className="prompt-game-stage game-center-stack flex flex-1 flex-col items-center justify-center gap-5 text-center">
+35:      <div><p className="prompt-game-eyebrow">Vyber kartu</p><h1>Čo si vyberieš?</h1></div>
+38:    </div> : <div className="prompt-game-stage game-center-stack flex flex-1 flex-col items-center justify-center gap-5 text-center">
+
+== WouldYouRather.tsx ==
+lines: 99
+71:      <h1 className="sr-only">Čo by si radšej?</h1>

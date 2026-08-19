@@ -1,0 +1,3502 @@
+[
+  {
+    "id": "ol_0001",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera mňauká?"
+    }
+  },
+  {
+    "id": "ol_0002",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera šteká?"
+    }
+  },
+  {
+    "id": "ol_0003",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má chobot?"
+    }
+  },
+  {
+    "id": "ol_0004",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má hrivu?"
+    }
+  },
+  {
+    "id": "ol_0005",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má pruhy?"
+    }
+  },
+  {
+    "id": "ol_0006",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má dlhý krk?"
+    }
+  },
+  {
+    "id": "ol_0007",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera nosí mláďa vo vaku?"
+    }
+  },
+  {
+    "id": "ol_0008",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera robí med?"
+    }
+  },
+  {
+    "id": "ol_0009",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera spriada pavučinu?"
+    }
+  },
+  {
+    "id": "ol_0010",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera stavia hrádze?"
+    }
+  },
+  {
+    "id": "ol_0011",
+    "category": "animals",
+    "translations": {
+      "sk": "Aký vták kikiríka?"
+    }
+  },
+  {
+    "id": "ol_0012",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera dáva vlnu?"
+    }
+  },
+  {
+    "id": "ol_0013",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má pancier?"
+    }
+  },
+  {
+    "id": "ol_0014",
+    "category": "animals",
+    "translations": {
+      "sk": "Aký vták žije na ľade?"
+    }
+  },
+  {
+    "id": "ol_0015",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má dlhé uši?"
+    }
+  },
+  {
+    "id": "ol_0016",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má rohy?"
+    }
+  },
+  {
+    "id": "ol_0017",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má kly?"
+    }
+  },
+  {
+    "id": "ol_0018",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má parohy?"
+    }
+  },
+  {
+    "id": "ol_0019",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má plutvy?"
+    }
+  },
+  {
+    "id": "ol_0020",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera pláva v akváriu?"
+    }
+  },
+  {
+    "id": "ol_0021",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera syčí?"
+    }
+  },
+  {
+    "id": "ol_0022",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera kváka?"
+    }
+  },
+  {
+    "id": "ol_0023",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera vyje?"
+    }
+  },
+  {
+    "id": "ol_0024",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera húka?"
+    }
+  },
+  {
+    "id": "ol_0025",
+    "category": "animals",
+    "translations": {
+      "sk": "Aký hmyz cvrliká?"
+    }
+  },
+  {
+    "id": "ol_0026",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má chvost a fúzy?"
+    }
+  },
+  {
+    "id": "ol_0027",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera žije v úli?"
+    }
+  },
+  {
+    "id": "ol_0028",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera žije v stajni?"
+    }
+  },
+  {
+    "id": "ol_0029",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera žije v chlieviku?"
+    }
+  },
+  {
+    "id": "ol_0030",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera žije v kurníku?"
+    }
+  },
+  {
+    "id": "ol_0031",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má šupiny a plutvy?"
+    }
+  },
+  {
+    "id": "ol_0032",
+    "category": "animals",
+    "translations": {
+      "sk": "Aký vták nosí listy?"
+    }
+  },
+  {
+    "id": "ol_0033",
+    "category": "animals",
+    "translations": {
+      "sk": "Aký vták má žltý zobák?"
+    }
+  },
+  {
+    "id": "ol_0034",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má plutvu na chrbte?"
+    }
+  },
+  {
+    "id": "ol_0035",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má osem nôh?"
+    }
+  },
+  {
+    "id": "ol_0036",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera zbiera orechy?"
+    }
+  },
+  {
+    "id": "ol_0037",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera loví myši?"
+    }
+  },
+  {
+    "id": "ol_0038",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera žerie mrkvu?"
+    }
+  },
+  {
+    "id": "ol_0039",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera sa váľa v bahne?"
+    }
+  },
+  {
+    "id": "ol_0040",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera ťahá sane?"
+    }
+  },
+  {
+    "id": "ol_0041",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má čierne škvrny?"
+    }
+  },
+  {
+    "id": "ol_0042",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera žije v oceáne?"
+    }
+  },
+  {
+    "id": "ol_0043",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera nosí podkovy?"
+    }
+  },
+  {
+    "id": "ol_0044",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má dlhé uši a chvost?"
+    }
+  },
+  {
+    "id": "ol_0045",
+    "category": "animals",
+    "translations": {
+      "sk": "Aké zviera má bodky na krídlach?"
+    }
+  },
+  {
+    "id": "ol_0046",
+    "category": "food",
+    "translations": {
+      "sk": "Čím ješ polievku?"
+    }
+  },
+  {
+    "id": "ol_0047",
+    "category": "food",
+    "translations": {
+      "sk": "Čo je biele a slané?"
+    }
+  },
+  {
+    "id": "ol_0048",
+    "category": "food",
+    "translations": {
+      "sk": "Čo je kyslé a žlté?"
+    }
+  },
+  {
+    "id": "ol_0049",
+    "category": "food",
+    "translations": {
+      "sk": "Čo robia včely?"
+    }
+  },
+  {
+    "id": "ol_0050",
+    "category": "food",
+    "translations": {
+      "sk": "Čo je sladké a studené?"
+    }
+  },
+  {
+    "id": "ol_0051",
+    "category": "food",
+    "translations": {
+      "sk": "Čo je okrúhle a talianske?"
+    }
+  },
+  {
+    "id": "ol_0052",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa dáva na chlieb?"
+    }
+  },
+  {
+    "id": "ol_0053",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa dáva do kávy?"
+    }
+  },
+  {
+    "id": "ol_0054",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa pečie v rúre?"
+    }
+  },
+  {
+    "id": "ol_0055",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa smaží na panvici?"
+    }
+  },
+  {
+    "id": "ol_0056",
+    "category": "food",
+    "translations": {
+      "sk": "Čo si dávaš na raňajky?"
+    }
+  },
+  {
+    "id": "ol_0057",
+    "category": "food",
+    "translations": {
+      "sk": "Čo si naleješ do pohára?"
+    }
+  },
+  {
+    "id": "ol_0058",
+    "category": "food",
+    "translations": {
+      "sk": "Čo piješ z hrnčeka?"
+    }
+  },
+  {
+    "id": "ol_0059",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa krája nožom?"
+    }
+  },
+  {
+    "id": "ol_0060",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa mieša vareškou?"
+    }
+  },
+  {
+    "id": "ol_0061",
+    "category": "food",
+    "translations": {
+      "sk": "Čo má žĺtok?"
+    }
+  },
+  {
+    "id": "ol_0062",
+    "category": "food",
+    "translations": {
+      "sk": "Čo má škrupinu?"
+    }
+  },
+  {
+    "id": "ol_0063",
+    "category": "food",
+    "translations": {
+      "sk": "Čo má jadierka?"
+    }
+  },
+  {
+    "id": "ol_0064",
+    "category": "food",
+    "translations": {
+      "sk": "Čo rastie v strapci?"
+    }
+  },
+  {
+    "id": "ol_0065",
+    "category": "food",
+    "translations": {
+      "sk": "Čo rastie na strome?"
+    }
+  },
+  {
+    "id": "ol_0066",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa šúpe pred jedením?"
+    }
+  },
+  {
+    "id": "ol_0067",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa dáva do šalátu?"
+    }
+  },
+  {
+    "id": "ol_0068",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa dáva na pizzu?"
+    }
+  },
+  {
+    "id": "ol_0069",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa dáva do guláša?"
+    }
+  },
+  {
+    "id": "ol_0070",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa dáva do sendviča?"
+    }
+  },
+  {
+    "id": "ol_0071",
+    "category": "food",
+    "translations": {
+      "sk": "Čo je v kornútku?"
+    }
+  },
+  {
+    "id": "ol_0072",
+    "category": "food",
+    "translations": {
+      "sk": "Čo je v plechovke?"
+    }
+  },
+  {
+    "id": "ol_0073",
+    "category": "food",
+    "translations": {
+      "sk": "Čo je vo fľaši?"
+    }
+  },
+  {
+    "id": "ol_0074",
+    "category": "food",
+    "translations": {
+      "sk": "Čo je v hrnci?"
+    }
+  },
+  {
+    "id": "ol_0075",
+    "category": "food",
+    "translations": {
+      "sk": "Čo je v chladničke?"
+    }
+  },
+  {
+    "id": "ol_0076",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa vyrába z mlieka?"
+    }
+  },
+  {
+    "id": "ol_0077",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa vyrába z kakaa?"
+    }
+  },
+  {
+    "id": "ol_0078",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa vyrába z hrozna?"
+    }
+  },
+  {
+    "id": "ol_0079",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa vyrába z múky?"
+    }
+  },
+  {
+    "id": "ol_0080",
+    "category": "food",
+    "translations": {
+      "sk": "Čo sa vyrába z ovocia?"
+    }
+  },
+  {
+    "id": "ol_0081",
+    "category": "household",
+    "translations": {
+      "sk": "Čím odomykáš dvere?"
+    }
+  },
+  {
+    "id": "ol_0082",
+    "category": "household",
+    "translations": {
+      "sk": "Kde spíš?"
+    }
+  },
+  {
+    "id": "ol_0083",
+    "category": "household",
+    "translations": {
+      "sk": "Čím vysávaš koberec?"
+    }
+  },
+  {
+    "id": "ol_0084",
+    "category": "household",
+    "translations": {
+      "sk": "Čím umývaš riad?"
+    }
+  },
+  {
+    "id": "ol_0085",
+    "category": "household",
+    "translations": {
+      "sk": "Čím umývaš ruky?"
+    }
+  },
+  {
+    "id": "ol_0086",
+    "category": "household",
+    "translations": {
+      "sk": "Čím čistíš zuby?"
+    }
+  },
+  {
+    "id": "ol_0087",
+    "category": "household",
+    "translations": {
+      "sk": "Čím češeš vlasy?"
+    }
+  },
+  {
+    "id": "ol_0088",
+    "category": "household",
+    "translations": {
+      "sk": "Čím striháš papier?"
+    }
+  },
+  {
+    "id": "ol_0089",
+    "category": "household",
+    "translations": {
+      "sk": "Čím zatĺkaš klinec?"
+    }
+  },
+  {
+    "id": "ol_0090",
+    "category": "household",
+    "translations": {
+      "sk": "Čím uťahuješ skrutku?"
+    }
+  },
+  {
+    "id": "ol_0091",
+    "category": "household",
+    "translations": {
+      "sk": "Čím zametáš podlahu?"
+    }
+  },
+  {
+    "id": "ol_0092",
+    "category": "household",
+    "translations": {
+      "sk": "Čím utieraš stôl?"
+    }
+  },
+  {
+    "id": "ol_0093",
+    "category": "household",
+    "translations": {
+      "sk": "Čím sušíš vlasy?"
+    }
+  },
+  {
+    "id": "ol_0094",
+    "category": "household",
+    "translations": {
+      "sk": "Čím žehlíš košeľu?"
+    }
+  },
+  {
+    "id": "ol_0095",
+    "category": "household",
+    "translations": {
+      "sk": "Čím svieti lampa?"
+    }
+  },
+  {
+    "id": "ol_0096",
+    "category": "household",
+    "translations": {
+      "sk": "Čím zapínaš televízor?"
+    }
+  },
+  {
+    "id": "ol_0097",
+    "category": "household",
+    "translations": {
+      "sk": "Čím otváraš konzervu?"
+    }
+  },
+  {
+    "id": "ol_0098",
+    "category": "household",
+    "translations": {
+      "sk": "Čím krájaš chlieb?"
+    }
+  },
+  {
+    "id": "ol_0099",
+    "category": "household",
+    "translations": {
+      "sk": "Čím naberáš polievku?"
+    }
+  },
+  {
+    "id": "ol_0100",
+    "category": "household",
+    "translations": {
+      "sk": "Čím otáčaš na panvici?"
+    }
+  },
+  {
+    "id": "ol_0101",
+    "category": "household",
+    "translations": {
+      "sk": "Kde perieš oblečenie?"
+    }
+  },
+  {
+    "id": "ol_0102",
+    "category": "household",
+    "translations": {
+      "sk": "Kde chladíš jedlo?"
+    }
+  },
+  {
+    "id": "ol_0103",
+    "category": "household",
+    "translations": {
+      "sk": "Kde varíš polievku?"
+    }
+  },
+  {
+    "id": "ol_0104",
+    "category": "household",
+    "translations": {
+      "sk": "Kde sa sprchuješ?"
+    }
+  },
+  {
+    "id": "ol_0105",
+    "category": "household",
+    "translations": {
+      "sk": "Kde si čistíš zuby?"
+    }
+  },
+  {
+    "id": "ol_0106",
+    "category": "household",
+    "translations": {
+      "sk": "Kde si vešiaš kabát?"
+    }
+  },
+  {
+    "id": "ol_0107",
+    "category": "household",
+    "translations": {
+      "sk": "Kde sedíš pri stole?"
+    }
+  },
+  {
+    "id": "ol_0108",
+    "category": "household",
+    "translations": {
+      "sk": "Kde si ukladáš oblečenie?"
+    }
+  },
+  {
+    "id": "ol_0109",
+    "category": "household",
+    "translations": {
+      "sk": "Kde máš vankúš?"
+    }
+  },
+  {
+    "id": "ol_0110",
+    "category": "household",
+    "translations": {
+      "sk": "Kde nájdeš zrkadlo?"
+    }
+  },
+  {
+    "id": "ol_0111",
+    "category": "household",
+    "translations": {
+      "sk": "Čo má zámok a kľúč?"
+    }
+  },
+  {
+    "id": "ol_0112",
+    "category": "household",
+    "translations": {
+      "sk": "Čo má zásuvky?"
+    }
+  },
+  {
+    "id": "ol_0113",
+    "category": "household",
+    "translations": {
+      "sk": "Čo má pokrievku?"
+    }
+  },
+  {
+    "id": "ol_0114",
+    "category": "household",
+    "translations": {
+      "sk": "Čo má rukoväť?"
+    }
+  },
+  {
+    "id": "ol_0115",
+    "category": "household",
+    "translations": {
+      "sk": "Čo má štyri nohy?"
+    }
+  },
+  {
+    "id": "ol_0116",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš, keď si smädný?"
+    }
+  },
+  {
+    "id": "ol_0117",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš, keď si unavený?"
+    }
+  },
+  {
+    "id": "ol_0118",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš, keď ti je zima?"
+    }
+  },
+  {
+    "id": "ol_0119",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš, keď prší?"
+    }
+  },
+  {
+    "id": "ol_0120",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš ráno?"
+    }
+  },
+  {
+    "id": "ol_0121",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš večer?"
+    }
+  },
+  {
+    "id": "ol_0122",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš pred spaním?"
+    }
+  },
+  {
+    "id": "ol_0123",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš po jedle?"
+    }
+  },
+  {
+    "id": "ol_0124",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš na narodeninách?"
+    }
+  },
+  {
+    "id": "ol_0125",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš na svadbe?"
+    }
+  },
+  {
+    "id": "ol_0126",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš v obchode?"
+    }
+  },
+  {
+    "id": "ol_0127",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš v banke?"
+    }
+  },
+  {
+    "id": "ol_0128",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš na pošte?"
+    }
+  },
+  {
+    "id": "ol_0129",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš v kine?"
+    }
+  },
+  {
+    "id": "ol_0130",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš v knižnici?"
+    }
+  },
+  {
+    "id": "ol_0131",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš v reštaurácii?"
+    }
+  },
+  {
+    "id": "ol_0132",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš na zastávke?"
+    }
+  },
+  {
+    "id": "ol_0133",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš pri pokladni?"
+    }
+  },
+  {
+    "id": "ol_0134",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš pri semafore?"
+    }
+  },
+  {
+    "id": "ol_0135",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo robíš pri dverách?"
+    }
+  },
+  {
+    "id": "ol_0136",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo povieš pri pozdrave?"
+    }
+  },
+  {
+    "id": "ol_0137",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo povieš pri odchode?"
+    }
+  },
+  {
+    "id": "ol_0138",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo povieš pri poďakovaní?"
+    }
+  },
+  {
+    "id": "ol_0139",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo povieš pri chybe?"
+    }
+  },
+  {
+    "id": "ol_0140",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo povieš pri narodeninách?"
+    }
+  },
+  {
+    "id": "ol_0141",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo si berieš na nákup?"
+    }
+  },
+  {
+    "id": "ol_0142",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo si berieš na výlet?"
+    }
+  },
+  {
+    "id": "ol_0143",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo si berieš do školy?"
+    }
+  },
+  {
+    "id": "ol_0144",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo si berieš do práce?"
+    }
+  },
+  {
+    "id": "ol_0145",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Čo si berieš na kúpalisko?"
+    }
+  },
+  {
+    "id": "ol_0146",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Kto nosí listy?"
+    }
+  },
+  {
+    "id": "ol_0147",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Kto hasí oheň?"
+    }
+  },
+  {
+    "id": "ol_0148",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Kto lieči chorých?"
+    }
+  },
+  {
+    "id": "ol_0149",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Kto učí v škole?"
+    }
+  },
+  {
+    "id": "ol_0150",
+    "category": "everyday_life",
+    "translations": {
+      "sk": "Kto pečie chlieb?"
+    }
+  },
+  {
+    "id": "ol_0151",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo svieti cez deň?"
+    }
+  },
+  {
+    "id": "ol_0152",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo vidíš v noci?"
+    }
+  },
+  {
+    "id": "ol_0153",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo padá pri daždi?"
+    }
+  },
+  {
+    "id": "ol_0154",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo padá v zime?"
+    }
+  },
+  {
+    "id": "ol_0155",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo rastie v lese?"
+    }
+  },
+  {
+    "id": "ol_0156",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo rastie na lúke?"
+    }
+  },
+  {
+    "id": "ol_0157",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo rastie v záhrade?"
+    }
+  },
+  {
+    "id": "ol_0158",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo tečie v rieke?"
+    }
+  },
+  {
+    "id": "ol_0159",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo šumí v lese?"
+    }
+  },
+  {
+    "id": "ol_0160",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo fúka počas vetra?"
+    }
+  },
+  {
+    "id": "ol_0161",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo býva nad oblakmi?"
+    }
+  },
+  {
+    "id": "ol_0162",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo býva pod zemou?"
+    }
+  },
+  {
+    "id": "ol_0163",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo býva pri mori?"
+    }
+  },
+  {
+    "id": "ol_0164",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo býva na vrchu?"
+    }
+  },
+  {
+    "id": "ol_0165",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo býva v jaskyni?"
+    }
+  },
+  {
+    "id": "ol_0166",
+    "category": "nature",
+    "translations": {
+      "sk": "Kde rastú huby?"
+    }
+  },
+  {
+    "id": "ol_0167",
+    "category": "nature",
+    "translations": {
+      "sk": "Kde rastú stromy?"
+    }
+  },
+  {
+    "id": "ol_0168",
+    "category": "nature",
+    "translations": {
+      "sk": "Kde plávajú ryby?"
+    }
+  },
+  {
+    "id": "ol_0169",
+    "category": "nature",
+    "translations": {
+      "sk": "Kde hniezdia vtáky?"
+    }
+  },
+  {
+    "id": "ol_0170",
+    "category": "nature",
+    "translations": {
+      "sk": "Kde kvitnú kvety?"
+    }
+  },
+  {
+    "id": "ol_0171",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo pokrýva zem v zime?"
+    }
+  },
+  {
+    "id": "ol_0172",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo pláva nad hlavou?"
+    }
+  },
+  {
+    "id": "ol_0173",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo hreje cez deň?"
+    }
+  },
+  {
+    "id": "ol_0174",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo svieti v noci?"
+    }
+  },
+  {
+    "id": "ol_0175",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo sa topí v teple?"
+    }
+  },
+  {
+    "id": "ol_0176",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo sa topí na slnku?"
+    }
+  },
+  {
+    "id": "ol_0177",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo vznikne z ľadu?"
+    }
+  },
+  {
+    "id": "ol_0178",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo vznikne z dažďa?"
+    }
+  },
+  {
+    "id": "ol_0179",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo vznikne po búrke?"
+    }
+  },
+  {
+    "id": "ol_0180",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo robí sopka?"
+    }
+  },
+  {
+    "id": "ol_0181",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo robí vietor?"
+    }
+  },
+  {
+    "id": "ol_0182",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo robí rieka?"
+    }
+  },
+  {
+    "id": "ol_0183",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo robí slnko?"
+    }
+  },
+  {
+    "id": "ol_0184",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo robí mesiac?"
+    }
+  },
+  {
+    "id": "ol_0185",
+    "category": "nature",
+    "translations": {
+      "sk": "Čo robí blesk?"
+    }
+  },
+  {
+    "id": "ol_0186",
+    "category": "body",
+    "translations": {
+      "sk": "Čím vidíš?"
+    }
+  },
+  {
+    "id": "ol_0187",
+    "category": "body",
+    "translations": {
+      "sk": "Čím počúvaš?"
+    }
+  },
+  {
+    "id": "ol_0188",
+    "category": "body",
+    "translations": {
+      "sk": "Čím voniaš?"
+    }
+  },
+  {
+    "id": "ol_0189",
+    "category": "body",
+    "translations": {
+      "sk": "Čím ochutnávaš?"
+    }
+  },
+  {
+    "id": "ol_0190",
+    "category": "body",
+    "translations": {
+      "sk": "Čím dýchaš?"
+    }
+  },
+  {
+    "id": "ol_0191",
+    "category": "body",
+    "translations": {
+      "sk": "Čím chodíš?"
+    }
+  },
+  {
+    "id": "ol_0192",
+    "category": "body",
+    "translations": {
+      "sk": "Čím chytáš?"
+    }
+  },
+  {
+    "id": "ol_0193",
+    "category": "body",
+    "translations": {
+      "sk": "Čím hryzieš?"
+    }
+  },
+  {
+    "id": "ol_0194",
+    "category": "body",
+    "translations": {
+      "sk": "Čím žmurkáš?"
+    }
+  },
+  {
+    "id": "ol_0195",
+    "category": "body",
+    "translations": {
+      "sk": "Čím žuješ?"
+    }
+  },
+  {
+    "id": "ol_0196",
+    "category": "body",
+    "translations": {
+      "sk": "Koľko očí máš?"
+    }
+  },
+  {
+    "id": "ol_0197",
+    "category": "body",
+    "translations": {
+      "sk": "Koľko uší máš?"
+    }
+  },
+  {
+    "id": "ol_0198",
+    "category": "body",
+    "translations": {
+      "sk": "Koľko nosov máš?"
+    }
+  },
+  {
+    "id": "ol_0199",
+    "category": "body",
+    "translations": {
+      "sk": "Koľko rúk máš?"
+    }
+  },
+  {
+    "id": "ol_0200",
+    "category": "body",
+    "translations": {
+      "sk": "Koľko nôh máš?"
+    }
+  },
+  {
+    "id": "ol_0201",
+    "category": "body",
+    "translations": {
+      "sk": "Koľko prstov má ruka?"
+    }
+  },
+  {
+    "id": "ol_0202",
+    "category": "body",
+    "translations": {
+      "sk": "Kde máš koleno?"
+    }
+  },
+  {
+    "id": "ol_0203",
+    "category": "body",
+    "translations": {
+      "sk": "Kde máš lakeť?"
+    }
+  },
+  {
+    "id": "ol_0204",
+    "category": "body",
+    "translations": {
+      "sk": "Kde máš členok?"
+    }
+  },
+  {
+    "id": "ol_0205",
+    "category": "body",
+    "translations": {
+      "sk": "Kde máš bradu?"
+    }
+  },
+  {
+    "id": "ol_0206",
+    "category": "body",
+    "translations": {
+      "sk": "Kde máš obočie?"
+    }
+  },
+  {
+    "id": "ol_0207",
+    "category": "body",
+    "translations": {
+      "sk": "Kde máš zápästie?"
+    }
+  },
+  {
+    "id": "ol_0208",
+    "category": "body",
+    "translations": {
+      "sk": "Kde máš rameno?"
+    }
+  },
+  {
+    "id": "ol_0209",
+    "category": "body",
+    "translations": {
+      "sk": "Kde máš päty?"
+    }
+  },
+  {
+    "id": "ol_0210",
+    "category": "body",
+    "translations": {
+      "sk": "Kde máš jazyk?"
+    }
+  },
+  {
+    "id": "ol_0211",
+    "category": "body",
+    "translations": {
+      "sk": "Čo ti bije v hrudi?"
+    }
+  },
+  {
+    "id": "ol_0212",
+    "category": "body",
+    "translations": {
+      "sk": "Čo rastie na hlave?"
+    }
+  },
+  {
+    "id": "ol_0213",
+    "category": "body",
+    "translations": {
+      "sk": "Čo chráni tvoje zuby?"
+    }
+  },
+  {
+    "id": "ol_0214",
+    "category": "body",
+    "translations": {
+      "sk": "Čo máš medzi nosom a bradou?"
+    }
+  },
+  {
+    "id": "ol_0215",
+    "category": "body",
+    "translations": {
+      "sk": "Čo si umývaš po jedle?"
+    }
+  },
+  {
+    "id": "ol_0216",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktorý deň je po pondelku?"
+    }
+  },
+  {
+    "id": "ol_0217",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktorý deň je po utorku?"
+    }
+  },
+  {
+    "id": "ol_0218",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktorý deň je po strede?"
+    }
+  },
+  {
+    "id": "ol_0219",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktorý deň je po štvrtku?"
+    }
+  },
+  {
+    "id": "ol_0220",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktorý deň je po piatku?"
+    }
+  },
+  {
+    "id": "ol_0221",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktorý deň je pred pondelkom?"
+    }
+  },
+  {
+    "id": "ol_0222",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktorý deň je pred nedeľou?"
+    }
+  },
+  {
+    "id": "ol_0223",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktorý deň je víkend?"
+    }
+  },
+  {
+    "id": "ol_0224",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktorý mesiac má Vianoce?"
+    }
+  },
+  {
+    "id": "ol_0225",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktorý mesiac má Valentína?"
+    }
+  },
+  {
+    "id": "ol_0226",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktorý mesiac má Veľkú noc?"
+    }
+  },
+  {
+    "id": "ol_0227",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktorý mesiac začína rok?"
+    }
+  },
+  {
+    "id": "ol_0228",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktorý mesiac končí rok?"
+    }
+  },
+  {
+    "id": "ol_0229",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktoré obdobie má sneh?"
+    }
+  },
+  {
+    "id": "ol_0230",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktoré obdobie má kúpanie?"
+    }
+  },
+  {
+    "id": "ol_0231",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktoré obdobie má padajúce listy?"
+    }
+  },
+  {
+    "id": "ol_0232",
+    "category": "calendar",
+    "translations": {
+      "sk": "Ktoré obdobie má kvety?"
+    }
+  },
+  {
+    "id": "ol_0233",
+    "category": "calendar",
+    "translations": {
+      "sk": "Koľko dní má týždeň?"
+    }
+  },
+  {
+    "id": "ol_0234",
+    "category": "calendar",
+    "translations": {
+      "sk": "Koľko mesiacov má rok?"
+    }
+  },
+  {
+    "id": "ol_0235",
+    "category": "calendar",
+    "translations": {
+      "sk": "Koľko hodín má deň?"
+    }
+  },
+  {
+    "id": "ol_0236",
+    "category": "calendar",
+    "translations": {
+      "sk": "Koľko minút má hodina?"
+    }
+  },
+  {
+    "id": "ol_0237",
+    "category": "calendar",
+    "translations": {
+      "sk": "Koľko sekúnd má minúta?"
+    }
+  },
+  {
+    "id": "ol_0238",
+    "category": "calendar",
+    "translations": {
+      "sk": "Kedy býva polnoc?"
+    }
+  },
+  {
+    "id": "ol_0239",
+    "category": "calendar",
+    "translations": {
+      "sk": "Kedy býva obed?"
+    }
+  },
+  {
+    "id": "ol_0240",
+    "category": "calendar",
+    "translations": {
+      "sk": "Kedy býva ráno?"
+    }
+  },
+  {
+    "id": "ol_0241",
+    "category": "calendar",
+    "translations": {
+      "sk": "Kedy býva večer?"
+    }
+  },
+  {
+    "id": "ol_0242",
+    "category": "calendar",
+    "translations": {
+      "sk": "Čo ukazujú hodiny?"
+    }
+  },
+  {
+    "id": "ol_0243",
+    "category": "calendar",
+    "translations": {
+      "sk": "Čo ukazuje kalendár?"
+    }
+  },
+  {
+    "id": "ol_0244",
+    "category": "calendar",
+    "translations": {
+      "sk": "Čo príde po zime?"
+    }
+  },
+  {
+    "id": "ol_0245",
+    "category": "calendar",
+    "translations": {
+      "sk": "Čo príde po lete?"
+    }
+  },
+  {
+    "id": "ol_0246",
+    "category": "transport",
+    "translations": {
+      "sk": "Kde jazdia autá?"
+    }
+  },
+  {
+    "id": "ol_0247",
+    "category": "transport",
+    "translations": {
+      "sk": "Kde jazdia vlaky?"
+    }
+  },
+  {
+    "id": "ol_0248",
+    "category": "transport",
+    "translations": {
+      "sk": "Kde lietajú lietadlá?"
+    }
+  },
+  {
+    "id": "ol_0249",
+    "category": "transport",
+    "translations": {
+      "sk": "Kde plávajú lode?"
+    }
+  },
+  {
+    "id": "ol_0250",
+    "category": "transport",
+    "translations": {
+      "sk": "Kde zastavuje autobus?"
+    }
+  },
+  {
+    "id": "ol_0251",
+    "category": "transport",
+    "translations": {
+      "sk": "Čo má pedále?"
+    }
+  },
+  {
+    "id": "ol_0252",
+    "category": "transport",
+    "translations": {
+      "sk": "Čo má koľaje?"
+    }
+  },
+  {
+    "id": "ol_0253",
+    "category": "transport",
+    "translations": {
+      "sk": "Čo má krídla a motor?"
+    }
+  },
+  {
+    "id": "ol_0254",
+    "category": "transport",
+    "translations": {
+      "sk": "Čo má volant?"
+    }
+  },
+  {
+    "id": "ol_0255",
+    "category": "transport",
+    "translations": {
+      "sk": "Čo má dve kolesá?"
+    }
+  },
+  {
+    "id": "ol_0256",
+    "category": "transport",
+    "translations": {
+      "sk": "Čo má štyri kolesá?"
+    }
+  },
+  {
+    "id": "ol_0257",
+    "category": "transport",
+    "translations": {
+      "sk": "Čo má vodiča?"
+    }
+  },
+  {
+    "id": "ol_0258",
+    "category": "transport",
+    "translations": {
+      "sk": "Čo má pilota?"
+    }
+  },
+  {
+    "id": "ol_0259",
+    "category": "transport",
+    "translations": {
+      "sk": "Čo má kapitána?"
+    }
+  },
+  {
+    "id": "ol_0260",
+    "category": "transport",
+    "translations": {
+      "sk": "Čo má cestujúcich?"
+    }
+  },
+  {
+    "id": "ol_0261",
+    "category": "transport",
+    "translations": {
+      "sk": "Čím sa ide do práce?"
+    }
+  },
+  {
+    "id": "ol_0262",
+    "category": "transport",
+    "translations": {
+      "sk": "Čím sa ide na dovolenku?"
+    }
+  },
+  {
+    "id": "ol_0263",
+    "category": "transport",
+    "translations": {
+      "sk": "Čím sa ide cez more?"
+    }
+  },
+  {
+    "id": "ol_0264",
+    "category": "transport",
+    "translations": {
+      "sk": "Čím sa ide pod zemou?"
+    }
+  },
+  {
+    "id": "ol_0265",
+    "category": "transport",
+    "translations": {
+      "sk": "Čím sa ide po koľajniciach?"
+    }
+  },
+  {
+    "id": "ol_0266",
+    "category": "transport",
+    "translations": {
+      "sk": "Čím sa jazdí po meste?"
+    }
+  },
+  {
+    "id": "ol_0267",
+    "category": "transport",
+    "translations": {
+      "sk": "Čím sa odváža batožina?"
+    }
+  },
+  {
+    "id": "ol_0268",
+    "category": "transport",
+    "translations": {
+      "sk": "Čím sa tankuje auto?"
+    }
+  },
+  {
+    "id": "ol_0269",
+    "category": "transport",
+    "translations": {
+      "sk": "Čím sa brzdí auto?"
+    }
+  },
+  {
+    "id": "ol_0270",
+    "category": "transport",
+    "translations": {
+      "sk": "Čím sa zapína motor?"
+    }
+  },
+  {
+    "id": "ol_0271",
+    "category": "transport",
+    "translations": {
+      "sk": "Kde čakáš na vlak?"
+    }
+  },
+  {
+    "id": "ol_0272",
+    "category": "transport",
+    "translations": {
+      "sk": "Kde čakáš na lietadlo?"
+    }
+  },
+  {
+    "id": "ol_0273",
+    "category": "transport",
+    "translations": {
+      "sk": "Kde parkuje auto?"
+    }
+  },
+  {
+    "id": "ol_0274",
+    "category": "transport",
+    "translations": {
+      "sk": "Kde pristáva lietadlo?"
+    }
+  },
+  {
+    "id": "ol_0275",
+    "category": "transport",
+    "translations": {
+      "sk": "Kde kotví loď?"
+    }
+  },
+  {
+    "id": "ol_0276",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím píšeš?"
+    }
+  },
+  {
+    "id": "ol_0277",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím meriaš čas?"
+    }
+  },
+  {
+    "id": "ol_0278",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím meriaš teplotu?"
+    }
+  },
+  {
+    "id": "ol_0279",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím meriaš dĺžku?"
+    }
+  },
+  {
+    "id": "ol_0280",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím vážiš veci?"
+    }
+  },
+  {
+    "id": "ol_0281",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím fotíš?"
+    }
+  },
+  {
+    "id": "ol_0282",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím telefonuješ?"
+    }
+  },
+  {
+    "id": "ol_0283",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím počúvaš hudbu?"
+    }
+  },
+  {
+    "id": "ol_0284",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím sleduješ film?"
+    }
+  },
+  {
+    "id": "ol_0285",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím kreslíš?"
+    }
+  },
+  {
+    "id": "ol_0286",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím maľuješ?"
+    }
+  },
+  {
+    "id": "ol_0287",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím gumuješ?"
+    }
+  },
+  {
+    "id": "ol_0288",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím lepíš papier?"
+    }
+  },
+  {
+    "id": "ol_0289",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím fúkaš balón?"
+    }
+  },
+  {
+    "id": "ol_0290",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím otváraš fľašu?"
+    }
+  },
+  {
+    "id": "ol_0291",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím si chrániš hlavu?"
+    }
+  },
+  {
+    "id": "ol_0292",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím si chrániš oči?"
+    }
+  },
+  {
+    "id": "ol_0293",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím sa chrániš pred dažďom?"
+    }
+  },
+  {
+    "id": "ol_0294",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím sa chrániš pred slnkom?"
+    }
+  },
+  {
+    "id": "ol_0295",
+    "category": "objects",
+    "translations": {
+      "sk": "Čím sa chrániš pred zimou?"
+    }
+  },
+  {
+    "id": "ol_0296",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má ciferník?"
+    }
+  },
+  {
+    "id": "ol_0297",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má objektív?"
+    }
+  },
+  {
+    "id": "ol_0298",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má struny?"
+    }
+  },
+  {
+    "id": "ol_0299",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má klávesy?"
+    }
+  },
+  {
+    "id": "ol_0300",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má štetiny?"
+    }
+  },
+  {
+    "id": "ol_0301",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má čepeľ?"
+    }
+  },
+  {
+    "id": "ol_0302",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má zip?"
+    }
+  },
+  {
+    "id": "ol_0303",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má šnúrky?"
+    }
+  },
+  {
+    "id": "ol_0304",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má kolieska?"
+    }
+  },
+  {
+    "id": "ol_0305",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má tlačidlá?"
+    }
+  },
+  {
+    "id": "ol_0306",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má displej?"
+    }
+  },
+  {
+    "id": "ol_0307",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má mikrofón?"
+    }
+  },
+  {
+    "id": "ol_0308",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má batériu?"
+    }
+  },
+  {
+    "id": "ol_0309",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má obrazovku?"
+    }
+  },
+  {
+    "id": "ol_0310",
+    "category": "objects",
+    "translations": {
+      "sk": "Čo má obálku?"
+    }
+  },
+  {
+    "id": "ol_0311",
+    "category": "school",
+    "translations": {
+      "sk": "Kde sa učíš?"
+    }
+  },
+  {
+    "id": "ol_0312",
+    "category": "school",
+    "translations": {
+      "sk": "Kto učí v triede?"
+    }
+  },
+  {
+    "id": "ol_0313",
+    "category": "school",
+    "translations": {
+      "sk": "Kto sedí v lavici?"
+    }
+  },
+  {
+    "id": "ol_0314",
+    "category": "school",
+    "translations": {
+      "sk": "Čím píšeš na tabuľu?"
+    }
+  },
+  {
+    "id": "ol_0315",
+    "category": "school",
+    "translations": {
+      "sk": "Čím píšeš do zošita?"
+    }
+  },
+  {
+    "id": "ol_0316",
+    "category": "school",
+    "translations": {
+      "sk": "Kam si píšeš poznámky?"
+    }
+  },
+  {
+    "id": "ol_0317",
+    "category": "school",
+    "translations": {
+      "sk": "Čím nosíš knihy?"
+    }
+  },
+  {
+    "id": "ol_0318",
+    "category": "school",
+    "translations": {
+      "sk": "Kde čítaš knihy?"
+    }
+  },
+  {
+    "id": "ol_0319",
+    "category": "school",
+    "translations": {
+      "sk": "Čo má písmená?"
+    }
+  },
+  {
+    "id": "ol_0320",
+    "category": "school",
+    "translations": {
+      "sk": "Čo má čísla?"
+    }
+  },
+  {
+    "id": "ol_0321",
+    "category": "school",
+    "translations": {
+      "sk": "Čo kreslí kruh?"
+    }
+  },
+  {
+    "id": "ol_0322",
+    "category": "school",
+    "translations": {
+      "sk": "Čo meria centimetre?"
+    }
+  },
+  {
+    "id": "ol_0323",
+    "category": "school",
+    "translations": {
+      "sk": "Čo počíta príklady?"
+    }
+  },
+  {
+    "id": "ol_0324",
+    "category": "school",
+    "translations": {
+      "sk": "Čo ukazuje krajiny?"
+    }
+  },
+  {
+    "id": "ol_0325",
+    "category": "school",
+    "translations": {
+      "sk": "Čo ukazuje Zem?"
+    }
+  },
+  {
+    "id": "ol_0326",
+    "category": "school",
+    "translations": {
+      "sk": "Kedy máš prestávku?"
+    }
+  },
+  {
+    "id": "ol_0327",
+    "category": "school",
+    "translations": {
+      "sk": "Kedy máš prázdniny?"
+    }
+  },
+  {
+    "id": "ol_0328",
+    "category": "school",
+    "translations": {
+      "sk": "Čo dostaneš za odpoveď?"
+    }
+  },
+  {
+    "id": "ol_0329",
+    "category": "school",
+    "translations": {
+      "sk": "Čo nosí školák?"
+    }
+  },
+  {
+    "id": "ol_0330",
+    "category": "school",
+    "translations": {
+      "sk": "Čo leží na lavici?"
+    }
+  },
+  {
+    "id": "ol_0331",
+    "category": "school",
+    "translations": {
+      "sk": "Čo zvoní na hodinu?"
+    }
+  },
+  {
+    "id": "ol_0332",
+    "category": "school",
+    "translations": {
+      "sk": "Čo otvára učiteľ?"
+    }
+  },
+  {
+    "id": "ol_0333",
+    "category": "school",
+    "translations": {
+      "sk": "Čo má školský rok?"
+    }
+  },
+  {
+    "id": "ol_0334",
+    "category": "school",
+    "translations": {
+      "sk": "Čo znamená jednotka?"
+    }
+  },
+  {
+    "id": "ol_0335",
+    "category": "school",
+    "translations": {
+      "sk": "Čo znamená päťka?"
+    }
+  },
+  {
+    "id": "ol_0336",
+    "category": "technology",
+    "translations": {
+      "sk": "Čím voláš kamarátovi?"
+    }
+  },
+  {
+    "id": "ol_0337",
+    "category": "technology",
+    "translations": {
+      "sk": "Čím píšeš e-mail?"
+    }
+  },
+  {
+    "id": "ol_0338",
+    "category": "technology",
+    "translations": {
+      "sk": "Čím hľadáš na internete?"
+    }
+  },
+  {
+    "id": "ol_0339",
+    "category": "technology",
+    "translations": {
+      "sk": "Čím sa pripájaš na wifi?"
+    }
+  },
+  {
+    "id": "ol_0340",
+    "category": "technology",
+    "translations": {
+      "sk": "Čím nabíjaš mobil?"
+    }
+  },
+  {
+    "id": "ol_0341",
+    "category": "technology",
+    "translations": {
+      "sk": "Čím ovládaš televízor?"
+    }
+  },
+  {
+    "id": "ol_0342",
+    "category": "technology",
+    "translations": {
+      "sk": "Čím hráš videohru?"
+    }
+  },
+  {
+    "id": "ol_0343",
+    "category": "technology",
+    "translations": {
+      "sk": "Čím tlačíš dokument?"
+    }
+  },
+  {
+    "id": "ol_0344",
+    "category": "technology",
+    "translations": {
+      "sk": "Čím skenuješ kód?"
+    }
+  },
+  {
+    "id": "ol_0345",
+    "category": "technology",
+    "translations": {
+      "sk": "Čím platíš bez hotovosti?"
+    }
+  },
+  {
+    "id": "ol_0346",
+    "category": "technology",
+    "translations": {
+      "sk": "Čo má heslo?"
+    }
+  },
+  {
+    "id": "ol_0347",
+    "category": "technology",
+    "translations": {
+      "sk": "Čo má aplikácie?"
+    }
+  },
+  {
+    "id": "ol_0348",
+    "category": "technology",
+    "translations": {
+      "sk": "Čo má klávesnicu?"
+    }
+  },
+  {
+    "id": "ol_0349",
+    "category": "technology",
+    "translations": {
+      "sk": "Čo má myš?"
+    }
+  },
+  {
+    "id": "ol_0350",
+    "category": "technology",
+    "translations": {
+      "sk": "Čo má nabíjačku?"
+    }
+  },
+  {
+    "id": "ol_0351",
+    "category": "technology",
+    "translations": {
+      "sk": "Čo má fotoaparát?"
+    }
+  },
+  {
+    "id": "ol_0352",
+    "category": "technology",
+    "translations": {
+      "sk": "Čo má reproduktor?"
+    }
+  },
+  {
+    "id": "ol_0353",
+    "category": "technology",
+    "translations": {
+      "sk": "Čo má slúchadlá?"
+    }
+  },
+  {
+    "id": "ol_0354",
+    "category": "technology",
+    "translations": {
+      "sk": "Čo má internet?"
+    }
+  },
+  {
+    "id": "ol_0355",
+    "category": "technology",
+    "translations": {
+      "sk": "Čo má kameru?"
+    }
+  },
+  {
+    "id": "ol_0356",
+    "category": "technology",
+    "translations": {
+      "sk": "Kde pozeráš videá?"
+    }
+  },
+  {
+    "id": "ol_0357",
+    "category": "technology",
+    "translations": {
+      "sk": "Kde posielaš správu?"
+    }
+  },
+  {
+    "id": "ol_0358",
+    "category": "technology",
+    "translations": {
+      "sk": "Kde hľadáš adresu?"
+    }
+  },
+  {
+    "id": "ol_0359",
+    "category": "technology",
+    "translations": {
+      "sk": "Kde ukladáš fotky?"
+    }
+  },
+  {
+    "id": "ol_0360",
+    "category": "technology",
+    "translations": {
+      "sk": "Kde si pustíš hudbu?"
+    }
+  },
+  {
+    "id": "ol_0361",
+    "category": "sports",
+    "translations": {
+      "sk": "Čím kopeš do lopty?"
+    }
+  },
+  {
+    "id": "ol_0362",
+    "category": "sports",
+    "translations": {
+      "sk": "Čím chytáš loptu?"
+    }
+  },
+  {
+    "id": "ol_0363",
+    "category": "sports",
+    "translations": {
+      "sk": "Čím hádžeš loptu?"
+    }
+  },
+  {
+    "id": "ol_0364",
+    "category": "sports",
+    "translations": {
+      "sk": "Čím hráš tenis?"
+    }
+  },
+  {
+    "id": "ol_0365",
+    "category": "sports",
+    "translations": {
+      "sk": "Čím hráš hokej?"
+    }
+  },
+  {
+    "id": "ol_0366",
+    "category": "sports",
+    "translations": {
+      "sk": "Čím hráš golf?"
+    }
+  },
+  {
+    "id": "ol_0367",
+    "category": "sports",
+    "translations": {
+      "sk": "Čím korčuľuješ?"
+    }
+  },
+  {
+    "id": "ol_0368",
+    "category": "sports",
+    "translations": {
+      "sk": "Čím lyžuješ?"
+    }
+  },
+  {
+    "id": "ol_0369",
+    "category": "sports",
+    "translations": {
+      "sk": "Čím plávaš?"
+    }
+  },
+  {
+    "id": "ol_0370",
+    "category": "sports",
+    "translations": {
+      "sk": "Čím boxuješ?"
+    }
+  },
+  {
+    "id": "ol_0371",
+    "category": "sports",
+    "translations": {
+      "sk": "Kde hráš futbal?"
+    }
+  },
+  {
+    "id": "ol_0372",
+    "category": "sports",
+    "translations": {
+      "sk": "Kde hráš tenis?"
+    }
+  },
+  {
+    "id": "ol_0373",
+    "category": "sports",
+    "translations": {
+      "sk": "Kde hráš hokej?"
+    }
+  },
+  {
+    "id": "ol_0374",
+    "category": "sports",
+    "translations": {
+      "sk": "Kde plávaš?"
+    }
+  },
+  {
+    "id": "ol_0375",
+    "category": "sports",
+    "translations": {
+      "sk": "Kde beháš?"
+    }
+  },
+  {
+    "id": "ol_0376",
+    "category": "sports",
+    "translations": {
+      "sk": "Čo strieľaš do bránky?"
+    }
+  },
+  {
+    "id": "ol_0377",
+    "category": "sports",
+    "translations": {
+      "sk": "Čo triafaš raketou?"
+    }
+  },
+  {
+    "id": "ol_0378",
+    "category": "sports",
+    "translations": {
+      "sk": "Čo hádžeš do koša?"
+    }
+  },
+  {
+    "id": "ol_0379",
+    "category": "sports",
+    "translations": {
+      "sk": "Čo nosí rozhodca?"
+    }
+  },
+  {
+    "id": "ol_0380",
+    "category": "sports",
+    "translations": {
+      "sk": "Čo drží hokejista?"
+    }
+  },
+  {
+    "id": "ol_0381",
+    "category": "sports",
+    "translations": {
+      "sk": "Koľko hráčov má tím?"
+    }
+  },
+  {
+    "id": "ol_0382",
+    "category": "sports",
+    "translations": {
+      "sk": "Kto píska zápas?"
+    }
+  },
+  {
+    "id": "ol_0383",
+    "category": "sports",
+    "translations": {
+      "sk": "Kto dáva medailu?"
+    }
+  },
+  {
+    "id": "ol_0384",
+    "category": "sports",
+    "translations": {
+      "sk": "Kto vyhrá preteky?"
+    }
+  },
+  {
+    "id": "ol_0385",
+    "category": "sports",
+    "translations": {
+      "sk": "Čo znamená gól?"
+    }
+  },
+  {
+    "id": "ol_0386",
+    "category": "weather",
+    "translations": {
+      "sk": "Čo padá z oblohy?"
+    }
+  },
+  {
+    "id": "ol_0387",
+    "category": "weather",
+    "translations": {
+      "sk": "Čo fúka medzi stromami?"
+    }
+  },
+  {
+    "id": "ol_0388",
+    "category": "weather",
+    "translations": {
+      "sk": "Čo sa objaví po daždi?"
+    }
+  },
+  {
+    "id": "ol_0389",
+    "category": "weather",
+    "translations": {
+      "sk": "Čo zahrmí počas búrky?"
+    }
+  },
+  {
+    "id": "ol_0390",
+    "category": "weather",
+    "translations": {
+      "sk": "Čo zabliká počas búrky?"
+    }
+  },
+  {
+    "id": "ol_0391",
+    "category": "weather",
+    "translations": {
+      "sk": "Čo zakryje oblohu?"
+    }
+  },
+  {
+    "id": "ol_0392",
+    "category": "weather",
+    "translations": {
+      "sk": "Čo topí sneh?"
+    }
+  },
+  {
+    "id": "ol_0393",
+    "category": "weather",
+    "translations": {
+      "sk": "Čo schová slnko?"
+    }
+  },
+  {
+    "id": "ol_0394",
+    "category": "weather",
+    "translations": {
+      "sk": "Čo nosíš pri daždi?"
+    }
+  },
+  {
+    "id": "ol_0395",
+    "category": "weather",
+    "translations": {
+      "sk": "Čo nosíš pri snehu?"
+    }
+  },
+  {
+    "id": "ol_0396",
+    "category": "weather",
+    "translations": {
+      "sk": "Aké býva leto?"
+    }
+  },
+  {
+    "id": "ol_0397",
+    "category": "weather",
+    "translations": {
+      "sk": "Aká býva zima?"
+    }
+  },
+  {
+    "id": "ol_0398",
+    "category": "weather",
+    "translations": {
+      "sk": "Aká býva jar?"
+    }
+  },
+  {
+    "id": "ol_0399",
+    "category": "weather",
+    "translations": {
+      "sk": "Aká býva jeseň?"
+    }
+  },
+  {
+    "id": "ol_0400",
+    "category": "weather",
+    "translations": {
+      "sk": "Kedy sa stavia snehuliak?"
+    }
+  },
+  {
+    "id": "ol_0401",
+    "category": "weather",
+    "translations": {
+      "sk": "Kedy lieta šarkan?"
+    }
+  },
+  {
+    "id": "ol_0402",
+    "category": "weather",
+    "translations": {
+      "sk": "Kedy sa opaľuješ?"
+    }
+  },
+  {
+    "id": "ol_0403",
+    "category": "weather",
+    "translations": {
+      "sk": "Kedy si berieš dáždnik?"
+    }
+  },
+  {
+    "id": "ol_0404",
+    "category": "weather",
+    "translations": {
+      "sk": "Kedy sa tvorí poľadovica?"
+    }
+  },
+  {
+    "id": "ol_0405",
+    "category": "weather",
+    "translations": {
+      "sk": "Kedy sa ukáže dúha?"
+    }
+  },
+  {
+    "id": "ol_0406",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo si obúvaš na nohy?"
+    }
+  },
+  {
+    "id": "ol_0407",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo si dávaš na hlavu?"
+    }
+  },
+  {
+    "id": "ol_0408",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo si dávaš na ruky?"
+    }
+  },
+  {
+    "id": "ol_0409",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo si dávaš na krk?"
+    }
+  },
+  {
+    "id": "ol_0410",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo si dávaš v zime?"
+    }
+  },
+  {
+    "id": "ol_0411",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo si dávaš v lete?"
+    }
+  },
+  {
+    "id": "ol_0412",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo si dávaš do dažďa?"
+    }
+  },
+  {
+    "id": "ol_0413",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo si dávaš na pláž?"
+    }
+  },
+  {
+    "id": "ol_0414",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo si dávaš do postele?"
+    }
+  },
+  {
+    "id": "ol_0415",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo si dávaš na svadbu?"
+    }
+  },
+  {
+    "id": "ol_0416",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo nosíš na očiach?"
+    }
+  },
+  {
+    "id": "ol_0417",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo nosíš na zápästí?"
+    }
+  },
+  {
+    "id": "ol_0418",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo nosíš na prste?"
+    }
+  },
+  {
+    "id": "ol_0419",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo nosíš na ušiach?"
+    }
+  },
+  {
+    "id": "ol_0420",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo nosíš cez plece?"
+    }
+  },
+  {
+    "id": "ol_0421",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo má rukávy?"
+    }
+  },
+  {
+    "id": "ol_0422",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo má vrecká?"
+    }
+  },
+  {
+    "id": "ol_0423",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo má gombíky?"
+    }
+  },
+  {
+    "id": "ol_0424",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo má kapucňu?"
+    }
+  },
+  {
+    "id": "ol_0425",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo má opasok?"
+    }
+  },
+  {
+    "id": "ol_0426",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo má podpätok?"
+    }
+  },
+  {
+    "id": "ol_0427",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo má podrážku?"
+    }
+  },
+  {
+    "id": "ol_0428",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo má golier?"
+    }
+  },
+  {
+    "id": "ol_0429",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo má zips?"
+    }
+  },
+  {
+    "id": "ol_0430",
+    "category": "clothing",
+    "translations": {
+      "sk": "Čo má šál?"
+    }
+  },
+  {
+    "id": "ol_0431",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má sneh?"
+    }
+  },
+  {
+    "id": "ol_0432",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má tráva?"
+    }
+  },
+  {
+    "id": "ol_0433",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má obloha?"
+    }
+  },
+  {
+    "id": "ol_0434",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má slnko?"
+    }
+  },
+  {
+    "id": "ol_0435",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má uhlie?"
+    }
+  },
+  {
+    "id": "ol_0436",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má paradajka?"
+    }
+  },
+  {
+    "id": "ol_0437",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má banán?"
+    }
+  },
+  {
+    "id": "ol_0438",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má pomaranč?"
+    }
+  },
+  {
+    "id": "ol_0439",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má citrón?"
+    }
+  },
+  {
+    "id": "ol_0440",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má jahoda?"
+    }
+  },
+  {
+    "id": "ol_0441",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má čučoriedka?"
+    }
+  },
+  {
+    "id": "ol_0442",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má mrkva?"
+    }
+  },
+  {
+    "id": "ol_0443",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má čokoláda?"
+    }
+  },
+  {
+    "id": "ol_0444",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má mlieko?"
+    }
+  },
+  {
+    "id": "ol_0445",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má noc?"
+    }
+  },
+  {
+    "id": "ol_0446",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má list na jeseň?"
+    }
+  },
+  {
+    "id": "ol_0447",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má lev?"
+    }
+  },
+  {
+    "id": "ol_0448",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má prasa?"
+    }
+  },
+  {
+    "id": "ol_0449",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má zebra?"
+    }
+  },
+  {
+    "id": "ol_0450",
+    "category": "colors",
+    "translations": {
+      "sk": "Akú farbu má futbalová lopta?"
+    }
+  },
+  {
+    "id": "ol_0451",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko nôh má pes?"
+    }
+  },
+  {
+    "id": "ol_0452",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko nôh má mačka?"
+    }
+  },
+  {
+    "id": "ol_0453",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko nôh má pavúk?"
+    }
+  },
+  {
+    "id": "ol_0454",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko nôh má vták?"
+    }
+  },
+  {
+    "id": "ol_0455",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko nôh má chobotnica?"
+    }
+  },
+  {
+    "id": "ol_0456",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko krídel má vták?"
+    }
+  },
+  {
+    "id": "ol_0457",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko očí má človek?"
+    }
+  },
+  {
+    "id": "ol_0458",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko uší má človek?"
+    }
+  },
+  {
+    "id": "ol_0459",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko rúk má človek?"
+    }
+  },
+  {
+    "id": "ol_0460",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko nôh má človek?"
+    }
+  },
+  {
+    "id": "ol_0461",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko prstov má noha?"
+    }
+  },
+  {
+    "id": "ol_0462",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko prstov majú ruky?"
+    }
+  },
+  {
+    "id": "ol_0463",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko farieb má dúha?"
+    }
+  },
+  {
+    "id": "ol_0464",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko rohov má hviezda?"
+    }
+  },
+  {
+    "id": "ol_0465",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko strán má trojuholník?"
+    }
+  },
+  {
+    "id": "ol_0466",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko rohov má kocka?"
+    }
+  },
+  {
+    "id": "ol_0467",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko dní má február?"
+    }
+  },
+  {
+    "id": "ol_0468",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko kolies má bicykel?"
+    }
+  },
+  {
+    "id": "ol_0469",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko kolies má auto?"
+    }
+  },
+  {
+    "id": "ol_0470",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko strán má kocka?"
+    }
+  },
+  {
+    "id": "ol_0471",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko rohov má trojuholník?"
+    }
+  },
+  {
+    "id": "ol_0472",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko rohov má štvorec?"
+    }
+  },
+  {
+    "id": "ol_0473",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko dní má víkend?"
+    }
+  },
+  {
+    "id": "ol_0474",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko písmen má abeceda?"
+    }
+  },
+  {
+    "id": "ol_0475",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko farieb má semafor?"
+    }
+  },
+  {
+    "id": "ol_0476",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko hráčov má dvojica?"
+    }
+  },
+  {
+    "id": "ol_0477",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko strán má kniha?"
+    }
+  },
+  {
+    "id": "ol_0478",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko bránok má futbal?"
+    }
+  },
+  {
+    "id": "ol_0479",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko nôh má stolička?"
+    }
+  },
+  {
+    "id": "ol_0480",
+    "category": "numbers",
+    "translations": {
+      "sk": "Koľko dní má apríl?"
+    }
+  },
+  {
+    "id": "ol_0481",
+    "category": "geography",
+    "translations": {
+      "sk": "V ktorej krajine žije panda?"
+    }
+  },
+  {
+    "id": "ol_0482",
+    "category": "geography",
+    "translations": {
+      "sk": "V ktorej krajine sú pyramídy?"
+    }
+  },
+  {
+    "id": "ol_0483",
+    "category": "geography",
+    "translations": {
+      "sk": "V ktorej krajine je pizza?"
+    }
+  },
+  {
+    "id": "ol_0484",
+    "category": "geography",
+    "translations": {
+      "sk": "V ktorej krajine je Eiffelovka?"
+    }
+  },
+  {
+    "id": "ol_0485",
+    "category": "geography",
+    "translations": {
+      "sk": "V ktorej krajine je Big Ben?"
+    }
+  },
+  {
+    "id": "ol_0486",
+    "category": "geography",
+    "translations": {
+      "sk": "V ktorom meste je Eiffelovka?"
+    }
+  },
+  {
+    "id": "ol_0487",
+    "category": "geography",
+    "translations": {
+      "sk": "V ktorom meste je Koloseum?"
+    }
+  },
+  {
+    "id": "ol_0488",
+    "category": "geography",
+    "translations": {
+      "sk": "V ktorom meste je Big Ben?"
+    }
+  },
+  {
+    "id": "ol_0489",
+    "category": "geography",
+    "translations": {
+      "sk": "Na ktorom kontinente je Afrika?"
+    }
+  },
+  {
+    "id": "ol_0490",
+    "category": "geography",
+    "translations": {
+      "sk": "Na ktorom kontinente je Európa?"
+    }
+  },
+  {
+    "id": "ol_0491",
+    "category": "geography",
+    "translations": {
+      "sk": "Na ktorom kontinente je Austrália?"
+    }
+  },
+  {
+    "id": "ol_0492",
+    "category": "geography",
+    "translations": {
+      "sk": "Kde je Sahara?"
+    }
+  },
+  {
+    "id": "ol_0493",
+    "category": "geography",
+    "translations": {
+      "sk": "Kde je Amazónka?"
+    }
+  },
+  {
+    "id": "ol_0494",
+    "category": "geography",
+    "translations": {
+      "sk": "Kde je Mount Everest?"
+    }
+  },
+  {
+    "id": "ol_0495",
+    "category": "geography",
+    "translations": {
+      "sk": "Kde je more?"
+    }
+  },
+  {
+    "id": "ol_0496",
+    "category": "geography",
+    "translations": {
+      "sk": "Kde je Severný pól?"
+    }
+  },
+  {
+    "id": "ol_0497",
+    "category": "geography",
+    "translations": {
+      "sk": "Kde je Južný pól?"
+    }
+  },
+  {
+    "id": "ol_0498",
+    "category": "geography",
+    "translations": {
+      "sk": "Kde je Bratislava?"
+    }
+  },
+  {
+    "id": "ol_0499",
+    "category": "geography",
+    "translations": {
+      "sk": "Kde je Vysoké Tatry?"
+    }
+  },
+  {
+    "id": "ol_0500",
+    "category": "geography",
+    "translations": {
+      "sk": "Kde je Dunaj?"
+    }
+  }
+]
