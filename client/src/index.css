@@ -2113,40 +2113,61 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
 .party-picker-footer button:active { transform: scale(.97); }
 .party-picker-footer button:disabled { cursor: not-allowed; opacity: .38; }
 
-/* Iba nepravda: mobilná hra s dominantným časom, otázkou a dvoma jasnými rozhodnutiami. */
-.only-lies-shell { position: relative; isolation: isolate; overflow: hidden; background: radial-gradient(circle at 78% 9%, rgba(236,72,153,.24), transparent 17rem), radial-gradient(circle at 6% 92%, rgba(137,44,119,.22), transparent 19rem), linear-gradient(150deg, #140711 0%, #090912 46%, #100816 100%) !important; }
-.only-lies-shell::before, .only-lies-shell::after { content: ""; position: absolute; z-index: -1; border-radius: 999px; filter: blur(1px); pointer-events: none; }
-.only-lies-shell::before { width: 15rem; height: 15rem; top: 21%; right: -11rem; border: 1px solid rgba(251,113,133,.22); box-shadow: 0 0 0 1.25rem rgba(236,72,153,.045), 0 0 4.5rem rgba(236,72,153,.17); }
-.only-lies-shell::after { width: 10rem; height: 10rem; left: -6rem; bottom: 7%; background: rgba(192,38,211,.1); }
-.only-lies-stage { display: grid; width: min(100%, 31rem); flex: 1; grid-template-rows: auto auto minmax(13rem, 1fr) auto; gap: 1rem; margin: 0 auto; padding: .75rem 0 1.25rem; }
-.only-lies-rule { display: inline-flex; width: fit-content; align-items: center; gap: .45rem; margin: 0 auto; border: 1px solid rgba(255,255,255,.1); border-radius: 999px; background: rgba(12,8,19,.52); padding: .35rem .62rem; color: rgba(255,255,255,.7); font-size: .69rem; font-weight: 800; letter-spacing: .01em; box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
-.only-lies-rule p { margin: 0; }
-.only-lies-rule-dot { width: .43rem; height: .43rem; border-radius: 999px; background: #fb7185; box-shadow: 0 0 12px #fb7185; }
-.only-lies-timer { display: grid; gap: .62rem; border: 1px solid rgba(253,164,175,.24); border-radius: 1.05rem; background: linear-gradient(105deg, rgba(80,18,60,.74), rgba(33,12,43,.82)); padding: .65rem .78rem .72rem; box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 .9rem 1.8rem -1.55rem rgba(244,63,94,.9); }
-.only-lies-timer-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
-.only-lies-timer-heading > span { color: rgba(255,255,255,.62); font-size: .64rem; font-weight: 900; letter-spacing: .15em; }
-.only-lies-timer strong { color: #fff; font-family: "Manrope", "Inter", system-ui, sans-serif; font-size: clamp(2rem, 9vw, 2.7rem); font-variant-numeric: tabular-nums; font-weight: 900; letter-spacing: -.08em; line-height: .78; text-shadow: 0 0 1.25rem rgba(253,164,175,.36); transition: color .15s ease, transform .15s ease; }
-.only-lies-timer strong small { margin-left: .1rem; color: rgba(255,255,255,.58); font-size: .38em; letter-spacing: -.02em; }
-.only-lies-timer strong.is-urgent { color: #fda4af; transform: scale(1.075); transform-origin: right center; }
-.only-lies-timer-track { height: .62rem; overflow: hidden; border: 1px solid rgba(255,255,255,.1); border-radius: 999px; background: rgba(3,3,9,.44); box-shadow: inset 0 1px 4px rgba(0,0,0,.45); }
-.only-lies-timer-track span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #ec4899, #fb7185 72%, #fecdd3); box-shadow: 0 0 15px rgba(251,113,133,.86); transition: width .05s linear; }
-.only-lies-question { position: relative; display: grid; min-height: 14rem; place-items: center; overflow: hidden; border: 1px solid rgba(251,113,133,.34); border-radius: 1.65rem; background: linear-gradient(145deg, rgba(66,17,54,.8), rgba(22,10,33,.9) 58%, rgba(21,12,33,.96)); padding: 2rem 1.45rem; box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 1.5rem 3rem -2.4rem rgba(236,72,153,.8); animation: only-lies-card-in .3s cubic-bezier(.23,1,.32,1) both; }
-.only-lies-question::before { content: ""; position: absolute; width: 11rem; height: 11rem; top: -7rem; left: -5rem; border-radius: 50%; background: rgba(251,113,133,.2); filter: blur(12px); }
-.only-lies-question::after { content: ""; position: absolute; right: -2rem; bottom: -3rem; width: 8rem; height: 8rem; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; box-shadow: 0 0 0 1rem rgba(255,255,255,.025); }
-.only-lies-question-mark { position: absolute; top: -.58rem; right: .55rem; color: rgba(255,255,255,.065); font-size: 9rem; font-weight: 900; line-height: 1; }
-.only-lies-question p { position: relative; z-index: 1; max-width: 24rem; margin: 0; color: #fff; font-family: "Manrope", "Inter", system-ui, sans-serif; font-size: clamp(1.35rem, 5.4vw, 2rem); font-weight: 900; letter-spacing: -.055em; line-height: 1.08; text-align: center; text-wrap: balance; text-shadow: 0 3px 19px rgba(0,0,0,.36); }
-.only-lies-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .72rem; }
-.only-lies-answer { min-height: 4rem !important; border-radius: 1.15rem !important; font-size: .94rem !important; font-weight: 900 !important; letter-spacing: -.02em; }
-.only-lies-answer--correct { border: 1px solid rgba(110,231,183,.26) !important; background: linear-gradient(125deg, #047857, #10b981) !important; box-shadow: 0 1rem 2rem -1.4rem rgba(16,185,129,.82); }
-.only-lies-answer--incorrect { border: 1px solid rgba(253,164,175,.32) !important; background: linear-gradient(125deg, #9f1239, #e11d48) !important; box-shadow: 0 1rem 2rem -1.4rem rgba(225,29,72,.78); }
-.only-lies-failure { background: rgba(8,5,13,.8); backdrop-filter: blur(13px); }
-.only-lies-failure-card { border: 1px solid rgba(253,164,175,.32); border-radius: 1.5rem; background: linear-gradient(145deg, rgba(73,19,52,.97), rgba(22,10,32,.98)); padding: 1.65rem; box-shadow: 0 2rem 4rem -2rem rgba(0,0,0,.86); }
-.only-lies-failure-icon { display: grid; width: 3.5rem; height: 3.5rem; place-items: center; margin: 0 auto .85rem; border-radius: 1.1rem; background: rgba(251,113,133,.13); color: #fecdd3; }
-.only-lies-failure-card > p { margin: 0; color: #fda4af; font-size: .68rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
-.only-lies-failure-card h2 { margin: .28rem 0 1.35rem; color: #fff; font-family: "Manrope", "Inter", system-ui, sans-serif; font-size: 2rem; font-weight: 900; letter-spacing: -.06em; }
-@keyframes only-lies-card-in { from { opacity: .1; transform: translateY(.6rem) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-@media (max-width: 390px) { .only-lies-stage { grid-template-rows: auto auto minmax(12rem, 1fr) auto; gap: .85rem; } .only-lies-timer { border-radius: .95rem; padding: .6rem .7rem .66rem; } .only-lies-question { min-height: 12.2rem; border-radius: 1.4rem; padding: 1.4rem 1rem; } .only-lies-question p { font-size: 1.28rem; } .only-lies-answer { min-height: 3.7rem !important; font-size: .88rem !important; } }
-@media (prefers-reduced-motion: reduce) { .only-lies-question { animation: none; } .only-lies-timer-track span { transition: none; } }
+/* Obvodový časovač: jedna čiara po celom okraji displeja, ktorá sa počas kola postupne plní. */
+.perimeter-timer { position: fixed; inset: 0; z-index: 70; pointer-events: none; }
+.perimeter-timer-svg { display: block; overflow: visible; }
+.perimeter-timer-track { stroke: rgba(255,255,255,.085); }
+.perimeter-timer-fill { stroke-linejoin: round; filter: drop-shadow(0 0 5px var(--perimeter-glow, rgba(251,113,133,.85))) drop-shadow(0 0 16px var(--perimeter-glow-soft, rgba(236,72,153,.45))); transition: stroke .18s ease; }
+.perimeter-timer-fill.is-urgent { stroke: #ff2f52; filter: drop-shadow(0 0 7px rgba(255,47,82,.95)) drop-shadow(0 0 22px rgba(255,47,82,.6)); animation: perimeter-timer-urgent .5s ease-in-out infinite; }
+.perimeter-timer-head { fill: #fff; filter: drop-shadow(0 0 6px rgba(255,255,255,.95)) drop-shadow(0 0 16px var(--perimeter-glow, rgba(251,113,133,.9))); transition: fill .18s ease; }
+.perimeter-timer.is-urgent .perimeter-timer-head { fill: #ffe4e6; }
+@keyframes perimeter-timer-urgent { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+@media (prefers-reduced-motion: reduce) { .perimeter-timer-fill.is-urgent { animation: none; } .perimeter-timer-fill { transition: none; } }
+
+/* Iba nepravda: obvodový časovač, dominantná otázka a dve jednoznačné rozhodnutia. */
+.only-lies-perimeter { --perimeter-from: #fb7185; --perimeter-via: #f472b6; --perimeter-to: #fcd34d; --perimeter-glow: rgba(251,113,133,.85); --perimeter-glow-soft: rgba(244,114,182,.5); }
+.only-lies-shell { position: relative; isolation: isolate; overflow: hidden; background: radial-gradient(118% 60% at 50% -10%, rgba(244,63,94,.26), transparent 62%), radial-gradient(82% 46% at 108% 24%, rgba(217,70,239,.2), transparent 66%), radial-gradient(88% 54% at -10% 94%, rgba(139,92,246,.17), transparent 68%), linear-gradient(168deg, #170714 0%, #0b0712 46%, #090510 100%) !important; }
+.only-lies-shell::before, .only-lies-shell::after { content: ""; position: absolute; z-index: -1; border-radius: 999px; pointer-events: none; }
+.only-lies-shell::before { width: 19rem; height: 19rem; top: 15%; right: -11.5rem; border: 1px solid rgba(251,113,133,.15); box-shadow: 0 0 0 1.6rem rgba(236,72,153,.03), 0 0 6rem rgba(236,72,153,.13); }
+.only-lies-shell::after { width: 13rem; height: 13rem; left: -6.5rem; bottom: 4%; background: radial-gradient(circle, rgba(192,38,211,.2), transparent 70%); filter: blur(6px); }
+.only-lies-stage { display: grid; width: min(100%, 31rem); flex: 1; min-height: 0; grid-template-rows: auto auto minmax(10.5rem, 1fr) auto; gap: .85rem; margin: 0 auto; padding: .1rem 0 .3rem; }
+.only-lies-head { display: flex; align-items: center; justify-content: space-between; gap: .55rem; }
+.only-lies-rule { display: inline-flex; align-items: center; gap: .45rem; margin: 0; border: 1px solid rgba(255,255,255,.15); border-radius: 999px; background: rgba(255,255,255,.075); padding: .42rem .8rem; color: rgba(255,255,255,.92); font-size: .76rem; font-weight: 800; box-shadow: inset 0 1px 0 rgba(255,255,255,.1); }
+.only-lies-rule-dot { width: .45rem; height: .45rem; flex: none; border-radius: 999px; background: #fb7185; box-shadow: 0 0 10px #fb7185, 0 0 20px rgba(251,113,133,.55); }
+.only-lies-streak { display: inline-flex; align-items: center; gap: .4rem; margin: 0; border: 1px solid rgba(253,164,175,.3); border-radius: 999px; background: linear-gradient(120deg, rgba(244,63,94,.24), rgba(217,70,239,.16)); padding: .38rem .72rem; }
+.only-lies-streak span { color: rgba(255,255,255,.72); font-size: .61rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+.only-lies-streak strong { color: #fff; font-size: .96rem; font-variant-numeric: tabular-nums; font-weight: 900; line-height: 1; }
+.only-lies-clock { display: grid; justify-items: center; gap: .12rem; border: 1px solid rgba(255,255,255,.11); border-radius: 1.45rem; background: linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); padding: .7rem 1rem .78rem; box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1.4rem 2.8rem -2.2rem rgba(244,63,94,.9); transition: border-color .2s ease, background .2s ease; }
+.only-lies-clock-label { color: rgba(255,255,255,.75); font-size: .66rem; font-weight: 900; letter-spacing: .2em; text-transform: uppercase; }
+.only-lies-clock-value { display: flex; align-items: baseline; justify-content: center; gap: .06rem; margin: 0; color: #fff; font-family: "Manrope", "Inter", system-ui, sans-serif; font-size: clamp(3.1rem, 15vw, 4.4rem); font-variant-numeric: tabular-nums; font-weight: 900; letter-spacing: -.06em; line-height: .95; text-shadow: 0 0 1.1rem rgba(255,255,255,.28), 0 0 2.8rem rgba(251,113,133,.55); transition: color .18s ease, text-shadow .18s ease; }
+.only-lies-clock-value strong { font-weight: inherit; }
+.only-lies-clock-value small { color: rgba(255,255,255,.65); font-size: .3em; font-weight: 900; letter-spacing: 0; }
+.only-lies-clock-hint { color: rgba(255,255,255,.5); font-size: .63rem; font-weight: 700; line-height: 1.3; text-align: center; }
+.only-lies-clock[data-urgent="true"] { border-color: rgba(255,89,116,.5); background: linear-gradient(160deg, rgba(255,47,82,.22), rgba(255,47,82,.06)); }
+.only-lies-clock[data-urgent="true"] .only-lies-clock-value { color: #ffe4e6; text-shadow: 0 0 1.2rem rgba(255,47,82,.85), 0 0 3rem rgba(255,47,82,.5); animation: only-lies-clock-beat .5s ease-in-out infinite; }
+.only-lies-question { position: relative; display: grid; min-height: 0; place-items: center; overflow: hidden; border: 1px solid rgba(255,255,255,.14); border-radius: 1.8rem; background: linear-gradient(158deg, rgba(58,14,45,.92) 0%, rgba(18,8,26,.96) 55%, rgba(11,6,19,.98) 100%); padding: 1.5rem 1.25rem; box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1.8rem 3.4rem -2.4rem rgba(236,72,153,.85); animation: only-lies-card-in .34s cubic-bezier(.22,1,.36,1) both; }
+.only-lies-question::before { content: ""; position: absolute; z-index: 0; width: 14rem; height: 14rem; top: -8.5rem; left: -5rem; border-radius: 50%; background: radial-gradient(circle, rgba(251,113,133,.3), transparent 70%); filter: blur(8px); }
+.only-lies-question::after { content: ""; position: absolute; z-index: 0; right: -3rem; bottom: -4rem; width: 10rem; height: 10rem; border: 1px solid rgba(255,255,255,.07); border-radius: 50%; box-shadow: 0 0 0 1.2rem rgba(255,255,255,.018); }
+.only-lies-question-mark { position: absolute; z-index: 0; top: -1rem; right: .5rem; color: rgba(255,255,255,.05); font-family: "Manrope", "Inter", system-ui, sans-serif; font-size: 10rem; font-weight: 900; line-height: 1; }
+.only-lies-question p { position: relative; z-index: 1; max-width: 20.5rem; margin: 0; color: #fff; font-family: "Manrope", "Inter", system-ui, sans-serif; font-size: clamp(1.9rem, 8.6vw, 2.9rem); font-weight: 900; letter-spacing: -.035em; line-height: 1.1; text-align: center; text-wrap: balance; text-shadow: 0 2px 10px rgba(0,0,0,.6), 0 8px 32px rgba(0,0,0,.45); }
+.only-lies-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
+.only-lies-answer-inner { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; }
+.is-game-stage .only-lies-answer, .only-lies-answer { min-height: 4.15rem !important; height: auto !important; border-radius: 1.3rem !important; font-size: .97rem !important; font-weight: 900 !important; letter-spacing: -.02em; }
+.only-lies-answer--correct { border: 1px solid rgba(110,231,183,.3) !important; background: linear-gradient(125deg, #04785f, #10b981) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 1.1rem 2.2rem -1.4rem rgba(16,185,129,.85) !important; }
+.only-lies-answer--incorrect { border: 1px solid rgba(253,164,175,.34) !important; background: linear-gradient(125deg, #9f1239, #e11d48) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 1.1rem 2.2rem -1.4rem rgba(225,29,72,.8) !important; }
+.only-lies-failure { background: rgba(7,4,11,.82); backdrop-filter: blur(14px); animation: fadeIn .2s ease both; }
+.only-lies-failure-card { border: 1px solid rgba(253,164,175,.3); border-radius: 1.8rem; background: linear-gradient(158deg, rgba(72,17,50,.97), rgba(15,8,23,.98)); padding: 1.7rem 1.5rem; box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 2.2rem 4.5rem -2rem rgba(0,0,0,.9); animation: popIn .35s cubic-bezier(.34,1.56,.64,1) both; }
+.only-lies-failure-icon { display: grid; width: 3.4rem; height: 3.4rem; place-items: center; margin: 0 auto .8rem; border: 1px solid rgba(253,164,175,.22); border-radius: 1.15rem; background: rgba(251,113,133,.14); color: #fecdd3; }
+.only-lies-failure-card > p { margin: 0; color: #fda4af; font-size: .68rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+.only-lies-failure-card h2 { margin: .3rem 0 1.05rem; color: #fff; font-family: "Manrope", "Inter", system-ui, sans-serif; font-size: 2.05rem; font-weight: 900; letter-spacing: -.055em; }
+.only-lies-failure-score { display: grid; justify-items: center; gap: .1rem; margin: 0 0 1.25rem; border: 1px solid rgba(255,255,255,.11); border-radius: 1.2rem; background: rgba(255,255,255,.05); padding: .8rem 1rem .85rem; }
+.only-lies-failure-score strong { color: #fff; font-family: "Manrope", "Inter", system-ui, sans-serif; font-size: 2.35rem; font-variant-numeric: tabular-nums; font-weight: 900; letter-spacing: -.06em; line-height: 1; }
+.only-lies-failure-score span { color: rgba(255,255,255,.64); font-size: .69rem; font-weight: 800; letter-spacing: .05em; }
+.is-game-stage .only-lies-failure-action, .only-lies-failure-action { min-height: 3.4rem !important; height: auto !important; border-radius: 1.1rem !important; font-weight: 900 !important; }
+@keyframes only-lies-card-in { from { opacity: 0; transform: translateY(.7rem) scale(.975); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes only-lies-clock-beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.055); } }
+@media (max-width: 359px), (max-height: 699px) { .only-lies-stage { grid-template-rows: auto auto minmax(8.5rem, 1fr) auto; gap: .6rem; } .only-lies-rule { font-size: .7rem; padding: .34rem .66rem; } .only-lies-streak { padding: .32rem .6rem; } .only-lies-clock { border-radius: 1.1rem; padding: .5rem .8rem .58rem; } .only-lies-clock-label { font-size: .6rem; letter-spacing: .16em; } .only-lies-clock-value { font-size: clamp(2.4rem, 12.5vw, 3.2rem); } .only-lies-clock-hint { display: none; } .only-lies-question { border-radius: 1.4rem; padding: 1.1rem .9rem; } .only-lies-question p { font-size: clamp(1.55rem, 7.6vw, 2.1rem); } .only-lies-question-mark { font-size: 7.5rem; } .is-game-stage .only-lies-answer, .only-lies-answer { min-height: 3.5rem !important; font-size: .88rem !important; border-radius: 1.1rem !important; } }
+@media (prefers-reduced-motion: reduce) { .only-lies-question { animation: none; } .only-lies-clock[data-urgent="true"] .only-lies-clock-value { animation: none; } .only-lies-failure, .only-lies-failure-card { animation: none; } }
 
 /* Krátke kartové minihry: jeden motív, jedno pravidlo, dominantný obsah. */
 .prompt-game-shell { position: relative; isolation: isolate; overflow: hidden; background: radial-gradient(circle at 83% 8%, var(--prompt-glow), transparent 17rem), radial-gradient(circle at 4% 95%, var(--prompt-wash), transparent 17rem), #080b13 !important; }
