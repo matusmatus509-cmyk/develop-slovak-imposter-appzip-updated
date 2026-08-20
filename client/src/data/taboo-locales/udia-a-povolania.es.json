@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "es",
+  "category": "Ľudia a povolania",
+  "cards": [
+    {
+      "id": "taboo_sk_0151",
+      "category": "Personas y profesiones",
+      "word": "profesor",
+      "forbidden": [
+        "escuela",
+        "alumno",
+        "pizarra",
+        "clase"
+      ]
+    },
+    {
+      "id": "taboo_sk_0152",
+      "category": "Personas y profesiones",
+      "word": "médico",
+      "forbidden": [
+        "hospital",
+        "paciente",
+        "consulta",
+        "estetoscopio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0153",
+      "category": "Personas y profesiones",
+      "word": "bombero",
+      "forbidden": [
+        "fuego",
+        "camión de bomberos",
+        "casco",
+        "rescate"
+      ]
+    },
+    {
+      "id": "taboo_sk_0154",
+      "category": "Personas y profesiones",
+      "word": "policía",
+      "forbidden": [
+        "delito",
+        "patrulla",
+        "esposas",
+        "uniforme"
+      ]
+    },
+    {
+      "id": "taboo_sk_0155",
+      "category": "Personas y profesiones",
+      "word": "cocinero",
+      "forbidden": [
+        "cocina",
+        "receta",
+        "cucharón",
+        "restaurante"
+      ]
+    },
+    {
+      "id": "taboo_sk_0156",
+      "category": "Personas y profesiones",
+      "word": "camarero",
+      "forbidden": [
+        "menú",
+        "vaso",
+        "propina",
+        "pedido"
+      ]
+    },
+    {
+      "id": "taboo_sk_0157",
+      "category": "Personas y profesiones",
+      "word": "peluquero",
+      "forbidden": [
+        "tijeras",
+        "salón",
+        "lavado",
+        "peinado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0158",
+      "category": "Personas y profesiones",
+      "word": "esteticista",
+      "forbidden": [
+        "maquillaje",
+        "piel",
+        "manicura",
+        "salón"
+      ]
+    },
+    {
+      "id": "taboo_sk_0159",
+      "category": "Personas y profesiones",
+      "word": "barbero",
+      "forbidden": [
+        "navaja",
+        "barba",
+        "afeitado",
+        "salón"
+      ]
+    },
+    {
+      "id": "taboo_sk_0160",
+      "category": "Personas y profesiones",
+      "word": "periodista",
+      "forbidden": [
+        "artículo",
+        "reportaje",
+        "redacción",
+        "micrófono"
+      ]
+    },
+    {
+      "id": "taboo_sk_0161",
+      "category": "Personas y profesiones",
+      "word": "fotógrafo",
+      "forbidden": [
+        "cámara",
+        "objetivo",
+        "retrato",
+        "flash"
+      ]
+    },
+    {
+      "id": "taboo_sk_0162",
+      "category": "Personas y profesiones",
+      "word": "arquitecto",
+      "forbidden": [
+        "plano",
+        "diseño",
+        "edificio",
+        "maqueta"
+      ]
+    },
+    {
+      "id": "taboo_sk_0163",
+      "category": "Personas y profesiones",
+      "word": "albañil",
+      "forbidden": [
+        "ladrillo",
+        "mortero",
+        "martillo",
+        "hormigón"
+      ]
+    },
+    {
+      "id": "taboo_sk_0164",
+      "category": "Personas y profesiones",
+      "word": "ingeniero",
+      "forbidden": [
+        "proyecto",
+        "cálculos",
+        "estructura",
+        "tecnología"
+      ]
+    },
+    {
+      "id": "taboo_sk_0165",
+      "category": "Personas y profesiones",
+      "word": "programador",
+      "forbidden": [
+        "código",
+        "error",
+        "ordenador",
+        "aplicación"
+      ]
+    },
+    {
+      "id": "taboo_sk_0166",
+      "category": "Personas y profesiones",
+      "word": "contable",
+      "forbidden": [
+        "factura",
+        "impuesto",
+        "balance",
+        "calculadora"
+      ]
+    },
+    {
+      "id": "taboo_sk_0167",
+      "category": "Personas y profesiones",
+      "word": "banquero",
+      "forbidden": [
+        "cuenta",
+        "crédito",
+        "depósito",
+        "sucursal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0168",
+      "category": "Personas y profesiones",
+      "word": "agente inmobiliario",
+      "forbidden": [
+        "propiedad",
+        "venta",
+        "apartamento",
+        "contrato"
+      ]
+    },
+    {
+      "id": "taboo_sk_0169",
+      "category": "Personas y profesiones",
+      "word": "vendedor",
+      "forbidden": [
+        "mostrador",
+        "cliente",
+        "estantería",
+        "caja"
+      ]
+    },
+    {
+      "id": "taboo_sk_0170",
+      "category": "Personas y profesiones",
+      "word": "gerente",
+      "forbidden": [
+        "equipo",
+        "dirección",
+        "reunión",
+        "estrategia"
+      ]
+    },
+    {
+      "id": "taboo_sk_0171",
+      "category": "Personas y profesiones",
+      "word": "director",
+      "forbidden": [
+        "decisión",
+        "oficina",
+        "firma",
+        "responsabilidad"
+      ]
+    },
+    {
+      "id": "taboo_sk_0172",
+      "category": "Personas y profesiones",
+      "word": "político",
+      "forbidden": [
+        "elecciones",
+        "partido",
+        "discurso",
+        "ley"
+      ]
+    },
+    {
+      "id": "taboo_sk_0173",
+      "category": "Personas y profesiones",
+      "word": "diputado",
+      "forbidden": [
+        "parlamento",
+        "votación",
+        "mandato",
+        "micrófono"
+      ]
+    },
+    {
+      "id": "taboo_sk_0174",
+      "category": "Personas y profesiones",
+      "word": "presidente",
+      "forbidden": [
+        "jefe de estado",
+        "juramento",
+        "despacho",
+        "ceremonia"
+      ]
+    },
+    {
+      "id": "taboo_sk_0175",
+      "category": "Personas y profesiones",
+      "word": "abogado",
+      "forbidden": [
+        "defensa",
+        "cliente",
+        "artículo",
+        "juicio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0176",
+      "category": "Personas y profesiones",
+      "word": "agricultor",
+      "forbidden": [
+        "campo",
+        "ganado",
+        "tractor",
+        "cosecha"
+      ]
+    },
+    {
+      "id": "taboo_sk_0177",
+      "category": "Personas y profesiones",
+      "word": "bibliotecario",
+      "forbidden": [
+        "libro",
+        "préstamo",
+        "lector",
+        "estantería"
+      ]
+    },
+    {
+      "id": "taboo_sk_0178",
+      "category": "Personas y profesiones",
+      "word": "artista",
+      "forbidden": [
+        "galería",
+        "exposición",
+        "creación",
+        "pincel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0179",
+      "category": "Personas y profesiones",
+      "word": "actor",
+      "forbidden": [
+        "teatro",
+        "papel",
+        "escena",
+        "estreno"
+      ]
+    },
+    {
+      "id": "taboo_sk_0180",
+      "category": "Personas y profesiones",
+      "word": "director",
+      "forbidden": [
+        "escena",
+        "cámara",
+        "montaje",
+        "guion"
+      ]
+    },
+    {
+      "id": "taboo_sk_0181",
+      "category": "Personas y profesiones",
+      "word": "productor",
+      "forbidden": [
+        "finanzas",
+        "proyecto",
+        "inversor",
+        "estudio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0182",
+      "category": "Personas y profesiones",
+      "word": "músico",
+      "forbidden": [
+        "instrumento",
+        "concierto",
+        "partitura",
+        "banda"
+      ]
+    },
+    {
+      "id": "taboo_sk_0183",
+      "category": "Personas y profesiones",
+      "word": "cantante",
+      "forbidden": [
+        "micrófono",
+        "voz",
+        "estribillo",
+        "concierto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0184",
+      "category": "Personas y profesiones",
+      "word": "bartender",
+      "forbidden": [
+        "coctelera",
+        "trago",
+        "barra",
+        "cliente"
+      ]
+    },
+    {
+      "id": "taboo_sk_0185",
+      "category": "Personas y profesiones",
+      "word": "cosmonauta",
+      "forbidden": [
+        "espacio",
+        "órbita",
+        "cohete",
+        "traje espacial"
+      ]
+    },
+    {
+      "id": "taboo_sk_0186",
+      "category": "Personas y profesiones",
+      "word": "astrónomo",
+      "forbidden": [
+        "estrella",
+        "telescopio",
+        "galaxia",
+        "observatorio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0187",
+      "category": "Personas y profesiones",
+      "word": "biólogo",
+      "forbidden": [
+        "laboratorio",
+        "célula",
+        "evolución",
+        "microscopio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0188",
+      "category": "Personas y profesiones",
+      "word": "farmacéutico",
+      "forbidden": [
+        "farmacia",
+        "formulación",
+        "comprimido",
+        "dosis"
+      ]
+    },
+    {
+      "id": "taboo_sk_0189",
+      "category": "Personas y profesiones",
+      "word": "trabajador social",
+      "forbidden": [
+        "ayuda",
+        "cliente",
+        "familia",
+        "intervención"
+      ]
+    },
+    {
+      "id": "taboo_sk_0190",
+      "category": "Personas y profesiones",
+      "word": "psicólogo",
+      "forbidden": [
+        "terapia",
+        "paciente",
+        "conversación",
+        "diagnóstico"
+      ]
+    },
+    {
+      "id": "taboo_sk_0191",
+      "category": "Personas y profesiones",
+      "word": "enfermero",
+      "forbidden": [
+        "infusión",
+        "cura",
+        "hospital",
+        "turno"
+      ]
+    },
+    {
+      "id": "taboo_sk_0192",
+      "category": "Personas y profesiones",
+      "word": "mensajero",
+      "forbidden": [
+        "envío",
+        "entrega",
+        "dirección",
+        "paquete"
+      ]
+    },
+    {
+      "id": "taboo_sk_0193",
+      "category": "Personas y profesiones",
+      "word": "mecánico",
+      "forbidden": [
+        "motor",
+        "diagnóstico",
+        "frenos",
+        "taller"
+      ]
+    },
+    {
+      "id": "taboo_sk_0194",
+      "category": "Personas y profesiones",
+      "word": "mago",
+      "forbidden": [
+        "truco",
+        "sombrero",
+        "ilusión",
+        "público"
+      ]
+    },
+    {
+      "id": "taboo_sk_0195",
+      "category": "Personas y profesiones",
+      "word": "moderador",
+      "forbidden": [
+        "emisión",
+        "pregunta",
+        "estudio",
+        "invitado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0436",
+      "category": "Personas y profesiones",
+      "word": "entrenador",
+      "forbidden": [
+        "equipo",
+        "táctica",
+        "motivación",
+        "condición"
+      ]
+    },
+    {
+      "id": "taboo_sk_0437",
+      "category": "Personas y profesiones",
+      "word": "notario",
+      "forbidden": [
+        "firma",
+        "certificar",
+        "documento",
+        "sello"
+      ]
+    },
+    {
+      "id": "taboo_sk_0438",
+      "category": "Personas y profesiones",
+      "word": "electricista",
+      "forbidden": [
+        "cable",
+        "corriente",
+        "enchufe",
+        "interruptor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0439",
+      "category": "Personas y profesiones",
+      "word": "carpintero",
+      "forbidden": [
+        "madera",
+        "martillo",
+        "tabla",
+        "muebles"
+      ]
+    },
+    {
+      "id": "taboo_sk_0440",
+      "category": "Personas y profesiones",
+      "word": "jardinero",
+      "forbidden": [
+        "flores",
+        "césped",
+        "pala",
+        "fertilizante"
+      ]
+    },
+    {
+      "id": "taboo_sk_0441",
+      "category": "Personas y profesiones",
+      "word": "masajista",
+      "forbidden": [
+        "relajar",
+        "aceite",
+        "músculo",
+        "relajación"
+      ]
+    },
+    {
+      "id": "taboo_sk_0442",
+      "category": "Personas y profesiones",
+      "word": "conductor",
+      "forbidden": [
+        "volante",
+        "tráfico",
+        "pasajero",
+        "aparcar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0443",
+      "category": "Personas y profesiones",
+      "word": "rey",
+      "forbidden": [
+        "corona",
+        "palacio",
+        "corte",
+        "gobierno"
+      ]
+    },
+    {
+      "id": "taboo_sk_0444",
+      "category": "Personas y profesiones",
+      "word": "veterinario",
+      "forbidden": [
+        "clínica",
+        "animal",
+        "vacuna",
+        "esterilización"
+      ]
+    },
+    {
+      "id": "taboo_sk_0445",
+      "category": "Personas y profesiones",
+      "word": "herrero",
+      "forbidden": [
+        "hierro",
+        "herradura",
+        "martillo",
+        "forja"
+      ]
+    },
+    {
+      "id": "taboo_sk_0446",
+      "category": "Personas y profesiones",
+      "word": "scout",
+      "forbidden": [
+        "campo",
+        "nudo",
+        "insignia",
+        "aventura"
+      ]
+    },
+    {
+      "id": "taboo_sk_0447",
+      "category": "Personas y profesiones",
+      "word": "obispo",
+      "forbidden": [
+        "mitra",
+        "iglesia",
+        "misa",
+        "sacerdote"
+      ]
+    },
+    {
+      "id": "taboo_sk_0448",
+      "category": "Personas y profesiones",
+      "word": "restaurador",
+      "forbidden": [
+        "cuadro",
+        "lienzo",
+        "conservar",
+        "pincel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0449",
+      "category": "Personas y profesiones",
+      "word": "curador",
+      "forbidden": [
+        "galería",
+        "exposición",
+        "obras",
+        "exhibición"
+      ]
+    },
+    {
+      "id": "taboo_sk_0450",
+      "category": "Personas y profesiones",
+      "word": "analista",
+      "forbidden": [
+        "datos",
+        "tabla",
+        "informe",
+        "modelo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0451",
+      "category": "Personas y profesiones",
+      "word": "óptico",
+      "forbidden": [
+        "gafas",
+        "dioptría",
+        "montura",
+        "vista"
+      ]
+    },
+    {
+      "id": "taboo_sk_0452",
+      "category": "Personas y profesiones",
+      "word": "traductor",
+      "forbidden": [
+        "idioma",
+        "texto",
+        "contexto",
+        "terminología"
+      ]
+    },
+    {
+      "id": "taboo_sk_0453",
+      "category": "Personas y profesiones",
+      "word": "sumiller",
+      "forbidden": [
+        "botella",
+        "degustación",
+        "aroma",
+        "variedad"
+      ]
+    },
+    {
+      "id": "taboo_sk_0454",
+      "category": "Personas y profesiones",
+      "word": "maquillador",
+      "forbidden": [
+        "maquillaje",
+        "pincel",
+        "cosméticos",
+        "rostro"
+      ]
+    },
+    {
+      "id": "taboo_sk_0455",
+      "category": "Personas y profesiones",
+      "word": "doble",
+      "forbidden": [
+        "caída",
+        "doble",
+        "peligro",
+        "truco"
+      ]
+    },
+    {
+      "id": "taboo_sk_0456",
+      "category": "Personas y profesiones",
+      "word": "sociólogo",
+      "forbidden": [
+        "sociedad",
+        "investigación",
+        "comportamiento",
+        "relaciones"
+      ]
+    },
+    {
+      "id": "taboo_sk_0457",
+      "category": "Personas y profesiones",
+      "word": "meteorólogo",
+      "forbidden": [
+        "pronóstico",
+        "nubes",
+        "presión",
+        "radar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0458",
+      "category": "Personas y profesiones",
+      "word": "florista",
+      "forbidden": [
+        "ramo",
+        "jarrón",
+        "composición",
+        "decoración"
+      ]
+    },
+    {
+      "id": "taboo_sk_0459",
+      "category": "Personas y profesiones",
+      "word": "voluntario",
+      "forbidden": [
+        "ayuda",
+        "caridad",
+        "gratis",
+        "organizar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0460",
+      "category": "Personas y profesiones",
+      "word": "panadero",
+      "forbidden": [
+        "harina",
+        "horneado",
+        "horno",
+        "desayuno"
+      ]
+    },
+    {
+      "id": "taboo_sk_0461",
+      "category": "Personas y profesiones",
+      "word": "piloto",
+      "forbidden": [
+        "cabina",
+        "vuelo",
+        "aterrizaje",
+        "navegación"
+      ]
+    },
+    {
+      "id": "taboo_sk_0462",
+      "category": "Personas y profesiones",
+      "word": "dramaturgo",
+      "forbidden": [
+        "teatro",
+        "adaptación",
+        "personajes",
+        "concepto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0463",
+      "category": "Personas y profesiones",
+      "word": "escenógrafo",
+      "forbidden": [
+        "telón",
+        "escena",
+        "diseño",
+        "decorado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0464",
+      "category": "Personas y profesiones",
+      "word": "lobbista",
+      "forbidden": [
+        "influencia",
+        "acuerdo",
+        "recompensa",
+        "interés"
+      ]
+    },
+    {
+      "id": "taboo_sk_0465",
+      "category": "Personas y profesiones",
+      "word": "arqueólogo",
+      "forbidden": [
+        "excavaciones",
+        "moneda",
+        "hallazgo",
+        "capa"
+      ]
+    },
+    {
+      "id": "taboo_sk_0466",
+      "category": "Personas y profesiones",
+      "word": "joyero",
+      "forbidden": [
+        "oro",
+        "anillo",
+        "gema",
+        "grabado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0467",
+      "category": "Personas y profesiones",
+      "word": "director de orquesta",
+      "forbidden": [
+        "orquesta",
+        "compás",
+        "batuta",
+        "concierto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0468",
+      "category": "Personas y profesiones",
+      "word": "sonidista",
+      "forbidden": [
+        "micrófono",
+        "mezcla",
+        "consola",
+        "grabación"
+      ]
+    },
+    {
+      "id": "taboo_sk_0469",
+      "category": "Personas y profesiones",
+      "word": "cartógrafo",
+      "forbidden": [
+        "mapa",
+        "escala",
+        "atlas",
+        "medición"
+      ]
+    },
+    {
+      "id": "taboo_sk_0470",
+      "category": "Personas y profesiones",
+      "word": "economista",
+      "forbidden": [
+        "mercado",
+        "pronóstico",
+        "dinero",
+        "análisis"
+      ]
+    },
+    {
+      "id": "taboo_sk_0471",
+      "category": "Personas y profesiones",
+      "word": "auxiliar de vuelo",
+      "forbidden": [
+        "cabina",
+        "pasajero",
+        "seguridad",
+        "servicio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0472",
+      "category": "Personas y profesiones",
+      "word": "guionista",
+      "forbidden": [
+        "diálogo",
+        "personaje",
+        "película",
+        "adaptación"
+      ]
+    },
+    {
+      "id": "taboo_sk_0473",
+      "category": "Personas y profesiones",
+      "word": "estilista",
+      "forbidden": [
+        "moda",
+        "look",
+        "tendencia",
+        "cliente"
+      ]
+    },
+    {
+      "id": "taboo_sk_0474",
+      "category": "Personas y profesiones",
+      "word": "comentarista",
+      "forbidden": [
+        "partido",
+        "comentario",
+        "micrófono",
+        "voz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0475",
+      "category": "Personas y profesiones",
+      "word": "portavoz",
+      "forbidden": [
+        "rueda de prensa",
+        "comunicado",
+        "preguntas",
+        "organización"
+      ]
+    },
+    {
+      "id": "taboo_sk_0476",
+      "category": "Personas y profesiones",
+      "word": "caballero",
+      "forbidden": [
+        "armadura",
+        "espada",
+        "medieval",
+        "caballo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0477",
+      "category": "Personas y profesiones",
+      "word": "calígrafo",
+      "forbidden": [
+        "letra",
+        "tinta",
+        "pluma",
+        "belleza"
+      ]
+    },
+    {
+      "id": "taboo_sk_0478",
+      "category": "Personas y profesiones",
+      "word": "antropólogo",
+      "forbidden": [
+        "cultura",
+        "trabajo de campo",
+        "investigación",
+        "sociedad"
+      ]
+    },
+    {
+      "id": "taboo_sk_0523",
+      "category": "Personas y profesiones",
+      "word": "enfermera",
+      "forbidden": [
+        "hospital",
+        "inyección",
+        "cuidado",
+        "uniforme"
+      ]
+    },
+    {
+      "id": "taboo_sk_0524",
+      "category": "Personas y profesiones",
+      "word": "profesor",
+      "forbidden": [
+        "universidad",
+        "clase",
+        "cátedra",
+        "doctorado"
+      ]
+    },
+    {
+      "id": "taboo_sk_0525",
+      "category": "Personas y profesiones",
+      "word": "estudiante",
+      "forbidden": [
+        "examen",
+        "matrícula",
+        "residencia",
+        "libro de texto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0526",
+      "category": "Personas y profesiones",
+      "word": "abogado",
+      "forbidden": [
+        "tribunal",
+        "defensa",
+        "contrato",
+        "artículo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0527",
+      "category": "Personas y profesiones",
+      "word": "bailarín",
+      "forbidden": [
+        "escenario",
+        "coreografía",
+        "pareja",
+        "entrenamiento"
+      ]
+    },
+    {
+      "id": "taboo_sk_0528",
+      "category": "Personas y profesiones",
+      "word": "modelo",
+      "forbidden": [
+        "moda",
+        "desfile",
+        "pasarela",
+        "agencia"
+      ]
+    },
+    {
+      "id": "taboo_sk_0529",
+      "category": "Personas y profesiones",
+      "word": "empresario",
+      "forbidden": [
+        "empresa",
+        "beneficio",
+        "inversión",
+        "riesgo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0530",
+      "category": "Personas y profesiones",
+      "word": "químico",
+      "forbidden": [
+        "laboratorio",
+        "tubo de ensayo",
+        "fórmula",
+        "experimento"
+      ]
+    },
+    {
+      "id": "taboo_sk_0531",
+      "category": "Personas y profesiones",
+      "word": "farmacéutico",
+      "forbidden": [
+        "farmacia",
+        "medicamento",
+        "receta",
+        "dosificación"
+      ]
+    },
+    {
+      "id": "taboo_sk_0532",
+      "category": "Personas y profesiones",
+      "word": "extra",
+      "forbidden": [
+        "multitud",
+        "decorado",
+        "episodio",
+        "rodaje"
+      ]
+    },
+    {
+      "id": "taboo_sk_0533",
+      "category": "Personas y profesiones",
+      "word": "educador",
+      "forbidden": [
+        "niños",
+        "escuela",
+        "actividades extraescolares",
+        "supervisión"
+      ]
+    },
+    {
+      "id": "taboo_sk_0534",
+      "category": "Personas y profesiones",
+      "word": "cuidador",
+      "forbidden": [
+        "hogar",
+        "personas mayores",
+        "ayuda",
+        "higiene"
+      ]
+    },
+    {
+      "id": "taboo_sk_0535",
+      "category": "Personas y profesiones",
+      "word": "historiador",
+      "forbidden": [
+        "archivo",
+        "investigación",
+        "pasado",
+        "documento"
+      ]
+    },
+    {
+      "id": "taboo_sk_0536",
+      "category": "Personas y profesiones",
+      "word": "instructor",
+      "forbidden": [
+        "curso",
+        "presentación",
+        "ejercicio",
+        "evaluación"
+      ]
+    },
+    {
+      "id": "taboo_sk_0537",
+      "category": "Personas y profesiones",
+      "word": "pescador",
+      "forbidden": [
+        "caña",
+        "cebo",
+        "barco",
+        "captura"
+      ]
+    },
+    {
+      "id": "taboo_sk_0538",
+      "category": "Personas y profesiones",
+      "word": "asesor",
+      "forbidden": [
+        "consulta",
+        "consejo",
+        "cliente",
+        "estrategia"
+      ]
+    },
+    {
+      "id": "taboo_sk_0539",
+      "category": "Personas y profesiones",
+      "word": "escritor",
+      "forbidden": [
+        "novela",
+        "pluma",
+        "idea",
+        "editorial"
+      ]
+    },
+    {
+      "id": "taboo_sk_0540",
+      "category": "Personas y profesiones",
+      "word": "diseñador",
+      "forbidden": [
+        "colección",
+        "boceto",
+        "moda",
+        "costura"
+      ]
+    },
+    {
+      "id": "taboo_sk_0541",
+      "category": "Personas y profesiones",
+      "word": "artesano",
+      "forbidden": [
+        "taller",
+        "herramienta",
+        "habilidad",
+        "encargo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0603",
+      "category": "Personas y profesiones",
+      "word": "dentista",
+      "forbidden": [
+        "dientes",
+        "dolor",
+        "taladro",
+        "sillón"
+      ]
+    },
+    {
+      "id": "taboo_sk_0604",
+      "category": "Personas y profesiones",
+      "word": "DJ",
+      "forbidden": [
+        "set",
+        "club",
+        "mezcla",
+        "auriculares"
+      ]
+    },
+    {
+      "id": "taboo_sk_0605",
+      "category": "Personas y profesiones",
+      "word": "pintor",
+      "forbidden": [
+        "pincel",
+        "pinturas",
+        "lienzo",
+        "estudio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0606",
+      "category": "Personas y profesiones",
+      "word": "diseñador gráfico",
+      "forbidden": [
+        "logo",
+        "cartel",
+        "programa",
+        "diseño"
+      ]
+    },
+    {
+      "id": "taboo_sk_0607",
+      "category": "Personas y profesiones",
+      "word": "consultor",
+      "forbidden": [
+        "asesoría",
+        "cliente",
+        "presentación",
+        "proyecto"
+      ]
+    },
+    {
+      "id": "taboo_sk_0608",
+      "category": "Personas y profesiones",
+      "word": "camarero",
+      "forbidden": [
+        "menú",
+        "mesa",
+        "ticket",
+        "servir"
+      ]
+    },
+    {
+      "id": "taboo_sk_0609",
+      "category": "Personas y profesiones",
+      "word": "reportero",
+      "forbidden": [
+        "artículo",
+        "entrevista",
+        "micrófono",
+        "noticia"
+      ]
+    },
+    {
+      "id": "taboo_sk_0610",
+      "category": "Personas y profesiones",
+      "word": "psiquiatra",
+      "forbidden": [
+        "medicamentos",
+        "diagnóstico",
+        "hospitalización",
+        "estrés"
+      ]
+    },
+    {
+      "id": "taboo_sk_0611",
+      "category": "Personas y profesiones",
+      "word": "secretaria",
+      "forbidden": [
+        "oficina",
+        "llamada",
+        "agenda",
+        "reunión"
+      ]
+    },
+    {
+      "id": "taboo_sk_0612",
+      "category": "Personas y profesiones",
+      "word": "cristalero",
+      "forbidden": [
+        "cristal",
+        "marco",
+        "lámina",
+        "ventana"
+      ]
+    },
+    {
+      "id": "taboo_sk_0613",
+      "category": "Personas y profesiones",
+      "word": "encargado del edificio",
+      "forbidden": [
+        "edificio",
+        "mantenimiento",
+        "inquilinos",
+        "trabajo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0614",
+      "category": "Personas y profesiones",
+      "word": "socorrista",
+      "forbidden": [
+        "ambulancia",
+        "primeros auxilios",
+        "estabilizar",
+        "salida"
+      ]
+    },
+    {
+      "id": "taboo_sk_0615",
+      "category": "Personas y profesiones",
+      "word": "barista",
+      "forbidden": [
+        "café",
+        "espresso",
+        "molino",
+        "espuma"
+      ]
+    },
+    {
+      "id": "taboo_sk_0616",
+      "category": "Personas y profesiones",
+      "word": "diseñador",
+      "forbidden": [
+        "concepto",
+        "boceto",
+        "cliente",
+        "visual"
+      ]
+    },
+    {
+      "id": "taboo_sk_0617",
+      "category": "Personas y profesiones",
+      "word": "criador",
+      "forbidden": [
+        "animales",
+        "raza",
+        "jaula",
+        "alimentación"
+      ]
+    },
+    {
+      "id": "taboo_sk_0618",
+      "category": "Personas y profesiones",
+      "word": "detective",
+      "forbidden": [
+        "vigilancia",
+        "evidencia",
+        "motivo",
+        "caso"
+      ]
+    },
+    {
+      "id": "taboo_sk_0619",
+      "category": "Personas y profesiones",
+      "word": "influencer",
+      "forbidden": [
+        "redes sociales",
+        "publicidad",
+        "seguidores",
+        "patrocinador"
+      ]
+    },
+    {
+      "id": "taboo_sk_0620",
+      "category": "Personas y profesiones",
+      "word": "padre",
+      "forbidden": [
+        "hijo",
+        "educación",
+        "hogar",
+        "responsabilidad"
+      ]
+    },
+    {
+      "id": "taboo_sk_0621",
+      "category": "Personas y profesiones",
+      "word": "vecino",
+      "forbidden": [
+        "apartamento",
+        "valla",
+        "ruido",
+        "saludar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0622",
+      "category": "Personas y profesiones",
+      "word": "jubilado",
+      "forbidden": [
+        "pensión",
+        "ocio",
+        "salud",
+        "familia"
+      ]
+    },
+    {
+      "id": "taboo_sk_0623",
+      "category": "Personas y profesiones",
+      "word": "instructor",
+      "forbidden": [
+        "entrenamiento",
+        "curso",
+        "alumno",
+        "demostración"
+      ]
+    },
+    {
+      "id": "taboo_sk_0624",
+      "category": "Personas y profesiones",
+      "word": "instalador",
+      "forbidden": [
+        "herramientas",
+        "montaje",
+        "tornillos",
+        "instalación"
+      ]
+    },
+    {
+      "id": "taboo_sk_0625",
+      "category": "Personas y profesiones",
+      "word": "intérprete",
+      "forbidden": [
+        "idioma",
+        "traducción",
+        "conferencia",
+        "micrófono"
+      ]
+    },
+    {
+      "id": "taboo_sk_0626",
+      "category": "Personas y profesiones",
+      "word": "propietario",
+      "forbidden": [
+        "empresa",
+        "propiedad",
+        "responsabilidad",
+        "negocio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0627",
+      "category": "Personas y profesiones",
+      "word": "recepcionista",
+      "forbidden": [
+        "hotel",
+        "registro",
+        "llamada",
+        "cliente"
+      ]
+    },
+    {
+      "id": "taboo_sk_0699",
+      "category": "Personas y profesiones",
+      "word": "cirujano",
+      "forbidden": [
+        "bisturí",
+        "quirófano",
+        "anestesia",
+        "puntos"
+      ]
+    },
+    {
+      "id": "taboo_sk_0700",
+      "category": "Personas y profesiones",
+      "word": "carnicero",
+      "forbidden": [
+        "mostrador",
+        "corte",
+        "carne",
+        "salchicha"
+      ]
+    },
+    {
+      "id": "taboo_sk_0701",
+      "category": "Personas y profesiones",
+      "word": "pastelero",
+      "forbidden": [
+        "tarta",
+        "glaseado",
+        "azúcar",
+        "decoración"
+      ]
+    },
+    {
+      "id": "taboo_sk_0702",
+      "category": "Personas y profesiones",
+      "word": "enólogo",
+      "forbidden": [
+        "viñedo",
+        "barrica",
+        "uva",
+        "botella"
+      ]
+    },
+    {
+      "id": "taboo_sk_0703",
+      "category": "Personas y profesiones",
+      "word": "carpintero",
+      "forbidden": [
+        "madera",
+        "martillo",
+        "casa",
+        "escalera"
+      ]
+    },
+    {
+      "id": "taboo_sk_0704",
+      "category": "Personas y profesiones",
+      "word": "cartero",
+      "forbidden": [
+        "carta",
+        "paquete",
+        "buzón",
+        "entrega"
+      ]
+    },
+    {
+      "id": "taboo_sk_0705",
+      "category": "Personas y profesiones",
+      "word": "coreógrafo",
+      "forbidden": [
+        "danza",
+        "paso",
+        "movimiento",
+        "escena"
+      ]
+    },
+    {
+      "id": "taboo_sk_0706",
+      "category": "Personas y profesiones",
+      "word": "salvavidas",
+      "forbidden": [
+        "piscina",
+        "salvavidas",
+        "vigilancia",
+        "bañador"
+      ]
+    },
+    {
+      "id": "taboo_sk_0707",
+      "category": "Personas y profesiones",
+      "word": "responsable de personal",
+      "forbidden": [
+        "selección",
+        "CV",
+        "entrevista",
+        "contrato laboral"
+      ]
+    },
+    {
+      "id": "taboo_sk_0708",
+      "category": "Personas y profesiones",
+      "word": "vigilante",
+      "forbidden": [
+        "puerta",
+        "seguridad",
+        "patrulla",
+        "uniforme"
+      ]
+    },
+    {
+      "id": "taboo_sk_0709",
+      "category": "Personas y profesiones",
+      "word": "soldado",
+      "forbidden": [
+        "cuartel",
+        "entrenamiento",
+        "arma",
+        "unidad"
+      ]
+    },
+    {
+      "id": "taboo_sk_0710",
+      "category": "Personas y profesiones",
+      "word": "marinero",
+      "forbidden": [
+        "barco",
+        "ancla",
+        "mar",
+        "cubierta"
+      ]
+    },
+    {
+      "id": "taboo_sk_0711",
+      "category": "Personas y profesiones",
+      "word": "astronauta",
+      "forbidden": [
+        "espacio",
+        "cohete",
+        "traje espacial",
+        "órbita"
+      ]
+    },
+    {
+      "id": "taboo_sk_0712",
+      "category": "Personas y profesiones",
+      "word": "sacerdote",
+      "forbidden": [
+        "misa",
+        "iglesia",
+        "sacramento",
+        "sermón"
+      ]
+    },
+    {
+      "id": "taboo_sk_0713",
+      "category": "Personas y profesiones",
+      "word": "ecólogo",
+      "forbidden": [
+        "medio ambiente",
+        "protección",
+        "contaminación",
+        "biodiversidad"
+      ]
+    },
+    {
+      "id": "taboo_sk_0714",
+      "category": "Personas y profesiones",
+      "word": "mediador",
+      "forbidden": [
+        "conflicto",
+        "acuerdo",
+        "conciliación",
+        "diálogo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0715",
+      "category": "Personas y profesiones",
+      "word": "físico",
+      "forbidden": [
+        "experimento",
+        "ley",
+        "teoría",
+        "laboratorio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0716",
+      "category": "Personas y profesiones",
+      "word": "juez",
+      "forbidden": [
+        "sentencia",
+        "audiencia",
+        "veredicto",
+        "fallo"
+      ]
+    }
+  ]
+}

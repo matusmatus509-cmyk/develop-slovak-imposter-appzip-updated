@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "de",
+  "category": "Predmety a domácnosť",
+  "cards": [
+    {
+      "id": "taboo_sk_0196",
+      "category": "Gegenstände und Haushalt",
+      "word": "Hoodie",
+      "forbidden": [
+        "Kapuze",
+        "Reißverschluss",
+        "Jogginghose",
+        "Kleiderbügel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0197",
+      "category": "Gegenstände und Haushalt",
+      "word": "T-Shirt",
+      "forbidden": [
+        "Baumwolle",
+        "Aufdruck",
+        "Ärmel",
+        "Kragen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0198",
+      "category": "Gegenstände und Haushalt",
+      "word": "Hose",
+      "forbidden": [
+        "Gürtel",
+        "Taschen",
+        "Gummizug",
+        "Jeans"
+      ]
+    },
+    {
+      "id": "taboo_sk_0199",
+      "category": "Gegenstände und Haushalt",
+      "word": "Rock",
+      "forbidden": [
+        "Schlitz",
+        "Plissee",
+        "Länge",
+        "Taille"
+      ]
+    },
+    {
+      "id": "taboo_sk_0200",
+      "category": "Gegenstände und Haushalt",
+      "word": "Jacke",
+      "forbidden": [
+        "Reißverschluss",
+        "Kapuze",
+        "wasserdicht",
+        "Ärmel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0201",
+      "category": "Gegenstände und Haushalt",
+      "word": "Mantel",
+      "forbidden": [
+        "Knöpfe",
+        "Kragen",
+        "Taschen",
+        "lang"
+      ]
+    },
+    {
+      "id": "taboo_sk_0202",
+      "category": "Gegenstände und Haushalt",
+      "word": "Mütze",
+      "forbidden": [
+        "Ohren",
+        "Winter",
+        "Bommel",
+        "Wolle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0203",
+      "category": "Gegenstände und Haushalt",
+      "word": "Handschuhe",
+      "forbidden": [
+        "Finger",
+        "Winter",
+        "Leder",
+        "Paar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0204",
+      "category": "Gegenstände und Haushalt",
+      "word": "Socken",
+      "forbidden": [
+        "Paar",
+        "Schuhe",
+        "Löcher",
+        "Baumwolle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0205",
+      "category": "Gegenstände und Haushalt",
+      "word": "Schuhe",
+      "forbidden": [
+        "Sohle",
+        "Schnürsenkel",
+        "Größe",
+        "Reißverschluss"
+      ]
+    },
+    {
+      "id": "taboo_sk_0206",
+      "category": "Gegenstände und Haushalt",
+      "word": "Hausschuhe",
+      "forbidden": [
+        "Zuhause",
+        "Weich",
+        "Flur",
+        "Bequemlichkeit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0207",
+      "category": "Gegenstände und Haushalt",
+      "word": "Sandalen",
+      "forbidden": [
+        "Riemchen",
+        "Sommer",
+        "Offen",
+        "Strand"
+      ]
+    },
+    {
+      "id": "taboo_sk_0208",
+      "category": "Gegenstände und Haushalt",
+      "word": "Gürtel",
+      "forbidden": [
+        "Schnalle",
+        "Löcher",
+        "Leder",
+        "Schlaufe"
+      ]
+    },
+    {
+      "id": "taboo_sk_0209",
+      "category": "Gegenstände und Haushalt",
+      "word": "Krawatte",
+      "forbidden": [
+        "Knoten",
+        "Hemd",
+        "Anzug",
+        "Elegant"
+      ]
+    },
+    {
+      "id": "taboo_sk_0210",
+      "category": "Gegenstände und Haushalt",
+      "word": "Pyjama",
+      "forbidden": [
+        "Schlaf",
+        "Nacht",
+        "Bequemlichkeit",
+        "Baumwolle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0211",
+      "category": "Gegenstände und Haushalt",
+      "word": "Badeanzug",
+      "forbidden": [
+        "Schwimmbad",
+        "Meer",
+        "Strand",
+        "Nass"
+      ]
+    },
+    {
+      "id": "taboo_sk_0212",
+      "category": "Gegenstände und Haushalt",
+      "word": "Handtuch",
+      "forbidden": [
+        "Trocknen",
+        "Bad",
+        "Feucht",
+        "Baumwolle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0213",
+      "category": "Gegenstände und Haushalt",
+      "word": "Kissen",
+      "forbidden": [
+        "Schlaf",
+        "Kopf",
+        "Feder",
+        "Bezug"
+      ]
+    },
+    {
+      "id": "taboo_sk_0214",
+      "category": "Gegenstände und Haushalt",
+      "word": "Decke",
+      "forbidden": [
+        "Feder",
+        "Wärme",
+        "Bett",
+        "Kälte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0215",
+      "category": "Gegenstände und Haushalt",
+      "word": "Matratze",
+      "forbidden": [
+        "Federkern",
+        "Schaumstoff",
+        "Hart",
+        "Bett"
+      ]
+    },
+    {
+      "id": "taboo_sk_0216",
+      "category": "Gegenstände und Haushalt",
+      "word": "Bett",
+      "forbidden": [
+        "Rahmen",
+        "Lattenrost",
+        "Schlaf",
+        "Nacht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0217",
+      "category": "Gegenstände und Haushalt",
+      "word": "Teppich",
+      "forbidden": [
+        "Fussel",
+        "Muster",
+        "Reinigen",
+        "Boden"
+      ]
+    },
+    {
+      "id": "taboo_sk_0218",
+      "category": "Gegenstände und Haushalt",
+      "word": "Vorhang",
+      "forbidden": [
+        "Fenster",
+        "Stange",
+        "Waschbar",
+        "Durchsichtig"
+      ]
+    },
+    {
+      "id": "taboo_sk_0219",
+      "category": "Gegenstände und Haushalt",
+      "word": "Jalousie",
+      "forbidden": [
+        "Licht",
+        "Bedienung",
+        "Lamelle",
+        "Fenster"
+      ]
+    },
+    {
+      "id": "taboo_sk_0220",
+      "category": "Gegenstände und Haushalt",
+      "word": "Lampe",
+      "forbidden": [
+        "Glühbirne",
+        "Licht",
+        "Tischlampe",
+        "Nachttischlampe"
+      ]
+    },
+    {
+      "id": "taboo_sk_0221",
+      "category": "Gegenstände und Haushalt",
+      "word": "Beistelltisch",
+      "forbidden": [
+        "Nacht",
+        "Platte",
+        "Beine",
+        "Schublade"
+      ]
+    },
+    {
+      "id": "taboo_sk_0222",
+      "category": "Gegenstände und Haushalt",
+      "word": "Sofa",
+      "forbidden": [
+        "Wohnzimmer",
+        "Ausziehbar",
+        "Kissen",
+        "Leder"
+      ]
+    },
+    {
+      "id": "taboo_sk_0223",
+      "category": "Gegenstände und Haushalt",
+      "word": "Sessel",
+      "forbidden": [
+        "Armlehne",
+        "Bequemlichkeit",
+        "Drehbar",
+        "Fußstütze"
+      ]
+    },
+    {
+      "id": "taboo_sk_0224",
+      "category": "Gegenstände und Haushalt",
+      "word": "Kommode",
+      "forbidden": [
+        "Schubladen",
+        "Ablegen",
+        "Oberfläche",
+        "Schlafzimmer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0225",
+      "category": "Gegenstände und Haushalt",
+      "word": "Schrank",
+      "forbidden": [
+        "Kleiderbügel",
+        "Regale",
+        "Türen",
+        "Schiebetüren"
+      ]
+    },
+    {
+      "id": "taboo_sk_0226",
+      "category": "Gegenstände und Haushalt",
+      "word": "Vitrine",
+      "forbidden": [
+        "Glas",
+        "Ausstellung",
+        "Möbel",
+        "Objekte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0227",
+      "category": "Gegenstände und Haushalt",
+      "word": "Spiegel",
+      "forbidden": [
+        "Spiegelbild",
+        "Glas",
+        "Rahmen",
+        "Diele"
+      ]
+    },
+    {
+      "id": "taboo_sk_0228",
+      "category": "Gegenstände und Haushalt",
+      "word": "Tür",
+      "forbidden": [
+        "Griff",
+        "Türrahmen",
+        "Eingang",
+        "Diele"
+      ]
+    },
+    {
+      "id": "taboo_sk_0229",
+      "category": "Gegenstände und Haushalt",
+      "word": "Schlüssel",
+      "forbidden": [
+        "Schloss",
+        "Drehung",
+        "Metall",
+        "Verlust"
+      ]
+    },
+    {
+      "id": "taboo_sk_0230",
+      "category": "Gegenstände und Haushalt",
+      "word": "Schloss",
+      "forbidden": [
+        "Sicherheit",
+        "Vorhängeschloss",
+        "Kombination",
+        "Metall"
+      ]
+    },
+    {
+      "id": "taboo_sk_0231",
+      "category": "Gegenstände und Haushalt",
+      "word": "Fernseher",
+      "forbidden": [
+        "Fernbedienung",
+        "Bild",
+        "Kanal",
+        "Wohnzimmer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0232",
+      "category": "Gegenstände und Haushalt",
+      "word": "Handy",
+      "forbidden": [
+        "Anruf",
+        "SMS",
+        "Akku",
+        "Tasche"
+      ]
+    },
+    {
+      "id": "taboo_sk_0233",
+      "category": "Gegenstände und Haushalt",
+      "word": "Ladegerät",
+      "forbidden": [
+        "Kabel",
+        "Akku",
+        "Adapter",
+        "Steckdose"
+      ]
+    },
+    {
+      "id": "taboo_sk_0234",
+      "category": "Gegenstände und Haushalt",
+      "word": "Computer",
+      "forbidden": [
+        "Monitor",
+        "Tastatur",
+        "Maus",
+        "Internet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0235",
+      "category": "Gegenstände und Haushalt",
+      "word": "Maus",
+      "forbidden": [
+        "Cursor",
+        "Klick",
+        "Kabelgebunden",
+        "Kabellos"
+      ]
+    },
+    {
+      "id": "taboo_sk_0236",
+      "category": "Gegenstände und Haushalt",
+      "word": "Tastatur",
+      "forbidden": [
+        "Tasten",
+        "Schreiben",
+        "USB",
+        "Computer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0237",
+      "category": "Gegenstände und Haushalt",
+      "word": "Staubsauger",
+      "forbidden": [
+        "Saugen",
+        "Staub",
+        "Filter",
+        "Schlauch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0238",
+      "category": "Gegenstände und Haushalt",
+      "word": "Bügeleisen",
+      "forbidden": [
+        "Dampf",
+        "Bügelbrett",
+        "heiß",
+        "Hemd"
+      ]
+    },
+    {
+      "id": "taboo_sk_0239",
+      "category": "Gegenstände und Haushalt",
+      "word": "Mikrowelle",
+      "forbidden": [
+        "Aufwärmen",
+        "Teller",
+        "Kurzzeit",
+        "Popcorn"
+      ]
+    },
+    {
+      "id": "taboo_sk_0240",
+      "category": "Gegenstände und Haushalt",
+      "word": "Mixer",
+      "forbidden": [
+        "Klingen",
+        "Behälter",
+        "Geschwindigkeit",
+        "Smoothie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0241",
+      "category": "Gegenstände und Haushalt",
+      "word": "Toaster",
+      "forbidden": [
+        "Scheibe",
+        "Toast",
+        "Frühstück",
+        "Elektrisch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0242",
+      "category": "Gegenstände und Haushalt",
+      "word": "Wasserkocher",
+      "forbidden": [
+        "Elektrisch",
+        "Kochen",
+        "Filter",
+        "Kabel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0243",
+      "category": "Gegenstände und Haushalt",
+      "word": "Föhn",
+      "forbidden": [
+        "Trocknen",
+        "Haare",
+        "Kalt",
+        "Friseur"
+      ]
+    },
+    {
+      "id": "taboo_sk_0244",
+      "category": "Gegenstände und Haushalt",
+      "word": "Uhr",
+      "forbidden": [
+        "Ticken",
+        "Zeit",
+        "Wecker",
+        "Zifferblatt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0245",
+      "category": "Gegenstände und Haushalt",
+      "word": "Mülltonne",
+      "forbidden": [
+        "Müll",
+        "Beutel",
+        "Wegwerfen",
+        "Geruch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0341",
+      "category": "Gegenstände und Haushalt",
+      "word": "Gabel",
+      "forbidden": [
+        "Besteck",
+        "Essen",
+        "Tisch",
+        "Salat"
+      ]
+    },
+    {
+      "id": "taboo_sk_0342",
+      "category": "Gegenstände und Haushalt",
+      "word": "Löffel",
+      "forbidden": [
+        "Suppe",
+        "Tee",
+        "Nachspeise",
+        "Eis"
+      ]
+    },
+    {
+      "id": "taboo_sk_0343",
+      "category": "Gegenstände und Haushalt",
+      "word": "Messer",
+      "forbidden": [
+        "Brot",
+        "Schneiden",
+        "Küche",
+        "Schnitt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0344",
+      "category": "Gegenstände und Haushalt",
+      "word": "Teller",
+      "forbidden": [
+        "Essen",
+        "Mittagessen",
+        "Schüssel",
+        "Servieren"
+      ]
+    },
+    {
+      "id": "taboo_sk_0345",
+      "category": "Gegenstände und Haushalt",
+      "word": "Schüssel",
+      "forbidden": [
+        "Suppe",
+        "Salat",
+        "Servieren",
+        "Tisch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0346",
+      "category": "Gegenstände und Haushalt",
+      "word": "Glas",
+      "forbidden": [
+        "Getränk",
+        "Glas",
+        "Wein",
+        "Tisch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0347",
+      "category": "Gegenstände und Haushalt",
+      "word": "Flasche",
+      "forbidden": [
+        "Verschluss",
+        "Wein",
+        "Plastik",
+        "Getränk"
+      ]
+    },
+    {
+      "id": "taboo_sk_0348",
+      "category": "Gegenstände und Haushalt",
+      "word": "Blumentopf",
+      "forbidden": [
+        "Pflanze",
+        "Erde",
+        "Fenster",
+        "Gießen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0349",
+      "category": "Gegenstände und Haushalt",
+      "word": "Blume",
+      "forbidden": [
+        "Duft",
+        "Wasser",
+        "Strauß",
+        "Vase"
+      ]
+    },
+    {
+      "id": "taboo_sk_0350",
+      "category": "Gegenstände und Haushalt",
+      "word": "Hemd",
+      "forbidden": [
+        "Knopf",
+        "Ärmel",
+        "Kleidung",
+        "Krawatte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0351",
+      "category": "Gegenstände und Haushalt",
+      "word": "Sakko",
+      "forbidden": [
+        "Kleidung",
+        "Anlass",
+        "Knopf",
+        "Mantel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0352",
+      "category": "Gegenstände und Haushalt",
+      "word": "Schal",
+      "forbidden": [
+        "Hals",
+        "Wärme",
+        "Kälte",
+        "Wolle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0353",
+      "category": "Gegenstände und Haushalt",
+      "word": "Tasche",
+      "forbidden": [
+        "Henkel",
+        "Einkauf",
+        "Arm",
+        "Brieftasche"
+      ]
+    },
+    {
+      "id": "taboo_sk_0354",
+      "category": "Gegenstände und Haushalt",
+      "word": "Hammer",
+      "forbidden": [
+        "Nageln",
+        "Holz",
+        "Nagel",
+        "Baustelle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0355",
+      "category": "Gegenstände und Haushalt",
+      "word": "Schraubendreher",
+      "forbidden": [
+        "Schrauben",
+        "Montieren",
+        "Kreuzschlitz",
+        "Manuell"
+      ]
+    },
+    {
+      "id": "taboo_sk_0356",
+      "category": "Gegenstände und Haushalt",
+      "word": "Zange",
+      "forbidden": [
+        "Greifen",
+        "Draht",
+        "Schneiden",
+        "Werkzeug"
+      ]
+    },
+    {
+      "id": "taboo_sk_0357",
+      "category": "Gegenstände und Haushalt",
+      "word": "Bohrmaschine",
+      "forbidden": [
+        "Bohren",
+        "Bohrer",
+        "Elektrizität",
+        "Löcher"
+      ]
+    },
+    {
+      "id": "taboo_sk_0358",
+      "category": "Gegenstände und Haushalt",
+      "word": "Kerzenleuchter",
+      "forbidden": [
+        "Tisch",
+        "Deko",
+        "Kerze",
+        "Romantik"
+      ]
+    },
+    {
+      "id": "taboo_sk_0359",
+      "category": "Gegenstände und Haushalt",
+      "word": "Kerze",
+      "forbidden": [
+        "Flamme",
+        "Duft",
+        "Romantik",
+        "Kerzenhalter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0360",
+      "category": "Gegenstände und Haushalt",
+      "word": "Kühlschrank",
+      "forbidden": [
+        "Lebensmittel",
+        "Einfrieren",
+        "Küche",
+        "Temperatur"
+      ]
+    },
+    {
+      "id": "taboo_sk_0361",
+      "category": "Gegenstände und Haushalt",
+      "word": "Herd",
+      "forbidden": [
+        "Kochen",
+        "Flamme",
+        "Backofen",
+        "Kochplatte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0362",
+      "category": "Gegenstände und Haushalt",
+      "word": "Spüle",
+      "forbidden": [
+        "Waschen",
+        "Wasser",
+        "Küche",
+        "Abfluss"
+      ]
+    },
+    {
+      "id": "taboo_sk_0363",
+      "category": "Gegenstände und Haushalt",
+      "word": "Schürze",
+      "forbidden": [
+        "Gekocht",
+        "Schmutzig",
+        "Küche",
+        "Schutz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0364",
+      "category": "Gegenstände und Haushalt",
+      "word": "Bügelbrett",
+      "forbidden": [
+        "Kleidung",
+        "Bügeln",
+        "Bügeleisen",
+        "Dampf"
+      ]
+    },
+    {
+      "id": "taboo_sk_0365",
+      "category": "Gegenstände und Haushalt",
+      "word": "Öffner",
+      "forbidden": [
+        "Dose",
+        "Flasche",
+        "Griff",
+        "Öffnen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0366",
+      "category": "Gegenstände und Haushalt",
+      "word": "Schere",
+      "forbidden": [
+        "Schneiden",
+        "Papier",
+        "Stoff",
+        "Scharf"
+      ]
+    },
+    {
+      "id": "taboo_sk_0367",
+      "category": "Gegenstände und Haushalt",
+      "word": "Klebstoff",
+      "forbidden": [
+        "Kleben",
+        "Papier",
+        "Basteln",
+        "Trocknen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0368",
+      "category": "Gegenstände und Haushalt",
+      "word": "Klebeband",
+      "forbidden": [
+        "Klebrig",
+        "Paket",
+        "Kleben",
+        "Reparatur"
+      ]
+    },
+    {
+      "id": "taboo_sk_0369",
+      "category": "Gegenstände und Haushalt",
+      "word": "Buch",
+      "forbidden": [
+        "Seite",
+        "Lesen",
+        "Autor",
+        "Roman"
+      ]
+    },
+    {
+      "id": "taboo_sk_0370",
+      "category": "Gegenstände und Haushalt",
+      "word": "Rollkragen",
+      "forbidden": [
+        "Wärme",
+        "Hals",
+        "Pullover",
+        "Winter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0371",
+      "category": "Gegenstände und Haushalt",
+      "word": "Nähmaschine",
+      "forbidden": [
+        "Nadel",
+        "Flicken",
+        "Stoff",
+        "Knopf"
+      ]
+    },
+    {
+      "id": "taboo_sk_0372",
+      "category": "Gegenstände und Haushalt",
+      "word": "Korb",
+      "forbidden": [
+        "Einkauf",
+        "Geflochten",
+        "Griff",
+        "Obst"
+      ]
+    },
+    {
+      "id": "taboo_sk_0373",
+      "category": "Gegenstände und Haushalt",
+      "word": "Wecker",
+      "forbidden": [
+        "Morgen",
+        "Klingeln",
+        "Aufstehen",
+        "Zeit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0374",
+      "category": "Gegenstände und Haushalt",
+      "word": "Regal",
+      "forbidden": [
+        "Bücher",
+        "Ordnen",
+        "Wand",
+        "Regal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0375",
+      "category": "Gegenstände und Haushalt",
+      "word": "Kleiderbügel",
+      "forbidden": [
+        "Kleidung",
+        "Schrank",
+        "Arm",
+        "Aufhängen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0376",
+      "category": "Gegenstände und Haushalt",
+      "word": "Glühbirne",
+      "forbidden": [
+        "Licht",
+        "Lampe",
+        "Austauschen",
+        "Netz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0377",
+      "category": "Gegenstände und Haushalt",
+      "word": "Verlängerungskabel",
+      "forbidden": [
+        "Steckdose",
+        "Kabel",
+        "Elektrizität",
+        "Gerät"
+      ]
+    },
+    {
+      "id": "taboo_sk_0378",
+      "category": "Gegenstände und Haushalt",
+      "word": "Wäschekorb",
+      "forbidden": [
+        "Wäsche",
+        "Waschmaschine",
+        "Schmutzig",
+        "Transport"
+      ]
+    },
+    {
+      "id": "taboo_sk_0379",
+      "category": "Gegenstände und Haushalt",
+      "word": "Wäschetrockner",
+      "forbidden": [
+        "Wäsche",
+        "Hitze",
+        "Waschmaschine",
+        "Schnell"
+      ]
+    },
+    {
+      "id": "taboo_sk_0380",
+      "category": "Gegenstände und Haushalt",
+      "word": "Mopp",
+      "forbidden": [
+        "Boden",
+        "Wasser",
+        "Wischen",
+        "Reinigen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0381",
+      "category": "Gegenstände und Haushalt",
+      "word": "Besen",
+      "forbidden": [
+        "Faden",
+        "Boden",
+        "Fegen",
+        "Zahn"
+      ]
+    },
+    {
+      "id": "taboo_sk_0382",
+      "category": "Gegenstände und Haushalt",
+      "word": "Eimer",
+      "forbidden": [
+        "Wasser",
+        "Reinigen",
+        "Behälter",
+        "Tragen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0383",
+      "category": "Gegenstände und Haushalt",
+      "word": "Bilderrahmen",
+      "forbidden": [
+        "Foto",
+        "Wand",
+        "Erinnerung",
+        "Holz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0384",
+      "category": "Gegenstände und Haushalt",
+      "word": "Feuerzeug",
+      "forbidden": [
+        "Feuer",
+        "Rauch",
+        "Zigarette",
+        "Flamme"
+      ]
+    },
+    {
+      "id": "taboo_sk_0385",
+      "category": "Gegenstände und Haushalt",
+      "word": "Lesezeichen",
+      "forbidden": [
+        "Buch",
+        "Ort",
+        "Seite",
+        "lesen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0386",
+      "category": "Gegenstände und Haushalt",
+      "word": "Schneidebrett",
+      "forbidden": [
+        "Brot",
+        "Gemüse",
+        "Messer",
+        "Küche"
+      ]
+    },
+    {
+      "id": "taboo_sk_0479",
+      "category": "Gegenstände und Haushalt",
+      "word": "Sieb",
+      "forbidden": [
+        "Nudeln",
+        "Wasser",
+        "Sieb",
+        "Spüle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0480",
+      "category": "Gegenstände und Haushalt",
+      "word": "Reibe",
+      "forbidden": [
+        "Käse",
+        "Karotte",
+        "Krümel",
+        "Küche"
+      ]
+    },
+    {
+      "id": "taboo_sk_0481",
+      "category": "Gegenstände und Haushalt",
+      "word": "Kaffeemaschine",
+      "forbidden": [
+        "Kaffee",
+        "Espresso",
+        "Filter",
+        "Morgen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0482",
+      "category": "Gegenstände und Haushalt",
+      "word": "Gefriertruhe",
+      "forbidden": [
+        "Eis",
+        "Eiscreme",
+        "Gefroren",
+        "Kalt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0483",
+      "category": "Gegenstände und Haushalt",
+      "word": "Dunstabzugshaube",
+      "forbidden": [
+        "Geruch",
+        "Dämpfe",
+        "Ventilator",
+        "Küche"
+      ]
+    },
+    {
+      "id": "taboo_sk_0484",
+      "category": "Gegenstände und Haushalt",
+      "word": "Backblech",
+      "forbidden": [
+        "Backen",
+        "Kuchen",
+        "Ofen",
+        "Fettig"
+      ]
+    },
+    {
+      "id": "taboo_sk_0485",
+      "category": "Gegenstände und Haushalt",
+      "word": "Topflappen",
+      "forbidden": [
+        "Handschuh",
+        "Heiße",
+        "Ofen",
+        "Schützen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0486",
+      "category": "Gegenstände und Haushalt",
+      "word": "Kuchenform",
+      "forbidden": [
+        "Kuchen",
+        "Silikon",
+        "Backen",
+        "Gugelhupf"
+      ]
+    },
+    {
+      "id": "taboo_sk_0487",
+      "category": "Gegenstände und Haushalt",
+      "word": "Aufschnittmesser",
+      "forbidden": [
+        "Brot",
+        "Messer",
+        "Scheibe",
+        "Küche"
+      ]
+    },
+    {
+      "id": "taboo_sk_0488",
+      "category": "Gegenstände und Haushalt",
+      "word": "Waage",
+      "forbidden": [
+        "Kilogramm",
+        "Digital",
+        "Küche",
+        "Präzise"
+      ]
+    },
+    {
+      "id": "taboo_sk_0489",
+      "category": "Gegenstände und Haushalt",
+      "word": "Dose",
+      "forbidden": [
+        "Verschluss",
+        "Lebensmittel",
+        "Plastik",
+        "Glas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0490",
+      "category": "Gegenstände und Haushalt",
+      "word": "Gewürzdose",
+      "forbidden": [
+        "Salz",
+        "Gewürz",
+        "Mühle",
+        "Küche"
+      ]
+    },
+    {
+      "id": "taboo_sk_0491",
+      "category": "Gegenstände und Haushalt",
+      "word": "Stuhl",
+      "forbidden": [
+        "Sitzen",
+        "Küche",
+        "Rückenlehne",
+        "Bein"
+      ]
+    },
+    {
+      "id": "taboo_sk_0492",
+      "category": "Gegenstände und Haushalt",
+      "word": "Tablett",
+      "forbidden": [
+        "Servieren",
+        "Glas",
+        "Café",
+        "Tablett"
+      ]
+    },
+    {
+      "id": "taboo_sk_0493",
+      "category": "Gegenstände und Haushalt",
+      "word": "Taschenlampe",
+      "forbidden": [
+        "Nacht",
+        "Batterie",
+        "Licht",
+        "Ausfall"
+      ]
+    },
+    {
+      "id": "taboo_sk_0494",
+      "category": "Gegenstände und Haushalt",
+      "word": "Taschenrechner",
+      "forbidden": [
+        "Zahlen",
+        "Schulisch",
+        "Rechnen",
+        "Taste"
+      ]
+    },
+    {
+      "id": "taboo_sk_0495",
+      "category": "Gegenstände und Haushalt",
+      "word": "Zahnbürste",
+      "forbidden": [
+        "Zahnpasta",
+        "Zähne",
+        "Morgen",
+        "Badezimmer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0496",
+      "category": "Gegenstände und Haushalt",
+      "word": "Seife",
+      "forbidden": [
+        "Schaum",
+        "Waschen",
+        "Badezimmer",
+        "Hart"
+      ]
+    },
+    {
+      "id": "taboo_sk_0497",
+      "category": "Gegenstände und Haushalt",
+      "word": "Dusche",
+      "forbidden": [
+        "Wasser",
+        "Badezimmer",
+        "Shampoo",
+        "Wand"
+      ]
+    },
+    {
+      "id": "taboo_sk_0498",
+      "category": "Gegenstände und Haushalt",
+      "word": "Zahnpasta",
+      "forbidden": [
+        "Tube",
+        "Schaum",
+        "Minze",
+        "Zähne"
+      ]
+    },
+    {
+      "id": "taboo_sk_0499",
+      "category": "Gegenstände und Haushalt",
+      "word": "Pinsel",
+      "forbidden": [
+        "Staub",
+        "Borsten",
+        "Reinigen",
+        "Griff"
+      ]
+    },
+    {
+      "id": "taboo_sk_0500",
+      "category": "Gegenstände und Haushalt",
+      "word": "Tuch",
+      "forbidden": [
+        "Staub",
+        "Feucht",
+        "Fenster",
+        "Aufräumen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0501",
+      "category": "Gegenstände und Haushalt",
+      "word": "Staubwedel",
+      "forbidden": [
+        "Fenster",
+        "Wasser",
+        "Gummi",
+        "Reinigung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0502",
+      "category": "Gegenstände und Haushalt",
+      "word": "Toilettenpapier",
+      "forbidden": [
+        "Rolle",
+        "Badezimmer",
+        "Weich",
+        "WC"
+      ]
+    },
+    {
+      "id": "taboo_sk_0503",
+      "category": "Gegenstände und Haushalt",
+      "word": "Geldbörse",
+      "forbidden": [
+        "Geld",
+        "Karten",
+        "Reißverschluss",
+        "Ausweise"
+      ]
+    },
+    {
+      "id": "taboo_sk_0504",
+      "category": "Gegenstände und Haushalt",
+      "word": "Brille",
+      "forbidden": [
+        "Rahmen",
+        "Gläser",
+        "Sehen",
+        "Nase"
+      ]
+    },
+    {
+      "id": "taboo_sk_0505",
+      "category": "Gegenstände und Haushalt",
+      "word": "Thermoskanne",
+      "forbidden": [
+        "Warmhalten",
+        "Reisen",
+        "Edelstahl",
+        "Trinkflasche"
+      ]
+    },
+    {
+      "id": "taboo_sk_0506",
+      "category": "Gegenstände und Haushalt",
+      "word": "Serviette",
+      "forbidden": [
+        "Essen",
+        "Tisch",
+        "Papier",
+        "Servietten"
+      ]
+    },
+    {
+      "id": "taboo_sk_0507",
+      "category": "Gegenstände und Haushalt",
+      "word": "Säge",
+      "forbidden": [
+        "Holz",
+        "Schnitt",
+        "Motorsäge",
+        "Werkstatt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0508",
+      "category": "Gegenstände und Haushalt",
+      "word": "Weinöffner",
+      "forbidden": [
+        "Wein",
+        "Korken",
+        "Flasche",
+        "Keller"
+      ]
+    },
+    {
+      "id": "taboo_sk_0509",
+      "category": "Gegenstände und Haushalt",
+      "word": "Messbecher",
+      "forbidden": [
+        "Küche",
+        "Menge",
+        "Flüssigkeit",
+        "Kochen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0510",
+      "category": "Gegenstände und Haushalt",
+      "word": "Hammer",
+      "forbidden": [
+        "Schrauben",
+        "Festziehen",
+        "Werkzeug",
+        "Maß"
+      ]
+    },
+    {
+      "id": "taboo_sk_0511",
+      "category": "Gegenstände und Haushalt",
+      "word": "Lineal",
+      "forbidden": [
+        "Zentimeter",
+        "Skizzieren",
+        "Schule",
+        "Maßstab"
+      ]
+    },
+    {
+      "id": "taboo_sk_0512",
+      "category": "Gegenstände und Haushalt",
+      "word": "Knopf",
+      "forbidden": [
+        "Mantel",
+        "Nähen",
+        "Knöpfen",
+        "Kleidung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0513",
+      "category": "Gegenstände und Haushalt",
+      "word": "Nadel",
+      "forbidden": [
+        "Nähen",
+        "Stoff",
+        "Scharf",
+        "Befestigen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0514",
+      "category": "Gegenstände und Haushalt",
+      "word": "Filter",
+      "forbidden": [
+        "Kaffee",
+        "Wasser",
+        "Reiniger",
+        "Staub"
+      ]
+    },
+    {
+      "id": "taboo_sk_0515",
+      "category": "Gegenstände und Haushalt",
+      "word": "Wischlappen",
+      "forbidden": [
+        "Geschirr",
+        "Abwaschen",
+        "Trocken",
+        "Stoff"
+      ]
+    },
+    {
+      "id": "taboo_sk_0516",
+      "category": "Gegenstände und Haushalt",
+      "word": "Suppenkelle",
+      "forbidden": [
+        "Suppe",
+        "Schüssel",
+        "Servieren",
+        "Groß"
+      ]
+    },
+    {
+      "id": "taboo_sk_0517",
+      "category": "Gegenstände und Haushalt",
+      "word": "Schal",
+      "forbidden": [
+        "Hals",
+        "Wärme",
+        "Kälte",
+        "Mode"
+      ]
+    },
+    {
+      "id": "taboo_sk_0518",
+      "category": "Gegenstände und Haushalt",
+      "word": "Unterlage",
+      "forbidden": [
+        "Maus",
+        "Tisch",
+        "Gummi",
+        "Schutz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0519",
+      "category": "Gegenstände und Haushalt",
+      "word": "Stecker",
+      "forbidden": [
+        "Steckdose",
+        "Elektrizität",
+        "Kabel",
+        "Einstecken"
+      ]
+    },
+    {
+      "id": "taboo_sk_0520",
+      "category": "Gegenstände und Haushalt",
+      "word": "Ventilator",
+      "forbidden": [
+        "Wind",
+        "Kühlung",
+        "Sommer",
+        "Flügel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0521",
+      "category": "Gegenstände und Haushalt",
+      "word": "Wärmflasche",
+      "forbidden": [
+        "Warmhalten",
+        "Reisen",
+        "Edelstahl",
+        "Trinkflasche"
+      ]
+    },
+    {
+      "id": "taboo_sk_0522",
+      "category": "Gegenstände und Haushalt",
+      "word": "Shampoo",
+      "forbidden": [
+        "Haar",
+        "Schaum",
+        "Waschen",
+        "Badezimmer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0581",
+      "category": "Gegenstände und Haushalt",
+      "word": "Decke",
+      "forbidden": [
+        "Wärme",
+        "Sofa",
+        "Gestrickt",
+        "Nacht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0582",
+      "category": "Gegenstände und Haushalt",
+      "word": "Federkissen",
+      "forbidden": [
+        "Feder",
+        "Federkissen",
+        "Warm",
+        "Bett"
+      ]
+    },
+    {
+      "id": "taboo_sk_0583",
+      "category": "Gegenstände und Haushalt",
+      "word": "Fernbedienung",
+      "forbidden": [
+        "Taste",
+        "Batterien",
+        "Kanal",
+        "Umschalten"
+      ]
+    },
+    {
+      "id": "taboo_sk_0584",
+      "category": "Gegenstände und Haushalt",
+      "word": "Radio",
+      "forbidden": [
+        "Station",
+        "Frequenz",
+        "Antenne",
+        "Ausstrahlung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0585",
+      "category": "Gegenstände und Haushalt",
+      "word": "Bild",
+      "forbidden": [
+        "Rahmen",
+        "Gemälde",
+        "Galerie",
+        "Wand"
+      ]
+    },
+    {
+      "id": "taboo_sk_0586",
+      "category": "Gegenstände und Haushalt",
+      "word": "Boden",
+      "forbidden": [
+        "Parkett",
+        "Fliesen",
+        "Reinigen",
+        "Schuhe"
+      ]
+    },
+    {
+      "id": "taboo_sk_0587",
+      "category": "Gegenstände und Haushalt",
+      "word": "Vorhang",
+      "forbidden": [
+        "Fenster",
+        "Stange",
+        "Stoff",
+        "Ziehen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0588",
+      "category": "Gegenstände und Haushalt",
+      "word": "Vase",
+      "forbidden": [
+        "Blüten",
+        "Glas",
+        "Arrangement",
+        "Tisch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0589",
+      "category": "Gegenstände und Haushalt",
+      "word": "Korb",
+      "forbidden": [
+        "Müll",
+        "Beutel",
+        "Recycling",
+        "Plastik"
+      ]
+    },
+    {
+      "id": "taboo_sk_0590",
+      "category": "Gegenstände und Haushalt",
+      "word": "Spülmaschine",
+      "forbidden": [
+        "Geschirr",
+        "Tabletten",
+        "Programm",
+        "Maschine"
+      ]
+    }
+  ]
+}

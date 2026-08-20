@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "en",
+  "category": "Jedlo a nápoje",
+  "cards": [
+    {
+      "id": "taboo_sk_0001",
+      "category": "Food and Drinks",
+      "word": "bread",
+      "forbidden": [
+        "baked goods",
+        "slice",
+        "toast",
+        "wheat"
+      ]
+    },
+    {
+      "id": "taboo_sk_0002",
+      "category": "Food and Drinks",
+      "word": "butter",
+      "forbidden": [
+        "spread",
+        "cream",
+        "fat",
+        "bread"
+      ]
+    },
+    {
+      "id": "taboo_sk_0003",
+      "category": "Food and Drinks",
+      "word": "cheese",
+      "forbidden": [
+        "dairy",
+        "slice",
+        "hard",
+        "mold-ripened"
+      ]
+    },
+    {
+      "id": "taboo_sk_0004",
+      "category": "Food and Drinks",
+      "word": "ham",
+      "forbidden": [
+        "pork",
+        "slice",
+        "sandwich",
+        "smoked"
+      ]
+    },
+    {
+      "id": "taboo_sk_0005",
+      "category": "Food and Drinks",
+      "word": "egg",
+      "forbidden": [
+        "yolk",
+        "egg white",
+        "shell",
+        "omelette"
+      ]
+    },
+    {
+      "id": "taboo_sk_0006",
+      "category": "Food and Drinks",
+      "word": "milk",
+      "forbidden": [
+        "cow",
+        "white",
+        "lactose",
+        "glass"
+      ]
+    },
+    {
+      "id": "taboo_sk_0007",
+      "category": "Food and Drinks",
+      "word": "yogurt",
+      "forbidden": [
+        "sour",
+        "cup",
+        "spoon",
+        "fruit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0008",
+      "category": "Food and Drinks",
+      "word": "coffee",
+      "forbidden": [
+        "caffeine",
+        "beans",
+        "espresso",
+        "mug"
+      ]
+    },
+    {
+      "id": "taboo_sk_0009",
+      "category": "Food and Drinks",
+      "word": "tea",
+      "forbidden": [
+        "leaves",
+        "bag",
+        "herbal",
+        "kettle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0010",
+      "category": "Food and Drinks",
+      "word": "water",
+      "forbidden": [
+        "tap",
+        "glass",
+        "mineral water",
+        "drink"
+      ]
+    },
+    {
+      "id": "taboo_sk_0011",
+      "category": "Food and Drinks",
+      "word": "beer",
+      "forbidden": [
+        "foam",
+        "hops",
+        "glass",
+        "pub"
+      ]
+    },
+    {
+      "id": "taboo_sk_0012",
+      "category": "Food and Drinks",
+      "word": "wine",
+      "forbidden": [
+        "grape",
+        "glass",
+        "red",
+        "white"
+      ]
+    },
+    {
+      "id": "taboo_sk_0013",
+      "category": "Food and Drinks",
+      "word": "soup",
+      "forbidden": [
+        "broth",
+        "spoon",
+        "bowl",
+        "noodles"
+      ]
+    },
+    {
+      "id": "taboo_sk_0014",
+      "category": "Food and Drinks",
+      "word": "pizza",
+      "forbidden": [
+        "dough",
+        "sauce",
+        "cheese",
+        "cut"
+      ]
+    },
+    {
+      "id": "taboo_sk_0015",
+      "category": "Food and Drinks",
+      "word": "pasta",
+      "forbidden": [
+        "spaghetti",
+        "sauce",
+        "colander",
+        "cook"
+      ]
+    },
+    {
+      "id": "taboo_sk_0016",
+      "category": "Food and Drinks",
+      "word": "rice",
+      "forbidden": [
+        "grains",
+        "white",
+        "pot",
+        "Asia"
+      ]
+    },
+    {
+      "id": "taboo_sk_0017",
+      "category": "Food and Drinks",
+      "word": "potato",
+      "forbidden": [
+        "skin",
+        "puree",
+        "fries",
+        "baked"
+      ]
+    },
+    {
+      "id": "taboo_sk_0018",
+      "category": "Food and Drinks",
+      "word": "tomato",
+      "forbidden": [
+        "red",
+        "ketchup",
+        "salad",
+        "seeds"
+      ]
+    },
+    {
+      "id": "taboo_sk_0019",
+      "category": "Food and Drinks",
+      "word": "cucumber",
+      "forbidden": [
+        "green",
+        "sour",
+        "salad",
+        "pickled"
+      ]
+    },
+    {
+      "id": "taboo_sk_0020",
+      "category": "Food and Drinks",
+      "word": "onion",
+      "forbidden": [
+        "tears",
+        "cut",
+        "fry",
+        "odor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0021",
+      "category": "Food and Drinks",
+      "word": "garlic",
+      "forbidden": [
+        "clove",
+        "smell",
+        "vampire",
+        "press"
+      ]
+    },
+    {
+      "id": "taboo_sk_0022",
+      "category": "Food and Drinks",
+      "word": "pepper",
+      "forbidden": [
+        "spicy",
+        "goulash",
+        "vegetable",
+        "seeds"
+      ]
+    },
+    {
+      "id": "taboo_sk_0023",
+      "category": "Food and Drinks",
+      "word": "apple",
+      "forbidden": [
+        "core",
+        "skin",
+        "pie",
+        "tree"
+      ]
+    },
+    {
+      "id": "taboo_sk_0024",
+      "category": "Food and Drinks",
+      "word": "banana",
+      "forbidden": [
+        "yellow",
+        "peel",
+        "monkey",
+        "cocktail"
+      ]
+    },
+    {
+      "id": "taboo_sk_0025",
+      "category": "Food and Drinks",
+      "word": "orange",
+      "forbidden": [
+        "citrus",
+        "juice",
+        "peel",
+        "segments"
+      ]
+    },
+    {
+      "id": "taboo_sk_0026",
+      "category": "Food and Drinks",
+      "word": "lemon",
+      "forbidden": [
+        "sour",
+        "yellow",
+        "lemonade",
+        "peel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0027",
+      "category": "Food and Drinks",
+      "word": "strawberry",
+      "forbidden": [
+        "red",
+        "seeds",
+        "cream",
+        "garden"
+      ]
+    },
+    {
+      "id": "taboo_sk_0028",
+      "category": "Food and Drinks",
+      "word": "chocolate",
+      "forbidden": [
+        "cocoa",
+        "bar",
+        "sweet",
+        "dessert"
+      ]
+    },
+    {
+      "id": "taboo_sk_0029",
+      "category": "Food and Drinks",
+      "word": "cake",
+      "forbidden": [
+        "baked",
+        "filling",
+        "cut",
+        "baking sheet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0030",
+      "category": "Food and Drinks",
+      "word": "pancake",
+      "forbidden": [
+        "thin",
+        "pan",
+        "jam",
+        "batter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0031",
+      "category": "Food and Drinks",
+      "word": "goulash",
+      "forbidden": [
+        "beef",
+        "cauldron",
+        "paprika",
+        "thick"
+      ]
+    },
+    {
+      "id": "taboo_sk_0032",
+      "category": "Food and Drinks",
+      "word": "dumpling",
+      "forbidden": [
+        "steamed",
+        "slices",
+        "sauce",
+        "side dish"
+      ]
+    },
+    {
+      "id": "taboo_sk_0033",
+      "category": "Food and Drinks",
+      "word": "cabbage",
+      "forbidden": [
+        "sour",
+        "head",
+        "sauerkraut stew",
+        "leaves"
+      ]
+    },
+    {
+      "id": "taboo_sk_0034",
+      "category": "Food and Drinks",
+      "word": "sausage",
+      "forbidden": [
+        "smoked",
+        "spicy",
+        "grill",
+        "meat"
+      ]
+    },
+    {
+      "id": "taboo_sk_0035",
+      "category": "Food and Drinks",
+      "word": "honey",
+      "forbidden": [
+        "bees",
+        "sweetener",
+        "jar",
+        "sticky"
+      ]
+    },
+    {
+      "id": "taboo_sk_0036",
+      "category": "Food and Drinks",
+      "word": "sugar",
+      "forbidden": [
+        "sweet",
+        "cube",
+        "white",
+        "teaspoon"
+      ]
+    },
+    {
+      "id": "taboo_sk_0037",
+      "category": "Food and Drinks",
+      "word": "salt",
+      "forbidden": [
+        "salty",
+        "crystals",
+        "grinder",
+        "pinch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0038",
+      "category": "Food and Drinks",
+      "word": "spice",
+      "forbidden": [
+        "aromatic",
+        "ground",
+        "grinder",
+        "spicy"
+      ]
+    },
+    {
+      "id": "taboo_sk_0039",
+      "category": "Food and Drinks",
+      "word": "oil",
+      "forbidden": [
+        "sunflower",
+        "pan",
+        "fry",
+        "liquid"
+      ]
+    },
+    {
+      "id": "taboo_sk_0040",
+      "category": "Food and Drinks",
+      "word": "vinegar",
+      "forbidden": [
+        "sour",
+        "salad",
+        "bottle",
+        "smell"
+      ]
+    },
+    {
+      "id": "taboo_sk_0041",
+      "category": "Food and Drinks",
+      "word": "pan",
+      "forbidden": [
+        "handle",
+        "fry",
+        "non-stick",
+        "oil"
+      ]
+    },
+    {
+      "id": "taboo_sk_0042",
+      "category": "Food and Drinks",
+      "word": "pot",
+      "forbidden": [
+        "lid",
+        "cook",
+        "soup",
+        "bottom"
+      ]
+    },
+    {
+      "id": "taboo_sk_0043",
+      "category": "Food and Drinks",
+      "word": "oven",
+      "forbidden": [
+        "baking",
+        "tray",
+        "temperature",
+        "door"
+      ]
+    },
+    {
+      "id": "taboo_sk_0044",
+      "category": "Food and Drinks",
+      "word": "grill",
+      "forbidden": [
+        "charcoal",
+        "grate",
+        "summer",
+        "meat"
+      ]
+    },
+    {
+      "id": "taboo_sk_0045",
+      "category": "Food and Drinks",
+      "word": "cut",
+      "forbidden": [
+        "knife",
+        "board",
+        "slices",
+        "cubes"
+      ]
+    },
+    {
+      "id": "taboo_sk_0046",
+      "category": "Food and Drinks",
+      "word": "stir",
+      "forbidden": [
+        "spoon",
+        "bowl",
+        "dough",
+        "wooden spoon"
+      ]
+    },
+    {
+      "id": "taboo_sk_0047",
+      "category": "Food and Drinks",
+      "word": "whip",
+      "forbidden": [
+        "whisk",
+        "meringue",
+        "cream",
+        "mixer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0048",
+      "category": "Food and Drinks",
+      "word": "cook",
+      "forbidden": [
+        "water",
+        "pot",
+        "boiling",
+        "stove"
+      ]
+    },
+    {
+      "id": "taboo_sk_0049",
+      "category": "Food and Drinks",
+      "word": "bake",
+      "forbidden": [
+        "oven",
+        "tray",
+        "dough",
+        "cake"
+      ]
+    },
+    {
+      "id": "taboo_sk_0050",
+      "category": "Food and Drinks",
+      "word": "fry",
+      "forbidden": [
+        "oil",
+        "pan",
+        "splatter",
+        "crispy"
+      ]
+    },
+    {
+      "id": "taboo_sk_0387",
+      "category": "Food and Drinks",
+      "word": "sandwich",
+      "forbidden": [
+        "slices",
+        "topped",
+        "lunch",
+        "mayonnaise"
+      ]
+    },
+    {
+      "id": "taboo_sk_0388",
+      "category": "Food and Drinks",
+      "word": "baguette",
+      "forbidden": [
+        "French",
+        "crusty",
+        "roll",
+        "toppings"
+      ]
+    },
+    {
+      "id": "taboo_sk_0389",
+      "category": "Food and Drinks",
+      "word": "muesli",
+      "forbidden": [
+        "breakfast",
+        "flakes",
+        "dried",
+        "granola"
+      ]
+    },
+    {
+      "id": "taboo_sk_0390",
+      "category": "Food and Drinks",
+      "word": "flakes",
+      "forbidden": [
+        "breakfast",
+        "porridge",
+        "muesli",
+        "healthy"
+      ]
+    },
+    {
+      "id": "taboo_sk_0391",
+      "category": "Food and Drinks",
+      "word": "cereals",
+      "forbidden": [
+        "breakfast",
+        "muesli",
+        "granola",
+        "grains"
+      ]
+    },
+    {
+      "id": "taboo_sk_0392",
+      "category": "Food and Drinks",
+      "word": "smoothie",
+      "forbidden": [
+        "blender",
+        "fruit",
+        "cold",
+        "healthy"
+      ]
+    },
+    {
+      "id": "taboo_sk_0393",
+      "category": "Food and Drinks",
+      "word": "lemonade",
+      "forbidden": [
+        "bubbles",
+        "sweet",
+        "refreshing",
+        "glass"
+      ]
+    },
+    {
+      "id": "taboo_sk_0394",
+      "category": "Food and Drinks",
+      "word": "juice",
+      "forbidden": [
+        "juicer",
+        "fresh",
+        "concentrate",
+        "fruit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0395",
+      "category": "Food and Drinks",
+      "word": "cocoa",
+      "forbidden": [
+        "hot",
+        "powder",
+        "milk",
+        "sweet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0396",
+      "category": "Food and Drinks",
+      "word": "syrup",
+      "forbidden": [
+        "sweet",
+        "glass",
+        "flavoring",
+        "ice"
+      ]
+    },
+    {
+      "id": "taboo_sk_0397",
+      "category": "Food and Drinks",
+      "word": "flour",
+      "forbidden": [
+        "baking",
+        "plain",
+        "cakes",
+        "dough"
+      ]
+    },
+    {
+      "id": "taboo_sk_0398",
+      "category": "Food and Drinks",
+      "word": "yeast",
+      "forbidden": [
+        "fermentation",
+        "starter",
+        "baker",
+        "activate"
+      ]
+    },
+    {
+      "id": "taboo_sk_0399",
+      "category": "Food and Drinks",
+      "word": "bean",
+      "forbidden": [
+        "legume",
+        "cooking",
+        "chili",
+        "salad"
+      ]
+    },
+    {
+      "id": "taboo_sk_0400",
+      "category": "Food and Drinks",
+      "word": "lentils",
+      "forbidden": [
+        "legume",
+        "cooking",
+        "red",
+        "nutritious"
+      ]
+    },
+    {
+      "id": "taboo_sk_0401",
+      "category": "Food and Drinks",
+      "word": "chickpea",
+      "forbidden": [
+        "hummus",
+        "legume",
+        "roasted",
+        "falafel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0402",
+      "category": "Food and Drinks",
+      "word": "almond",
+      "forbidden": [
+        "nut",
+        "marzipan",
+        "roasted",
+        "healthy"
+      ]
+    },
+    {
+      "id": "taboo_sk_0403",
+      "category": "Food and Drinks",
+      "word": "cashew",
+      "forbidden": [
+        "nut",
+        "roasted",
+        "exotic",
+        "crunchy"
+      ]
+    },
+    {
+      "id": "taboo_sk_0404",
+      "category": "Food and Drinks",
+      "word": "quark",
+      "forbidden": [
+        "dessert",
+        "filling",
+        "sour",
+        "baking"
+      ]
+    },
+    {
+      "id": "taboo_sk_0405",
+      "category": "Food and Drinks",
+      "word": "pâté",
+      "forbidden": [
+        "spread",
+        "can",
+        "dip",
+        "picnic"
+      ]
+    },
+    {
+      "id": "taboo_sk_0406",
+      "category": "Food and Drinks",
+      "word": "cauliflower",
+      "forbidden": [
+        "vegetable",
+        "white",
+        "baked",
+        "broccoli"
+      ]
+    },
+    {
+      "id": "taboo_sk_0407",
+      "category": "Food and Drinks",
+      "word": "broccoli",
+      "forbidden": [
+        "vegetable",
+        "healthy",
+        "hot",
+        "cauliflower"
+      ]
+    },
+    {
+      "id": "taboo_sk_0408",
+      "category": "Food and Drinks",
+      "word": "carrot",
+      "forbidden": [
+        "orange",
+        "salad",
+        "raw",
+        "sweet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0409",
+      "category": "Food and Drinks",
+      "word": "salad",
+      "forbidden": [
+        "vegetable",
+        "dressing",
+        "lunch",
+        "bowl"
+      ]
+    },
+    {
+      "id": "taboo_sk_0410",
+      "category": "Food and Drinks",
+      "word": "dressing",
+      "forbidden": [
+        "salad",
+        "mayonnaise",
+        "herb",
+        "vinegar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0411",
+      "category": "Food and Drinks",
+      "word": "sauce",
+      "forbidden": [
+        "thick",
+        "seasoning",
+        "plate",
+        "hot"
+      ]
+    },
+    {
+      "id": "taboo_sk_0412",
+      "category": "Food and Drinks",
+      "word": "béchamel",
+      "forbidden": [
+        "white",
+        "sauce",
+        "flour",
+        "butter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0413",
+      "category": "Food and Drinks",
+      "word": "meat",
+      "forbidden": [
+        "protein",
+        "roasted",
+        "plate",
+        "raw"
+      ]
+    },
+    {
+      "id": "taboo_sk_0414",
+      "category": "Food and Drinks",
+      "word": "remoulade",
+      "forbidden": [
+        "cold",
+        "herbs",
+        "side dish",
+        "mayonnaise"
+      ]
+    },
+    {
+      "id": "taboo_sk_0415",
+      "category": "Food and Drinks",
+      "word": "fondue",
+      "forbidden": [
+        "fork",
+        "melted",
+        "shared",
+        "hot"
+      ]
+    },
+    {
+      "id": "taboo_sk_0416",
+      "category": "Food and Drinks",
+      "word": "whipped cream",
+      "forbidden": [
+        "dessert",
+        "cream",
+        "can",
+        "cold"
+      ]
+    },
+    {
+      "id": "taboo_sk_0417",
+      "category": "Food and Drinks",
+      "word": "hamburger",
+      "forbidden": [
+        "fast food",
+        "bun",
+        "fries",
+        "ketchup"
+      ]
+    },
+    {
+      "id": "taboo_sk_0418",
+      "category": "Food and Drinks",
+      "word": "hot dog",
+      "forbidden": [
+        "sausage",
+        "roll",
+        "ketchup",
+        "stand"
+      ]
+    },
+    {
+      "id": "taboo_sk_0419",
+      "category": "Food and Drinks",
+      "word": "steak",
+      "forbidden": [
+        "meat",
+        "rare",
+        "seared",
+        "plate"
+      ]
+    },
+    {
+      "id": "taboo_sk_0420",
+      "category": "Food and Drinks",
+      "word": "ice cream",
+      "forbidden": [
+        "scoop",
+        "cup",
+        "sweet",
+        "summer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0421",
+      "category": "Food and Drinks",
+      "word": "popsicle",
+      "forbidden": [
+        "stick",
+        "frozen",
+        "summer",
+        "dessert"
+      ]
+    },
+    {
+      "id": "taboo_sk_0422",
+      "category": "Food and Drinks",
+      "word": "sorbet",
+      "forbidden": [
+        "fruit",
+        "icy",
+        "dairy-free",
+        "refreshing"
+      ]
+    },
+    {
+      "id": "taboo_sk_0423",
+      "category": "Food and Drinks",
+      "word": "omelette",
+      "forbidden": [
+        "breakfast",
+        "mixture",
+        "stuffed",
+        "quick"
+      ]
+    },
+    {
+      "id": "taboo_sk_0424",
+      "category": "Food and Drinks",
+      "word": "bagel",
+      "forbidden": [
+        "bread",
+        "creamy",
+        "topped",
+        "breakfast"
+      ]
+    },
+    {
+      "id": "taboo_sk_0425",
+      "category": "Food and Drinks",
+      "word": "croissant",
+      "forbidden": [
+        "breakfast",
+        "French",
+        "buttery",
+        "layers"
+      ]
+    },
+    {
+      "id": "taboo_sk_0426",
+      "category": "Food and Drinks",
+      "word": "pudding",
+      "forbidden": [
+        "dessert",
+        "vanilla",
+        "thick",
+        "milky"
+      ]
+    },
+    {
+      "id": "taboo_sk_0427",
+      "category": "Food and Drinks",
+      "word": "caramel",
+      "forbidden": [
+        "sweet",
+        "sticky",
+        "syrup",
+        "glaze"
+      ]
+    },
+    {
+      "id": "taboo_sk_0428",
+      "category": "Food and Drinks",
+      "word": "vanilla",
+      "forbidden": [
+        "flavor",
+        "bean",
+        "pudding",
+        "aromatic"
+      ]
+    },
+    {
+      "id": "taboo_sk_0429",
+      "category": "Food and Drinks",
+      "word": "cocktail",
+      "forbidden": [
+        "blender",
+        "bar",
+        "glass",
+        "garnish"
+      ]
+    },
+    {
+      "id": "taboo_sk_0430",
+      "category": "Food and Drinks",
+      "word": "guacamole",
+      "forbidden": [
+        "avocado",
+        "tortilla",
+        "toast",
+        "spicy"
+      ]
+    },
+    {
+      "id": "taboo_sk_0431",
+      "category": "Food and Drinks",
+      "word": "hummus",
+      "forbidden": [
+        "chickpea",
+        "tahini",
+        "pita",
+        "dip"
+      ]
+    },
+    {
+      "id": "taboo_sk_0432",
+      "category": "Food and Drinks",
+      "word": "salsa",
+      "forbidden": [
+        "spicy",
+        "Mexican",
+        "dip",
+        "chips"
+      ]
+    },
+    {
+      "id": "taboo_sk_0433",
+      "category": "Food and Drinks",
+      "word": "pesto",
+      "forbidden": [
+        "basil",
+        "pine nuts",
+        "sauce",
+        "green"
+      ]
+    },
+    {
+      "id": "taboo_sk_0434",
+      "category": "Food and Drinks",
+      "word": "cream",
+      "forbidden": [
+        "filling",
+        "dessert",
+        "smooth",
+        "milky"
+      ]
+    },
+    {
+      "id": "taboo_sk_0435",
+      "category": "Food and Drinks",
+      "word": "gratin",
+      "forbidden": [
+        "baked",
+        "crust",
+        "baking dish",
+        "golden"
+      ]
+    },
+    {
+      "id": "taboo_sk_0560",
+      "category": "Food and Drinks",
+      "word": "roll",
+      "forbidden": [
+        "pastry",
+        "butter",
+        "breakfast",
+        "sesame"
+      ]
+    },
+    {
+      "id": "taboo_sk_0561",
+      "category": "Food and Drinks",
+      "word": "birthday cake",
+      "forbidden": [
+        "celebration",
+        "slice",
+        "layers",
+        "confectioner"
+      ]
+    },
+    {
+      "id": "taboo_sk_0562",
+      "category": "Food and Drinks",
+      "word": "jam",
+      "forbidden": [
+        "fruit",
+        "jar",
+        "sweet",
+        "spread"
+      ]
+    },
+    {
+      "id": "taboo_sk_0563",
+      "category": "Food and Drinks",
+      "word": "olives",
+      "forbidden": [
+        "Mediterranean",
+        "salty",
+        "pit",
+        "oil"
+      ]
+    },
+    {
+      "id": "taboo_sk_0564",
+      "category": "Food and Drinks",
+      "word": "fries",
+      "forbidden": [
+        "fry",
+        "salt",
+        "ketchup",
+        "fast food"
+      ]
+    },
+    {
+      "id": "taboo_sk_0565",
+      "category": "Food and Drinks",
+      "word": "sushi",
+      "forbidden": [
+        "rice",
+        "wasabi",
+        "nori",
+        "cold"
+      ]
+    },
+    {
+      "id": "taboo_sk_0566",
+      "category": "Food and Drinks",
+      "word": "sheep cheese",
+      "forbidden": [
+        "sheep",
+        "salty",
+        "spread",
+        "dumplings"
+      ]
+    },
+    {
+      "id": "taboo_sk_0567",
+      "category": "Food and Drinks",
+      "word": "halušky",
+      "forbidden": [
+        "bryndza",
+        "potatoes",
+        "traditional",
+        "dish"
+      ]
+    },
+    {
+      "id": "taboo_sk_0568",
+      "category": "Food and Drinks",
+      "word": "cabbage soup",
+      "forbidden": [
+        "cabbage",
+        "festive",
+        "sausage",
+        "sour"
+      ]
+    },
+    {
+      "id": "taboo_sk_0569",
+      "category": "Food and Drinks",
+      "word": "rum",
+      "forbidden": [
+        "Caribbean",
+        "cocktail",
+        "sugarcane",
+        "pirates"
+      ]
+    },
+    {
+      "id": "taboo_sk_0570",
+      "category": "Food and Drinks",
+      "word": "whisky",
+      "forbidden": [
+        "Scotland",
+        "malt",
+        "bottle",
+        "ice"
+      ]
+    },
+    {
+      "id": "taboo_sk_0571",
+      "category": "Food and Drinks",
+      "word": "eggplant",
+      "forbidden": [
+        "purple",
+        "grill",
+        "slices",
+        "baked"
+      ]
+    },
+    {
+      "id": "taboo_sk_0572",
+      "category": "Food and Drinks",
+      "word": "avocado",
+      "forbidden": [
+        "guacamole",
+        "creamy",
+        "pit",
+        "green"
+      ]
+    },
+    {
+      "id": "taboo_sk_0573",
+      "category": "Food and Drinks",
+      "word": "nut",
+      "forbidden": [
+        "walnut",
+        "crack",
+        "cake",
+        "crunch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0574",
+      "category": "Food and Drinks",
+      "word": "coconut",
+      "forbidden": [
+        "tropical",
+        "milk",
+        "shell",
+        "fiber"
+      ]
+    },
+    {
+      "id": "taboo_sk_0575",
+      "category": "Food and Drinks",
+      "word": "tofu",
+      "forbidden": [
+        "soy",
+        "vegan",
+        "bland",
+        "spread"
+      ]
+    },
+    {
+      "id": "taboo_sk_0576",
+      "category": "Food and Drinks",
+      "word": "ketchup",
+      "forbidden": [
+        "tomato",
+        "sweet-and-sour",
+        "fries",
+        "bottle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0577",
+      "category": "Food and Drinks",
+      "word": "mustard",
+      "forbidden": [
+        "spicy",
+        "yellow",
+        "whole-grain",
+        "bottle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0578",
+      "category": "Food and Drinks",
+      "word": "baking",
+      "forbidden": [
+        "oven",
+        "dough",
+        "time",
+        "temperature"
+      ]
+    },
+    {
+      "id": "taboo_sk_0579",
+      "category": "Food and Drinks",
+      "word": "grilling",
+      "forbidden": [
+        "charcoal",
+        "smoke",
+        "summer",
+        "skewer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0580",
+      "category": "Food and Drinks",
+      "word": "mixing",
+      "forbidden": [
+        "whisk",
+        "container",
+        "by hand",
+        "ingredients"
+      ]
+    },
+    {
+      "id": "taboo_sk_0683",
+      "category": "Food and Drinks",
+      "word": "toast",
+      "forbidden": [
+        "to toast",
+        "butter",
+        "breakfast",
+        "bread"
+      ]
+    },
+    {
+      "id": "taboo_sk_0684",
+      "category": "Food and Drinks",
+      "word": "mushrooms",
+      "forbidden": [
+        "cap",
+        "fry",
+        "sauce",
+        "mushroom"
+      ]
+    },
+    {
+      "id": "taboo_sk_0685",
+      "category": "Food and Drinks",
+      "word": "chicken",
+      "forbidden": [
+        "roasted",
+        "bone",
+        "grill",
+        "wing"
+      ]
+    },
+    {
+      "id": "taboo_sk_0686",
+      "category": "Food and Drinks",
+      "word": "cinnamon",
+      "forbidden": [
+        "fragrant",
+        "bark",
+        "powder",
+        "strudel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0687",
+      "category": "Food and Drinks",
+      "word": "breakfast",
+      "forbidden": [
+        "morning",
+        "coffee",
+        "toast",
+        "snack"
+      ]
+    },
+    {
+      "id": "taboo_sk_0688",
+      "category": "Food and Drinks",
+      "word": "shopping",
+      "forbidden": [
+        "shop",
+        "list",
+        "checkout",
+        "market"
+      ]
+    },
+    {
+      "id": "taboo_sk_0689",
+      "category": "Food and Drinks",
+      "word": "freezing",
+      "forbidden": [
+        "cooling",
+        "freezer",
+        "long-term",
+        "ice"
+      ]
+    },
+    {
+      "id": "taboo_sk_0690",
+      "category": "Food and Drinks",
+      "word": "bacon",
+      "forbidden": [
+        "smoked",
+        "breakfast",
+        "pig",
+        "salty"
+      ]
+    },
+    {
+      "id": "taboo_sk_0691",
+      "category": "Food and Drinks",
+      "word": "sesame",
+      "forbidden": [
+        "seeds",
+        "hummus",
+        "salty",
+        "dough"
+      ]
+    },
+    {
+      "id": "taboo_sk_0692",
+      "category": "Food and Drinks",
+      "word": "granola",
+      "forbidden": [
+        "oats",
+        "breakfast",
+        "honey",
+        "crunchy"
+      ]
+    },
+    {
+      "id": "taboo_sk_0693",
+      "category": "Food and Drinks",
+      "word": "chips",
+      "forbidden": [
+        "salty",
+        "packet",
+        "party",
+        "potatoes"
+      ]
+    },
+    {
+      "id": "taboo_sk_0694",
+      "category": "Food and Drinks",
+      "word": "broth",
+      "forbidden": [
+        "bones",
+        "cooking",
+        "strainer",
+        "strong"
+      ]
+    },
+    {
+      "id": "taboo_sk_0695",
+      "category": "Food and Drinks",
+      "word": "sweets",
+      "forbidden": [
+        "sugar",
+        "dessert",
+        "confectioner",
+        "cookies"
+      ]
+    },
+    {
+      "id": "taboo_sk_0696",
+      "category": "Food and Drinks",
+      "word": "scrambled eggs",
+      "forbidden": [
+        "eggs",
+        "butter",
+        "breakfast",
+        "stir"
+      ]
+    },
+    {
+      "id": "taboo_sk_0697",
+      "category": "Food and Drinks",
+      "word": "tuna",
+      "forbidden": [
+        "can",
+        "sushi",
+        "fillet",
+        "sea"
+      ]
+    },
+    {
+      "id": "taboo_sk_0698",
+      "category": "Food and Drinks",
+      "word": "bread roll",
+      "forbidden": [
+        "fresh",
+        "baked goods",
+        "butter",
+        "crust"
+      ]
+    },
+    {
+      "id": "taboo_sk_0816",
+      "category": "Food and Drinks",
+      "word": "herbs",
+      "forbidden": [
+        "basil",
+        "sprig",
+        "dried",
+        "aroma"
+      ]
+    },
+    {
+      "id": "taboo_sk_0817",
+      "category": "Food and Drinks",
+      "word": "almonds",
+      "forbidden": [
+        "roasted",
+        "sweet",
+        "marzipan",
+        "dessert"
+      ]
+    },
+    {
+      "id": "taboo_sk_0818",
+      "category": "Food and Drinks",
+      "word": "ginger",
+      "forbidden": [
+        "root",
+        "spicy",
+        "tea",
+        "honey"
+      ]
+    },
+    {
+      "id": "taboo_sk_0819",
+      "category": "Food and Drinks",
+      "word": "lunch",
+      "forbidden": [
+        "main",
+        "break",
+        "soup",
+        "canteen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0820",
+      "category": "Food and Drinks",
+      "word": "dessert",
+      "forbidden": [
+        "sweet",
+        "portion",
+        "creamy",
+        "pastry"
+      ]
+    },
+    {
+      "id": "taboo_sk_0821",
+      "category": "Food and Drinks",
+      "word": "prosciutto",
+      "forbidden": [
+        "ham",
+        "Italy",
+        "meat",
+        "thin slices"
+      ]
+    },
+    {
+      "id": "taboo_sk_0822",
+      "category": "Food and Drinks",
+      "word": "horseradish",
+      "forbidden": [
+        "root",
+        "hot",
+        "sauce",
+        "side dish"
+      ]
+    },
+    {
+      "id": "taboo_sk_0823",
+      "category": "Food and Drinks",
+      "word": "mayonnaise",
+      "forbidden": [
+        "egg",
+        "oil",
+        "creamy",
+        "spread"
+      ]
+    },
+    {
+      "id": "taboo_sk_0824",
+      "category": "Food and Drinks",
+      "word": "vinaigrette",
+      "forbidden": [
+        "vinegar",
+        "oil",
+        "herbs",
+        "season"
+      ]
+    },
+    {
+      "id": "taboo_sk_0825",
+      "category": "Food and Drinks",
+      "word": "appetizer",
+      "forbidden": [
+        "small",
+        "taster",
+        "serve",
+        "open"
+      ]
+    },
+    {
+      "id": "taboo_sk_0826",
+      "category": "Food and Drinks",
+      "word": "Christmas braid",
+      "forbidden": [
+        "yeast",
+        "holiday",
+        "braided",
+        "sweet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0827",
+      "category": "Food and Drinks",
+      "word": "chimney cake",
+      "forbidden": [
+        "food",
+        "taste",
+        "ingredient",
+        "kitchen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0828",
+      "category": "Food and Drinks",
+      "word": "bundt cake",
+      "forbidden": [
+        "ring",
+        "mold",
+        "glaze",
+        "marble"
+      ]
+    },
+    {
+      "id": "taboo_sk_0829",
+      "category": "Food and Drinks",
+      "word": "poppy seed cake",
+      "forbidden": [
+        "seeds",
+        "filling",
+        "lemon",
+        "slice"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "en",
+  "category": "Miesta a cestovanie",
+  "cards": [
+    {
+      "id": "taboo_sk_0101",
+      "category": "Places and Travel",
+      "word": "airport",
+      "forbidden": [
+        "plane",
+        "departure",
+        "terminal",
+        "landing"
+      ]
+    },
+    {
+      "id": "taboo_sk_0102",
+      "category": "Places and Travel",
+      "word": "station",
+      "forbidden": [
+        "train",
+        "platform",
+        "departure",
+        "building"
+      ]
+    },
+    {
+      "id": "taboo_sk_0103",
+      "category": "Places and Travel",
+      "word": "port",
+      "forbidden": [
+        "ship",
+        "pier",
+        "anchorage",
+        "river"
+      ]
+    },
+    {
+      "id": "taboo_sk_0104",
+      "category": "Places and Travel",
+      "word": "bus",
+      "forbidden": [
+        "driver",
+        "stop",
+        "route",
+        "transport"
+      ]
+    },
+    {
+      "id": "taboo_sk_0105",
+      "category": "Places and Travel",
+      "word": "train",
+      "forbidden": [
+        "tracks",
+        "locomotive",
+        "carriage",
+        "connection"
+      ]
+    },
+    {
+      "id": "taboo_sk_0106",
+      "category": "Places and Travel",
+      "word": "metro",
+      "forbidden": [
+        "tunnel",
+        "underground",
+        "line",
+        "track"
+      ]
+    },
+    {
+      "id": "taboo_sk_0107",
+      "category": "Places and Travel",
+      "word": "tram",
+      "forbidden": [
+        "rails",
+        "trolley",
+        "vehicle",
+        "city"
+      ]
+    },
+    {
+      "id": "taboo_sk_0108",
+      "category": "Places and Travel",
+      "word": "taxi",
+      "forbidden": [
+        "meter",
+        "driver",
+        "phone call",
+        "taxi stand"
+      ]
+    },
+    {
+      "id": "taboo_sk_0109",
+      "category": "Places and Travel",
+      "word": "ferry",
+      "forbidden": [
+        "deck",
+        "ship",
+        "transport",
+        "cars"
+      ]
+    },
+    {
+      "id": "taboo_sk_0110",
+      "category": "Places and Travel",
+      "word": "airplane",
+      "forbidden": [
+        "wings",
+        "pilot",
+        "cabin",
+        "passenger"
+      ]
+    },
+    {
+      "id": "taboo_sk_0111",
+      "category": "Places and Travel",
+      "word": "passport",
+      "forbidden": [
+        "identity",
+        "visa",
+        "photo",
+        "border"
+      ]
+    },
+    {
+      "id": "taboo_sk_0112",
+      "category": "Places and Travel",
+      "word": "visa",
+      "forbidden": [
+        "passport",
+        "embassy",
+        "permit",
+        "entry"
+      ]
+    },
+    {
+      "id": "taboo_sk_0113",
+      "category": "Places and Travel",
+      "word": "map",
+      "forbidden": [
+        "legend",
+        "scale",
+        "north",
+        "plan"
+      ]
+    },
+    {
+      "id": "taboo_sk_0114",
+      "category": "Places and Travel",
+      "word": "compass",
+      "forbidden": [
+        "needle",
+        "magnet",
+        "north",
+        "directions"
+      ]
+    },
+    {
+      "id": "taboo_sk_0115",
+      "category": "Places and Travel",
+      "word": "direction",
+      "forbidden": [
+        "north",
+        "sign",
+        "orientation",
+        "road"
+      ]
+    },
+    {
+      "id": "taboo_sk_0116",
+      "category": "Places and Travel",
+      "word": "reservation",
+      "forbidden": [
+        "confirmation",
+        "date",
+        "payment",
+        "cancellation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0117",
+      "category": "Places and Travel",
+      "word": "hotel",
+      "forbidden": [
+        "room",
+        "reception",
+        "breakfast",
+        "pool"
+      ]
+    },
+    {
+      "id": "taboo_sk_0118",
+      "category": "Places and Travel",
+      "word": "hostel",
+      "forbidden": [
+        "shared",
+        "bed",
+        "cheap",
+        "kitchen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0119",
+      "category": "Places and Travel",
+      "word": "camping",
+      "forbidden": [
+        "tent",
+        "caravan",
+        "site",
+        "fire"
+      ]
+    },
+    {
+      "id": "taboo_sk_0120",
+      "category": "Places and Travel",
+      "word": "tent",
+      "forbidden": [
+        "pegs",
+        "canvas",
+        "sleep",
+        "camping"
+      ]
+    },
+    {
+      "id": "taboo_sk_0121",
+      "category": "Places and Travel",
+      "word": "backpack",
+      "forbidden": [
+        "straps",
+        "zip",
+        "hiking",
+        "weight"
+      ]
+    },
+    {
+      "id": "taboo_sk_0122",
+      "category": "Places and Travel",
+      "word": "luggage",
+      "forbidden": [
+        "suitcase",
+        "strap",
+        "tag",
+        "check-in"
+      ]
+    },
+    {
+      "id": "taboo_sk_0123",
+      "category": "Places and Travel",
+      "word": "check-in",
+      "forbidden": [
+        "ticket",
+        "weighing",
+        "gate",
+        "passport"
+      ]
+    },
+    {
+      "id": "taboo_sk_0124",
+      "category": "Places and Travel",
+      "word": "terminal",
+      "forbidden": [
+        "gate",
+        "departure",
+        "building",
+        "arrival"
+      ]
+    },
+    {
+      "id": "taboo_sk_0125",
+      "category": "Places and Travel",
+      "word": "ticket",
+      "forbidden": [
+        "price",
+        "check",
+        "validity",
+        "seat"
+      ]
+    },
+    {
+      "id": "taboo_sk_0126",
+      "category": "Places and Travel",
+      "word": "journey",
+      "forbidden": [
+        "ride",
+        "destination",
+        "kilometres",
+        "route"
+      ]
+    },
+    {
+      "id": "taboo_sk_0127",
+      "category": "Places and Travel",
+      "word": "vacation",
+      "forbidden": [
+        "rest",
+        "sea",
+        "beach",
+        "travel agency"
+      ]
+    },
+    {
+      "id": "taboo_sk_0128",
+      "category": "Places and Travel",
+      "word": "route",
+      "forbidden": [
+        "signage",
+        "points",
+        "kilometre",
+        "map"
+      ]
+    },
+    {
+      "id": "taboo_sk_0129",
+      "category": "Places and Travel",
+      "word": "itinerary",
+      "forbidden": [
+        "plan",
+        "day",
+        "reservation",
+        "order"
+      ]
+    },
+    {
+      "id": "taboo_sk_0130",
+      "category": "Places and Travel",
+      "word": "orientation",
+      "forbidden": [
+        "compass",
+        "map",
+        "direction",
+        "terrain"
+      ]
+    },
+    {
+      "id": "taboo_sk_0131",
+      "category": "Places and Travel",
+      "word": "sign",
+      "forbidden": [
+        "traffic",
+        "symbol",
+        "ban",
+        "speed"
+      ]
+    },
+    {
+      "id": "taboo_sk_0132",
+      "category": "Places and Travel",
+      "word": "highway",
+      "forbidden": [
+        "speed",
+        "toll",
+        "lane",
+        "exit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0133",
+      "category": "Places and Travel",
+      "word": "bridge",
+      "forbidden": [
+        "pillar",
+        "river",
+        "footbridge",
+        "crossing"
+      ]
+    },
+    {
+      "id": "taboo_sk_0134",
+      "category": "Places and Travel",
+      "word": "stop",
+      "forbidden": [
+        "waiting",
+        "sign",
+        "bus",
+        "shelter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0135",
+      "category": "Places and Travel",
+      "word": "tourist",
+      "forbidden": [
+        "guide",
+        "backpack",
+        "camera",
+        "landmark"
+      ]
+    },
+    {
+      "id": "taboo_sk_0136",
+      "category": "Places and Travel",
+      "word": "guide",
+      "forbidden": [
+        "information",
+        "map",
+        "route",
+        "language"
+      ]
+    },
+    {
+      "id": "taboo_sk_0137",
+      "category": "Places and Travel",
+      "word": "navigation",
+      "forbidden": [
+        "GPS",
+        "satellite",
+        "voice",
+        "display"
+      ]
+    },
+    {
+      "id": "taboo_sk_0138",
+      "category": "Places and Travel",
+      "word": "traffic light",
+      "forbidden": [
+        "red",
+        "green",
+        "crosswalk",
+        "signal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0139",
+      "category": "Places and Travel",
+      "word": "intersection",
+      "forbidden": [
+        "turn",
+        "lights",
+        "main",
+        "road"
+      ]
+    },
+    {
+      "id": "taboo_sk_0140",
+      "category": "Places and Travel",
+      "word": "turnoff",
+      "forbidden": [
+        "arrow",
+        "direction",
+        "entrance",
+        "sign"
+      ]
+    },
+    {
+      "id": "taboo_sk_0141",
+      "category": "Places and Travel",
+      "word": "parking lot",
+      "forbidden": [
+        "parking",
+        "spot",
+        "fee",
+        "attendant"
+      ]
+    },
+    {
+      "id": "taboo_sk_0142",
+      "category": "Places and Travel",
+      "word": "customs",
+      "forbidden": [
+        "inspection",
+        "duty",
+        "declaration",
+        "border"
+      ]
+    },
+    {
+      "id": "taboo_sk_0143",
+      "category": "Places and Travel",
+      "word": "transit",
+      "forbidden": [
+        "transfer",
+        "departure",
+        "waiting",
+        "airport"
+      ]
+    },
+    {
+      "id": "taboo_sk_0144",
+      "category": "Places and Travel",
+      "word": "shelter",
+      "forbidden": [
+        "roof",
+        "bench",
+        "stop",
+        "protection"
+      ]
+    },
+    {
+      "id": "taboo_sk_0145",
+      "category": "Places and Travel",
+      "word": "departure",
+      "forbidden": [
+        "ticket",
+        "gate",
+        "time",
+        "check-in"
+      ]
+    },
+    {
+      "id": "taboo_sk_0146",
+      "category": "Places and Travel",
+      "word": "arrival",
+      "forbidden": [
+        "landing",
+        "passport",
+        "luggage",
+        "welcome"
+      ]
+    },
+    {
+      "id": "taboo_sk_0147",
+      "category": "Places and Travel",
+      "word": "travel agency",
+      "forbidden": [
+        "offer",
+        "tour",
+        "reservation",
+        "agent"
+      ]
+    },
+    {
+      "id": "taboo_sk_0148",
+      "category": "Places and Travel",
+      "word": "voyage",
+      "forbidden": [
+        "ship",
+        "sea",
+        "deck",
+        "captain"
+      ]
+    },
+    {
+      "id": "taboo_sk_0149",
+      "category": "Places and Travel",
+      "word": "deck",
+      "forbidden": [
+        "captain",
+        "view",
+        "ship",
+        "passengers"
+      ]
+    },
+    {
+      "id": "taboo_sk_0150",
+      "category": "Places and Travel",
+      "word": "captain",
+      "forbidden": [
+        "ship",
+        "command",
+        "deck",
+        "experience"
+      ]
+    },
+    {
+      "id": "taboo_sk_0246",
+      "category": "Places and Travel",
+      "word": "cathedral",
+      "forbidden": [
+        "altar",
+        "organ",
+        "bishop",
+        "stained glass"
+      ]
+    },
+    {
+      "id": "taboo_sk_0247",
+      "category": "Places and Travel",
+      "word": "museum",
+      "forbidden": [
+        "exhibit",
+        "curator",
+        "collection",
+        "exhibition"
+      ]
+    },
+    {
+      "id": "taboo_sk_0248",
+      "category": "Places and Travel",
+      "word": "gallery",
+      "forbidden": [
+        "paintings",
+        "sculptures",
+        "opening",
+        "curator"
+      ]
+    },
+    {
+      "id": "taboo_sk_0249",
+      "category": "Places and Travel",
+      "word": "square",
+      "forbidden": [
+        "fountain",
+        "market",
+        "statue",
+        "paving"
+      ]
+    },
+    {
+      "id": "taboo_sk_0250",
+      "category": "Places and Travel",
+      "word": "promenade",
+      "forbidden": [
+        "waterfront",
+        "stroll",
+        "lamps",
+        "connect"
+      ]
+    },
+    {
+      "id": "taboo_sk_0251",
+      "category": "Places and Travel",
+      "word": "viewpoint",
+      "forbidden": [
+        "binoculars",
+        "summit",
+        "horizon",
+        "stairs"
+      ]
+    },
+    {
+      "id": "taboo_sk_0252",
+      "category": "Places and Travel",
+      "word": "rampart",
+      "forbidden": [
+        "fortification",
+        "wall",
+        "gate",
+        "guard"
+      ]
+    },
+    {
+      "id": "taboo_sk_0253",
+      "category": "Places and Travel",
+      "word": "footbridge",
+      "forbidden": [
+        "river",
+        "railing",
+        "pedestrians",
+        "wooden"
+      ]
+    },
+    {
+      "id": "taboo_sk_0254",
+      "category": "Places and Travel",
+      "word": "village",
+      "forbidden": [
+        "houses",
+        "countryside",
+        "street",
+        "inhabitants"
+      ]
+    },
+    {
+      "id": "taboo_sk_0255",
+      "category": "Places and Travel",
+      "word": "pedestrian zone",
+      "forbidden": [
+        "shops",
+        "pedestrians",
+        "cafes",
+        "ban"
+      ]
+    },
+    {
+      "id": "taboo_sk_0256",
+      "category": "Places and Travel",
+      "word": "botanical garden",
+      "forbidden": [
+        "greenhouse",
+        "plants",
+        "herbarium",
+        "bench"
+      ]
+    },
+    {
+      "id": "taboo_sk_0257",
+      "category": "Places and Travel",
+      "word": "zoo",
+      "forbidden": [
+        "enclosure",
+        "cage",
+        "feeding",
+        "education"
+      ]
+    },
+    {
+      "id": "taboo_sk_0258",
+      "category": "Places and Travel",
+      "word": "waterpark",
+      "forbidden": [
+        "water slide",
+        "slide",
+        "pool",
+        "jacuzzi"
+      ]
+    },
+    {
+      "id": "taboo_sk_0259",
+      "category": "Places and Travel",
+      "word": "thermal baths",
+      "forbidden": [
+        "spring",
+        "healing",
+        "wellness",
+        "mineral"
+      ]
+    },
+    {
+      "id": "taboo_sk_0260",
+      "category": "Places and Travel",
+      "word": "steamer",
+      "forbidden": [
+        "smokestack",
+        "Danube",
+        "deck",
+        "passengers"
+      ]
+    },
+    {
+      "id": "taboo_sk_0261",
+      "category": "Places and Travel",
+      "word": "fortress",
+      "forbidden": [
+        "cannons",
+        "ramparts",
+        "defense",
+        "barracks"
+      ]
+    },
+    {
+      "id": "taboo_sk_0262",
+      "category": "Places and Travel",
+      "word": "ruins",
+      "forbidden": [
+        "excavations",
+        "wall",
+        "ancient",
+        "archaeology"
+      ]
+    },
+    {
+      "id": "taboo_sk_0263",
+      "category": "Places and Travel",
+      "word": "cable car",
+      "forbidden": [
+        "cabin",
+        "cables",
+        "slope",
+        "summit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0264",
+      "category": "Places and Travel",
+      "word": "cave",
+      "forbidden": [
+        "stalactite",
+        "dark",
+        "stalagmite",
+        "underground"
+      ]
+    },
+    {
+      "id": "taboo_sk_0265",
+      "category": "Places and Travel",
+      "word": "lighthouse",
+      "forbidden": [
+        "light",
+        "coast",
+        "watch",
+        "signal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0266",
+      "category": "Places and Travel",
+      "word": "hike",
+      "forbidden": [
+        "ascent",
+        "climb",
+        "break",
+        "crossing"
+      ]
+    },
+    {
+      "id": "taboo_sk_0267",
+      "category": "Places and Travel",
+      "word": "cabin",
+      "forbidden": [
+        "fireplace",
+        "sleeping",
+        "campfire",
+        "mountain"
+      ]
+    },
+    {
+      "id": "taboo_sk_0268",
+      "category": "Places and Travel",
+      "word": "signpost",
+      "forbidden": [
+        "arrow",
+        "board",
+        "distance",
+        "turnoff"
+      ]
+    },
+    {
+      "id": "taboo_sk_0269",
+      "category": "Places and Travel",
+      "word": "mountain pass",
+      "forbidden": [
+        "saddle",
+        "slope",
+        "passage",
+        "mountain"
+      ]
+    },
+    {
+      "id": "taboo_sk_0270",
+      "category": "Places and Travel",
+      "word": "pier",
+      "forbidden": [
+        "fisherman",
+        "deck",
+        "promenade",
+        "wooden"
+      ]
+    },
+    {
+      "id": "taboo_sk_0271",
+      "category": "Places and Travel",
+      "word": "bay",
+      "forbidden": [
+        "cove",
+        "beach",
+        "shelter",
+        "anchorage"
+      ]
+    },
+    {
+      "id": "taboo_sk_0272",
+      "category": "Places and Travel",
+      "word": "peninsula",
+      "forbidden": [
+        "land",
+        "water",
+        "narrow",
+        "tip"
+      ]
+    },
+    {
+      "id": "taboo_sk_0273",
+      "category": "Places and Travel",
+      "word": "valley",
+      "forbidden": [
+        "river",
+        "slopes",
+        "pasture",
+        "green"
+      ]
+    },
+    {
+      "id": "taboo_sk_0274",
+      "category": "Places and Travel",
+      "word": "spring",
+      "forbidden": [
+        "spring",
+        "mineral",
+        "source",
+        "cold"
+      ]
+    },
+    {
+      "id": "taboo_sk_0275",
+      "category": "Places and Travel",
+      "word": "plain",
+      "forbidden": [
+        "flatland",
+        "meadow",
+        "pastures",
+        "width"
+      ]
+    },
+    {
+      "id": "taboo_sk_0276",
+      "category": "Places and Travel",
+      "word": "beach",
+      "forbidden": [
+        "sand",
+        "umbrella",
+        "tide",
+        "waves"
+      ]
+    },
+    {
+      "id": "taboo_sk_0277",
+      "category": "Places and Travel",
+      "word": "bicycle",
+      "forbidden": [
+        "chain",
+        "pedals",
+        "saddle",
+        "handlebars"
+      ]
+    },
+    {
+      "id": "taboo_sk_0278",
+      "category": "Places and Travel",
+      "word": "scooter",
+      "forbidden": [
+        "wheel",
+        "footplate",
+        "rental",
+        "electric"
+      ]
+    },
+    {
+      "id": "taboo_sk_0279",
+      "category": "Places and Travel",
+      "word": "gondola",
+      "forbidden": [
+        "Venice",
+        "canal",
+        "oar",
+        "romance"
+      ]
+    },
+    {
+      "id": "taboo_sk_0280",
+      "category": "Places and Travel",
+      "word": "yacht",
+      "forbidden": [
+        "sails",
+        "crew",
+        "dock",
+        "luxury"
+      ]
+    },
+    {
+      "id": "taboo_sk_0281",
+      "category": "Places and Travel",
+      "word": "cruise ship",
+      "forbidden": [
+        "deck",
+        "dinner",
+        "lounge",
+        "sightseeing"
+      ]
+    },
+    {
+      "id": "taboo_sk_0282",
+      "category": "Places and Travel",
+      "word": "kayak",
+      "forbidden": [
+        "paddle",
+        "single-seat",
+        "river",
+        "paddling"
+      ]
+    },
+    {
+      "id": "taboo_sk_0283",
+      "category": "Places and Travel",
+      "word": "open-air museum",
+      "forbidden": [
+        "wooden",
+        "dwellings",
+        "crafts",
+        "exhibition"
+      ]
+    },
+    {
+      "id": "taboo_sk_0284",
+      "category": "Places and Travel",
+      "word": "resort",
+      "forbidden": [
+        "pool",
+        "wellness",
+        "villa",
+        "relaxation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0285",
+      "category": "Places and Travel",
+      "word": "marina",
+      "forbidden": [
+        "yachtsman",
+        "dock",
+        "anchor",
+        "harbor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0286",
+      "category": "Places and Travel",
+      "word": "anchor",
+      "forbidden": [
+        "iron",
+        "depth",
+        "chain",
+        "ship"
+      ]
+    },
+    {
+      "id": "taboo_sk_0287",
+      "category": "Places and Travel",
+      "word": "cliff",
+      "forbidden": [
+        "rock",
+        "steep",
+        "storm",
+        "coast"
+      ]
+    },
+    {
+      "id": "taboo_sk_0288",
+      "category": "Places and Travel",
+      "word": "reception",
+      "forbidden": [
+        "registration",
+        "keys",
+        "guests",
+        "information"
+      ]
+    },
+    {
+      "id": "taboo_sk_0289",
+      "category": "Places and Travel",
+      "word": "tower",
+      "forbidden": [
+        "height",
+        "stairs",
+        "building",
+        "view"
+      ]
+    },
+    {
+      "id": "taboo_sk_0290",
+      "category": "Places and Travel",
+      "word": "segway",
+      "forbidden": [
+        "electric",
+        "wheels",
+        "standing",
+        "rental"
+      ]
+    },
+    {
+      "id": "taboo_sk_0291",
+      "category": "Places and Travel",
+      "word": "funicular",
+      "forbidden": [
+        "tracks",
+        "slope",
+        "cabin",
+        "cables"
+      ]
+    },
+    {
+      "id": "taboo_sk_0292",
+      "category": "Places and Travel",
+      "word": "geocache",
+      "forbidden": [
+        "stash",
+        "GPS",
+        "find",
+        "riddle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0834",
+      "category": "Places and Travel",
+      "word": "toll booth",
+      "forbidden": [
+        "highway",
+        "fee",
+        "car",
+        "gate"
+      ]
+    },
+    {
+      "id": "taboo_sk_0835",
+      "category": "Places and Travel",
+      "word": "rest area",
+      "forbidden": [
+        "highway",
+        "toilet",
+        "break",
+        "parking"
+      ]
+    },
+    {
+      "id": "taboo_sk_0836",
+      "category": "Places and Travel",
+      "word": "bike path",
+      "forbidden": [
+        "bicycle",
+        "helmet",
+        "signage",
+        "trip"
+      ]
+    },
+    {
+      "id": "taboo_sk_0837",
+      "category": "Places and Travel",
+      "word": "border crossing",
+      "forbidden": [
+        "passport",
+        "country",
+        "customs officer",
+        "border"
+      ]
+    },
+    {
+      "id": "taboo_sk_0838",
+      "category": "Places and Travel",
+      "word": "taxi driver",
+      "forbidden": [
+        "car",
+        "ride",
+        "driver",
+        "yellow"
+      ]
+    },
+    {
+      "id": "taboo_sk_0839",
+      "category": "Places and Travel",
+      "word": "car rental",
+      "forbidden": [
+        "vehicle",
+        "rental",
+        "keys",
+        "contract"
+      ]
+    },
+    {
+      "id": "taboo_sk_0840",
+      "category": "Places and Travel",
+      "word": "customs office",
+      "forbidden": [
+        "border",
+        "goods",
+        "inspection",
+        "passport"
+      ]
+    },
+    {
+      "id": "taboo_sk_0841",
+      "category": "Places and Travel",
+      "word": "car wash",
+      "forbidden": [
+        "vehicle",
+        "water",
+        "shampoo",
+        "cleaning"
+      ]
+    },
+    {
+      "id": "taboo_sk_0842",
+      "category": "Places and Travel",
+      "word": "transfer",
+      "forbidden": [
+        "train",
+        "bus",
+        "change",
+        "station"
+      ]
+    },
+    {
+      "id": "taboo_sk_0843",
+      "category": "Places and Travel",
+      "word": "underpass",
+      "forbidden": [
+        "stairs",
+        "tunnel",
+        "pedestrians",
+        "station"
+      ]
+    },
+    {
+      "id": "taboo_sk_0844",
+      "category": "Places and Travel",
+      "word": "overpass",
+      "forbidden": [
+        "bridge",
+        "stairs",
+        "pedestrians",
+        "height"
+      ]
+    },
+    {
+      "id": "taboo_sk_0845",
+      "category": "Places and Travel",
+      "word": "sidewalk",
+      "forbidden": [
+        "on foot",
+        "pavement",
+        "pedestrians",
+        "park"
+      ]
+    },
+    {
+      "id": "taboo_sk_0846",
+      "category": "Places and Travel",
+      "word": "riverbank",
+      "forbidden": [
+        "river",
+        "shore",
+        "walk",
+        "bench"
+      ]
+    },
+    {
+      "id": "taboo_sk_0847",
+      "category": "Places and Travel",
+      "word": "curve",
+      "forbidden": [
+        "steering wheel",
+        "car",
+        "road",
+        "slow down"
+      ]
+    },
+    {
+      "id": "taboo_sk_0848",
+      "category": "Places and Travel",
+      "word": "detour",
+      "forbidden": [
+        "closure",
+        "sign",
+        "route",
+        "traffic"
+      ]
+    },
+    {
+      "id": "taboo_sk_0849",
+      "category": "Places and Travel",
+      "word": "pedestrian crossing",
+      "forbidden": [
+        "crosswalk",
+        "traffic light",
+        "road",
+        "pedestrians"
+      ]
+    },
+    {
+      "id": "taboo_sk_0850",
+      "category": "Places and Travel",
+      "word": "monument",
+      "forbidden": [
+        "history",
+        "statue",
+        "remembrance",
+        "public"
+      ]
+    },
+    {
+      "id": "taboo_sk_0851",
+      "category": "Places and Travel",
+      "word": "turnstile",
+      "forbidden": [
+        "entrance",
+        "ticket",
+        "metro",
+        "gate"
+      ]
+    },
+    {
+      "id": "taboo_sk_0852",
+      "category": "Places and Travel",
+      "word": "traffic jam",
+      "forbidden": [
+        "cars",
+        "traffic",
+        "delay",
+        "road"
+      ]
+    },
+    {
+      "id": "taboo_sk_0853",
+      "category": "Places and Travel",
+      "word": "information center",
+      "forbidden": [
+        "tourist",
+        "map",
+        "leaflet",
+        "advice"
+      ]
+    },
+    {
+      "id": "taboo_sk_0854",
+      "category": "Places and Travel",
+      "word": "observation post",
+      "forbidden": [
+        "view",
+        "binoculars",
+        "birds",
+        "tower"
+      ]
+    },
+    {
+      "id": "taboo_sk_0855",
+      "category": "Places and Travel",
+      "word": "guesthouse",
+      "forbidden": [
+        "accommodation",
+        "lodging",
+        "guest",
+        "reservation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0856",
+      "category": "Places and Travel",
+      "word": "apartment",
+      "forbidden": [
+        "accommodation",
+        "lodging",
+        "guest",
+        "reservation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0857",
+      "category": "Places and Travel",
+      "word": "camp",
+      "forbidden": [
+        "tent",
+        "lodging",
+        "nature",
+        "fire"
+      ]
+    },
+    {
+      "id": "taboo_sk_0858",
+      "category": "Places and Travel",
+      "word": "dormitory",
+      "forbidden": [
+        "accommodation",
+        "lodging",
+        "guest",
+        "reservation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0859",
+      "category": "Places and Travel",
+      "word": "camp",
+      "forbidden": [
+        "tent",
+        "summer",
+        "children",
+        "fire"
+      ]
+    },
+    {
+      "id": "taboo_sk_0860",
+      "category": "Places and Travel",
+      "word": "overnight stay",
+      "forbidden": [
+        "hotel",
+        "bed",
+        "sleep over",
+        "evening"
+      ]
+    },
+    {
+      "id": "taboo_sk_0861",
+      "category": "Places and Travel",
+      "word": "mountain hut",
+      "forbidden": [
+        "accommodation",
+        "lodging",
+        "guest",
+        "reservation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0862",
+      "category": "Places and Travel",
+      "word": "hotel room",
+      "forbidden": [
+        "accommodation",
+        "lodging",
+        "guest",
+        "reservation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0863",
+      "category": "Places and Travel",
+      "word": "kitchenette",
+      "forbidden": [
+        "cooking",
+        "dishes",
+        "room",
+        "food"
+      ]
+    },
+    {
+      "id": "taboo_sk_0864",
+      "category": "Places and Travel",
+      "word": "canteen",
+      "forbidden": [
+        "lunch",
+        "table",
+        "tray",
+        "food"
+      ]
+    },
+    {
+      "id": "taboo_sk_0865",
+      "category": "Places and Travel",
+      "word": "elevator",
+      "forbidden": [
+        "floor",
+        "door",
+        "button",
+        "up"
+      ]
+    },
+    {
+      "id": "taboo_sk_0866",
+      "category": "Places and Travel",
+      "word": "gate",
+      "forbidden": [
+        "entrance",
+        "fence",
+        "door",
+        "entry"
+      ]
+    },
+    {
+      "id": "taboo_sk_0867",
+      "category": "Places and Travel",
+      "word": "lobby",
+      "forbidden": [
+        "accommodation",
+        "lodging",
+        "guest",
+        "reservation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0868",
+      "category": "Places and Travel",
+      "word": "left-luggage",
+      "forbidden": [
+        "luggage",
+        "locker",
+        "key",
+        "leave"
+      ]
+    },
+    {
+      "id": "taboo_sk_0869",
+      "category": "Places and Travel",
+      "word": "souvenir",
+      "forbidden": [
+        "gift",
+        "tourist",
+        "memento",
+        "shop"
+      ]
+    },
+    {
+      "id": "taboo_sk_0870",
+      "category": "Places and Travel",
+      "word": "rental",
+      "forbidden": [
+        "bike",
+        "borrow",
+        "return",
+        "money"
+      ]
+    },
+    {
+      "id": "taboo_sk_0871",
+      "category": "Places and Travel",
+      "word": "caravan",
+      "forbidden": [
+        "car",
+        "camp",
+        "trailer",
+        "lodging"
+      ]
+    },
+    {
+      "id": "taboo_sk_0872",
+      "category": "Places and Travel",
+      "word": "campsite",
+      "forbidden": [
+        "accommodation",
+        "lodging",
+        "guest",
+        "reservation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0873",
+      "category": "Places and Travel",
+      "word": "dormitory",
+      "forbidden": [
+        "student",
+        "school",
+        "room",
+        "bed"
+      ]
+    },
+    {
+      "id": "taboo_sk_0874",
+      "category": "Places and Travel",
+      "word": "suitcase",
+      "forbidden": [
+        "luggage",
+        "clothes",
+        "lock",
+        "wheels"
+      ]
+    },
+    {
+      "id": "taboo_sk_0875",
+      "category": "Places and Travel",
+      "word": "observatory",
+      "forbidden": [
+        "stars",
+        "telescope",
+        "space",
+        "planets"
+      ]
+    },
+    {
+      "id": "taboo_sk_0876",
+      "category": "Places and Travel",
+      "word": "customs control",
+      "forbidden": [
+        "accommodation",
+        "lodging",
+        "guest",
+        "reservation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0877",
+      "category": "Places and Travel",
+      "word": "security check",
+      "forbidden": [
+        "accommodation",
+        "lodging",
+        "guest",
+        "reservation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0878",
+      "category": "Places and Travel",
+      "word": "passport control",
+      "forbidden": [
+        "accommodation",
+        "lodging",
+        "guest",
+        "reservation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0879",
+      "category": "Places and Travel",
+      "word": "luggage tag",
+      "forbidden": [
+        "luggage",
+        "airport",
+        "suitcase",
+        "name"
+      ]
+    },
+    {
+      "id": "taboo_sk_0880",
+      "category": "Places and Travel",
+      "word": "waiting room",
+      "forbidden": [
+        "accommodation",
+        "lodging",
+        "guest",
+        "reservation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0881",
+      "category": "Places and Travel",
+      "word": "platform",
+      "forbidden": [
+        "accommodation",
+        "lodging",
+        "guest",
+        "reservation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0882",
+      "category": "Places and Travel",
+      "word": "town hall",
+      "forbidden": [
+        "mayor",
+        "office",
+        "square",
+        "wedding"
+      ]
+    },
+    {
+      "id": "taboo_sk_0883",
+      "category": "Places and Travel",
+      "word": "market",
+      "forbidden": [
+        "stall",
+        "fruit",
+        "seller",
+        "shopping"
+      ]
+    },
+    {
+      "id": "taboo_sk_0884",
+      "category": "Places and Travel",
+      "word": "city park",
+      "forbidden": [
+        "trees",
+        "bench",
+        "grass",
+        "walk"
+      ]
+    },
+    {
+      "id": "taboo_sk_0885",
+      "category": "Places and Travel",
+      "word": "cultural center",
+      "forbidden": [
+        "event",
+        "hall",
+        "concert",
+        "stage"
+      ]
+    },
+    {
+      "id": "taboo_sk_0886",
+      "category": "Places and Travel",
+      "word": "club",
+      "forbidden": [
+        "members",
+        "meeting",
+        "people",
+        "leisure"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "de",
+  "category": "Ľudia a povolania",
+  "cards": [
+    {
+      "id": "taboo_sk_0151",
+      "category": "Menschen und Berufe",
+      "word": "Lehrer",
+      "forbidden": [
+        "Schule",
+        "Schüler",
+        "Tafel",
+        "Stunde"
+      ]
+    },
+    {
+      "id": "taboo_sk_0152",
+      "category": "Menschen und Berufe",
+      "word": "Arzt",
+      "forbidden": [
+        "Krankenhaus",
+        "Patient",
+        "Praxis",
+        "Stethoskop"
+      ]
+    },
+    {
+      "id": "taboo_sk_0153",
+      "category": "Menschen und Berufe",
+      "word": "Feuerwehrmann",
+      "forbidden": [
+        "Feuer",
+        "Feuerwehrwagen",
+        "Helm",
+        "Rettung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0154",
+      "category": "Menschen und Berufe",
+      "word": "Polizist",
+      "forbidden": [
+        "Verbrechen",
+        "Streife",
+        "Handschellen",
+        "Uniform"
+      ]
+    },
+    {
+      "id": "taboo_sk_0155",
+      "category": "Menschen und Berufe",
+      "word": "Koch",
+      "forbidden": [
+        "Küche",
+        "Rezept",
+        "Kochlöffel",
+        "Restaurant"
+      ]
+    },
+    {
+      "id": "taboo_sk_0156",
+      "category": "Menschen und Berufe",
+      "word": "Kellner",
+      "forbidden": [
+        "Speisekarte",
+        "Glas",
+        "Trinkgeld",
+        "Bestellung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0157",
+      "category": "Menschen und Berufe",
+      "word": "Friseur",
+      "forbidden": [
+        "Schere",
+        "Salon",
+        "Waschen",
+        "Frisur"
+      ]
+    },
+    {
+      "id": "taboo_sk_0158",
+      "category": "Menschen und Berufe",
+      "word": "Kosmetikerin",
+      "forbidden": [
+        "Make-up",
+        "Haut",
+        "Maniküre",
+        "Salon"
+      ]
+    },
+    {
+      "id": "taboo_sk_0159",
+      "category": "Menschen und Berufe",
+      "word": "Barbier",
+      "forbidden": [
+        "Rasiermesser",
+        "Bart",
+        "Rasur",
+        "Salon"
+      ]
+    },
+    {
+      "id": "taboo_sk_0160",
+      "category": "Menschen und Berufe",
+      "word": "Journalist",
+      "forbidden": [
+        "Artikel",
+        "Reportage",
+        "Redaktion",
+        "Mikrofon"
+      ]
+    },
+    {
+      "id": "taboo_sk_0161",
+      "category": "Menschen und Berufe",
+      "word": "Fotograf",
+      "forbidden": [
+        "Kamera",
+        "Objektiv",
+        "Porträt",
+        "Blitz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0162",
+      "category": "Menschen und Berufe",
+      "word": "Architekt",
+      "forbidden": [
+        "Plan",
+        "Entwurf",
+        "Gebäude",
+        "Modell"
+      ]
+    },
+    {
+      "id": "taboo_sk_0163",
+      "category": "Menschen und Berufe",
+      "word": "Maurer",
+      "forbidden": [
+        "Ziegel",
+        "Mörtel",
+        "Hammer",
+        "Beton"
+      ]
+    },
+    {
+      "id": "taboo_sk_0164",
+      "category": "Menschen und Berufe",
+      "word": "Ingenieur",
+      "forbidden": [
+        "Projekt",
+        "Berechnungen",
+        "Konstruktion",
+        "Technik"
+      ]
+    },
+    {
+      "id": "taboo_sk_0165",
+      "category": "Menschen und Berufe",
+      "word": "Programmierer",
+      "forbidden": [
+        "Code",
+        "Fehler",
+        "Computer",
+        "App"
+      ]
+    },
+    {
+      "id": "taboo_sk_0166",
+      "category": "Menschen und Berufe",
+      "word": "Buchhalter",
+      "forbidden": [
+        "Rechnung",
+        "Steuer",
+        "Bericht",
+        "Taschenrechner"
+      ]
+    },
+    {
+      "id": "taboo_sk_0167",
+      "category": "Menschen und Berufe",
+      "word": "Banker",
+      "forbidden": [
+        "Konto",
+        "Kredit",
+        "Filiale",
+        "Geld"
+      ]
+    },
+    {
+      "id": "taboo_sk_0168",
+      "category": "Menschen und Berufe",
+      "word": "Immobilienmakler",
+      "forbidden": [
+        "Immobilie",
+        "Verkauf",
+        "Wohnung",
+        "Vertrag"
+      ]
+    },
+    {
+      "id": "taboo_sk_0169",
+      "category": "Menschen und Berufe",
+      "word": "Verkäufer",
+      "forbidden": [
+        "Theke",
+        "Kunde",
+        "Regal",
+        "Kasse"
+      ]
+    },
+    {
+      "id": "taboo_sk_0170",
+      "category": "Menschen und Berufe",
+      "word": "Manager",
+      "forbidden": [
+        "Team",
+        "Führung",
+        "Meeting",
+        "Strategie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0171",
+      "category": "Menschen und Berufe",
+      "word": "Direktor",
+      "forbidden": [
+        "Entscheidung",
+        "Büro",
+        "Unterschrift",
+        "Verantwortung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0172",
+      "category": "Menschen und Berufe",
+      "word": "Politiker",
+      "forbidden": [
+        "Wahlen",
+        "Partei",
+        "Rede",
+        "Gesetz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0173",
+      "category": "Menschen und Berufe",
+      "word": "Abgeordneter",
+      "forbidden": [
+        "Parlament",
+        "Abstimmung",
+        "Mandat",
+        "Mikrofon"
+      ]
+    },
+    {
+      "id": "taboo_sk_0174",
+      "category": "Menschen und Berufe",
+      "word": "Präsident",
+      "forbidden": [
+        "Staatsoberhaupt",
+        "Eid",
+        "Amt",
+        "Zeremonie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0175",
+      "category": "Menschen und Berufe",
+      "word": "Anwalt",
+      "forbidden": [
+        "Verteidigung",
+        "Mandant",
+        "Paragraph",
+        "Prozess"
+      ]
+    },
+    {
+      "id": "taboo_sk_0176",
+      "category": "Menschen und Berufe",
+      "word": "Bauer",
+      "forbidden": [
+        "Feld",
+        "Vieh",
+        "Traktor",
+        "Ernte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0177",
+      "category": "Menschen und Berufe",
+      "word": "Bibliothekar",
+      "forbidden": [
+        "Buch",
+        "Ausleihe",
+        "Leser",
+        "Regal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0178",
+      "category": "Menschen und Berufe",
+      "word": "Künstler",
+      "forbidden": [
+        "Galerie",
+        "Ausstellung",
+        "Werk",
+        "Pinsel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0179",
+      "category": "Menschen und Berufe",
+      "word": "Schauspieler",
+      "forbidden": [
+        "Theater",
+        "Rolle",
+        "Bühne",
+        "Premiere"
+      ]
+    },
+    {
+      "id": "taboo_sk_0180",
+      "category": "Menschen und Berufe",
+      "word": "Regisseur",
+      "forbidden": [
+        "Szene",
+        "Kamera",
+        "Schnitt",
+        "Drehbuch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0181",
+      "category": "Menschen und Berufe",
+      "word": "Produzent",
+      "forbidden": [
+        "Finanzen",
+        "Projekt",
+        "Investor",
+        "Studio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0182",
+      "category": "Menschen und Berufe",
+      "word": "Musiker",
+      "forbidden": [
+        "Instrument",
+        "Konzert",
+        "Noten",
+        "Band"
+      ]
+    },
+    {
+      "id": "taboo_sk_0183",
+      "category": "Menschen und Berufe",
+      "word": "Sänger",
+      "forbidden": [
+        "Mikrofon",
+        "Stimme",
+        "Refrain",
+        "Konzert"
+      ]
+    },
+    {
+      "id": "taboo_sk_0184",
+      "category": "Menschen und Berufe",
+      "word": "Barkeeper",
+      "forbidden": [
+        "Shaker",
+        "Getränk",
+        "Tresen",
+        "Gast"
+      ]
+    },
+    {
+      "id": "taboo_sk_0185",
+      "category": "Menschen und Berufe",
+      "word": "Kosmonaut",
+      "forbidden": [
+        "Weltraum",
+        "Umlaufbahn",
+        "Rakete",
+        "Raumanzug"
+      ]
+    },
+    {
+      "id": "taboo_sk_0186",
+      "category": "Menschen und Berufe",
+      "word": "Astronom",
+      "forbidden": [
+        "Stern",
+        "Teleskop",
+        "Galaxie",
+        "Observatorium"
+      ]
+    },
+    {
+      "id": "taboo_sk_0187",
+      "category": "Menschen und Berufe",
+      "word": "Biologe",
+      "forbidden": [
+        "Labor",
+        "Zelle",
+        "Evolution",
+        "Mikroskop"
+      ]
+    },
+    {
+      "id": "taboo_sk_0188",
+      "category": "Menschen und Berufe",
+      "word": "Apotheker",
+      "forbidden": [
+        "Apotheke",
+        "Rezeptur",
+        "Tablette",
+        "Dosierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0189",
+      "category": "Menschen und Berufe",
+      "word": "Sozialarbeiter",
+      "forbidden": [
+        "Hilfe",
+        "Klient",
+        "Familie",
+        "Intervention"
+      ]
+    },
+    {
+      "id": "taboo_sk_0190",
+      "category": "Menschen und Berufe",
+      "word": "Psychologe",
+      "forbidden": [
+        "Therapie",
+        "Patient",
+        "Gespräch",
+        "Diagnostik"
+      ]
+    },
+    {
+      "id": "taboo_sk_0191",
+      "category": "Menschen und Berufe",
+      "word": "Krankenschwester",
+      "forbidden": [
+        "Infusion",
+        "Behandlung",
+        "Krankenhaus",
+        "Schicht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0192",
+      "category": "Menschen und Berufe",
+      "word": "Kurier",
+      "forbidden": [
+        "Sendung",
+        "Zustellung",
+        "Adresse",
+        "Paket"
+      ]
+    },
+    {
+      "id": "taboo_sk_0193",
+      "category": "Menschen und Berufe",
+      "word": "Automechaniker",
+      "forbidden": [
+        "Motor",
+        "Diagnose",
+        "Bremsen",
+        "Werkstatt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0194",
+      "category": "Menschen und Berufe",
+      "word": "Zauberer",
+      "forbidden": [
+        "Trick",
+        "Hut",
+        "Illusion",
+        "Publikum"
+      ]
+    },
+    {
+      "id": "taboo_sk_0195",
+      "category": "Menschen und Berufe",
+      "word": "Moderator",
+      "forbidden": [
+        "Sendung",
+        "Frage",
+        "Studio",
+        "Gast"
+      ]
+    },
+    {
+      "id": "taboo_sk_0436",
+      "category": "Menschen und Berufe",
+      "word": "Trainer",
+      "forbidden": [
+        "Team",
+        "Taktik",
+        "Motivation",
+        "Fitness"
+      ]
+    },
+    {
+      "id": "taboo_sk_0437",
+      "category": "Menschen und Berufe",
+      "word": "Notar",
+      "forbidden": [
+        "Unterschrift",
+        "Beglaubigung",
+        "Dokument",
+        "Stempel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0438",
+      "category": "Menschen und Berufe",
+      "word": "Elektriker",
+      "forbidden": [
+        "Kabel",
+        "Strom",
+        "Steckdose",
+        "Sicherung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0439",
+      "category": "Menschen und Berufe",
+      "word": "Tischler",
+      "forbidden": [
+        "Holz",
+        "Hammer",
+        "Brett",
+        "Möbel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0440",
+      "category": "Menschen und Berufe",
+      "word": "Gärtner",
+      "forbidden": [
+        "Blumen",
+        "Rasen",
+        "Spaten",
+        "Dünger"
+      ]
+    },
+    {
+      "id": "taboo_sk_0441",
+      "category": "Menschen und Berufe",
+      "word": "Masseur",
+      "forbidden": [
+        "entspannen",
+        "Öl",
+        "Muskel",
+        "Entspannung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0442",
+      "category": "Menschen und Berufe",
+      "word": "Fahrer",
+      "forbidden": [
+        "Lenkrad",
+        "Verkehr",
+        "Fahrgast",
+        "parken"
+      ]
+    },
+    {
+      "id": "taboo_sk_0443",
+      "category": "Menschen und Berufe",
+      "word": "König",
+      "forbidden": [
+        "Krone",
+        "Palast",
+        "Hof",
+        "Herrschaft"
+      ]
+    },
+    {
+      "id": "taboo_sk_0444",
+      "category": "Menschen und Berufe",
+      "word": "Tierarzt",
+      "forbidden": [
+        "Klinik",
+        "Tier",
+        "Impfung",
+        "Kastration"
+      ]
+    },
+    {
+      "id": "taboo_sk_0445",
+      "category": "Menschen und Berufe",
+      "word": "Schmied",
+      "forbidden": [
+        "Eisen",
+        "Hufeisen",
+        "Hammer",
+        "Schmiede"
+      ]
+    },
+    {
+      "id": "taboo_sk_0446",
+      "category": "Menschen und Berufe",
+      "word": "Pfadfinder",
+      "forbidden": [
+        "Lager",
+        "Knoten",
+        "Abzeichen",
+        "Abenteuer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0447",
+      "category": "Menschen und Berufe",
+      "word": "Bischof",
+      "forbidden": [
+        "Mitra",
+        "Kirche",
+        "Messe",
+        "Priester"
+      ]
+    },
+    {
+      "id": "taboo_sk_0448",
+      "category": "Menschen und Berufe",
+      "word": "Restaurator",
+      "forbidden": [
+        "Gemälde",
+        "Leinwand",
+        "konservieren",
+        "Pinsel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0449",
+      "category": "Menschen und Berufe",
+      "word": "Kurator",
+      "forbidden": [
+        "Galerie",
+        "Ausstellung",
+        "Werke",
+        "Exponate"
+      ]
+    },
+    {
+      "id": "taboo_sk_0450",
+      "category": "Menschen und Berufe",
+      "word": "Analyst",
+      "forbidden": [
+        "Daten",
+        "Tabelle",
+        "Bericht",
+        "Modell"
+      ]
+    },
+    {
+      "id": "taboo_sk_0451",
+      "category": "Menschen und Berufe",
+      "word": "Optiker",
+      "forbidden": [
+        "Brille",
+        "Dioptrie",
+        "Gestell",
+        "Sehkraft"
+      ]
+    },
+    {
+      "id": "taboo_sk_0452",
+      "category": "Menschen und Berufe",
+      "word": "Übersetzer",
+      "forbidden": [
+        "Sprache",
+        "Text",
+        "Kontext",
+        "Terminologie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0453",
+      "category": "Menschen und Berufe",
+      "word": "Sommelier",
+      "forbidden": [
+        "Flasche",
+        "Verkostung",
+        "Aroma",
+        "Rebsorte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0454",
+      "category": "Menschen und Berufe",
+      "word": "Visagist",
+      "forbidden": [
+        "Make-up",
+        "Pinsel",
+        "Kosmetik",
+        "Gesicht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0455",
+      "category": "Menschen und Berufe",
+      "word": "Stuntman",
+      "forbidden": [
+        "Fall",
+        "Double",
+        "Gefahr",
+        "Trick"
+      ]
+    },
+    {
+      "id": "taboo_sk_0456",
+      "category": "Menschen und Berufe",
+      "word": "Soziologe",
+      "forbidden": [
+        "Gesellschaft",
+        "Forschung",
+        "Verhalten",
+        "Beziehungen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0457",
+      "category": "Menschen und Berufe",
+      "word": "Meteorologe",
+      "forbidden": [
+        "Prognose",
+        "Wolken",
+        "Druck",
+        "Radar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0458",
+      "category": "Menschen und Berufe",
+      "word": "Florist",
+      "forbidden": [
+        "Blumenstrauß",
+        "Vase",
+        "Komposition",
+        "Dekoration"
+      ]
+    },
+    {
+      "id": "taboo_sk_0459",
+      "category": "Menschen und Berufe",
+      "word": "Freiwilliger",
+      "forbidden": [
+        "Hilfe",
+        "Wohltätigkeit",
+        "kostenlos",
+        "organisieren"
+      ]
+    },
+    {
+      "id": "taboo_sk_0460",
+      "category": "Menschen und Berufe",
+      "word": "Bäcker",
+      "forbidden": [
+        "Mehl",
+        "Backen",
+        "Ofen",
+        "Frühstück"
+      ]
+    },
+    {
+      "id": "taboo_sk_0461",
+      "category": "Menschen und Berufe",
+      "word": "Pilot",
+      "forbidden": [
+        "Cockpit",
+        "Flug",
+        "Landung",
+        "Navigation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0462",
+      "category": "Menschen und Berufe",
+      "word": "Dramaturg",
+      "forbidden": [
+        "Theater",
+        "Bearbeitung",
+        "Figuren",
+        "Konzept"
+      ]
+    },
+    {
+      "id": "taboo_sk_0463",
+      "category": "Menschen und Berufe",
+      "word": "Bühnenbildner",
+      "forbidden": [
+        "Kulissen",
+        "Bühne",
+        "Entwurf",
+        "Dekoration"
+      ]
+    },
+    {
+      "id": "taboo_sk_0464",
+      "category": "Menschen und Berufe",
+      "word": "Lobbyist",
+      "forbidden": [
+        "Einfluss",
+        "Abmachung",
+        "Belohnung",
+        "Interesse"
+      ]
+    },
+    {
+      "id": "taboo_sk_0465",
+      "category": "Menschen und Berufe",
+      "word": "Archäologe",
+      "forbidden": [
+        "Ausgrabungen",
+        "Münze",
+        "Fund",
+        "Schicht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0466",
+      "category": "Menschen und Berufe",
+      "word": "Goldschmied",
+      "forbidden": [
+        "Gold",
+        "Ring",
+        "Schmuck",
+        "Gravur"
+      ]
+    },
+    {
+      "id": "taboo_sk_0467",
+      "category": "Menschen und Berufe",
+      "word": "Dirigent",
+      "forbidden": [
+        "Orchester",
+        "Takt",
+        "Taktstock",
+        "Konzert"
+      ]
+    },
+    {
+      "id": "taboo_sk_0468",
+      "category": "Menschen und Berufe",
+      "word": "Tontechniker",
+      "forbidden": [
+        "Mikrofon",
+        "Mix",
+        "Mischpult",
+        "Aufnahme"
+      ]
+    },
+    {
+      "id": "taboo_sk_0469",
+      "category": "Menschen und Berufe",
+      "word": "Kartograf",
+      "forbidden": [
+        "Karte",
+        "Maßstab",
+        "Atlas",
+        "Vermessung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0470",
+      "category": "Menschen und Berufe",
+      "word": "Ökonom",
+      "forbidden": [
+        "Markt",
+        "Prognose",
+        "Geld",
+        "Analyse"
+      ]
+    },
+    {
+      "id": "taboo_sk_0471",
+      "category": "Menschen und Berufe",
+      "word": "Flugbegleiterin",
+      "forbidden": [
+        "Kabine",
+        "Passagier",
+        "Sicherheit",
+        "Service"
+      ]
+    },
+    {
+      "id": "taboo_sk_0472",
+      "category": "Menschen und Berufe",
+      "word": "Drehbuchautor",
+      "forbidden": [
+        "Dialog",
+        "Figur",
+        "Film",
+        "Adaption"
+      ]
+    },
+    {
+      "id": "taboo_sk_0473",
+      "category": "Menschen und Berufe",
+      "word": "Stylist",
+      "forbidden": [
+        "Mode",
+        "Outfit",
+        "Trend",
+        "Kunde"
+      ]
+    },
+    {
+      "id": "taboo_sk_0474",
+      "category": "Menschen und Berufe",
+      "word": "Kommentator",
+      "forbidden": [
+        "Spiel",
+        "Beschreibung",
+        "Mikrofon",
+        "Stimme"
+      ]
+    },
+    {
+      "id": "taboo_sk_0475",
+      "category": "Menschen und Berufe",
+      "word": "Sprecher",
+      "forbidden": [
+        "Pressekonferenz",
+        "Erklärung",
+        "Fragen",
+        "Organisation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0476",
+      "category": "Menschen und Berufe",
+      "word": "Ritter",
+      "forbidden": [
+        "Rüstung",
+        "Schwert",
+        "Mittelalter",
+        "Pferd"
+      ]
+    },
+    {
+      "id": "taboo_sk_0477",
+      "category": "Menschen und Berufe",
+      "word": "Kalligraf",
+      "forbidden": [
+        "Schrift",
+        "Tinte",
+        "Feder",
+        "Schönheit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0478",
+      "category": "Menschen und Berufe",
+      "word": "Anthropologe",
+      "forbidden": [
+        "Kultur",
+        "Feldarbeit",
+        "Forschung",
+        "Gesellschaft"
+      ]
+    },
+    {
+      "id": "taboo_sk_0523",
+      "category": "Menschen und Berufe",
+      "word": "Krankenschwester",
+      "forbidden": [
+        "Krankenhaus",
+        "Spritze",
+        "Pflege",
+        "Uniform"
+      ]
+    },
+    {
+      "id": "taboo_sk_0524",
+      "category": "Menschen und Berufe",
+      "word": "Professor",
+      "forbidden": [
+        "Universität",
+        "Vorlesung",
+        "Lehrstuhl",
+        "Promotion"
+      ]
+    },
+    {
+      "id": "taboo_sk_0525",
+      "category": "Menschen und Berufe",
+      "word": "Student",
+      "forbidden": [
+        "Prüfung",
+        "Immatrikulation",
+        "Wohnheim",
+        "Lehrbuch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0526",
+      "category": "Menschen und Berufe",
+      "word": "Rechtsanwalt",
+      "forbidden": [
+        "Gericht",
+        "Verteidigung",
+        "Vertrag",
+        "Paragraph"
+      ]
+    },
+    {
+      "id": "taboo_sk_0527",
+      "category": "Menschen und Berufe",
+      "word": "Tänzer",
+      "forbidden": [
+        "Bühne",
+        "Choreografie",
+        "Partner",
+        "Training"
+      ]
+    },
+    {
+      "id": "taboo_sk_0528",
+      "category": "Menschen und Berufe",
+      "word": "Model",
+      "forbidden": [
+        "Mode",
+        "Modenschau",
+        "Laufsteg",
+        "Agentur"
+      ]
+    },
+    {
+      "id": "taboo_sk_0529",
+      "category": "Menschen und Berufe",
+      "word": "Unternehmer",
+      "forbidden": [
+        "Firma",
+        "Gewinn",
+        "Investition",
+        "Risiko"
+      ]
+    },
+    {
+      "id": "taboo_sk_0530",
+      "category": "Menschen und Berufe",
+      "word": "Chemiker",
+      "forbidden": [
+        "Labor",
+        "Reagenzglas",
+        "Formel",
+        "Experiment"
+      ]
+    },
+    {
+      "id": "taboo_sk_0531",
+      "category": "Menschen und Berufe",
+      "word": "Apotheker",
+      "forbidden": [
+        "Apotheke",
+        "Medikament",
+        "Rezept",
+        "Dosierung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0532",
+      "category": "Menschen und Berufe",
+      "word": "Statist",
+      "forbidden": [
+        "Menge",
+        "Kulisse",
+        "Episode",
+        "Dreh"
+      ]
+    },
+    {
+      "id": "taboo_sk_0533",
+      "category": "Menschen und Berufe",
+      "word": "Erzieher",
+      "forbidden": [
+        "Kinder",
+        "Schule",
+        "Hort",
+        "Aufsicht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0534",
+      "category": "Menschen und Berufe",
+      "word": "Betreuer",
+      "forbidden": [
+        "Zuhause",
+        "Senioren",
+        "Hilfe",
+        "Hygiene"
+      ]
+    },
+    {
+      "id": "taboo_sk_0535",
+      "category": "Menschen und Berufe",
+      "word": "Historiker",
+      "forbidden": [
+        "Archiv",
+        "Forschung",
+        "Vergangenheit",
+        "Dokument"
+      ]
+    },
+    {
+      "id": "taboo_sk_0536",
+      "category": "Menschen und Berufe",
+      "word": "Dozent",
+      "forbidden": [
+        "Kurs",
+        "Präsentation",
+        "Übung",
+        "Bewertung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0537",
+      "category": "Menschen und Berufe",
+      "word": "Fischer",
+      "forbidden": [
+        "Angel",
+        "Köder",
+        "Boot",
+        "Fang"
+      ]
+    },
+    {
+      "id": "taboo_sk_0538",
+      "category": "Menschen und Berufe",
+      "word": "Berater",
+      "forbidden": [
+        "Beratung",
+        "Rat",
+        "Kunde",
+        "Strategie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0539",
+      "category": "Menschen und Berufe",
+      "word": "Schriftsteller",
+      "forbidden": [
+        "Roman",
+        "Stift",
+        "Idee",
+        "Verlag"
+      ]
+    },
+    {
+      "id": "taboo_sk_0540",
+      "category": "Menschen und Berufe",
+      "word": "Designer",
+      "forbidden": [
+        "Kollektion",
+        "Skizze",
+        "Mode",
+        "Nähen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0541",
+      "category": "Menschen und Berufe",
+      "word": "Handwerker",
+      "forbidden": [
+        "Werkstatt",
+        "Werkzeug",
+        "Fertigkeit",
+        "Auftrag"
+      ]
+    },
+    {
+      "id": "taboo_sk_0603",
+      "category": "Menschen und Berufe",
+      "word": "Zahnarzt",
+      "forbidden": [
+        "Zähne",
+        "Schmerz",
+        "Bohrer",
+        "Behandlungsstuhl"
+      ]
+    },
+    {
+      "id": "taboo_sk_0604",
+      "category": "Menschen und Berufe",
+      "word": "DJ",
+      "forbidden": [
+        "Set",
+        "Club",
+        "Mix",
+        "Kopfhörer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0605",
+      "category": "Menschen und Berufe",
+      "word": "Maler",
+      "forbidden": [
+        "Pinsel",
+        "Farben",
+        "Leinwand",
+        "Atelier"
+      ]
+    },
+    {
+      "id": "taboo_sk_0606",
+      "category": "Menschen und Berufe",
+      "word": "Grafiker",
+      "forbidden": [
+        "Logo",
+        "Plakat",
+        "Programm",
+        "Design"
+      ]
+    },
+    {
+      "id": "taboo_sk_0607",
+      "category": "Menschen und Berufe",
+      "word": "Berater",
+      "forbidden": [
+        "Beratung",
+        "Kunde",
+        "Präsentation",
+        "Projekt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0608",
+      "category": "Menschen und Berufe",
+      "word": "Kellner",
+      "forbidden": [
+        "Speisekarte",
+        "Tisch",
+        "Rechnung",
+        "servieren"
+      ]
+    },
+    {
+      "id": "taboo_sk_0609",
+      "category": "Menschen und Berufe",
+      "word": "Reporter",
+      "forbidden": [
+        "Artikel",
+        "Interview",
+        "Mikrofon",
+        "Nachricht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0610",
+      "category": "Menschen und Berufe",
+      "word": "Psychiater",
+      "forbidden": [
+        "Medikamente",
+        "Diagnose",
+        "Hospitalisierung",
+        "Stress"
+      ]
+    },
+    {
+      "id": "taboo_sk_0611",
+      "category": "Menschen und Berufe",
+      "word": "Sekretärin",
+      "forbidden": [
+        "Büro",
+        "Anruf",
+        "Kalender",
+        "Termin"
+      ]
+    },
+    {
+      "id": "taboo_sk_0612",
+      "category": "Menschen und Berufe",
+      "word": "Glaser",
+      "forbidden": [
+        "Glas",
+        "Rahmen",
+        "Glasscheibe",
+        "Fenster"
+      ]
+    },
+    {
+      "id": "taboo_sk_0613",
+      "category": "Menschen und Berufe",
+      "word": "Hausverwalter",
+      "forbidden": [
+        "Haus",
+        "Instandhaltung",
+        "Mieter",
+        "Arbeit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0614",
+      "category": "Menschen und Berufe",
+      "word": "Rettungssanitäter",
+      "forbidden": [
+        "Rettungswagen",
+        "Erste Hilfe",
+        "stabilisieren",
+        "Einsatz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0615",
+      "category": "Menschen und Berufe",
+      "word": "Barista",
+      "forbidden": [
+        "Kaffee",
+        "Espresso",
+        "Mühle",
+        "Schaum"
+      ]
+    },
+    {
+      "id": "taboo_sk_0616",
+      "category": "Menschen und Berufe",
+      "word": "Designer",
+      "forbidden": [
+        "Konzept",
+        "Skizze",
+        "Kunde",
+        "Visual"
+      ]
+    },
+    {
+      "id": "taboo_sk_0617",
+      "category": "Menschen und Berufe",
+      "word": "Züchter",
+      "forbidden": [
+        "Tiere",
+        "Rasse",
+        "Käfig",
+        "Fütterung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0618",
+      "category": "Menschen und Berufe",
+      "word": "Detektiv",
+      "forbidden": [
+        "Verfolgung",
+        "Beweis",
+        "Motiv",
+        "Fall"
+      ]
+    },
+    {
+      "id": "taboo_sk_0619",
+      "category": "Menschen und Berufe",
+      "word": "Influencer",
+      "forbidden": [
+        "soziale Medien",
+        "Werbung",
+        "Follower",
+        "Sponsor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0620",
+      "category": "Menschen und Berufe",
+      "word": "Elternteil",
+      "forbidden": [
+        "Kind",
+        "Erziehung",
+        "Zuhause",
+        "Verantwortung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0621",
+      "category": "Menschen und Berufe",
+      "word": "Nachbar",
+      "forbidden": [
+        "Wohnung",
+        "Zaun",
+        "Lärm",
+        "grüßen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0622",
+      "category": "Menschen und Berufe",
+      "word": "Rentner",
+      "forbidden": [
+        "Rente",
+        "Freizeit",
+        "Gesundheit",
+        "Familie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0623",
+      "category": "Menschen und Berufe",
+      "word": "Instruktor",
+      "forbidden": [
+        "Training",
+        "Kurs",
+        "Schüler",
+        "Demonstration"
+      ]
+    },
+    {
+      "id": "taboo_sk_0624",
+      "category": "Menschen und Berufe",
+      "word": "Monteur",
+      "forbidden": [
+        "Werkzeug",
+        "Montage",
+        "Schrauben",
+        "Installation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0625",
+      "category": "Menschen und Berufe",
+      "word": "Dolmetscher",
+      "forbidden": [
+        "Sprache",
+        "Übersetzung",
+        "Konferenz",
+        "Mikrofon"
+      ]
+    },
+    {
+      "id": "taboo_sk_0626",
+      "category": "Menschen und Berufe",
+      "word": "Besitzer",
+      "forbidden": [
+        "Firma",
+        "Eigentum",
+        "Verantwortung",
+        "Betrieb"
+      ]
+    },
+    {
+      "id": "taboo_sk_0627",
+      "category": "Menschen und Berufe",
+      "word": "Rezeptionist",
+      "forbidden": [
+        "Hotel",
+        "Check-in",
+        "Anruf",
+        "Gast"
+      ]
+    },
+    {
+      "id": "taboo_sk_0699",
+      "category": "Menschen und Berufe",
+      "word": "Chirurg",
+      "forbidden": [
+        "Skalpell",
+        "Operationssaal",
+        "Narkose",
+        "Nähte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0700",
+      "category": "Menschen und Berufe",
+      "word": "Metzger",
+      "forbidden": [
+        "Theke",
+        "Schnitt",
+        "Fleisch",
+        "Wurst"
+      ]
+    },
+    {
+      "id": "taboo_sk_0701",
+      "category": "Menschen und Berufe",
+      "word": "Konditor",
+      "forbidden": [
+        "Kuchen",
+        "Glasur",
+        "Zucker",
+        "Dekoration"
+      ]
+    },
+    {
+      "id": "taboo_sk_0702",
+      "category": "Menschen und Berufe",
+      "word": "Winzer",
+      "forbidden": [
+        "Weinberg",
+        "Fass",
+        "Traube",
+        "Flasche"
+      ]
+    },
+    {
+      "id": "taboo_sk_0703",
+      "category": "Menschen und Berufe",
+      "word": "Zimmermann",
+      "forbidden": [
+        "Holz",
+        "Hammer",
+        "Haus",
+        "Leiter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0704",
+      "category": "Menschen und Berufe",
+      "word": "Briefträger",
+      "forbidden": [
+        "Brief",
+        "Paket",
+        "Briefkasten",
+        "Zustellung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0705",
+      "category": "Menschen und Berufe",
+      "word": "Choreograf",
+      "forbidden": [
+        "Tanz",
+        "Schritt",
+        "Bewegung",
+        "Bühne"
+      ]
+    },
+    {
+      "id": "taboo_sk_0706",
+      "category": "Menschen und Berufe",
+      "word": "Rettungsschwimmer",
+      "forbidden": [
+        "Schwimmbad",
+        "Rettungsring",
+        "Aufsicht",
+        "Badebekleidung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0707",
+      "category": "Menschen und Berufe",
+      "word": "Personalmanager",
+      "forbidden": [
+        "Rekrutierung",
+        "Lebenslauf",
+        "Vorstellungsgespräch",
+        "Arbeitsvertrag"
+      ]
+    },
+    {
+      "id": "taboo_sk_0708",
+      "category": "Menschen und Berufe",
+      "word": "Wächter",
+      "forbidden": [
+        "Tor",
+        "Sicherheit",
+        "Streife",
+        "Uniform"
+      ]
+    },
+    {
+      "id": "taboo_sk_0709",
+      "category": "Menschen und Berufe",
+      "word": "Soldat",
+      "forbidden": [
+        "Kaserne",
+        "Ausbildung",
+        "Waffe",
+        "Einheit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0710",
+      "category": "Menschen und Berufe",
+      "word": "Matrose",
+      "forbidden": [
+        "Schiff",
+        "Anker",
+        "Meer",
+        "Deck"
+      ]
+    },
+    {
+      "id": "taboo_sk_0711",
+      "category": "Menschen und Berufe",
+      "word": "Astronaut",
+      "forbidden": [
+        "Weltraum",
+        "Rakete",
+        "Raumanzug",
+        "Umlaufbahn"
+      ]
+    },
+    {
+      "id": "taboo_sk_0712",
+      "category": "Menschen und Berufe",
+      "word": "Priester",
+      "forbidden": [
+        "Messe",
+        "Kirche",
+        "Sakrament",
+        "Predigt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0713",
+      "category": "Menschen und Berufe",
+      "word": "Ökologe",
+      "forbidden": [
+        "Umwelt",
+        "Schutz",
+        "Verschmutzung",
+        "Biodiversität"
+      ]
+    },
+    {
+      "id": "taboo_sk_0714",
+      "category": "Menschen und Berufe",
+      "word": "Mediator",
+      "forbidden": [
+        "Streit",
+        "Einigung",
+        "Versöhnung",
+        "Gespräch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0715",
+      "category": "Menschen und Berufe",
+      "word": "Physiker",
+      "forbidden": [
+        "Experiment",
+        "Gesetz",
+        "Theorie",
+        "Labor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0716",
+      "category": "Menschen und Berufe",
+      "word": "Richter",
+      "forbidden": [
+        "Urteil",
+        "Verhandlung",
+        "Verdikt",
+        "Beschluss"
+      ]
+    }
+  ]
+}

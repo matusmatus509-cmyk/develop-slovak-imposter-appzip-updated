@@ -1,0 +1,1892 @@
+{
+  "cardsReviewed": 1500,
+  "cardsCorrected": 82,
+  "changes": [
+    {
+      "id": "taboo_sk_0830",
+      "category": "Zvieratá",
+      "before": {
+        "word": "hroch",
+        "forbidden": [
+          "zviera",
+          "príroda",
+          "pohyb",
+          "prostredie"
+        ]
+      },
+      "after": {
+        "word": "hroch",
+        "forbidden": [
+          "Afrika",
+          "rieka",
+          "veľký",
+          "papuľa"
+        ]
+      },
+      "reason": "všeobecné zvieracie zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_0831",
+      "category": "Zvieratá",
+      "before": {
+        "word": "lama",
+        "forbidden": [
+          "zviera",
+          "príroda",
+          "pohyb",
+          "prostredie"
+        ]
+      },
+      "after": {
+        "word": "lama",
+        "forbidden": [
+          "Andy",
+          "vlna",
+          "pľuť",
+          "stádo"
+        ]
+      },
+      "reason": "všeobecné zvieracie zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_0832",
+      "category": "Zvieratá",
+      "before": {
+        "word": "suriikata",
+        "forbidden": [
+          "zviera",
+          "príroda",
+          "pohyb",
+          "prostredie"
+        ]
+      },
+      "after": {
+        "word": "suriikata",
+        "forbidden": [
+          "púšť",
+          "nora",
+          "stáť",
+          "Afrika"
+        ]
+      },
+      "reason": "všeobecné zvieracie zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_0833",
+      "category": "Zvieratá",
+      "before": {
+        "word": "plameniak",
+        "forbidden": [
+          "zviera",
+          "príroda",
+          "pohyb",
+          "prostredie"
+        ]
+      },
+      "after": {
+        "word": "plameniak",
+        "forbidden": [
+          "ružový",
+          "dlhé nohy",
+          "jazero",
+          "vták"
+        ]
+      },
+      "reason": "všeobecné zvieracie zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_0940",
+      "category": "Aktivity a šport",
+      "before": {
+        "word": "rybárčenie",
+        "forbidden": [
+          "voľný čas",
+          "príroda",
+          "výlet",
+          "zážitok"
+        ]
+      },
+      "after": {
+        "word": "rybárčenie",
+        "forbidden": [
+          "udica",
+          "úlovok",
+          "háčik",
+          "jazero"
+        ]
+      },
+      "reason": "všeobecné voľnočasové zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_0941",
+      "category": "Aktivity a šport",
+      "before": {
+        "word": "zbieranie húb",
+        "forbidden": [
+          "voľný čas",
+          "príroda",
+          "výlet",
+          "zážitok"
+        ]
+      },
+      "after": {
+        "word": "zbieranie húb",
+        "forbidden": [
+          "les",
+          "košík",
+          "klobúk",
+          "jeseň"
+        ]
+      },
+      "reason": "všeobecné voľnočasové zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_0942",
+      "category": "Aktivity a šport",
+      "before": {
+        "word": "pozorovanie vtákov",
+        "forbidden": [
+          "voľný čas",
+          "príroda",
+          "výlet",
+          "zážitok"
+        ]
+      },
+      "after": {
+        "word": "pozorovanie vtákov",
+        "forbidden": [
+          "ďalekohľad",
+          "krídla",
+          "hniezdo",
+          "ticho"
+        ]
+      },
+      "reason": "všeobecné voľnočasové zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_0943",
+      "category": "Aktivity a šport",
+      "before": {
+        "word": "venčenie psa",
+        "forbidden": [
+          "voľný čas",
+          "príroda",
+          "výlet",
+          "zážitok"
+        ]
+      },
+      "after": {
+        "word": "venčenie psa",
+        "forbidden": [
+          "vodítko",
+          "park",
+          "labka",
+          "prechádzka"
+        ]
+      },
+      "reason": "všeobecné voľnočasové zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_0944",
+      "category": "Aktivity a šport",
+      "before": {
+        "word": "opekanie",
+        "forbidden": [
+          "voľný čas",
+          "príroda",
+          "výlet",
+          "zážitok"
+        ]
+      },
+      "after": {
+        "word": "opekanie",
+        "forbidden": [
+          "oheň",
+          "špekáčik",
+          "palica",
+          "dym"
+        ]
+      },
+      "reason": "všeobecné voľnočasové zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_0945",
+      "category": "Aktivity a šport",
+      "before": {
+        "word": "návšteva výstavy",
+        "forbidden": [
+          "voľný čas",
+          "príroda",
+          "výlet",
+          "zážitok"
+        ]
+      },
+      "after": {
+        "word": "návšteva výstavy",
+        "forbidden": [
+          "galéria",
+          "obrazy",
+          "vstupenka",
+          "kurátor"
+        ]
+      },
+      "reason": "všeobecné voľnočasové zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_0946",
+      "category": "Aktivity a šport",
+      "before": {
+        "word": "sledovanie filmu",
+        "forbidden": [
+          "voľný čas",
+          "príroda",
+          "výlet",
+          "zážitok"
+        ]
+      },
+      "after": {
+        "word": "sledovanie filmu",
+        "forbidden": [
+          "kino",
+          "obrazovka",
+          "popcorn",
+          "dej"
+        ]
+      },
+      "reason": "všeobecné voľnočasové zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1013",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "orchester",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "orchester",
+        "forbidden": [
+          "dirigent",
+          "nástroje",
+          "koncert",
+          "sála"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1014",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "husle",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "husle",
+        "forbidden": [
+          "struny",
+          "sláčik",
+          "orchester",
+          "brada"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1015",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "bubon",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "bubon",
+        "forbidden": [
+          "paličky",
+          "bicie",
+          "rytmus",
+          "koža"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1016",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "flauta",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "flauta",
+        "forbidden": [
+          "dych",
+          "dierky",
+          "nástroj",
+          "melódia"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1017",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "trúbka",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "trúbka",
+        "forbidden": [
+          "dych",
+          "kov",
+          "náustok",
+          "jazz"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1018",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "akordeón",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "akordeón",
+        "forbidden": [
+          "mech",
+          "klávesy",
+          "ťahať",
+          "folklór"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1019",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "harmonika",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "harmonika",
+        "forbidden": [
+          "mech",
+          "ťahať",
+          "ľudová",
+          "nástroj"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1020",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "violončelo",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "violončelo",
+        "forbidden": [
+          "sláčik",
+          "struny",
+          "orchester",
+          "veľké"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1021",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "kontrabas",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "kontrabas",
+        "forbidden": [
+          "struny",
+          "jazz",
+          "orchester",
+          "najnižší"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1022",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "tamburína",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "tamburína",
+        "forbidden": [
+          "cinkanie",
+          "bicie",
+          "kruh",
+          "držať"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1023",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "saxofón",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "saxofón",
+        "forbidden": [
+          "jazz",
+          "kov",
+          "dych",
+          "náustok"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1024",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "klarinet",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "klarinet",
+        "forbidden": [
+          "dych",
+          "plátok",
+          "orchester",
+          "čierny"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1025",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "organ",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "organ",
+        "forbidden": [
+          "kostol",
+          "píšťaly",
+          "klávesy",
+          "chrám"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1026",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "noty",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "noty",
+        "forbidden": [
+          "osnova",
+          "partitúra",
+          "čítať",
+          "značky"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1027",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "hudobný album",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "hudobný album",
+        "forbidden": [
+          "skladby",
+          "nahrávka",
+          "spevák",
+          "prehrávač"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1028",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "singel",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "singel",
+        "forbidden": [
+          "pieseň",
+          "spevák",
+          "nahrávka",
+          "hit"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1029",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "rytmus",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "rytmus",
+        "forbidden": [
+          "tempo",
+          "bicie",
+          "takt",
+          "pohyb"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1030",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "hudobný žáner",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "hudobný žáner",
+        "forbidden": [
+          "rock",
+          "pop",
+          "džez",
+          "štýl"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1031",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "džez",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "džez",
+        "forbidden": [
+          "improvizácia",
+          "saxofón",
+          "klub",
+          "trumpeta"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1032",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "rock",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "rock",
+        "forbidden": [
+          "gitara",
+          "kapela",
+          "bicie",
+          "koncert"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1033",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "pop",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "pop",
+        "forbidden": [
+          "hit",
+          "rádio",
+          "spevák",
+          "refrén"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1034",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "operný spev",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "operný spev",
+        "forbidden": [
+          "divadlo",
+          "ária",
+          "soprán",
+          "javisko"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1035",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "zbor",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "zbor",
+        "forbidden": [
+          "spievať",
+          "viac hlasov",
+          "dirigent",
+          "kostol"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1036",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "word": "skladateľ",
+        "forbidden": [
+          "hudba",
+          "zvuk",
+          "melódia",
+          "vystúpenie"
+        ]
+      },
+      "after": {
+        "word": "skladateľ",
+        "forbidden": [
+          "noty",
+          "autor",
+          "melódia",
+          "partitúra"
+        ]
+      },
+      "reason": "všeobecné hudobné zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1142",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "programovací jazyk",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "programovací jazyk",
+        "forbidden": [
+          "syntax",
+          "príkaz",
+          "premenná",
+          "kompilátor"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1144",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "mobilná aplikácia",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "mobilná aplikácia",
+        "forbidden": [
+          "ikona",
+          "displej",
+          "stiahnuť",
+          "obchod"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1145",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "databáza",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "databáza",
+        "forbidden": [
+          "záznamy",
+          "tabuľky",
+          "údaje",
+          "dotaz"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1146",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "algoritmus",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "algoritmus",
+        "forbidden": [
+          "postup",
+          "kroky",
+          "výpočet",
+          "logika"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1147",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "chyba v programe",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "chyba v programe",
+        "forbidden": [
+          "bug",
+          "pád",
+          "hlásenie",
+          "odstrániť"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1148",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "oprava chyby",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "oprava chyby",
+        "forbidden": [
+          "debugovanie",
+          "programátor",
+          "test",
+          "aktualizácia"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1149",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "verzia programu",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "verzia programu",
+        "forbidden": [
+          "vydanie",
+          "nová",
+          "aktualizácia",
+          "číslo"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1150",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "zálohovanie dát",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "zálohovanie dát",
+        "forbidden": [
+          "súbory",
+          "uložiť",
+          "obnoviť",
+          "disk"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1151",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "šifrovanie",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "šifrovanie",
+        "forbidden": [
+          "heslo",
+          "tajné",
+          "ochrana",
+          "kľúč"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1152",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "kybernetická bezpečnosť",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "kybernetická bezpečnosť",
+        "forbidden": [
+          "hacker",
+          "ochrana",
+          "útok",
+          "heslo"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1153",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "antivírus",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "antivírus",
+        "forbidden": [
+          "malvér",
+          "skenovať",
+          "ochrana",
+          "počítač"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1154",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "firewall",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "firewall",
+        "forbidden": [
+          "sieť",
+          "blokovať",
+          "ochrana",
+          "pravidlá"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1155",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "automatizácia",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "automatizácia",
+        "forbidden": [
+          "robot",
+          "samočinne",
+          "proces",
+          "opakovať"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1156",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "umelá inteligencia",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "umelá inteligencia",
+        "forbidden": [
+          "model",
+          "učenie",
+          "dáta",
+          "robot"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1157",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "virtuálna realita",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "virtuálna realita",
+        "forbidden": [
+          "okuliare",
+          "simulácia",
+          "hra",
+          "svet"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1158",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "rozšírená realita",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "rozšírená realita",
+        "forbidden": [
+          "kamera",
+          "mobil",
+          "obraz",
+          "vrstva"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1159",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "digitálna mapa",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "digitálna mapa",
+        "forbidden": [
+          "GPS",
+          "trasa",
+          "poloha",
+          "navigácia"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1160",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "navigačný systém",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "navigačný systém",
+        "forbidden": [
+          "GPS",
+          "satelit",
+          "trasa",
+          "auto"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1161",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "satelitné snímky",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "satelitné snímky",
+        "forbidden": [
+          "vesmír",
+          "zemský povrch",
+          "obraz",
+          "mapa"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1162",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "bezkontaktná platba",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "bezkontaktná platba",
+        "forbidden": [
+          "karta",
+          "terminál",
+          "priložiť",
+          "banka"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1165",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "samoobslužná pokladňa",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "samoobslužná pokladňa",
+        "forbidden": [
+          "obchod",
+          "skenovať",
+          "tovar",
+          "platiť"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1166",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "inteligentná domácnosť",
+        "forbidden": [
+          "kód",
+          "vývoj",
+          "softvér",
+          "funkcia"
+        ]
+      },
+      "after": {
+        "word": "inteligentná domácnosť",
+        "forbidden": [
+          "ovládať",
+          "mobil",
+          "svetlo",
+          "automaticky"
+        ]
+      },
+      "reason": "všeobecné programátorské zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1167",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "batériový článok",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "batériový článok",
+        "forbidden": [
+          "nabíjanie",
+          "napätie",
+          "kapacita",
+          "akumulátor"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1168",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "adaptér",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "adaptér",
+        "forbidden": [
+          "konektor",
+          "zásuvka",
+          "napätie",
+          "nabíjať"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1170",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "spínač svetla",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "spínač svetla",
+        "forbidden": [
+          "vypínač",
+          "žiarovka",
+          "stena",
+          "zapnúť"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1171",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "poistková skrinka",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "poistková skrinka",
+        "forbidden": [
+          "istič",
+          "dom",
+          "prúd",
+          "výpadok"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1172",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "solárny panel",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "solárny panel",
+        "forbidden": [
+          "slnko",
+          "strecha",
+          "fotovoltika",
+          "prúd"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1176",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "kuchynský robot",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "kuchynský robot",
+        "forbidden": [
+          "miešať",
+          "nože",
+          "misa",
+          "varenie"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1177",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "digitálna váha",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "digitálna váha",
+        "forbidden": [
+          "kilogram",
+          "merať",
+          "displej",
+          "hmotnosť"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1178",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "elektronický teplomer",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "elektronický teplomer",
+        "forbidden": [
+          "horúčka",
+          "stupne",
+          "merať",
+          "telo"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1180",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "detektor dymu",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "detektor dymu",
+        "forbidden": [
+          "požiar",
+          "alarm",
+          "strop",
+          "siréna"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1181",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "domový zvonček",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "domový zvonček",
+        "forbidden": [
+          "dvere",
+          "návšteva",
+          "zazvoniť",
+          "tlačidlo"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1182",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "videovrátnik",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "videovrátnik",
+        "forbidden": [
+          "dvere",
+          "kamera",
+          "návšteva",
+          "obraz"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1183",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "alarm",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "alarm",
+        "forbidden": [
+          "siréna",
+          "zlodej",
+          "ochrana",
+          "zapnúť"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1184",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "pohybový senzor",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "pohybový senzor",
+        "forbidden": [
+          "detekovať",
+          "svetlo",
+          "chodba",
+          "signál"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1186",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "elektronický zámok",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "elektronický zámok",
+        "forbidden": [
+          "dvere",
+          "kód",
+          "odomknúť",
+          "čip"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1187",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "diaľkové ovládanie",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "diaľkové ovládanie",
+        "forbidden": [
+          "tlačidlá",
+          "televízor",
+          "batérie",
+          "prepínať"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1189",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "indukčná varná doska",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "indukčná varná doska",
+        "forbidden": [
+          "hrniec",
+          "variť",
+          "kuchyňa",
+          "teplo"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1190",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "mikrovlnná rúra",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "mikrovlnná rúra",
+        "forbidden": [
+          "zohriať",
+          "jedlo",
+          "minúty",
+          "kuchyňa"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1191",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "elektrický holiaci strojček",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "elektrický holiaci strojček",
+        "forbidden": [
+          "brada",
+          "tvár",
+          "holenie",
+          "čepeľ"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1193",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "sušič vlasov",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "sušič vlasov",
+        "forbidden": [
+          "fén",
+          "teplý vzduch",
+          "kúpeľňa",
+          "vlasy"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1195",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "čistička vzduchu",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "čistička vzduchu",
+        "forbidden": [
+          "filter",
+          "prach",
+          "izba",
+          "dýchať"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1196",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "inteligentná zásuvka",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "inteligentná zásuvka",
+        "forbidden": [
+          "prúd",
+          "mobil",
+          "zapnúť",
+          "dom"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1197",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "domáca bezpečnostná kamera",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "domáca bezpečnostná kamera",
+        "forbidden": [
+          "záznam",
+          "dvere",
+          "sledovať",
+          "ochrana"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1198",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "laserová tlačiareň",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "laserová tlačiareň",
+        "forbidden": [
+          "papier",
+          "toner",
+          "dokument",
+          "vytlačiť"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1199",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "3D tlačiareň",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "3D tlačiareň",
+        "forbidden": [
+          "prúd",
+          "ovládanie",
+          "dom",
+          "zapnúť"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    },
+    {
+      "id": "taboo_sk_1200",
+      "category": "Technológie a médiá",
+      "before": {
+        "word": "bluetooth reproduktor",
+        "forbidden": [
+          "elektrina",
+          "zariadenie",
+          "kábel",
+          "energia"
+        ]
+      },
+      "after": {
+        "word": "bluetooth reproduktor",
+        "forbidden": [
+          "hudba",
+          "bezdrôtový",
+          "spojiť",
+          "zvuk"
+        ]
+      },
+      "reason": "všeobecné technické zákazy nahradené konkrétnymi asociáciami"
+    }
+  ]
+}

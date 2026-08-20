@@ -1,0 +1,255 @@
+{
+  "cards": 1500,
+  "breakdown": {
+    "Jedlo a nápoje": 150,
+    "Zvieratá": 150,
+    "Ľudia a povolania": 150,
+    "Predmety a domácnosť": 150,
+    "Miesta a cestovanie": 150,
+    "Aktivity a šport": 150,
+    "Filmy, seriály a kultúra": 150,
+    "Technológie a médiá": 150,
+    "Príroda a svet": 150,
+    "Všeobecné pojmy a situácie": 150
+  },
+  "validation": {
+    "cards": 1500,
+    "categories": {
+      "Jedlo a nápoje": 150,
+      "Zvieratá": 150,
+      "Ľudia a povolania": 150,
+      "Predmety a domácnosť": 150,
+      "Miesta a cestovanie": 150,
+      "Aktivity a šport": 150,
+      "Filmy, seriály a kultúra": 150,
+      "Technológie a médiá": 150,
+      "Príroda a svet": 150,
+      "Všeobecné pojmy a situácie": 150
+    },
+    "errors": [],
+    "nearDuplicateWarnings": [],
+    "status": "PASSED"
+  },
+  "sample": [
+    {
+      "id": "taboo_sk_0685",
+      "category": "Jedlo a nápoje",
+      "word": "kurča",
+      "forbidden": [
+        "pečené",
+        "kosť",
+        "gril",
+        "krídlo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0387",
+      "category": "Jedlo a nápoje",
+      "word": "sendvič",
+      "forbidden": [
+        "plátky",
+        "obložený",
+        "obed",
+        "majonéza"
+      ]
+    },
+    {
+      "id": "taboo_sk_0632",
+      "category": "Zvieratá",
+      "word": "kuna",
+      "forbidden": [
+        "les",
+        "nočné",
+        "potrava",
+        "prívesok"
+      ]
+    },
+    {
+      "id": "taboo_sk_0079",
+      "category": "Zvieratá",
+      "word": "krokodíl",
+      "forbidden": [
+        "bažina",
+        "zub",
+        "rieka",
+        "šupiny"
+      ]
+    },
+    {
+      "id": "taboo_sk_0163",
+      "category": "Ľudia a povolania",
+      "word": "murár",
+      "forbidden": [
+        "tehla",
+        "malta",
+        "kladivo",
+        "betón"
+      ]
+    },
+    {
+      "id": "taboo_sk_0179",
+      "category": "Ľudia a povolania",
+      "word": "herec",
+      "forbidden": [
+        "divadlo",
+        "rola",
+        "scéna",
+        "premiéra"
+      ]
+    },
+    {
+      "id": "taboo_sk_0517",
+      "category": "Predmety a domácnosť",
+      "word": "šatka",
+      "forbidden": [
+        "krk",
+        "obväz",
+        "hlava",
+        "móda"
+      ]
+    },
+    {
+      "id": "taboo_sk_0513",
+      "category": "Predmety a domácnosť",
+      "word": "špendlík",
+      "forbidden": [
+        "šitie",
+        "látka",
+        "ostrý",
+        "pripevniť"
+      ]
+    },
+    {
+      "id": "taboo_sk_0283",
+      "category": "Miesta a cestovanie",
+      "word": "skanzen",
+      "forbidden": [
+        "drevené",
+        "obydlia",
+        "remeslá",
+        "expozícia"
+      ]
+    },
+    {
+      "id": "taboo_sk_0850",
+      "category": "Miesta a cestovanie",
+      "word": "pamätník",
+      "forbidden": [
+        "história",
+        "socha",
+        "pripomienka",
+        "verejnosť"
+      ]
+    },
+    {
+      "id": "taboo_sk_0784",
+      "category": "Aktivity a šport",
+      "word": "pétanque",
+      "forbidden": [
+        "gule",
+        "piesok",
+        "trávnik",
+        "francúzsko"
+      ]
+    },
+    {
+      "id": "taboo_sk_0941",
+      "category": "Aktivity a šport",
+      "word": "zbieranie húb",
+      "forbidden": [
+        "voľný čas",
+        "príroda",
+        "výlet",
+        "zážitok"
+      ]
+    },
+    {
+      "id": "taboo_sk_1036",
+      "category": "Filmy, seriály a kultúra",
+      "word": "skladateľ",
+      "forbidden": [
+        "hudba",
+        "zvuk",
+        "melódia",
+        "vystúpenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0992",
+      "category": "Filmy, seriály a kultúra",
+      "word": "komiks",
+      "forbidden": [
+        "kniha",
+        "text",
+        "autor",
+        "čítanie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1125",
+      "category": "Technológie a médiá",
+      "word": "bannerová reklama",
+      "forbidden": [
+        "médiá",
+        "obsah",
+        "správa",
+        "publikum"
+      ]
+    },
+    {
+      "id": "taboo_sk_1149",
+      "category": "Technológie a médiá",
+      "word": "verzia programu",
+      "forbidden": [
+        "kód",
+        "vývoj",
+        "softvér",
+        "funkcia"
+      ]
+    },
+    {
+      "id": "taboo_sk_1266",
+      "category": "Príroda a svet",
+      "word": "závej",
+      "forbidden": [
+        "počasie",
+        "obloha",
+        "vzduch",
+        "príroda"
+      ]
+    },
+    {
+      "id": "taboo_sk_1217",
+      "category": "Príroda a svet",
+      "word": "púpava",
+      "forbidden": [
+        "rastlina",
+        "príroda",
+        "zem",
+        "rast"
+      ]
+    },
+    {
+      "id": "taboo_sk_1390",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "prosba",
+      "forbidden": [
+        "ľudia",
+        "rozhovor",
+        "vzťah",
+        "situácia"
+      ]
+    },
+    {
+      "id": "taboo_sk_1473",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "zasnúbenie",
+      "forbidden": [
+        "rodina",
+        "domov",
+        "blízki",
+        "každý deň"
+      ]
+    }
+  ]
+}

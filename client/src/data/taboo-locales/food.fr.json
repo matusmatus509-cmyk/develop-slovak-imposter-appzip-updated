@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "fr",
+  "category": "Jedlo a nápoje",
+  "cards": [
+    {
+      "id": "taboo_sk_0001",
+      "category": "Alimentation et boissons",
+      "word": "pain",
+      "forbidden": [
+        "boulangerie",
+        "tranche",
+        "toast",
+        "blé"
+      ]
+    },
+    {
+      "id": "taboo_sk_0002",
+      "category": "Alimentation et boissons",
+      "word": "beurre",
+      "forbidden": [
+        "tartiner",
+        "crème",
+        "matière grasse",
+        "pain"
+      ]
+    },
+    {
+      "id": "taboo_sk_0003",
+      "category": "Alimentation et boissons",
+      "word": "fromage",
+      "forbidden": [
+        "laitier",
+        "tranche",
+        "dur",
+        "à moisissure"
+      ]
+    },
+    {
+      "id": "taboo_sk_0004",
+      "category": "Alimentation et boissons",
+      "word": "jambon",
+      "forbidden": [
+        "porc",
+        "tranche",
+        "sandwich",
+        "fumé"
+      ]
+    },
+    {
+      "id": "taboo_sk_0005",
+      "category": "Alimentation et boissons",
+      "word": "œuf",
+      "forbidden": [
+        "jaune",
+        "blanc",
+        "coquille",
+        "omelette"
+      ]
+    },
+    {
+      "id": "taboo_sk_0006",
+      "category": "Alimentation et boissons",
+      "word": "lait",
+      "forbidden": [
+        "vache",
+        "blanc",
+        "lactose",
+        "verre"
+      ]
+    },
+    {
+      "id": "taboo_sk_0007",
+      "category": "Alimentation et boissons",
+      "word": "yaourt",
+      "forbidden": [
+        "aigre",
+        "pot",
+        "cuillère",
+        "aux fruits"
+      ]
+    },
+    {
+      "id": "taboo_sk_0008",
+      "category": "Alimentation et boissons",
+      "word": "café",
+      "forbidden": [
+        "caféine",
+        "grains",
+        "espresso",
+        "tasse"
+      ]
+    },
+    {
+      "id": "taboo_sk_0009",
+      "category": "Alimentation et boissons",
+      "word": "thé",
+      "forbidden": [
+        "feuilles",
+        "sachet",
+        "infusion",
+        "bouilloire"
+      ]
+    },
+    {
+      "id": "taboo_sk_0010",
+      "category": "Alimentation et boissons",
+      "word": "eau",
+      "forbidden": [
+        "robinet",
+        "verre",
+        "minérale",
+        "boire"
+      ]
+    },
+    {
+      "id": "taboo_sk_0011",
+      "category": "Alimentation et boissons",
+      "word": "bière",
+      "forbidden": [
+        "mousse",
+        "houblon",
+        "verre",
+        "bar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0012",
+      "category": "Alimentation et boissons",
+      "word": "vin",
+      "forbidden": [
+        "raisin",
+        "verre",
+        "rouge",
+        "blanc"
+      ]
+    },
+    {
+      "id": "taboo_sk_0013",
+      "category": "Alimentation et boissons",
+      "word": "soupe",
+      "forbidden": [
+        "bouillon",
+        "cuillère",
+        "bol",
+        "nouilles"
+      ]
+    },
+    {
+      "id": "taboo_sk_0014",
+      "category": "Alimentation et boissons",
+      "word": "pizza",
+      "forbidden": [
+        "pâte",
+        "sauce",
+        "fromage",
+        "couper"
+      ]
+    },
+    {
+      "id": "taboo_sk_0015",
+      "category": "Alimentation et boissons",
+      "word": "pâtes",
+      "forbidden": [
+        "spaghetti",
+        "sauce",
+        "passoire",
+        "cuire"
+      ]
+    },
+    {
+      "id": "taboo_sk_0016",
+      "category": "Alimentation et boissons",
+      "word": "riz",
+      "forbidden": [
+        "grains",
+        "blanc",
+        "casserole",
+        "Asie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0017",
+      "category": "Alimentation et boissons",
+      "word": "pomme de terre",
+      "forbidden": [
+        "peau",
+        "purée",
+        "frites",
+        "rôti"
+      ]
+    },
+    {
+      "id": "taboo_sk_0018",
+      "category": "Alimentation et boissons",
+      "word": "tomate",
+      "forbidden": [
+        "rouge",
+        "ketchup",
+        "salade",
+        "graines"
+      ]
+    },
+    {
+      "id": "taboo_sk_0019",
+      "category": "Alimentation et boissons",
+      "word": "concombre",
+      "forbidden": [
+        "vert",
+        "croquant",
+        "salade",
+        "mariné"
+      ]
+    },
+    {
+      "id": "taboo_sk_0020",
+      "category": "Alimentation et boissons",
+      "word": "oignon",
+      "forbidden": [
+        "larmes",
+        "couper",
+        "frire",
+        "odeur"
+      ]
+    },
+    {
+      "id": "taboo_sk_0021",
+      "category": "Alimentation et boissons",
+      "word": "ail",
+      "forbidden": [
+        "gousse",
+        "arôme",
+        "vampire",
+        "presse"
+      ]
+    },
+    {
+      "id": "taboo_sk_0022",
+      "category": "Alimentation et boissons",
+      "word": "poivron",
+      "forbidden": [
+        "piquant",
+        "goulache",
+        "légume",
+        "graines"
+      ]
+    },
+    {
+      "id": "taboo_sk_0023",
+      "category": "Alimentation et boissons",
+      "word": "pomme",
+      "forbidden": [
+        "trognon",
+        "peau",
+        "tarte",
+        "arbre"
+      ]
+    },
+    {
+      "id": "taboo_sk_0024",
+      "category": "Alimentation et boissons",
+      "word": "banane",
+      "forbidden": [
+        "jaune",
+        "peau",
+        "singe",
+        "cocktail"
+      ]
+    },
+    {
+      "id": "taboo_sk_0025",
+      "category": "Alimentation et boissons",
+      "word": "orange",
+      "forbidden": [
+        "agrume",
+        "jus",
+        "zeste",
+        "quartiers"
+      ]
+    },
+    {
+      "id": "taboo_sk_0026",
+      "category": "Alimentation et boissons",
+      "word": "citron",
+      "forbidden": [
+        "acide",
+        "jaune",
+        "limonade",
+        "zeste"
+      ]
+    },
+    {
+      "id": "taboo_sk_0027",
+      "category": "Alimentation et boissons",
+      "word": "fraise",
+      "forbidden": [
+        "rouge",
+        "graines",
+        "chantilly",
+        "jardin"
+      ]
+    },
+    {
+      "id": "taboo_sk_0028",
+      "category": "Alimentation et boissons",
+      "word": "chocolat",
+      "forbidden": [
+        "cacao",
+        "tablette",
+        "sucré",
+        "dessert"
+      ]
+    },
+    {
+      "id": "taboo_sk_0029",
+      "category": "Alimentation et boissons",
+      "word": "gâteau",
+      "forbidden": [
+        "cuit",
+        "garniture",
+        "couper",
+        "plaque"
+      ]
+    },
+    {
+      "id": "taboo_sk_0030",
+      "category": "Alimentation et boissons",
+      "word": "crêpe",
+      "forbidden": [
+        "fine",
+        "poêle",
+        "confiture",
+        "pâte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0031",
+      "category": "Alimentation et boissons",
+      "word": "goulash",
+      "forbidden": [
+        "bœuf",
+        "chaudron",
+        "paprika",
+        "épais"
+      ]
+    },
+    {
+      "id": "taboo_sk_0032",
+      "category": "Alimentation et boissons",
+      "word": "knödel",
+      "forbidden": [
+        "vapeur",
+        "tranches",
+        "sauce",
+        "accompagnement"
+      ]
+    },
+    {
+      "id": "taboo_sk_0033",
+      "category": "Alimentation et boissons",
+      "word": "chou",
+      "forbidden": [
+        "aigre",
+        "tête",
+        "choucroute",
+        "feuilles"
+      ]
+    },
+    {
+      "id": "taboo_sk_0034",
+      "category": "Alimentation et boissons",
+      "word": "saucisse",
+      "forbidden": [
+        "fumée",
+        "épicée",
+        "grill",
+        "viande"
+      ]
+    },
+    {
+      "id": "taboo_sk_0035",
+      "category": "Alimentation et boissons",
+      "word": "miel",
+      "forbidden": [
+        "abeilles",
+        "édulcorant",
+        "pot",
+        "collant"
+      ]
+    },
+    {
+      "id": "taboo_sk_0036",
+      "category": "Alimentation et boissons",
+      "word": "sucre",
+      "forbidden": [
+        "sucré",
+        "cube",
+        "blanc",
+        "cuillère"
+      ]
+    },
+    {
+      "id": "taboo_sk_0037",
+      "category": "Alimentation et boissons",
+      "word": "sel",
+      "forbidden": [
+        "salé",
+        "cristaux",
+        "moulin",
+        "pincée"
+      ]
+    },
+    {
+      "id": "taboo_sk_0038",
+      "category": "Alimentation et boissons",
+      "word": "épices",
+      "forbidden": [
+        "odorant",
+        "moulu",
+        "moulin",
+        "épicé"
+      ]
+    },
+    {
+      "id": "taboo_sk_0039",
+      "category": "Alimentation et boissons",
+      "word": "huile",
+      "forbidden": [
+        "tournesol",
+        "poêle",
+        "frire",
+        "liquide"
+      ]
+    },
+    {
+      "id": "taboo_sk_0040",
+      "category": "Alimentation et boissons",
+      "word": "vinaigre",
+      "forbidden": [
+        "acide",
+        "salade",
+        "bouteille",
+        "odeur"
+      ]
+    },
+    {
+      "id": "taboo_sk_0041",
+      "category": "Alimentation et boissons",
+      "word": "poêle",
+      "forbidden": [
+        "poignée",
+        "frire",
+        "antiadhésif",
+        "huile"
+      ]
+    },
+    {
+      "id": "taboo_sk_0042",
+      "category": "Alimentation et boissons",
+      "word": "casserole",
+      "forbidden": [
+        "couvercle",
+        "cuire",
+        "soupe",
+        "fond"
+      ]
+    },
+    {
+      "id": "taboo_sk_0043",
+      "category": "Alimentation et boissons",
+      "word": "four",
+      "forbidden": [
+        "cuisson",
+        "plaque",
+        "température",
+        "porte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0044",
+      "category": "Alimentation et boissons",
+      "word": "gril",
+      "forbidden": [
+        "charbon",
+        "grille",
+        "été",
+        "viande"
+      ]
+    },
+    {
+      "id": "taboo_sk_0045",
+      "category": "Alimentation et boissons",
+      "word": "couper",
+      "forbidden": [
+        "couteau",
+        "planche",
+        "tranches",
+        "dés"
+      ]
+    },
+    {
+      "id": "taboo_sk_0046",
+      "category": "Alimentation et boissons",
+      "word": "mélanger",
+      "forbidden": [
+        "cuillère",
+        "bol",
+        "pâte",
+        "cuillère en bois"
+      ]
+    },
+    {
+      "id": "taboo_sk_0047",
+      "category": "Alimentation et boissons",
+      "word": "fouetter",
+      "forbidden": [
+        "fouet",
+        "neige",
+        "crème",
+        "mixeur"
+      ]
+    },
+    {
+      "id": "taboo_sk_0048",
+      "category": "Alimentation et boissons",
+      "word": "cuire",
+      "forbidden": [
+        "eau",
+        "casserole",
+        "bouillir",
+        "réchaud"
+      ]
+    },
+    {
+      "id": "taboo_sk_0049",
+      "category": "Alimentation et boissons",
+      "word": "enfourner",
+      "forbidden": [
+        "four",
+        "plaque",
+        "pâte",
+        "gâteau"
+      ]
+    },
+    {
+      "id": "taboo_sk_0050",
+      "category": "Alimentation et boissons",
+      "word": "frire",
+      "forbidden": [
+        "huile",
+        "poêle",
+        "éclabousser",
+        "croquant"
+      ]
+    },
+    {
+      "id": "taboo_sk_0387",
+      "category": "Alimentation et boissons",
+      "word": "sandwich",
+      "forbidden": [
+        "tranches",
+        "garni",
+        "déjeuner",
+        "mayonnaise"
+      ]
+    },
+    {
+      "id": "taboo_sk_0388",
+      "category": "Alimentation et boissons",
+      "word": "baguette",
+      "forbidden": [
+        "française",
+        "croustillante",
+        "petit pain",
+        "garniture"
+      ]
+    },
+    {
+      "id": "taboo_sk_0389",
+      "category": "Alimentation et boissons",
+      "word": "muesli",
+      "forbidden": [
+        "petit déjeuner",
+        "flocons",
+        "séché",
+        "granola"
+      ]
+    },
+    {
+      "id": "taboo_sk_0390",
+      "category": "Alimentation et boissons",
+      "word": "flocons",
+      "forbidden": [
+        "petit déjeuner",
+        "porridge",
+        "muesli",
+        "sain"
+      ]
+    },
+    {
+      "id": "taboo_sk_0391",
+      "category": "Alimentation et boissons",
+      "word": "céréales",
+      "forbidden": [
+        "petit déjeuner",
+        "muesli",
+        "granola",
+        "grains"
+      ]
+    },
+    {
+      "id": "taboo_sk_0392",
+      "category": "Alimentation et boissons",
+      "word": "smoothie",
+      "forbidden": [
+        "mixeur",
+        "fruit",
+        "froid",
+        "sain"
+      ]
+    },
+    {
+      "id": "taboo_sk_0393",
+      "category": "Alimentation et boissons",
+      "word": "limonade",
+      "forbidden": [
+        "bulles",
+        "sucrée",
+        "rafraîchissant",
+        "verre"
+      ]
+    },
+    {
+      "id": "taboo_sk_0394",
+      "category": "Alimentation et boissons",
+      "word": "jus",
+      "forbidden": [
+        "centrifugeuse",
+        "frais",
+        "concentré",
+        "fruit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0395",
+      "category": "Alimentation et boissons",
+      "word": "cacao",
+      "forbidden": [
+        "chaud",
+        "poudre",
+        "lait",
+        "sucré"
+      ]
+    },
+    {
+      "id": "taboo_sk_0396",
+      "category": "Alimentation et boissons",
+      "word": "sirop",
+      "forbidden": [
+        "sucré",
+        "verre",
+        "arôme",
+        "glace"
+      ]
+    },
+    {
+      "id": "taboo_sk_0397",
+      "category": "Alimentation et boissons",
+      "word": "farine",
+      "forbidden": [
+        "pâtisserie",
+        "tamisée",
+        "gâteaux",
+        "pâte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0398",
+      "category": "Alimentation et boissons",
+      "word": "levure",
+      "forbidden": [
+        "fermentation",
+        "levain",
+        "boulanger",
+        "activer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0399",
+      "category": "Alimentation et boissons",
+      "word": "haricot",
+      "forbidden": [
+        "légumineuse",
+        "cuire",
+        "chili",
+        "salade"
+      ]
+    },
+    {
+      "id": "taboo_sk_0400",
+      "category": "Alimentation et boissons",
+      "word": "lentille",
+      "forbidden": [
+        "légumineuse",
+        "cuire",
+        "rouge",
+        "nutritive"
+      ]
+    },
+    {
+      "id": "taboo_sk_0401",
+      "category": "Alimentation et boissons",
+      "word": "pois chiche",
+      "forbidden": [
+        "houmous",
+        "légumineuse",
+        "grillé",
+        "falafel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0402",
+      "category": "Alimentation et boissons",
+      "word": "amande",
+      "forbidden": [
+        "noix",
+        "pâte d'amande",
+        "grillées",
+        "sain"
+      ]
+    },
+    {
+      "id": "taboo_sk_0403",
+      "category": "Alimentation et boissons",
+      "word": "noix de cajou",
+      "forbidden": [
+        "noix",
+        "grillées",
+        "exotique",
+        "croquant"
+      ]
+    },
+    {
+      "id": "taboo_sk_0404",
+      "category": "Alimentation et boissons",
+      "word": "fromage blanc",
+      "forbidden": [
+        "dessert",
+        "garniture",
+        "acidulé",
+        "pâtisserie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0405",
+      "category": "Alimentation et boissons",
+      "word": "pâté",
+      "forbidden": [
+        "tartinade",
+        "conserve",
+        "tartine",
+        "pique-nique"
+      ]
+    },
+    {
+      "id": "taboo_sk_0406",
+      "category": "Alimentation et boissons",
+      "word": "chou-fleur",
+      "forbidden": [
+        "légume",
+        "blanc",
+        "rôti",
+        "brocoli"
+      ]
+    },
+    {
+      "id": "taboo_sk_0407",
+      "category": "Alimentation et boissons",
+      "word": "brocoli",
+      "forbidden": [
+        "légume",
+        "sain",
+        "chaud",
+        "chou-fleur"
+      ]
+    },
+    {
+      "id": "taboo_sk_0408",
+      "category": "Alimentation et boissons",
+      "word": "carotte",
+      "forbidden": [
+        "orange",
+        "salade",
+        "crue",
+        "sucrée"
+      ]
+    },
+    {
+      "id": "taboo_sk_0409",
+      "category": "Alimentation et boissons",
+      "word": "salade",
+      "forbidden": [
+        "légume",
+        "vinaigrette",
+        "déjeuner",
+        "bol"
+      ]
+    },
+    {
+      "id": "taboo_sk_0410",
+      "category": "Alimentation et boissons",
+      "word": "sauce salade",
+      "forbidden": [
+        "assaisonnement",
+        "salade",
+        "mayonnaise",
+        "aux herbes"
+      ]
+    },
+    {
+      "id": "taboo_sk_0411",
+      "category": "Alimentation et boissons",
+      "word": "sauce",
+      "forbidden": [
+        "épaisse",
+        "assaisonnement",
+        "assiette",
+        "chaude"
+      ]
+    },
+    {
+      "id": "taboo_sk_0412",
+      "category": "Alimentation et boissons",
+      "word": "béchamel",
+      "forbidden": [
+        "blanche",
+        "sauce",
+        "farine",
+        "beurre"
+      ]
+    },
+    {
+      "id": "taboo_sk_0413",
+      "category": "Alimentation et boissons",
+      "word": "viande",
+      "forbidden": [
+        "protéines",
+        "rôti",
+        "assiette",
+        "crue"
+      ]
+    },
+    {
+      "id": "taboo_sk_0414",
+      "category": "Alimentation et boissons",
+      "word": "rémoulade",
+      "forbidden": [
+        "froide",
+        "herbes",
+        "accompagnement",
+        "mayonnaise"
+      ]
+    },
+    {
+      "id": "taboo_sk_0415",
+      "category": "Alimentation et boissons",
+      "word": "fondue",
+      "forbidden": [
+        "fourchette",
+        "fondu",
+        "partagée",
+        "chaud"
+      ]
+    },
+    {
+      "id": "taboo_sk_0416",
+      "category": "Alimentation et boissons",
+      "word": "chantilly",
+      "forbidden": [
+        "dessert",
+        "crème",
+        "spray",
+        "froide"
+      ]
+    },
+    {
+      "id": "taboo_sk_0417",
+      "category": "Alimentation et boissons",
+      "word": "hamburger",
+      "forbidden": [
+        "fast-food",
+        "pain",
+        "frites",
+        "ketchup"
+      ]
+    },
+    {
+      "id": "taboo_sk_0418",
+      "category": "Alimentation et boissons",
+      "word": "hot-dog",
+      "forbidden": [
+        "saucisse",
+        "pain",
+        "ketchup",
+        "stand"
+      ]
+    },
+    {
+      "id": "taboo_sk_0419",
+      "category": "Alimentation et boissons",
+      "word": "steak",
+      "forbidden": [
+        "viande",
+        "saignant",
+        "grillé",
+        "assiette"
+      ]
+    },
+    {
+      "id": "taboo_sk_0420",
+      "category": "Alimentation et boissons",
+      "word": "glace",
+      "forbidden": [
+        "boule",
+        "coupe",
+        "sucrée",
+        "été"
+      ]
+    },
+    {
+      "id": "taboo_sk_0421",
+      "category": "Alimentation et boissons",
+      "word": "esquimau",
+      "forbidden": [
+        "bâtonnet",
+        "congelé",
+        "bâton",
+        "estival"
+      ]
+    },
+    {
+      "id": "taboo_sk_0422",
+      "category": "Alimentation et boissons",
+      "word": "sorbet",
+      "forbidden": [
+        "fruité",
+        "gelé",
+        "sans lait",
+        "rafraîchissant"
+      ]
+    },
+    {
+      "id": "taboo_sk_0423",
+      "category": "Alimentation et boissons",
+      "word": "omelette",
+      "forbidden": [
+        "petit déjeuner",
+        "mélange",
+        "farcie",
+        "rapide"
+      ]
+    },
+    {
+      "id": "taboo_sk_0424",
+      "category": "Alimentation et boissons",
+      "word": "bagel",
+      "forbidden": [
+        "pâtisserie",
+        "fromage à la crème",
+        "garni",
+        "petit déjeuner"
+      ]
+    },
+    {
+      "id": "taboo_sk_0425",
+      "category": "Alimentation et boissons",
+      "word": "croissant",
+      "forbidden": [
+        "petit déjeuner",
+        "français",
+        "beurré",
+        "feuilleté"
+      ]
+    },
+    {
+      "id": "taboo_sk_0426",
+      "category": "Alimentation et boissons",
+      "word": "pudding",
+      "forbidden": [
+        "dessert",
+        "vanille",
+        "épais",
+        "laitier"
+      ]
+    },
+    {
+      "id": "taboo_sk_0427",
+      "category": "Alimentation et boissons",
+      "word": "caramel",
+      "forbidden": [
+        "sucré",
+        "collant",
+        "sirop",
+        "glaçage"
+      ]
+    },
+    {
+      "id": "taboo_sk_0428",
+      "category": "Alimentation et boissons",
+      "word": "vanille",
+      "forbidden": [
+        "arôme",
+        "gousse",
+        "pudding",
+        "parfumée"
+      ]
+    },
+    {
+      "id": "taboo_sk_0429",
+      "category": "Alimentation et boissons",
+      "word": "cocktail",
+      "forbidden": [
+        "mixeur",
+        "bar",
+        "verre",
+        "décoration"
+      ]
+    },
+    {
+      "id": "taboo_sk_0430",
+      "category": "Alimentation et boissons",
+      "word": "guacamole",
+      "forbidden": [
+        "avocat",
+        "tortilla",
+        "toast",
+        "épicé"
+      ]
+    },
+    {
+      "id": "taboo_sk_0431",
+      "category": "Alimentation et boissons",
+      "word": "houmous",
+      "forbidden": [
+        "pois chiche",
+        "tahini",
+        "pita",
+        "dip"
+      ]
+    },
+    {
+      "id": "taboo_sk_0432",
+      "category": "Alimentation et boissons",
+      "word": "salsa",
+      "forbidden": [
+        "épicé",
+        "mexicain",
+        "dip",
+        "chips"
+      ]
+    },
+    {
+      "id": "taboo_sk_0433",
+      "category": "Alimentation et boissons",
+      "word": "pesto",
+      "forbidden": [
+        "basilic",
+        "pignons",
+        "sauce",
+        "vert"
+      ]
+    },
+    {
+      "id": "taboo_sk_0434",
+      "category": "Alimentation et boissons",
+      "word": "crème",
+      "forbidden": [
+        "garniture",
+        "dessert",
+        "lisse",
+        "laitier"
+      ]
+    },
+    {
+      "id": "taboo_sk_0435",
+      "category": "Alimentation et boissons",
+      "word": "gratin",
+      "forbidden": [
+        "au four",
+        "croûte",
+        "plat",
+        "doré"
+      ]
+    },
+    {
+      "id": "taboo_sk_0560",
+      "category": "Alimentation et boissons",
+      "word": "petit pain",
+      "forbidden": [
+        "pâtisserie",
+        "beurre",
+        "petit déjeuner",
+        "sésame"
+      ]
+    },
+    {
+      "id": "taboo_sk_0561",
+      "category": "Alimentation et boissons",
+      "word": "gâteau d'anniversaire",
+      "forbidden": [
+        "fête",
+        "tranche",
+        "couches",
+        "pâtissier"
+      ]
+    },
+    {
+      "id": "taboo_sk_0562",
+      "category": "Alimentation et boissons",
+      "word": "confiture",
+      "forbidden": [
+        "fruit",
+        "pot",
+        "sucré",
+        "tartinade"
+      ]
+    },
+    {
+      "id": "taboo_sk_0563",
+      "category": "Alimentation et boissons",
+      "word": "olives",
+      "forbidden": [
+        "méditerranée",
+        "salé",
+        "noyau",
+        "huile"
+      ]
+    },
+    {
+      "id": "taboo_sk_0564",
+      "category": "Alimentation et boissons",
+      "word": "frites",
+      "forbidden": [
+        "frire",
+        "sel",
+        "ketchup",
+        "fast-food"
+      ]
+    },
+    {
+      "id": "taboo_sk_0565",
+      "category": "Alimentation et boissons",
+      "word": "sushi",
+      "forbidden": [
+        "riz",
+        "wasabi",
+        "nori",
+        "froid"
+      ]
+    },
+    {
+      "id": "taboo_sk_0566",
+      "category": "Alimentation et boissons",
+      "word": "bryndza",
+      "forbidden": [
+        "brebis",
+        "salé",
+        "tartinable",
+        "halušky"
+      ]
+    },
+    {
+      "id": "taboo_sk_0567",
+      "category": "Alimentation et boissons",
+      "word": "halušky",
+      "forbidden": [
+        "bryndza",
+        "pommes de terre",
+        "traditionnel",
+        "plat"
+      ]
+    },
+    {
+      "id": "taboo_sk_0568",
+      "category": "Alimentation et boissons",
+      "word": "kapustnica",
+      "forbidden": [
+        "chou",
+        "de fête",
+        "saucisse",
+        "aigre"
+      ]
+    },
+    {
+      "id": "taboo_sk_0569",
+      "category": "Alimentation et boissons",
+      "word": "rhum",
+      "forbidden": [
+        "Caraïbes",
+        "cocktail",
+        "canne",
+        "pirates"
+      ]
+    },
+    {
+      "id": "taboo_sk_0570",
+      "category": "Alimentation et boissons",
+      "word": "whisky",
+      "forbidden": [
+        "Écosse",
+        "malté",
+        "bouteille",
+        "glace"
+      ]
+    },
+    {
+      "id": "taboo_sk_0571",
+      "category": "Alimentation et boissons",
+      "word": "aubergine",
+      "forbidden": [
+        "violet",
+        "griller",
+        "tranches",
+        "gratiné"
+      ]
+    },
+    {
+      "id": "taboo_sk_0572",
+      "category": "Alimentation et boissons",
+      "word": "avocat",
+      "forbidden": [
+        "guacamole",
+        "crémeux",
+        "noyau",
+        "vert"
+      ]
+    },
+    {
+      "id": "taboo_sk_0573",
+      "category": "Alimentation et boissons",
+      "word": "noix",
+      "forbidden": [
+        "noix de Grenoble",
+        "casser",
+        "gâteau",
+        "croquer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0574",
+      "category": "Alimentation et boissons",
+      "word": "noix de coco",
+      "forbidden": [
+        "tropical",
+        "lait",
+        "coquille",
+        "fibres"
+      ]
+    },
+    {
+      "id": "taboo_sk_0575",
+      "category": "Alimentation et boissons",
+      "word": "tofu",
+      "forbidden": [
+        "soja",
+        "végan",
+        "insipide",
+        "tartinade"
+      ]
+    },
+    {
+      "id": "taboo_sk_0576",
+      "category": "Alimentation et boissons",
+      "word": "ketchup",
+      "forbidden": [
+        "tomate",
+        "sucrée-acide",
+        "frites",
+        "bouteille"
+      ]
+    },
+    {
+      "id": "taboo_sk_0577",
+      "category": "Alimentation et boissons",
+      "word": "moutarde",
+      "forbidden": [
+        "piquante",
+        "jaune",
+        "forte",
+        "flacon"
+      ]
+    },
+    {
+      "id": "taboo_sk_0578",
+      "category": "Alimentation et boissons",
+      "word": "cuisson",
+      "forbidden": [
+        "four",
+        "pâte",
+        "temps",
+        "température"
+      ]
+    },
+    {
+      "id": "taboo_sk_0579",
+      "category": "Alimentation et boissons",
+      "word": "barbecue",
+      "forbidden": [
+        "charbon",
+        "fumée",
+        "été",
+        "brochette"
+      ]
+    },
+    {
+      "id": "taboo_sk_0580",
+      "category": "Alimentation et boissons",
+      "word": "mélange",
+      "forbidden": [
+        "fouet",
+        "récipient",
+        "à la main",
+        "ingrédients"
+      ]
+    },
+    {
+      "id": "taboo_sk_0683",
+      "category": "Alimentation et boissons",
+      "word": "toast",
+      "forbidden": [
+        "griller",
+        "beurre",
+        "petit déjeuner",
+        "tartine"
+      ]
+    },
+    {
+      "id": "taboo_sk_0684",
+      "category": "Alimentation et boissons",
+      "word": "champignons",
+      "forbidden": [
+        "frire",
+        "sauce",
+        "poêle",
+        "champignon sauvage"
+      ]
+    },
+    {
+      "id": "taboo_sk_0685",
+      "category": "Alimentation et boissons",
+      "word": "poulet",
+      "forbidden": [
+        "rôti",
+        "os",
+        "gril",
+        "aile"
+      ]
+    },
+    {
+      "id": "taboo_sk_0686",
+      "category": "Alimentation et boissons",
+      "word": "cannelle",
+      "forbidden": [
+        "odorante",
+        "écorce",
+        "poudre",
+        "strudel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0687",
+      "category": "Alimentation et boissons",
+      "word": "petit déjeuner",
+      "forbidden": [
+        "matin",
+        "café",
+        "toast",
+        "collation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0688",
+      "category": "Alimentation et boissons",
+      "word": "courses",
+      "forbidden": [
+        "magasin",
+        "liste",
+        "caisse",
+        "marché"
+      ]
+    },
+    {
+      "id": "taboo_sk_0689",
+      "category": "Alimentation et boissons",
+      "word": "congélation",
+      "forbidden": [
+        "refroidir",
+        "congélateur",
+        "long terme",
+        "glace"
+      ]
+    },
+    {
+      "id": "taboo_sk_0690",
+      "category": "Alimentation et boissons",
+      "word": "bacon",
+      "forbidden": [
+        "fumé",
+        "petit déjeuner",
+        "porc",
+        "salé"
+      ]
+    },
+    {
+      "id": "taboo_sk_0691",
+      "category": "Alimentation et boissons",
+      "word": "sésame",
+      "forbidden": [
+        "graines",
+        "houmous",
+        "salé",
+        "pâte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0692",
+      "category": "Alimentation et boissons",
+      "word": "granola",
+      "forbidden": [
+        "avoine",
+        "petit déjeuner",
+        "miel",
+        "croquant"
+      ]
+    },
+    {
+      "id": "taboo_sk_0693",
+      "category": "Alimentation et boissons",
+      "word": "chips",
+      "forbidden": [
+        "salé",
+        "paquet",
+        "fête",
+        "pommes de terre"
+      ]
+    },
+    {
+      "id": "taboo_sk_0694",
+      "category": "Alimentation et boissons",
+      "word": "bouillon",
+      "forbidden": [
+        "os",
+        "cuisson",
+        "passoire",
+        "fort"
+      ]
+    },
+    {
+      "id": "taboo_sk_0695",
+      "category": "Alimentation et boissons",
+      "word": "sucreries",
+      "forbidden": [
+        "sucre",
+        "dessert",
+        "confiseur",
+        "biscuits"
+      ]
+    },
+    {
+      "id": "taboo_sk_0696",
+      "category": "Alimentation et boissons",
+      "word": "œufs brouillés",
+      "forbidden": [
+        "œufs",
+        "beurre",
+        "petit déjeuner",
+        "mélanger"
+      ]
+    },
+    {
+      "id": "taboo_sk_0697",
+      "category": "Alimentation et boissons",
+      "word": "thon",
+      "forbidden": [
+        "conserve",
+        "sushi",
+        "filet",
+        "mer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0698",
+      "category": "Alimentation et boissons",
+      "word": "petit pain allongé",
+      "forbidden": [
+        "frais",
+        "pâtisserie",
+        "beurre",
+        "croûte"
+      ]
+    },
+    {
+      "id": "taboo_sk_0816",
+      "category": "Alimentation et boissons",
+      "word": "herbes",
+      "forbidden": [
+        "basilic",
+        "feuilles",
+        "séché",
+        "arôme"
+      ]
+    },
+    {
+      "id": "taboo_sk_0817",
+      "category": "Alimentation et boissons",
+      "word": "amandes",
+      "forbidden": [
+        "grillées",
+        "sucrées",
+        "pâte d'amande",
+        "dessert"
+      ]
+    },
+    {
+      "id": "taboo_sk_0818",
+      "category": "Alimentation et boissons",
+      "word": "gingembre",
+      "forbidden": [
+        "racine",
+        "piquant",
+        "thé",
+        "miel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0819",
+      "category": "Alimentation et boissons",
+      "word": "déjeuner",
+      "forbidden": [
+        "principal",
+        "pause",
+        "soupe",
+        "cantine"
+      ]
+    },
+    {
+      "id": "taboo_sk_0820",
+      "category": "Alimentation et boissons",
+      "word": "dessert",
+      "forbidden": [
+        "sucré",
+        "portion",
+        "crémeux",
+        "pâtisserie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0821",
+      "category": "Alimentation et boissons",
+      "word": "prosciutto",
+      "forbidden": [
+        "jambon",
+        "Italie",
+        "viande",
+        "tranches fines"
+      ]
+    },
+    {
+      "id": "taboo_sk_0822",
+      "category": "Alimentation et boissons",
+      "word": "raifort",
+      "forbidden": [
+        "racine",
+        "piquant",
+        "sauce",
+        "accompagnement"
+      ]
+    },
+    {
+      "id": "taboo_sk_0823",
+      "category": "Alimentation et boissons",
+      "word": "mayonnaise",
+      "forbidden": [
+        "œuf",
+        "huile",
+        "crémeux",
+        "tartinade"
+      ]
+    },
+    {
+      "id": "taboo_sk_0824",
+      "category": "Alimentation et boissons",
+      "word": "vinaigrette",
+      "forbidden": [
+        "vinaigre",
+        "huile",
+        "herbes",
+        "assaisonner"
+      ]
+    },
+    {
+      "id": "taboo_sk_0825",
+      "category": "Alimentation et boissons",
+      "word": "entrée",
+      "forbidden": [
+        "petite",
+        "amuse-bouche",
+        "servir",
+        "ouvrir"
+      ]
+    },
+    {
+      "id": "taboo_sk_0826",
+      "category": "Alimentation et boissons",
+      "word": "brioche tressée",
+      "forbidden": [
+        "Noël",
+        "tressé",
+        "levure",
+        "sucré"
+      ]
+    },
+    {
+      "id": "taboo_sk_0827",
+      "category": "Alimentation et boissons",
+      "word": "trdelník",
+      "forbidden": [
+        "pâtisserie",
+        "goût",
+        "ingrédient",
+        "cuisine"
+      ]
+    },
+    {
+      "id": "taboo_sk_0828",
+      "category": "Alimentation et boissons",
+      "word": "gâteau marbré",
+      "forbidden": [
+        "moule",
+        "anneau",
+        "glaçage",
+        "marbré"
+      ]
+    },
+    {
+      "id": "taboo_sk_0829",
+      "category": "Alimentation et boissons",
+      "word": "gâteau au pavot",
+      "forbidden": [
+        "graines",
+        "garniture",
+        "citron",
+        "tranche"
+      ]
+    }
+  ]
+}

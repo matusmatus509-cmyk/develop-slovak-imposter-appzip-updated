@@ -1,0 +1,2364 @@
+{
+  "candidates": 167,
+  "byCategory": {
+    "Jedlo a nápoje": 0,
+    "Zvieratá": 0,
+    "Miesta a cestovanie": 15,
+    "Ľudia a povolania": 4,
+    "Predmety a domácnosť": 8,
+    "Aktivity a šport": 26,
+    "Filmy, seriály a kultúra": 38,
+    "Technológie a médiá": 46,
+    "Príroda a svet": 18,
+    "Všeobecné pojmy a situácie": 12
+  },
+  "items": [
+    {
+      "id": "taboo_sk_0147",
+      "category": "Miesta a cestovanie",
+      "word": "cestovná kancelária",
+      "forbidden": [
+        "ponuka",
+        "zájazd",
+        "rezervácia",
+        "agent"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0168",
+      "category": "Ľudia a povolania",
+      "word": "realitný maklér",
+      "forbidden": [
+        "nehnuteľnosť",
+        "predaj",
+        "byt",
+        "zmluva"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0189",
+      "category": "Ľudia a povolania",
+      "word": "sociálny pracovník",
+      "forbidden": [
+        "pomoc",
+        "klient",
+        "rodina",
+        "intervencia"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0245",
+      "category": "Predmety a domácnosť",
+      "word": "odpadkový kôš",
+      "forbidden": [
+        "smeti",
+        "vrecko",
+        "vyhodiť",
+        "zápach"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0255",
+      "category": "Miesta a cestovanie",
+      "word": "pešia zóna",
+      "forbidden": [
+        "obchody",
+        "chodci",
+        "kaviarne",
+        "zákaz"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0256",
+      "category": "Miesta a cestovanie",
+      "word": "botanická záhrada",
+      "forbidden": [
+        "skleník",
+        "rastliny",
+        "herbár",
+        "lavička"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0259",
+      "category": "Miesta a cestovanie",
+      "word": "termálne kúpele",
+      "forbidden": [
+        "prameň",
+        "liečivý",
+        "wellness",
+        "minerálny"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0281",
+      "category": "Miesta a cestovanie",
+      "word": "výletná loď",
+      "forbidden": [
+        "paluba",
+        "večera",
+        "salón",
+        "prehliadka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0364",
+      "category": "Predmety a domácnosť",
+      "word": "žehliaca doska",
+      "forbidden": [
+        "oblečenie",
+        "žehlenie",
+        "žehlička",
+        "parník"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0371",
+      "category": "Predmety a domácnosť",
+      "word": "šijací stroj",
+      "forbidden": [
+        "niť",
+        "záplata",
+        "tkanina",
+        "gombík"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0377",
+      "category": "Predmety a domácnosť",
+      "word": "predlžovač",
+      "forbidden": [
+        "zásuvka",
+        "kábel",
+        "elektrina",
+        "zariadenie"
+      ],
+      "reasons": [
+        "technický, špecifický alebo umelý tvar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0378",
+      "category": "Predmety a domácnosť",
+      "word": "kôš na bielizeň",
+      "forbidden": [
+        "prádlo",
+        "práčka",
+        "špinavé",
+        "preprava"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_0386",
+      "category": "Predmety a domácnosť",
+      "word": "doska na krájanie",
+      "forbidden": [
+        "chlieb",
+        "zelenina",
+        "nož",
+        "kuchyňa"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_0498",
+      "category": "Predmety a domácnosť",
+      "word": "zubná pasta",
+      "forbidden": [
+        "tubička",
+        "pena",
+        "mäta",
+        "zuby"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0502",
+      "category": "Predmety a domácnosť",
+      "word": "toaletný papier",
+      "forbidden": [
+        "rolka",
+        "kúpeľňa",
+        "mäkký",
+        "WC"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0526",
+      "category": "Ľudia a povolania",
+      "word": "právnik",
+      "forbidden": [
+        "súd",
+        "obhajoba",
+        "zmluva",
+        "paragraf"
+      ],
+      "reasons": [
+        "administratívny alebo pracovný tvar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0613",
+      "category": "Ľudia a povolania",
+      "word": "správca budovy",
+      "forbidden": [
+        "dom",
+        "údržba",
+        "nájomníci",
+        "práca"
+      ],
+      "reasons": [
+        "technický, špecifický alebo umelý tvar",
+        "administratívny alebo pracovný tvar",
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0668",
+      "category": "Aktivity a šport",
+      "word": "ručné práce",
+      "forbidden": [
+        "tvorba",
+        "materiál",
+        "náradie",
+        "záľuba"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0727",
+      "category": "Filmy, seriály a kultúra",
+      "word": "Forrest Gump",
+      "forbidden": [
+        "beh",
+        "vojna",
+        "krabica",
+        "USA"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0728",
+      "category": "Filmy, seriály a kultúra",
+      "word": "Pulp Fiction",
+      "forbidden": [
+        "Tarantino",
+        "krv",
+        "dialogy",
+        "kriminál"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0737",
+      "category": "Filmy, seriály a kultúra",
+      "word": "Pán prsteňov",
+      "forbidden": [
+        "hobiti",
+        "Sauron",
+        "Tolkien",
+        "Stredozem"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0739",
+      "category": "Filmy, seriály a kultúra",
+      "word": "Harry Potter",
+      "forbidden": [
+        "kúzla",
+        "študentský internát",
+        "metla",
+        "prútik"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0740",
+      "category": "Filmy, seriály a kultúra",
+      "word": "Čierny panter",
+      "forbidden": [
+        "Marvel",
+        "Wakanda",
+        "kráľ",
+        "vibranium"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0743",
+      "category": "Filmy, seriály a kultúra",
+      "word": "Zelená kniha",
+      "forbidden": [
+        "rasizmus",
+        "cesta",
+        "klavirista",
+        "spolujazda"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0744",
+      "category": "Filmy, seriály a kultúra",
+      "word": "Späť do budúcnosti",
+      "forbidden": [
+        "čas",
+        "stroj",
+        "DeLorean",
+        "Marty"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_0746",
+      "category": "Filmy, seriály a kultúra",
+      "word": "Hra o tróny",
+      "forbidden": [
+        "Železný trón",
+        "draci",
+        "zima",
+        "Stark"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_0748",
+      "category": "Filmy, seriály a kultúra",
+      "word": "Breaking Bad",
+      "forbidden": [
+        "drogy",
+        "chemik",
+        "modrá",
+        "New Mexico"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0750",
+      "category": "Filmy, seriály a kultúra",
+      "word": "Stranger Things",
+      "forbidden": [
+        "mesto",
+        "80. roky",
+        "nadprirodzené",
+        "demogorgon"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0753",
+      "category": "Filmy, seriály a kultúra",
+      "word": "The Crown",
+      "forbidden": [
+        "kráľovná",
+        "Elizabeth",
+        "monarchia",
+        "Británia"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0755",
+      "category": "Filmy, seriály a kultúra",
+      "word": "filmová klapka",
+      "forbidden": [
+        "natáčanie",
+        "režisér",
+        "záber",
+        "scéna"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0756",
+      "category": "Filmy, seriály a kultúra",
+      "word": "Malý princ",
+      "forbidden": [
+        "planéta",
+        "ružička",
+        "pilot",
+        "filozofia"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0781",
+      "category": "Aktivity a šport",
+      "word": "vrh guľou",
+      "forbidden": [
+        "atletika",
+        "kruh",
+        "guľa",
+        "súťaž"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0805",
+      "category": "Aktivity a šport",
+      "word": "pozorovanie hviezd",
+      "forbidden": [
+        "teleskop",
+        "noc",
+        "súhvezdie",
+        "meteor"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0815",
+      "category": "Aktivity a šport",
+      "word": "úniková hra",
+      "forbidden": [
+        "zámok",
+        "hádanka",
+        "tím",
+        "hodina"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0837",
+      "category": "Miesta a cestovanie",
+      "word": "hraničný priechod",
+      "forbidden": [
+        "pas",
+        "štát",
+        "colník",
+        "hranica"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0840",
+      "category": "Miesta a cestovanie",
+      "word": "colný úrad",
+      "forbidden": [
+        "hranica",
+        "tovar",
+        "kontrola",
+        "pas"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0853",
+      "category": "Miesta a cestovanie",
+      "word": "informačné centrum",
+      "forbidden": [
+        "turista",
+        "mapa",
+        "leták",
+        "rady"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0861",
+      "category": "Miesta a cestovanie",
+      "word": "turistická chata",
+      "forbidden": [
+        "ubytovanie",
+        "nocľah",
+        "hosť",
+        "rezervácia"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0862",
+      "category": "Miesta a cestovanie",
+      "word": "hotelová izba",
+      "forbidden": [
+        "ubytovanie",
+        "nocľah",
+        "hosť",
+        "rezervácia"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0876",
+      "category": "Miesta a cestovanie",
+      "word": "colná kontrola",
+      "forbidden": [
+        "ubytovanie",
+        "nocľah",
+        "hosť",
+        "rezervácia"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0877",
+      "category": "Miesta a cestovanie",
+      "word": "bezpečnostná kontrola",
+      "forbidden": [
+        "ubytovanie",
+        "nocľah",
+        "hosť",
+        "rezervácia"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0878",
+      "category": "Miesta a cestovanie",
+      "word": "pasová kontrola",
+      "forbidden": [
+        "ubytovanie",
+        "nocľah",
+        "hosť",
+        "rezervácia"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0884",
+      "category": "Miesta a cestovanie",
+      "word": "mestský park",
+      "forbidden": [
+        "stromy",
+        "lavička",
+        "tráva",
+        "prechádzka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0885",
+      "category": "Miesta a cestovanie",
+      "word": "kultúrny dom",
+      "forbidden": [
+        "podujatie",
+        "sála",
+        "koncert",
+        "javisko"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0890",
+      "category": "Aktivity a šport",
+      "word": "beh cez prekážky",
+      "forbidden": [
+        "dráha",
+        "bežec",
+        "latka",
+        "štadión"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_0899",
+      "category": "Aktivity a šport",
+      "word": "pozemný hokej",
+      "forbidden": [
+        "palica",
+        "loptička",
+        "ihrisko",
+        "bránka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0901",
+      "category": "Aktivity a šport",
+      "word": "skok do diaľky",
+      "forbidden": [
+        "odraz",
+        "piesok",
+        "dráha",
+        "doskok"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_0902",
+      "category": "Aktivity a šport",
+      "word": "skok do výšky",
+      "forbidden": [
+        "latka",
+        "odraz",
+        "doskok",
+        "štadión"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_0906",
+      "category": "Aktivity a šport",
+      "word": "vodné pólo",
+      "forbidden": [
+        "bazén",
+        "lopta",
+        "bránka",
+        "družstvo"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0908",
+      "category": "Aktivity a šport",
+      "word": "hod diskom",
+      "forbidden": [
+        "kruh",
+        "atletika",
+        "vrh",
+        "sektor"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0915",
+      "category": "Aktivity a šport",
+      "word": "človeče nehnevaj sa",
+      "forbidden": [
+        "figúrky",
+        "kocka",
+        "domček",
+        "súper"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_0923",
+      "category": "Aktivity a šport",
+      "word": "kúzelnícky trik",
+      "forbidden": [
+        "ilúzia",
+        "pódium",
+        "prekvapenie",
+        "klobúk"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0928",
+      "category": "Aktivity a šport",
+      "word": "vedomostný kvíz",
+      "forbidden": [
+        "otázky",
+        "odpovede",
+        "body",
+        "súťaž"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0930",
+      "category": "Aktivity a šport",
+      "word": "šachový zápas",
+      "forbidden": [
+        "súper",
+        "kolo",
+        "body",
+        "stôl"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0931",
+      "category": "Aktivity a šport",
+      "word": "stavanie modelu",
+      "forbidden": [
+        "ruky",
+        "náradie",
+        "postup",
+        "voľný čas"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0932",
+      "category": "Aktivity a šport",
+      "word": "hod oštepom",
+      "forbidden": [
+        "ruky",
+        "náradie",
+        "postup",
+        "voľný čas"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0933",
+      "category": "Aktivity a šport",
+      "word": "hádzanie frisbee",
+      "forbidden": [
+        "súper",
+        "kolo",
+        "body",
+        "stôl"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0934",
+      "category": "Aktivity a šport",
+      "word": "púšťanie šarkana",
+      "forbidden": [
+        "súper",
+        "kolo",
+        "body",
+        "stôl"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0935",
+      "category": "Aktivity a šport",
+      "word": "jazda na kolobežke",
+      "forbidden": [
+        "riadidlá",
+        "kolesá",
+        "odrážať",
+        "prilba"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_0936",
+      "category": "Aktivity a šport",
+      "word": "jazda na korčuliach",
+      "forbidden": [
+        "súper",
+        "kolo",
+        "body",
+        "stôl"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_0937",
+      "category": "Aktivity a šport",
+      "word": "cvičenie jogy",
+      "forbidden": [
+        "súper",
+        "kolo",
+        "body",
+        "stôl"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0941",
+      "category": "Aktivity a šport",
+      "word": "zbieranie húb",
+      "forbidden": [
+        "les",
+        "košík",
+        "klobúk",
+        "jeseň"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0942",
+      "category": "Aktivity a šport",
+      "word": "pozorovanie vtákov",
+      "forbidden": [
+        "ďalekohľad",
+        "krídla",
+        "hniezdo",
+        "ticho"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0943",
+      "category": "Aktivity a šport",
+      "word": "venčenie psa",
+      "forbidden": [
+        "vodítko",
+        "park",
+        "labka",
+        "prechádzka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0945",
+      "category": "Aktivity a šport",
+      "word": "návšteva výstavy",
+      "forbidden": [
+        "galéria",
+        "obrazy",
+        "vstupenka",
+        "kurátor"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0946",
+      "category": "Aktivity a šport",
+      "word": "sledovanie filmu",
+      "forbidden": [
+        "kino",
+        "obrazovka",
+        "popcorn",
+        "dej"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0957",
+      "category": "Filmy, seriály a kultúra",
+      "word": "literárny večer",
+      "forbidden": [
+        "umenie",
+        "autor",
+        "výstava",
+        "galéria"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0959",
+      "category": "Filmy, seriály a kultúra",
+      "word": "kinosála",
+      "forbidden": [
+        "film",
+        "kamera",
+        "príbeh",
+        "divák"
+      ],
+      "reasons": [
+        "technický, špecifický alebo umelý tvar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0960",
+      "category": "Filmy, seriály a kultúra",
+      "word": "hlavná úloha",
+      "forbidden": [
+        "film",
+        "kamera",
+        "príbeh",
+        "divák"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0963",
+      "category": "Filmy, seriály a kultúra",
+      "word": "prvá séria",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0965",
+      "category": "Filmy, seriály a kultúra",
+      "word": "dejová línia",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0966",
+      "category": "Filmy, seriály a kultúra",
+      "word": "hlavný hrdina",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0968",
+      "category": "Filmy, seriály a kultúra",
+      "word": "streamovacia služba",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0969",
+      "category": "Filmy, seriály a kultúra",
+      "word": "televízna relácia",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0971",
+      "category": "Filmy, seriály a kultúra",
+      "word": "diskusná relácia",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0972",
+      "category": "Filmy, seriály a kultúra",
+      "word": "súťažná relácia",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0973",
+      "category": "Filmy, seriály a kultúra",
+      "word": "detský program",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0975",
+      "category": "Filmy, seriály a kultúra",
+      "word": "talentová šou",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0976",
+      "category": "Filmy, seriály a kultúra",
+      "word": "reality šou",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0981",
+      "category": "Filmy, seriály a kultúra",
+      "word": "rozhovor do kamery",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_0982",
+      "category": "Filmy, seriály a kultúra",
+      "word": "priamy prenos",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0983",
+      "category": "Filmy, seriály a kultúra",
+      "word": "archívny záznam",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0984",
+      "category": "Filmy, seriály a kultúra",
+      "word": "televízny kanál",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0985",
+      "category": "Filmy, seriály a kultúra",
+      "word": "programová ponuka",
+      "forbidden": [
+        "seriál",
+        "epizóda",
+        "postava",
+        "obrazovka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0990",
+      "category": "Filmy, seriály a kultúra",
+      "word": "rozprávka",
+      "forbidden": [
+        "kniha",
+        "text",
+        "autor",
+        "čítanie"
+      ],
+      "reasons": [
+        "administratívny alebo pracovný tvar"
+      ]
+    },
+    {
+      "id": "taboo_sk_1000",
+      "category": "Filmy, seriály a kultúra",
+      "word": "literárna postava",
+      "forbidden": [
+        "kniha",
+        "text",
+        "autor",
+        "čítanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1001",
+      "category": "Filmy, seriály a kultúra",
+      "word": "rozprávač",
+      "forbidden": [
+        "kniha",
+        "text",
+        "autor",
+        "čítanie"
+      ],
+      "reasons": [
+        "administratívny alebo pracovný tvar"
+      ]
+    },
+    {
+      "id": "taboo_sk_1005",
+      "category": "Filmy, seriály a kultúra",
+      "word": "obálka knihy",
+      "forbidden": [
+        "kniha",
+        "text",
+        "autor",
+        "čítanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1007",
+      "category": "Filmy, seriály a kultúra",
+      "word": "knižná recenzia",
+      "forbidden": [
+        "kniha",
+        "text",
+        "autor",
+        "čítanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1008",
+      "category": "Filmy, seriály a kultúra",
+      "word": "knižný veľtrh",
+      "forbidden": [
+        "kniha",
+        "text",
+        "autor",
+        "čítanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1030",
+      "category": "Filmy, seriály a kultúra",
+      "word": "hudobný žáner",
+      "forbidden": [
+        "rock",
+        "pop",
+        "džez",
+        "štýl"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1051",
+      "category": "Technológie a médiá",
+      "word": "dotyková obrazovka",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1052",
+      "category": "Technológie a médiá",
+      "word": "grafický tablet",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1053",
+      "category": "Technológie a médiá",
+      "word": "čítací tablet",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1054",
+      "category": "Technológie a médiá",
+      "word": "herný notebook",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1055",
+      "category": "Technológie a médiá",
+      "word": "herná konzola",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1058",
+      "category": "Technológie a médiá",
+      "word": "digitálny fotoaparát",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "technický, špecifický alebo umelý tvar",
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1059",
+      "category": "Technológie a médiá",
+      "word": "akčná kamera",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1060",
+      "category": "Technológie a médiá",
+      "word": "inteligentné hodinky",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1062",
+      "category": "Technológie a médiá",
+      "word": "bezdrôtové slúchadlá",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1063",
+      "category": "Technológie a médiá",
+      "word": "mikrofón na stojane",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_1064",
+      "category": "Technológie a médiá",
+      "word": "prenosný reproduktor",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1068",
+      "category": "Technológie a médiá",
+      "word": "externý disk",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1069",
+      "category": "Technológie a médiá",
+      "word": "USB kľúč",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1070",
+      "category": "Technológie a médiá",
+      "word": "pamäťová karta",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1071",
+      "category": "Technológie a médiá",
+      "word": "pevný disk",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1075",
+      "category": "Technológie a médiá",
+      "word": "čítačka kariet",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1078",
+      "category": "Technológie a médiá",
+      "word": "digitálny budík",
+      "forbidden": [
+        "počítač",
+        "displej",
+        "elektronika",
+        "ovládanie"
+      ],
+      "reasons": [
+        "technický, špecifický alebo umelý tvar",
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1099",
+      "category": "Technológie a médiá",
+      "word": "virtuálna schôdza",
+      "forbidden": [
+        "účastníci",
+        "kamera",
+        "agenda",
+        "prezentácia"
+      ],
+      "reasons": [
+        "technický, špecifický alebo umelý tvar",
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1117",
+      "category": "Technológie a médiá",
+      "word": "spravodajský portál",
+      "forbidden": [
+        "novinár",
+        "čítanie",
+        "web",
+        "titulok"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1118",
+      "category": "Technológie a médiá",
+      "word": "online článok",
+      "forbidden": [
+        "novinár",
+        "čítanie",
+        "web",
+        "titulok"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1124",
+      "category": "Technológie a médiá",
+      "word": "reklamný spot",
+      "forbidden": [
+        "značka",
+        "propagácia",
+        "televízia",
+        "kampaň"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1140",
+      "category": "Technológie a médiá",
+      "word": "novinový titulok",
+      "forbidden": [
+        "noviny",
+        "článok",
+        "nadpis",
+        "redakcia"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1143",
+      "category": "Technológie a médiá",
+      "word": "elektrický skúter",
+      "forbidden": [
+        "elektronika",
+        "batéria",
+        "ovládanie",
+        "kábel"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1144",
+      "category": "Technológie a médiá",
+      "word": "mobilná aplikácia",
+      "forbidden": [
+        "ikona",
+        "displej",
+        "stiahnuť",
+        "obchod"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1157",
+      "category": "Technológie a médiá",
+      "word": "virtuálna realita",
+      "forbidden": [
+        "okuliare",
+        "simulácia",
+        "hra",
+        "svet"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1159",
+      "category": "Technológie a médiá",
+      "word": "digitálna mapa",
+      "forbidden": [
+        "GPS",
+        "trasa",
+        "poloha",
+        "navigácia"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1160",
+      "category": "Technológie a médiá",
+      "word": "navigačný systém",
+      "forbidden": [
+        "GPS",
+        "satelit",
+        "trasa",
+        "auto"
+      ],
+      "reasons": [
+        "technický, špecifický alebo umelý tvar",
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1162",
+      "category": "Technológie a médiá",
+      "word": "bezkontaktná platba",
+      "forbidden": [
+        "karta",
+        "terminál",
+        "priložiť",
+        "banka"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1165",
+      "category": "Technológie a médiá",
+      "word": "samoobslužná pokladňa",
+      "forbidden": [
+        "obchod",
+        "skenovať",
+        "tovar",
+        "platiť"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1166",
+      "category": "Technológie a médiá",
+      "word": "inteligentná domácnosť",
+      "forbidden": [
+        "ovládať",
+        "mobil",
+        "svetlo",
+        "automaticky"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1168",
+      "category": "Technológie a médiá",
+      "word": "adaptér",
+      "forbidden": [
+        "konektor",
+        "zásuvka",
+        "napätie",
+        "nabíjať"
+      ],
+      "reasons": [
+        "technický, špecifický alebo umelý tvar"
+      ]
+    },
+    {
+      "id": "taboo_sk_1170",
+      "category": "Technológie a médiá",
+      "word": "spínač svetla",
+      "forbidden": [
+        "vypínač",
+        "žiarovka",
+        "stena",
+        "zapnúť"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1172",
+      "category": "Technológie a médiá",
+      "word": "solárny panel",
+      "forbidden": [
+        "slnko",
+        "strecha",
+        "fotovoltika",
+        "prúd"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1176",
+      "category": "Technológie a médiá",
+      "word": "kuchynský robot",
+      "forbidden": [
+        "miešať",
+        "nože",
+        "misa",
+        "varenie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1178",
+      "category": "Technológie a médiá",
+      "word": "elektronický teplomer",
+      "forbidden": [
+        "horúčka",
+        "stupne",
+        "merať",
+        "telo"
+      ],
+      "reasons": [
+        "technický, špecifický alebo umelý tvar",
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1185",
+      "category": "Technológie a médiá",
+      "word": "online rezervovanie",
+      "forbidden": [
+        "internet",
+        "prehliadač",
+        "účet",
+        "prihlásenie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1186",
+      "category": "Technológie a médiá",
+      "word": "elektronický zámok",
+      "forbidden": [
+        "dvere",
+        "kód",
+        "odomknúť",
+        "čip"
+      ],
+      "reasons": [
+        "technický, špecifický alebo umelý tvar",
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1188",
+      "category": "Technológie a médiá",
+      "word": "blokovanie reklám",
+      "forbidden": [
+        "elektronika",
+        "batéria",
+        "ovládanie",
+        "kábel"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1189",
+      "category": "Technológie a médiá",
+      "word": "indukčná varná doska",
+      "forbidden": [
+        "hrniec",
+        "variť",
+        "kuchyňa",
+        "teplo"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_1190",
+      "category": "Technológie a médiá",
+      "word": "mikrovlnná rúra",
+      "forbidden": [
+        "zohriať",
+        "jedlo",
+        "minúty",
+        "kuchyňa"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1191",
+      "category": "Technológie a médiá",
+      "word": "elektrický holiaci strojček",
+      "forbidden": [
+        "brada",
+        "tvár",
+        "holenie",
+        "čepeľ"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_1192",
+      "category": "Technológie a médiá",
+      "word": "formulár",
+      "forbidden": [
+        "meno",
+        "vyplniť",
+        "otázky",
+        "papier"
+      ],
+      "reasons": [
+        "administratívny alebo pracovný tvar"
+      ]
+    },
+    {
+      "id": "taboo_sk_1193",
+      "category": "Technológie a médiá",
+      "word": "sušič vlasov",
+      "forbidden": [
+        "fén",
+        "teplý vzduch",
+        "kúpeľňa",
+        "vlasy"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1194",
+      "category": "Technológie a médiá",
+      "word": "webový formulár",
+      "forbidden": [
+        "internet",
+        "prehliadač",
+        "účet",
+        "prihlásenie"
+      ],
+      "reasons": [
+        "administratívny alebo pracovný tvar",
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1195",
+      "category": "Technológie a médiá",
+      "word": "čistička vzduchu",
+      "forbidden": [
+        "filter",
+        "prach",
+        "izba",
+        "dýchať"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1196",
+      "category": "Technológie a médiá",
+      "word": "inteligentná zásuvka",
+      "forbidden": [
+        "prúd",
+        "mobil",
+        "zapnúť",
+        "dom"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1267",
+      "category": "Príroda a svet",
+      "word": "snehová vločka",
+      "forbidden": [
+        "predpoveď",
+        "teplota",
+        "mrak",
+        "vietor"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1269",
+      "category": "Príroda a svet",
+      "word": "topenie snehu",
+      "forbidden": [
+        "predpoveď",
+        "teplota",
+        "mrak",
+        "vietor"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1271",
+      "category": "Príroda a svet",
+      "word": "východ slnka",
+      "forbidden": [
+        "predpoveď",
+        "teplota",
+        "mrak",
+        "vietor"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1272",
+      "category": "Príroda a svet",
+      "word": "západ slnka",
+      "forbidden": [
+        "predpoveď",
+        "teplota",
+        "mrak",
+        "vietor"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1273",
+      "category": "Príroda a svet",
+      "word": "polárna žiara",
+      "forbidden": [
+        "predpoveď",
+        "teplota",
+        "mrak",
+        "vietor"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1274",
+      "category": "Príroda a svet",
+      "word": "zatmenie slnka",
+      "forbidden": [
+        "predpoveď",
+        "teplota",
+        "mrak",
+        "vietor"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1275",
+      "category": "Príroda a svet",
+      "word": "zatmenie mesiaca",
+      "forbidden": [
+        "predpoveď",
+        "teplota",
+        "mrak",
+        "vietor"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1293",
+      "category": "Príroda a svet",
+      "word": "riečny breh",
+      "forbidden": [
+        "mapa",
+        "výhľad",
+        "výlet",
+        "geografia"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1300",
+      "category": "Príroda a svet",
+      "word": "piesočná duna",
+      "forbidden": [
+        "mapa",
+        "výhľad",
+        "výlet",
+        "geografia"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1307",
+      "category": "Príroda a svet",
+      "word": "severný pól",
+      "forbidden": [
+        "mapa",
+        "štát",
+        "hranica",
+        "svetadiel"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1308",
+      "category": "Príroda a svet",
+      "word": "južný pól",
+      "forbidden": [
+        "mapa",
+        "štát",
+        "hranica",
+        "svetadiel"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1310",
+      "category": "Príroda a svet",
+      "word": "hlavné mesto",
+      "forbidden": [
+        "mapa",
+        "štát",
+        "hranica",
+        "svetadiel"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1312",
+      "category": "Príroda a svet",
+      "word": "vlajka krajiny",
+      "forbidden": [
+        "mapa",
+        "štát",
+        "hranica",
+        "svetadiel"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1319",
+      "category": "Príroda a svet",
+      "word": "národný park",
+      "forbidden": [
+        "mapa",
+        "štát",
+        "hranica",
+        "svetadiel"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1333",
+      "category": "Príroda a svet",
+      "word": "rak riečny",
+      "forbidden": [
+        "biotop",
+        "potrava",
+        "mláďa",
+        "chov"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1339",
+      "category": "Príroda a svet",
+      "word": "divá kačica",
+      "forbidden": [
+        "biotop",
+        "potrava",
+        "mláďa",
+        "chov"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1345",
+      "category": "Príroda a svet",
+      "word": "morská hviezdica",
+      "forbidden": [
+        "biotop",
+        "potrava",
+        "mláďa",
+        "chov"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1346",
+      "category": "Príroda a svet",
+      "word": "morský ježko",
+      "forbidden": [
+        "biotop",
+        "potrava",
+        "mláďa",
+        "chov"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1382",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "podanie ruky",
+      "forbidden": [
+        "komunikácia",
+        "správanie",
+        "dohoda",
+        "stretnutie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1396",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "predstavenie sa",
+      "forbidden": [
+        "komunikácia",
+        "správanie",
+        "dohoda",
+        "stretnutie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1408",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "správanie",
+      "forbidden": [
+        "slušnosť",
+        "ľudia",
+        "pravidlá",
+        "pozdrav"
+      ],
+      "reasons": [
+        "administratívny alebo pracovný tvar"
+      ]
+    },
+    {
+      "id": "taboo_sk_1443",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "osobný záväzok",
+      "forbidden": [
+        "vzťah",
+        "komunikácia",
+        "správanie",
+        "dohoda"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1448",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "slávnostný prípitok",
+      "forbidden": [
+        "vzťah",
+        "komunikácia",
+        "správanie",
+        "dohoda"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1456",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "objednávka",
+      "forbidden": [
+        "tovar",
+        "zákazník",
+        "dodanie",
+        "nákup"
+      ],
+      "reasons": [
+        "administratívny alebo pracovný tvar"
+      ]
+    },
+    {
+      "id": "taboo_sk_1464",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "starý rodič",
+      "forbidden": [
+        "babka",
+        "dedko",
+        "vnúča",
+        "vek"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1479",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "stratené kľúče",
+      "forbidden": [
+        "hľadať",
+        "zámok",
+        "vrecko",
+        "dvere"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1480",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "prvý pracovný deň",
+      "forbidden": [
+        "vzťah",
+        "komunikácia",
+        "správanie",
+        "dohoda"
+      ],
+      "reasons": [
+        "neprirodzene dlhý viacslovný cieľ"
+      ]
+    },
+    {
+      "id": "taboo_sk_1482",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "nečakaný hosť",
+      "forbidden": [
+        "dvere",
+        "zvonec",
+        "návšteva",
+        "prekvapenie"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1486",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "ranné vstávanie",
+      "forbidden": [
+        "budík",
+        "posteľ",
+        "zobudiť",
+        "spánok"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1487",
+      "category": "Všeobecné pojmy a situácie",
+      "word": "večerný oddych",
+      "forbidden": [
+        "gauč",
+        "televízor",
+        "pokoj",
+        "čaj"
+      ],
+      "reasons": [
+        "viacslovný cieľ vyžadujúci manuálne posúdenie"
+      ]
+    }
+  ]
+}

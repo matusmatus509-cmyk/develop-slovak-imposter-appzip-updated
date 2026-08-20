@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "en",
+  "category": "Zvieratá",
+  "cards": [
+    {
+      "id": "taboo_sk_0051",
+      "category": "Animals",
+      "word": "dog",
+      "forbidden": [
+        "leash",
+        "fur",
+        "guard",
+        "praise"
+      ]
+    },
+    {
+      "id": "taboo_sk_0052",
+      "category": "Animals",
+      "word": "cat",
+      "forbidden": [
+        "mouse",
+        "meow",
+        "nocturnal",
+        "petting"
+      ]
+    },
+    {
+      "id": "taboo_sk_0053",
+      "category": "Animals",
+      "word": "horse",
+      "forbidden": [
+        "horseshoe",
+        "stable",
+        "rider",
+        "foal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0054",
+      "category": "Animals",
+      "word": "cow",
+      "forbidden": [
+        "barn",
+        "hay",
+        "calf",
+        "milking"
+      ]
+    },
+    {
+      "id": "taboo_sk_0055",
+      "category": "Animals",
+      "word": "sheep",
+      "forbidden": [
+        "wool",
+        "shearing",
+        "pasture",
+        "flock"
+      ]
+    },
+    {
+      "id": "taboo_sk_0056",
+      "category": "Animals",
+      "word": "goat",
+      "forbidden": [
+        "horns",
+        "mountains",
+        "herder",
+        "beard"
+      ]
+    },
+    {
+      "id": "taboo_sk_0057",
+      "category": "Animals",
+      "word": "pig",
+      "forbidden": [
+        "mud",
+        "pigsty",
+        "feed",
+        "fatten"
+      ]
+    },
+    {
+      "id": "taboo_sk_0058",
+      "category": "Animals",
+      "word": "wild boar",
+      "forbidden": [
+        "tusks",
+        "forest",
+        "nocturnal",
+        "hunting"
+      ]
+    },
+    {
+      "id": "taboo_sk_0059",
+      "category": "Animals",
+      "word": "hare",
+      "forbidden": [
+        "ears",
+        "jump",
+        "carrot",
+        "burrow"
+      ]
+    },
+    {
+      "id": "taboo_sk_0060",
+      "category": "Animals",
+      "word": "squirrel",
+      "forbidden": [
+        "nut",
+        "tree",
+        "tail",
+        "jump"
+      ]
+    },
+    {
+      "id": "taboo_sk_0061",
+      "category": "Animals",
+      "word": "fox",
+      "forbidden": [
+        "fur",
+        "tail",
+        "cunning",
+        "den"
+      ]
+    },
+    {
+      "id": "taboo_sk_0062",
+      "category": "Animals",
+      "word": "bear",
+      "forbidden": [
+        "den",
+        "fur",
+        "hibernation",
+        "strong"
+      ]
+    },
+    {
+      "id": "taboo_sk_0063",
+      "category": "Animals",
+      "word": "wolf",
+      "forbidden": [
+        "pack",
+        "howl",
+        "forest",
+        "hunting"
+      ]
+    },
+    {
+      "id": "taboo_sk_0064",
+      "category": "Animals",
+      "word": "deer",
+      "forbidden": [
+        "antlers",
+        "doe",
+        "forest",
+        "rut"
+      ]
+    },
+    {
+      "id": "taboo_sk_0065",
+      "category": "Animals",
+      "word": "moose",
+      "forbidden": [
+        "bog",
+        "antlers",
+        "lake",
+        "northern"
+      ]
+    },
+    {
+      "id": "taboo_sk_0066",
+      "category": "Animals",
+      "word": "lynx",
+      "forbidden": [
+        "ears",
+        "spots",
+        "stealthy",
+        "predator"
+      ]
+    },
+    {
+      "id": "taboo_sk_0067",
+      "category": "Animals",
+      "word": "owl",
+      "forbidden": [
+        "nocturnal",
+        "eyes",
+        "wisdom",
+        "head turn"
+      ]
+    },
+    {
+      "id": "taboo_sk_0068",
+      "category": "Animals",
+      "word": "eagle",
+      "forbidden": [
+        "wings",
+        "raptor",
+        "high",
+        "vision"
+      ]
+    },
+    {
+      "id": "taboo_sk_0069",
+      "category": "Animals",
+      "word": "vulture",
+      "forbidden": [
+        "carrion",
+        "circle",
+        "feathers",
+        "garbage"
+      ]
+    },
+    {
+      "id": "taboo_sk_0070",
+      "category": "Animals",
+      "word": "swallow",
+      "forbidden": [
+        "nest",
+        "migration",
+        "flight",
+        "insects"
+      ]
+    },
+    {
+      "id": "taboo_sk_0071",
+      "category": "Animals",
+      "word": "hummingbird",
+      "forbidden": [
+        "nectar",
+        "wings",
+        "fast",
+        "flowers"
+      ]
+    },
+    {
+      "id": "taboo_sk_0072",
+      "category": "Animals",
+      "word": "pelican",
+      "forbidden": [
+        "pouch",
+        "fish",
+        "shore",
+        "wet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0073",
+      "category": "Animals",
+      "word": "shark",
+      "forbidden": [
+        "tooth",
+        "ocean",
+        "fin",
+        "dangerous"
+      ]
+    },
+    {
+      "id": "taboo_sk_0074",
+      "category": "Animals",
+      "word": "dolphin",
+      "forbidden": [
+        "ocean",
+        "intelligent",
+        "swimming",
+        "echolocation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0075",
+      "category": "Animals",
+      "word": "whale",
+      "forbidden": [
+        "ocean",
+        "song",
+        "swim",
+        "huge"
+      ]
+    },
+    {
+      "id": "taboo_sk_0076",
+      "category": "Animals",
+      "word": "seal",
+      "forbidden": [
+        "ice",
+        "flippers",
+        "swim",
+        "fish"
+      ]
+    },
+    {
+      "id": "taboo_sk_0077",
+      "category": "Animals",
+      "word": "penguin",
+      "forbidden": [
+        "ice",
+        "walks",
+        "colony",
+        "krill"
+      ]
+    },
+    {
+      "id": "taboo_sk_0078",
+      "category": "Animals",
+      "word": "turtle",
+      "forbidden": [
+        "shell",
+        "slow",
+        "sea",
+        "swim"
+      ]
+    },
+    {
+      "id": "taboo_sk_0079",
+      "category": "Animals",
+      "word": "crocodile",
+      "forbidden": [
+        "swamp",
+        "tooth",
+        "river",
+        "scales"
+      ]
+    },
+    {
+      "id": "taboo_sk_0080",
+      "category": "Animals",
+      "word": "snake",
+      "forbidden": [
+        "scales",
+        "reptile",
+        "venom",
+        "slither"
+      ]
+    },
+    {
+      "id": "taboo_sk_0081",
+      "category": "Animals",
+      "word": "frog",
+      "forbidden": [
+        "jump",
+        "croak",
+        "pond",
+        "tadpole"
+      ]
+    },
+    {
+      "id": "taboo_sk_0082",
+      "category": "Animals",
+      "word": "salamander",
+      "forbidden": [
+        "damp",
+        "regeneration",
+        "forest",
+        "dark"
+      ]
+    },
+    {
+      "id": "taboo_sk_0083",
+      "category": "Animals",
+      "word": "butterfly",
+      "forbidden": [
+        "wings",
+        "chrysalis",
+        "nectar",
+        "flight"
+      ]
+    },
+    {
+      "id": "taboo_sk_0084",
+      "category": "Animals",
+      "word": "bee",
+      "forbidden": [
+        "hive",
+        "pollination",
+        "sting",
+        "flower"
+      ]
+    },
+    {
+      "id": "taboo_sk_0085",
+      "category": "Animals",
+      "word": "mosquito",
+      "forbidden": [
+        "bite",
+        "blood",
+        "insect",
+        "light"
+      ]
+    },
+    {
+      "id": "taboo_sk_0086",
+      "category": "Animals",
+      "word": "ant",
+      "forbidden": [
+        "anthill",
+        "strong",
+        "hardworking",
+        "colony"
+      ]
+    },
+    {
+      "id": "taboo_sk_0087",
+      "category": "Animals",
+      "word": "spider",
+      "forbidden": [
+        "web",
+        "net",
+        "eight",
+        "catch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0088",
+      "category": "Animals",
+      "word": "ostrich",
+      "forbidden": [
+        "run",
+        "flightless",
+        "long legs",
+        "big"
+      ]
+    },
+    {
+      "id": "taboo_sk_0089",
+      "category": "Animals",
+      "word": "zebra",
+      "forbidden": [
+        "stripes",
+        "Africa",
+        "herd",
+        "hooves"
+      ]
+    },
+    {
+      "id": "taboo_sk_0090",
+      "category": "Animals",
+      "word": "lion",
+      "forbidden": [
+        "mane",
+        "savanna",
+        "prey",
+        "strength"
+      ]
+    },
+    {
+      "id": "taboo_sk_0091",
+      "category": "Animals",
+      "word": "tiger",
+      "forbidden": [
+        "stripes",
+        "jungle",
+        "prey",
+        "solitary"
+      ]
+    },
+    {
+      "id": "taboo_sk_0092",
+      "category": "Animals",
+      "word": "elephant",
+      "forbidden": [
+        "trunk",
+        "tusks",
+        "savanna",
+        "memory"
+      ]
+    },
+    {
+      "id": "taboo_sk_0093",
+      "category": "Animals",
+      "word": "rhinoceros",
+      "forbidden": [
+        "horn",
+        "hide",
+        "savanna",
+        "endangered"
+      ]
+    },
+    {
+      "id": "taboo_sk_0094",
+      "category": "Animals",
+      "word": "antelope",
+      "forbidden": [
+        "agile",
+        "jump",
+        "herd",
+        "horns"
+      ]
+    },
+    {
+      "id": "taboo_sk_0095",
+      "category": "Animals",
+      "word": "hyena",
+      "forbidden": [
+        "laugh",
+        "scavenger",
+        "nocturnal",
+        "safari"
+      ]
+    },
+    {
+      "id": "taboo_sk_0096",
+      "category": "Animals",
+      "word": "guinea pig",
+      "forbidden": [
+        "cage",
+        "carrot",
+        "small",
+        "pet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0097",
+      "category": "Animals",
+      "word": "goose",
+      "forbidden": [
+        "migration",
+        "honking",
+        "farm",
+        "wings"
+      ]
+    },
+    {
+      "id": "taboo_sk_0098",
+      "category": "Animals",
+      "word": "swan",
+      "forbidden": [
+        "white",
+        "lake",
+        "graceful",
+        "pair"
+      ]
+    },
+    {
+      "id": "taboo_sk_0099",
+      "category": "Animals",
+      "word": "den",
+      "forbidden": [
+        "hole",
+        "shelter",
+        "bear",
+        "darkness"
+      ]
+    },
+    {
+      "id": "taboo_sk_0100",
+      "category": "Animals",
+      "word": "hibernation",
+      "forbidden": [
+        "winter",
+        "sleep",
+        "den",
+        "slowing"
+      ]
+    },
+    {
+      "id": "taboo_sk_0293",
+      "category": "Animals",
+      "word": "crab",
+      "forbidden": [
+        "claws",
+        "sea",
+        "beach",
+        "shell"
+      ]
+    },
+    {
+      "id": "taboo_sk_0294",
+      "category": "Animals",
+      "word": "lobster",
+      "forbidden": [
+        "seabed",
+        "pincers",
+        "fisherman",
+        "ocean"
+      ]
+    },
+    {
+      "id": "taboo_sk_0295",
+      "category": "Animals",
+      "word": "octopus",
+      "forbidden": [
+        "tentacles",
+        "ink",
+        "ocean",
+        "coral"
+      ]
+    },
+    {
+      "id": "taboo_sk_0296",
+      "category": "Animals",
+      "word": "eel",
+      "forbidden": [
+        "river",
+        "snake",
+        "marine",
+        "currents"
+      ]
+    },
+    {
+      "id": "taboo_sk_0297",
+      "category": "Animals",
+      "word": "salmon",
+      "forbidden": [
+        "migration",
+        "river",
+        "upstream",
+        "fisherman"
+      ]
+    },
+    {
+      "id": "taboo_sk_0298",
+      "category": "Animals",
+      "word": "catfish",
+      "forbidden": [
+        "river",
+        "nocturnal",
+        "bottom",
+        "lure"
+      ]
+    },
+    {
+      "id": "taboo_sk_0299",
+      "category": "Animals",
+      "word": "carp",
+      "forbidden": [
+        "pond",
+        "rod",
+        "feeding",
+        "scales"
+      ]
+    },
+    {
+      "id": "taboo_sk_0300",
+      "category": "Animals",
+      "word": "crucian carp",
+      "forbidden": [
+        "pond",
+        "small",
+        "scales",
+        "fisherman"
+      ]
+    },
+    {
+      "id": "taboo_sk_0301",
+      "category": "Animals",
+      "word": "cod",
+      "forbidden": [
+        "ocean",
+        "fillet",
+        "frozen",
+        "swimming"
+      ]
+    },
+    {
+      "id": "taboo_sk_0302",
+      "category": "Animals",
+      "word": "walrus",
+      "forbidden": [
+        "tusks",
+        "Arctic",
+        "ice",
+        "marine"
+      ]
+    },
+    {
+      "id": "taboo_sk_0303",
+      "category": "Animals",
+      "word": "crow",
+      "forbidden": [
+        "black",
+        "feathers",
+        "city",
+        "steal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0304",
+      "category": "Animals",
+      "word": "pigeon",
+      "forbidden": [
+        "square",
+        "carrier",
+        "grain",
+        "feathers"
+      ]
+    },
+    {
+      "id": "taboo_sk_0305",
+      "category": "Animals",
+      "word": "sparrow",
+      "forbidden": [
+        "small",
+        "yard",
+        "feeder",
+        "song"
+      ]
+    },
+    {
+      "id": "taboo_sk_0306",
+      "category": "Animals",
+      "word": "thrush",
+      "forbidden": [
+        "song",
+        "worm",
+        "strawberry",
+        "forest"
+      ]
+    },
+    {
+      "id": "taboo_sk_0307",
+      "category": "Animals",
+      "word": "cormorant",
+      "forbidden": [
+        "diving",
+        "fish",
+        "wings",
+        "wet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0308",
+      "category": "Animals",
+      "word": "magpie",
+      "forbidden": [
+        "shiny",
+        "steal",
+        "feathers",
+        "tree"
+      ]
+    },
+    {
+      "id": "taboo_sk_0309",
+      "category": "Animals",
+      "word": "stork",
+      "forbidden": [
+        "nest",
+        "long legs",
+        "chick",
+        "pond"
+      ]
+    },
+    {
+      "id": "taboo_sk_0310",
+      "category": "Animals",
+      "word": "falcon",
+      "forbidden": [
+        "speed",
+        "hunting",
+        "talons",
+        "keen eyes"
+      ]
+    },
+    {
+      "id": "taboo_sk_0311",
+      "category": "Animals",
+      "word": "vole",
+      "forbidden": [
+        "meadow",
+        "burrow",
+        "teeth",
+        "pest"
+      ]
+    },
+    {
+      "id": "taboo_sk_0312",
+      "category": "Animals",
+      "word": "ground squirrel",
+      "forbidden": [
+        "burrow",
+        "meadow",
+        "grain",
+        "holes"
+      ]
+    },
+    {
+      "id": "taboo_sk_0313",
+      "category": "Animals",
+      "word": "beaver",
+      "forbidden": [
+        "river",
+        "dam",
+        "wood",
+        "tail"
+      ]
+    },
+    {
+      "id": "taboo_sk_0314",
+      "category": "Animals",
+      "word": "polecat",
+      "forbidden": [
+        "smell",
+        "nocturnal",
+        "hole",
+        "carrion"
+      ]
+    },
+    {
+      "id": "taboo_sk_0315",
+      "category": "Animals",
+      "word": "rabbit",
+      "forbidden": [
+        "carrot",
+        "long ears",
+        "cage",
+        "jump"
+      ]
+    },
+    {
+      "id": "taboo_sk_0316",
+      "category": "Animals",
+      "word": "roe deer",
+      "forbidden": [
+        "forest",
+        "antlers",
+        "speed",
+        "shy"
+      ]
+    },
+    {
+      "id": "taboo_sk_0317",
+      "category": "Animals",
+      "word": "cricket",
+      "forbidden": [
+        "grass",
+        "song",
+        "nocturnal",
+        "insect"
+      ]
+    },
+    {
+      "id": "taboo_sk_0318",
+      "category": "Animals",
+      "word": "grasshopper",
+      "forbidden": [
+        "jump",
+        "meadow",
+        "wings",
+        "green"
+      ]
+    },
+    {
+      "id": "taboo_sk_0319",
+      "category": "Animals",
+      "word": "wasp",
+      "forbidden": [
+        "sting",
+        "nest",
+        "aggressive",
+        "sweets"
+      ]
+    },
+    {
+      "id": "taboo_sk_0320",
+      "category": "Animals",
+      "word": "ladybug",
+      "forbidden": [
+        "spots",
+        "red",
+        "aphids",
+        "leaves"
+      ]
+    },
+    {
+      "id": "taboo_sk_0321",
+      "category": "Animals",
+      "word": "toad",
+      "forbidden": [
+        "damp",
+        "warty skin",
+        "jump",
+        "nocturnal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0322",
+      "category": "Animals",
+      "word": "iguana",
+      "forbidden": [
+        "reptile",
+        "warm",
+        "scales",
+        "tail"
+      ]
+    },
+    {
+      "id": "taboo_sk_0323",
+      "category": "Animals",
+      "word": "lizard",
+      "forbidden": [
+        "scales",
+        "tail",
+        "sun",
+        "camouflage"
+      ]
+    },
+    {
+      "id": "taboo_sk_0324",
+      "category": "Animals",
+      "word": "marsh",
+      "forbidden": [
+        "swamp",
+        "mud",
+        "peat",
+        "mosquitoes"
+      ]
+    },
+    {
+      "id": "taboo_sk_0325",
+      "category": "Animals",
+      "word": "rainforest",
+      "forbidden": [
+        "jungle",
+        "rain",
+        "big trees",
+        "thicket"
+      ]
+    },
+    {
+      "id": "taboo_sk_0326",
+      "category": "Animals",
+      "word": "meadow",
+      "forbidden": [
+        "grass",
+        "flowers",
+        "pasture",
+        "herbs"
+      ]
+    },
+    {
+      "id": "taboo_sk_0327",
+      "category": "Animals",
+      "word": "steppe",
+      "forbidden": [
+        "plain",
+        "grass",
+        "dry",
+        "open"
+      ]
+    },
+    {
+      "id": "taboo_sk_0328",
+      "category": "Animals",
+      "word": "peat bog",
+      "forbidden": [
+        "peat",
+        "swamp",
+        "mud",
+        "rare habitat"
+      ]
+    },
+    {
+      "id": "taboo_sk_0329",
+      "category": "Animals",
+      "word": "coast",
+      "forbidden": [
+        "sand",
+        "wave",
+        "beach",
+        "sea"
+      ]
+    },
+    {
+      "id": "taboo_sk_0330",
+      "category": "Animals",
+      "word": "river",
+      "forbidden": [
+        "current",
+        "bank",
+        "valley",
+        "mouth"
+      ]
+    },
+    {
+      "id": "taboo_sk_0331",
+      "category": "Animals",
+      "word": "lake",
+      "forbidden": [
+        "shore",
+        "depth",
+        "fish",
+        "boat"
+      ]
+    },
+    {
+      "id": "taboo_sk_0332",
+      "category": "Animals",
+      "word": "ocean",
+      "forbidden": [
+        "deep",
+        "wave",
+        "salt",
+        "ship"
+      ]
+    },
+    {
+      "id": "taboo_sk_0333",
+      "category": "Animals",
+      "word": "migration",
+      "forbidden": [
+        "spring",
+        "herds",
+        "distance",
+        "season"
+      ]
+    },
+    {
+      "id": "taboo_sk_0334",
+      "category": "Animals",
+      "word": "nesting",
+      "forbidden": [
+        "birds",
+        "eggs",
+        "young",
+        "building"
+      ]
+    },
+    {
+      "id": "taboo_sk_0335",
+      "category": "Animals",
+      "word": "reproduction",
+      "forbidden": [
+        "mating",
+        "young",
+        "season",
+        "behavior"
+      ]
+    },
+    {
+      "id": "taboo_sk_0336",
+      "category": "Animals",
+      "word": "feeding",
+      "forbidden": [
+        "food",
+        "bowl",
+        "fullness",
+        "hunting"
+      ]
+    },
+    {
+      "id": "taboo_sk_0337",
+      "category": "Animals",
+      "word": "diving",
+      "forbidden": [
+        "depth",
+        "swimming",
+        "breathing",
+        "tank"
+      ]
+    },
+    {
+      "id": "taboo_sk_0338",
+      "category": "Animals",
+      "word": "camouflage",
+      "forbidden": [
+        "masking",
+        "color",
+        "predator",
+        "protection"
+      ]
+    },
+    {
+      "id": "taboo_sk_0339",
+      "category": "Animals",
+      "word": "colony",
+      "forbidden": [
+        "ants",
+        "settlement",
+        "society",
+        "group"
+      ]
+    },
+    {
+      "id": "taboo_sk_0340",
+      "category": "Animals",
+      "word": "herd",
+      "forbidden": [
+        "grazing",
+        "many",
+        "pasture",
+        "migration"
+      ]
+    },
+    {
+      "id": "taboo_sk_0542",
+      "category": "Animals",
+      "word": "hedgehog",
+      "forbidden": [
+        "spines",
+        "nocturnal",
+        "garden",
+        "insects"
+      ]
+    },
+    {
+      "id": "taboo_sk_0543",
+      "category": "Animals",
+      "word": "badger",
+      "forbidden": [
+        "burrow",
+        "hole",
+        "nocturnal",
+        "claw"
+      ]
+    },
+    {
+      "id": "taboo_sk_0544",
+      "category": "Animals",
+      "word": "raccoon",
+      "forbidden": [
+        "mask",
+        "trash",
+        "nocturnal",
+        "hands"
+      ]
+    },
+    {
+      "id": "taboo_sk_0545",
+      "category": "Animals",
+      "word": "bat",
+      "forbidden": [
+        "echolocation",
+        "cave",
+        "wings",
+        "nocturnal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0546",
+      "category": "Animals",
+      "word": "giraffe",
+      "forbidden": [
+        "neck",
+        "tall",
+        "leaves",
+        "savanna"
+      ]
+    },
+    {
+      "id": "taboo_sk_0547",
+      "category": "Animals",
+      "word": "panda",
+      "forbidden": [
+        "bamboo",
+        "China",
+        "black",
+        "endangered"
+      ]
+    },
+    {
+      "id": "taboo_sk_0548",
+      "category": "Animals",
+      "word": "kangaroo",
+      "forbidden": [
+        "pouch",
+        "Australia",
+        "hopping",
+        "legs"
+      ]
+    },
+    {
+      "id": "taboo_sk_0549",
+      "category": "Animals",
+      "word": "gorilla",
+      "forbidden": [
+        "ape",
+        "strong",
+        "family",
+        "protection"
+      ]
+    },
+    {
+      "id": "taboo_sk_0550",
+      "category": "Animals",
+      "word": "chimpanzee",
+      "forbidden": [
+        "intelligent",
+        "tools",
+        "ape",
+        "face"
+      ]
+    },
+    {
+      "id": "taboo_sk_0551",
+      "category": "Animals",
+      "word": "seagull",
+      "forbidden": [
+        "sea",
+        "beach",
+        "fly",
+        "steal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0552",
+      "category": "Animals",
+      "word": "duck",
+      "forbidden": [
+        "water",
+        "feathers",
+        "swim",
+        "neck"
+      ]
+    },
+    {
+      "id": "taboo_sk_0553",
+      "category": "Animals",
+      "word": "hen",
+      "forbidden": [
+        "coop",
+        "egg",
+        "feathers",
+        "beak"
+      ]
+    },
+    {
+      "id": "taboo_sk_0554",
+      "category": "Animals",
+      "word": "migration",
+      "forbidden": [
+        "birds",
+        "season",
+        "direction",
+        "distance"
+      ]
+    },
+    {
+      "id": "taboo_sk_0555",
+      "category": "Animals",
+      "word": "kitten",
+      "forbidden": [
+        "cat",
+        "young",
+        "meow",
+        "paws"
+      ]
+    },
+    {
+      "id": "taboo_sk_0556",
+      "category": "Animals",
+      "word": "puppy",
+      "forbidden": [
+        "dog",
+        "young",
+        "bark",
+        "paws"
+      ]
+    },
+    {
+      "id": "taboo_sk_0557",
+      "category": "Animals",
+      "word": "parrot",
+      "forbidden": [
+        "bird",
+        "feathers",
+        "cage",
+        "talk"
+      ]
+    },
+    {
+      "id": "taboo_sk_0558",
+      "category": "Animals",
+      "word": "tail",
+      "forbidden": [
+        "animal",
+        "fur",
+        "wag",
+        "body"
+      ]
+    },
+    {
+      "id": "taboo_sk_0559",
+      "category": "Animals",
+      "word": "tracks",
+      "forbidden": [
+        "paws",
+        "ground",
+        "forest",
+        "follow"
+      ]
+    },
+    {
+      "id": "taboo_sk_0591",
+      "category": "Animals",
+      "word": "lemur",
+      "forbidden": [
+        "Madagascar",
+        "tail",
+        "tree",
+        "primate"
+      ]
+    },
+    {
+      "id": "taboo_sk_0592",
+      "category": "Animals",
+      "word": "doe",
+      "forbidden": [
+        "shy",
+        "pasture",
+        "young",
+        "forest"
+      ]
+    },
+    {
+      "id": "taboo_sk_0593",
+      "category": "Animals",
+      "word": "jellyfish",
+      "forbidden": [
+        "transparent",
+        "sting",
+        "swimming",
+        "ocean"
+      ]
+    },
+    {
+      "id": "taboo_sk_0594",
+      "category": "Animals",
+      "word": "fish",
+      "forbidden": [
+        "scales",
+        "swim",
+        "water",
+        "gills"
+      ]
+    },
+    {
+      "id": "taboo_sk_0595",
+      "category": "Animals",
+      "word": "desert",
+      "forbidden": [
+        "sand",
+        "dry",
+        "cactus",
+        "oasis"
+      ]
+    },
+    {
+      "id": "taboo_sk_0596",
+      "category": "Animals",
+      "word": "savanna",
+      "forbidden": [
+        "dry",
+        "grass",
+        "safari",
+        "herds"
+      ]
+    },
+    {
+      "id": "taboo_sk_0597",
+      "category": "Animals",
+      "word": "tundra",
+      "forbidden": [
+        "ice",
+        "cold",
+        "grass",
+        "permafrost"
+      ]
+    },
+    {
+      "id": "taboo_sk_0598",
+      "category": "Animals",
+      "word": "swamp",
+      "forbidden": [
+        "mud",
+        "peat",
+        "shallow",
+        "reeds"
+      ]
+    },
+    {
+      "id": "taboo_sk_0599",
+      "category": "Animals",
+      "word": "nest",
+      "forbidden": [
+        "branch",
+        "egg",
+        "bird",
+        "nesting"
+      ]
+    },
+    {
+      "id": "taboo_sk_0600",
+      "category": "Animals",
+      "word": "burrow",
+      "forbidden": [
+        "hole",
+        "shelter",
+        "young",
+        "digging"
+      ]
+    },
+    {
+      "id": "taboo_sk_0601",
+      "category": "Animals",
+      "word": "camouflage",
+      "forbidden": [
+        "hide",
+        "color",
+        "animal",
+        "surroundings"
+      ]
+    },
+    {
+      "id": "taboo_sk_0602",
+      "category": "Animals",
+      "word": "insect",
+      "forbidden": [
+        "wings",
+        "small",
+        "nature",
+        "legs"
+      ]
+    },
+    {
+      "id": "taboo_sk_0628",
+      "category": "Animals",
+      "word": "rat",
+      "forbidden": [
+        "sewer",
+        "gnawing",
+        "catch",
+        "night"
+      ]
+    },
+    {
+      "id": "taboo_sk_0629",
+      "category": "Animals",
+      "word": "flock",
+      "forbidden": [
+        "birds",
+        "together",
+        "flight",
+        "synchrony"
+      ]
+    },
+    {
+      "id": "taboo_sk_0630",
+      "category": "Animals",
+      "word": "scorpion",
+      "forbidden": [
+        "chamber",
+        "stinger",
+        "desert",
+        "night"
+      ]
+    },
+    {
+      "id": "taboo_sk_0631",
+      "category": "Animals",
+      "word": "mole",
+      "forbidden": [
+        "tunnels",
+        "earth",
+        "dig",
+        "night"
+      ]
+    },
+    {
+      "id": "taboo_sk_0632",
+      "category": "Animals",
+      "word": "marten",
+      "forbidden": [
+        "forest",
+        "nocturnal",
+        "food",
+        "pendant"
+      ]
+    },
+    {
+      "id": "taboo_sk_0633",
+      "category": "Animals",
+      "word": "beaver",
+      "forbidden": [
+        "dam",
+        "tree",
+        "tail",
+        "river"
+      ]
+    },
+    {
+      "id": "taboo_sk_0634",
+      "category": "Animals",
+      "word": "marmot",
+      "forbidden": [
+        "mountain",
+        "rocky",
+        "hibernation",
+        "whistle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0635",
+      "category": "Animals",
+      "word": "forest",
+      "forbidden": [
+        "trees",
+        "shade",
+        "undergrowth",
+        "hiking"
+      ]
+    },
+    {
+      "id": "taboo_sk_0636",
+      "category": "Animals",
+      "word": "flying",
+      "forbidden": [
+        "wings",
+        "soaring",
+        "migration",
+        "birds"
+      ]
+    },
+    {
+      "id": "taboo_sk_0717",
+      "category": "Animals",
+      "word": "peacock",
+      "forbidden": [
+        "feathers",
+        "tail",
+        "colorful",
+        "display"
+      ]
+    },
+    {
+      "id": "taboo_sk_0718",
+      "category": "Animals",
+      "word": "beetle",
+      "forbidden": [
+        "elytra",
+        "larva",
+        "insect",
+        "eats"
+      ]
+    },
+    {
+      "id": "taboo_sk_0719",
+      "category": "Animals",
+      "word": "newt",
+      "forbidden": [
+        "tail",
+        "reptile",
+        "moist",
+        "forest"
+      ]
+    },
+    {
+      "id": "taboo_sk_0720",
+      "category": "Animals",
+      "word": "snail",
+      "forbidden": [
+        "slime",
+        "shell",
+        "slow",
+        "garden"
+      ]
+    },
+    {
+      "id": "taboo_sk_0721",
+      "category": "Animals",
+      "word": "koala",
+      "forbidden": [
+        "eucalyptus",
+        "tree",
+        "Australia",
+        "sleeps"
+      ]
+    },
+    {
+      "id": "taboo_sk_0722",
+      "category": "Animals",
+      "word": "reindeer",
+      "forbidden": [
+        "fur",
+        "antlers",
+        "Arctic",
+        "snow"
+      ]
+    },
+    {
+      "id": "taboo_sk_0723",
+      "category": "Animals",
+      "word": "donkey",
+      "forbidden": [
+        "load",
+        "stubborn",
+        "stable",
+        "rider"
+      ]
+    },
+    {
+      "id": "taboo_sk_0724",
+      "category": "Animals",
+      "word": "fly",
+      "forbidden": [
+        "buzz",
+        "dirt",
+        "window",
+        "food"
+      ]
+    },
+    {
+      "id": "taboo_sk_0725",
+      "category": "Animals",
+      "word": "squirrel",
+      "forbidden": [
+        "nut",
+        "tree",
+        "tail",
+        "jump"
+      ]
+    },
+    {
+      "id": "taboo_sk_0830",
+      "category": "Animals",
+      "word": "hippopotamus",
+      "forbidden": [
+        "Africa",
+        "river",
+        "big",
+        "jaw"
+      ]
+    },
+    {
+      "id": "taboo_sk_0831",
+      "category": "Animals",
+      "word": "llama",
+      "forbidden": [
+        "Andes",
+        "wool",
+        "spit",
+        "herd"
+      ]
+    },
+    {
+      "id": "taboo_sk_0832",
+      "category": "Animals",
+      "word": "meerkat",
+      "forbidden": [
+        "desert",
+        "burrow",
+        "Africa",
+        "stand"
+      ]
+    },
+    {
+      "id": "taboo_sk_0833",
+      "category": "Animals",
+      "word": "flamingo",
+      "forbidden": [
+        "pink",
+        "long legs",
+        "lake",
+        "bird"
+      ]
+    }
+  ]
+}

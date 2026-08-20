@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "de",
+  "category": "Zvieratá",
+  "cards": [
+    {
+      "id": "taboo_sk_0051",
+      "category": "Tiere",
+      "word": "Hund",
+      "forbidden": [
+        "Leine",
+        "Fell",
+        "Wächter",
+        "Lob"
+      ]
+    },
+    {
+      "id": "taboo_sk_0052",
+      "category": "Tiere",
+      "word": "Katze",
+      "forbidden": [
+        "Maus",
+        "Miau",
+        "nachts",
+        "Streicheln"
+      ]
+    },
+    {
+      "id": "taboo_sk_0053",
+      "category": "Tiere",
+      "word": "Pferd",
+      "forbidden": [
+        "Hufeisen",
+        "Stall",
+        "Reiter",
+        "Fohlen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0054",
+      "category": "Tiere",
+      "word": "Kuh",
+      "forbidden": [
+        "Stall",
+        "Heu",
+        "Kalb",
+        "Melken"
+      ]
+    },
+    {
+      "id": "taboo_sk_0055",
+      "category": "Tiere",
+      "word": "Schaf",
+      "forbidden": [
+        "Wolle",
+        "Scheren",
+        "Weide",
+        "Herde"
+      ]
+    },
+    {
+      "id": "taboo_sk_0056",
+      "category": "Tiere",
+      "word": "Ziege",
+      "forbidden": [
+        "Hörner",
+        "Berge",
+        "Hirte",
+        "Bart"
+      ]
+    },
+    {
+      "id": "taboo_sk_0057",
+      "category": "Tiere",
+      "word": "Schwein",
+      "forbidden": [
+        "Schlamm",
+        "Stall",
+        "Futter",
+        "zunehmen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0058",
+      "category": "Tiere",
+      "word": "Wildschwein",
+      "forbidden": [
+        "Hauer",
+        "Wald",
+        "nachts",
+        "Jagd"
+      ]
+    },
+    {
+      "id": "taboo_sk_0059",
+      "category": "Tiere",
+      "word": "Hase",
+      "forbidden": [
+        "Ohren",
+        "Sprung",
+        "Möhre",
+        "Bau"
+      ]
+    },
+    {
+      "id": "taboo_sk_0060",
+      "category": "Tiere",
+      "word": "Eichhörnchen",
+      "forbidden": [
+        "Nuss",
+        "Baum",
+        "Schwanz",
+        "Sprung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0061",
+      "category": "Tiere",
+      "word": "Fuchs",
+      "forbidden": [
+        "Fell",
+        "Schwanz",
+        "schlau",
+        "Bau"
+      ]
+    },
+    {
+      "id": "taboo_sk_0062",
+      "category": "Tiere",
+      "word": "Bär",
+      "forbidden": [
+        "Höhle",
+        "Fell",
+        "Winterschlaf",
+        "stark"
+      ]
+    },
+    {
+      "id": "taboo_sk_0063",
+      "category": "Tiere",
+      "word": "Wolf",
+      "forbidden": [
+        "Rudel",
+        "Heulen",
+        "Wald",
+        "Jagd"
+      ]
+    },
+    {
+      "id": "taboo_sk_0064",
+      "category": "Tiere",
+      "word": "Hirsch",
+      "forbidden": [
+        "Geweih",
+        "Reh",
+        "Wald",
+        "Brunft"
+      ]
+    },
+    {
+      "id": "taboo_sk_0065",
+      "category": "Tiere",
+      "word": "Elch",
+      "forbidden": [
+        "Sumpf",
+        "Geweih",
+        "See",
+        "nordisch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0066",
+      "category": "Tiere",
+      "word": "Luchs",
+      "forbidden": [
+        "Ohren",
+        "Flecken",
+        "leise",
+        "Jäger"
+      ]
+    },
+    {
+      "id": "taboo_sk_0067",
+      "category": "Tiere",
+      "word": "Eule",
+      "forbidden": [
+        "nachts",
+        "Augen",
+        "Weisheit",
+        "Kopf drehen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0068",
+      "category": "Tiere",
+      "word": "Adler",
+      "forbidden": [
+        "Flügel",
+        "Raubvogel",
+        "hoch",
+        "Sehkraft"
+      ]
+    },
+    {
+      "id": "taboo_sk_0069",
+      "category": "Tiere",
+      "word": "Geier",
+      "forbidden": [
+        "Aas",
+        "Kreisen",
+        "Gefieder",
+        "Müll"
+      ]
+    },
+    {
+      "id": "taboo_sk_0070",
+      "category": "Tiere",
+      "word": "Schwalbe",
+      "forbidden": [
+        "Nest",
+        "Zug",
+        "Flug",
+        "Insekten"
+      ]
+    },
+    {
+      "id": "taboo_sk_0071",
+      "category": "Tiere",
+      "word": "Kolibri",
+      "forbidden": [
+        "Nektar",
+        "Flügel",
+        "schnell",
+        "blühen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0072",
+      "category": "Tiere",
+      "word": "Pelikan",
+      "forbidden": [
+        "Kehlbeutel",
+        "Fisch",
+        "Ufer",
+        "nass"
+      ]
+    },
+    {
+      "id": "taboo_sk_0073",
+      "category": "Tiere",
+      "word": "Hai",
+      "forbidden": [
+        "Zahn",
+        "Ozean",
+        "Flosse",
+        "gefährlich"
+      ]
+    },
+    {
+      "id": "taboo_sk_0074",
+      "category": "Tiere",
+      "word": "Delfin",
+      "forbidden": [
+        "Ozean",
+        "intelligent",
+        "Schwimmen",
+        "Echoortung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0075",
+      "category": "Tiere",
+      "word": "Wal",
+      "forbidden": [
+        "Ozean",
+        "Gesang",
+        "schwimmen",
+        "riesig"
+      ]
+    },
+    {
+      "id": "taboo_sk_0076",
+      "category": "Tiere",
+      "word": "Robbe",
+      "forbidden": [
+        "Eis",
+        "Flossen",
+        "schwimmen",
+        "Fisch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0077",
+      "category": "Tiere",
+      "word": "Pinguin",
+      "forbidden": [
+        "Eis",
+        "watscheln",
+        "Kolonie",
+        "Krill"
+      ]
+    },
+    {
+      "id": "taboo_sk_0078",
+      "category": "Tiere",
+      "word": "Schildkröte",
+      "forbidden": [
+        "Panzer",
+        "langsam",
+        "Meer",
+        "schwimmen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0079",
+      "category": "Tiere",
+      "word": "Krokodil",
+      "forbidden": [
+        "Sumpf",
+        "Zahn",
+        "Fluss",
+        "Schuppen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0080",
+      "category": "Tiere",
+      "word": "Schlange",
+      "forbidden": [
+        "Schuppen",
+        "Reptil",
+        "Gift",
+        "Kriechen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0081",
+      "category": "Tiere",
+      "word": "Frosch",
+      "forbidden": [
+        "Sprung",
+        "Quaken",
+        "Teich",
+        "Kaulquappe"
+      ]
+    },
+    {
+      "id": "taboo_sk_0082",
+      "category": "Tiere",
+      "word": "Salamander",
+      "forbidden": [
+        "feucht",
+        "Regeneration",
+        "Wald",
+        "dunkel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0083",
+      "category": "Tiere",
+      "word": "Schmetterling",
+      "forbidden": [
+        "Flügel",
+        "Puppe",
+        "Nektar",
+        "Fliegen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0084",
+      "category": "Tiere",
+      "word": "Biene",
+      "forbidden": [
+        "Bienenstock",
+        "Bestäubung",
+        "Stachel",
+        "Blume"
+      ]
+    },
+    {
+      "id": "taboo_sk_0085",
+      "category": "Tiere",
+      "word": "Mücke",
+      "forbidden": [
+        "Stich",
+        "Blut",
+        "Insekt",
+        "Licht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0086",
+      "category": "Tiere",
+      "word": "Ameise",
+      "forbidden": [
+        "Ameisenhaufen",
+        "stark",
+        "fleißig",
+        "Kolonie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0087",
+      "category": "Tiere",
+      "word": "Spinne",
+      "forbidden": [
+        "Spinnennetz",
+        "Netz",
+        "acht",
+        "fangen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0088",
+      "category": "Tiere",
+      "word": "Strauß",
+      "forbidden": [
+        "rennen",
+        "fliegt nicht",
+        "lange Beine",
+        "groß"
+      ]
+    },
+    {
+      "id": "taboo_sk_0089",
+      "category": "Tiere",
+      "word": "Zebra",
+      "forbidden": [
+        "Streifen",
+        "Afrika",
+        "Herde",
+        "Hufe"
+      ]
+    },
+    {
+      "id": "taboo_sk_0090",
+      "category": "Tiere",
+      "word": "Löwe",
+      "forbidden": [
+        "Mähne",
+        "Savanne",
+        "Beute",
+        "Stärke"
+      ]
+    },
+    {
+      "id": "taboo_sk_0091",
+      "category": "Tiere",
+      "word": "Tiger",
+      "forbidden": [
+        "Streifen",
+        "Dschungel",
+        "Beute",
+        "einsam"
+      ]
+    },
+    {
+      "id": "taboo_sk_0092",
+      "category": "Tiere",
+      "word": "Elefant",
+      "forbidden": [
+        "Rüssel",
+        "Stoßzähne",
+        "Savanne",
+        "Gedächtnis"
+      ]
+    },
+    {
+      "id": "taboo_sk_0093",
+      "category": "Tiere",
+      "word": "Nashorn",
+      "forbidden": [
+        "Horn",
+        "Haut",
+        "Savanne",
+        "gefährdet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0094",
+      "category": "Tiere",
+      "word": "Antilope",
+      "forbidden": [
+        "schnell",
+        "Sprung",
+        "Herde",
+        "Hörner"
+      ]
+    },
+    {
+      "id": "taboo_sk_0095",
+      "category": "Tiere",
+      "word": "Hyäne",
+      "forbidden": [
+        "Lachen",
+        "Aasfresser",
+        "nachts",
+        "Safari"
+      ]
+    },
+    {
+      "id": "taboo_sk_0096",
+      "category": "Tiere",
+      "word": "Meerschweinchen",
+      "forbidden": [
+        "Käfig",
+        "Möhre",
+        "klein",
+        "Haustier"
+      ]
+    },
+    {
+      "id": "taboo_sk_0097",
+      "category": "Tiere",
+      "word": "Gans",
+      "forbidden": [
+        "Zug",
+        "Schnattern",
+        "Bauernhof",
+        "Flügel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0098",
+      "category": "Tiere",
+      "word": "Schwan",
+      "forbidden": [
+        "weiß",
+        "See",
+        "schön",
+        "Paar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0099",
+      "category": "Tiere",
+      "word": "Bau",
+      "forbidden": [
+        "Loch",
+        "Unterschlupf",
+        "Bär",
+        "dunkel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0100",
+      "category": "Tiere",
+      "word": "Winterschlaf",
+      "forbidden": [
+        "Winter",
+        "Schlaf",
+        "Bau",
+        "Verlangsamung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0293",
+      "category": "Tiere",
+      "word": "Krabbe",
+      "forbidden": [
+        "Schere",
+        "Meer",
+        "Strand",
+        "Panzer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0294",
+      "category": "Tiere",
+      "word": "Hummer",
+      "forbidden": [
+        "Meeresgrund",
+        "Scheren",
+        "Fischer",
+        "Ozean"
+      ]
+    },
+    {
+      "id": "taboo_sk_0295",
+      "category": "Tiere",
+      "word": "Oktopus",
+      "forbidden": [
+        "Tentakeln",
+        "Tinte",
+        "Ozean",
+        "Korallen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0296",
+      "category": "Tiere",
+      "word": "Aal",
+      "forbidden": [
+        "Fluss",
+        "Schlange",
+        "Meer",
+        "Strömung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0297",
+      "category": "Tiere",
+      "word": "Lachs",
+      "forbidden": [
+        "Wanderung",
+        "Fluss",
+        "stromaufwärts",
+        "Fischer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0298",
+      "category": "Tiere",
+      "word": "Wels",
+      "forbidden": [
+        "Fluss",
+        "nachts",
+        "Grund",
+        "Köder"
+      ]
+    },
+    {
+      "id": "taboo_sk_0299",
+      "category": "Tiere",
+      "word": "Karpfen",
+      "forbidden": [
+        "Teich",
+        "Angel",
+        "Fütterung",
+        "Schuppen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0300",
+      "category": "Tiere",
+      "word": "Karausche",
+      "forbidden": [
+        "Teich",
+        "klein",
+        "Schuppen",
+        "Fischer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0301",
+      "category": "Tiere",
+      "word": "Kabeljau",
+      "forbidden": [
+        "Ozean",
+        "Filet",
+        "gefroren",
+        "schwimmen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0302",
+      "category": "Tiere",
+      "word": "Walross",
+      "forbidden": [
+        "Stoßzähne",
+        "Arktis",
+        "Eis",
+        "Meer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0303",
+      "category": "Tiere",
+      "word": "Krähe",
+      "forbidden": [
+        "schwarz",
+        "Gefieder",
+        "Stadt",
+        "stehlen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0304",
+      "category": "Tiere",
+      "word": "Taube",
+      "forbidden": [
+        "Platz",
+        "Post",
+        "Korn",
+        "Gefieder"
+      ]
+    },
+    {
+      "id": "taboo_sk_0305",
+      "category": "Tiere",
+      "word": "Spatz",
+      "forbidden": [
+        "klein",
+        "Hof",
+        "Futterhaus",
+        "Gesang"
+      ]
+    },
+    {
+      "id": "taboo_sk_0306",
+      "category": "Tiere",
+      "word": "Drossel",
+      "forbidden": [
+        "Gesang",
+        "Wurm",
+        "Erdbeere",
+        "Wald"
+      ]
+    },
+    {
+      "id": "taboo_sk_0307",
+      "category": "Tiere",
+      "word": "Kormoran",
+      "forbidden": [
+        "Tauchen",
+        "Fisch",
+        "Flügel",
+        "nass"
+      ]
+    },
+    {
+      "id": "taboo_sk_0308",
+      "category": "Tiere",
+      "word": "Elster",
+      "forbidden": [
+        "Glanz",
+        "stehlen",
+        "Gefieder",
+        "Baum"
+      ]
+    },
+    {
+      "id": "taboo_sk_0309",
+      "category": "Tiere",
+      "word": "Storch",
+      "forbidden": [
+        "Nest",
+        "lange Beine",
+        "Junges",
+        "Teich"
+      ]
+    },
+    {
+      "id": "taboo_sk_0310",
+      "category": "Tiere",
+      "word": "Falke",
+      "forbidden": [
+        "Geschwindigkeit",
+        "Jagd",
+        "Krallen",
+        "scharfer Blick"
+      ]
+    },
+    {
+      "id": "taboo_sk_0311",
+      "category": "Tiere",
+      "word": "Feldmaus",
+      "forbidden": [
+        "Wiese",
+        "Bau",
+        "Zähne",
+        "Schädling"
+      ]
+    },
+    {
+      "id": "taboo_sk_0312",
+      "category": "Tiere",
+      "word": "Ziesel",
+      "forbidden": [
+        "Bau",
+        "Wiese",
+        "Korn",
+        "Löcher"
+      ]
+    },
+    {
+      "id": "taboo_sk_0313",
+      "category": "Tiere",
+      "word": "Biber",
+      "forbidden": [
+        "Fluss",
+        "Damm",
+        "Holz",
+        "Schwanz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0314",
+      "category": "Tiere",
+      "word": "Iltis",
+      "forbidden": [
+        "Geruch",
+        "nachts",
+        "Loch",
+        "Aas"
+      ]
+    },
+    {
+      "id": "taboo_sk_0315",
+      "category": "Tiere",
+      "word": "Kaninchen",
+      "forbidden": [
+        "Möhre",
+        "lange Ohren",
+        "Käfig",
+        "Sprung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0316",
+      "category": "Tiere",
+      "word": "Reh",
+      "forbidden": [
+        "Wald",
+        "Geweih",
+        "Geschwindigkeit",
+        "scheu"
+      ]
+    },
+    {
+      "id": "taboo_sk_0317",
+      "category": "Tiere",
+      "word": "Grille",
+      "forbidden": [
+        "Gras",
+        "Gesang",
+        "nachts",
+        "Insekt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0318",
+      "category": "Tiere",
+      "word": "Heuschrecke",
+      "forbidden": [
+        "Sprung",
+        "Wiese",
+        "Flügel",
+        "grün"
+      ]
+    },
+    {
+      "id": "taboo_sk_0319",
+      "category": "Tiere",
+      "word": "Wespe",
+      "forbidden": [
+        "Stich",
+        "Nest",
+        "aggressiv",
+        "süß"
+      ]
+    },
+    {
+      "id": "taboo_sk_0320",
+      "category": "Tiere",
+      "word": "Marienkäfer",
+      "forbidden": [
+        "Punkte",
+        "rot",
+        "Blattläuse",
+        "Blatt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0321",
+      "category": "Tiere",
+      "word": "Kröte",
+      "forbidden": [
+        "feucht",
+        "raue Haut",
+        "Sprung",
+        "nachts"
+      ]
+    },
+    {
+      "id": "taboo_sk_0322",
+      "category": "Tiere",
+      "word": "Leguan",
+      "forbidden": [
+        "Reptil",
+        "warm",
+        "Schuppen",
+        "Schwanz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0323",
+      "category": "Tiere",
+      "word": "Eidechse",
+      "forbidden": [
+        "Schuppen",
+        "Schwanz",
+        "Sonne",
+        "Tarnung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0324",
+      "category": "Tiere",
+      "word": "Sumpf",
+      "forbidden": [
+        "Moor",
+        "Schlamm",
+        "Torf",
+        "Mücken"
+      ]
+    },
+    {
+      "id": "taboo_sk_0325",
+      "category": "Tiere",
+      "word": "Regenwald",
+      "forbidden": [
+        "Dschungel",
+        "Regen",
+        "hohe Bäume",
+        "Dickicht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0326",
+      "category": "Tiere",
+      "word": "Wiese",
+      "forbidden": [
+        "Gras",
+        "Blumen",
+        "Weide",
+        "Kräuter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0327",
+      "category": "Tiere",
+      "word": "Steppe",
+      "forbidden": [
+        "Ebene",
+        "Gras",
+        "trocken",
+        "offen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0328",
+      "category": "Tiere",
+      "word": "Moor",
+      "forbidden": [
+        "Torf",
+        "Sumpf",
+        "Schlamm",
+        "Schutzgebiet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0329",
+      "category": "Tiere",
+      "word": "Küste",
+      "forbidden": [
+        "Sand",
+        "Welle",
+        "Strand",
+        "Meer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0330",
+      "category": "Tiere",
+      "word": "Fluss",
+      "forbidden": [
+        "Strom",
+        "Ufer",
+        "Tal",
+        "Mündung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0331",
+      "category": "Tiere",
+      "word": "See",
+      "forbidden": [
+        "Ufer",
+        "Tiefe",
+        "Fische",
+        "Boot"
+      ]
+    },
+    {
+      "id": "taboo_sk_0332",
+      "category": "Tiere",
+      "word": "Ozean",
+      "forbidden": [
+        "tief",
+        "Welle",
+        "Salz",
+        "Schiff"
+      ]
+    },
+    {
+      "id": "taboo_sk_0333",
+      "category": "Tiere",
+      "word": "Wanderung",
+      "forbidden": [
+        "Frühling",
+        "Herden",
+        "Entfernung",
+        "Saison"
+      ]
+    },
+    {
+      "id": "taboo_sk_0334",
+      "category": "Tiere",
+      "word": "Brüten",
+      "forbidden": [
+        "Vögel",
+        "Eier",
+        "Junges",
+        "Bau"
+      ]
+    },
+    {
+      "id": "taboo_sk_0335",
+      "category": "Tiere",
+      "word": "Fortpflanzung",
+      "forbidden": [
+        "Paarung",
+        "Junges",
+        "Saison",
+        "Verhalten"
+      ]
+    },
+    {
+      "id": "taboo_sk_0336",
+      "category": "Tiere",
+      "word": "Fütterung",
+      "forbidden": [
+        "Nahrung",
+        "Schüssel",
+        "Sättigung",
+        "Jagd"
+      ]
+    },
+    {
+      "id": "taboo_sk_0337",
+      "category": "Tiere",
+      "word": "Tauchen",
+      "forbidden": [
+        "Tiefe",
+        "Schwimmen",
+        "Atmen",
+        "Flasche"
+      ]
+    },
+    {
+      "id": "taboo_sk_0338",
+      "category": "Tiere",
+      "word": "Tarnung",
+      "forbidden": [
+        "Maskierung",
+        "Farbe",
+        "Räuber",
+        "Schutz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0339",
+      "category": "Tiere",
+      "word": "Kolonie",
+      "forbidden": [
+        "Ameisen",
+        "Siedlung",
+        "Gemeinschaft",
+        "Gruppe"
+      ]
+    },
+    {
+      "id": "taboo_sk_0340",
+      "category": "Tiere",
+      "word": "Herde",
+      "forbidden": [
+        "Grasen",
+        "zahlreich",
+        "Weide",
+        "Wanderung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0542",
+      "category": "Tiere",
+      "word": "Igel",
+      "forbidden": [
+        "Stacheln",
+        "nachts",
+        "Garten",
+        "Insekten"
+      ]
+    },
+    {
+      "id": "taboo_sk_0543",
+      "category": "Tiere",
+      "word": "Dachs",
+      "forbidden": [
+        "Bau",
+        "Loch",
+        "nachts",
+        "Kralle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0544",
+      "category": "Tiere",
+      "word": "Waschbär",
+      "forbidden": [
+        "Maske",
+        "Müll",
+        "nachts",
+        "Hände"
+      ]
+    },
+    {
+      "id": "taboo_sk_0545",
+      "category": "Tiere",
+      "word": "Fledermaus",
+      "forbidden": [
+        "Echoortung",
+        "Höhle",
+        "Flügel",
+        "nachts"
+      ]
+    },
+    {
+      "id": "taboo_sk_0546",
+      "category": "Tiere",
+      "word": "Giraffe",
+      "forbidden": [
+        "Hals",
+        "groß",
+        "Blätter",
+        "Savanne"
+      ]
+    },
+    {
+      "id": "taboo_sk_0547",
+      "category": "Tiere",
+      "word": "Panda",
+      "forbidden": [
+        "Bambus",
+        "China",
+        "schwarz",
+        "gefährdet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0548",
+      "category": "Tiere",
+      "word": "Känguru",
+      "forbidden": [
+        "Beutel",
+        "Australien",
+        "Hüpfen",
+        "Beine"
+      ]
+    },
+    {
+      "id": "taboo_sk_0549",
+      "category": "Tiere",
+      "word": "Gorilla",
+      "forbidden": [
+        "Affe",
+        "stark",
+        "Familie",
+        "Schutz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0550",
+      "category": "Tiere",
+      "word": "Schimpanse",
+      "forbidden": [
+        "intelligent",
+        "Werkzeuge",
+        "Affe",
+        "Gesicht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0551",
+      "category": "Tiere",
+      "word": "Möwe",
+      "forbidden": [
+        "Meer",
+        "Strand",
+        "fliegen",
+        "stehlen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0552",
+      "category": "Tiere",
+      "word": "Ente",
+      "forbidden": [
+        "Wasser",
+        "Gefieder",
+        "schwimmen",
+        "Hals"
+      ]
+    },
+    {
+      "id": "taboo_sk_0553",
+      "category": "Tiere",
+      "word": "Huhn",
+      "forbidden": [
+        "Hühnerstall",
+        "Ei",
+        "Gefieder",
+        "Schnabel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0554",
+      "category": "Tiere",
+      "word": "Migration",
+      "forbidden": [
+        "Vögel",
+        "Saison",
+        "Richtung",
+        "Entfernung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0555",
+      "category": "Tiere",
+      "word": "Kätzchen",
+      "forbidden": [
+        "Katze",
+        "Junges",
+        "Miau",
+        "Pfoten"
+      ]
+    },
+    {
+      "id": "taboo_sk_0556",
+      "category": "Tiere",
+      "word": "Welpe",
+      "forbidden": [
+        "Hund",
+        "Junges",
+        "bellen",
+        "Pfoten"
+      ]
+    },
+    {
+      "id": "taboo_sk_0557",
+      "category": "Tiere",
+      "word": "Papagei",
+      "forbidden": [
+        "Vogel",
+        "Gefieder",
+        "Käfig",
+        "sprechen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0558",
+      "category": "Tiere",
+      "word": "Schwanz",
+      "forbidden": [
+        "Tier",
+        "Fell",
+        "wedeln",
+        "Körper"
+      ]
+    },
+    {
+      "id": "taboo_sk_0559",
+      "category": "Tiere",
+      "word": "Spuren",
+      "forbidden": [
+        "Pfoten",
+        "Erde",
+        "Wald",
+        "verfolgen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0591",
+      "category": "Tiere",
+      "word": "Lemur",
+      "forbidden": [
+        "Madagaskar",
+        "Schwanz",
+        "Baum",
+        "Primat"
+      ]
+    },
+    {
+      "id": "taboo_sk_0592",
+      "category": "Tiere",
+      "word": "Reh",
+      "forbidden": [
+        "scheu",
+        "Weide",
+        "Junges",
+        "Wald"
+      ]
+    },
+    {
+      "id": "taboo_sk_0593",
+      "category": "Tiere",
+      "word": "Qualle",
+      "forbidden": [
+        "durchsichtig",
+        "Brennen",
+        "schwimmen",
+        "Ozean"
+      ]
+    },
+    {
+      "id": "taboo_sk_0594",
+      "category": "Tiere",
+      "word": "Fisch",
+      "forbidden": [
+        "Schuppen",
+        "schwimmen",
+        "Wasser",
+        "Kiemen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0595",
+      "category": "Tiere",
+      "word": "Wüste",
+      "forbidden": [
+        "Sand",
+        "trocken",
+        "Kaktus",
+        "Oase"
+      ]
+    },
+    {
+      "id": "taboo_sk_0596",
+      "category": "Tiere",
+      "word": "Savanne",
+      "forbidden": [
+        "trocken",
+        "Gras",
+        "Safari",
+        "Herden"
+      ]
+    },
+    {
+      "id": "taboo_sk_0597",
+      "category": "Tiere",
+      "word": "Tundra",
+      "forbidden": [
+        "Eis",
+        "kalt",
+        "Gras",
+        "Permafrost"
+      ]
+    },
+    {
+      "id": "taboo_sk_0598",
+      "category": "Tiere",
+      "word": "Moor",
+      "forbidden": [
+        "Schlamm",
+        "Torf",
+        "seicht",
+        "Schilf"
+      ]
+    },
+    {
+      "id": "taboo_sk_0599",
+      "category": "Tiere",
+      "word": "Nest",
+      "forbidden": [
+        "Ast",
+        "Ei",
+        "Vogel",
+        "Brüten"
+      ]
+    },
+    {
+      "id": "taboo_sk_0600",
+      "category": "Tiere",
+      "word": "Bau",
+      "forbidden": [
+        "Loch",
+        "Unterschlupf",
+        "Junges",
+        "graben"
+      ]
+    },
+    {
+      "id": "taboo_sk_0601",
+      "category": "Tiere",
+      "word": "Tarnung",
+      "forbidden": [
+        "verstecken",
+        "Farbe",
+        "Tier",
+        "Umgebung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0602",
+      "category": "Tiere",
+      "word": "Insekt",
+      "forbidden": [
+        "Flügel",
+        "klein",
+        "Natur",
+        "Beine"
+      ]
+    },
+    {
+      "id": "taboo_sk_0628",
+      "category": "Tiere",
+      "word": "Ratte",
+      "forbidden": [
+        "Kanal",
+        "Nagen",
+        "fangen",
+        "Nacht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0629",
+      "category": "Tiere",
+      "word": "Schwarm",
+      "forbidden": [
+        "Vögel",
+        "gemeinsam",
+        "Flug",
+        "Synchronisation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0630",
+      "category": "Tiere",
+      "word": "Skorpion",
+      "forbidden": [
+        "Kammer",
+        "Stachel",
+        "Wüste",
+        "Nacht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0631",
+      "category": "Tiere",
+      "word": "Maulwurf",
+      "forbidden": [
+        "Tunnel",
+        "Erde",
+        "graben",
+        "Nacht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0632",
+      "category": "Tiere",
+      "word": "Marder",
+      "forbidden": [
+        "Wald",
+        "nachts",
+        "Futter",
+        "Pelz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0633",
+      "category": "Tiere",
+      "word": "Biber",
+      "forbidden": [
+        "Damm",
+        "Baum",
+        "Schwanz",
+        "Fluss"
+      ]
+    },
+    {
+      "id": "taboo_sk_0634",
+      "category": "Tiere",
+      "word": "Murmeltier",
+      "forbidden": [
+        "Berg",
+        "felsig",
+        "Winterschlaf",
+        "Pfeifen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0635",
+      "category": "Tiere",
+      "word": "Wald",
+      "forbidden": [
+        "Bäume",
+        "Schatten",
+        "Unterholz",
+        "Wandern"
+      ]
+    },
+    {
+      "id": "taboo_sk_0636",
+      "category": "Tiere",
+      "word": "Fliegen",
+      "forbidden": [
+        "Flügel",
+        "schweben",
+        "Zug",
+        "Vögel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0717",
+      "category": "Tiere",
+      "word": "Pfau",
+      "forbidden": [
+        "Gefieder",
+        "Schwanz",
+        "bunt",
+        "zeigen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0718",
+      "category": "Tiere",
+      "word": "Käfer",
+      "forbidden": [
+        "Flügeldecken",
+        "Larve",
+        "Insekt",
+        "fressen"
+      ]
+    },
+    {
+      "id": "taboo_sk_0719",
+      "category": "Tiere",
+      "word": "Molch",
+      "forbidden": [
+        "Schwanz",
+        "Amphibie",
+        "feucht",
+        "Wald"
+      ]
+    },
+    {
+      "id": "taboo_sk_0720",
+      "category": "Tiere",
+      "word": "Schnecke",
+      "forbidden": [
+        "Schleim",
+        "Haus",
+        "langsam",
+        "Garten"
+      ]
+    },
+    {
+      "id": "taboo_sk_0721",
+      "category": "Tiere",
+      "word": "Koala",
+      "forbidden": [
+        "Eukalyptus",
+        "Baum",
+        "Australien",
+        "schläft"
+      ]
+    },
+    {
+      "id": "taboo_sk_0722",
+      "category": "Tiere",
+      "word": "Rentier",
+      "forbidden": [
+        "Fell",
+        "Geweih",
+        "Arktis",
+        "Schnee"
+      ]
+    },
+    {
+      "id": "taboo_sk_0723",
+      "category": "Tiere",
+      "word": "Esel",
+      "forbidden": [
+        "Last",
+        "stur",
+        "Stall",
+        "Reiter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0724",
+      "category": "Tiere",
+      "word": "Fliege",
+      "forbidden": [
+        "summen",
+        "Schmutz",
+        "Fenster",
+        "Nahrung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0725",
+      "category": "Tiere",
+      "word": "Eichhörnchen",
+      "forbidden": [
+        "Nuss",
+        "Baum",
+        "Schwanz",
+        "Sprung"
+      ]
+    },
+    {
+      "id": "taboo_sk_0830",
+      "category": "Tiere",
+      "word": "Nilpferd",
+      "forbidden": [
+        "Afrika",
+        "Fluss",
+        "groß",
+        "Maul"
+      ]
+    },
+    {
+      "id": "taboo_sk_0831",
+      "category": "Tiere",
+      "word": "Lama",
+      "forbidden": [
+        "Anden",
+        "Wolle",
+        "spucken",
+        "Herde"
+      ]
+    },
+    {
+      "id": "taboo_sk_0832",
+      "category": "Tiere",
+      "word": "Erdmännchen",
+      "forbidden": [
+        "Wüste",
+        "Bau",
+        "Afrika",
+        "aufrecht"
+      ]
+    },
+    {
+      "id": "taboo_sk_0833",
+      "category": "Tiere",
+      "word": "Flamingo",
+      "forbidden": [
+        "rosa",
+        "lange Beine",
+        "See",
+        "Vogel"
+      ]
+    }
+  ]
+}

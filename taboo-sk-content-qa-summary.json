@@ -1,0 +1,582 @@
+{
+  "baselineRef": "a1d23b6a",
+  "cardsReviewed": 1500,
+  "targetWordsReplaced": 189,
+  "cardsWithForbiddenWordsChanged": 188,
+  "categoryBreakdown": {
+    "Jedlo a nápoje": 0,
+    "Zvieratá": 10,
+    "Miesta a cestovanie": 20,
+    "Ľudia a povolania": 0,
+    "Predmety a domácnosť": 0,
+    "Aktivity a šport": 12,
+    "Filmy, seriály a kultúra": 20,
+    "Technológie a médiá": 74,
+    "Príroda a svet": 22,
+    "Všeobecné pojmy a situácie": 31
+  },
+  "forbiddenCollisions": 0,
+  "bannedStillPresent": [],
+  "sample": [
+    {
+      "id": "taboo_sk_1085",
+      "category": "Technológie a médiá",
+      "before": {
+        "id": "taboo_sk_1085",
+        "category": "Technológie a médiá",
+        "word": "prístupový kód",
+        "forbidden": [
+          "číslice",
+          "heslo",
+          "zámok",
+          "overenie"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_1085",
+        "category": "Technológie a médiá",
+        "word": "PIN",
+        "forbidden": [
+          "číslo",
+          "banka",
+          "karta",
+          "tajné"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_1294",
+      "category": "Príroda a svet",
+      "before": {
+        "id": "taboo_sk_1294",
+        "category": "Príroda a svet",
+        "word": "delta rieky",
+        "forbidden": [
+          "mapa",
+          "výhľad",
+          "výlet",
+          "geografia"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_1294",
+        "category": "Príroda a svet",
+        "word": "ústie",
+        "forbidden": [
+          "rieka",
+          "more",
+          "voda",
+          "tok"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_1126",
+      "category": "Technológie a médiá",
+      "before": {
+        "id": "taboo_sk_1126",
+        "category": "Technológie a médiá",
+        "word": "sponzorovaný príspevok",
+        "forbidden": [
+          "sociálna sieť",
+          "reklama",
+          "značka",
+          "platiť"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_1126",
+        "category": "Technológie a médiá",
+        "word": "príspevok",
+        "forbidden": [
+          "profil",
+          "písať",
+          "zdieľať",
+          "sociálna sieť"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_1128",
+      "category": "Technológie a médiá",
+      "before": {
+        "id": "taboo_sk_1128",
+        "category": "Technológie a médiá",
+        "word": "zdieľanie príspevku",
+        "forbidden": [
+          "sociálna sieť",
+          "profil",
+          "odoslať",
+          "sledovať"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_1128",
+        "category": "Technológie a médiá",
+        "word": "zdieľanie",
+        "forbidden": [
+          "profil",
+          "poslať",
+          "sociálna sieť",
+          "príspevok"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_1457",
+      "category": "Všeobecné pojmy a situácie",
+      "before": {
+        "id": "taboo_sk_1457",
+        "category": "Všeobecné pojmy a situácie",
+        "word": "reklamácia",
+        "forbidden": [
+          "záruka",
+          "obchod",
+          "vrátiť",
+          "chybný tovar"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_1457",
+        "category": "Všeobecné pojmy a situácie",
+        "word": "vrátenie",
+        "forbidden": [
+          "obchod",
+          "tovar",
+          "peniaze",
+          "chyba"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_1097",
+      "category": "Technológie a médiá",
+      "before": {
+        "id": "taboo_sk_1097",
+        "category": "Technológie a médiá",
+        "word": "videonahrávka",
+        "forbidden": [
+          "kamera",
+          "záznam",
+          "prehrať",
+          "obraz"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_1097",
+        "category": "Technológie a médiá",
+        "word": "filmček",
+        "forbidden": [
+          "kamera",
+          "obraz",
+          "prehrať",
+          "záznam"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_0869",
+      "category": "Miesta a cestovanie",
+      "before": {
+        "id": "taboo_sk_0869",
+        "category": "Miesta a cestovanie",
+        "word": "suvenírový obchod",
+        "forbidden": [
+          "ubytovanie",
+          "nocľah",
+          "hosť",
+          "rezervácia"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_0869",
+        "category": "Miesta a cestovanie",
+        "word": "suvenír",
+        "forbidden": [
+          "darček",
+          "turista",
+          "pamiatka",
+          "obchod"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_0662",
+      "category": "Aktivity a šport",
+      "before": {
+        "id": "taboo_sk_0662",
+        "category": "Aktivity a šport",
+        "word": "kriket",
+        "forbidden": [
+          "pálka",
+          "lopta",
+          "ihrisko",
+          "hod"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_0662",
+        "category": "Aktivity a šport",
+        "word": "naháňačka",
+        "forbidden": [
+          "behať",
+          "deti",
+          "chytiť",
+          "hra"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_0896",
+      "category": "Aktivity a šport",
+      "before": {
+        "id": "taboo_sk_0896",
+        "category": "Aktivity a šport",
+        "word": "moderný päťboj",
+        "forbidden": [
+          "disciplína",
+          "beh",
+          "plávanie",
+          "šerm"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_0896",
+        "category": "Aktivity a šport",
+        "word": "olympiáda",
+        "forbidden": [
+          "šport",
+          "medaila",
+          "hry",
+          "súťaž"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_0602",
+      "category": "Zvieratá",
+      "before": {
+        "id": "taboo_sk_0602",
+        "category": "Zvieratá",
+        "word": "mimikra",
+        "forbidden": [
+          "napodobniť",
+          "vyzerať",
+          "maskovať",
+          "predátor"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_0602",
+        "category": "Zvieratá",
+        "word": "hmyz",
+        "forbidden": [
+          "krídla",
+          "malý",
+          "príroda",
+          "nohy"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_1148",
+      "category": "Technológie a médiá",
+      "before": {
+        "id": "taboo_sk_1148",
+        "category": "Technológie a médiá",
+        "word": "oprava chyby",
+        "forbidden": [
+          "debugovanie",
+          "programátor",
+          "test",
+          "aktualizácia"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_1148",
+        "category": "Technológie a médiá",
+        "word": "oprava",
+        "forbidden": [
+          "chyba",
+          "servis",
+          "zlepšiť",
+          "nový"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_1111",
+      "category": "Technológie a médiá",
+      "before": {
+        "id": "taboo_sk_1111",
+        "category": "Technológie a médiá",
+        "word": "optické vlákno",
+        "forbidden": [
+          "elektronika",
+          "batéria",
+          "ovládanie",
+          "kábel"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_1111",
+        "category": "Technológie a médiá",
+        "word": "kábel",
+        "forbidden": [
+          "zásuvka",
+          "nabíjačka",
+          "drôt",
+          "pripojiť"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_1084",
+      "category": "Technológie a médiá",
+      "before": {
+        "id": "taboo_sk_1084",
+        "category": "Technológie a médiá",
+        "word": "používateľské meno",
+        "forbidden": [
+          "účet",
+          "prihlásenie",
+          "identita",
+          "heslo"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_1084",
+        "category": "Technológie a médiá",
+        "word": "profil",
+        "forbidden": [
+          "meno",
+          "fotka",
+          "účet",
+          "sociálna sieť"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_1125",
+      "category": "Technológie a médiá",
+      "before": {
+        "id": "taboo_sk_1125",
+        "category": "Technológie a médiá",
+        "word": "bannerová reklama",
+        "forbidden": [
+          "web",
+          "obrázok",
+          "kliknúť",
+          "propagácia"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_1125",
+        "category": "Technológie a médiá",
+        "word": "reklama",
+        "forbidden": [
+          "značka",
+          "televízia",
+          "produkt",
+          "propagácia"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_1039",
+      "category": "Filmy, seriály a kultúra",
+      "before": {
+        "id": "taboo_sk_1039",
+        "category": "Filmy, seriály a kultúra",
+        "word": "etuda",
+        "forbidden": [
+          "umenie",
+          "autor",
+          "výstava",
+          "galéria"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_1039",
+        "category": "Filmy, seriály a kultúra",
+        "word": "balet",
+        "forbidden": [
+          "tanec",
+          "divadlo",
+          "špičky",
+          "hudba"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_0556",
+      "category": "Zvieratá",
+      "before": {
+        "id": "taboo_sk_0556",
+        "category": "Zvieratá",
+        "word": "bylinožravec",
+        "forbidden": [
+          "tráva",
+          "žuvanie",
+          "kopytá",
+          "pásť sa"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_0556",
+        "category": "Zvieratá",
+        "word": "šteniatko",
+        "forbidden": [
+          "pes",
+          "mláďa",
+          "štekať",
+          "labky"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_1061",
+      "category": "Technológie a médiá",
+      "before": {
+        "id": "taboo_sk_1061",
+        "category": "Technológie a médiá",
+        "word": "biometrický snímač",
+        "forbidden": [
+          "elektronika",
+          "batéria",
+          "ovládanie",
+          "kábel"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_1061",
+        "category": "Technológie a médiá",
+        "word": "selfie",
+        "forbidden": [
+          "fotka",
+          "mobil",
+          "tvár",
+          "kamera"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_1309",
+      "category": "Príroda a svet",
+      "before": {
+        "id": "taboo_sk_1309",
+        "category": "Príroda a svet",
+        "word": "časové pásmo",
+        "forbidden": [
+          "mapa",
+          "štát",
+          "hranica",
+          "svetadiel"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_1309",
+        "category": "Príroda a svet",
+        "word": "zemeguľa",
+        "forbidden": [
+          "mapa",
+          "svet",
+          "kontinent",
+          "kruhová"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_0832",
+      "category": "Zvieratá",
+      "before": {
+        "id": "taboo_sk_0832",
+        "category": "Zvieratá",
+        "word": "suriikata",
+        "forbidden": [
+          "púšť",
+          "nora",
+          "stáť",
+          "Afrika"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_0832",
+        "category": "Zvieratá",
+        "word": "surikata",
+        "forbidden": [
+          "púšť",
+          "nora",
+          "Afrika",
+          "stáť"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    },
+    {
+      "id": "taboo_sk_0863",
+      "category": "Miesta a cestovanie",
+      "before": {
+        "id": "taboo_sk_0863",
+        "category": "Miesta a cestovanie",
+        "word": "spoločná kuchyňa",
+        "forbidden": [
+          "ubytovanie",
+          "nocľah",
+          "hosť",
+          "rezervácia"
+        ]
+      },
+      "after": {
+        "id": "taboo_sk_0863",
+        "category": "Miesta a cestovanie",
+        "word": "kuchynka",
+        "forbidden": [
+          "varenie",
+          "riad",
+          "izba",
+          "jedlo"
+        ]
+      },
+      "targetChanged": true,
+      "forbiddenChanged": true
+    }
+  ]
+}

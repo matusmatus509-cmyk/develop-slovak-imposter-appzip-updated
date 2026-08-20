@@ -1,0 +1,2739 @@
+{
+  "category": "Jedlo a nápoje",
+  "locale": "de",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "backen",
+      "cards": [
+        {
+          "index": 48,
+          "id": "taboo_sk_0049",
+          "sk_word": "piecť",
+          "translated_word": "backen",
+          "forbidden": [
+            "Ofen",
+            "Blech",
+            "Teig",
+            "Kuchen"
+          ]
+        },
+        {
+          "index": 117,
+          "id": "taboo_sk_0578",
+          "sk_word": "pečenie",
+          "translated_word": "Backen",
+          "forbidden": [
+            "Ofen",
+            "Teig",
+            "Zeit",
+            "Temperatur"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "brötchen",
+      "cards": [
+        {
+          "index": 99,
+          "id": "taboo_sk_0560",
+          "sk_word": "rožok",
+          "translated_word": "Brötchen",
+          "forbidden": [
+            "Gebäck",
+            "Butter",
+            "Frühstück",
+            "Sesam"
+          ]
+        },
+        {
+          "index": 135,
+          "id": "taboo_sk_0698",
+          "sk_word": "rohlík",
+          "translated_word": "Brötchen",
+          "forbidden": [
+            "frisch",
+            "Gebäck",
+            "Butter",
+            "Kruste"
+          ]
+        }
+      ]
+    }
+  ]
+}
+{
+  "category": "Jedlo a nápoje",
+  "locale": "en",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "cake",
+      "cards": [
+        {
+          "index": 28,
+          "id": "taboo_sk_0029",
+          "sk_word": "koláč",
+          "translated_word": "cake",
+          "forbidden": [
+            "baked",
+            "filling",
+            "cut",
+            "baking sheet"
+          ]
+        },
+        {
+          "index": 100,
+          "id": "taboo_sk_0561",
+          "sk_word": "torta",
+          "translated_word": "cake",
+          "forbidden": [
+            "celebration",
+            "slice",
+            "layers",
+            "confectioner"
+          ]
+        }
+      ]
+    }
+  ]
+}
+{
+  "category": "Jedlo a nápoje",
+  "locale": "es",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "salsa",
+      "cards": [
+        {
+          "index": 74,
+          "id": "taboo_sk_0411",
+          "sk_word": "omáčka",
+          "translated_word": "salsa",
+          "forbidden": [
+            "espesa",
+            "condimento",
+            "plato",
+            "caliente"
+          ]
+        },
+        {
+          "index": 95,
+          "id": "taboo_sk_0432",
+          "sk_word": "salsa",
+          "translated_word": "salsa",
+          "forbidden": [
+            "picante",
+            "mexicana",
+            "dip",
+            "chips"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "panecillo",
+      "cards": [
+        {
+          "index": 99,
+          "id": "taboo_sk_0560",
+          "sk_word": "rožok",
+          "translated_word": "panecillo",
+          "forbidden": [
+            "bollería",
+            "mantequilla",
+            "desayuno",
+            "sésamo"
+          ]
+        },
+        {
+          "index": 135,
+          "id": "taboo_sk_0698",
+          "sk_word": "rohlík",
+          "translated_word": "panecillo",
+          "forbidden": [
+            "fresco",
+            "bollería",
+            "mantequilla",
+            "corteza"
+          ]
+        }
+      ]
+    }
+  ]
+}
+{
+  "category": "Jedlo a nápoje",
+  "locale": "fr",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "gâteau",
+      "cards": [
+        {
+          "index": 28,
+          "id": "taboo_sk_0029",
+          "sk_word": "koláč",
+          "translated_word": "gâteau",
+          "forbidden": [
+            "cuit",
+            "garniture",
+            "couper",
+            "plaque"
+          ]
+        },
+        {
+          "index": 100,
+          "id": "taboo_sk_0561",
+          "sk_word": "torta",
+          "translated_word": "gâteau",
+          "forbidden": [
+            "fête",
+            "tranche",
+            "couches",
+            "pâtissier"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "vinaigrette",
+      "cards": [
+        {
+          "index": 73,
+          "id": "taboo_sk_0410",
+          "sk_word": "dressing",
+          "translated_word": "vinaigrette",
+          "forbidden": [
+            "assaisonnement",
+            "salade",
+            "mayonnaise",
+            "aux herbes"
+          ]
+        },
+        {
+          "index": 144,
+          "id": "taboo_sk_0824",
+          "sk_word": "zálievka",
+          "translated_word": "vinaigrette",
+          "forbidden": [
+            "vinaigre",
+            "huile",
+            "herbes",
+            "assaisonner"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "petit pain",
+      "cards": [
+        {
+          "index": 99,
+          "id": "taboo_sk_0560",
+          "sk_word": "rožok",
+          "translated_word": "petit pain",
+          "forbidden": [
+            "pâtisserie",
+            "beurre",
+            "petit déjeuner",
+            "sésame"
+          ]
+        },
+        {
+          "index": 135,
+          "id": "taboo_sk_0698",
+          "sk_word": "rohlík",
+          "translated_word": "petit pain",
+          "forbidden": [
+            "frais",
+            "pâtisserie",
+            "beurre",
+            "croûte"
+          ]
+        }
+      ]
+    }
+  ]
+}
+{
+  "category": "Jedlo a nápoje",
+  "locale": "pt",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "bolo",
+      "cards": [
+        {
+          "index": 28,
+          "id": "taboo_sk_0029",
+          "sk_word": "koláč",
+          "translated_word": "bolo",
+          "forbidden": [
+            "assado",
+            "recheio",
+            "fatiar",
+            "forma"
+          ]
+        },
+        {
+          "index": 100,
+          "id": "taboo_sk_0561",
+          "sk_word": "torta",
+          "translated_word": "bolo",
+          "forbidden": [
+            "festa",
+            "fatia",
+            "camadas",
+            "confeiteiro"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "misturar",
+      "cards": [
+        {
+          "index": 45,
+          "id": "taboo_sk_0046",
+          "sk_word": "miešať",
+          "translated_word": "misturar",
+          "forbidden": [
+            "colher",
+            "tigela",
+            "massa",
+            "colher de pau"
+          ]
+        },
+        {
+          "index": 119,
+          "id": "taboo_sk_0580",
+          "sk_word": "miešanie",
+          "translated_word": "misturar",
+          "forbidden": [
+            "batedor",
+            "recipiente",
+            "à mão",
+            "ingredientes"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "assar",
+      "cards": [
+        {
+          "index": 48,
+          "id": "taboo_sk_0049",
+          "sk_word": "piecť",
+          "translated_word": "assar",
+          "forbidden": [
+            "forno",
+            "forma",
+            "massa",
+            "bolo"
+          ]
+        },
+        {
+          "index": 117,
+          "id": "taboo_sk_0578",
+          "sk_word": "pečenie",
+          "translated_word": "assar",
+          "forbidden": [
+            "forno",
+            "massa",
+            "tempo",
+            "temperatura"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "molho",
+      "cards": [
+        {
+          "index": 73,
+          "id": "taboo_sk_0410",
+          "sk_word": "dressing",
+          "translated_word": "molho",
+          "forbidden": [
+            "temperar",
+            "salada",
+            "maionese",
+            "de ervas"
+          ]
+        },
+        {
+          "index": 74,
+          "id": "taboo_sk_0411",
+          "sk_word": "omáčka",
+          "translated_word": "molho",
+          "forbidden": [
+            "espesso",
+            "tempero",
+            "prato",
+            "quente"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "pãozinho",
+      "cards": [
+        {
+          "index": 99,
+          "id": "taboo_sk_0560",
+          "sk_word": "rožok",
+          "translated_word": "pãozinho",
+          "forbidden": [
+            "pão",
+            "manteiga",
+            "café da manhã",
+            "gergelim"
+          ]
+        },
+        {
+          "index": 135,
+          "id": "taboo_sk_0698",
+          "sk_word": "rohlík",
+          "translated_word": "pãozinho",
+          "forbidden": [
+            "fresco",
+            "padaria",
+            "manteiga",
+            "crosta"
+          ]
+        }
+      ]
+    }
+  ]
+}
+{
+  "category": "Miesta a cestovanie",
+  "locale": "de",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "campingplatz",
+      "cards": [
+        {
+          "index": 18,
+          "id": "taboo_sk_0119",
+          "sk_word": "kemping",
+          "translated_word": "Campingplatz",
+          "forbidden": [
+            "Zelt",
+            "Wohnwagen",
+            "Platz",
+            "Lagerfeuer"
+          ]
+        },
+        {
+          "index": 120,
+          "id": "taboo_sk_0857",
+          "sk_word": "kemp",
+          "translated_word": "Campingplatz",
+          "forbidden": [
+            "Zelt",
+            "Übernachtung",
+            "Natur",
+            "Feuer"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 56,
+      "id": "taboo_sk_0252",
+      "sk_word": "hradba",
+      "translated_word": "Mauer",
+      "forbidden": [
+        "Befestigung",
+        "Mauer",
+        "Tor",
+        "Wache"
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 75,
+      "id": "taboo_sk_0271",
+      "sk_word": "záliv",
+      "translated_word": "Bucht",
+      "forbidden": [
+        "Bucht",
+        "Strand",
+        "Unterschlupf",
+        "Ankerplatz"
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 109,
+      "id": "taboo_sk_0846",
+      "sk_word": "nábrežie",
+      "translated_word": "Ufer",
+      "forbidden": [
+        "Fluss",
+        "Ufer",
+        "Spaziergang",
+        "Bank"
+      ]
+    }
+  ]
+}
+{
+  "category": "Miesta a cestovanie",
+  "locale": "en",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "camp",
+      "cards": [
+        {
+          "index": 120,
+          "id": "taboo_sk_0857",
+          "sk_word": "kemp",
+          "translated_word": "camp",
+          "forbidden": [
+            "tent",
+            "lodging",
+            "nature",
+            "fire"
+          ]
+        },
+        {
+          "index": 122,
+          "id": "taboo_sk_0859",
+          "sk_word": "tábor",
+          "translated_word": "camp",
+          "forbidden": [
+            "tent",
+            "summer",
+            "children",
+            "fire"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "dormitory",
+      "cards": [
+        {
+          "index": 121,
+          "id": "taboo_sk_0858",
+          "sk_word": "ubytovňa",
+          "translated_word": "dormitory",
+          "forbidden": [
+            "accommodation",
+            "lodging",
+            "guest",
+            "reservation"
+          ]
+        },
+        {
+          "index": 136,
+          "id": "taboo_sk_0873",
+          "sk_word": "internát",
+          "translated_word": "dormitory",
+          "forbidden": [
+            "student",
+            "school",
+            "room",
+            "bed"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 78,
+      "id": "taboo_sk_0274",
+      "sk_word": "prameň",
+      "translated_word": "spring",
+      "forbidden": [
+        "spring",
+        "mineral",
+        "source",
+        "cold"
+      ]
+    }
+  ]
+}
+{
+  "category": "Miesta a cestovanie",
+  "locale": "es",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "desvío",
+      "cards": [
+        {
+          "index": 39,
+          "id": "taboo_sk_0140",
+          "sk_word": "odbočka",
+          "translated_word": "desvío",
+          "forbidden": [
+            "flecha",
+            "dirección",
+            "entrada",
+            "señal"
+          ]
+        },
+        {
+          "index": 111,
+          "id": "taboo_sk_0848",
+          "sk_word": "obchádzka",
+          "translated_word": "desvío",
+          "forbidden": [
+            "cierre",
+            "señal",
+            "ruta",
+            "tráfico"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "pasarela",
+      "cards": [
+        {
+          "index": 57,
+          "id": "taboo_sk_0253",
+          "sk_word": "lávka",
+          "translated_word": "pasarela",
+          "forbidden": [
+            "río",
+            "barandilla",
+            "peatones",
+            "de madera"
+          ]
+        },
+        {
+          "index": 107,
+          "id": "taboo_sk_0844",
+          "sk_word": "nadchod",
+          "translated_word": "pasarela",
+          "forbidden": [
+            "puente",
+            "escaleras",
+            "peatones",
+            "altura"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "campamento",
+      "cards": [
+        {
+          "index": 120,
+          "id": "taboo_sk_0857",
+          "sk_word": "kemp",
+          "translated_word": "campamento",
+          "forbidden": [
+            "tienda",
+            "pernocta",
+            "naturaleza",
+            "fuego"
+          ]
+        },
+        {
+          "index": 122,
+          "id": "taboo_sk_0859",
+          "sk_word": "tábor",
+          "translated_word": "campamento",
+          "forbidden": [
+            "tienda",
+            "verano",
+            "niños",
+            "fuego"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 54,
+      "id": "taboo_sk_0250",
+      "sk_word": "promenáda",
+      "translated_word": "paseo",
+      "forbidden": [
+        "paseo marítimo",
+        "paseo",
+        "farolas",
+        "conectar"
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 75,
+      "id": "taboo_sk_0271",
+      "sk_word": "záliv",
+      "translated_word": "bahía",
+      "forbidden": [
+        "bahía",
+        "playa",
+        "refugio",
+        "fondeadero"
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 79,
+      "id": "taboo_sk_0275",
+      "sk_word": "planina",
+      "translated_word": "llanura",
+      "forbidden": [
+        "llanura",
+        "pradera",
+        "pastizales",
+        "extensión"
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 129,
+      "id": "taboo_sk_0866",
+      "sk_word": "brána",
+      "translated_word": "puerta",
+      "forbidden": [
+        "entrada",
+        "valla",
+        "puerta",
+        "acceso"
+      ]
+    }
+  ]
+}
+{
+  "category": "Miesta a cestovanie",
+  "locale": "fr",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "passerelle",
+      "cards": [
+        {
+          "index": 57,
+          "id": "taboo_sk_0253",
+          "sk_word": "lávka",
+          "translated_word": "passerelle",
+          "forbidden": [
+            "rivière",
+            "garde-corps",
+            "piétons",
+            "en bois"
+          ]
+        },
+        {
+          "index": 107,
+          "id": "taboo_sk_0844",
+          "sk_word": "nadchod",
+          "translated_word": "passerelle",
+          "forbidden": [
+            "pont",
+            "escaliers",
+            "piétons",
+            "hauteur"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "quai",
+      "cards": [
+        {
+          "index": 109,
+          "id": "taboo_sk_0846",
+          "sk_word": "nábrežie",
+          "translated_word": "quai",
+          "forbidden": [
+            "rivière",
+            "rive",
+            "promenade",
+            "banc"
+          ]
+        },
+        {
+          "index": 144,
+          "id": "taboo_sk_0881",
+          "sk_word": "nástupište",
+          "translated_word": "quai",
+          "forbidden": [
+            "hébergement",
+            "nuitée",
+            "hôte",
+            "réservation"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "observatoire",
+      "cards": [
+        {
+          "index": 117,
+          "id": "taboo_sk_0854",
+          "sk_word": "pozorovateľňa",
+          "translated_word": "observatoire",
+          "forbidden": [
+            "vue",
+            "jumelles",
+            "oiseaux",
+            "tour"
+          ]
+        },
+        {
+          "index": 138,
+          "id": "taboo_sk_0875",
+          "sk_word": "observatórium",
+          "translated_word": "observatoire",
+          "forbidden": [
+            "étoiles",
+            "télescope",
+            "espace",
+            "planètes"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "camp",
+      "cards": [
+        {
+          "index": 120,
+          "id": "taboo_sk_0857",
+          "sk_word": "kemp",
+          "translated_word": "camp",
+          "forbidden": [
+            "tente",
+            "nuitée",
+            "nature",
+            "feu"
+          ]
+        },
+        {
+          "index": 122,
+          "id": "taboo_sk_0859",
+          "sk_word": "tábor",
+          "translated_word": "camp",
+          "forbidden": [
+            "tente",
+            "été",
+            "enfants",
+            "feu"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 54,
+      "id": "taboo_sk_0250",
+      "sk_word": "promenáda",
+      "translated_word": "promenade",
+      "forbidden": [
+        "quai",
+        "promenade",
+        "lampadaires",
+        "relier"
+      ]
+    }
+  ]
+}
+{
+  "category": "Miesta a cestovanie",
+  "locale": "pt",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "acampamento",
+      "cards": [
+        {
+          "index": 18,
+          "id": "taboo_sk_0119",
+          "sk_word": "kemping",
+          "translated_word": "acampamento",
+          "forbidden": [
+            "tenda",
+            "caravana",
+            "local",
+            "fogueira"
+          ]
+        },
+        {
+          "index": 120,
+          "id": "taboo_sk_0857",
+          "sk_word": "kemp",
+          "translated_word": "acampamento",
+          "forbidden": [
+            "tenda",
+            "pernoite",
+            "natureza",
+            "fogueira"
+          ]
+        },
+        {
+          "index": 122,
+          "id": "taboo_sk_0859",
+          "sk_word": "tábor",
+          "translated_word": "acampamento",
+          "forbidden": [
+            "tenda",
+            "verão",
+            "crianças",
+            "fogueira"
+          ]
+        },
+        {
+          "index": 135,
+          "id": "taboo_sk_0872",
+          "sk_word": "táborisko",
+          "translated_word": "acampamento",
+          "forbidden": [
+            "acomodação",
+            "pernoite",
+            "hóspede",
+            "reserva"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "desvio",
+      "cards": [
+        {
+          "index": 39,
+          "id": "taboo_sk_0140",
+          "sk_word": "odbočka",
+          "translated_word": "desvio",
+          "forbidden": [
+            "seta",
+            "direção",
+            "entrada",
+            "placa"
+          ]
+        },
+        {
+          "index": 111,
+          "id": "taboo_sk_0848",
+          "sk_word": "obchádzka",
+          "translated_word": "desvio",
+          "forbidden": [
+            "interdição",
+            "placa",
+            "rota",
+            "trânsito"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "alfândega",
+      "cards": [
+        {
+          "index": 41,
+          "id": "taboo_sk_0142",
+          "sk_word": "colnica",
+          "translated_word": "alfândega",
+          "forbidden": [
+            "controle",
+            "imposto",
+            "declaração",
+            "fronteira"
+          ]
+        },
+        {
+          "index": 103,
+          "id": "taboo_sk_0840",
+          "sk_word": "colný úrad",
+          "translated_word": "alfândega",
+          "forbidden": [
+            "fronteira",
+            "mercadoria",
+            "fiscalização",
+            "passaporte"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "mirante",
+      "cards": [
+        {
+          "index": 55,
+          "id": "taboo_sk_0251",
+          "sk_word": "vyhliadka",
+          "translated_word": "mirante",
+          "forbidden": [
+            "binóculos",
+            "cume",
+            "horizonte",
+            "escadas"
+          ]
+        },
+        {
+          "index": 117,
+          "id": "taboo_sk_0854",
+          "sk_word": "pozorovateľňa",
+          "translated_word": "mirante",
+          "forbidden": [
+            "vista",
+            "binóculo",
+            "pássaros",
+            "torre"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "passarela",
+      "cards": [
+        {
+          "index": 57,
+          "id": "taboo_sk_0253",
+          "sk_word": "lávka",
+          "translated_word": "passarela",
+          "forbidden": [
+            "rio",
+            "corrimão",
+            "pedestres",
+            "de madeira"
+          ]
+        },
+        {
+          "index": 107,
+          "id": "taboo_sk_0844",
+          "sk_word": "nadchod",
+          "translated_word": "passarela",
+          "forbidden": [
+            "ponte",
+            "escadas",
+            "pedestres",
+            "altura"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 109,
+      "id": "taboo_sk_0846",
+      "sk_word": "nábrežie",
+      "translated_word": "margem",
+      "forbidden": [
+        "rio",
+        "margem",
+        "passeio",
+        "banco"
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 129,
+      "id": "taboo_sk_0866",
+      "sk_word": "brána",
+      "translated_word": "portão",
+      "forbidden": [
+        "entrada",
+        "cerca",
+        "porta",
+        "entrada"
+      ]
+    }
+  ]
+}
+{
+  "category": "Ľudia a povolania",
+  "locale": "de",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "kellner",
+      "cards": [
+        {
+          "index": 5,
+          "id": "taboo_sk_0156",
+          "sk_word": "čašník",
+          "translated_word": "Kellner",
+          "forbidden": [
+            "Speisekarte",
+            "Glas",
+            "Trinkgeld",
+            "Bestellung"
+          ]
+        },
+        {
+          "index": 112,
+          "id": "taboo_sk_0608",
+          "sk_word": "číšnik",
+          "translated_word": "Kellner",
+          "forbidden": [
+            "Speisekarte",
+            "Tisch",
+            "Rechnung",
+            "servieren"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "apotheker",
+      "cards": [
+        {
+          "index": 37,
+          "id": "taboo_sk_0188",
+          "sk_word": "farmaceut",
+          "translated_word": "Apotheker",
+          "forbidden": [
+            "Apotheke",
+            "Rezeptur",
+            "Tablette",
+            "Dosierung"
+          ]
+        },
+        {
+          "index": 96,
+          "id": "taboo_sk_0531",
+          "sk_word": "lekárnik",
+          "translated_word": "Apotheker",
+          "forbidden": [
+            "Apotheke",
+            "Medikament",
+            "Rezept",
+            "Dosierung"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "krankenschwester",
+      "cards": [
+        {
+          "index": 40,
+          "id": "taboo_sk_0191",
+          "sk_word": "ošetrovateľ",
+          "translated_word": "Krankenschwester",
+          "forbidden": [
+            "Infusion",
+            "Behandlung",
+            "Krankenhaus",
+            "Schicht"
+          ]
+        },
+        {
+          "index": 88,
+          "id": "taboo_sk_0523",
+          "sk_word": "sestra",
+          "translated_word": "Krankenschwester",
+          "forbidden": [
+            "Krankenhaus",
+            "Spritze",
+            "Pflege",
+            "Uniform"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "berater",
+      "cards": [
+        {
+          "index": 103,
+          "id": "taboo_sk_0538",
+          "sk_word": "poradca",
+          "translated_word": "Berater",
+          "forbidden": [
+            "Beratung",
+            "Rat",
+            "Kunde",
+            "Strategie"
+          ]
+        },
+        {
+          "index": 111,
+          "id": "taboo_sk_0607",
+          "sk_word": "konzultant",
+          "translated_word": "Berater",
+          "forbidden": [
+            "Beratung",
+            "Kunde",
+            "Präsentation",
+            "Projekt"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "designer",
+      "cards": [
+        {
+          "index": 105,
+          "id": "taboo_sk_0540",
+          "sk_word": "návrhár",
+          "translated_word": "Designer",
+          "forbidden": [
+            "Kollektion",
+            "Skizze",
+            "Mode",
+            "Nähen"
+          ]
+        },
+        {
+          "index": 120,
+          "id": "taboo_sk_0616",
+          "sk_word": "dizajnér",
+          "translated_word": "Designer",
+          "forbidden": [
+            "Konzept",
+            "Skizze",
+            "Kunde",
+            "Visual"
+          ]
+        }
+      ]
+    }
+  ]
+}
+{
+  "category": "Ľudia a povolania",
+  "locale": "en",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "waiter",
+      "cards": [
+        {
+          "index": 5,
+          "id": "taboo_sk_0156",
+          "sk_word": "čašník",
+          "translated_word": "waiter",
+          "forbidden": [
+            "menu",
+            "glass",
+            "tip",
+            "order"
+          ]
+        },
+        {
+          "index": 112,
+          "id": "taboo_sk_0608",
+          "sk_word": "číšnik",
+          "translated_word": "waiter",
+          "forbidden": [
+            "menu",
+            "table",
+            "receipt",
+            "serve"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "director",
+      "cards": [
+        {
+          "index": 20,
+          "id": "taboo_sk_0171",
+          "sk_word": "riaditeľ",
+          "translated_word": "director",
+          "forbidden": [
+            "decision",
+            "office",
+            "signature",
+            "responsibility"
+          ]
+        },
+        {
+          "index": 29,
+          "id": "taboo_sk_0180",
+          "sk_word": "režisér",
+          "translated_word": "director",
+          "forbidden": [
+            "scene",
+            "camera",
+            "edit",
+            "script"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "lawyer",
+      "cards": [
+        {
+          "index": 24,
+          "id": "taboo_sk_0175",
+          "sk_word": "advokát",
+          "translated_word": "lawyer",
+          "forbidden": [
+            "defense",
+            "client",
+            "statute",
+            "trial"
+          ]
+        },
+        {
+          "index": 91,
+          "id": "taboo_sk_0526",
+          "sk_word": "právnik",
+          "translated_word": "lawyer",
+          "forbidden": [
+            "court",
+            "defense",
+            "contract",
+            "statute"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "pharmacist",
+      "cards": [
+        {
+          "index": 37,
+          "id": "taboo_sk_0188",
+          "sk_word": "farmaceut",
+          "translated_word": "pharmacist",
+          "forbidden": [
+            "pharmacy",
+            "formulation",
+            "pill",
+            "dosage"
+          ]
+        },
+        {
+          "index": 96,
+          "id": "taboo_sk_0531",
+          "sk_word": "lekárnik",
+          "translated_word": "pharmacist",
+          "forbidden": [
+            "pharmacy",
+            "medicine",
+            "prescription",
+            "dosage"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "nurse",
+      "cards": [
+        {
+          "index": 40,
+          "id": "taboo_sk_0191",
+          "sk_word": "ošetrovateľ",
+          "translated_word": "nurse",
+          "forbidden": [
+            "IV",
+            "treatment",
+            "hospital",
+            "shift"
+          ]
+        },
+        {
+          "index": 88,
+          "id": "taboo_sk_0523",
+          "sk_word": "sestra",
+          "translated_word": "nurse",
+          "forbidden": [
+            "hospital",
+            "injection",
+            "care",
+            "uniform"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "carpenter",
+      "cards": [
+        {
+          "index": 48,
+          "id": "taboo_sk_0439",
+          "sk_word": "stolár",
+          "translated_word": "carpenter",
+          "forbidden": [
+            "wood",
+            "hammer",
+            "board",
+            "furniture"
+          ]
+        },
+        {
+          "index": 136,
+          "id": "taboo_sk_0703",
+          "sk_word": "tesár",
+          "translated_word": "carpenter",
+          "forbidden": [
+            "wood",
+            "hammer",
+            "house",
+            "ladder"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "instructor",
+      "cards": [
+        {
+          "index": 101,
+          "id": "taboo_sk_0536",
+          "sk_word": "lektor",
+          "translated_word": "instructor",
+          "forbidden": [
+            "course",
+            "presentation",
+            "exercise",
+            "assessment"
+          ]
+        },
+        {
+          "index": 127,
+          "id": "taboo_sk_0623",
+          "sk_word": "inštruktor",
+          "translated_word": "instructor",
+          "forbidden": [
+            "training",
+            "course",
+            "student",
+            "demonstration"
+          ]
+        }
+      ]
+    }
+  ]
+}
+{
+  "category": "Ľudia a povolania",
+  "locale": "es",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "profesor",
+      "cards": [
+        {
+          "index": 0,
+          "id": "taboo_sk_0151",
+          "sk_word": "učiteľ",
+          "translated_word": "profesor",
+          "forbidden": [
+            "escuela",
+            "alumno",
+            "pizarra",
+            "clase"
+          ]
+        },
+        {
+          "index": 89,
+          "id": "taboo_sk_0524",
+          "sk_word": "profesor",
+          "translated_word": "profesor",
+          "forbidden": [
+            "universidad",
+            "clase",
+            "cátedra",
+            "doctorado"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "camarero",
+      "cards": [
+        {
+          "index": 5,
+          "id": "taboo_sk_0156",
+          "sk_word": "čašník",
+          "translated_word": "camarero",
+          "forbidden": [
+            "menú",
+            "vaso",
+            "propina",
+            "pedido"
+          ]
+        },
+        {
+          "index": 112,
+          "id": "taboo_sk_0608",
+          "sk_word": "číšnik",
+          "translated_word": "camarero",
+          "forbidden": [
+            "menú",
+            "mesa",
+            "ticket",
+            "servir"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "director",
+      "cards": [
+        {
+          "index": 20,
+          "id": "taboo_sk_0171",
+          "sk_word": "riaditeľ",
+          "translated_word": "director",
+          "forbidden": [
+            "decisión",
+            "oficina",
+            "firma",
+            "responsabilidad"
+          ]
+        },
+        {
+          "index": 29,
+          "id": "taboo_sk_0180",
+          "sk_word": "režisér",
+          "translated_word": "director",
+          "forbidden": [
+            "escena",
+            "cámara",
+            "montaje",
+            "guion"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "abogado",
+      "cards": [
+        {
+          "index": 24,
+          "id": "taboo_sk_0175",
+          "sk_word": "advokát",
+          "translated_word": "abogado",
+          "forbidden": [
+            "defensa",
+            "cliente",
+            "artículo",
+            "juicio"
+          ]
+        },
+        {
+          "index": 91,
+          "id": "taboo_sk_0526",
+          "sk_word": "právnik",
+          "translated_word": "abogado",
+          "forbidden": [
+            "tribunal",
+            "defensa",
+            "contrato",
+            "artículo"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "farmacéutico",
+      "cards": [
+        {
+          "index": 37,
+          "id": "taboo_sk_0188",
+          "sk_word": "farmaceut",
+          "translated_word": "farmacéutico",
+          "forbidden": [
+            "farmacia",
+            "formulación",
+            "comprimido",
+            "dosis"
+          ]
+        },
+        {
+          "index": 96,
+          "id": "taboo_sk_0531",
+          "sk_word": "lekárnik",
+          "translated_word": "farmacéutico",
+          "forbidden": [
+            "farmacia",
+            "medicamento",
+            "receta",
+            "dosificación"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "carpintero",
+      "cards": [
+        {
+          "index": 48,
+          "id": "taboo_sk_0439",
+          "sk_word": "stolár",
+          "translated_word": "carpintero",
+          "forbidden": [
+            "madera",
+            "martillo",
+            "tabla",
+            "muebles"
+          ]
+        },
+        {
+          "index": 136,
+          "id": "taboo_sk_0703",
+          "sk_word": "tesár",
+          "translated_word": "carpintero",
+          "forbidden": [
+            "madera",
+            "martillo",
+            "casa",
+            "escalera"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "instructor",
+      "cards": [
+        {
+          "index": 101,
+          "id": "taboo_sk_0536",
+          "sk_word": "lektor",
+          "translated_word": "instructor",
+          "forbidden": [
+            "curso",
+            "presentación",
+            "ejercicio",
+            "evaluación"
+          ]
+        },
+        {
+          "index": 127,
+          "id": "taboo_sk_0623",
+          "sk_word": "inštruktor",
+          "translated_word": "instructor",
+          "forbidden": [
+            "entrenamiento",
+            "curso",
+            "alumno",
+            "demostración"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "diseñador",
+      "cards": [
+        {
+          "index": 105,
+          "id": "taboo_sk_0540",
+          "sk_word": "návrhár",
+          "translated_word": "diseñador",
+          "forbidden": [
+            "colección",
+            "boceto",
+            "moda",
+            "costura"
+          ]
+        },
+        {
+          "index": 120,
+          "id": "taboo_sk_0616",
+          "sk_word": "dizajnér",
+          "translated_word": "diseñador",
+          "forbidden": [
+            "concepto",
+            "boceto",
+            "cliente",
+            "visual"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 64,
+      "id": "taboo_sk_0455",
+      "sk_word": "kaskadér",
+      "translated_word": "doble",
+      "forbidden": [
+        "caída",
+        "doble",
+        "peligro",
+        "truco"
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 139,
+      "id": "taboo_sk_0706",
+      "sk_word": "plavčík",
+      "translated_word": "salvavidas",
+      "forbidden": [
+        "piscina",
+        "salvavidas",
+        "vigilancia",
+        "bañador"
+      ]
+    }
+  ]
+}
+{
+  "category": "Ľudia a povolania",
+  "locale": "fr",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "serveur",
+      "cards": [
+        {
+          "index": 5,
+          "id": "taboo_sk_0156",
+          "sk_word": "čašník",
+          "translated_word": "serveur",
+          "forbidden": [
+            "menu",
+            "verre",
+            "pourboire",
+            "commande"
+          ]
+        },
+        {
+          "index": 112,
+          "id": "taboo_sk_0608",
+          "sk_word": "číšnik",
+          "translated_word": "serveur",
+          "forbidden": [
+            "menu",
+            "table",
+            "ticket",
+            "servir"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "pharmacien",
+      "cards": [
+        {
+          "index": 37,
+          "id": "taboo_sk_0188",
+          "sk_word": "farmaceut",
+          "translated_word": "pharmacien",
+          "forbidden": [
+            "pharmacie",
+            "formulation",
+            "comprimé",
+            "dosage"
+          ]
+        },
+        {
+          "index": 96,
+          "id": "taboo_sk_0531",
+          "sk_word": "lekárnik",
+          "translated_word": "pharmacien",
+          "forbidden": [
+            "pharmacie",
+            "médicament",
+            "ordonnance",
+            "dosage"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "designer",
+      "cards": [
+        {
+          "index": 105,
+          "id": "taboo_sk_0540",
+          "sk_word": "návrhár",
+          "translated_word": "designer",
+          "forbidden": [
+            "collection",
+            "croquis",
+            "mode",
+            "couture"
+          ]
+        },
+        {
+          "index": 120,
+          "id": "taboo_sk_0616",
+          "sk_word": "dizajnér",
+          "translated_word": "designer",
+          "forbidden": [
+            "conception",
+            "esquisse",
+            "client",
+            "visuel"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 58,
+      "id": "taboo_sk_0449",
+      "sk_word": "kurátor",
+      "translated_word": "conservateur",
+      "forbidden": [
+        "galerie",
+        "exposition",
+        "œuvres",
+        "exposition"
+      ]
+    }
+  ]
+}
+{
+  "category": "Ľudia a povolania",
+  "locale": "pt",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "carpinteiro",
+      "cards": [
+        {
+          "index": 48,
+          "id": "taboo_sk_0439",
+          "sk_word": "stolár",
+          "translated_word": "carpinteiro",
+          "forbidden": [
+            "madeira",
+            "martelo",
+            "táboa",
+            "mobiliário"
+          ]
+        },
+        {
+          "index": 136,
+          "id": "taboo_sk_0703",
+          "sk_word": "tesár",
+          "translated_word": "carpinteiro",
+          "forbidden": [
+            "madeira",
+            "martelo",
+            "casa",
+            "escada"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "instrutor",
+      "cards": [
+        {
+          "index": 101,
+          "id": "taboo_sk_0536",
+          "sk_word": "lektor",
+          "translated_word": "instrutor",
+          "forbidden": [
+            "curso",
+            "apresentação",
+            "exercício",
+            "avaliação"
+          ]
+        },
+        {
+          "index": 127,
+          "id": "taboo_sk_0623",
+          "sk_word": "inštruktor",
+          "translated_word": "instrutor",
+          "forbidden": [
+            "treino",
+            "curso",
+            "aluno",
+            "demonstração"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "consultor",
+      "cards": [
+        {
+          "index": 103,
+          "id": "taboo_sk_0538",
+          "sk_word": "poradca",
+          "translated_word": "consultor",
+          "forbidden": [
+            "consulta",
+            "conselho",
+            "cliente",
+            "estratégia"
+          ]
+        },
+        {
+          "index": 111,
+          "id": "taboo_sk_0607",
+          "sk_word": "konzultant",
+          "translated_word": "consultor",
+          "forbidden": [
+            "aconselhamento",
+            "cliente",
+            "apresentação",
+            "projeto"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "designer",
+      "cards": [
+        {
+          "index": 105,
+          "id": "taboo_sk_0540",
+          "sk_word": "návrhár",
+          "translated_word": "designer",
+          "forbidden": [
+            "coleção",
+            "esboço",
+            "moda",
+            "costura"
+          ]
+        },
+        {
+          "index": 120,
+          "id": "taboo_sk_0616",
+          "sk_word": "dizajnér",
+          "translated_word": "designer",
+          "forbidden": [
+            "conceito",
+            "esboço",
+            "cliente",
+            "visual"
+          ]
+        }
+      ]
+    }
+  ]
+}
+{
+  "category": "Zvieratá",
+  "locale": "de",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "eichhörnchen",
+      "cards": [
+        {
+          "index": 9,
+          "id": "taboo_sk_0060",
+          "sk_word": "veverička",
+          "translated_word": "Eichhörnchen",
+          "forbidden": [
+            "Nuss",
+            "Baum",
+            "Schwanz",
+            "Sprung"
+          ]
+        },
+        {
+          "index": 145,
+          "id": "taboo_sk_0725",
+          "sk_word": "veverica",
+          "translated_word": "Eichhörnchen",
+          "forbidden": [
+            "Nuss",
+            "Baum",
+            "Schwanz",
+            "Sprung"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "bau",
+      "cards": [
+        {
+          "index": 48,
+          "id": "taboo_sk_0099",
+          "sk_word": "brloh",
+          "translated_word": "Bau",
+          "forbidden": [
+            "Loch",
+            "Unterschlupf",
+            "Bär",
+            "dunkel"
+          ]
+        },
+        {
+          "index": 125,
+          "id": "taboo_sk_0600",
+          "sk_word": "nora",
+          "translated_word": "Bau",
+          "forbidden": [
+            "Loch",
+            "Unterschlupf",
+            "Junges",
+            "graben"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "biber",
+      "cards": [
+        {
+          "index": 70,
+          "id": "taboo_sk_0313",
+          "sk_word": "bobr",
+          "translated_word": "Biber",
+          "forbidden": [
+            "Fluss",
+            "Damm",
+            "Holz",
+            "Schwanz"
+          ]
+        },
+        {
+          "index": 133,
+          "id": "taboo_sk_0633",
+          "sk_word": "bobor",
+          "translated_word": "Biber",
+          "forbidden": [
+            "Damm",
+            "Baum",
+            "Schwanz",
+            "Fluss"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "reh",
+      "cards": [
+        {
+          "index": 73,
+          "id": "taboo_sk_0316",
+          "sk_word": "srnec",
+          "translated_word": "Reh",
+          "forbidden": [
+            "Wald",
+            "Geweih",
+            "Geschwindigkeit",
+            "scheu"
+          ]
+        },
+        {
+          "index": 117,
+          "id": "taboo_sk_0592",
+          "sk_word": "srna",
+          "translated_word": "Reh",
+          "forbidden": [
+            "scheu",
+            "Weide",
+            "Junges",
+            "Wald"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "moor",
+      "cards": [
+        {
+          "index": 85,
+          "id": "taboo_sk_0328",
+          "sk_word": "rašelisko",
+          "translated_word": "Moor",
+          "forbidden": [
+            "Torf",
+            "Sumpf",
+            "Schlamm",
+            "Schutzgebiet"
+          ]
+        },
+        {
+          "index": 123,
+          "id": "taboo_sk_0598",
+          "sk_word": "močiar",
+          "translated_word": "Moor",
+          "forbidden": [
+            "Schlamm",
+            "Torf",
+            "seicht",
+            "Schilf"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "tarnung",
+      "cards": [
+        {
+          "index": 95,
+          "id": "taboo_sk_0338",
+          "sk_word": "kamufláž",
+          "translated_word": "Tarnung",
+          "forbidden": [
+            "Maskierung",
+            "Farbe",
+            "Räuber",
+            "Schutz"
+          ]
+        },
+        {
+          "index": 126,
+          "id": "taboo_sk_0601",
+          "sk_word": "maskovanie",
+          "translated_word": "Tarnung",
+          "forbidden": [
+            "verstecken",
+            "Farbe",
+            "Tier",
+            "Umgebung"
+          ]
+        }
+      ]
+    }
+  ]
+}
+{
+  "category": "Zvieratá",
+  "locale": "en",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "squirrel",
+      "cards": [
+        {
+          "index": 9,
+          "id": "taboo_sk_0060",
+          "sk_word": "veverička",
+          "translated_word": "squirrel",
+          "forbidden": [
+            "nut",
+            "tree",
+            "tail",
+            "jump"
+          ]
+        },
+        {
+          "index": 145,
+          "id": "taboo_sk_0725",
+          "sk_word": "veverica",
+          "translated_word": "squirrel",
+          "forbidden": [
+            "nut",
+            "tree",
+            "tail",
+            "jump"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "beaver",
+      "cards": [
+        {
+          "index": 70,
+          "id": "taboo_sk_0313",
+          "sk_word": "bobr",
+          "translated_word": "beaver",
+          "forbidden": [
+            "river",
+            "dam",
+            "wood",
+            "tail"
+          ]
+        },
+        {
+          "index": 133,
+          "id": "taboo_sk_0633",
+          "sk_word": "bobor",
+          "translated_word": "beaver",
+          "forbidden": [
+            "dam",
+            "tree",
+            "tail",
+            "river"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "migration",
+      "cards": [
+        {
+          "index": 90,
+          "id": "taboo_sk_0333",
+          "sk_word": "sťahovanie",
+          "translated_word": "migration",
+          "forbidden": [
+            "spring",
+            "herds",
+            "distance",
+            "season"
+          ]
+        },
+        {
+          "index": 110,
+          "id": "taboo_sk_0554",
+          "sk_word": "migrácia",
+          "translated_word": "migration",
+          "forbidden": [
+            "birds",
+            "season",
+            "direction",
+            "distance"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "camouflage",
+      "cards": [
+        {
+          "index": 95,
+          "id": "taboo_sk_0338",
+          "sk_word": "kamufláž",
+          "translated_word": "camouflage",
+          "forbidden": [
+            "masking",
+            "color",
+            "predator",
+            "protection"
+          ]
+        },
+        {
+          "index": 126,
+          "id": "taboo_sk_0601",
+          "sk_word": "maskovanie",
+          "translated_word": "camouflage",
+          "forbidden": [
+            "hide",
+            "color",
+            "animal",
+            "surroundings"
+          ]
+        }
+      ]
+    }
+  ]
+}
+{
+  "category": "Zvieratá",
+  "locale": "es",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "ardilla",
+      "cards": [
+        {
+          "index": 9,
+          "id": "taboo_sk_0060",
+          "sk_word": "veverička",
+          "translated_word": "ardilla",
+          "forbidden": [
+            "nuez",
+            "árbol",
+            "cola",
+            "salto"
+          ]
+        },
+        {
+          "index": 145,
+          "id": "taboo_sk_0725",
+          "sk_word": "veverica",
+          "translated_word": "ardilla",
+          "forbidden": [
+            "nuez",
+            "árbol",
+            "cola",
+            "salto"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "castor",
+      "cards": [
+        {
+          "index": 70,
+          "id": "taboo_sk_0313",
+          "sk_word": "bobr",
+          "translated_word": "castor",
+          "forbidden": [
+            "río",
+            "presa",
+            "madera",
+            "cola"
+          ]
+        },
+        {
+          "index": 133,
+          "id": "taboo_sk_0633",
+          "sk_word": "bobor",
+          "translated_word": "castor",
+          "forbidden": [
+            "presa",
+            "árbol",
+            "cola",
+            "río"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "pantano",
+      "cards": [
+        {
+          "index": 81,
+          "id": "taboo_sk_0324",
+          "sk_word": "bažina",
+          "translated_word": "pantano",
+          "forbidden": [
+            "marisma",
+            "lodo",
+            "turba",
+            "mosquitos"
+          ]
+        },
+        {
+          "index": 123,
+          "id": "taboo_sk_0598",
+          "sk_word": "močiar",
+          "translated_word": "pantano",
+          "forbidden": [
+            "lodo",
+            "turba",
+            "somero",
+            "junco"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "migración",
+      "cards": [
+        {
+          "index": 90,
+          "id": "taboo_sk_0333",
+          "sk_word": "sťahovanie",
+          "translated_word": "migración",
+          "forbidden": [
+            "primavera",
+            "manadas",
+            "distancia",
+            "temporada"
+          ]
+        },
+        {
+          "index": 110,
+          "id": "taboo_sk_0554",
+          "sk_word": "migrácia",
+          "translated_word": "migración",
+          "forbidden": [
+            "aves",
+            "temporada",
+            "dirección",
+            "distancia"
+          ]
+        }
+      ]
+    }
+  ]
+}
+{
+  "category": "Zvieratá",
+  "locale": "fr",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "écureuil",
+      "cards": [
+        {
+          "index": 9,
+          "id": "taboo_sk_0060",
+          "sk_word": "veverička",
+          "translated_word": "écureuil",
+          "forbidden": [
+            "noix",
+            "arbre",
+            "queue",
+            "saut"
+          ]
+        },
+        {
+          "index": 145,
+          "id": "taboo_sk_0725",
+          "sk_word": "veverica",
+          "translated_word": "écureuil",
+          "forbidden": [
+            "noix",
+            "arbre",
+            "queue",
+            "saut"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "castor",
+      "cards": [
+        {
+          "index": 70,
+          "id": "taboo_sk_0313",
+          "sk_word": "bobr",
+          "translated_word": "castor",
+          "forbidden": [
+            "rivière",
+            "barrage",
+            "bois",
+            "queue"
+          ]
+        },
+        {
+          "index": 133,
+          "id": "taboo_sk_0633",
+          "sk_word": "bobor",
+          "translated_word": "castor",
+          "forbidden": [
+            "barrage",
+            "arbre",
+            "queue",
+            "rivière"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "marais",
+      "cards": [
+        {
+          "index": 81,
+          "id": "taboo_sk_0324",
+          "sk_word": "bažina",
+          "translated_word": "marais",
+          "forbidden": [
+            "marécage",
+            "boue",
+            "tourbe",
+            "moustiques"
+          ]
+        },
+        {
+          "index": 123,
+          "id": "taboo_sk_0598",
+          "sk_word": "močiar",
+          "translated_word": "marais",
+          "forbidden": [
+            "boue",
+            "tourbe",
+            "peu profond",
+            "roseau"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "migration",
+      "cards": [
+        {
+          "index": 90,
+          "id": "taboo_sk_0333",
+          "sk_word": "sťahovanie",
+          "translated_word": "migration",
+          "forbidden": [
+            "printemps",
+            "troupeaux",
+            "distance",
+            "saison"
+          ]
+        },
+        {
+          "index": 110,
+          "id": "taboo_sk_0554",
+          "sk_word": "migrácia",
+          "translated_word": "migration",
+          "forbidden": [
+            "oiseaux",
+            "saison",
+            "direction",
+            "distance"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "camouflage",
+      "cards": [
+        {
+          "index": 95,
+          "id": "taboo_sk_0338",
+          "sk_word": "kamufláž",
+          "translated_word": "camouflage",
+          "forbidden": [
+            "déguisement",
+            "couleur",
+            "prédateur",
+            "protection"
+          ]
+        },
+        {
+          "index": 126,
+          "id": "taboo_sk_0601",
+          "sk_word": "maskovanie",
+          "translated_word": "camouflage",
+          "forbidden": [
+            "cacher",
+            "couleur",
+            "animal",
+            "environnement"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "invalid_forbidden",
+      "index": 82,
+      "id": "taboo_sk_0325",
+      "sk_word": "prales",
+      "translated_word": "jungle",
+      "forbidden": [
+        "jungle",
+        "pluie",
+        "arbres immenses",
+        "dense"
+      ]
+    }
+  ]
+}
+{
+  "category": "Zvieratá",
+  "locale": "pt",
+  "issues": [
+    {
+      "type": "duplicate_target",
+      "word": "esquilo",
+      "cards": [
+        {
+          "index": 9,
+          "id": "taboo_sk_0060",
+          "sk_word": "veverička",
+          "translated_word": "esquilo",
+          "forbidden": [
+            "noz",
+            "árvore",
+            "rabo",
+            "salto"
+          ]
+        },
+        {
+          "index": 145,
+          "id": "taboo_sk_0725",
+          "sk_word": "veverica",
+          "translated_word": "esquilo",
+          "forbidden": [
+            "noz",
+            "árvore",
+            "cauda",
+            "salto"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "toca",
+      "cards": [
+        {
+          "index": 48,
+          "id": "taboo_sk_0099",
+          "sk_word": "brloh",
+          "translated_word": "toca",
+          "forbidden": [
+            "buraco",
+            "abrigo",
+            "urso",
+            "escuro"
+          ]
+        },
+        {
+          "index": 125,
+          "id": "taboo_sk_0600",
+          "sk_word": "nora",
+          "translated_word": "toca",
+          "forbidden": [
+            "buraco",
+            "abrigo",
+            "filhote",
+            "cavar"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "castor",
+      "cards": [
+        {
+          "index": 70,
+          "id": "taboo_sk_0313",
+          "sk_word": "bobr",
+          "translated_word": "castor",
+          "forbidden": [
+            "rio",
+            "represa",
+            "madeira",
+            "cauda"
+          ]
+        },
+        {
+          "index": 133,
+          "id": "taboo_sk_0633",
+          "sk_word": "bobor",
+          "translated_word": "castor",
+          "forbidden": [
+            "represa",
+            "árvore",
+            "cauda",
+            "rio"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "corça",
+      "cards": [
+        {
+          "index": 73,
+          "id": "taboo_sk_0316",
+          "sk_word": "srnec",
+          "translated_word": "corça",
+          "forbidden": [
+            "floresta",
+            "galhadas",
+            "velocidade",
+            "tímido"
+          ]
+        },
+        {
+          "index": 117,
+          "id": "taboo_sk_0592",
+          "sk_word": "srna",
+          "translated_word": "corça",
+          "forbidden": [
+            "tímida",
+            "pastagem",
+            "filhote",
+            "floresta"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "migração",
+      "cards": [
+        {
+          "index": 90,
+          "id": "taboo_sk_0333",
+          "sk_word": "sťahovanie",
+          "translated_word": "migração",
+          "forbidden": [
+            "primavera",
+            "manadas",
+            "distância",
+            "estação"
+          ]
+        },
+        {
+          "index": 110,
+          "id": "taboo_sk_0554",
+          "sk_word": "migrácia",
+          "translated_word": "migração",
+          "forbidden": [
+            "pássaros",
+            "estação",
+            "direção",
+            "distância"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "duplicate_target",
+      "word": "camuflagem",
+      "cards": [
+        {
+          "index": 95,
+          "id": "taboo_sk_0338",
+          "sk_word": "kamufláž",
+          "translated_word": "camuflagem",
+          "forbidden": [
+            "ocultação",
+            "cor",
+            "predador",
+            "proteção"
+          ]
+        },
+        {
+          "index": 126,
+          "id": "taboo_sk_0601",
+          "sk_word": "maskovanie",
+          "translated_word": "camuflagem",
+          "forbidden": [
+            "esconder",
+            "cor",
+            "animal",
+            "ambiente"
+          ]
+        }
+      ]
+    }
+  ]
+}
