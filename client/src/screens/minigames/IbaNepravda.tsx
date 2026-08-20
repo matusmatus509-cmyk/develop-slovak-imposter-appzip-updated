@@ -112,7 +112,6 @@ export default function IbaNepravda({ onBack }: { onBack: () => void }) {
             <strong>{secondsText}</strong>
             <small>s</small>
           </p>
-          <span className="only-lies-clock-hint">Čiara okolo displeja dobehne presne v nule</span>
         </section>
 
         <article className="only-lies-question" key={roundId} aria-live="polite">
@@ -123,18 +122,6 @@ export default function IbaNepravda({ onBack }: { onBack: () => void }) {
         </article>
 
         <div className="only-lies-actions" aria-label="Vyhodnotenie odpovede">
-          <Button
-            fullWidth
-            size="lg"
-            onClick={() => finishRound("correct")}
-            disabled={lost}
-            className="only-lies-answer only-lies-answer--correct"
-          >
-            <span className="only-lies-answer-inner">
-              <Icons.circleCheck size={20} />
-              Správne
-            </span>
-          </Button>
           <Button
             fullWidth
             size="lg"
