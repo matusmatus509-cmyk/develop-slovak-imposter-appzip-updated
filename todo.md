@@ -249,5 +249,17 @@
 ## Odovzdanie aktuálnej verzie na GitHub
 
 - [x] Skontrolovať stav pracovného stromu, cieľovú vetvu a aktuálny vzdialený repozitár pred odovzdaním; GitHub main má rozdielnu históriu, preto bude použitá bezpečná nová vetva bez prepisu main.
-- [ ] Vytvoriť commit pre aktuálnu overenú verziu Iba nepravda a súvisiace vizuálne úpravy.
-- [ ] Odoslať commit do vybraného repozitára GitHubu a potvrdiť výslednú vetvu a revíziu.
+- [x] Vytvoriť commit pre aktuálnu overenú verziu Iba nepravda a súvisiace vizuálne úpravy; pripravený je lokálny commit d7803b0 na bezpečnej vetve manus/current-version-72ac4beb.
+- [x] Odoslať commit do vybraného repozitára GitHubu a potvrdiť výslednú vetvu a revíziu; vetva manus/current-version-72ac4beb je na GitHube s commitom d7803b0.
+
+## Diagnostika verejnej adresy z GitHubu
+
+- [x] Overiť, či vybraný GitHub repozitár má nakonfigurovanú verejnú stránku alebo iba zdrojový kód; repozitár uvádza Vercel adresu, no tá momentálne vracia obsah server/index.ts namiesto aplikácie.
+- [ ] Používateľovi jasne odlíšiť Git URL repozitára od adresy zverejnenej aplikácie a uviesť ďalší bezpečný krok.
+
+## Oprava nasadenia Vercelu
+
+- [x] Pridať konfiguráciu Vercelu s build príkazom pnpm build a publikovaním výstupu dist/public.
+- [x] Nahradiť interné cesty /manus-storage verejne dostupnými asset URL pre obrázky a zvuky používané mimo Manus hostovania.
+- [x] Overiť produkčný build a existenciu súboru dist/public/index.html pred odovzdaním.
+- [ ] Opravu odoslať na novú bezpečnú vetvu GitHubu bez prepisovania main a poskytnúť odkaz na pull request alebo nasadenie.
