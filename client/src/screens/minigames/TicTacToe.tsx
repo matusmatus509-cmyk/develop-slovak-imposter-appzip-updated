@@ -174,7 +174,7 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
                 <Icons.chevronLeft size={21} />
               </button>
               <PartyEyebrow>Klasická hra</PartyEyebrow>
-              <div className="h-11 w-11" />
+              <div className="exit-slot-spacer" />
             </header>
 
             <section className="mt-7 text-center">
@@ -278,7 +278,7 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
               <Icons.chevronLeft size={19} />
             </button>
             <PartyEyebrow>Kolo {round}</PartyEyebrow>
-            <div className="h-10 w-10" />
+            <div className="exit-slot-spacer" />
           </header>
 
           <section className="tic-scoreboard mt-2 grid shrink-0 grid-cols-[1fr_auto_1fr] items-center gap-2">

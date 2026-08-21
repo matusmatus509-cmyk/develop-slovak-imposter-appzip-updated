@@ -361,7 +361,9 @@ export default function MusicBuzzer({
 
   return (
     <PartyBackdrop>
-      <main className="music-quiz-stage grid h-full grid-rows-[auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto] overflow-hidden">
+      {/* two-sided-table: telefón leží na stole a horné pásmo patrí protistrane,
+          takže tlačidlo odísť sa presunie do stredového pásu (index.css). */}
+      <main className="music-quiz-stage two-sided-table grid h-full grid-rows-[auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto] overflow-hidden">
         <div className="rotate-180">{renderActionDeck(farSeats)}</div>
 
         <div className="rotate-180 min-h-0">{renderReadout()}</div>

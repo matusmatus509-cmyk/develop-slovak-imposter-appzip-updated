@@ -954,7 +954,7 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
                 <Icons.chevronLeft size={21} />
               </button>
               <PartyEyebrow>Hra pre dvoch</PartyEyebrow>
-              <div className="h-11 w-11" />
+              <div className="exit-slot-spacer" />
             </header>
             <section className="battle-mode-hero mt-6 text-center">
               <div className="battle-mode-emblem mx-auto flex h-28 w-28 items-center justify-center rounded-[2.2rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-400/15 to-blue-700/25 shadow-2xl shadow-cyan-500/10">
@@ -1089,7 +1089,7 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
                   ? `Hráč ${deploymentPlayer + 1} · súkromne`
                   : "Tvoja flotila"}
               </PartyEyebrow>
-              <div className="h-10 w-10" />
+              <div className="exit-slot-spacer" />
             </header>
             <section className="battle-placement-heading mt-2 shrink-0 text-center">
               <p className="text-[7px] font-black uppercase tracking-[.24em] text-cyan-300/60">
@@ -1270,7 +1270,7 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
             <PartyEyebrow>
               {phase === "finished" ? "Koniec hry" : `${activeName} je na ťahu`}
             </PartyEyebrow>
-            <div className="h-10 w-10" />
+            <div className="exit-slot-spacer" />
           </header>
 
           <section className="battle-scoreboard mt-2 grid shrink-0 grid-cols-3 gap-1.5 text-center">

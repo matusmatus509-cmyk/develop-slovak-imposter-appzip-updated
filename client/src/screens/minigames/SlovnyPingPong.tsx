@@ -15,9 +15,9 @@ function takePrompt() {
 }
 
 // Colors
-const COLOR_TOP = "#e85577";    // Player 1 — red/pink
+const COLOR_TOP = "#e85577"; // Player 1 — red/pink
 const COLOR_TOP_DARK = "#9e2a40";
-const COLOR_BOT = "#6b70d8";    // Player 2 — blue/purple
+const COLOR_BOT = "#6b70d8"; // Player 2 — blue/purple
 const COLOR_BOT_DARK = "#3a3e8a";
 
 // ─── Setup Screen ─────────────────────────────────────────────────────────────
@@ -39,10 +39,10 @@ function SetupScreen({
       <TopBar title="Slovný Ping Pong" onBack={onBack} />
 
       <div className="mb-5 rounded-3xl border border-green-500/20 bg-green-500/10 p-4 text-sm text-white/70 leading-relaxed">
-        Telefón položte na stôl. Každý sedí na svojej strane.
-        Hovorte slová na dané písmeno a{" "}
-        <strong className="text-white">klepnite na svoju polovicu</strong> po každom slove.
-        Čiara sa pohybuje smerom k vám — kto nestihne, prehráva!
+        Telefón položte na stôl. Každý sedí na svojej strane. Hovorte slová na
+        dané písmeno a{" "}
+        <strong className="text-white">klepnite na svoju polovicu</strong> po
+        každom slove. Čiara sa pohybuje smerom k vám — kto nestihne, prehráva!
       </div>
 
       {/* Player 1 */}
@@ -52,7 +52,7 @@ function SetupScreen({
         </p>
         <input
           value={name1}
-          onChange={(e) => setName1(e.target.value)}
+          onChange={e => setName1(e.target.value)}
           placeholder={defaultPlayerName(language, 1)}
           className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-pink-400/60"
         />
@@ -65,7 +65,7 @@ function SetupScreen({
         </p>
         <input
           value={name2}
-          onChange={(e) => setName2(e.target.value)}
+          onChange={e => setName2(e.target.value)}
           placeholder={defaultPlayerName(language, 2)}
           className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-blue-400/60"
         />
@@ -82,7 +82,7 @@ function SetupScreen({
             { label: "Stredne", val: 4 },
             { label: "Rýchlo", val: 2.5 },
             { label: "Šialene", val: 1.5 },
-          ].map((opt) => (
+          ].map(opt => (
             <button
               key={opt.val}
               onClick={() => setSpeed(opt.val)}
@@ -98,8 +98,19 @@ function SetupScreen({
         </div>
       </div>
 
-      <Button fullWidth onClick={() => onStart(name1.trim() || defaultPlayerName(language, 1), name2.trim() || defaultPlayerName(language, 2), speed)}>
-        <span className="inline-flex items-center gap-2"><Icons.zap size={18} /> Hrať!</span>
+      <Button
+        fullWidth
+        onClick={() =>
+          onStart(
+            name1.trim() || defaultPlayerName(language, 1),
+            name2.trim() || defaultPlayerName(language, 2),
+            speed
+          )
+        }
+      >
+        <span className="inline-flex items-center gap-2">
+          <Icons.zap size={18} /> Hrať!
+        </span>
       </Button>
     </Shell>
   );
@@ -125,7 +136,9 @@ export function SlovnyPingPongGame({
   const [prompt, setPrompt] = useState(() => takePrompt());
   // active = 0 → ball moves toward TOP (player 1 must answer)
   // active = 1 → ball moves toward BOTTOM (player 2 must answer)
-  const [active, setActive] = useState<0 | 1>(() => (Math.random() < 0.5 ? 0 : 1));
+  const [active, setActive] = useState<0 | 1>(() =>
+    Math.random() < 0.5 ? 0 : 1
+  );
   const [result, setResult] = useState<{ loser: 0 | 1 } | null>(null);
   const [countdown, setCountdown] = useState(3);
   const [roundKey, setRoundKey] = useState(0);
@@ -148,7 +161,10 @@ export function SlovnyPingPongGame({
 
   useEffect(() => {
     if (countdown <= 0 || result) return;
-    const timer = window.setTimeout(() => setCountdown((value) => value - 1), 1000);
+    const timer = window.setTimeout(
+      () => setCountdown(value => value - 1),
+      1000
+    );
     return () => window.clearTimeout(timer);
   }, [countdown, result]);
 
@@ -225,18 +241,25 @@ export function SlovnyPingPongGame({
     activeRef.current = newActive;
     setBallY(0.5);
     setCountdown(3);
-    setRoundKey((key) => key + 1);
+    setRoundKey(key => key + 1);
   }
 
   const isTopActive = active === 0;
   // Scale a fixed shadow layer instead of changing its height on every animation frame.
   // This keeps the pressure visual in the compositor and precisely in sync with the ball.
-  const topPressure = isTopActive ? Math.min(1, Math.max(0, (0.5 - ballY) * 2)) : 0;
-  const bottomPressure = !isTopActive ? Math.min(1, Math.max(0, (ballY - 0.5) * 2)) : 0;
+  const topPressure = isTopActive
+    ? Math.min(1, Math.max(0, (0.5 - ballY) * 2))
+    : 0;
+  const bottomPressure = !isTopActive
+    ? Math.min(1, Math.max(0, (ballY - 0.5) * 2))
+    : 0;
 
   return (
     <div
-      className="fixed inset-0 overflow-hidden"
+      // two-sided-table: obe polovice sú ťapacie plochy hráčov, takže tlačidlo
+      // odísť ide na hranicu medzi nimi (index.css). Presne tam ho malo aj
+      // vlastné tlačidlo tejto hry, ktoré bolo pred zjednotením nahradené.
+      className="two-sided-table fixed inset-0 overflow-hidden"
       style={{ touchAction: "none", userSelect: "none" }}
     >
       {/* ── TOP HALF — Player 1 ── */}
@@ -348,17 +371,32 @@ export function SlovnyPingPongGame({
 
       {countdown > 0 && !result && (
         <div className="absolute inset-0 z-40 bg-black/40 text-center backdrop-blur-sm">
-          <div className="absolute inset-x-5 top-[12%] flex flex-col items-center" style={{ transform: "rotate(180deg)" }}>
-            <p className="text-[11px] font-black uppercase tracking-[0.24em] text-white/70">Kategória</p>
-            <p className="mt-3 max-w-[85vw] text-3xl font-black text-white">{prompt}</p>
+          <div
+            className="absolute inset-x-5 top-[12%] flex flex-col items-center"
+            style={{ transform: "rotate(180deg)" }}
+          >
+            <p className="text-[11px] font-black uppercase tracking-[0.24em] text-white/70">
+              Kategória
+            </p>
+            <p className="mt-3 max-w-[85vw] text-3xl font-black text-white">
+              {prompt}
+            </p>
           </div>
           <div className="absolute inset-x-5 bottom-[12%] flex flex-col items-center">
-            <p className="text-[11px] font-black uppercase tracking-[0.24em] text-white/70">Kategória</p>
-            <p className="mt-3 max-w-[85vw] text-3xl font-black text-white">{prompt}</p>
+            <p className="text-[11px] font-black uppercase tracking-[0.24em] text-white/70">
+              Kategória
+            </p>
+            <p className="mt-3 max-w-[85vw] text-3xl font-black text-white">
+              {prompt}
+            </p>
           </div>
           <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
-            <div className="flex h-24 w-24 items-center justify-center rounded-full border-2 border-white/40 bg-white/15 text-6xl font-black text-white animate-pulse">{countdown}</div>
-            <p className="mt-3 whitespace-nowrap text-sm font-bold text-white/70">Pripravte sa!</p>
+            <div className="flex h-24 w-24 items-center justify-center rounded-full border-2 border-white/40 bg-white/15 text-6xl font-black text-white animate-pulse">
+              {countdown}
+            </div>
+            <p className="mt-3 whitespace-nowrap text-sm font-bold text-white/70">
+              Pripravte sa!
+            </p>
           </div>
         </div>
       )}
@@ -367,7 +405,9 @@ export function SlovnyPingPongGame({
       {result && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/75">
           <div className="mx-6 flex flex-col items-center gap-5 rounded-3xl border border-white/15 bg-white/10 p-8 text-center backdrop-blur-md">
-            <div className="flex h-20 w-20 items-center justify-center rounded-[1.7rem] border border-amber-200/20 bg-amber-300/10 text-amber-200 shadow-xl shadow-amber-950/20"><Icons.trophy size={40} /></div>
+            <div className="flex h-20 w-20 items-center justify-center rounded-[1.7rem] border border-amber-200/20 bg-amber-300/10 text-amber-200 shadow-xl shadow-amber-950/20">
+              <Icons.trophy size={40} />
+            </div>
             <div>
               <p className="text-lg font-bold text-white/60 mb-1">Vyhráva</p>
               <p className="text-4xl font-black text-white">
@@ -382,7 +422,9 @@ export function SlovnyPingPongGame({
                 onClick={() => onWinner(result.loser === 0 ? 1 : 0)}
                 className="w-full rounded-2xl bg-white/20 py-3.5 font-bold text-white active:scale-95 transition"
               >
-                <span className="inline-flex items-center gap-2"><Icons.chevronRight size={17} /> Pokračovať v Party mode</span>
+                <span className="inline-flex items-center gap-2">
+                  <Icons.chevronRight size={17} /> Pokračovať v Party mode
+                </span>
               </button>
             ) : (
               <div className="flex w-full gap-3">
@@ -390,7 +432,9 @@ export function SlovnyPingPongGame({
                   onClick={restart}
                   className="flex-1 rounded-2xl bg-white/20 py-3.5 font-bold text-white active:scale-95 transition"
                 >
-                  <span className="inline-flex items-center gap-2"><Icons.refresh size={16} /> Znova</span>
+                  <span className="inline-flex items-center gap-2">
+                    <Icons.refresh size={16} /> Znova
+                  </span>
                 </button>
                 <button
                   onClick={onBack}
@@ -404,16 +448,8 @@ export function SlovnyPingPongGame({
         </div>
       )}
 
-      {/* ── EXIT BUTTON (small, top-right corner) ── */}
-      {!result && (
-        <button
-          className="absolute right-4 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/30 text-white/50 active:scale-95"
-          style={{ top: "calc(50% - 18px)" }}
-          onPointerDown={(e) => { e.stopPropagation(); onBack(); }}
-        >
-          ✕
-        </button>
-      )}
+      {/* Vlastné tlačidlo na odchod tu bolo nahradené globálnym, ktoré má na
+          obojstranných obrazovkách rovnaké umiestnenie na hranici polovíc. */}
     </div>
   );
 }
@@ -434,7 +470,7 @@ export default function SlovnyPingPong({ onBack }: { onBack: () => void }) {
         onBack={onBack}
         onStart={(name1, name2, secs) => {
           setGameParams({ name1, name2, secsToEdge: secs });
-          setGameKey((k) => k + 1);
+          setGameKey(k => k + 1);
         }}
       />
     );

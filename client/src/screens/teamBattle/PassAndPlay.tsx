@@ -360,7 +360,7 @@ function PassAndPlay({
     >
       <div className="party-grid pointer-events-none absolute inset-0 opacity-20" />
       <header
-        className={`relative z-10 m-3 flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/[0.055] px-4 py-3 backdrop-blur-xl ${mode === "pesnicka" ? "song-round-header" : ""}`}
+        className={`exit-slot-gap relative z-10 m-3 flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/[0.055] px-4 py-3 backdrop-blur-xl ${mode === "pesnicka" ? "song-round-header" : ""}`}
       >
         <div className="min-w-0 text-left">
           <p className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">

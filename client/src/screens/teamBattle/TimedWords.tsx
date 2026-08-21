@@ -497,7 +497,7 @@ export default function TimedWords({
         )}
 
         <div
-          className="relative z-10 m-3 flex shrink-0 items-center justify-between rounded-[1.4rem] border border-white/10 bg-white/[0.055] px-5 py-3 backdrop-blur-xl"
+          className="exit-slot-gap relative z-10 m-3 flex shrink-0 items-center justify-between rounded-[1.4rem] border border-white/10 bg-white/[0.055] px-5 py-3 backdrop-blur-xl"
           style={{ boxShadow: `0 12px 34px ${color}18` }}
         >
           <div style={{ animation: "fadeIn 0.4s ease-out" }}>
