@@ -1135,7 +1135,10 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 
 .music-quiz-center {
   height: min(7.5rem, 17dvh);
-  padding-inline: 1.25rem;
+  /* Šírka slotu pre tlačidlo odísť, ktoré na tejto obrazovke sedí v strede
+     pravého okraja. Odsadenie je na oboch stranách, aby ekvalizér zostal
+     symetrický — inak by pravá strana bola viditeľne kratšia. */
+  padding-inline: var(--exit-slot);
 }
 
 .music-quiz-disc {
@@ -1368,6 +1371,105 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   isolation: isolate;
 }
 
+/* ── Tlačidlo odísť z hry ────────────────────────────────────────────────────
+   Šírka slotu, ktorý si hlavičky rezervujú, aby tlačidlo nesedelo na obsahu.
+   Je to 2.75rem tlačidla + odsadenie od okraja a od susedného prvku. */
+:root {
+  --exit-slot: 3.65rem;
+}
+
+.exit-game-button {
+  position: fixed;
+  /* Rovnaká safe-area konvencia ako všade inde v projekte. Pôvodné tlačidlo
+     bolo jediný fixed prvok bez nej a na telefónoch s výrezom skončilo pod
+     systémovou lištou. */
+  top: max(0.7rem, env(safe-area-inset-top));
+  right: max(0.7rem, env(safe-area-inset-right));
+  /* Nad hlavičkou (30) a navigáciou (40), pod celoobrazovkovými prekrytiami (50+). */
+  z-index: 45;
+  display: flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(16, 24, 36, 0.85);
+  color: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(14px);
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.exit-game-button:hover {
+  border-color: rgba(248, 113, 113, 0.55);
+  background: rgba(127, 29, 29, 0.72);
+  color: #fff;
+}
+
+.exit-game-button:active {
+  transform: scale(0.92);
+}
+
+/* Rezervácia miesta pod tlačidlom. Explicitná trieda, nie descendant selektor,
+   aby bolo z každej hlavičky vidieť, že s tlačidlom počíta.
+
+   `!important` je nutné: Tailwind `px-*` generuje shorthand `padding-inline`,
+   ktorý by longhand `padding-right` prebil bez ohľadu na poradie pravidiel.
+   Meraním sa ukázalo, že bez toho hlavička so skóre stále liezla pod tlačidlo. */
+.exit-slot-gap {
+  padding-right: var(--exit-slot) !important;
+}
+
+/* Pre vodorovne skrolovateľné pásy. Padding u nich nepomôže — pridá miesto až
+   za posledný prvok v scrollovacej ploche, ale viditeľná časť stále siaha pod
+   tlačidlo. Zúžiť treba samotný scrollovací rám, teda margin. */
+.exit-slot-inset {
+  margin-right: var(--exit-slot) !important;
+}
+
+/* Obojstranné hry: horný roh patrí hracej polovici protistrany, takže tlačidlo
+   ide do stredového pásu, ktorý je spoločný pre obe strany a rovnako daleko od
+   oboch. Presne tak to riešil slovný ping-pong ešte pred týmto zjednotením.
+   Keby prehliadač `:has()` nepodporoval, zostane rohová pozícia — teda stav
+   pred zmenou, nie rozbitý layout. */
+.app-screen-frame:has(.two-sided-table) .exit-game-button {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.app-screen-frame:has(.two-sided-table) .exit-game-button:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+/* Prázdny odstupník v hlavičke, ktorý drží titulok mimo tlačidla. Nahrádza
+   ručné `h-10 w-10` odstupníky — tie boli o 18px užšie, než tlačidlo potrebuje,
+   takže dlhý titulok mal od neho vôľu jediný pixel. */
+.exit-slot-spacer {
+  flex: none;
+  width: var(--exit-slot);
+}
+
+@media (max-height: 699px), (max-width: 359px) {
+  :root {
+    --exit-slot: 3.2rem;
+  }
+  .exit-game-button {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exit-game-button {
+    transition: none;
+  }
+}
+
 .app-screen-frame.is-game-stage,
 .game-welcome-frame {
   height: 100dvh;
@@ -1377,8 +1479,11 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   touch-action: manipulation;
 }
 
-.is-game-stage > *,
-.game-welcome-frame > * {
+/* Vrstvy obrazovky vyplnia rám. Tlačidlo odísť je výnimka — je to chrome nad
+   obrazovkou, nie jej vrstva, a `height: 100%` by z neho urobilo pás cez celý
+   displej a rozbilo aj jeho centrovanie na obojstranných hrách. */
+.is-game-stage > *:not(.exit-game-button),
+.game-welcome-frame > *:not(.exit-game-button) {
   height: 100%;
   min-height: 0;
 }

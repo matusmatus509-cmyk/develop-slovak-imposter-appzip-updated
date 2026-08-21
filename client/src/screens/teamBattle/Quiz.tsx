@@ -364,7 +364,9 @@ export default function TeamQuiz({
 
   return (
     <div
-      className="fixed inset-0 flex flex-col overflow-hidden"
+      // two-sided-table: obe polovice sú hracie plochy tímov, takže tlačidlo
+      // odísť ide do stredového pásu medzi nimi (index.css).
+      className="two-sided-table fixed inset-0 flex flex-col overflow-hidden"
       style={{
         background:
           "radial-gradient(circle at 50% 30%, rgba(168,85,247,.15), transparent 45%), #070711",
@@ -394,7 +396,7 @@ export default function TeamQuiz({
       />
 
       {/* Stredový pás: skóre a spoločné ovládanie. */}
-      <div className="relative z-20 mx-3 shrink-0 rounded-2xl border border-white/10 bg-white/[0.06] px-3 py-1.5 backdrop-blur-xl">
+      <div className="exit-slot-gap relative z-20 mx-3 shrink-0 rounded-2xl border border-white/10 bg-white/[0.06] px-3 py-1.5 backdrop-blur-xl">
         <div className="flex items-center justify-between gap-2">
           {([0, 1] as const).map(idx => (
             <div

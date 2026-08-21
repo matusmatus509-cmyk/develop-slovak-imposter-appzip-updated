@@ -214,7 +214,9 @@ export default function DrawingCanvas({
       </div>
 
       <header className="relative z-10 shrink-0 px-4 pb-3 pt-[max(.9rem,env(safe-area-inset-top))]">
-        <div className="flex items-center justify-between">
+        {/* Odsadenie vpravo, aby badge „1 ťah" nešiel pod tlačidlo odísť.
+            Vlastný krížik vľavo zostáva — je na opačnej strane, nekoliduje. */}
+        <div className="exit-slot-gap flex items-center justify-between">
           <button
             onClick={onExit}
             aria-label="Ukončiť hru"

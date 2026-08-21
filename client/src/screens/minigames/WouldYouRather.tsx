@@ -5,7 +5,6 @@ import { Button, Shell } from "../../components/ui";
 import CustomContentSelector, {
   type CustomContentControls,
 } from "../../components/CustomContentSelector";
-import { Icons } from "../../components/icons";
 import { cn } from "../../utils/designTokens";
 import { takePersistentItem } from "../../utils/persistentDeck";
 import type { WorkshopEntry } from "../../types";
@@ -141,14 +140,8 @@ export default function WouldYouRather({
         )}
         aria-live="polite"
       >
-        <button
-          type="button"
-          onClick={onBack}
-          className="ml-auto flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-black/25 text-white/85 shadow-[0_12px_28px_-16px_rgba(0,0,0,.95)] backdrop-blur-xl transition hover:border-white/35 hover:bg-white/10 active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/30"
-          aria-label="Zavrieť hru"
-        >
-          <Icons.x size={25} />
-        </button>
+        {/* Vlastný krížik tu bol zdvojený s globálnym tlačidlom odísť — rovnaká
+          ikona, rovnaká akcia, rovnaký roh. Zostáva len to globálne. */}
         <h1 className="sr-only">Čo by si radšej?</h1>
         <section
           className="flex flex-1 flex-col justify-center gap-3 py-4"

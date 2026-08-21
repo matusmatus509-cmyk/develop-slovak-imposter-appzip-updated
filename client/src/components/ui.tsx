@@ -482,7 +482,9 @@ export function TopBar({ title, onBack, right, showBack = true }: TopBarProps) {
           {title}
         </span>
       )}
-      {right ?? (showBack && !onBack ? <span className="w-10" /> : null)}
+      {/* Slot sa drží aj keď je prázdny. Bez neho `justify-between` vytlačil
+          titulok až k pravému okraju, teda presne pod tlačidlo odísť. */}
+      {right ?? <span className="exit-slot-spacer" aria-hidden="true" />}
     </div>
   );
 }

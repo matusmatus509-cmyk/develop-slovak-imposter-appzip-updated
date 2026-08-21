@@ -83,6 +83,7 @@ import PartyHub from "./screens/PartyHub";
 import { FeedbackProvider } from "./feedback/FeedbackProvider";
 import GameWelcome, { GAME_WELCOMES } from "./components/GameWelcome";
 import { PwaInstallPrompt } from "./components/PwaInstallPrompt";
+import { ExitGameButton } from "./components/ExitGameButton";
 
 const IMPOSTOR_GAMES: MenuGame[] = [
   {
@@ -1305,20 +1306,11 @@ export default function App() {
         data-screen={screen}
       >
         {renderScreen()}
+        {/* Tlačidlo je vnútri rámu, nie jeho sused: rám má `isolation: isolate`,
+            takže zvnútra sa dá vrstviť voči hlavičkám aj prekrytiam obrazovky a
+            obojstranné hry si ho môžu cez `:has()` presunúť do stredového pásu. */}
+        {canExitActiveGame && <ExitGameButton onExit={leaveActiveGame} />}
       </div>
-      {canExitActiveGame && (
-        <button
-          type="button"
-          onClick={leaveActiveGame}
-          aria-label="Odísť z hry"
-          className="fixed right-3 top-3 z-[100] flex items-center gap-1.5 rounded-full border border-white/20 bg-black/65 px-3 py-2 text-xs font-black text-white shadow-lg backdrop-blur-md transition hover:bg-red-600/85 active:scale-95"
-        >
-          <span aria-hidden="true" className="text-base leading-none">
-            ×
-          </span>
-          Odísť
-        </button>
-      )}
       <PwaInstallPrompt visible={screen === "home"} />
     </FeedbackProvider>
   );

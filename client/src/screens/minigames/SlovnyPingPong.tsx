@@ -256,7 +256,10 @@ export function SlovnyPingPongGame({
 
   return (
     <div
-      className="fixed inset-0 overflow-hidden"
+      // two-sided-table: obe polovice sú ťapacie plochy hráčov, takže tlačidlo
+      // odísť ide na hranicu medzi nimi (index.css). Presne tam ho malo aj
+      // vlastné tlačidlo tejto hry, ktoré bolo pred zjednotením nahradené.
+      className="two-sided-table fixed inset-0 overflow-hidden"
       style={{ touchAction: "none", userSelect: "none" }}
     >
       {/* ── TOP HALF — Player 1 ── */}
@@ -445,19 +448,8 @@ export function SlovnyPingPongGame({
         </div>
       )}
 
-      {/* ── EXIT BUTTON (small, top-right corner) ── */}
-      {!result && (
-        <button
-          className="absolute right-4 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/30 text-white/50 active:scale-95"
-          style={{ top: "calc(50% - 18px)" }}
-          onPointerDown={e => {
-            e.stopPropagation();
-            onBack();
-          }}
-        >
-          ✕
-        </button>
-      )}
+      {/* Vlastné tlačidlo na odchod tu bolo nahradené globálnym, ktoré má na
+          obojstranných obrazovkách rovnaké umiestnenie na hranici polovíc. */}
     </div>
   );
 }

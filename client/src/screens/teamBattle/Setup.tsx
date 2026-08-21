@@ -114,7 +114,7 @@ export default function TeamBattleSetup({
               <Icons.arrowLeft size={20} />
             </button>
             <PartyEyebrow>Party mode</PartyEyebrow>
-            <div className="h-11 w-11" />
+            <div className="exit-slot-spacer" />
           </header>
 
           <section className="party-battle-hero pb-7 pt-8 text-center">

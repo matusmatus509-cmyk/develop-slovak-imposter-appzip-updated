@@ -232,7 +232,11 @@ export function ParticipantScoreStrip({
   activeIndex?: number;
 }) {
   return (
-    <div className="flex gap-2 overflow-x-auto pb-1">
+    // Pás je vždy najvyšší prvok hernej obrazovky, takže si rezervuje miesto
+    // pre tlačidlo odísť. Bez toho tlačidlo zakrývalo skóre posledného hráča
+    // a blokovalo vodorovné posúvanie pásu. Použitý je margin, nie padding —
+    // pás skroluje a padding by viditeľnú časť nezúžil.
+    <div className="exit-slot-inset flex gap-2 overflow-x-auto pb-1">
       {names.map((name, index) => {
         const color = colors[index % colors.length];
         const active = activeIndex === index;

@@ -373,7 +373,7 @@ export default function TeamQuickGame({
             <PartyEyebrow>
               {gameMode === "teams" ? "Tímová hra" : "Nastavenia hry"}
             </PartyEyebrow>
-            <div className="h-11 w-11" />
+            <div className="exit-slot-spacer" />
           </header>
 
           <div
