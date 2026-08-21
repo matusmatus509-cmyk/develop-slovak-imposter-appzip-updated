@@ -191,6 +191,11 @@ const REACHABLE_MUST_SCROLL = [
     file: `${ROOT}/screens/minigames/TeamQuickGame.tsx`,
     needsPanel: true,
   },
+  {
+    screen: "hadajktosom",
+    file: `${ROOT}/screens/minigames/HadajKtoSom.tsx`,
+    needsPanel: true,
+  },
 ];
 
 const reachability = [];
