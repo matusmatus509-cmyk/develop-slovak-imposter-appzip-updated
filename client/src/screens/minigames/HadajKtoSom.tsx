@@ -96,7 +96,7 @@ function SetupScreen({
       .filter((collection) => collection.count > 0);
   }, [customControls, customEntries]);
   const fallbackCategory = builtinCategories[0];
-  const [view, setView] = useState<"main" | "category">("main");
+  const [view, setView] = useState<"main" | "category" | "players">("main");
   const [count, setCount] = useState(3);
   const [names, setNames] = useState(
     Array.from({ length: 8 }, (_, i) => defaultPlayerName(language, i + 1)),
@@ -122,6 +122,9 @@ function SetupScreen({
     };
   }, [builtinCategories, customCategories, fallbackCategory, source]);
 
+  // Slovenčina skloňuje: 2–4 hráči, 5 a viac hráčov.
+  const playerLabel = `${count} ${count < 5 ? "hráči" : "hráčov"}`;
+
   function chooseSource(nextSource: DeckSource) {
     setSource(nextSource);
     setView("main");
@@ -136,6 +139,57 @@ function SetupScreen({
       ? { kind: "builtin" as const, categoryId: fallbackCategory?.id ?? "" }
       : source;
     onStart(trimmedNames, selectedSource, timer);
+  }
+
+  if (view === "players") {
+    return (
+      <Shell className="mobile-settings mobile-settings-guess-who guess-who-players-screen scroll-panel">
+        <TopBar title="Hráči" onBack={() => setView("main")} />
+        <div className="guess-who-players-list">
+          <section className="guess-who-setting-block">
+            <div className="guess-who-setting-heading">
+              <span><Icons.users size={15} /> Počet hráčov</span>
+              <strong>{playerLabel}</strong>
+            </div>
+            <div className="guess-who-player-grid">
+              {[2, 3, 4, 5, 6, 7, 8].map((value) => (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => setCount(value)}
+                  className={count === value ? "is-active" : ""}
+                >
+                  {value}
+                </button>
+              ))}
+            </div>
+          </section>
+
+          <section aria-label="Mená hráčov">
+            <p className="guess-who-section-label">Mená hráčov</p>
+            <div className="guess-who-name-list">
+              {Array.from({ length: count }, (_, index) => (
+                <label key={index}>
+                  <span className="guess-who-name-index">{index + 1}</span>
+                  <input
+                    value={names[index]}
+                    onChange={(event) => setNames((current) =>
+                      current.map((name, nameIndex) => nameIndex === index ? event.target.value : name)
+                    )}
+                    placeholder={defaultPlayerName(language, index + 1)}
+                    maxLength={16}
+                  />
+                </label>
+              ))}
+            </div>
+          </section>
+
+          <Button fullWidth onClick={() => setView("main")} className="guess-who-start-button">
+            <span className="inline-flex items-center gap-2"><Icons.circleCheck size={18} /> Hotovo</span>
+          </Button>
+        </div>
+      </Shell>
+    );
   }
 
   if (view === "category") {
@@ -217,14 +271,14 @@ function SetupScreen({
         <button
           type="button"
           onClick={() => setView("category")}
-          className="guess-who-category-field"
+          className="guess-who-field"
         >
-          <span className="guess-who-category-icon">{selectedCategory.icon}</span>
+          <span className="guess-who-field-icon">{selectedCategory.icon}</span>
           <span className="min-w-0 flex-1 text-left">
             <small>Kategória</small>
             <strong>{selectedCategory.name}</strong>
           </span>
-          <span className="guess-who-category-meta">
+          <span className="guess-who-field-meta">
             <small>{selectedCategory.count} kariet</small>
             <Icons.chevronRight size={18} />
           </span>
@@ -249,45 +303,21 @@ function SetupScreen({
           </div>
         </section>
 
-        <section className="guess-who-setting-block">
-          <div className="guess-who-setting-heading">
-            <span><Icons.users size={15} /> Počet hráčov</span>
-            <strong>{count}</strong>
-          </div>
-          <div className="guess-who-player-grid">
-            {[2, 3, 4, 5, 6, 7, 8].map((value) => (
-              <button
-                key={value}
-                type="button"
-                onClick={() => setCount(value)}
-                className={count === value ? "is-active" : ""}
-              >
-                {value}
-              </button>
-            ))}
-          </div>
-        </section>
-
-        <section className="guess-who-names-block">
-          <div className="guess-who-setting-heading">
-            <span><Icons.users size={15} /> Mená hráčov</span>
-            <small>{count} hráči</small>
-          </div>
-          <div className="guess-who-name-grid">
-            {Array.from({ length: count }, (_, index) => (
-              <label key={index}>
-                <span>{index + 1}</span>
-                <input
-                  value={names[index]}
-                  onChange={(event) => setNames((current) =>
-                    current.map((name, nameIndex) => nameIndex === index ? event.target.value : name)
-                  )}
-                  placeholder={defaultPlayerName(language, index + 1)}
-                />
-              </label>
-            ))}
-          </div>
-        </section>
+        <button
+          type="button"
+          onClick={() => setView("players")}
+          className="guess-who-field"
+        >
+          <span className="guess-who-field-icon"><Icons.users size={19} /></span>
+          <span className="min-w-0 flex-1 text-left">
+            <small>Hráči</small>
+            <strong>{playerLabel}</strong>
+          </span>
+          <span className="guess-who-field-meta">
+            <small>Upraviť</small>
+            <Icons.chevronRight size={18} />
+          </span>
+        </button>
 
         <Button fullWidth onClick={start} className="guess-who-start-button">
           <span className="inline-flex items-center gap-2"><Icons.mask size={18} /> Začať hru</span>
