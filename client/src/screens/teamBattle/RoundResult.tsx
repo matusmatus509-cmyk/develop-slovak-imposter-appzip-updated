@@ -38,11 +38,11 @@ export default function RoundResult({
 
   return (
     <PartyBackdrop>
-      <main className="h-full overflow-y-auto px-5 pb-8 pt-8 text-center">
-        <div className="mx-auto flex w-full max-w-md flex-col gap-5">
+      <main className="flex h-full flex-col overflow-hidden px-5 pb-1 pt-4 text-center">
+        <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col gap-3">
           <header>
             <PartyEyebrow>Výsledok {round.index + 1}. kola</PartyEyebrow>
-            <div className="mx-auto mt-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-400/10 text-amber-200">
+            <div className="party-fit-badge mx-auto mt-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-400/10 text-amber-200">
               {roundWinner === null ? (
                 <Icons.users size={31} />
               ) : (
@@ -68,7 +68,7 @@ export default function RoundResult({
             {([0, 1] as const).map(index => (
               <div
                 key={index}
-                className="party-glass relative overflow-hidden rounded-[1.75rem] p-5"
+                className="party-fit-tile party-glass relative overflow-hidden rounded-[1.75rem] p-5"
                 style={{
                   borderColor: `${colors[index]}${roundWinner === index ? "aa" : "3d"}`,
                   boxShadow:

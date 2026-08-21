@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>Podvodník</title>
+  <defs>
+    <linearGradient id="bg" x1="32" y1="10" x2="480" y2="502" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#171d36"/>
+      <stop offset=".52" stop-color="#080b13"/>
+      <stop offset="1" stop-color="#251249"/>
+    </linearGradient>
+    <linearGradient id="mask" x1="193" y1="161" x2="319" y2="350" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f4e7ff"/>
+      <stop offset="1" stop-color="#c391ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="194" fill="#9b5cf6" opacity=".16"/>
+  <path d="M256 151c-62 0-105 43-105 105 0 57 34 97 105 103 71-6 105-46 105-103 0-62-43-105-105-105Z" fill="url(#mask)"/>
+  <path d="M203 230c13-18 31-27 53-27s40 9 53 27l-10 13c-12-10-26-15-43-15s-31 5-43 15l-10-13Z" fill="#090c18"/>
+  <path d="M203 274c13 18 31 27 53 27s40-9 53-27l-11-11c-12 8-26 12-42 12s-30-4-42-12l-11 11Z" fill="#090c18"/>
+  <circle cx="222" cy="257" r="12" fill="#8d56eb"/>
+  <circle cx="290" cy="257" r="12" fill="#8d56eb"/>
+  <circle cx="222" cy="257" r="5" fill="white"/>
+  <circle cx="290" cy="257" r="5" fill="white"/>
+  <path d="M232 320c14 8 34 8 48 0" fill="none" stroke="#090c18" stroke-linecap="round" stroke-width="9"/>
+</svg>

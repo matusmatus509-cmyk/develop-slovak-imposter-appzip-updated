@@ -1,9 +1,21 @@
 import { useMemo, useState } from "react";
 import { takePersistentItems } from "../../utils/persistentDeck";
 import { useCountdown } from "../../hooks/useCountdown";
-import { FIVE_IN_TEN_PROMPTS, LETTER_CHALLENGES } from "../../data/teamBattleExtras";
-import { CircularTimer, ParticipantScoreStrip, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
-import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
+import {
+  FIVE_IN_TEN_PROMPTS,
+  LETTER_CHALLENGES,
+} from "../../data/teamBattleExtras";
+import {
+  CircularTimer,
+  ParticipantScoreStrip,
+  PartyBackdrop,
+  PartyEyebrow,
+} from "./PartyChrome";
+import {
+  makeEmptyScores,
+  PARTY_PLAYER_COLORS,
+  type QuickParticipantsProps,
+} from "./quickGameShared";
 import { vibrate } from "../../utils/deviceFeedback";
 import { Icons } from "../../components/icons";
 
@@ -12,21 +24,42 @@ const FIVE_TURNS = 6;
 
 type RoundPhase = "ready" | "playing" | "result";
 
-function RoundProgress({ current, total, color }: { current: number; total: number; color: string }) {
+function RoundProgress({
+  current,
+  total,
+  color,
+}: {
+  current: number;
+  total: number;
+  color: string;
+}) {
   return (
-    <div className="flex items-center gap-1.5" aria-label={`Kolo ${current + 1} z ${total}`}>
+    <div
+      className="flex items-center gap-1.5"
+      aria-label={`Kolo ${current + 1} z ${total}`}
+    >
       {Array.from({ length: total }, (_, index) => (
         <span
           key={index}
           className={`h-1.5 rounded-full transition-all duration-500 ${index === current ? "w-6" : "w-1.5"}`}
-          style={{ background: index <= current ? color : "rgba(255,255,255,.12)" }}
+          style={{
+            background: index <= current ? color : "rgba(255,255,255,.12)",
+          }}
         />
       ))}
     </div>
   );
 }
 
-function PlayerTurnCard({ name, color, label }: { name: string; color: string; label: string }) {
+function PlayerTurnCard({
+  name,
+  color,
+  label,
+}: {
+  name: string;
+  color: string;
+  label: string;
+}) {
   return (
     <div
       className="animate-pop-in relative w-full overflow-hidden rounded-[2rem] border px-5 py-7"
@@ -36,26 +69,52 @@ function PlayerTurnCard({ name, color, label }: { name: string; color: string; l
         boxShadow: `0 24px 70px ${color}1f, inset 0 1px 0 rgba(255,255,255,.09)`,
       }}
     >
-      <div className="absolute -right-5 -top-8 text-9xl font-black opacity-[.06]">?</div>
-      <p className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40">{label}</p>
+      <div className="absolute -right-5 -top-8 text-9xl font-black opacity-[.06]">
+        ?
+      </div>
+      <p className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40">
+        {label}
+      </p>
       <h1 className="mt-3 truncate text-4xl font-black text-white">{name}</h1>
-      <p className="mt-3 text-sm leading-relaxed text-white/45">Zadanie sa ukáže až po spustení času. Priprav sa!</p>
+      <p className="mt-3 text-sm leading-relaxed text-white/45">
+        Zadanie sa ukáže až po spustení času. Priprav sa!
+      </p>
     </div>
   );
 }
 
-export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds, timeSeconds = 5 }: QuickParticipantsProps) {
-  const turnCount = rounds ? participantNames.length * rounds : Math.max(LETTER_TURNS, participantNames.length * 2);
+export function LetterChallengeGame({
+  participantNames,
+  gameMode,
+  onDone,
+  rounds,
+  timeSeconds = 5,
+}: QuickParticipantsProps) {
+  const turnCount = rounds
+    ? participantNames.length * rounds
+    : Math.max(LETTER_TURNS, participantNames.length * 2);
   const deck = useMemo(
-    () => takePersistentItems("party:letter-challenge", LETTER_CHALLENGES, turnCount, (item) => `${item.category}|${item.letter}`),
-    [turnCount],
+    () =>
+      takePersistentItems(
+        "party:letter-challenge",
+        LETTER_CHALLENGES,
+        turnCount,
+        item => `${item.category}|${item.letter}`
+      ),
+    [turnCount]
   );
   const [turn, setTurn] = useState(0);
   const [phase, setPhase] = useState<RoundPhase>("ready");
-  const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
-  const [feedback, setFeedback] = useState<{ success: boolean; scorer: number | null } | null>(null);
+  const [scores, setScores] = useState<number[]>(() =>
+    makeEmptyScores(participantNames)
+  );
+  const [feedback, setFeedback] = useState<{
+    success: boolean;
+    scorer: number | null;
+  } | null>(null);
   const activeParticipant = turn % participantNames.length;
-  const activeColor = PARTY_PLAYER_COLORS[activeParticipant % PARTY_PLAYER_COLORS.length];
+  const activeColor =
+    PARTY_PLAYER_COLORS[activeParticipant % PARTY_PLAYER_COLORS.length];
   const challenge = deck[turn];
 
   function finish(success: boolean) {
@@ -73,7 +132,9 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds
     vibrate(success ? [25, 35, 25] : 70);
   }
 
-  const timer = useCountdown(timeSeconds, phase === "playing", () => finish(false));
+  const timer = useCountdown(timeSeconds, phase === "playing", () =>
+    finish(false)
+  );
 
   function start() {
     setFeedback(null);
@@ -87,52 +148,101 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds
       onDone(scores);
       return;
     }
-    setTurn((value) => value + 1);
+    setTurn(value => value + 1);
     setFeedback(null);
     setPhase("ready");
   }
 
   return (
     <PartyBackdrop>
-      <main className="flex h-full flex-col overflow-y-auto px-4 pb-6 pt-5 text-center">
-        <div className="mx-auto flex w-full max-w-md flex-1 flex-col">
-          <ParticipantScoreStrip names={participantNames} scores={scores} colors={PARTY_PLAYER_COLORS} activeIndex={activeParticipant} />
+      <main className="flex h-full flex-col overflow-hidden px-4 pb-4 pt-4 text-center">
+        <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col">
+          <ParticipantScoreStrip
+            names={participantNames}
+            scores={scores}
+            colors={PARTY_PLAYER_COLORS}
+            activeIndex={activeParticipant}
+          />
 
           <div className="mt-5 flex items-center justify-between gap-3">
             <PartyEyebrow>Slovo na písmeno</PartyEyebrow>
             <RoundProgress current={turn} total={deck.length} color="#fbbf24" />
           </div>
 
-          <section className="party-glass relative mt-4 flex min-h-[24rem] flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.4rem] px-5 py-7">
+          <section className="party-glass relative mt-3 flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.4rem] px-5 py-5">
             <div className="pointer-events-none absolute -left-20 top-16 h-52 w-52 rounded-full bg-amber-400/10 blur-3xl" />
             <div className="pointer-events-none absolute -right-20 bottom-5 h-52 w-52 rounded-full bg-orange-500/10 blur-3xl" />
             <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-amber-300/80 to-transparent" />
 
             {phase === "ready" && (
-              <PlayerTurnCard name={participantNames[activeParticipant]} color={activeColor} label={`Na rade • kolo ${turn + 1}`} />
+              <PlayerTurnCard
+                name={participantNames[activeParticipant]}
+                color={activeColor}
+                label={`Na rade • kolo ${turn + 1}`}
+              />
             )}
 
             {phase === "playing" && (
-              <div key={turn} className="animate-pop-in flex w-full flex-col items-center">
-                <CircularTimer value={timer.remainingSeconds} total={timeSeconds} color={timer.remainingSeconds <= Math.min(3, timeSeconds / 2) ? "#fb7185" : "#fbbf24"} size={118} />
-                <p className="mt-6 text-[11px] font-black uppercase tracking-[0.25em] text-amber-200/65">{challenge.category}</p>
+              <div
+                key={turn}
+                className="animate-pop-in flex w-full flex-col items-center"
+              >
+                <CircularTimer
+                  value={timer.remainingSeconds}
+                  total={timeSeconds}
+                  color={
+                    timer.remainingSeconds <= Math.min(3, timeSeconds / 2)
+                      ? "#fb7185"
+                      : "#fbbf24"
+                  }
+                  size={118}
+                />
+                <p className="mt-6 text-[11px] font-black uppercase tracking-[0.25em] text-amber-200/65">
+                  {challenge.category}
+                </p>
                 <div className="relative mt-4 flex h-32 w-32 items-center justify-center rounded-[2.3rem] border border-amber-200/35 bg-gradient-to-br from-amber-300 to-orange-500 text-8xl font-black text-[#211105] shadow-[0_20px_60px_rgba(251,191,36,.3)]">
                   {challenge.letter}
-                  <span className="absolute -right-2 -top-2 rounded-full border border-white/20 bg-[#11131d] px-2.5 py-1 text-[9px] font-black uppercase tracking-wider text-white">písmeno</span>
+                  <span className="absolute -right-2 -top-2 rounded-full border border-white/20 bg-[#11131d] px-2.5 py-1 text-[9px] font-black uppercase tracking-wider text-white">
+                    písmeno
+                  </span>
                 </div>
-                <h1 className="mt-5 text-2xl font-black text-white">{participantNames[activeParticipant]}, povedz slovo!</h1>
-                <p className="mt-2 text-xs text-white/40">Jedno platné slovo z kategórie, ktoré začína týmto písmenom.</p>
+                <h1 className="mt-5 text-2xl font-black text-white">
+                  {participantNames[activeParticipant]}, povedz slovo!
+                </h1>
+                <p className="mt-2 text-xs text-white/40">
+                  Jedno platné slovo z kategórie, ktoré začína týmto písmenom.
+                </p>
               </div>
             )}
 
             {phase === "result" && feedback && (
               <div className="animate-pop-in relative z-10">
-                <div className={`mx-auto flex h-24 w-24 items-center justify-center rounded-2xl border ${feedback.success ? "border-emerald-300/40 bg-emerald-400/15 text-emerald-200" : "border-rose-300/35 bg-rose-400/10 text-rose-200"}`}>
-                  {feedback.success ? <Icons.circleCheck size={42} /> : <Icons.clock size={40} />}
+                <div
+                  className={`mx-auto flex h-24 w-24 items-center justify-center rounded-2xl border ${feedback.success ? "border-emerald-300/40 bg-emerald-400/15 text-emerald-200" : "border-rose-300/35 bg-rose-400/10 text-rose-200"}`}
+                >
+                  {feedback.success ? (
+                    <Icons.circleCheck size={42} />
+                  ) : (
+                    <Icons.clock size={40} />
+                  )}
                 </div>
-                <h1 className="mt-5 text-3xl font-black text-white">{feedback.success ? "Super odpoveď!" : "Kolo končí"}</h1>
-                <p className="mt-2 text-sm font-bold" style={{ color: feedback.scorer === null ? "rgba(255,255,255,.4)" : PARTY_PLAYER_COLORS[feedback.scorer % PARTY_PLAYER_COLORS.length] }}>
-                  {feedback.scorer === null ? "Tentoraz bez bodu" : `+1 bod pre ${participantNames[feedback.scorer]}`}
+                <h1 className="mt-5 text-3xl font-black text-white">
+                  {feedback.success ? "Super odpoveď!" : "Kolo končí"}
+                </h1>
+                <p
+                  className="mt-2 text-sm font-bold"
+                  style={{
+                    color:
+                      feedback.scorer === null
+                        ? "rgba(255,255,255,.4)"
+                        : PARTY_PLAYER_COLORS[
+                            feedback.scorer % PARTY_PLAYER_COLORS.length
+                          ],
+                  }}
+                >
+                  {feedback.scorer === null
+                    ? "Tentoraz bez bodu"
+                    : `+1 bod pre ${participantNames[feedback.scorer]}`}
                 </p>
               </div>
             )}
@@ -140,18 +250,37 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds
 
           <div className="mt-4 min-h-[4.1rem]">
             {phase === "ready" && (
-              <button onClick={start} className="party-shine flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95" style={{ background: `linear-gradient(135deg, ${activeColor}, #f59e0b)` }}>
+              <button
+                onClick={start}
+                className="party-shine flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95"
+                style={{
+                  background: `linear-gradient(135deg, ${activeColor}, #f59e0b)`,
+                }}
+              >
                 <Icons.play size={18} /> Odhaliť zadanie a spustiť
               </button>
             )}
             {phase === "playing" && (
               <div className="grid grid-cols-[.8fr_1.2fr] gap-3">
-                <button onClick={() => finish(false)} className="party-glass flex items-center justify-center gap-2 rounded-2xl py-5 text-sm font-black text-rose-200 transition active:scale-95"><Icons.x size={17} /> Neplatí</button>
-                <button onClick={() => finish(true)} className="party-shine flex items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-green-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95"><Icons.circleCheck size={18} /> Správne</button>
+                <button
+                  onClick={() => finish(false)}
+                  className="party-glass flex items-center justify-center gap-2 rounded-2xl py-5 text-sm font-black text-rose-200 transition active:scale-95"
+                >
+                  <Icons.x size={17} /> Neplatí
+                </button>
+                <button
+                  onClick={() => finish(true)}
+                  className="party-shine flex items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-green-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95"
+                >
+                  <Icons.circleCheck size={18} /> Správne
+                </button>
               </div>
             )}
             {phase === "result" && (
-              <button onClick={next} className="party-shine w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95">
+              <button
+                onClick={next}
+                className="party-shine w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95"
+              >
                 {turn + 1 >= deck.length ? "Pozrieť výsledky" : "Ďalší hráč →"}
               </button>
             )}
@@ -162,18 +291,29 @@ export function LetterChallengeGame({ participantNames, gameMode, onDone, rounds
   );
 }
 
-export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 10 }: QuickParticipantsProps) {
-  const turnCount = rounds ? participantNames.length * rounds : Math.max(FIVE_TURNS, participantNames.length * 2);
+export function FiveInTenGame({
+  participantNames,
+  onDone,
+  rounds,
+  timeSeconds = 10,
+}: QuickParticipantsProps) {
+  const turnCount = rounds
+    ? participantNames.length * rounds
+    : Math.max(FIVE_TURNS, participantNames.length * 2);
   const prompts = useMemo(
-    () => takePersistentItems("party:five-in-ten", FIVE_IN_TEN_PROMPTS, turnCount),
-    [turnCount],
+    () =>
+      takePersistentItems("party:five-in-ten", FIVE_IN_TEN_PROMPTS, turnCount),
+    [turnCount]
   );
   const [turn, setTurn] = useState(0);
   const [phase, setPhase] = useState<RoundPhase>("ready");
-  const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
+  const [scores, setScores] = useState<number[]>(() =>
+    makeEmptyScores(participantNames)
+  );
   const [success, setSuccess] = useState(false);
   const activeParticipant = turn % participantNames.length;
-  const activeColor = PARTY_PLAYER_COLORS[activeParticipant % PARTY_PLAYER_COLORS.length];
+  const activeColor =
+    PARTY_PLAYER_COLORS[activeParticipant % PARTY_PLAYER_COLORS.length];
 
   function finish(completed: boolean) {
     if (phase !== "playing") return;
@@ -185,7 +325,9 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
     vibrate(completed ? [30, 35, 30, 35, 50] : 70);
   }
 
-  const timer = useCountdown(timeSeconds, phase === "playing", () => finish(false));
+  const timer = useCountdown(timeSeconds, phase === "playing", () =>
+    finish(false)
+  );
 
   function start() {
     setSuccess(false);
@@ -199,19 +341,28 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
       onDone(scores);
       return;
     }
-    setTurn((value) => value + 1);
+    setTurn(value => value + 1);
     setPhase("ready");
   }
 
   return (
     <PartyBackdrop>
-      <main className="flex h-full flex-col overflow-y-auto px-4 pb-6 pt-5 text-center">
+      <main className="flex h-full flex-col overflow-hidden px-4 pb-4 pt-4 text-center">
         <div className="mx-auto flex w-full max-w-md flex-1 flex-col">
-          <ParticipantScoreStrip names={participantNames} scores={scores} colors={PARTY_PLAYER_COLORS} activeIndex={activeParticipant} />
+          <ParticipantScoreStrip
+            names={participantNames}
+            scores={scores}
+            colors={PARTY_PLAYER_COLORS}
+            activeIndex={activeParticipant}
+          />
 
           <div className="mt-5 flex items-center justify-between gap-3">
             <PartyEyebrow>5 za 10</PartyEyebrow>
-            <RoundProgress current={turn} total={prompts.length} color="#34d399" />
+            <RoundProgress
+              current={turn}
+              total={prompts.length}
+              color="#34d399"
+            />
           </div>
 
           <section className="party-glass relative mt-4 flex min-h-[24rem] flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.4rem] px-5 py-7">
@@ -220,31 +371,71 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
             <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300/80 to-transparent" />
 
             {phase === "ready" && (
-              <PlayerTurnCard name={participantNames[activeParticipant]} color={activeColor} label={`Nová výzva • ${turn + 1}/${prompts.length}`} />
+              <PlayerTurnCard
+                name={participantNames[activeParticipant]}
+                color={activeColor}
+                label={`Nová výzva • ${turn + 1}/${prompts.length}`}
+              />
             )}
 
             {phase === "playing" && (
-              <div key={turn} className="animate-pop-in flex w-full flex-col items-center">
-                <CircularTimer value={timer.remainingSeconds} total={timeSeconds} color={timer.remainingSeconds <= Math.min(3, timeSeconds / 3) ? "#fb7185" : "#34d399"} size={124} />
+              <div
+                key={turn}
+                className="animate-pop-in flex w-full flex-col items-center"
+              >
+                <CircularTimer
+                  value={timer.remainingSeconds}
+                  total={timeSeconds}
+                  color={
+                    timer.remainingSeconds <= Math.min(3, timeSeconds / 3)
+                      ? "#fb7185"
+                      : "#34d399"
+                  }
+                  size={124}
+                />
 
-                <p className="mt-6 text-[10px] font-black uppercase tracking-[0.26em] text-emerald-300/65">Vymenuj päť</p>
-                <h1 className="mx-auto mt-3 max-w-sm text-3xl font-black leading-[1.08] text-white">{prompts[turn]}</h1>
+                <p className="mt-6 text-[10px] font-black uppercase tracking-[0.26em] text-emerald-300/65">
+                  Vymenuj päť
+                </p>
+                <h1 className="mx-auto mt-3 max-w-sm text-3xl font-black leading-[1.08] text-white">
+                  {prompts[turn]}
+                </h1>
 
                 <div className="mt-7 flex items-center gap-2 rounded-2xl border border-emerald-300/20 bg-emerald-400/[0.07] px-4 py-3 text-left">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-emerald-300/20 text-sm font-black text-emerald-200">5</span>
-                  <p className="text-[11px] font-bold leading-relaxed text-white/50">Po vyslovení piatich správnych odpovedí stlačte tlačidlo iba raz.</p>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-emerald-300/20 text-sm font-black text-emerald-200">
+                    5
+                  </span>
+                  <p className="text-[11px] font-bold leading-relaxed text-white/50">
+                    Po vyslovení piatich správnych odpovedí stlačte tlačidlo iba
+                    raz.
+                  </p>
                 </div>
               </div>
             )}
 
             {phase === "result" && (
               <div className="animate-pop-in relative z-10">
-                <div className={`mx-auto flex h-24 w-24 items-center justify-center rounded-2xl border ${success ? "border-emerald-300/45 bg-emerald-400/15 text-emerald-200" : "border-amber-300/35 bg-amber-400/10 text-amber-200"}`}>
-                  {success ? <Icons.trophy size={42} /> : <Icons.clock size={40} />}
+                <div
+                  className={`mx-auto flex h-24 w-24 items-center justify-center rounded-2xl border ${success ? "border-emerald-300/45 bg-emerald-400/15 text-emerald-200" : "border-amber-300/35 bg-amber-400/10 text-amber-200"}`}
+                >
+                  {success ? (
+                    <Icons.trophy size={42} />
+                  ) : (
+                    <Icons.clock size={40} />
+                  )}
                 </div>
-                <h1 className="mt-5 text-3xl font-black text-white">{success ? "Päť z piatich!" : "Tesne vedľa!"}</h1>
-                <p className="mt-2 text-sm font-bold" style={{ color: success ? activeColor : "rgba(255,255,255,.45)" }}>
-                  {success ? `+2 body pre ${participantNames[activeParticipant]}` : "Čas vypršal • skúsime ďalšiu"}
+                <h1 className="mt-5 text-3xl font-black text-white">
+                  {success ? "Päť z piatich!" : "Tesne vedľa!"}
+                </h1>
+                <p
+                  className="mt-2 text-sm font-bold"
+                  style={{
+                    color: success ? activeColor : "rgba(255,255,255,.45)",
+                  }}
+                >
+                  {success
+                    ? `+2 body pre ${participantNames[activeParticipant]}`
+                    : "Čas vypršal • skúsime ďalšiu"}
                 </p>
               </div>
             )}
@@ -252,18 +443,32 @@ export function FiveInTenGame({ participantNames, onDone, rounds, timeSeconds = 
 
           <div className="mt-4 min-h-[4.1rem]">
             {phase === "ready" && (
-              <button onClick={start} className="party-shine flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95" style={{ background: `linear-gradient(135deg, ${activeColor}, #10b981)` }}>
+              <button
+                onClick={start}
+                className="party-shine flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95"
+                style={{
+                  background: `linear-gradient(135deg, ${activeColor}, #10b981)`,
+                }}
+              >
                 <Icons.play size={18} /> Odhaliť výzvu a spustiť
               </button>
             )}
             {phase === "playing" && (
-              <button onClick={() => finish(true)} className="party-shine flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95">
+              <button
+                onClick={() => finish(true)}
+                className="party-shine flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95"
+              >
                 <Icons.circleCheck size={18} /> Všetkých 5 správne
               </button>
             )}
             {phase === "result" && (
-              <button onClick={next} className="party-shine w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95">
-                {turn + 1 >= prompts.length ? "Pozrieť výsledky" : "Ďalšia výzva →"}
+              <button
+                onClick={next}
+                className="party-shine w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-500 py-5 text-base font-black text-white shadow-xl transition active:scale-95"
+              >
+                {turn + 1 >= prompts.length
+                  ? "Pozrieť výsledky"
+                  : "Ďalšia výzva →"}
               </button>
             )}
           </div>

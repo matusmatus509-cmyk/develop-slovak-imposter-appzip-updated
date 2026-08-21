@@ -104,7 +104,7 @@ export default function TeamBattleIntro({
 
   return (
     <PartyBackdrop>
-      <main className="flex h-full flex-col overflow-y-auto px-5 pb-8 pt-10 text-center">
+      <main className="flex h-full flex-col overflow-hidden px-5 pb-1 pt-5 text-center">
         <div className="mx-auto flex w-full max-w-md flex-1 flex-col items-center justify-center">
           <PartyEyebrow>Tímová aréna</PartyEyebrow>
 

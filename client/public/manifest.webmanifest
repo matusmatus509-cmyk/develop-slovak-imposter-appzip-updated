@@ -4,23 +4,25 @@
   "short_name": "Podvodník",
   "description": "Párty hry pre jeden mobil – Imposter, minihry a tímové výzvy.",
   "lang": "sk",
+  "dir": "ltr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
+  "display_override": ["standalone"],
   "background_color": "#080b13",
   "theme_color": "#080b13",
   "categories": ["games", "entertainment"],
   "icons": [
     {
-      "src": "/manus-storage/icon_2a542af9.png",
-      "sizes": "1254x1254",
-      "type": "image/png",
+      "src": "icons/podvodnik-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "/manus-storage/icon_2a542af9.png",
-      "sizes": "1254x1254",
-      "type": "image/png",
+      "src": "icons/podvodnik-icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "maskable"
     }
   ]

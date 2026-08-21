@@ -140,7 +140,9 @@ export function PartyScoreboard({
           <p className="text-[9px] font-black uppercase tracking-[0.22em] text-white/35">
             {eyebrow}
           </p>
-          <p className="mt-1 text-[11px] font-bold text-white/58">{detail}</p>
+          <p className="party-sb-detail mt-1 text-[11px] font-bold text-white/58">
+            {detail}
+          </p>
         </div>
         <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[8px] font-black uppercase tracking-wider text-white/42">
           {leader === null ? "Remíza" : `Vedie ${leader === 0 ? "A" : "B"}`}
@@ -183,10 +185,10 @@ export function PartyScoreboard({
               >
                 {teamNames[index]}
               </p>
-              <p className="mt-1 text-4xl font-black tabular-nums text-white">
+              <p className="party-sb-score mt-1 text-4xl font-black tabular-nums text-white">
                 {scores[index]}
               </p>
-              <p className="text-[8px] font-black uppercase tracking-[0.18em] text-white/25">
+              <p className="party-sb-unit text-[8px] font-black uppercase tracking-[0.18em] text-white/25">
                 bodov
               </p>
             </div>
@@ -197,7 +199,7 @@ export function PartyScoreboard({
         </span>
       </div>
 
-      <div className="mt-5 flex h-3 overflow-hidden rounded-full bg-white/[.07] p-0.5 ring-1 ring-white/[.06]">
+      <div className="party-sb-bar mt-5 flex h-3 overflow-hidden rounded-full bg-white/[.07] p-0.5 ring-1 ring-white/[.06]">
         <div
           className="rounded-l-full transition-all duration-700"
           style={{
