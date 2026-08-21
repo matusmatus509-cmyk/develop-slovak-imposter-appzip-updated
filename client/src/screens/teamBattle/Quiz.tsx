@@ -8,12 +8,205 @@ type QuizPhase =
   | { t: "buzzed"; who: 0 | 1 }
   | { t: "second-chance"; who: 0 | 1 }
   | { t: "selecting"; who: 0 | 1 }
-  | { t: "mc-result"; who: 0 | 1; selectedIndex: number; correct: boolean; scores: [number, number] }
+  | {
+      t: "mc-result";
+      who: 0 | 1;
+      selectedIndex: number;
+      correct: boolean;
+      scores: [number, number];
+    }
   | { t: "done" };
+
+/** Čo má strana jedného tímu práve robiť. */
+type FaceMode = "idle" | "waiting" | "armed" | "result";
 
 const LETTERS = ["A", "B", "C", "D"] as const;
 
 const QUESTIONS_PER_ROUND = 5;
+
+/**
+ * Jedna strana obojstrannej obrazovky. Telefón leží medzi tímami, preto sa
+ * horná strana otočí o 180° — každý tím tak čita otázku aj možnosti správne.
+ */
+function QuizFace({
+  flipped,
+  teamName,
+  color,
+  category,
+  question,
+  options,
+  mode,
+  correctIndex,
+  selectedIndex,
+  result,
+  onBuzz,
+  onSelect,
+  onNext,
+}: {
+  flipped: boolean;
+  teamName: string;
+  color: string;
+  category: string;
+  question: string;
+  options?: string[];
+  mode: FaceMode;
+  correctIndex?: number;
+  selectedIndex?: number;
+  result?: { correct: boolean; message: string };
+  onBuzz: () => void;
+  onSelect: (index: number) => void;
+  onNext: () => void;
+}) {
+  const isArmed = mode === "armed";
+  const isResult = mode === "result";
+
+  return (
+    <div
+      className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-2 overflow-hidden px-3 py-2"
+      style={{ transform: flipped ? "rotate(180deg)" : undefined }}
+    >
+      <p className="shrink-0 text-[10px] font-bold uppercase tracking-widest text-white/30">
+        {category}
+      </p>
+
+      {/* Otázka je na oboch stranách, aby ju nemusel nikto čítať naopak. */}
+      <div
+        key={question}
+        className="party-glass relative w-full shrink-0 overflow-hidden rounded-2xl border px-3 py-2.5 text-center"
+        style={{
+          background: isArmed ? `${color}1f` : "rgba(255,255,255,0.04)",
+          borderColor: isArmed ? `${color}66` : "rgba(255,255,255,0.09)",
+          transition: "background .25s ease, border-color .25s ease",
+          animation: "popIn .4s cubic-bezier(0.34,1.56,0.64,1) both",
+        }}
+      >
+        <p
+          className="font-black leading-snug text-white"
+          style={{ fontSize: "clamp(.95rem, 3.5vw, 1.3rem)" }}
+        >
+          {question}
+        </p>
+      </div>
+
+      {/* Možnosti zostávajú viditeľné aj po bzučnutí — vyberá sa klikom priamo na ne. */}
+      {options && (
+        <div className="grid w-full shrink-0 grid-cols-2 gap-2">
+          {options.map((option, index) => {
+            const isCorrect = isResult && index === correctIndex;
+            const isPicked = isResult && index === selectedIndex;
+
+            let background = "rgba(255,255,255,0.05)";
+            let borderColor = "rgba(255,255,255,0.1)";
+            if (isCorrect) {
+              background = "rgba(34,197,94,0.22)";
+              borderColor = "rgba(34,197,94,0.6)";
+            } else if (isPicked) {
+              background = "rgba(239,68,68,0.22)";
+              borderColor = "rgba(239,68,68,0.6)";
+            } else if (isArmed) {
+              background = `${color}1a`;
+              borderColor = `${color}59`;
+            }
+
+            return (
+              <button
+                key={index}
+                type="button"
+                disabled={!isArmed}
+                onClick={() => onSelect(index)}
+                aria-label={`Možnosť ${LETTERS[index]}: ${option}`}
+                className="flex min-h-[3.25rem] items-center gap-2 rounded-xl border px-2.5 py-2 text-left transition enabled:active:scale-[.97] disabled:cursor-default"
+                style={{
+                  background,
+                  borderColor,
+                  opacity: mode === "waiting" ? 0.45 : 1,
+                  boxShadow: isArmed ? `0 6px 18px -12px ${color}` : undefined,
+                }}
+              >
+                <span
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-[11px] font-black"
+                  style={{
+                    background: isArmed ? color : "rgba(255,255,255,0.1)",
+                    color: isArmed ? "#08111d" : "rgba(255,255,255,0.55)",
+                  }}
+                >
+                  {LETTERS[index]}
+                </span>
+                <span
+                  className="flex-1 font-bold leading-tight text-white"
+                  style={{ fontSize: "clamp(.7rem, 2.9vw, .95rem)" }}
+                >
+                  {option}
+                </span>
+                {isCorrect && <span className="shrink-0 text-sm">✅</span>}
+                {isPicked && !isCorrect && (
+                  <span className="shrink-0 text-sm">❌</span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Bzučiak je len dovtedy, kým sa niekto neprihlási. */}
+      {mode === "idle" && (
+        <button
+          type="button"
+          onClick={onBuzz}
+          aria-label={`${teamName} chce odpovedať`}
+          className="group relative flex h-14 w-full shrink-0 items-center justify-center gap-3 overflow-hidden rounded-2xl border border-white/25 text-white transition active:scale-[.985] active:brightness-125"
+          style={{
+            background: `linear-gradient(120deg, ${color}dd, ${color}88)`,
+            boxShadow: `0 10px 30px -14px ${color}`,
+          }}
+        >
+          <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(255,255,255,.22),transparent_30%)]" />
+          <span className="relative flex h-9 w-9 items-center justify-center rounded-full border-[3px] border-white/70 bg-white/15 transition group-active:scale-90">
+            <span className="h-3.5 w-3.5 rounded-full bg-white/90" />
+          </span>
+          <span className="relative max-w-[11rem] truncate text-base font-black leading-none">
+            {teamName}
+          </span>
+        </button>
+      )}
+
+      {mode === "armed" && (
+        <p
+          className="shrink-0 text-xs font-black uppercase tracking-widest"
+          style={{ color }}
+        >
+          {options ? "Kliknite na odpoveď" : "Odpovedajte nahlas"}
+        </p>
+      )}
+
+      {mode === "waiting" && (
+        <p className="shrink-0 text-xs font-bold uppercase tracking-widest text-white/25">
+          Odpovedá súper
+        </p>
+      )}
+
+      {/* Vyhodnotenie aj tlačidlo sú na oboch stranách, aby ich nikto nečítal naopak. */}
+      {mode === "result" && result && (
+        <div className="flex w-full shrink-0 flex-col items-center gap-1.5">
+          <p
+            className="text-center text-xs font-black leading-tight"
+            style={{ color: result.correct ? "#4ade80" : "#f87171" }}
+          >
+            {result.message}
+          </p>
+          <button
+            type="button"
+            onClick={onNext}
+            className="w-full rounded-xl py-2.5 text-sm font-black text-white transition active:scale-95"
+            style={{ background: "linear-gradient(135deg, #7c3aed, #a855f7)" }}
+          >
+            Ďalšia otázka →
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function TeamQuiz({
   questions,
@@ -50,7 +243,13 @@ export default function TeamQuiz({
     const newScores: [number, number] = [...scores] as [number, number];
     newScores[scorer] += 1;
     setScores(newScores);
-    setPhase({ t: "mc-result", who, selectedIndex, correct, scores: newScores });
+    setPhase({
+      t: "mc-result",
+      who,
+      selectedIndex,
+      correct,
+      scores: newScores,
+    });
   }
 
   function markCorrect(who: 0 | 1) {
@@ -68,6 +267,12 @@ export default function TeamQuiz({
     } else {
       nextQuestion(scores);
     }
+  }
+
+  /** Tlačidlo „Ďalšia“ je na oboch stranách, preto sa dvojité posunutie musí ustrážiť. */
+  function handleNext() {
+    if (phase.t !== "mc-result") return;
+    nextQuestion(phase.scores);
   }
 
   function nextQuestion(currentScores: [number, number]) {
@@ -92,261 +297,166 @@ export default function TeamQuiz({
     return null;
   }
 
+  /** Každá strana vie sama, či má bzučiak, aktívne možnosti alebo len výsledok. */
+  function faceMode(team: 0 | 1): FaceMode {
+    if (phase.t === "mc-result") return "result";
+    if (phase.t === "selecting")
+      return phase.who === team ? "armed" : "waiting";
+    if (phase.t === "buzzed" || phase.t === "second-chance")
+      return phase.who === team ? "armed" : "waiting";
+    return "idle";
+  }
+
   const activeTeam = getActiveTeam();
-  const bgColor =
-    activeTeam === 0 ? `${a}18` : activeTeam === 1 ? `${b}18` : "rgba(255,255,255,0.03)";
-  const borderColor =
-    activeTeam === 0 ? `${a}40` : activeTeam === 1 ? `${b}40` : "rgba(255,255,255,0.08)";
+  const isOpenQuestion = !q.options;
+  const hostControlsVisible =
+    isOpenQuestion && (phase.t === "buzzed" || phase.t === "second-chance");
+
+  const resultInfo =
+    phase.t === "mc-result"
+      ? {
+          correct: phase.correct,
+          message: phase.correct
+            ? `+1 bod pre ${teamNames[phase.who]}!`
+            : `Nesprávne — bod ide pre ${teamNames[phase.who === 0 ? 1 : 0]}.`,
+        }
+      : undefined;
 
   return (
     <div
       className="fixed inset-0 flex flex-col overflow-hidden"
-      style={{ background: "radial-gradient(circle at 50% 30%, rgba(168,85,247,.15), transparent 45%), #070711" }}
+      style={{
+        background:
+          "radial-gradient(circle at 50% 30%, rgba(168,85,247,.15), transparent 45%), #070711",
+        paddingTop: "max(.25rem, env(safe-area-inset-top))",
+        paddingBottom: "max(.25rem, env(safe-area-inset-bottom))",
+      }}
     >
       <div className="party-grid pointer-events-none absolute inset-0 opacity-20" />
 
-      {/* Horný buzzer je otočený k tímu sediacemu oproti telefónu. */}
-      {phase.t === "question" && (
-        <button
-          onClick={() => buzz(0)}
-          aria-label={`${teamNames[0]} chce odpovedať`}
-          className="group relative z-20 flex h-[5.5rem] w-full shrink-0 items-center justify-center overflow-hidden rounded-b-[1.7rem] border-b border-white/30 text-white shadow-[0_16px_45px_rgba(0,0,0,.4)] transition active:scale-[.985] active:brightness-125"
-          style={{
-            paddingTop: "max(.35rem, env(safe-area-inset-top))",
-            background: `linear-gradient(120deg, #071a33 0%, ${a} 48%, #174a85 100%)`,
-            boxShadow: `0 15px 44px ${a}55`,
-          }}
-        >
-          <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(255,255,255,.22),transparent_28%)]" />
-          <span className="pointer-events-none absolute -bottom-12 -right-8 h-32 w-32 rounded-full border-[18px] border-white/10" />
-            <span className="relative flex rotate-180 items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border-4 border-white/70 bg-white/15 text-2xl shadow-[inset_0_3px_12px_rgba(255,255,255,.3),0_5px_20px_rgba(0,0,0,.28)] transition group-active:scale-90">
-              <span className="h-5 w-5 rounded-full bg-blue-300" />
-            </span>
-            <span className="text-left">
-              <span className="block max-w-[13rem] truncate text-lg font-black leading-none">{teamNames[0]}</span>
-            </span>
-          </span>
-        </button>
-      )}
+      {/* Strana tímu A — otočená k hráčom sediacim oproti. */}
+      <QuizFace
+        flipped
+        teamName={teamNames[0]}
+        color={a}
+        category={q.category}
+        question={q.question}
+        options={q.options}
+        mode={faceMode(0)}
+        correctIndex={q.correctIndex}
+        selectedIndex={
+          phase.t === "mc-result" ? phase.selectedIndex : undefined
+        }
+        result={resultInfo}
+        onBuzz={() => buzz(0)}
+        onSelect={selectAnswer}
+        onNext={handleNext}
+      />
 
-      {/* Score bar */}
-      <div className="relative z-10 mx-3 my-2 flex shrink-0 items-center justify-between rounded-[1.25rem] border border-white/10 bg-white/[0.055] px-4 py-2 backdrop-blur-xl">
-        {([0, 1] as const).map((idx, i) => (
-          <div
-            key={idx}
-            className="flex items-center gap-2 rounded-2xl px-3 py-2 font-black transition-all"
-            style={{
-              background: `${idx === 0 ? a : b}20`,
-              border: `1px solid ${idx === 0 ? a : b}40`,
-              animation: `slideUp 0.5s ease-out ${i * 0.1}s both`,
-            }}
-          >
-            <span className="h-3 w-3 rounded-full" style={{ background: idx === 0 ? a : b }} />
-            <span className="text-white text-lg">{scores[idx]}</span>
-          </div>
-        ))}
-        <span className="text-xs text-white/30 font-bold uppercase tracking-widest">
-          {qIdx + 1} / {QUESTIONS_PER_ROUND}
-        </span>
-      </div>
-
-      {/* Question card */}
-      <div className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-4 overflow-y-auto px-5 py-3">
-        <p className="text-xs font-bold uppercase tracking-widest text-white/30">
-          {q.category}
-        </p>
-        <div
-          className="party-glass party-shine relative w-full overflow-hidden rounded-[1.6rem] border p-4 text-center transition-all duration-300"
-          style={{
-            background: bgColor,
-            borderColor,
-            animation: "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both",
-          }}
-          key={qIdx}
-        >
-          <p
-            className="font-black text-white leading-snug"
-            style={{ fontSize: "clamp(1.15rem, 4.5vw, 1.65rem)" }}
-          >
-            {q.question}
-          </p>
-
-          {/* Pred prihlásením tímu sú vždy viditeľné všetky štyri možnosti. */}
-          {q.options && phase.t === "question" && (
-            <div className="mt-3 space-y-1.5 text-left" style={{ animation: "slideUp 0.4s ease-out" }}>
-              {q.options.map((opt, i) => (
-                <div
-                  key={i}
-                  className="flex gap-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2 items-baseline"
-                >
-                  <span className="font-black text-white/40">{LETTERS[i]}</span>
-                  <span className="text-white/80 font-semibold text-sm">{opt}</span>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {q.options && phase.t === "selecting" && (
-            <p className="mt-4 text-sm font-bold text-white/40" style={{ animation: "fadeIn 0.3s ease-out" }}>
-              Možnosti sú skryté — vyberte písmeno naspamäť!
-            </p>
-          )}
-
-          {/* Multiple-choice: reveal result with correct/selected highlighting */}
-          {q.options && phase.t === "mc-result" && (
-            <div className="mt-6 space-y-2 text-left" style={{ animation: "slideUp 0.4s ease-out" }}>
-              {q.options.map((opt, i) => {
-                const isCorrect = i === q.correctIndex;
-                const isPicked = i === phase.selectedIndex;
-                return (
-                  <div
-                    key={i}
-                    className="rounded-xl border px-4 py-2.5 flex gap-3 items-baseline transition"
-                    style={{
-                      background: isCorrect
-                        ? "rgba(34,197,94,0.18)"
-                        : isPicked
-                        ? "rgba(239,68,68,0.18)"
-                        : "rgba(255,255,255,0.05)",
-                      borderColor: isCorrect
-                        ? "rgba(34,197,94,0.5)"
-                        : isPicked
-                        ? "rgba(239,68,68,0.5)"
-                        : "rgba(255,255,255,0.1)",
-                    }}
-                  >
-                    <span className="font-black text-white/60">{LETTERS[i]}</span>
-                    <span className="text-white font-semibold text-sm flex-1">{opt}</span>
-                    {isCorrect && <span>✅</span>}
-                    {isPicked && !isCorrect && <span>❌</span>}
-                  </div>
-                );
-              })}
-              <p className="text-center pt-2 font-black" style={{ color: phase.correct ? "#4ade80" : "#f87171" }}>
-                {phase.correct
-                  ? `+1 bod pre ${teamNames[phase.who]}!`
-                  : `Nesprávne! Bod ide pre ${teamNames[phase.who === 0 ? 1 : 0]}.`}
-              </p>
-            </div>
-          )}
-
-          {/* Open questions: correct answer stays hidden until the host reveals it */}
-          {!q.options && (phase.t === "buzzed" || phase.t === "second-chance") && answerRevealed && (
+      {/* Stredový pás: skóre a spoločné ovládanie. */}
+      <div className="relative z-20 mx-3 shrink-0 rounded-2xl border border-white/10 bg-white/[0.06] px-3 py-1.5 backdrop-blur-xl">
+        <div className="flex items-center justify-between gap-2">
+          {([0, 1] as const).map(idx => (
             <div
-              className="mt-6 rounded-2xl border border-white/10 bg-white/5 px-5 py-3"
-              style={{ animation: "slideUp 0.4s ease-out" }}
+              key={idx}
+              className="flex items-center gap-2 rounded-xl px-2.5 py-1 font-black"
+              style={{
+                background: `${idx === 0 ? a : b}20`,
+                border: `1px solid ${idx === 0 ? a : b}40`,
+                outline:
+                  activeTeam === idx
+                    ? `2px solid ${idx === 0 ? a : b}`
+                    : undefined,
+                outlineOffset: "1px",
+              }}
             >
-              <p className="text-xs text-white/30 uppercase tracking-widest mb-1">Odpoveď</p>
-              <p className="text-lg font-black text-green-400">{q.answer}</p>
+              <span
+                className="h-2.5 w-2.5 rounded-full"
+                style={{ background: idx === 0 ? a : b }}
+              />
+              <span className="text-base text-white">{scores[idx]}</span>
             </div>
-          )}
+          ))}
+          <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">
+            {qIdx + 1} / {QUESTIONS_PER_ROUND}
+          </span>
         </div>
 
-        {phase.t === "second-chance" && (
-          <p className="text-sm font-bold text-white/50" style={{ animation: "fadeIn 0.3s ease-out" }}>
-            Šanca pre{" "}
-            <span style={{ color: phase.who === 0 ? a : b }}>{teamNames[phase.who]}</span>
-          </p>
-        )}
-
-        {phase.t === "selecting" && (
-          <p className="text-sm font-bold" style={{ color: phase.who === 0 ? a : b, animation: "fadeIn 0.3s ease-out" }}>
-            Odpovedá: {teamNames[phase.who]}
-          </p>
-        )}
-      </div>
-
-      {/* Buttons */}
-      <div className={`relative z-10 shrink-0 ${phase.t === "question" ? "px-0 pb-[max(.35rem,env(safe-area-inset-bottom))] pt-0" : "space-y-3 px-4 pb-6 pt-2"}`}>
-        {phase.t === "question" && (
-          <button
-            onClick={() => buzz(1)}
-            aria-label={`${teamNames[1]} chce odpovedať`}
-            className="group relative flex h-[5.5rem] w-full items-center justify-center overflow-hidden rounded-t-[1.7rem] border-t border-white/30 text-white shadow-[0_-16px_45px_rgba(0,0,0,.4)] transition active:scale-[.985] active:brightness-125"
-            style={{
-              background: `linear-gradient(120deg, #7f1d2d 0%, ${b} 50%, #350916 100%)`,
-              boxShadow: `0 -15px 44px ${b}55`,
-            }}
+        {/* Otvorené otázky (bez možností) posudzuje moderátor. */}
+        {hostControlsVisible && (
+          <div
+            className="mt-1.5 space-y-1.5"
+            style={{ animation: "fadeIn .25s ease-out both" }}
           >
-            <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(255,255,255,.22),transparent_28%)]" />
-            <span className="pointer-events-none absolute -left-8 -top-12 h-32 w-32 rounded-full border-[18px] border-white/10" />
-            <span className="relative flex items-center gap-3">
-              <span className="text-right">
-                <span className="block max-w-[13rem] truncate text-lg font-black leading-none">{teamNames[1]}</span>
-              </span>
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border-4 border-white/70 bg-white/15 text-2xl shadow-[inset_0_3px_12px_rgba(255,255,255,.3),0_5px_20px_rgba(0,0,0,.28)] transition group-active:scale-90">
-                <span className="h-5 w-5 rounded-full bg-rose-300" />
-              </span>
-            </span>
-          </button>
-        )}
-
-        {phase.t === "selecting" && (
-          <div className="grid grid-cols-4 gap-3">
-            {LETTERS.map((letter, i) => (
-              <button
-                key={letter}
-                onClick={() => selectAnswer(i)}
-                className="rounded-2xl py-7 text-2xl font-black text-white active:scale-95 transition shadow-lg hover:brightness-110"
-                style={{
-                  background: phase.who === 0 ? a : b,
-                  boxShadow: `0 0 20px ${(phase.who === 0 ? a : b)}55`,
-                }}
-              >
-                {letter}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {phase.t === "mc-result" && (
-          <button
-            onClick={() => nextQuestion(phase.scores)}
-            className="w-full rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition"
-            style={{ background: "linear-gradient(135deg, #7c3aed, #a855f7)" }}
-          >
-            Ďalšia otázka →
-          </button>
-        )}
-
-        {(phase.t === "buzzed" || phase.t === "second-chance") && (
-          <>
-            <p className="text-center text-sm text-white/50">
-              Odpoveď od:{" "}
-              <strong style={{ color: activeTeam === 0 ? a : b }}>
-                {teamNames[activeTeam!]}
-              </strong>
-            </p>
+            {answerRevealed && (
+              <p className="text-center text-sm font-black text-green-400">
+                {q.answer}
+              </p>
+            )}
             {!answerRevealed ? (
               <button
+                type="button"
                 onClick={() => setAnswerRevealed(true)}
-                className="w-full rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition"
-                style={{ background: "linear-gradient(135deg, #7c3aed, #a855f7)" }}
+                className="w-full rounded-xl py-2.5 text-sm font-black text-white transition active:scale-95"
+                style={{
+                  background: "linear-gradient(135deg, #7c3aed, #a855f7)",
+                }}
               >
-                <span className="flex items-center justify-center gap-2"><Icons.eye size={18} /> Ukázať správnu odpoveď</span>
+                <span className="flex items-center justify-center gap-2">
+                  <Icons.eye size={16} /> Ukázať správnu odpoveď
+                </span>
               </button>
             ) : (
-              <div className="flex gap-3">
+              <div className="flex gap-2">
                 <button
+                  type="button"
                   onClick={() => markWrong(activeTeam!)}
-                  className="flex-1 rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition"
+                  className="flex-1 rounded-xl py-2.5 text-sm font-black text-white transition active:scale-95"
                   style={{ background: "#7c1a1a" }}
                 >
                   ❌ Chyba
                 </button>
                 <button
+                  type="button"
                   onClick={() => markCorrect(activeTeam!)}
-                  className="flex-1 rounded-2xl py-5 text-lg font-black text-white active:scale-95 transition"
+                  className="flex-1 rounded-xl py-2.5 text-sm font-black text-white transition active:scale-95"
                   style={{ background: "#166534" }}
                 >
                   ✅ Správne
                 </button>
               </div>
             )}
-          </>
+          </div>
+        )}
+
+        {phase.t === "second-chance" && (
+          <p className="mt-1 text-center text-[11px] font-bold text-white/45">
+            Šanca pre{" "}
+            <span style={{ color: phase.who === 0 ? a : b }}>
+              {teamNames[phase.who]}
+            </span>
+          </p>
         )}
       </div>
+
+      {/* Strana tímu B — v normálnej orientácii. */}
+      <QuizFace
+        flipped={false}
+        teamName={teamNames[1]}
+        color={b}
+        category={q.category}
+        question={q.question}
+        options={q.options}
+        mode={faceMode(1)}
+        correctIndex={q.correctIndex}
+        selectedIndex={
+          phase.t === "mc-result" ? phase.selectedIndex : undefined
+        }
+        result={resultInfo}
+        onBuzz={() => buzz(1)}
+        onSelect={selectAnswer}
+        onNext={handleNext}
+      />
     </div>
   );
 }

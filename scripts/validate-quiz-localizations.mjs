@@ -25,6 +25,13 @@ for (const question of source) {
 for (const language of languages) {
   const records = localized[language] ?? {};
   const ids = Object.keys(records);
+  // Slovenčina je zdroj pravdy a preklady sa dogenerúvajú samostatným krokom.
+  // Úplne prázdny jazyk teda nie je chyba dát — hra má per-otázku fallback na slovenčinu.
+  // Čiastočne preložený jazyk chybou zostáva, pretože to je skutočná regresia.
+  if (!ids.length) {
+    warnings.push({ id: "(all)", language, reason: "translations-not-generated" });
+    continue;
+  }
   for (const id of sourceById.keys()) {
     const sourceQuestion = sourceById.get(id);
     const item = records[id];
