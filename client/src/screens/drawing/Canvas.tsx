@@ -4,9 +4,18 @@ import type { GameSettings, RoundAssignment } from "../../types";
 import { vibrate } from "../../utils/deviceFeedback";
 
 const PLAYER_COLORS = [
-  "#fb7185", "#fb923c", "#facc15", "#4ade80",
-  "#22d3ee", "#c084fc", "#f472b6", "#60a5fa",
-  "#2dd4bf", "#a78bfa", "#f43f5e", "#a3e635",
+  "#fb7185",
+  "#fb923c",
+  "#facc15",
+  "#4ade80",
+  "#22d3ee",
+  "#c084fc",
+  "#f472b6",
+  "#60a5fa",
+  "#2dd4bf",
+  "#a78bfa",
+  "#f43f5e",
+  "#a3e635",
 ];
 
 type Point = { x: number; y: number };
@@ -76,11 +85,26 @@ export default function DrawingCanvas({
       ctx.fillRect(0, 0, rect.width, rect.height);
 
       if (initializedRef.current && snapshot.width > 0 && snapshot.height > 0) {
-        ctx.drawImage(snapshot, 0, 0, snapshot.width, snapshot.height, 0, 0, rect.width, rect.height);
+        ctx.drawImage(
+          snapshot,
+          0,
+          0,
+          snapshot.width,
+          snapshot.height,
+          0,
+          0,
+          rect.width,
+          rect.height
+        );
       }
 
       initializedRef.current = true;
-      committedRef.current = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      committedRef.current = ctx.getImageData(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
     }
 
     resizeCanvas();
@@ -123,11 +147,15 @@ export default function DrawingCanvas({
     event.preventDefault();
     const ctx = canvasRef.current!.getContext("2d")!;
     const nativeEvent = event.nativeEvent;
-    const coalescedSamples = typeof nativeEvent.getCoalescedEvents === "function"
-      ? nativeEvent.getCoalescedEvents()
-      : [];
-    const samples = coalescedSamples.length > 0 ? coalescedSamples : [nativeEvent];
-    const points = samples.map((sample) => getPos(sample.clientX, sample.clientY));
+    const coalescedSamples =
+      typeof nativeEvent.getCoalescedEvents === "function"
+        ? nativeEvent.getCoalescedEvents()
+        : [];
+    const samples =
+      coalescedSamples.length > 0 ? coalescedSamples : [nativeEvent];
+    const points = samples.map(sample =>
+      getPos(sample.clientX, sample.clientY)
+    );
     if (points.length === 0) return;
 
     prepareBrush(ctx);
@@ -135,7 +163,10 @@ export default function DrawingCanvas({
     ctx.moveTo(lastPosRef.current.x, lastPosRef.current.y);
     let previous = lastPosRef.current;
     for (const point of points) {
-      const midpoint = { x: (previous.x + point.x) / 2, y: (previous.y + point.y) / 2 };
+      const midpoint = {
+        x: (previous.x + point.x) / 2,
+        y: (previous.y + point.y) / 2,
+      };
       ctx.quadraticCurveTo(previous.x, previous.y, midpoint.x, midpoint.y);
       previous = point;
     }
@@ -171,7 +202,7 @@ export default function DrawingCanvas({
       onVote();
       return;
     }
-    setTurn((value) => value + 1);
+    setTurn(value => value + 1);
     setStrokeDone(false);
   }
 
@@ -184,38 +215,84 @@ export default function DrawingCanvas({
 
       <header className="relative z-10 shrink-0 px-4 pb-3 pt-[max(.9rem,env(safe-area-inset-top))]">
         <div className="flex items-center justify-between">
-        <button onClick={onExit} aria-label="Ukončiť hru" className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-white/65 backdrop-blur-xl transition active:scale-90"><Icons.x size={18} /></button>
+          <button
+            onClick={onExit}
+            aria-label="Ukončiť hru"
+            className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-white/65 backdrop-blur-xl transition active:scale-90"
+          >
+            <Icons.x size={18} />
+          </button>
           <div className="text-center">
-            <p className="text-[9px] font-black uppercase tracking-[0.26em] text-violet-300/70">Imposter kreslenie</p>
-            <p className="mt-0.5 text-xs font-black text-white/75">Ťah {turn + 1} z {totalTurns}</p>
+            <p className="text-[9px] font-black uppercase tracking-[0.26em] text-violet-300/70">
+              Imposter kreslenie
+            </p>
+            <p className="mt-0.5 text-xs font-black text-white/75">
+              Ťah {turn + 1} z {totalTurns}
+            </p>
           </div>
-          <span className="rounded-xl border border-white/10 bg-white/[0.06] px-3 py-2 text-[10px] font-black text-white/50">1 ťah</span>
+          <span className="rounded-xl border border-white/10 bg-white/[0.06] px-3 py-2 text-[10px] font-black text-white/50">
+            1 ťah
+          </span>
         </div>
 
         <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
-          <div className="h-full rounded-full transition-[width] duration-500 ease-out" style={{ width: `${progress}%`, background: `linear-gradient(90deg, ${color}, #22d3ee)`, boxShadow: `0 0 16px ${color}` }} />
+          <div
+            className="h-full rounded-full transition-[width] duration-500 ease-out"
+            style={{
+              width: `${progress}%`,
+              background: `linear-gradient(90deg, ${color}, #22d3ee)`,
+              boxShadow: `0 0 16px ${color}`,
+            }}
+          />
         </div>
 
-        <div key={turn} className="mt-3 flex animate-pop-in items-center gap-3 rounded-[1.4rem] border bg-white/[0.055] p-3 backdrop-blur-xl" style={{ borderColor: `${color}55`, boxShadow: `0 12px 38px ${color}12` }}>
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-sm font-black text-[#080b13]" style={{ background: color, boxShadow: `0 0 24px ${color}55` }}>
+        <div
+          key={turn}
+          className="mt-3 flex animate-pop-in items-center gap-3 rounded-[1.4rem] border bg-white/[0.055] p-3 backdrop-blur-xl"
+          style={{
+            borderColor: `${color}55`,
+            boxShadow: `0 12px 38px ${color}12`,
+          }}
+        >
+          <span
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-sm font-black text-[#080b13]"
+            style={{ background: color, boxShadow: `0 0 24px ${color}55` }}
+          >
             {name.slice(0, 2).toUpperCase()}
           </span>
           <span className="min-w-0 flex-1 text-left">
-            <span className="block text-[9px] font-black uppercase tracking-[0.2em]" style={{ color }}>Teraz kreslí</span>
-            <span className="mt-0.5 block truncate text-lg font-black text-white">{name}</span>
+            <span
+              className="block text-[9px] font-black uppercase tracking-[0.2em]"
+              style={{ color }}
+            >
+              Teraz kreslí
+            </span>
+            <span className="mt-0.5 block truncate text-lg font-black text-white">
+              {name}
+            </span>
           </span>
-          <span className={`rounded-xl px-3 py-2 text-[9px] font-black uppercase tracking-wider ${strokeDone ? "bg-emerald-400/15 text-emerald-300" : "bg-white/[0.06] text-white/40"}`}>
+          <span
+            className={`rounded-xl px-3 py-2 text-[9px] font-black uppercase tracking-wider ${strokeDone ? "bg-emerald-400/15 text-emerald-300" : "bg-white/[0.06] text-white/40"}`}
+          >
             {strokeDone ? "Hotovo ✓" : "Kresli"}
           </span>
         </div>
       </header>
 
-      <div ref={canvasWrapRef} className="relative z-10 mx-4 min-h-0 flex-1 overflow-hidden rounded-[2rem] border-4 border-white/90 bg-[#fffdf8] shadow-[0_24px_70px_rgba(0,0,0,.5)]">
+      <div
+        ref={canvasWrapRef}
+        className="relative z-10 mx-4 min-h-0 flex-1 overflow-hidden rounded-[2rem] border-4 border-white/90 bg-[#fffdf8] shadow-[0_24px_70px_rgba(0,0,0,.5)]"
+      >
         <canvas
           ref={canvasRef}
           aria-label="Kresliace plátno"
           className="absolute inset-0 h-full w-full"
-          style={{ display: "block", touchAction: "none", userSelect: "none", cursor: strokeDone ? "default" : "crosshair" }}
+          style={{
+            display: "block",
+            touchAction: "none",
+            userSelect: "none",
+            cursor: strokeDone ? "default" : "crosshair",
+          }}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={finishStroke}
@@ -223,8 +300,13 @@ export default function DrawingCanvas({
         />
 
         <div className="pointer-events-none absolute left-3 top-3 flex items-center gap-2 rounded-xl border border-black/[0.06] bg-white/80 px-3 py-2 shadow-sm backdrop-blur">
-          <span className="h-3 w-3 rounded-full" style={{ background: color, boxShadow: `0 0 0 3px ${color}25` }} />
-          <span className="text-[9px] font-black uppercase tracking-wider text-black/40">Farba hráča</span>
+          <span
+            className="h-3 w-3 rounded-full"
+            style={{ background: color, boxShadow: `0 0 0 3px ${color}25` }}
+          />
+          <span className="text-[9px] font-black uppercase tracking-wider text-black/40">
+            Farba hráča
+          </span>
         </div>
 
         {strokeDone && (
@@ -236,25 +318,68 @@ export default function DrawingCanvas({
 
       <div className="relative z-10 shrink-0 space-y-2 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3">
         <div className="grid grid-cols-[1fr_3.2fr] gap-2.5">
-          <button onClick={undoStroke} disabled={!strokeDone} aria-label="Zrušiť môj ťah" className="flex min-h-[3.75rem] items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-xl text-white/65 transition active:scale-95 disabled:opacity-25">↶</button>
-          <button onClick={nextTurn} disabled={!strokeDone} className="party-shine min-h-[3.75rem] overflow-hidden rounded-2xl px-4 text-sm font-black text-[#080b13] shadow-xl transition active:scale-[.98] disabled:opacity-30" style={{ background: `linear-gradient(135deg, ${color}, #67e8f9)` }}>
-            {isLastTurn ? "Dokončiť a hlasovať ✓" : <>Odovzdať → <span className="opacity-70">{nextName}</span></>}
+          <button
+            onClick={undoStroke}
+            disabled={!strokeDone}
+            aria-label="Zrušiť môj ťah"
+            className="flex min-h-[3.75rem] items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-xl text-white/65 transition active:scale-95 disabled:opacity-25"
+          >
+            ↶
+          </button>
+          <button
+            onClick={nextTurn}
+            disabled={!strokeDone}
+            className="party-shine min-h-[3.75rem] overflow-hidden rounded-2xl px-4 text-sm font-black text-[#080b13] shadow-xl transition active:scale-[.98] disabled:opacity-30"
+            style={{ background: `linear-gradient(135deg, ${color}, #67e8f9)` }}
+          >
+            {isLastTurn ? (
+              "Dokončiť a hlasovať ✓"
+            ) : (
+              <>
+                Odovzdať → <span className="opacity-70">{nextName}</span>
+              </>
+            )}
           </button>
         </div>
         {!isLastTurn && (
-          <button onClick={() => setShowFinishConfirm(true)} className="w-full py-2 text-[10px] font-black uppercase tracking-[0.18em] text-white/30 transition active:text-white/60">Ukončiť kreslenie skôr</button>
+          <button
+            onClick={() => setShowFinishConfirm(true)}
+            className="w-full py-2 text-[10px] font-black uppercase tracking-[0.18em] text-white/30 transition active:text-white/60"
+          >
+            Ukončiť kreslenie skôr
+          </button>
         )}
       </div>
 
       {showFinishConfirm && (
-        <div className="absolute inset-0 z-50 flex items-end bg-black/70 p-4 backdrop-blur-sm" onClick={() => setShowFinishConfirm(false)}>
-          <div className="animate-slide-up w-full rounded-[2rem] border border-white/12 bg-[#111522] p-5 text-center shadow-2xl" onClick={(event) => event.stopPropagation()}>
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-400/15 text-amber-200 shadow-lg shadow-amber-950/20"><Icons.palette size={26} /></div>
+        <div
+          className="absolute inset-0 z-50 flex items-end bg-black/70 p-4 backdrop-blur-sm"
+          onClick={() => setShowFinishConfirm(false)}
+        >
+          <div
+            className="animate-slide-up w-full rounded-[2rem] border border-white/12 bg-[#111522] p-5 text-center shadow-2xl"
+            onClick={event => event.stopPropagation()}
+          >
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-400/15 text-amber-200 shadow-lg shadow-amber-950/20">
+              <Icons.palette size={26} />
+            </div>
             <h2 className="mt-4 text-xl font-black">Už chcete hlasovať?</h2>
-            <p className="mt-2 text-sm leading-relaxed text-white/45">Nevyužité ťahy sa preskočia a kresbu už nebude možné doplniť.</p>
+            <p className="mt-2 text-sm leading-relaxed text-white/45">
+              Nevyužité ťahy sa preskočia a kresbu už nebude možné doplniť.
+            </p>
             <div className="mt-5 grid grid-cols-2 gap-3">
-              <button onClick={() => setShowFinishConfirm(false)} className="rounded-2xl border border-white/10 bg-white/[0.06] py-4 text-sm font-black text-white/65">Pokračovať</button>
-              <button onClick={onVote} className="rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-500 py-4 text-sm font-black text-white shadow-lg">Hlasovať</button>
+              <button
+                onClick={() => setShowFinishConfirm(false)}
+                className="rounded-2xl border border-white/10 bg-white/[0.06] py-4 text-sm font-black text-white/65"
+              >
+                Pokračovať
+              </button>
+              <button
+                onClick={onVote}
+                className="rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-500 py-4 text-sm font-black text-white shadow-lg"
+              >
+                Hlasovať
+              </button>
             </div>
           </div>
         </div>

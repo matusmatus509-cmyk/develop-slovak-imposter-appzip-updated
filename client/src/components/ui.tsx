@@ -14,7 +14,8 @@ interface IconProps extends SVGProps<SVGSVGElement> {
 type IconName = keyof IconsType;
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "ghost" | "danger" | "success" | "outline";
+  variant?:
+    "primary" | "secondary" | "ghost" | "danger" | "success" | "outline";
   size?: "sm" | "md" | "lg" | "xl";
   fullWidth?: boolean;
   loading?: boolean;
@@ -144,9 +145,15 @@ interface ToastProps {
 
 // ── Helper ────────────────────────────────────────────────────────────
 
-const { cn, componentStyles, colors, spacing, borderRadius, typography } = designTokens;
+const { cn, componentStyles, colors, spacing, borderRadius, typography } =
+  designTokens;
 
-function Icon({ name, size = 24, className = "", ...props }: IconProps & { name: IconName }) {
+function Icon({
+  name,
+  size = 24,
+  className = "",
+  ...props
+}: IconProps & { name: IconName }) {
   const IconComponent = Icons[name];
   if (!IconComponent) return null;
   return <IconComponent size={size} className={className} {...props} />;
@@ -168,17 +175,38 @@ export function Button({
   ...props
 }: ButtonProps) {
   const sizeStyles = {
-    sm: { padding: `${spacing.xs} ${spacing.sm}`, fontSize: typography.fontSize.sm, gap: spacing.xs, height: "32px" },
-    md: { padding: `${spacing.sm} ${spacing.md}`, fontSize: typography.fontSize.base, gap: spacing.sm, height: "44px" },
-    lg: { padding: `${spacing.md} ${spacing.lg}`, fontSize: typography.fontSize.lg, gap: spacing.md, height: "52px" },
-    xl: { padding: `${spacing.md} ${spacing.xl}`, fontSize: typography.fontSize.xl, gap: spacing.md, height: "60px" },
+    sm: {
+      padding: `${spacing.xs} ${spacing.sm}`,
+      fontSize: typography.fontSize.sm,
+      gap: spacing.xs,
+      height: "32px",
+    },
+    md: {
+      padding: `${spacing.sm} ${spacing.md}`,
+      fontSize: typography.fontSize.base,
+      gap: spacing.sm,
+      height: "44px",
+    },
+    lg: {
+      padding: `${spacing.md} ${spacing.lg}`,
+      fontSize: typography.fontSize.lg,
+      gap: spacing.md,
+      height: "52px",
+    },
+    xl: {
+      padding: `${spacing.md} ${spacing.xl}`,
+      fontSize: typography.fontSize.xl,
+      gap: spacing.md,
+      height: "60px",
+    },
   }[size];
 
   const variantStyles = {
     primary: {
       background: colors.gradient.primary,
       color: colors.text.primary,
-      boxShadow: "0 12px 28px -18px color-mix(in srgb, var(--game-accent, #8b5cf6) 78%, transparent)",
+      boxShadow:
+        "0 12px 28px -18px color-mix(in srgb, var(--game-accent, #8b5cf6) 78%, transparent)",
       "&:hover:not(:disabled)": {
         background: colors.gradient.primaryHover,
         boxShadow: "0 6px 20px 0 rgba(168, 85, 247, 0.5)",
@@ -242,13 +270,15 @@ export function Button({
         fullWidth && "w-full",
         className
       )}
-      style={{
-        ...componentStyles.button.base,
-        ...sizeStyles,
-        ...variantStyles,
-        ...(isDisabled && componentStyles.button.disabled),
-        ...style,
-      } as any}
+      style={
+        {
+          ...componentStyles.button.base,
+          ...sizeStyles,
+          ...variantStyles,
+          ...(isDisabled && componentStyles.button.disabled),
+          ...style,
+        } as any
+      }
       disabled={isDisabled}
       aria-busy={loading}
       {...props}
@@ -276,9 +306,19 @@ export function Button({
           />
         </svg>
       )}
-      {!loading && leftIcon && <Icon name={leftIcon} size={size === "sm" ? 16 : size === "md" ? 18 : 20} />}
+      {!loading && leftIcon && (
+        <Icon
+          name={leftIcon}
+          size={size === "sm" ? 16 : size === "md" ? 18 : 20}
+        />
+      )}
       <span style={{ whiteSpace: "nowrap" }}>{children}</span>
-      {!loading && rightIcon && <Icon name={rightIcon} size={size === "sm" ? 16 : size === "md" ? 18 : 20} />}
+      {!loading && rightIcon && (
+        <Icon
+          name={rightIcon}
+          size={size === "sm" ? 16 : size === "md" ? 18 : 20}
+        />
+      )}
     </button>
   );
 }
@@ -305,16 +345,16 @@ export function Chip({
         variant === "default" && active
           ? "bg-[var(--game-accent,#8b5cf6)] text-white shadow-md shadow-black/25"
           : variant === "default"
-          ? "border border-white/10 bg-white/5 text-white/60 hover:bg-white/10"
-          : variant === "outline"
-          ? active
-            ? "border-white/25 bg-[var(--game-accent,#8b5cf6)] text-white shadow-md shadow-black/25"
-            : "border-white/10 bg-white/5 text-white/60 hover:bg-white/10"
-          : variant === "filled"
-          ? active
-            ? "bg-[var(--game-accent,#8b5cf6)] text-white shadow-md shadow-black/25"
-            : "bg-white/10 text-white/60 hover:bg-white/20"
-          : "",
+            ? "border border-white/10 bg-white/5 text-white/60 hover:bg-white/10"
+            : variant === "outline"
+              ? active
+                ? "border-white/25 bg-[var(--game-accent,#8b5cf6)] text-white shadow-md shadow-black/25"
+                : "border-white/10 bg-white/5 text-white/60 hover:bg-white/10"
+              : variant === "filled"
+                ? active
+                  ? "bg-[var(--game-accent,#8b5cf6)] text-white shadow-md shadow-black/25"
+                  : "bg-white/10 text-white/60 hover:bg-white/20"
+                : "",
         className
       )}
     >
@@ -349,15 +389,15 @@ export function Toggle({
       <span className="flex-1">
         <span className="block text-sm font-bold text-white">{label}</span>
         {description && (
-          <span className="mt-0.5 block text-xs text-white/50">{description}</span>
+          <span className="mt-0.5 block text-xs text-white/50">
+            {description}
+          </span>
         )}
       </span>
       <span
         className={cn(
           "relative h-7 w-12 shrink-0 rounded-full transition-all",
-          checked
-            ? "bg-[var(--game-accent,#8b5cf6)]"
-            : "bg-white/15"
+          checked ? "bg-[var(--game-accent,#8b5cf6)]" : "bg-white/15"
         )}
       >
         <span
@@ -423,12 +463,7 @@ export function Stepper({
 
 // ── TopBar ────────────────────────────────────────────────────────────
 
-export function TopBar({
-  title,
-  onBack,
-  right,
-  showBack = true,
-}: TopBarProps) {
+export function TopBar({ title, onBack, right, showBack = true }: TopBarProps) {
   return (
     <div className="app-topbar relative z-30 mb-7 flex h-12 items-center justify-between">
       {showBack && onBack ? (
@@ -457,15 +492,28 @@ export function TopBar({
 function Background() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[var(--game-deep,#080d16)] transition-colors duration-700">
-      <img src={appBackground} alt="" className="absolute inset-0 h-full w-full object-cover opacity-38" />
+      <img
+        src={appBackground}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover opacity-38"
+      />
       <div className="absolute inset-0 bg-gradient-to-b from-[var(--game-deep,#080d16)]/60 via-[#080b10]/78 to-[#080b10]/96" />
     </div>
   );
 }
 
-export function Shell({ children, className = "", noBackground = false }: ShellProps) {
+export function Shell({
+  children,
+  className = "",
+  noBackground = false,
+}: ShellProps) {
   return (
-    <div className={cn("app-shell relative isolate min-h-[100dvh] w-full overflow-hidden bg-transparent text-white", className)}>
+    <div
+      className={cn(
+        "app-shell relative isolate min-h-[100dvh] w-full overflow-hidden bg-transparent text-white",
+        className
+      )}
+    >
       {!noBackground && <Background />}
       <div className="app-shell-content relative z-10 mx-auto flex min-h-[100dvh] w-full max-w-[30rem] flex-col px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(1.25rem,env(safe-area-inset-top))]">
         {children}
@@ -514,7 +562,8 @@ export function Input({
             "disabled:opacity-50 disabled:cursor-not-allowed",
             leftIcon && "pl-12",
             rightIcon && "pr-12",
-            error && "border-red-500/40 focus:border-red-500/60 focus:ring-red-500/20",
+            error &&
+              "border-red-500/40 focus:border-red-500/60 focus:ring-red-500/20",
             className
           )}
           aria-invalid={error ? "true" : "false"}
@@ -553,17 +602,25 @@ export function Card({
     <div
       className={cn(
         "transition-all duration-200",
-        variant === "base" && "border border-white/10 bg-[#111820]/92 shadow-lg shadow-black/20",
-        variant === "elevated" && "border border-white/12 bg-[#171e27]/96 shadow-xl shadow-black/35",
+        variant === "base" &&
+          "border border-white/10 bg-[#111820]/92 shadow-lg shadow-black/20",
+        variant === "elevated" &&
+          "border border-white/12 bg-[#171e27]/96 shadow-xl shadow-black/35",
         variant === "outlined" && "border border-white/12 bg-[#0d131a]/55",
-        variant === "gradient" && "border border-white/12 bg-[#151c25]/95 shadow-xl shadow-black/25",
+        variant === "gradient" &&
+          "border border-white/12 bg-[#151c25]/95 shadow-xl shadow-black/25",
         onClick && "cursor-pointer active:scale-[0.98]",
         className
       )}
-      style={{
-        borderRadius: borderRadius.xl,
-        ...(variant === "gradient" && { background: "linear-gradient(145deg, rgba(255,255,255,.07), rgba(17,24,32,.96))" }),
-      } as any}
+      style={
+        {
+          borderRadius: borderRadius.xl,
+          ...(variant === "gradient" && {
+            background:
+              "linear-gradient(145deg, rgba(255,255,255,.07), rgba(17,24,32,.96))",
+          }),
+        } as any
+      }
       onClick={onClick}
     >
       {children}
@@ -682,7 +739,11 @@ export function Avatar({
   };
 
   const content = src ? (
-    <img src={src} alt={alt || ""} className="h-full w-full rounded-full object-cover" />
+    <img
+      src={src}
+      alt={alt || ""}
+      className="h-full w-full rounded-full object-cover"
+    />
   ) : (
     <span className="flex h-full w-full items-center justify-center font-black select-none">
       {children}
@@ -695,13 +756,20 @@ export function Avatar({
         className={cn(
           "flex items-center justify-center rounded-full overflow-hidden select-none",
           sizeStyles,
-          variant === "default" && getColorForName(typeof children === "string" ? children : "A"),
-          variant === "gradient" && "bg-gradient-to-br from-violet-500 to-cyan-500",
+          variant === "default" &&
+            getColorForName(typeof children === "string" ? children : "A"),
+          variant === "gradient" &&
+            "bg-gradient-to-br from-violet-500 to-cyan-500"
         )}
-        style={{
-          boxShadow: variant === "gradient" ? "0 0 0 3px currentColor, 0 0 20px 6px currentColor" : undefined,
-          color: variant === "gradient" ? "currentColor" : undefined,
-        } as any}
+        style={
+          {
+            boxShadow:
+              variant === "gradient"
+                ? "0 0 0 3px currentColor, 0 0 20px 6px currentColor"
+                : undefined,
+            color: variant === "gradient" ? "currentColor" : undefined,
+          } as any
+        }
       >
         {content}
       </div>
@@ -730,7 +798,7 @@ export function Progress({
   className = "",
 }: ProgressProps) {
   const percentage = Math.min(100, Math.max(0, (value / max) * 100));
-  
+
   const sizeStyles = {
     sm: "h-1",
     md: "h-2",
@@ -765,10 +833,12 @@ export function Progress({
             variantColors,
             animated && "animate-pulse"
           )}
-          style={{
-            width: `${percentage}%`,
-            ...(animated && { animation: "pulse 2s ease-in-out infinite" }),
-          } as any}
+          style={
+            {
+              width: `${percentage}%`,
+              ...(animated && { animation: "pulse 2s ease-in-out infinite" }),
+            } as any
+          }
         />
       </div>
     </div>
@@ -785,22 +855,23 @@ export function Skeleton({
   className = "",
 }: SkeletonProps) {
   const baseStyles = {
-    background: "linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%)",
+    background:
+      "linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%)",
     backgroundSize: "200% 100%",
     borderRadius: borderRadius.lg,
   };
 
   const variantStyles = {
     text: { height: height || "1rem", borderRadius: borderRadius.md },
-    circular: { 
-      width: height || "3rem", 
-      height: height || "3rem", 
-      borderRadius: borderRadius.full 
+    circular: {
+      width: height || "3rem",
+      height: height || "3rem",
+      borderRadius: borderRadius.full,
     },
-    rectangular: { 
-      width: width, 
-      height: height || "8rem", 
-      borderRadius: borderRadius.xl 
+    rectangular: {
+      width: width,
+      height: height || "8rem",
+      borderRadius: borderRadius.xl,
     },
   }[variant];
 
@@ -812,11 +883,13 @@ export function Skeleton({
         animation === "wave" && "animate-[shimmer_1.5s_infinite]",
         className
       )}
-      style={{
-        ...baseStyles,
-        ...variantStyles,
-        width: variant === "text" ? width : variantStyles.width,
-      } as any}
+      style={
+        {
+          ...baseStyles,
+          ...variantStyles,
+          width: variant === "text" ? width : variantStyles.width,
+        } as any
+      }
     />
   );
 }
@@ -856,7 +929,13 @@ export function Tooltip({
   }[position];
 
   return (
-    <div className="relative inline-block" onMouseEnter={show} onMouseLeave={hide} onFocus={show} onBlur={hide}>
+    <div
+      className="relative inline-block"
+      onMouseEnter={show}
+      onMouseLeave={hide}
+      onFocus={show}
+      onBlur={hide}
+    >
       {children}
       {visible && (
         <div
@@ -915,7 +994,7 @@ export function Modal({
           "w-full rounded-3xl bg-[#12101f]/95 border border-white/10 shadow-2xl shadow-black/50 backdrop-blur-xl animate-pop-in",
           sizeStyles
         )}
-        onClick={(e) => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
       >
         {(title || showCloseButton) && (
           <div className="flex items-start justify-between gap-4 p-6 pb-4 border-b border-white/10">
@@ -926,7 +1005,10 @@ export function Modal({
                 </h2>
               )}
               {description && (
-                <p id="modal-description" className="mt-1 text-sm text-white/50">
+                <p
+                  id="modal-description"
+                  className="mt-1 text-sm text-white/50"
+                >
                   {description}
                 </p>
               )}
@@ -960,7 +1042,7 @@ export function Toast({
   action,
 }: ToastProps) {
   const [visible, setVisible] = useState(true);
-  
+
   const typeStyles = {
     success: "border-green-500/40 bg-green-500/10",
     error: "border-red-500/40 bg-red-500/10",
@@ -1002,7 +1084,10 @@ export function Toast({
           {message && <p className="mt-1 text-sm text-white/70">{message}</p>}
         </div>
         <button
-          onClick={() => { setVisible(false); setTimeout(() => onClose(id), 300); }}
+          onClick={() => {
+            setVisible(false);
+            setTimeout(() => onClose(id), 300);
+          }}
           className="shrink-0 text-white/40 hover:text-white transition-colors"
           aria-label="Zavrieť"
         >
@@ -1030,7 +1115,7 @@ interface ToastContainerProps {
 export function ToastContainer({ toasts, onClose }: ToastContainerProps) {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none">
-      {toasts.map((toast) => (
+      {toasts.map(toast => (
         <Toast key={toast.id} {...toast} onClose={onClose} />
       ))}
     </div>
