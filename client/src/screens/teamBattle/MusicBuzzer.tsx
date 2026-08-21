@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-/** Design: Nočný herný salón — hudobný bzučiak používa hostovaný vizuál kvízu. */
+import { useEffect, useMemo, useRef, useState } from "react";
+/** Design: Nočný herný salón — hudobný kvíz používa hostovaný vizuál kvízu. */
 import { musicQuizGameHero as songArt } from "../../media";
 import { getSongCardsForLanguage } from "../../data/localizedSongs";
 import { useFeedback } from "../../feedback/FeedbackProvider";
@@ -8,40 +8,36 @@ import { useLanguage } from "../../i18n/LanguageProvider";
 import { soundsEnabled, vibrate } from "../../utils/deviceFeedback";
 import { takePersistentItems } from "../../utils/persistentDeck";
 import { PartyBackdrop } from "./PartyChrome";
-import { makeEmptyScores, PARTY_PLAYER_COLORS, type QuickParticipantsProps } from "./quickGameShared";
+import {
+  makeEmptyScores,
+  PARTY_PLAYER_COLORS,
+  type QuickParticipantsProps,
+} from "./quickGameShared";
 import { Icons } from "../../components/icons";
 
-type Phase = { type: "question" } | { type: "buzzed"; participant: number } | { type: "revealed"; participant: number | null };
+type Phase =
+  | { type: "question" }
+  | { type: "buzzed"; participant: number }
+  | { type: "revealed"; participant: number | null };
 
-const CORNERS = [
-  "left-3 top-[max(.75rem,env(safe-area-inset-top))] rotate-180",
-  "right-3 top-[max(.75rem,env(safe-area-inset-top))] rotate-180",
-  "bottom-[max(.75rem,env(safe-area-inset-bottom))] left-3",
-  "bottom-[max(.75rem,env(safe-area-inset-bottom))] right-3",
-];
-
-function TableReadout({ children }: { children: ReactNode }) {
-  return (
-    <div className="absolute inset-0 flex flex-col">
-      <div className="flex flex-1 rotate-180 flex-col items-center justify-center px-6 pb-20 text-center">{children}</div>
-      <div className="relative h-px shrink-0 bg-gradient-to-r from-transparent via-violet-300/70 to-transparent" />
-      <div className="flex flex-1 flex-col items-center justify-center px-6 pt-20 text-center">{children}</div>
-    </div>
-  );
-}
-
-function MirroredAction({ children, onClick, className = "" }: { children: ReactNode; onClick: () => void; className?: string }) {
-  const buttonClass = `party-shine w-full rounded-2xl px-4 py-3 text-sm font-black text-white shadow-xl transition active:scale-95 ${className}`;
-  return (
-    <>
-      <div className="absolute inset-x-5 top-4 z-10 rotate-180"><button onClick={onClick} className={buttonClass}>{children}</button></div>
-      <div className="absolute inset-x-5 bottom-4 z-10"><button onClick={onClick} className={buttonClass}>{children}</button></div>
-    </>
-  );
-}
-
-/** Four-corner, two-sided music quiz designed for players around one phone. */
-export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds = 10, timeSeconds = 10 }: QuickParticipantsProps) {
+/**
+ * Obrazovka je „obojstranná": telefón leží na stole a hráči sedia z dvoch strán.
+ * Preto je layout mriežka s piatimi pevnými pásmi — horné dva sú otočené o 180°,
+ * takže protistrana čita rovnako pohodlne ako blizšia strana.
+ *
+ * Prečo mriežka a nie absolútne pozicovanie: predchádzajúca verzia mala centrálne
+ * tlačidlo `absolute` presne na deliacej línii so `z-10` a texty pod ním, takže
+ * dlhší názov skladby aj interpret sa dostali pod tlačidlo alebo ich odstrihol
+ * `overflow-hidden`. V mriežke má každý prvok vlastný riadok a prekrytie je
+ * konštrukčne nemožné.
+ */
+export default function MusicBuzzer({
+  participantNames,
+  gameMode,
+  onDone,
+  rounds = 10,
+  timeSeconds = 10,
+}: QuickParticipantsProps) {
   const { language } = useLanguage();
   const { playFeedback } = useFeedback();
   const soundAllowed = soundsEnabled();
@@ -51,26 +47,40 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
       `party:music-buzzer:${language}`,
       catalogue,
       catalogue.length,
-      (song) => `${song.title}|${song.artist}`.toLocaleLowerCase(),
+      song => `${song.title}|${song.artist}`.toLocaleLowerCase()
     );
   }, [language]);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [deckIndex, setDeckIndex] = useState(0);
-  const [scores, setScores] = useState<number[]>(() => makeEmptyScores(participantNames));
+  const [scores, setScores] = useState<number[]>(() =>
+    makeEmptyScores(participantNames)
+  );
   const [phase, setPhase] = useState<Phase>({ type: "question" });
   const [played, setPlayed] = useState(false);
   const autoStartedFor = useRef<number | null>(null);
   const song = deck[deckIndex] ?? null;
-  const { status, play, stop } = useSongPreview(song, soundAllowed, timeSeconds);
+  const { status, source, play, stop } = useSongPreview(
+    song,
+    soundAllowed,
+    timeSeconds
+  );
   const participantWord = gameMode === "teams" ? "Tím" : "Hráč";
-  const cornerOrder = participantNames.length === 2 ? [0, 3] : participantNames.map((_, index) => index);
+
+  const unavailable =
+    !soundAllowed || status === "missing" || status === "error";
+  const revealed = phase.type === "revealed";
 
   async function playPreview() {
     if (await play()) setPlayed(true);
   }
 
   useEffect(() => {
-    if (!soundAllowed || status !== "ready" || autoStartedFor.current === deckIndex) return;
+    if (
+      !soundAllowed ||
+      status !== "ready" ||
+      autoStartedFor.current === deckIndex
+    )
+      return;
     autoStartedFor.current = deckIndex;
     void playPreview();
   }, [deckIndex, soundAllowed, status]);
@@ -86,8 +96,8 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
       onDone(nextScores);
       return;
     }
-    setQuestionIndex((value) => value + 1);
-    setDeckIndex((value) => value + 1);
+    setQuestionIndex(value => value + 1);
+    setDeckIndex(value => value + 1);
     resetQuestion();
   }
 
@@ -97,13 +107,16 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
       onDone(scores);
       return;
     }
-    setDeckIndex((value) => value + 1);
+    setDeckIndex(value => value + 1);
     resetQuestion();
   }
 
   function resolve(titleCorrect: boolean, artistCorrect: boolean) {
     if (phase.type !== "revealed") return;
-    const points = phase.participant === null ? 0 : Number(titleCorrect) + Number(artistCorrect);
+    const points =
+      phase.participant === null
+        ? 0
+        : Number(titleCorrect) + Number(artistCorrect);
     const nextScores = [...scores];
     if (phase.participant !== null) nextScores[phase.participant] += points;
     setScores(nextScores);
@@ -111,86 +124,292 @@ export default function MusicBuzzer({ participantNames, gameMode, onDone, rounds
     advance(nextScores);
   }
 
-  const readoutTitle = phase.type === "question"
-    ? status === "loading" ? "Hľadám ukážku…" : played ? "Kto pozná túto pesničku?" : "Spúšťam ukážku…"
-    : phase.type === "buzzed" ? `${participantNames[phase.participant]} odpovedá`
-    : song?.title ?? "Hudobný kvíz";
-  const readoutDetail = !soundAllowed
-    ? "Zvuky sú vypnuté"
-    : status === "missing" ? "Ukážka nie je dostupná"
-    : status === "error" ? "Prehrávanie sa nepodarilo"
-    : phase.type === "question" ? ""
-    : phase.type === "buzzed" ? `${participantWord} povie názov aj interpreta`
-    : `${song?.artist} · 1 bod názov · 1 bod interpret`;
+  // Hráči sa delia na dve strany stola: prvá polovica bližšie, zvyšok naproti.
+  const half = Math.ceil(participantNames.length / 2);
+  const seating = participantNames.map((name, index) => ({ name, index }));
+  const nearSeats = seating.slice(0, half);
+  const farSeats = seating.slice(half);
 
   const scoreActions = [
-    { label: "0 · Nič", action: () => resolve(false, false), color: "#334155" },
-    { label: "+1 · Názov", action: () => resolve(true, false), color: "#6d28d9" },
-    { label: "+1 · Interpret", action: () => resolve(false, true), color: "#a21caf" },
-    { label: "+2 · Oboje", action: () => resolve(true, true), color: "#059669" },
+    {
+      points: "0",
+      label: "Nič",
+      action: () => resolve(false, false),
+      color: "#475569",
+    },
+    {
+      points: "+1",
+      label: "Názov",
+      action: () => resolve(true, false),
+      color: "#7c3aed",
+    },
+    {
+      points: "+1",
+      label: "Interpret",
+      action: () => resolve(false, true),
+      color: "#c026d3",
+    },
+    {
+      points: "+2",
+      label: "Oboje",
+      action: () => resolve(true, true),
+      color: "#059669",
+    },
   ];
 
-  return (
-    <PartyBackdrop>
-      <main className="relative h-[100dvh] overflow-hidden text-center">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,.2),transparent_48%)]" />
+  const headline =
+    phase.type === "question"
+      ? status === "loading"
+        ? "Hľadám ukážku…"
+        : played
+          ? "Kto pozná túto pesničku?"
+          : "Spúšťam ukážku…"
+      : phase.type === "buzzed"
+        ? `${participantNames[phase.participant]} odpovedá`
+        : (song?.title ?? "Hudobný kvíz");
 
-        {phase.type === "question" && soundAllowed && status !== "missing" && status !== "error" && participantNames.map((name, participant) => {
-          const corner = cornerOrder[participant] ?? participant;
-          const color = PARTY_PLAYER_COLORS[participant % PARTY_PLAYER_COLORS.length];
+  const hint = !soundAllowed
+    ? "Zvuky sú vypnuté — zapni ich v nastaveniach"
+    : status === "missing"
+      ? "Ukážka nie je dostupná"
+      : status === "error"
+        ? "Prehrávanie sa nepodarilo"
+        : phase.type === "question"
+          ? played
+            ? "Bzuč, keď poznáš názov aj interpreta"
+            : ""
+          : phase.type === "buzzed"
+            ? `${participantWord} povie názov aj interpreta`
+            : "";
+
+  /**
+   * Interpret má vlastný pás s vlastným popisom, nie prilepený k názvu.
+   * Presne toto sa predtým strácalo: bol zliaty do jedného nízkokontrastného
+   * riadku spolu s bodovaním, takže sa odstrihol ako prvý.
+   */
+  /**
+   * Render funkcie, nie vnorené komponenty: keby to boli komponenty definované
+   * vnútri MusicBuzzer, každý render by vytvoril nový typ, React by podstrom
+   * odmontoval a znova pripojil a animácie ekvalizéra by sa restartovali.
+   */
+  function renderReadout() {
+    // justify-start priťahuje obsah k stredovému disku (v otočenej polovici to
+    // vďaka rotácii vyjde na tú istú stranu), takže názov, interpret a obal
+    // čítajú ako jeden celok a bzučiaky zostávajú na dosah pri okrajoch.
+    return (
+      <div className="music-quiz-readout flex min-h-0 flex-col items-center justify-start gap-2 overflow-hidden px-4 text-center">
+        <p className="music-quiz-eyebrow shrink-0 rounded-full border border-fuchsia-300/25 bg-fuchsia-500/10 px-3 py-1 text-[9px] font-black uppercase tracking-[0.2em] text-fuchsia-200/90">
+          Pesnička {Math.min(questionIndex + 1, rounds)} / {rounds}
+        </p>
+
+        <h2 className="music-quiz-title min-w-0 max-w-full break-words px-1 font-black leading-[1.03] tracking-[-0.03em] text-white">
+          {headline}
+        </h2>
+
+        {revealed && song && (
+          <p className="music-quiz-artist flex min-w-0 max-w-full shrink-0 items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/[0.07] px-3 py-1.5">
+            <span className="shrink-0 text-fuchsia-200/80" aria-hidden="true">
+              <Icons.user size={13} />
+            </span>
+            <span className="music-quiz-artist-label shrink-0 text-[8px] font-black uppercase tracking-[0.16em] text-white/45">
+              Interpret
+            </span>
+            <span className="music-quiz-artist-name min-w-0 break-words text-left font-black leading-tight text-white">
+              {song.artist}
+            </span>
+          </p>
+        )}
+
+        {hint && (
+          <p className="music-quiz-hint min-w-0 max-w-full shrink-0 break-words text-[11px] font-bold leading-snug text-white/50">
+            {hint}
+          </p>
+        )}
+      </div>
+    );
+  }
+
+  /** Ovládanie je na oboch stranách rovnaké, aby nikto nemusel naťahovať ruku. */
+  function renderActionDeck(seats: typeof nearSeats) {
+    if (revealed && phase.participant !== null) {
+      return (
+        <div className="music-quiz-deck flex items-stretch justify-center gap-1.5 px-2">
+          {scoreActions.map(item => (
+            <button
+              key={item.label}
+              type="button"
+              onClick={item.action}
+              className="party-shine flex min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-2xl border border-white/20 px-1 text-white shadow-lg transition active:scale-95"
+              style={{
+                background: `linear-gradient(150deg, ${item.color}, ${item.color}c4)`,
+              }}
+            >
+              <span className="text-sm font-black tabular-nums leading-none">
+                {item.points}
+              </span>
+              <span className="music-quiz-score-label text-[8.5px] font-black uppercase leading-none tracking-wide">
+                {item.label}
+              </span>
+            </button>
+          ))}
+        </div>
+      );
+    }
+
+    if (phase.type === "buzzed") {
+      return (
+        <div className="music-quiz-deck flex items-stretch px-3">
+          <button
+            type="button"
+            onClick={() =>
+              setPhase({ type: "revealed", participant: phase.participant })
+            }
+            className="party-shine flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-500 px-4 text-sm font-black text-white shadow-xl transition active:scale-95"
+          >
+            <Icons.sparkles size={16} />
+            Odhaliť odpoveď
+          </button>
+        </div>
+      );
+    }
+
+    if (unavailable) {
+      return (
+        <div className="music-quiz-deck flex items-stretch px-3">
+          <button
+            type="button"
+            onClick={skipUnavailable}
+            className="party-shine flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-slate-700 to-slate-600 px-4 text-sm font-black text-white shadow-xl transition active:scale-95"
+          >
+            <Icons.chevronRight size={16} />
+            Ďalšia pesnička
+          </button>
+        </div>
+      );
+    }
+
+    return (
+      <div className="music-quiz-deck flex items-stretch justify-center gap-2 px-2">
+        {seats.map(({ name, index }) => {
+          const color = PARTY_PLAYER_COLORS[index % PARTY_PLAYER_COLORS.length];
           return (
             <button
-              key={`${name}-${participant}`}
+              key={`${name}-${index}`}
+              type="button"
               disabled={!played}
-              onClick={() => { stop("ready"); playFeedback("buzzer"); setPhase({ type: "buzzed", participant }); }}
-              className={`party-shine absolute z-20 flex h-[5.6rem] w-[6.4rem] flex-col items-center justify-center overflow-hidden rounded-[1.5rem] border border-white/20 px-2 text-white shadow-2xl transition active:scale-90 disabled:opacity-35 ${CORNERS[corner]}`}
-              style={{ background: `linear-gradient(145deg, ${color}, ${color}bb)` }}
+              onClick={() => {
+                stop("ready");
+                playFeedback("buzzer");
+                setPhase({ type: "buzzed", participant: index });
+              }}
+              className="party-shine flex min-w-0 flex-1 items-center justify-center gap-2 overflow-hidden rounded-2xl border border-white/20 px-3 text-white shadow-xl transition active:scale-95 disabled:opacity-40"
+              style={{
+                background: `linear-gradient(150deg, ${color}, ${color}b8)`,
+              }}
             >
-              <span className="max-w-full truncate text-xs font-black">{name}</span>
-              <span className="mt-1 text-[10px] font-bold uppercase tracking-wider text-white/70">{scores[participant]} bodov</span>
-              <span className="mt-1.5 h-2 w-2 rounded-full bg-white shadow-[0_0_16px_white]" />
+              <span className="min-w-0 text-left">
+                <span className="music-quiz-seat-name block truncate font-black leading-tight">
+                  {name}
+                </span>
+                <span className="block text-[9px] font-bold uppercase tracking-wider text-white/75">
+                  {scores[index]} b
+                </span>
+              </span>
+              <span
+                className="music-quiz-seat-dot shrink-0 rounded-full bg-white shadow-[0_0_14px_white]"
+                aria-hidden="true"
+              />
             </button>
           );
         })}
+      </div>
+    );
+  }
 
-        {phase.type === "revealed" && phase.participant !== null && scoreActions.map((item, index) => (
+  /**
+   * Obal albumu sa odhalí až s odpoveďou — počas otázky by prezradil skladbu,
+   * takže dovtedy drží miesto neutrálny vizuál kvízu.
+   */
+  const artwork = revealed ? (source?.artwork ?? songArt) : songArt;
+  const playing = status === "playing";
+
+  /** Ekvalizér lemuje disk z oboch strán, takže stredové pásmo zostáva symetrické. */
+  function renderEqualizer(align: "left" | "right") {
+    return (
+      <span
+        className={`flex min-w-0 flex-1 items-center gap-1 ${align === "left" ? "justify-end" : "justify-start"}`}
+        aria-hidden="true"
+      >
+        {playing ? (
+          [0, 1, 2, 3, 4].map(bar => (
+            <i
+              key={bar}
+              className="music-quiz-eq-bar"
+              style={{
+                animationDelay: `${(align === "left" ? 4 - bar : bar) * 0.11}s`,
+              }}
+            />
+          ))
+        ) : (
+          <span
+            className={`music-quiz-rule h-px w-full ${align === "left" ? "bg-gradient-to-r" : "bg-gradient-to-l"} from-transparent to-violet-300/45`}
+          />
+        )}
+      </span>
+    );
+  }
+
+  return (
+    <PartyBackdrop>
+      <main className="music-quiz-stage grid h-full grid-rows-[auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto] overflow-hidden">
+        <div className="rotate-180">{renderActionDeck(farSeats)}</div>
+
+        <div className="rotate-180 min-h-0">{renderReadout()}</div>
+
+        <div className="music-quiz-center relative flex items-center justify-center gap-3">
+          {renderEqualizer("left")}
+
           <button
-            key={item.label}
-            onClick={item.action}
-            className={`party-shine absolute z-20 flex h-[5.6rem] w-[6.4rem] items-center justify-center rounded-[1.5rem] border border-white/20 px-2 text-xs font-black text-white shadow-2xl transition active:scale-90 ${CORNERS[index]}`}
-            style={{ background: item.color }}
+            type="button"
+            onClick={playing ? () => stop("ready") : playPreview}
+            disabled={
+              !soundAllowed || status === "loading" || status === "missing"
+            }
+            aria-label={playing ? "Zastaviť pesničku" : "Prehrať pesničku"}
+            className={`music-quiz-disc party-shine relative shrink-0 overflow-hidden rounded-full border-2 border-violet-300/35 shadow-[0_0_46px_rgba(217,70,239,.34)] transition active:scale-95 disabled:opacity-55 ${playing ? "is-playing" : ""}`}
           >
-            {item.label}
-          </button>
-        ))}
-
-        <section className="party-glass absolute left-1/2 top-1/2 h-[min(70dvh,36rem)] w-[min(80vw,24rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[2.7rem] border-violet-300/25 shadow-[0_0_100px_rgba(139,92,246,.25)]">
-          <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-violet-300 to-transparent" />
-          <TableReadout>
-            <p className="text-[11px] font-black uppercase tracking-[.22em] text-violet-300/75">Hudobný kvíz · {questionIndex + 1}/{rounds}</p>
-            <h1 className="mt-3 max-w-[16rem] text-[2.2rem] font-black leading-[.94] tracking-[-.045em] text-white sm:text-[2.65rem]">{readoutTitle}</h1>
-            {readoutDetail && <p className="mt-3 text-base font-bold leading-snug text-white/55">{readoutDetail}</p>}
-          </TableReadout>
-
-          <button
-            onClick={status === "playing" ? () => stop("ready") : playPreview}
-            disabled={!soundAllowed || status === "loading" || status === "missing"}
-            aria-label={status === "playing" ? "Zastaviť pesničku" : "Prehrať pesničku"}
-            className="party-shine absolute left-1/2 top-1/2 z-10 h-28 w-28 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border border-violet-300/30 shadow-[0_0_70px_rgba(217,70,239,.34)] transition active:scale-95 disabled:opacity-55"
-          >
-            <img src={songArt} alt="" className="h-full w-full object-cover" />
-            <span className={`absolute inset-0 flex items-center justify-center bg-black/30 text-2xl ${status === "loading" || status === "playing" ? "animate-pulse" : ""}`}>
-              {status === "loading" ? <Icons.hourglass size={34} /> : status === "playing" ? <Icons.pause size={36} /> : <Icons.play size={36} />}
+            <img
+              src={artwork}
+              alt={
+                revealed && song
+                  ? `Obal albumu — ${song.title}, ${song.artist}`
+                  : ""
+              }
+              className="h-full w-full object-cover"
+            />
+            <span
+              className={`absolute inset-0 flex items-center justify-center bg-black/35 text-white ${
+                status === "loading" || status === "playing"
+                  ? "animate-pulse"
+                  : ""
+              }`}
+            >
+              {status === "loading" ? (
+                <Icons.hourglass size={26} />
+              ) : playing ? (
+                <Icons.pause size={28} />
+              ) : (
+                <Icons.play size={28} />
+              )}
             </span>
           </button>
 
-          {phase.type === "question" && (!soundAllowed || status === "missing" || status === "error") && (
-            <MirroredAction onClick={skipUnavailable} className="bg-gradient-to-r from-slate-700 to-slate-600">Ďalšia pesnička</MirroredAction>
-          )}
-          {phase.type === "buzzed" && (
-            <MirroredAction onClick={() => setPhase({ type: "revealed", participant: phase.participant })} className="bg-gradient-to-r from-violet-600 to-fuchsia-500">Odhaliť odpoveď</MirroredAction>
-          )}
-        </section>
+          {renderEqualizer("right")}
+        </div>
+
+        <div className="min-h-0">{renderReadout()}</div>
+
+        <div>{renderActionDeck(nearSeats)}</div>
       </main>
     </PartyBackdrop>
   );

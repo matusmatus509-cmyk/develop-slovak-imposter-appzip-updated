@@ -7,6 +7,8 @@ export type SongPreviewStatus =
 interface PreviewSource {
   url: string;
   link: string;
+  /** Obal albumu od poskytovateľa — odhalí sa až s odpoveďou, aby neprezradil skladbu. */
+  artwork: string | null;
 }
 
 function normalize(value: string) {
@@ -131,6 +133,7 @@ export function useSongPreview(
           trackViewUrl?: string;
           trackName?: string;
           artistName?: string;
+          artworkUrl100?: string;
         }>;
       }) => {
         const candidates = (result.results ?? []).filter(
@@ -148,6 +151,12 @@ export function useSongPreview(
           usePreview({
             url: match.previewUrl,
             link: match.trackViewUrl ?? "https://music.apple.com",
+            // iTunes vracia 100px náhľad; rovnaká cesta vo vyššom rozlíšení je ostrá aj na retine.
+            artwork:
+              match.artworkUrl100?.replace(
+                /\/100x100bb\.jpg$/,
+                "/512x512bb.jpg"
+              ) ?? null,
           });
         } else markMissing();
       };
@@ -165,6 +174,7 @@ export function useSongPreview(
         link?: string;
         title?: string;
         artist?: { name?: string };
+        album?: { cover_big?: string; cover_medium?: string };
       }>;
     }) => {
       if (!active || fallbackStarted) return;
@@ -181,6 +191,7 @@ export function useSongPreview(
         usePreview({
           url: match.preview,
           link: match.link ?? "https://www.deezer.com",
+          artwork: match.album?.cover_big ?? match.album?.cover_medium ?? null,
         });
       } else startItunes();
     };
