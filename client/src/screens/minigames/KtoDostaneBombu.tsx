@@ -1,15 +1,30 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { getPassTheBombForLanguage, type BombTask } from "../../data/localizedPassTheBomb";
+import {
+  getPassTheBombForLanguage,
+  type BombTask,
+} from "../../data/localizedPassTheBomb";
 import { useLanguage } from "../../i18n/LanguageProvider";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
+/** Design: jediný „bombový" vizuál v projekte je výrez z atlasu minihier. */
+import { minigameArtAtlas } from "../../media";
 import { takePersistentItem } from "../../utils/persistentDeck";
 import { vibrate } from "../../utils/deviceFeedback";
 import { useCountdown } from "../../hooks/useCountdown";
+import { useBombSound } from "../../hooks/useBombSound";
 
 type Phase = "ready" | "ticking" | "exploded";
 
 const randomFuseSeconds = () => 30 + Math.floor(Math.random() * 61);
+
+/**
+ * Na akom uplynulom čase dosiahne napätie maximum.
+ *
+ * Zámerne to NIE JE dĺžka šnúry: keby intenzita rástla k výbuchu, hráči by z nej
+ * vyčítali, kedy praskne, a hra by stratila pointu. Takto stúpa podľa toho, ako
+ * dlho sa už hrá — čo hráči aj tak vedia.
+ */
+const HEAT_RAMP_SECONDS = 60;
 
 export default function KtoDostaneBombu({
   onBack,
@@ -19,46 +34,66 @@ export default function KtoDostaneBombu({
   onRoundComplete?: () => void;
 }) {
   const { language } = useLanguage();
-  const deck = useMemo<BombTask[]>(() => getPassTheBombForLanguage(language), [language]);
-  const draw = useCallback(() => takePersistentItem("pass-the-bomb", deck, (item) => item.id), [deck]);
+  const deck = useMemo<BombTask[]>(
+    () => getPassTheBombForLanguage(language),
+    [language]
+  );
+  const draw = useCallback(
+    () => takePersistentItem("pass-the-bomb", deck, item => item.id),
+    [deck]
+  );
+  const { playTick, playExplosion, stopSound } = useBombSound();
 
   const [phase, setPhase] = useState<Phase>("ready");
   const [task, setTask] = useState<BombTask>(draw);
-  const [pulse, setPulse] = useState(false);
   const [fuseSeconds, setFuseSeconds] = useState(randomFuseSeconds);
-  const pulseRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const tickTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const completionReportedRef = useRef(false);
+  const heatRef = useRef(0);
 
-  function clearPulse() {
-    if (pulseRef.current) clearInterval(pulseRef.current);
-    pulseRef.current = null;
+  function clearTicking() {
+    if (tickTimerRef.current) clearInterval(tickTimerRef.current);
+    tickTimerRef.current = null;
   }
 
   // Zápalná šnúra sa meria absolútnym časom, takže sa nedá predĺžiť prekresľovaním
   // obrazovky. Po prepnutí aplikácie na pozadie a späť sa čas dorovná okamžite.
-  const { secondsLeft, reset: resetFuse } = useCountdown(fuseSeconds, phase === "ticking", () => {
-    clearPulse();
-    setPhase("exploded");
-    setPulse(false);
-    if (!completionReportedRef.current) {
-      completionReportedRef.current = true;
-      onRoundComplete?.();
+  const { secondsLeft, reset: resetFuse } = useCountdown(
+    fuseSeconds,
+    phase === "ticking",
+    () => {
+      clearTicking();
+      setPhase("exploded");
+      if (!completionReportedRef.current) {
+        completionReportedRef.current = true;
+        onRoundComplete?.();
+      }
+      playExplosion();
+      vibrate([120, 60, 180]);
     }
-    vibrate([120, 60, 180]);
-  });
+  );
 
-  // Tikanie sa zrýchľuje podľa uplynutého času, nie podľa reťazených timeoutov.
+  // Rytmus tikania sa zrýchľuje podľa uplynutého času, nie podľa reťazených timeoutov.
   const elapsedSeconds = fuseSeconds - secondsLeft;
-  const pulseInterval = elapsedSeconds >= 50 ? 350 : elapsedSeconds >= 20 ? 600 : 1000;
+  const tickInterval =
+    elapsedSeconds >= 50 ? 350 : elapsedSeconds >= 20 ? 600 : 1000;
+  const heat = Math.min(1, Math.max(0, elapsedSeconds / HEAT_RAMP_SECONDS));
+  heatRef.current = heat;
 
+  // Zvuk aj rázová vlna idú z jedného intervalu, takže tik je slyšaný presne
+  // vtedy, keď je aj vidieť.
   useEffect(() => {
     if (phase !== "ticking") {
-      clearPulse();
+      clearTicking();
       return;
     }
-    pulseRef.current = setInterval(() => setPulse((value) => !value), pulseInterval);
-    return () => clearPulse();
-  }, [phase, pulseInterval]);
+    playTick(heatRef.current);
+    tickTimerRef.current = setInterval(
+      () => playTick(heatRef.current),
+      tickInterval
+    );
+    return () => clearTicking();
+  }, [phase, tickInterval, playTick]);
 
   function startBomb() {
     completionReportedRef.current = false;
@@ -68,121 +103,109 @@ export default function KtoDostaneBombu({
     setPhase("ticking");
   }
 
-  function reset() {
-    clearPulse();
-    setPulse(false);
+  function nextRound() {
+    clearTicking();
     resetFuse(fuseSeconds);
     setTask(draw());
     setPhase("ready");
   }
 
-  useEffect(() => () => clearPulse(), []);
-
-  // ── Exploded ──────────────────────────────────────────────────────
-  if (phase === "exploded") {
-    return (
-      <Shell className="bomb-game-shell">
-        <TopBar title="Kto dostane bombu" onBack={onBack} />
-        <div className="bomb-game-stage flex flex-1 flex-col items-center justify-center gap-6 text-center">
-          <div
-            className="bomb-game-orb is-exploded"
-            style={{ animation: "tada 0.8s ease-out 0.1s both" }}
-          >
-            <div style={{ animation: "float 3s ease-in-out 0.9s infinite" }}>
-              <Icons.bomb size={76} className="text-rose-300 drop-shadow-[0_10px_24px_rgba(251,113,133,.32)]" />
-            </div>
-          </div>
-          <div style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}>
-            <h2 className="text-gradient text-4xl font-black uppercase tracking-wide">
-              BOOM!
-            </h2>
-            <p className="mt-2 text-lg font-bold text-white">
-              Kto drží telefón, prehral!
-            </p>
-          </div>
-          <div
-            className="bomb-task-card"
-            style={{ animation: "slideUp 0.5s ease-out 0.2s both" }}
-          >
-            <p className="text-xs text-white/40 uppercase tracking-widest mb-1">
-              Úloha bola
-            </p>
-            <p className="text-lg font-bold text-white" data-no-translate>{task.text}</p>
-          </div>
-          <Button fullWidth onClick={reset}>
-            <span className="inline-flex items-center gap-2">Nová úloha <Icons.refresh size={17} /></span>
-          </Button>
-        </div>
-      </Shell>
-    );
+  function leave() {
+    clearTicking();
+    stopSound();
+    onBack();
   }
 
-  // ── Ready / Ticking ───────────────────────────────────────────────
+  useEffect(() => clearTicking, []);
+
+  const exploded = phase === "exploded";
+  const ticking = phase === "ticking";
+
   return (
-      <Shell className="bomb-game-shell">
-        <TopBar title="Kto dostane bombu" onBack={onBack} />
+    <Shell className="bomb-game-shell">
+      <TopBar title="Kto dostane bombu" onBack={leave} />
 
-      <div className="bomb-game-stage flex flex-1 flex-col items-center justify-center gap-6 text-center">
-        {/* Bomb */}
-        <div
-          className="bomb-game-orb transition-transform duration-150"
-          style={{
-            transform:
-              pulse && phase === "ticking" ? "scale(1.15)" : "scale(1)",
-            animation:
-              phase === "ticking"
-                ? pulse
-                  ? "ring 0.6s ease-in-out infinite"
-                  : "ring 1.5s ease-in-out infinite"
-                : "float 3s ease-in-out infinite",
-          }}
-        >
-          <Icons.bomb size={76} className="text-rose-300 drop-shadow-[0_10px_24px_rgba(251,113,133,.32)]" />
+      <div
+        className={`bomb-stage ${exploded ? "bomb-shake" : ""}`}
+        style={{ "--bomb-heat": exploded ? 1 : heat } as React.CSSProperties}
+      >
+        {exploded && <div className="bomb-flash" aria-hidden="true" />}
+
+        <div className="bomb-hazard" aria-hidden="true" />
+
+        {/* Puzdro a stavový displej */}
+        <div className="flex min-h-0 flex-col items-center justify-center gap-4">
+          <div
+            className={`bomb-core ${ticking ? "is-ticking" : ""}`}
+            style={
+              { "--bomb-tick": `${tickInterval}ms` } as React.CSSProperties
+            }
+          >
+            {/* Dve vlny s polovičným posunom držia rytmus plynulý. */}
+            <span className="bomb-wave" aria-hidden="true" />
+            <span className="bomb-wave is-delayed" aria-hidden="true" />
+            {/* Fotografická textúra pod ikonou dáva puzdru materiál. */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-[10%] rounded-full opacity-[0.22] mix-blend-luminosity"
+              style={{
+                backgroundImage: `url(${minigameArtAtlas})`,
+                backgroundSize: "300% 300%",
+                backgroundPosition: "50% 100%",
+              }}
+            />
+            <Icons.bomb
+              size={exploded ? 62 : 58}
+              className="bomb-core-icon"
+              aria-hidden="true"
+            />
+          </div>
+
+          {exploded ? (
+            <div className="text-center">
+              <p className="bomb-boom">BOOM!</p>
+              <p className="mt-1 text-sm font-black text-white/70">
+                Kto drží telefón, prehral
+              </p>
+            </div>
+          ) : (
+            <p
+              className={`bomb-readout ${ticking ? "is-armed" : ""}`}
+              aria-live="polite"
+            >
+              <span className="bomb-readout-dot" aria-hidden="true" />
+              {ticking ? "Podávaj rýchlo" : "Pripravené"}
+            </p>
+          )}
         </div>
 
-        {phase === "ready" && (
-          <p
-            className="bomb-game-instruction"
-            style={{ animation: "fadeIn 0.5s ease-out 0.3s both" }}
-          >
-            Povedzte slovo. Podajte telefón.
+        {/* Zadanie */}
+        <div className="bomb-brief">
+          <p className="bomb-brief-label">
+            {exploded ? "Úloha bola" : "Zadanie"}
           </p>
-        )}
-
-        {phase === "ticking" && (
-          <p
-            className="bomb-game-instruction transition-colors"
-            style={{ color: pulse ? "#f87171" : "rgba(255,255,255,0.4)" }}
-          >
-            <span className="inline-flex items-center gap-2"><Icons.timer size={15} /> Podávajte rýchlo!</span>
+          <p className="bomb-brief-text" data-no-translate>
+            {task.text}
           </p>
-        )}
-
-        {/* Category card */}
-        <div
-          className="bomb-task-card transition-all"
-          style={{
-            border:
-              phase === "ticking"
-                ? `2px solid ${pulse ? "#f87171" : "rgba(248,113,113,0.3)"}`
-                : "1px solid rgba(255,255,255,0.1)",
-            background:
-              phase === "ticking" ? "rgba(239,68,68,0.1)" : "rgba(255,255,255,0.05)",
-            animation: "slideUp 0.5s ease-out 0.15s both",
-          }}
-        >
-          <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-2">
-            Zadanie
-          </p>
-          <p className="text-2xl font-bold text-white" data-no-translate>{task.text}</p>
         </div>
 
-        {phase === "ready" && (
+        {/* Počas tikania tu zámerne nie je nič: telefón sa podáva z ruky do ruky,
+            takže akékoľvek tlačidlo by sa dalo stlačiť omylom. Stav hlási displej
+            pri puzdre — druhá pilulka tu bola navyše a meranie ukázalo, že sa
+            práve ona odstrihávala. */}
+        {exploded ? (
+          <Button fullWidth onClick={nextRound}>
+            <span className="inline-flex items-center gap-2">
+              Nová úloha <Icons.refresh size={17} />
+            </span>
+          </Button>
+        ) : ticking ? null : (
           <Button fullWidth onClick={startBomb}>
-            <span className="inline-flex items-center gap-2">Štart <Icons.bomb size={18} /></span>
+            <span className="inline-flex items-center gap-2">
+              Zapáliť šnúru <Icons.bomb size={18} />
+            </span>
           </Button>
         )}
-
       </div>
     </Shell>
   );

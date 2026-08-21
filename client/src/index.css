@@ -2786,16 +2786,267 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
 @media (max-width: 390px) { .prompt-game-choice { min-height: 9.6rem; } .prompt-game-card { min-height: 11.5rem; } }
 @media (prefers-reduced-motion: reduce) { .prompt-game-choice { transition: none; } }
 
-/* Kto dostane bombu: napätie vytvára bomba a úloha, nie opakovaný pomocný text. */
-.bomb-game-shell { position: relative; isolation: isolate; overflow: hidden; background: radial-gradient(circle at 78% 8%, rgba(251,113,133,.22), transparent 17rem), radial-gradient(circle at 7% 87%, rgba(251,146,60,.15), transparent 18rem), #11090e !important; }
-.bomb-game-stage { width: min(100%, 31rem); margin: 0 auto; padding: 1rem 0 1.5rem; }
-.bomb-game-orb { display: grid; width: 7rem; height: 7rem; place-items: center; border: 1px solid rgba(255,255,255,.15); border-radius: 2rem; background: linear-gradient(145deg, rgba(251,113,133,.26), rgba(251,146,60,.11)); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 1.4rem 3rem -1.8rem rgba(251,113,133,.72); }
-.bomb-game-orb.is-exploded { background: linear-gradient(145deg, rgba(244,63,94,.38), rgba(251,146,60,.2)); }
-.bomb-game-instruction { margin: 0; color: rgba(255,255,255,.62); font-size: .67rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
-.bomb-task-card { position: relative; width: 100%; overflow: hidden; border: 1px solid rgba(251,113,133,.3); border-radius: 1.55rem; padding: 1.65rem 1.35rem; background: linear-gradient(145deg, rgba(112,18,43,.5), rgba(20,10,19,.92)); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 1.5rem 3rem -2rem rgba(0,0,0,.9); }
-.bomb-task-card::before { content: ""; position: absolute; top: -5rem; right: -4rem; width: 10rem; height: 10rem; border-radius: 50%; background: rgba(251,113,133,.16); filter: blur(9px); }
-.bomb-task-card > * { position: relative; z-index: 1; }
-.bomb-task-card > p:last-child { max-width: 24rem; margin-inline: auto; font-family: "Manrope", "Inter", system-ui, sans-serif; font-size: clamp(1.35rem, 5vw, 1.85rem); font-weight: 900; letter-spacing: -.045em; line-height: 1.12; text-wrap: balance; }
+/* ── Kto dostane bombu ──────────────────────────────────────────────────────
+   Dizajn je industriálny: výstražné pruhy, kovové puzdro, zapustený displej.
+   Zámerne NIE JE nikde vidieť zostávajúci čas — šnúra je náhodne 30–90 s a celé
+   napätie hry stojí na tom, že hráči nevedia, kedy praskne. Blížiaci sa výbuch
+   preto hlási len intenzita (--bomb-heat 0→1), ktorá vychádza z uplynutého času,
+   nie z dĺžky šnúry, takže nič neprezradí.
+
+   Všetky rozmery sú viazané na výšku displeja, lebo obrazovka je v
+   ONE_SCREEN_GAME_SCREENS a nesmie skrolovať. */
+.bomb-game-shell {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  --bomb-heat: 0;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(251, 113, 133, calc(.05 + var(--bomb-heat) * .16)), transparent 60%),
+    radial-gradient(circle at 82% 6%, rgba(251, 146, 60, .13), transparent 16rem),
+    radial-gradient(circle at 8% 92%, rgba(244, 63, 94, .12), transparent 17rem),
+    #0b0709 !important;
+}
+
+/* Nebezpečenstvo rastie od okrajov dovnútra — nie blikaním celej plochy. */
+.bomb-game-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--bomb-heat);
+  transition: opacity .5s ease;
+  background: radial-gradient(ellipse at 50% 50%, transparent 42%, rgba(244, 63, 94, .3) 100%);
+}
+
+.bomb-stage {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  row-gap: min(1rem, 2dvh);
+  width: min(100%, 31rem);
+  /* `flex: 1` a nie `height: 100%`: rodič je flex-stĺpec, v ktorom je aj
+     hlavička, takže 100 % rodiča presahuje presne o jej výšku. Meraním sa to
+     ukázalo ako 4,9 px odstrihnutého textu na iPhone SE. */
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-inline: auto;
+  padding-bottom: min(.75rem, 1.5dvh);
+}
+
+/* Výstražný pás — dva pruhy zo skutočného značenia výbušnín, nie dekoratívny gradient. */
+.bomb-hazard {
+  height: .4rem;
+  border-radius: 999px;
+  opacity: calc(.35 + var(--bomb-heat) * .55);
+  transition: opacity .5s ease;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #fbbf24 0 .38rem,
+    #18120c .38rem .76rem
+  );
+}
+
+/* Zapustený stavový displej. */
+.bomb-readout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  border: 1px solid rgba(255, 255, 255, .09);
+  border-radius: 999px;
+  padding: .45rem .9rem;
+  background: rgba(8, 6, 8, .72);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, .7);
+  font-size: .62rem;
+  font-weight: 900;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .55);
+}
+
+.bomb-readout-dot {
+  width: .42rem;
+  height: .42rem;
+  border-radius: 999px;
+  background: #4b5563;
+}
+
+.bomb-readout.is-armed {
+  border-color: rgba(248, 113, 113, .34);
+  color: #fecaca;
+}
+
+.bomb-readout.is-armed .bomb-readout-dot {
+  background: #f87171;
+  box-shadow: 0 0 .5rem #f87171;
+  animation: bombReadoutBlink 1s steps(2, end) infinite;
+}
+
+@keyframes bombReadoutBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: .25; }
+}
+
+/* Kovové puzdro. Kruh, nie zaoblený štvorec — pôsobí ako zariadenie, nie ako ikona v karte. */
+.bomb-core {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(11rem, 22dvh);
+  height: min(11rem, 22dvh);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 34% 26%, rgba(255, 255, 255, .16), transparent 46%),
+    conic-gradient(from 210deg, #2a1218, #140b10 25%, #33161d 52%, #120a0e 78%, #2a1218);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, .1),
+    inset 0 1.4rem 2.4rem -1.4rem rgba(255, 255, 255, .18),
+    0 1.6rem 3.2rem -1.6rem rgba(0, 0, 0, .95),
+    0 0 calc(1.5rem + var(--bomb-heat) * 3rem) rgba(244, 63, 94, calc(.2 + var(--bomb-heat) * .5));
+  transition: box-shadow .35s ease;
+}
+
+/* Obruč puzdra — tenký sústredný prstenec, ktorý dáva kovový dojem. */
+.bomb-core::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .07);
+}
+
+.bomb-core-icon {
+  position: relative;
+  z-index: 2;
+  color: #fda4af;
+  filter: drop-shadow(0 .6rem 1.4rem rgba(251, 113, 133, .45));
+}
+
+/* Rázová vlna vychádza z puzdra pri každom tiku, takže rytmus je vidieť aj bez čísel. */
+.bomb-wave {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 2px solid rgba(248, 113, 113, .55);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bomb-core.is-ticking .bomb-wave {
+  animation: bombWave var(--bomb-tick, 1000ms) ease-out infinite;
+}
+
+.bomb-core.is-ticking .bomb-wave.is-delayed {
+  animation-delay: calc(var(--bomb-tick, 1000ms) / 2);
+}
+
+@keyframes bombWave {
+  0% { transform: scale(1); opacity: .55; }
+  100% { transform: scale(1.75); opacity: 0; }
+}
+
+/* Brífing s úlohou. */
+.bomb-brief {
+  position: relative;
+  /* Bez `overflow: hidden`: rohová značka je celá vnútri panelu, takže klipovať
+     nie je čo — a na nízkych displejoch obrezávalo dolné pretiahnutia písma
+     (meranie hlásilo stratu ~5 px na poslednom riadku úlohy). */
+  border: 1px solid rgba(251, 113, 133, calc(.16 + var(--bomb-heat) * .34));
+  border-radius: 1.5rem;
+  padding: min(1.25rem, 2.4dvh) 1.15rem;
+  background: linear-gradient(155deg, rgba(64, 12, 26, .55), rgba(14, 8, 11, .95));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .07),
+    0 1.4rem 2.8rem -2rem rgba(0, 0, 0, .95);
+  transition: border-color .4s ease;
+}
+
+/* Rohová značka namiesto ďalšieho gradientu. */
+.bomb-brief::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1.15rem;
+  width: 2.4rem;
+  height: 2px;
+  background: linear-gradient(90deg, #fbbf24, transparent);
+}
+
+.bomb-brief-label {
+  margin: 0 0 .4rem;
+  font-size: .58rem;
+  font-weight: 900;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .38);
+}
+
+.bomb-brief-text {
+  margin: 0;
+  font-family: "Manrope", "Inter", system-ui, sans-serif;
+  font-size: clamp(1.15rem, 4.4dvh, 1.8rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1.1;
+  text-wrap: balance;
+  color: #fff;
+}
+
+/* Výbuch: záblesk plus otras. Krátke, aby neprekrylo výsledok. */
+.bomb-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 45%, rgba(255, 240, 200, .95), rgba(251, 113, 133, .5) 35%, transparent 70%);
+  animation: bombFlash .5s ease-out both;
+}
+
+@keyframes bombFlash {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.bomb-shake {
+  animation: bombShake .45s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes bombShake {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  15% { transform: translate3d(-7px, 3px, 0); }
+  30% { transform: translate3d(6px, -4px, 0); }
+  45% { transform: translate3d(-5px, -2px, 0); }
+  60% { transform: translate3d(4px, 3px, 0); }
+  80% { transform: translate3d(-2px, 1px, 0); }
+}
+
+.bomb-boom {
+  margin: 0;
+  font-family: "Manrope", "Inter", system-ui, sans-serif;
+  font-size: clamp(2.4rem, 8dvh, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1;
+  background: linear-gradient(100deg, #fde68a, #fb7185 55%, #f43f5e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Na nízkych displejoch ustúpi dekorácia, nie úloha ani tlačidlo. */
+@media (max-height: 700px) {
+  .bomb-hazard { height: .3rem; }
+  .bomb-stage { row-gap: .6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bomb-core.is-ticking .bomb-wave,
+  .bomb-readout.is-armed .bomb-readout-dot,
+  .bomb-flash,
+  .bomb-shake { animation: none !important; }
+}
 
 /* Hádaj, kto som: pozadie musí fungovať aj po otočení telefónu a nesmie rušiť rozpoznanie slova. */
 .guess-who-play { isolation: isolate; background: radial-gradient(circle at 78% 15%, rgba(168,85,247,.24), transparent 20rem), radial-gradient(circle at 16% 82%, rgba(34,211,238,.2), transparent 21rem), #071016; }
