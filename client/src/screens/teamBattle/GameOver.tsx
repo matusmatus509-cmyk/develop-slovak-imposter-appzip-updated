@@ -6,21 +6,27 @@ import { useFeedback } from "../../feedback/FeedbackProvider";
 
 function Confetti() {
   const pieces = useMemo(
-    () => Array.from({ length: 28 }, (_, index) => ({
-      id: index,
-      left: `${Math.random() * 100}%`,
-      delay: `${Math.random() * 1.2}s`,
-      color: ["#e879f9", "#60a5fa", "#f87171", "#fbbf24", "#34d399"][index % 5],
-      size: `${5 + Math.random() * 8}px`,
-      duration: `${1.9 + Math.random() * 1.1}s`,
-      rotate: `${Math.random() * 180}deg`,
-    })),
-    [],
+    () =>
+      Array.from({ length: 28 }, (_, index) => ({
+        id: index,
+        left: `${Math.random() * 100}%`,
+        delay: `${Math.random() * 1.2}s`,
+        color: ["#e879f9", "#60a5fa", "#f87171", "#fbbf24", "#34d399"][
+          index % 5
+        ],
+        size: `${5 + Math.random() * 8}px`,
+        duration: `${1.9 + Math.random() * 1.1}s`,
+        rotate: `${Math.random() * 180}deg`,
+      })),
+    []
   );
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-20 overflow-hidden" aria-hidden="true">
-      {pieces.map((piece) => (
+    <div
+      className="pointer-events-none fixed inset-0 z-20 overflow-hidden"
+      aria-hidden="true"
+    >
+      {pieces.map(piece => (
         <span
           key={piece.id}
           className="absolute -top-6 rounded-sm"
@@ -111,11 +117,20 @@ export default function GameOver({
         <div className="mx-auto flex min-h-full w-full max-w-md flex-col items-center">
           <PartyEyebrow>Výsledky Party mode</PartyEyebrow>
 
-          <section className={`mt-7 w-full transition-all duration-300 ${revealed ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`} aria-live="polite">
-            <div className={`party-winner-trophy relative mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-amber-200/30 bg-gradient-to-br from-amber-300/25 via-fuchsia-500/15 to-violet-700/20 shadow-[0_0_75px_rgba(251,191,36,.25)] ${celebrating ? "is-celebrating" : ""}`}>
+          <section
+            className={`mt-7 w-full transition-all duration-300 ${revealed ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`}
+            aria-live="polite"
+          >
+            <div
+              className={`party-winner-trophy relative mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-amber-200/30 bg-gradient-to-br from-amber-300/25 via-fuchsia-500/15 to-violet-700/20 shadow-[0_0_75px_rgba(251,191,36,.25)] ${celebrating ? "is-celebrating" : ""}`}
+            >
               <div className="absolute inset-2 rounded-full border border-white/15" />
               <span className="relative text-amber-200">
-                {isDraw ? <Icons.users size={52} /> : <Icons.trophy size={52} />}
+                {isDraw ? (
+                  <Icons.users size={52} />
+                ) : (
+                  <Icons.trophy size={52} />
+                )}
               </span>
             </div>
             <p className="mt-6 text-[10px] font-black uppercase tracking-[0.3em] text-amber-300/70">
@@ -123,17 +138,29 @@ export default function GameOver({
             </p>
             <h1
               className="party-winner-name mt-2 text-4xl font-black tracking-tight text-white"
-              style={!isDraw ? { color: colors[winner], textShadow: `0 0 34px ${colors[winner]}65` } : undefined}
+              style={
+                !isDraw
+                  ? {
+                      color: colors[winner],
+                      textShadow: `0 0 34px ${colors[winner]}65`,
+                    }
+                  : undefined
+              }
             >
               {isDraw ? "Oba tímy víťazia!" : teamNames[winner]}
             </h1>
             <p className="mt-2 text-sm text-white/45">
-              {isDraw ? "Dnes ste boli dokonale vyrovnaní." : `Vyhráva o ${difference} ${difference === 1 ? "bod" : "bodov"}.`}
+              {isDraw
+                ? "Dnes ste boli dokonale vyrovnaní."
+                : `Vyhráva o ${difference} ${difference === 1 ? "bod" : "bodov"}.`}
             </p>
           </section>
 
-          <section className="mt-8 grid w-full grid-cols-2 items-end gap-3" aria-label="Konečná tabuľka skóre">
-            {([0, 1] as const).map((index) => {
+          <section
+            className="mt-8 grid w-full grid-cols-2 items-end gap-3"
+            aria-label="Konečná tabuľka skóre"
+          >
+            {([0, 1] as const).map(index => {
               const won = !isDraw && winner === index;
               return (
                 <div
@@ -141,24 +168,47 @@ export default function GameOver({
                   className={`party-glass party-podium relative overflow-visible rounded-[1.8rem] px-4 pb-6 pt-5 transition-all duration-700 ${won && celebrating ? "winner" : ""}`}
                   style={{
                     borderColor: `${colors[index]}${won ? "c0" : "45"}`,
-                    boxShadow: won ? `0 22px 65px ${colors[index]}32` : undefined,
+                    boxShadow: won
+                      ? `0 22px 65px ${colors[index]}32`
+                      : undefined,
                     transitionDelay: `${index * 100}ms`,
                   }}
                 >
-                  {won && <span className="party-winner-crown absolute -top-5 left-1/2 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-xl border border-amber-200/25 bg-[#151a22] text-amber-200"><Icons.crown size={19} /></span>}
+                  {won && (
+                    <span className="party-winner-crown absolute -top-5 left-1/2 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-xl border border-amber-200/25 bg-[#151a22] text-amber-200">
+                      <Icons.crown size={19} />
+                    </span>
+                  )}
                   <span
                     className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl text-base font-black text-white"
-                    style={{ background: colors[index], boxShadow: `0 0 25px ${colors[index]}66` }}
+                    style={{
+                      background: colors[index],
+                      boxShadow: `0 0 25px ${colors[index]}66`,
+                    }}
                   >
                     {index === 0 ? "A" : "B"}
                   </span>
-                  <p className="mt-4 truncate text-xs font-black uppercase tracking-wider" style={{ color: colors[index] }}>{teamNames[index]}</p>
-                  <p className="mt-2 text-5xl font-black tabular-nums text-white">{displayScores[index]}</p>
-                  <p className="mt-1 text-[9px] font-black uppercase tracking-[0.2em] text-white/25">bodov</p>
+                  <p
+                    className="mt-4 truncate text-xs font-black uppercase tracking-wider"
+                    style={{ color: colors[index] }}
+                  >
+                    {teamNames[index]}
+                  </p>
+                  <p className="mt-2 text-5xl font-black tabular-nums text-white">
+                    {displayScores[index]}
+                  </p>
+                  <p className="mt-1 text-[9px] font-black uppercase tracking-[0.2em] text-white/25">
+                    bodov
+                  </p>
                   <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
                     <div
                       className="h-full rounded-full transition-all duration-1000"
-                      style={{ width: revealed ? `${(totalScores[index] / Math.max(...totalScores, 1)) * 100}%` : "0%", background: colors[index] }}
+                      style={{
+                        width: revealed
+                          ? `${(totalScores[index] / Math.max(...totalScores, 1)) * 100}%`
+                          : "0%",
+                        background: colors[index],
+                      }}
                     />
                   </div>
                 </div>
@@ -166,7 +216,9 @@ export default function GameOver({
             })}
           </section>
 
-          <p className={`mt-6 text-[10px] font-black uppercase tracking-[0.22em] text-white/30 transition-opacity duration-500 ${celebrating ? "opacity-100" : "opacity-0"}`}>
+          <p
+            className={`mt-6 text-[10px] font-black uppercase tracking-[0.22em] text-white/30 transition-opacity duration-500 ${celebrating ? "opacity-100" : "opacity-0"}`}
+          >
             Finále je rozhodnuté · ďakujeme za hru
           </p>
 
