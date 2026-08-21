@@ -10,6 +10,7 @@ import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
 import { useCountdown } from "../../hooks/useCountdown";
 import { TurnAnswerRecap, type TurnAnswer } from "../../components/TurnAnswerRecap";
+import { partyMinigameAtlas } from "../../media";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -124,6 +125,10 @@ function SetupScreen({
 
   // Slovenčina skloňuje: 2–4 hráči, 5 a viac hráčov.
   const playerLabel = `${count} ${count < 5 ? "hráči" : "hráčov"}`;
+  const activeNames = Array.from(
+    { length: count },
+    (_, index) => names[index]?.trim() || defaultPlayerName(language, index + 1),
+  );
 
   function chooseSource(nextSource: DeckSource) {
     setSource(nextSource);
@@ -268,6 +273,29 @@ function SetupScreen({
     <Shell className="mobile-settings mobile-settings-guess-who guess-who-setup">
       <TopBar title="Hádaj kto som" onBack={onBack} />
       <div className="guess-who-setup-form">
+        {/* Hero rastie a zmenšuje sa podľa displeja, takže obrazovka je vždy
+            zaplnená a nič sa nemusí skrolovať. */}
+        <div className="guess-who-hero">
+          <div
+            className="guess-who-hero-art"
+            aria-hidden="true"
+            style={{
+              backgroundImage: `url(${partyMinigameAtlas})`,
+              backgroundSize: "400% 300%",
+              backgroundPosition: "66.667% 100%",
+            }}
+          />
+          <div className="guess-who-hero-copy">
+            <span className="guess-who-hero-eyebrow">Telefón na čelo</span>
+            <h1>Priprav si kolo</h1>
+            <div className="guess-who-hero-stats">
+              <span>{selectedCategory.icon} {selectedCategory.name}</span>
+              <span><Icons.users size={13} /> {playerLabel}</span>
+              <span><Icons.timer size={13} /> {timer} s</span>
+            </div>
+          </div>
+        </div>
+
         <button
           type="button"
           onClick={() => setView("category")}
@@ -306,16 +334,23 @@ function SetupScreen({
         <button
           type="button"
           onClick={() => setView("players")}
-          className="guess-who-field"
+          className="guess-who-players-field"
         >
-          <span className="guess-who-field-icon"><Icons.users size={19} /></span>
-          <span className="min-w-0 flex-1 text-left">
-            <small>Hráči</small>
-            <strong>{playerLabel}</strong>
+          <span className="guess-who-players-field-head">
+            <span className="guess-who-field-icon"><Icons.users size={19} /></span>
+            <span className="min-w-0 flex-1 text-left">
+              <small>Hráči</small>
+              <strong>{playerLabel}</strong>
+            </span>
+            <span className="guess-who-field-meta">
+              <small>Upraviť</small>
+              <Icons.chevronRight size={18} />
+            </span>
           </span>
-          <span className="guess-who-field-meta">
-            <small>Upraviť</small>
-            <Icons.chevronRight size={18} />
+          <span className="guess-who-players-chips">
+            {activeNames.map((name, index) => (
+              <span key={index}>{name}</span>
+            ))}
           </span>
         </button>
 
