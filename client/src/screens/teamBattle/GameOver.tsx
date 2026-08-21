@@ -113,7 +113,7 @@ export default function GameOver({
   return (
     <PartyBackdrop>
       {celebrating && !isDraw && <Confetti />}
-      <main className="relative z-30 flex h-full flex-col overflow-hidden px-5 pb-3 pt-5 text-center">
+      <main className="relative z-30 flex h-full flex-col fit-or-scroll overflow-hidden px-5 pb-3 pt-5 text-center">
         <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col items-center">
           <PartyEyebrow>Výsledky Party mode</PartyEyebrow>
 

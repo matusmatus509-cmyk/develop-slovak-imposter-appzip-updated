@@ -155,7 +155,7 @@ export function LetterChallengeGame({
 
   return (
     <PartyBackdrop>
-      <main className="flex h-full flex-col overflow-hidden px-4 pb-4 pt-4 text-center">
+      <main className="flex h-full flex-col fit-or-scroll overflow-hidden px-4 pb-4 pt-4 text-center">
         <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col">
           <ParticipantScoreStrip
             names={participantNames}
@@ -248,7 +248,7 @@ export function LetterChallengeGame({
             )}
           </section>
 
-          <div className="mt-4 min-h-[4.1rem]">
+          <div className="mt-3 min-h-[min(4.1rem,9dvh)]">
             {phase === "ready" && (
               <button
                 onClick={start}
@@ -347,7 +347,7 @@ export function FiveInTenGame({
 
   return (
     <PartyBackdrop>
-      <main className="flex h-full flex-col overflow-hidden px-4 pb-4 pt-4 text-center">
+      <main className="flex h-full flex-col fit-or-scroll overflow-hidden px-4 pb-4 pt-4 text-center">
         <div className="mx-auto flex w-full max-w-md flex-1 flex-col">
           <ParticipantScoreStrip
             names={participantNames}
@@ -365,7 +365,10 @@ export function FiveInTenGame({
             />
           </div>
 
-          <section className="party-glass relative mt-4 flex min-h-[24rem] flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.4rem] px-5 py-7">
+          {/* Bez min-h: 24rem = 384 px si vynucovalo výšku, ktorá sa na nízkom
+              displeji nezmestí, a vytlačila tlačidlo pod okraj rámu. Panel má
+              rásť podľa dostupného miesta, nie proti nemu. */}
+          <section className="party-glass relative mt-3 flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.4rem] px-5 py-5">
             <div className="pointer-events-none absolute -left-20 bottom-10 h-56 w-56 rounded-full bg-emerald-400/10 blur-3xl" />
             <div className="pointer-events-none absolute -right-20 top-16 h-56 w-56 rounded-full bg-cyan-400/10 blur-3xl" />
             <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300/80 to-transparent" />
@@ -441,7 +444,7 @@ export function FiveInTenGame({
             )}
           </section>
 
-          <div className="mt-4 min-h-[4.1rem]">
+          <div className="mt-3 min-h-[min(4.1rem,9dvh)]">
             {phase === "ready" && (
               <button
                 onClick={start}

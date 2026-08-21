@@ -324,14 +324,14 @@ export default function DrawingCanvas({
             onClick={undoStroke}
             disabled={!strokeDone}
             aria-label="Zrušiť môj ťah"
-            className="flex min-h-[3.75rem] items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-xl text-white/65 transition active:scale-95 disabled:opacity-25"
+            className="flex min-h-[min(3.75rem,8dvh)] items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-xl text-white/65 transition active:scale-95 disabled:opacity-25"
           >
             ↶
           </button>
           <button
             onClick={nextTurn}
             disabled={!strokeDone}
-            className="party-shine min-h-[3.75rem] overflow-hidden rounded-2xl px-4 text-sm font-black text-[#080b13] shadow-xl transition active:scale-[.98] disabled:opacity-30"
+            className="party-shine min-h-[min(3.75rem,8dvh)] overflow-hidden rounded-2xl px-4 text-sm font-black text-[#080b13] shadow-xl transition active:scale-[.98] disabled:opacity-30"
             style={{ background: `linear-gradient(135deg, ${color}, #67e8f9)` }}
           >
             {isLastTurn ? (

@@ -137,7 +137,10 @@ function QuizFace({
                 disabled={!isArmed}
                 onClick={() => onSelect(index)}
                 aria-label={`Možnosť ${LETTERS[index]}: ${option}`}
-                className="flex min-h-[3.25rem] items-center gap-2 rounded-xl border px-2.5 py-2 text-left transition enabled:active:scale-[.97] disabled:cursor-default"
+                /* Výška škáluje s displejom: štyri odpovede s pevnými 3.25rem
+                   znamenali 208 px minimum na polovicu obrazovky, čo sa na
+                   nízkom telefóne nezmestí a odpovede sa odrezali. */
+                className="flex min-h-[min(3.25rem,8dvh)] items-center gap-2 rounded-xl border px-2.5 py-2 text-left transition enabled:active:scale-[.97] disabled:cursor-default"
                 style={{
                   background,
                   borderColor,

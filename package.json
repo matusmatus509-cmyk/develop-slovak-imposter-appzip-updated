@@ -11,7 +11,8 @@
     "check": "tsc --noEmit",
     "test": "vitest run",
     "validate:songs": "node scripts/validate-songs.mjs",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "validate:fit": "node scripts/audit-one-screen-fit.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

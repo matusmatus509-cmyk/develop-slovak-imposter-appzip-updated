@@ -1539,6 +1539,52 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   min-height: 0;
 }
 
+/* ── Aby sa v hernom ráme nič neorezalo ─────────────────────────────────────
+   Rám má `overflow: hidden`, takže čo sa nezmestí, to zmizne — a to je horšie
+   než skrolovanie. Tri opatrenia, od najdôležitejšieho:
+
+   1. Flex deti s `flex-1` musia smieť zmenšiť pod svoju obsahovú výšku.
+      Predvolené `min-height: auto` im to zakazuje, takže vytlačia susedov z
+      rámu a dole sa odreže tlačidlo. `:where()` drží nulovú špecifickosť, aby
+      zámerné `min-h-*` v komponente vždy vyhralo nad týmto predvolením. */
+:where(.is-game-stage) :where(.flex-1) {
+  min-height: 0;
+}
+
+/* 2. Na nízkych displejoch ustúpia medzery a odsadenia, nie obsah. Hodnoty sú
+      zhora ohraničené, takže na veľkom telefóne sa nič nemení. */
+@media (max-height: 760px) {
+  .is-game-stage .gap-8 { gap: min(2rem, 3.2dvh); }
+  .is-game-stage .gap-7 { gap: min(1.75rem, 2.9dvh); }
+  .is-game-stage .gap-6 { gap: min(1.5rem, 2.6dvh); }
+  .is-game-stage .gap-5 { gap: min(1.25rem, 2.3dvh); }
+}
+
+@media (max-height: 660px) {
+  .is-game-stage .py-7 { padding-block: min(1.75rem, 2.6dvh); }
+  .is-game-stage .py-6 { padding-block: min(1.5rem, 2.3dvh); }
+  .is-game-stage .pt-10 { padding-top: min(2.5rem, 3dvh); }
+  .is-game-stage .pt-8 { padding-top: min(2rem, 2.6dvh); }
+  .is-game-stage .pb-8 { padding-bottom: min(2rem, 2.6dvh); }
+}
+
+/* 3. Bezpečnostná sieť pre obrazovky s premenlivo dlhým textom (výsledky, intrá,
+      zadania). Ak sa obsah po celej kompakcii aj tak nezmestí, radšej sa dá
+      doskrolovať, než aby zmizol. Pri obsahu, ktorý sa zmestí, `auto` nerobí
+      nič — žiadny posuvník ani skrolovanie, takže hry naďalej držia jednu
+      obrazovku. Selektor je špecifickejší než Tailwind `overflow-hidden`. */
+.is-game-stage main.fit-or-scroll,
+.is-game-stage .fit-or-scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.is-game-stage .fit-or-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 /* Consistent depth without changing each game's identity. */
 .is-game-stage .glass,
 .is-game-stage .party-glass {

@@ -447,7 +447,7 @@ function HandoffScreen({
     : "Obe flotily sú uložené. Počas bitky zostanú obe plochy stále viditeľné, no pozície lodí sú skryté.";
   return (
     <PartyBackdrop>
-      <main className="flex h-full flex-col items-center justify-center overflow-hidden px-6 py-5 text-center text-white">
+      <main className="flex h-full flex-col items-center justify-center fit-or-scroll overflow-hidden px-6 py-5 text-center text-white">
         <div className="battle-handoff-icon relative flex h-36 w-36 items-center justify-center rounded-[2.5rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-400/15 to-blue-700/20 shadow-2xl shadow-cyan-500/10">
           {toSecondPlayer ? (
             <Icons.smartphone size={62} className="text-cyan-100" />
