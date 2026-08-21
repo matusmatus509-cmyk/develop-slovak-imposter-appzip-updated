@@ -452,9 +452,9 @@ export interface QuizQuestion {
   category: string;
   /** Voliteľná úroveň používaná pri výbere nového tímového Kvízu. */
   difficulty?: QuizDifficulty;
-  // Multiple-choice questions (A/B/C/D). When present, the quiz screen
-  // hides the answer texts as soon as a team buzzes in and only shows
-  // the four letters — the team must pick blind from memory.
+  // Multiple-choice questions (A/B/C/D). When present, the quiz screen shows
+  // the options on both sides of the phone and keeps them visible after a team
+  // buzzes in — the team answers by tapping the option it wants.
   options?: [string, string, string, string];
   correctIndex?: 0 | 1 | 2 | 3;
 }
