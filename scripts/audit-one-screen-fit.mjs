@@ -196,6 +196,11 @@ const REACHABLE_MUST_SCROLL = [
     file: `${ROOT}/screens/minigames/HadajKtoSom.tsx`,
     needsPanel: true,
   },
+  {
+    screen: "slovnarosada",
+    file: `${ROOT}/screens/minigames/SlovnaRosada.tsx`,
+    needsPanel: true,
+  },
 ];
 
 const reachability = [];
