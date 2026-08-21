@@ -82,6 +82,7 @@ import Settings from "./screens/Settings";
 import PartyHub from "./screens/PartyHub";
 import { FeedbackProvider } from "./feedback/FeedbackProvider";
 import GameWelcome, { GAME_WELCOMES } from "./components/GameWelcome";
+import { PwaInstallPrompt } from "./components/PwaInstallPrompt";
 
 const IMPOSTOR_GAMES: MenuGame[] = [
   {
@@ -1318,6 +1319,7 @@ export default function App() {
           Odísť
         </button>
       )}
+      <PwaInstallPrompt visible={screen === "home"} />
     </FeedbackProvider>
   );
 }
