@@ -3189,3 +3189,367 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
 .guess-who-play { isolation: isolate; background: radial-gradient(circle at 78% 15%, rgba(168,85,247,.24), transparent 20rem), radial-gradient(circle at 16% 82%, rgba(34,211,238,.2), transparent 21rem), #071016; }
 .guess-who-play::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .55; background: linear-gradient(130deg, transparent 0 37%, rgba(255,255,255,.025) 37.2% 37.5%, transparent 37.8% 100%); pointer-events: none; }
 .guess-who-word { letter-spacing: -.05em; text-shadow: 0 0 1rem rgba(255,255,255,.16), 0 .8rem 2.2rem rgba(0,0,0,.92); }
+
+
+/* ── Hádaj kto som: one-screen setup + single-category picker ─────────────── */
+.guess-who-setup {
+  --guess-accent: #22d3ee;
+  --guess-panel: rgba(15, 25, 35, .96);
+  --guess-line: rgba(148, 210, 222, .14);
+  background:
+    radial-gradient(circle at 90% 2%, rgba(34, 211, 238, .12), transparent 16rem),
+    radial-gradient(circle at 4% 96%, rgba(168, 85, 247, .08), transparent 18rem),
+    #080d12 !important;
+}
+.guess-who-setup .app-shell-content { overflow-y: auto; overscroll-behavior: contain; }
+.guess-who-setup-form {
+  display: grid;
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: min(.62rem, 1.25dvh);
+  width: 100%;
+  padding-bottom: .1rem;
+}
+.guess-who-category-field {
+  display: flex;
+  min-height: 3.65rem;
+  align-items: center;
+  gap: .72rem;
+  border: 1px solid rgba(34, 211, 238, .24);
+  border-radius: 1rem;
+  background: linear-gradient(120deg, rgba(34, 211, 238, .11), rgba(17, 25, 35, .96) 58%);
+  padding: .56rem .7rem;
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .055);
+  transition: border-color .16s ease, transform .16s ease;
+}
+.guess-who-category-field:active { transform: scale(.985); }
+.guess-who-category-icon {
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  flex: none;
+  place-items: center;
+  border: 1px solid rgba(103, 232, 249, .2);
+  border-radius: .78rem;
+  background: rgba(34, 211, 238, .1);
+  font-size: 1.22rem;
+}
+.guess-who-category-field small {
+  display: block;
+  color: rgba(255, 255, 255, .42);
+  font-size: .55rem;
+  font-weight: 850;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.guess-who-category-field strong {
+  display: block;
+  overflow: hidden;
+  margin-top: .12rem;
+  color: #f8fafc;
+  font-size: .82rem;
+  font-weight: 900;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.guess-who-category-meta { display: flex; flex: none; align-items: center; gap: .28rem; color: #67e8f9; }
+.guess-who-category-meta small { letter-spacing: 0; text-transform: none; }
+.guess-who-setting-block,
+.guess-who-names-block {
+  min-height: 0;
+  border: 1px solid var(--guess-line);
+  border-radius: .95rem;
+  background: var(--guess-panel);
+  padding: min(.58rem, 1.1dvh) .62rem;
+}
+.guess-who-setting-heading {
+  display: flex;
+  min-height: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-bottom: min(.42rem, .8dvh);
+  color: rgba(255, 255, 255, .48);
+  font-size: .57rem;
+  font-weight: 850;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.guess-who-setting-heading > span { display: inline-flex; align-items: center; gap: .35rem; }
+.guess-who-setting-heading strong { color: #a5f3fc; font-size: .6rem; }
+.guess-who-setting-heading small { color: rgba(255, 255, 255, .34); font-weight: 800; }
+.guess-who-time-grid,
+.guess-who-player-grid { display: grid; gap: .32rem; }
+.guess-who-time-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.guess-who-player-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.guess-who-time-grid button,
+.guess-who-player-grid button {
+  min-width: 0;
+  min-height: 2.05rem;
+  border: 1px solid rgba(255, 255, 255, .09);
+  border-radius: .66rem;
+  background: rgba(255, 255, 255, .04);
+  color: rgba(255, 255, 255, .48);
+  font-size: .68rem;
+  font-weight: 900;
+  transition: .15s ease;
+}
+.guess-who-time-grid button.is-active,
+.guess-who-player-grid button.is-active {
+  border-color: rgba(103, 232, 249, .46);
+  background: #22d3ee;
+  color: #06202a;
+  box-shadow: 0 8px 20px -13px rgba(34, 211, 238, .9);
+}
+.guess-who-names-block { display: grid; grid-template-rows: auto minmax(0, 1fr); }
+.guess-who-name-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(2.05rem, 1fr);
+  min-height: 0;
+  gap: .32rem .4rem;
+}
+.guess-who-name-grid label {
+  display: flex;
+  min-width: 0;
+  min-height: 2.05rem;
+  align-items: center;
+  gap: .38rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .09);
+  border-radius: .68rem;
+  background: rgba(255, 255, 255, .035);
+  padding: .2rem .42rem;
+}
+.guess-who-name-grid label > span {
+  display: grid;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: none;
+  place-items: center;
+  border-radius: .42rem;
+  background: rgba(34, 211, 238, .11);
+  color: #67e8f9;
+  font-size: .58rem;
+  font-weight: 900;
+}
+.mobile-settings .guess-who-name-grid input:not([type]) {
+  width: 100%;
+  min-width: 0;
+  min-height: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  color: #f8fafc;
+  font-size: .7rem !important;
+  font-weight: 800;
+  outline: none;
+}
+.guess-who-name-grid input::placeholder { color: rgba(255, 255, 255, .25); }
+.mobile-settings .guess-who-start-button {
+  min-height: 2.85rem !important;
+  height: 2.85rem !important;
+  border-radius: .88rem !important;
+  background: linear-gradient(110deg, #06b6d4, #22d3ee) !important;
+  color: #052029 !important;
+  box-shadow: 0 14px 28px -18px rgba(34, 211, 238, .85) !important;
+}
+
+.guess-who-category-picker {
+  --guess-accent: #22d3ee;
+  background: radial-gradient(circle at 88% 3%, rgba(34, 211, 238, .13), transparent 16rem), #080d12 !important;
+}
+.guess-who-category-list { display: flex; flex-direction: column; gap: 1rem; padding-bottom: .6rem; }
+.guess-who-picker-heading {
+  border: 1px solid rgba(34, 211, 238, .2);
+  border-radius: 1rem;
+  background: rgba(34, 211, 238, .075);
+  padding: .85rem 1rem;
+}
+.guess-who-picker-heading span { color: #a5f3fc; font-size: .68rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.guess-who-picker-heading p { margin: .24rem 0 0; color: rgba(255, 255, 255, .48); font-size: .7rem; font-weight: 650; }
+.guess-who-section-label { margin: 0 0 .42rem .15rem; color: rgba(255, 255, 255, .38); font-size: .56rem; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; }
+.guess-who-picker-options { display: flex; flex-direction: column; gap: .42rem; }
+.guess-who-picker-options button {
+  display: flex;
+  min-height: 3.65rem;
+  align-items: center;
+  gap: .75rem;
+  border: 1px solid rgba(255, 255, 255, .09);
+  border-radius: .95rem;
+  background: rgba(17, 25, 35, .95);
+  padding: .55rem .68rem;
+  color: #fff;
+  text-align: left;
+}
+.guess-who-picker-options button.is-active { border-color: rgba(34, 211, 238, .5); background: rgba(34, 211, 238, .1); }
+.guess-who-picker-icon { display: grid; width: 2.3rem; height: 2.3rem; flex: none; place-items: center; border-radius: .72rem; background: rgba(255, 255, 255, .055); font-size: 1.2rem; }
+.guess-who-picker-copy { min-width: 0; flex: 1; }
+.guess-who-picker-copy strong { display: block; overflow: hidden; color: #f8fafc; font-size: .78rem; font-weight: 900; text-overflow: ellipsis; white-space: nowrap; }
+.guess-who-picker-copy small { display: block; margin-top: .18rem; color: rgba(255, 255, 255, .36); font-size: .59rem; font-weight: 750; }
+.guess-who-picker-check { display: grid; width: 1.9rem; height: 1.9rem; flex: none; place-items: center; border-radius: 999px; color: rgba(255, 255, 255, .35); }
+.guess-who-picker-options button.is-active .guess-who-picker-check { background: #22d3ee; color: #06202a; }
+
+@media (max-height: 660px) {
+  .guess-who-setup .app-shell-content { padding-top: max(.65rem, env(safe-area-inset-top)); padding-bottom: max(.7rem, env(safe-area-inset-bottom)); }
+  .guess-who-setup .app-topbar { margin-bottom: .48rem; }
+  .guess-who-setup-form { gap: .38rem; }
+  .guess-who-category-field { min-height: 3.2rem; padding-block: .38rem; }
+  .guess-who-setting-block, .guess-who-names-block { padding-block: .38rem; }
+  .guess-who-setting-heading { margin-bottom: .25rem; }
+  .guess-who-time-grid button, .guess-who-player-grid button { min-height: 1.82rem; }
+  .guess-who-name-grid { grid-auto-rows: minmax(1.82rem, 1fr); gap: .24rem .32rem; }
+  .guess-who-name-grid label { min-height: 1.82rem; }
+  .mobile-settings .guess-who-start-button { min-height: 2.6rem !important; height: 2.6rem !important; padding-block: .65rem !important; }
+}
+
+/* ── Pravda alebo výzva: moderné duo kariet ──────────────────────────────── */
+.truth-dare-shell {
+  --truth: #38bdf8;
+  --truth-deep: #075985;
+  --dare: #fb7185;
+  --dare-deep: #9f1239;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(251, 113, 133, .15), transparent 18rem),
+    radial-gradient(circle at 4% 92%, rgba(56, 189, 248, .14), transparent 20rem),
+    linear-gradient(155deg, #080c14 0%, #0d111d 52%, #100a12 100%) !important;
+}
+.truth-dare-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .3;
+  background-image: linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+  background-size: 30px 30px;
+  mask-image: linear-gradient(to bottom, black, transparent 72%);
+}
+.truth-dare-stage {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 31rem);
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-inline: auto;
+  padding-bottom: min(.65rem, 1.2dvh);
+}
+.truth-dare-choose {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  gap: min(.9rem, 1.7dvh);
+}
+.truth-dare-hero { display: flex; align-items: center; gap: .8rem; text-align: left; }
+.truth-dare-emblem {
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  flex: none;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 1rem;
+  background: linear-gradient(145deg, rgba(56,189,248,.18), rgba(251,113,133,.12));
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 18px 35px -25px rgba(251,113,133,.8);
+}
+.truth-dare-hero p { margin: 0 0 .18rem; color: rgba(255,255,255,.43); font-size: .57rem; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; }
+.truth-dare-hero h1 { margin: 0; color: #fff; font-family: "Manrope", "Inter", system-ui, sans-serif; font-size: clamp(1.35rem, 5.8vw, 1.85rem); font-weight: 950; letter-spacing: -.045em; line-height: 1.05; }
+.truth-dare-custom { min-height: 0; }
+.truth-dare-custom .custom-content-panel { max-height: min(8.2rem, 19dvh); overflow-y: auto; overscroll-behavior: contain; border-color: rgba(255,255,255,.09); background: rgba(255,255,255,.035); scrollbar-width: thin; }
+.truth-dare-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); min-height: 0; gap: .7rem; }
+.truth-dare-choice {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-width: 0;
+  min-height: 8rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 1.35rem;
+  padding: .85rem;
+  color: #fff;
+  text-align: left;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 24px 45px -34px rgba(0,0,0,.95);
+  transition: transform .17s ease, filter .17s ease, border-color .17s ease;
+}
+.truth-dare-choice::before { content: ""; position: absolute; z-index: -1; width: 8rem; height: 8rem; top: -3rem; right: -3rem; border-radius: 50%; filter: blur(3px); opacity: .46; }
+.truth-dare-choice.is-truth { background: linear-gradient(155deg, rgba(7,89,133,.88), rgba(8,22,39,.98) 72%); border-color: rgba(56,189,248,.35); }
+.truth-dare-choice.is-truth::before { background: #38bdf8; }
+.truth-dare-choice.is-dare { background: linear-gradient(155deg, rgba(159,18,57,.86), rgba(39,10,28,.98) 72%); border-color: rgba(251,113,133,.35); }
+.truth-dare-choice.is-dare::before { background: #fb7185; }
+.truth-dare-choice:active { transform: scale(.975); }
+.truth-dare-choice-number { position: absolute; top: .68rem; right: .75rem; color: rgba(255,255,255,.24); font-size: .55rem; font-weight: 900; letter-spacing: .14em; }
+.truth-dare-choice-icon { display: grid; width: 2.85rem; height: 2.85rem; place-items: center; margin-bottom: auto; border: 1px solid rgba(255,255,255,.14); border-radius: .9rem; background: rgba(255,255,255,.09); }
+.truth-dare-choice-copy small { display: block; margin-bottom: .22rem; color: rgba(255,255,255,.48); font-size: .55rem; font-weight: 750; line-height: 1.25; }
+.truth-dare-choice-copy strong { display: block; color: #fff; font-family: "Manrope", "Inter", system-ui, sans-serif; font-size: clamp(1.25rem, 6vw, 1.75rem); font-weight: 950; letter-spacing: -.045em; line-height: 1; }
+.truth-dare-choice-arrow { position: absolute; right: .75rem; bottom: .75rem; display: grid; width: 1.8rem; height: 1.8rem; place-items: center; border: 1px solid rgba(255,255,255,.13); border-radius: 999px; background: rgba(0,0,0,.16); color: rgba(255,255,255,.65); }
+.truth-dare-footnote { display: flex; align-items: center; justify-content: center; gap: .4rem; margin: 0; color: rgba(255,255,255,.36); font-size: .62rem; font-weight: 750; }
+
+.truth-dare-card-stage { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: min(.85rem, 1.6dvh); }
+.truth-dare-meta { display: flex; min-height: 1.8rem; align-items: center; justify-content: space-between; gap: .5rem; }
+.truth-dare-mode,
+.truth-dare-custom-badge { display: inline-flex; align-items: center; gap: .38rem; border: 1px solid currentColor; border-radius: 999px; padding: .38rem .68rem; font-size: .58rem; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
+.truth-dare-mode.is-truth { background: rgba(56,189,248,.1); color: #7dd3fc; }
+.truth-dare-mode.is-dare { background: rgba(251,113,133,.1); color: #fda4af; }
+.truth-dare-custom-badge { margin-left: auto; border-color: rgba(52,211,153,.23); background: rgba(52,211,153,.08); color: #6ee7b7; }
+.truth-dare-card {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 1.65rem;
+  padding: clamp(1rem, 3dvh, 1.55rem);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 28px 60px -42px rgba(0,0,0,.95);
+}
+.truth-dare-card::before { content: ""; position: absolute; z-index: -1; width: 15rem; height: 15rem; top: -10rem; right: -7rem; border-radius: 50%; filter: blur(12px); opacity: .3; }
+.truth-dare-card::after { content: ""; position: absolute; inset: 0; z-index: -2; opacity: .24; background: repeating-linear-gradient(135deg, transparent 0 20px, rgba(255,255,255,.025) 21px 22px); }
+.truth-dare-card.is-truth { background: linear-gradient(150deg, rgba(7,89,133,.76), rgba(8,15,28,.98) 68%); border-color: rgba(56,189,248,.34); }
+.truth-dare-card.is-truth::before { background: #38bdf8; }
+.truth-dare-card.is-dare { background: linear-gradient(150deg, rgba(159,18,57,.7), rgba(29,9,25,.98) 68%); border-color: rgba(251,113,133,.34); }
+.truth-dare-card.is-dare::before { background: #fb7185; }
+.truth-dare-card-index { position: absolute; top: .75rem; right: 1rem; color: rgba(255,255,255,.08); font-family: "Manrope", sans-serif; font-size: clamp(4rem, 18dvh, 8rem); font-weight: 950; line-height: 1; }
+.truth-dare-card-mark { position: relative; z-index: 1; display: grid; width: 2.75rem; height: 2.75rem; place-items: center; border: 1px solid rgba(255,255,255,.14); border-radius: .9rem; background: rgba(255,255,255,.08); color: #fff; }
+.truth-dare-prompt-scroll { position: relative; z-index: 1; display: grid; min-height: 0; place-items: center; overflow-y: auto; overscroll-behavior: contain; padding: .7rem .1rem; scrollbar-width: thin; }
+.truth-dare-prompt-scroll p { max-width: 26rem; margin: 0; color: #fff; font-family: "Manrope", "Inter", system-ui, sans-serif; font-size: clamp(1.15rem, min(5.6vw, 3.7dvh), 2rem); font-weight: 900; letter-spacing: -.04em; line-height: 1.14; overflow-wrap: anywhere; text-align: center; text-wrap: balance; }
+.truth-dare-card-caption { position: relative; z-index: 1; color: rgba(255,255,255,.36); font-size: .56rem; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; }
+.truth-dare-actions { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: .55rem; }
+.truth-dare-actions button { display: inline-flex; min-width: 0; min-height: 3rem; align-items: center; justify-content: center; gap: .42rem; border-radius: .9rem; padding: .65rem .5rem; font-size: .7rem; font-weight: 900; line-height: 1.1; transition: transform .16s ease, filter .16s ease; }
+.truth-dare-actions button:active { transform: scale(.975); }
+.truth-dare-next { border: 1px solid transparent; color: #06131b; }
+.truth-dare-next.is-truth { background: linear-gradient(110deg, #38bdf8, #7dd3fc); box-shadow: 0 14px 28px -18px rgba(56,189,248,.9); }
+.truth-dare-next.is-dare { background: linear-gradient(110deg, #fb7185, #fda4af); box-shadow: 0 14px 28px -18px rgba(251,113,133,.9); }
+.truth-dare-back { border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.045); color: rgba(255,255,255,.7); }
+
+@media (hover: hover) {
+  .truth-dare-choice:hover { transform: translateY(-2px); filter: brightness(1.07); }
+}
+@media (max-height: 660px) {
+  .truth-dare-shell .app-shell-content { padding-top: max(.7rem, env(safe-area-inset-top)); padding-bottom: max(.7rem, env(safe-area-inset-bottom)); }
+  .truth-dare-shell .app-topbar { margin-bottom: .5rem; }
+  .truth-dare-choose, .truth-dare-card-stage { gap: .48rem; }
+  .truth-dare-emblem { width: 2.85rem; height: 2.85rem; }
+  .truth-dare-custom .custom-content-panel { max-height: 6.6rem; padding: .55rem .65rem; }
+  .truth-dare-choice { min-height: 6.9rem; padding: .7rem; }
+  .truth-dare-choice-icon { width: 2.35rem; height: 2.35rem; }
+  .truth-dare-choice-copy small, .truth-dare-footnote { display: none; }
+  .truth-dare-card { padding: .85rem; }
+  .truth-dare-card-mark { width: 2.35rem; height: 2.35rem; }
+  .truth-dare-actions button { min-height: 2.7rem; }
+}
+@media (max-width: 340px) {
+  .truth-dare-choice { padding-inline: .62rem; }
+  .truth-dare-choice-arrow { display: none; }
+  .truth-dare-actions button { font-size: .64rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .truth-dare-choice, .truth-dare-actions button { transition: none; }
+}
