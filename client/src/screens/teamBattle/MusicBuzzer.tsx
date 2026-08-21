@@ -17,7 +17,7 @@ import { Icons } from "../../components/icons";
 
 type Phase =
   | { type: "question" }
-  | { type: "buzzed"; participant: number }
+  | { type: "buzzed"; participant: number; countdown: number }
   | { type: "revealed"; participant: number | null };
 
 /**
@@ -69,6 +69,26 @@ export default function MusicBuzzer({
   const unavailable =
     !soundAllowed || status === "missing" || status === "error";
   const revealed = phase.type === "revealed";
+
+  // ── Odpočet po bzučiaku ───────────────────────────────────────────────────
+  // Hráč stlačí bzučiak → 3 sekundy na premýšľanie → až potom sa ukáže
+  // tlačidlo „Odhaliť odpoveď". Počas odpočtu sa zobrazuje veľké číslo, takže
+  // obe strany stola vidia, koľko času zostáva.
+  const BUZZ_COUNTDOWN_SECONDS = 3;
+
+  useEffect(() => {
+    if (phase.type !== "buzzed" || phase.countdown <= 0) return;
+    const timer = window.setTimeout(() => {
+      setPhase(prev =>
+        prev.type === "buzzed"
+          ? { ...prev, countdown: prev.countdown - 1 }
+          : prev
+      );
+    }, 1000);
+    return () => window.clearTimeout(timer);
+  }, [phase]);
+
+  const buzzReady = phase.type === "buzzed" && phase.countdown <= 0;
 
   async function playPreview() {
     if (await play()) setPlayed(true);
@@ -257,6 +277,21 @@ export default function MusicBuzzer({
     }
 
     if (phase.type === "buzzed") {
+      if (!buzzReady) {
+        // Odpočet — veľké číslo, aby ho obe strany stola videli.
+        return (
+          <div className="music-quiz-deck flex items-center justify-center px-3">
+            <div className="flex items-center gap-3">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-fuchsia-300/30 bg-fuchsia-500/15 text-2xl font-black tabular-nums text-fuchsia-200 shadow-[0_0_30px_rgba(217,70,239,.25)]">
+                {phase.countdown}
+              </span>
+              <span className="text-xs font-bold text-white/50">
+                Čas na odpoveď…
+              </span>
+            </div>
+          </div>
+        );
+      }
       return (
         <div className="music-quiz-deck flex items-stretch px-3">
           <button
@@ -300,7 +335,11 @@ export default function MusicBuzzer({
               onClick={() => {
                 stop("ready");
                 playFeedback("buzzer");
-                setPhase({ type: "buzzed", participant: index });
+                setPhase({
+                  type: "buzzed",
+                  participant: index,
+                  countdown: BUZZ_COUNTDOWN_SECONDS,
+                });
               }}
               className="party-shine flex min-w-0 flex-1 items-center justify-center gap-2 overflow-hidden rounded-2xl border border-white/20 px-3 text-white shadow-xl transition active:scale-95 disabled:opacity-40"
               style={{
