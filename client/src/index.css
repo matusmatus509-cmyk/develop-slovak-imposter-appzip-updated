@@ -2168,6 +2168,12 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
 @media (max-width: 359px), (max-height: 699px) { .only-lies-stage { grid-template-rows: auto auto minmax(8.5rem, 1fr) auto; gap: .6rem; } .only-lies-rule { font-size: .7rem; padding: .34rem .66rem; } .only-lies-streak { padding: .32rem .6rem; } .only-lies-clock { border-radius: 1.1rem; padding: .5rem .8rem .58rem; } .only-lies-clock-label { font-size: .6rem; letter-spacing: .16em; } .only-lies-clock-value { font-size: clamp(2.4rem, 12.5vw, 3.2rem); } .only-lies-question { border-radius: 1.4rem; padding: 1.1rem .9rem; } .only-lies-question p { font-size: clamp(1.55rem, 7.6vw, 2.1rem); } .only-lies-question-mark { font-size: 7.5rem; } .is-game-stage .only-lies-answer, .only-lies-answer { min-height: 3.5rem !important; font-size: .88rem !important; border-radius: 1.1rem !important; } }
 @media (prefers-reduced-motion: reduce) { .only-lies-question { animation: none; } .only-lies-clock[data-urgent="true"] .only-lies-clock-value { animation: none; } .only-lies-failure, .only-lies-failure-card { animation: none; } }
 
+/* Kvíz: reveal countdown bar — čiara sa za 3 sekundy úplne vyprázdni. */
+.quiz-reveal-bar-wrapper { width: 100%; height: .35rem; flex-shrink: 0; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.1); }
+.quiz-reveal-bar { height: 100%; border-radius: inherit; background: linear-gradient(90deg, #a78bfa, #c084fc, #e879f9); animation: quiz-reveal-shrink 3s linear both; }
+@keyframes quiz-reveal-shrink { from { width: 100%; } to { width: 0%; } }
+@media (prefers-reduced-motion: reduce) { .quiz-reveal-bar { animation: none; width: 50%; } }
+
 /* Krátke kartové minihry: jeden motív, jedno pravidlo, dominantný obsah. */
 .prompt-game-shell { position: relative; isolation: isolate; overflow: hidden; background: radial-gradient(circle at 83% 8%, var(--prompt-glow), transparent 17rem), radial-gradient(circle at 4% 95%, var(--prompt-wash), transparent 17rem), #080b13 !important; }
 .prompt-game-truth { --prompt-glow: rgba(96,165,250,.2); --prompt-wash: rgba(244,63,94,.15); }

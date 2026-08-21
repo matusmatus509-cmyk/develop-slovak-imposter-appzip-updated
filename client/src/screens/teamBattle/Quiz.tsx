@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { QuizQuestion } from "../../data/teamBattle";
 import { TEAM_COLORS } from "../../data/teamBattle";
 import { Icons } from "../../components/icons";
 
 type QuizPhase =
+  | { t: "reveal" }
   | { t: "question" }
   | { t: "buzzed"; who: 0 | 1 }
   | { t: "second-chance"; who: 0 | 1 }
@@ -18,11 +19,12 @@ type QuizPhase =
   | { t: "done" };
 
 /** Čo má strana jedného tímu práve robiť. */
-type FaceMode = "idle" | "waiting" | "armed" | "result";
+type FaceMode = "reveal" | "idle" | "waiting" | "armed" | "result";
 
 const LETTERS = ["A", "B", "C", "D"] as const;
 
 const QUESTIONS_PER_ROUND = 5;
+const REVEAL_DURATION_MS = 3000;
 
 /**
  * Jedna strana obojstrannej obrazovky. Telefón leží medzi tímami, preto sa
@@ -59,6 +61,8 @@ function QuizFace({
 }) {
   const isArmed = mode === "armed";
   const isResult = mode === "result";
+  const isReveal = mode === "reveal";
+  const showOptions = !isReveal && options;
 
   return (
     <div
@@ -69,28 +73,46 @@ function QuizFace({
         {category}
       </p>
 
-      {/* Otázka je na oboch stranách, aby ju nemusel nikto čítať naopak. */}
+      {/* Otázka — počas reveal fázy je veľká a centorizovaná, potom sa zmenší. */}
       <div
         key={question}
-        className="party-glass relative w-full shrink-0 overflow-hidden rounded-2xl border px-3 py-2.5 text-center"
+        className="party-glass relative w-full overflow-hidden rounded-2xl border px-4 text-center transition-all duration-500"
         style={{
+          flex: isReveal ? "1" : "0 0 auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: isReveal ? "1.5rem 1rem" : ".625rem .75rem",
           background: isArmed ? `${color}1f` : "rgba(255,255,255,0.04)",
           borderColor: isArmed ? `${color}66` : "rgba(255,255,255,0.09)",
-          transition: "background .25s ease, border-color .25s ease",
           animation: "popIn .4s cubic-bezier(0.34,1.56,0.64,1) both",
         }}
       >
         <p
-          className="font-black leading-snug text-white"
-          style={{ fontSize: "clamp(.95rem, 3.5vw, 1.3rem)" }}
+          className="font-black leading-snug text-white transition-all duration-500"
+          style={{
+            fontSize: isReveal
+              ? "clamp(1.4rem, 5.5vw, 2rem)"
+              : "clamp(.95rem, 3.5vw, 1.3rem)",
+          }}
         >
           {question}
         </p>
       </div>
 
-      {/* Možnosti zostávajú viditeľné aj po bzučnutí — vyberá sa klikom priamo na ne. */}
-      {options && (
-        <div className="grid w-full shrink-0 grid-cols-2 gap-2">
+      {/* Countdown indikátor počas reveal fázy */}
+      {isReveal && (
+        <div className="quiz-reveal-bar-wrapper shrink-0">
+          <div className="quiz-reveal-bar" />
+        </div>
+      )}
+
+      {/* Možnosti sa zobrazia až po reveal fáze s animáciou */}
+      {showOptions && (
+        <div
+          className="grid w-full shrink-0 grid-cols-2 gap-2"
+          style={{ animation: "slideUp .4s ease-out both" }}
+        >
           {options.map((option, index) => {
             const isCorrect = isResult && index === correctIndex;
             const isPicked = isResult && index === selectedIndex;
@@ -121,6 +143,7 @@ function QuizFace({
                   borderColor,
                   opacity: mode === "waiting" ? 0.45 : 1,
                   boxShadow: isArmed ? `0 6px 18px -12px ${color}` : undefined,
+                  animation: `scaleIn .3s ease-out ${index * 0.08}s both`,
                 }}
               >
                 <span
@@ -158,6 +181,7 @@ function QuizFace({
           style={{
             background: `linear-gradient(120deg, ${color}dd, ${color}88)`,
             boxShadow: `0 10px 30px -14px ${color}`,
+            animation: "scaleIn .3s ease-out .2s both",
           }}
         >
           <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(255,255,255,.22),transparent_30%)]" />
@@ -168,6 +192,12 @@ function QuizFace({
             {teamName}
           </span>
         </button>
+      )}
+
+      {isReveal && (
+        <p className="shrink-0 text-xs font-bold uppercase tracking-widest text-white/35">
+          Prečítajte si otázku…
+        </p>
       )}
 
       {mode === "armed" && (
@@ -219,11 +249,20 @@ export default function TeamQuiz({
 }) {
   const [qIdx, setQIdx] = useState(0);
   const [scores, setScores] = useState<[number, number]>([0, 0]);
-  const [phase, setPhase] = useState<QuizPhase>({ t: "question" });
+  const [phase, setPhase] = useState<QuizPhase>({ t: "reveal" });
   const [answerRevealed, setAnswerRevealed] = useState(false);
 
   const [a, b] = TEAM_COLORS;
   const q = questions[qIdx];
+
+  // Po 3 sekundách sa reveal fáza automaticky prepne na question (odpovede sa objavia).
+  useEffect(() => {
+    if (phase.t !== "reveal") return;
+    const timeout = window.setTimeout(() => {
+      setPhase({ t: "question" });
+    }, REVEAL_DURATION_MS);
+    return () => window.clearTimeout(timeout);
+  }, [phase.t, qIdx]);
 
   function buzz(who: 0 | 1) {
     if (phase.t !== "question") return;
@@ -269,7 +308,7 @@ export default function TeamQuiz({
     }
   }
 
-  /** Tlačidlo „Ďalšia“ je na oboch stranách, preto sa dvojité posunutie musí ustrážiť. */
+  /** Tlačidlo „Ďalšia" je na oboch stranách, preto sa dvojité posunutie musí ustrážiť. */
   function handleNext() {
     if (phase.t !== "mc-result") return;
     nextQuestion(phase.scores);
@@ -282,7 +321,7 @@ export default function TeamQuiz({
       onDone(currentScores);
     } else {
       setQIdx(next);
-      setPhase({ t: "question" });
+      setPhase({ t: "reveal" });
     }
   }
 
@@ -299,6 +338,7 @@ export default function TeamQuiz({
 
   /** Každá strana vie sama, či má bzučiak, aktívne možnosti alebo len výsledok. */
   function faceMode(team: 0 | 1): FaceMode {
+    if (phase.t === "reveal") return "reveal";
     if (phase.t === "mc-result") return "result";
     if (phase.t === "selecting")
       return phase.who === team ? "armed" : "waiting";
