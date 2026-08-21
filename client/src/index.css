@@ -1286,6 +1286,17 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   flex: none;
 }
 
+/* Výnimka z one-screen pravidla: nastavenia a výber hier smú skrolovať.
+   Skroluje vnútro panelu, nikdy nie celá stránka — hra pod ním zostáva ukotvená. */
+.is-game-stage .scroll-panel.app-shell > .app-shell-content,
+.is-game-stage main.scroll-panel {
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
 .is-game-stage .app-topbar > button {
   width: 2.75rem;
   height: 2.75rem;
@@ -1732,7 +1743,12 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 
 /* Vstup obrazovky a postupné nabehnutie prvkov. */
 .party-mode-experience .party-stage-enter { animation: pmStageEnter 0.5s var(--pm-ease) both !important; }
-.party-mode-experience .party-phase-shell { min-height: 100dvh; }
+/* Fáza party módu vyplní presne jednu obrazovku — nie „aspoň" jednu. */
+.party-mode-experience .party-phase-shell {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
 @keyframes pmStageEnter {
   from { opacity: 0; transform: translateY(14px) scale(0.988); }
   to { opacity: 1; transform: none; }
@@ -1920,6 +1936,80 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 .party-auto-dock .party-auto {
   background: linear-gradient(168deg, #1b2634, #131c29);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.075), 0 16px 32px -18px rgba(0, 0, 0, 1);
+}
+
+/* ── One-screen kompakcia ───────────────────────────────────────────────────
+   Herné obrazovky už neskrolujú, takže obsah, ktorý sa nezmestí, by sa orezal.
+   Dekoratívne prvky preto škálujeme podľa výšky displeja (dvh) — bez skokov na
+   breakpointoch — a text zostáva čitateľný. */
+.party-mode-experience .party-fit-hero [class*="h-28"][class*="w-28"] {
+  height: min(7rem, 13dvh);
+  width: min(7rem, 13dvh);
+}
+.party-mode-experience .party-fit-hero [class*="h-24"][class*="w-24"] {
+  height: min(6rem, 11.5dvh);
+  width: min(6rem, 11.5dvh);
+}
+.party-mode-experience .party-fit-hero [class*="h-28"][class*="w-28"] svg,
+.party-mode-experience .party-fit-hero [class*="h-24"][class*="w-24"] svg {
+  width: min(3.25rem, 6dvh);
+  height: min(3.25rem, 6dvh);
+}
+.party-mode-experience .party-fit-hero h1 {
+  font-size: clamp(1.5rem, 4.6dvh, 2.25rem);
+  line-height: 1.05;
+}
+.party-mode-experience .party-fit-media { height: min(10rem, 19dvh); }
+
+/* Pod 760 px výšky ustúpi popisný text — pravidlá hry sú už na predchádzajúcej
+   obrazovke, tu ide o rýchlu orientáciu. */
+@media (max-height: 760px) {
+  .party-mode-experience .party-fit-hero p[class*="max-w-xs"] {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .party-mode-experience .party-fit-note { display: none; }
+  .party-auto-dock { padding-block: 0.75rem 0.3rem; }
+}
+/* Pod 700 px sa tabuľka skóre zmení na kompaktný riadok — čísla zostávajú,
+   ustúpi len to, čo je navyše (popis, pomerový pruh). */
+@media (max-height: 700px) {
+  .party-mode-experience .party-scoreboard { padding: 0.9rem 1rem !important; }
+  /* !important, aby pravidlo vyhralo nad Tailwind utilitami bez ohľadu na ich poradie. */
+  .party-mode-experience .party-sb-detail,
+  .party-mode-experience .party-sb-bar,
+  .party-mode-experience .party-sb-unit,
+  .party-mode-experience .party-fit-badge,
+  .party-mode-experience .party-fit-bar { display: none !important; }
+  .party-mode-experience .party-sb-score { font-size: 1.9rem !important; margin-top: 0.15rem; }
+  .party-mode-experience .party-scoreboard > div:nth-child(2) { margin-top: 0.6rem; }
+}
+
+@media (max-height: 660px) {
+  .party-mode-experience .party-fit-hero p[class*="max-w-xs"] { display: none; }
+  .party-mode-experience .party-fit-hero { padding-block: 1rem; }
+  .party-mode-experience .party-glass { border-radius: 1.15rem !important; }
+  /* Pódium a karty s bodmi za kolo idú na kompaktnú výšku. */
+  .party-mode-experience .party-podium { padding: 0.85rem 0.75rem 1rem !important; }
+  .party-mode-experience .party-podium p[class*="text-5xl"] { font-size: 2rem !important; }
+  .party-mode-experience .party-fit-hero p[class*="text-sm"] { display: none; }
+  /* Karty s bodmi za kolo. */
+  .party-mode-experience .party-fit-tile { padding: 0.85rem 0.75rem !important; }
+  .party-mode-experience .party-fit-tile p[class*="text-4xl"] { font-size: 1.75rem !important; }
+}
+
+/* Najnižšie displeje (iPhone SE): titulky ustúpia, aby sa hra nezrezala. */
+@media (max-height: 620px) {
+  .party-mode-experience h1 { font-size: 1.4rem !important; }
+  .party-mode-experience .party-fit-hero h1 { font-size: 1.55rem !important; }
+  .party-mode-experience .party-scoreboard { padding: 0.7rem 0.9rem !important; }
+  .party-mode-experience .party-sb-score { font-size: 1.6rem !important; }
+  .party-auto-dock { padding-block: 0.5rem 0.25rem; }
+  .party-mode-experience .party-cta,
+  .party-mode-experience .party-cta-ghost,
+  .party-mode-experience button[class*="from-violet-600"] { padding-block: 0.85rem !important; }
 }
 
 /* Jemné zjednotenie geometrie a skrytie posuvníkov. */

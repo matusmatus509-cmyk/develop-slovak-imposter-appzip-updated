@@ -91,7 +91,7 @@ export default function TeamBattleGamePicker({
   }
 
   return (
-    <Shell className="minigame-tile-shell party-game-picker-screen">
+    <Shell className="minigame-tile-shell party-game-picker-screen scroll-panel">
       <TopBar onBack={onBack} />
       <header
         className="minigame-tile-header"

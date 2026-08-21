@@ -113,12 +113,12 @@ export default function GameOver({
   return (
     <PartyBackdrop>
       {celebrating && !isDraw && <Confetti />}
-      <main className="relative z-30 h-full overflow-y-auto px-5 pb-8 pt-10 text-center">
-        <div className="mx-auto flex min-h-full w-full max-w-md flex-col items-center">
+      <main className="relative z-30 flex h-full flex-col overflow-hidden px-5 pb-3 pt-5 text-center">
+        <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col items-center">
           <PartyEyebrow>Výsledky Party mode</PartyEyebrow>
 
           <section
-            className={`mt-7 w-full transition-all duration-300 ${revealed ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`}
+            className={`party-fit-hero mt-4 w-full transition-all duration-300 ${revealed ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`}
             aria-live="polite"
           >
             <div
@@ -157,7 +157,7 @@ export default function GameOver({
           </section>
 
           <section
-            className="mt-8 grid w-full grid-cols-2 items-end gap-3"
+            className="mt-4 grid w-full shrink-0 grid-cols-2 items-end gap-3"
             aria-label="Konečná tabuľka skóre"
           >
             {([0, 1] as const).map(index => {
@@ -200,7 +200,7 @@ export default function GameOver({
                   <p className="mt-1 text-[9px] font-black uppercase tracking-[0.2em] text-white/25">
                     bodov
                   </p>
-                  <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
+                  <div className="party-fit-bar mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
                     <div
                       className="h-full rounded-full transition-all duration-1000"
                       style={{
@@ -217,12 +217,12 @@ export default function GameOver({
           </section>
 
           <p
-            className={`mt-6 text-[10px] font-black uppercase tracking-[0.22em] text-white/30 transition-opacity duration-500 ${celebrating ? "opacity-100" : "opacity-0"}`}
+            className={`party-fit-note mt-4 text-[10px] font-black uppercase tracking-[0.22em] text-white/30 transition-opacity duration-500 ${celebrating ? "opacity-100" : "opacity-0"}`}
           >
             Finále je rozhodnuté · ďakujeme za hru
           </p>
 
-          <div className="mt-auto w-full space-y-3 pt-8">
+          <div className="mt-auto w-full shrink-0 space-y-2 pt-4">
             <button
               type="button"
               onClick={onPlayAgain}

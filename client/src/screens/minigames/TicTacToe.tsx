@@ -163,7 +163,7 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
   if (phase === "setup")
     return (
       <PartyBackdrop>
-        <main className="mobile-settings mobile-party-settings h-full overflow-y-auto px-5 pb-9 pt-5 text-white">
+        <main className="mobile-settings mobile-party-settings scroll-panel h-full overflow-y-auto px-5 pb-9 pt-5 text-white">
           <div className="mx-auto w-full max-w-md">
             <header className="flex items-center justify-between">
               <button

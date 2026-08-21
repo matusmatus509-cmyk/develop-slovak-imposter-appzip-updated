@@ -155,8 +155,8 @@ export function LetterChallengeGame({
 
   return (
     <PartyBackdrop>
-      <main className="flex h-full flex-col overflow-y-auto px-4 pb-6 pt-5 text-center">
-        <div className="mx-auto flex w-full max-w-md flex-1 flex-col">
+      <main className="flex h-full flex-col overflow-hidden px-4 pb-4 pt-4 text-center">
+        <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col">
           <ParticipantScoreStrip
             names={participantNames}
             scores={scores}
@@ -169,7 +169,7 @@ export function LetterChallengeGame({
             <RoundProgress current={turn} total={deck.length} color="#fbbf24" />
           </div>
 
-          <section className="party-glass relative mt-4 flex min-h-[24rem] flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.4rem] px-5 py-7">
+          <section className="party-glass relative mt-3 flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.4rem] px-5 py-5">
             <div className="pointer-events-none absolute -left-20 top-16 h-52 w-52 rounded-full bg-amber-400/10 blur-3xl" />
             <div className="pointer-events-none absolute -right-20 bottom-5 h-52 w-52 rounded-full bg-orange-500/10 blur-3xl" />
             <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-amber-300/80 to-transparent" />
@@ -347,7 +347,7 @@ export function FiveInTenGame({
 
   return (
     <PartyBackdrop>
-      <main className="flex h-full flex-col overflow-y-auto px-4 pb-6 pt-5 text-center">
+      <main className="flex h-full flex-col overflow-hidden px-4 pb-4 pt-4 text-center">
         <div className="mx-auto flex w-full max-w-md flex-1 flex-col">
           <ParticipantScoreStrip
             names={participantNames}

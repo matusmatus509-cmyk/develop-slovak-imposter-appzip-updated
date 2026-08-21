@@ -614,7 +614,7 @@ export default function TimedWords({
   }
 
   return (
-    <div className="party-backdrop fixed inset-0 flex flex-col items-center gap-7 overflow-y-auto px-6 py-7 text-center">
+    <div className="party-backdrop fixed inset-0 flex flex-col items-center gap-3 overflow-hidden px-6 py-4 text-center">
       <div
         className="text-5xl"
         style={{ animation: "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1)" }}
@@ -631,7 +631,7 @@ export default function TimedWords({
       </div>
 
       <div
-        className="rounded-3xl p-8 text-center"
+        className="shrink-0 rounded-3xl p-5 text-center"
         style={{
           background: `${color}15`,
           border: `2px solid ${color}40`,
@@ -654,11 +654,13 @@ export default function TimedWords({
         )}
       </div>
 
-      <TurnAnswerRecap answers={roundAnswers} />
+      <div className="flex min-h-0 w-full flex-1 justify-center">
+        <TurnAnswerRecap answers={roundAnswers} />
+      </div>
 
       <button
         onClick={handleTeamDone}
-        className="w-full rounded-2xl py-5 text-base font-black text-white active:scale-95 transition"
+        className="w-full shrink-0 rounded-2xl py-4 text-base font-black text-white active:scale-95 transition"
         style={{
           background: color,
           animation: "slideUp 0.5s ease-out 0.4s both",

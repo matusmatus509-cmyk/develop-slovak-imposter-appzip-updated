@@ -217,7 +217,7 @@ function PassAndPlay({
     return (
       <PartyBackdrop>
         <main
-          className={`flex h-full flex-col items-center overflow-y-auto px-6 py-7 text-center ${mode === "pesnicka" ? "song-ready-screen" : "justify-center"}`}
+          className={`flex h-full flex-col items-center overflow-hidden px-6 py-4 text-center ${mode === "pesnicka" ? "song-ready-screen" : "justify-center"}`}
         >
           <PartyEyebrow>{copy.eyebrow}</PartyEyebrow>
           {mode === "pesnicka" ? (
@@ -293,7 +293,7 @@ function PassAndPlay({
     return (
       <PartyBackdrop>
         <main
-          className={`flex h-full flex-col items-center overflow-y-auto px-6 py-8 text-center ${mode === "pesnicka" ? "song-result-screen" : ""}`}
+          className={`flex h-full flex-col items-center overflow-hidden px-6 py-4 text-center ${mode === "pesnicka" ? "song-result-screen" : ""}`}
         >
           {mode === "pesnicka" ? (
             <div className="relative h-28 w-full max-w-xs overflow-hidden rounded-[1.8rem] border border-violet-200/20">
@@ -389,7 +389,7 @@ function PassAndPlay({
         </div>
       </header>
 
-      <main className="relative z-10 flex flex-1 items-center justify-center overflow-y-auto px-5 py-3 text-center">
+      <main className="relative z-10 flex min-h-0 flex-1 items-center justify-center overflow-hidden px-5 py-2 text-center">
         <section
           key={index}
           className={`party-glass party-shine w-full max-w-md overflow-hidden rounded-[2.2rem] px-6 py-8 ${mode === "pesnicka" ? "song-round-card" : ""}`}

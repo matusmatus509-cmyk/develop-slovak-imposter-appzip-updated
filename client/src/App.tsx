@@ -337,6 +337,11 @@ const ONE_SCREEN_GAME_SCREENS = new Set<Screen>([
   "patzadesat",
   "tic-tac-toe",
   "battleship",
+  // Party mód je jeden Screen s ~13 pod-obrazovkami. Bez tohto záznamu bežal
+  // celý pod is-scroll-stage a žiadna z jeho hier nemala one-screen disciplínu.
+  // Obrazovky, ktoré v ňom skrolovať MAJÚ (nastavenia, výber hier), sú označené
+  // triedou .scroll-panel.
+  "teambattle",
 ]);
 
 const DEFAULT_SETTINGS: GameSettings = {

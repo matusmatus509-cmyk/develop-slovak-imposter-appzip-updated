@@ -278,7 +278,7 @@ export default function TeamQuickGame({
     const draw = winners.length > 1;
     return (
       <PartyBackdrop>
-        <main className="flex h-full flex-col items-center overflow-y-auto px-5 py-8 text-center">
+        <main className="flex h-full flex-col items-center overflow-hidden px-5 py-4 text-center">
           <PartyEyebrow>Koniec minihry</PartyEyebrow>
           <div className="quick-result-emblem mx-auto mt-7 flex h-20 w-20 items-center justify-center rounded-[1.8rem] border border-white/15 bg-white/[.06] text-white">
             {draw ? (
@@ -353,7 +353,7 @@ export default function TeamQuickGame({
   return (
     <PartyBackdrop>
       <main
-        className={`mobile-settings mobile-party-settings quick-setup-screen quick-setup-${game} h-full overflow-y-auto px-5 pb-8 pt-5`}
+        className={`mobile-settings mobile-party-settings quick-setup-screen quick-setup-${game} scroll-panel h-full overflow-y-auto px-5 pb-8 pt-5`}
         style={
           {
             "--quick-primary": theme.primary,

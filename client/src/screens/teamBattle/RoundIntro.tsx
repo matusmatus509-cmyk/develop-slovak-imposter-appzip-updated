@@ -120,8 +120,8 @@ export default function RoundIntro({
 
   return (
     <PartyBackdrop>
-      <main className="h-full overflow-y-auto px-5 pb-8 pt-8">
-        <div className="mx-auto flex w-full max-w-md flex-col gap-5">
+      <main className="flex h-full flex-col overflow-hidden px-5 pb-1 pt-4">
+        <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col gap-3">
           <header className="text-center">
             <PartyEyebrow>
               Kolo {round.index + 1} z {totalRounds}
@@ -153,7 +153,7 @@ export default function RoundIntro({
             </div>
           )}
 
-          <section className="party-glass relative overflow-hidden rounded-[2rem] px-6 py-8 text-center">
+          <section className="party-fit-hero party-glass relative flex min-h-0 flex-1 flex-col justify-center overflow-hidden rounded-[2rem] px-6 py-5 text-center">
             <div className="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-fuchsia-300/70 to-transparent" />
             <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-[1.4rem] border border-white/10 bg-white/[.05] text-white">
               <RoundIcon size={42} />

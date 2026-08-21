@@ -47,11 +47,11 @@ export function TurnAnswerRecap({
     .filter(group => group.entries.length > 0);
 
   return (
-    <section className="glass w-full max-w-md rounded-3xl p-4 text-left">
+    <section className="glass flex min-h-0 w-full max-w-md flex-col rounded-3xl p-4 text-left">
       <p className="text-center text-[10px] font-black uppercase tracking-[.2em] text-white/40">
         Odpovede v tomto ťahu
       </p>
-      <div className="mt-3 max-h-64 space-y-3 overflow-y-auto pr-1">
+      <div className="mt-3 max-h-[min(16rem,26dvh)] min-h-0 flex-1 space-y-3 overflow-y-auto pr-1">
         {groups.map(({ outcome, entries }) => {
           const meta = OUTCOME_META[outcome];
           return (

@@ -24,11 +24,11 @@ export default function FinaleIntro({
 
   return (
     <PartyBackdrop>
-      <main className="h-full overflow-y-auto px-5 pb-8 pt-10 text-center">
-        <div className="mx-auto flex min-h-full w-full max-w-md flex-col items-center">
+      <main className="flex h-full flex-col overflow-hidden px-5 pb-1 pt-5 text-center">
+        <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col items-center">
           <PartyEyebrow>Veľké finále</PartyEyebrow>
 
-          <section className="party-finale-reveal mt-8 w-full">
+          <section className="party-fit-hero party-finale-reveal mt-4 w-full shrink-0">
             <div className="relative mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-fuchsia-300/30 bg-fuchsia-500/10 shadow-[0_0_80px_rgba(217,70,239,.3)]">
               <div className="absolute inset-2 rounded-full border border-white/20" />
               <span className="text-fuchsia-200">
@@ -48,7 +48,7 @@ export default function FinaleIntro({
             </p>
           </section>
 
-          <div className="mt-8 w-full">
+          <div className="mt-4 w-full shrink-0">
             <PartyScoreboard
               teamNames={teamNames}
               scores={scores}

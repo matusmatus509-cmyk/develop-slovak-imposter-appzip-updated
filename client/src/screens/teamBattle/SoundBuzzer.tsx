@@ -182,8 +182,8 @@ export default function SoundBuzzer({
 
   return (
     <PartyBackdrop>
-      <main className="flex h-full flex-col overflow-y-auto px-4 pb-6 pt-5 text-center">
-        <div className="mx-auto flex w-full max-w-md flex-1 flex-col">
+      <main className="flex h-full flex-col overflow-hidden px-4 pb-4 pt-4 text-center">
+        <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col">
           <ParticipantScoreStrip
             names={participantNames}
             scores={scores}
@@ -199,9 +199,9 @@ export default function SoundBuzzer({
             </span>
           </div>
 
-          <section className="party-glass relative mt-5 flex flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.2rem] px-6 py-7">
+          <section className="party-glass relative mt-3 flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-[2.2rem] px-6 py-5">
             <div className="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent" />
-            <div className="relative h-40 w-full max-w-sm shrink-0 overflow-hidden rounded-[1.8rem] border border-cyan-300/20 shadow-[0_0_70px_rgba(34,211,238,.18)]">
+            <div className="party-fit-media relative h-40 w-full max-w-sm shrink overflow-hidden rounded-[1.8rem] border border-cyan-300/20 shadow-[0_0_70px_rgba(34,211,238,.18)]">
               <img
                 src={soundArt}
                 alt="Ilustrácia zvukovej minihry"
