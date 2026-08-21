@@ -101,7 +101,7 @@ function SetupScreen({
   }
 
   return (
-    <Shell className="mobile-settings mobile-settings-guess-who">
+    <Shell className="mobile-settings mobile-settings-guess-who scroll-panel">
       <TopBar title="Hádaj kto som" onBack={onBack} />
 
       <div
