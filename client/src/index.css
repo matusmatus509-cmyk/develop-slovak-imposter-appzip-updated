@@ -1115,6 +1115,122 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   .song-welcome-equalizer i { animation: none !important; }
 }
 
+/* ── Hudobný kvíz — obojstranná mriežka ─────────────────────────────────────
+   Obrazovka nesmie skrolovať (je v ONE_SCREEN_GAME_SCREENS), takže všetky
+   veľkosti sú viazané na výšku displeja cez min(rem, dvh). Pásma mriežky sú
+   pevné a texty majú vlastný riadok, takže sa nemôžu prekryť ani zmiznúť. */
+.music-quiz-stage {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(139,92,246,.16), transparent 60%),
+    radial-gradient(circle at 12% 8%, rgba(217,70,239,.13), transparent 22rem),
+    radial-gradient(circle at 88% 92%, rgba(99,102,241,.13), transparent 22rem);
+  row-gap: min(0.5rem, 1dvh);
+  padding-block: max(0.6rem, env(safe-area-inset-top)) max(0.6rem, env(safe-area-inset-bottom));
+}
+
+/* Ovládacie pásmo má pevnú výšku, aby nikdy nezožralo miesto textu. */
+.music-quiz-deck {
+  height: min(4.4rem, 9dvh);
+}
+
+.music-quiz-center {
+  height: min(7.5rem, 17dvh);
+  padding-inline: 1.25rem;
+}
+
+.music-quiz-disc {
+  width: min(6.5rem, 15dvh);
+  height: min(6.5rem, 15dvh);
+}
+
+/* Počas prehrávania disk dýcha — jediná animovaná vec na obrazovke, aby bolo
+   na prvý pohľad jasné, že ukážka beží. */
+.music-quiz-disc.is-playing {
+  animation: musicQuizDiscPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes musicQuizDiscPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 42px rgba(217, 70, 239, .3);
+  }
+  50% {
+    box-shadow: 0 0 74px rgba(217, 70, 239, .5);
+  }
+}
+
+.music-quiz-eq-bar {
+  display: block;
+  width: 3px;
+  height: min(1.6rem, 3.4dvh);
+  border-radius: 999px;
+  background: linear-gradient(to top, rgba(196, 181, 253, .35), #e879f9);
+  transform-origin: center;
+  animation: musicQuizEq 0.62s ease-in-out infinite alternate;
+}
+
+@keyframes musicQuizEq {
+  from {
+    transform: scaleY(0.3);
+    opacity: 0.55;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Názov skladby škáluje plynulo a nikdy nepretečie neviditeľne — po troch
+   riadkoch sa radšej skráti tromi bodkami, než by ho odstrihol overflow. */
+.music-quiz-title {
+  font-size: clamp(1.15rem, 4.1dvh, 1.95rem);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+/* Interpret je to, čo sa v starej verzii strácalo — dostáva vlastný pás,
+   plný kontrast a dve garantované riadky. */
+.music-quiz-artist-name {
+  font-size: clamp(0.8rem, 2.3dvh, 1.05rem);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.music-quiz-seat-name {
+  font-size: clamp(0.72rem, 1.9dvh, 0.9rem);
+}
+
+.music-quiz-seat-dot {
+  width: min(0.5rem, 1.1dvh);
+  height: min(0.5rem, 1.1dvh);
+}
+
+/* Na nízkych displejoch ustupuje dekorácia a pomocný text, nie odpovede. */
+@media (max-height: 700px) {
+  .music-quiz-hint { display: none; }
+  .music-quiz-readout { gap: 0.35rem; }
+}
+
+@media (max-height: 620px) {
+  .music-quiz-eyebrow {
+    padding-block: 0.15rem;
+    letter-spacing: 0.14em;
+  }
+  .music-quiz-artist-label { display: none; }
+  .music-quiz-score-label { font-size: 8px; }
+  .music-quiz-rule { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .music-quiz-disc.is-playing,
+  .music-quiz-eq-bar { animation: none !important; }
+  .music-quiz-eq-bar { transform: scaleY(0.7); }
+}
+
 /* App-wide product finish — photographic, restrained and mobile-first. */
 :root {
   --app-surface: #111820;
