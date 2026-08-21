@@ -12,7 +12,8 @@ function parseSongs(library: string): SongCard[] {
   });
 }
 
-const WORLD_HITS = parseSongs(`\nDancing Queen|ABBA
+const WORLD_HITS = parseSongs(`
+Dancing Queen|ABBA
 Mamma Mia|ABBA
 Gimme! Gimme! Gimme!|ABBA
 Waterloo|ABBA
@@ -25,7 +26,7 @@ Another One Bites the Dust|Queen
 Radio Ga Ga|Queen
 I Want to Break Free|Queen
 Somebody to Love|Queen
-Under Pressure|Queen
+Under Pressure|Queen & David Bowie
 Billie Jean|Michael Jackson
 Beat It|Michael Jackson
 Thriller|Michael Jackson
@@ -159,7 +160,7 @@ Photograph|Ed Sheeran
 Just the Way You Are|Bruno Mars
 Grenade|Bruno Mars
 Locked Out of Heaven|Bruno Mars
-Uptown Funk|Mark Ronson
+Uptown Funk|Mark Ronson feat. Bruno Mars
 Blinding Lights|The Weeknd
 Save Your Tears|The Weeknd
 Starboy|The Weeknd
@@ -214,148 +215,55 @@ Barbie Girl|Aqua
 All Star|Smash Mouth
 Seven Nation Army|The White Stripes
 Can't Stop the Feeling!|Justin Timberlake
-I Gotta Feeling|The Black Eyed Peas
-Where Is The Love?|The Black Eyed Peas
+I Gotta Feeling|Black Eyed Peas
+Where Is the Love?|Black Eyed Peas
 Waterfalls|TLC
-No Scrubs|TLC\nShape of My Heart|Sting
-Waterloo|ABBA
-I Want to Break Free|Queen
-Radio Ga Ga|Queen
-Billie Jean|Michael Jackson
-Black or White|Michael Jackson
-Like a Virgin|Madonna
-Hung Up|Madonna
+No Scrubs|TLC
+Shape of My Heart|Sting
 I Have Nothing|Whitney Houston
-Always|Bon Jovi
-It's My Life|Bon Jovi
 The Show Must Go On|Queen
-Under Pressure|Queen & David Bowie
 Take My Breath Away|Queen
-Somebody to Love|Queen
 Every Breath You Take|The Police
 Message in a Bottle|The Police
 Englishman In New York|Sting
-Toxic|Britney Spears
-Crazy in Love|Beyoncé
 Single Ladies (Put a Ring on It)|Beyoncé
-Uptown Funk|Mark Ronson feat. Bruno Mars
 Hey Ya!|Outkast
 Drop It Like It's Hot|Snoop Dogg
 Yeah!|Usher
 Lose Yourself|Eminem
 Without Me|Eminem
-Waterfalls|TLC
-No Scrubs|TLC
 Creep|Radiohead
 Karma Police|Radiohead
 Superstition|Stevie Wonder
 Isn't She Lovely|Stevie Wonder
 Brown Eyed Girl|Van Morrison
 Sweet Home Alabama|Lynyrd Skynyrd
-Wrecking Ball|Miley Cyrus
-Party in the U.S.A.|Miley Cyrus
-Love Story|Taylor Swift
-Shake It Off|Taylor Swift
-Blank Space|Taylor Swift
-Cruel Summer|Taylor Swift
-Rolling in the Deep|Adele
-Someone Like You|Adele
-Hello|Adele
-Shape of You|Ed Sheeran
-Perfect|Ed Sheeran
-Thinking Out Loud|Ed Sheeran
-Just the Way You Are|Bruno Mars
-Grenade|Bruno Mars
-Locked Out of Heaven|Bruno Mars
-Blinding Lights|The Weeknd
-Save Your Tears|The Weeknd
-Starboy|The Weeknd
-Levitating|Dua Lipa
-Don't Start Now|Dua Lipa
-bad guy|Billie Eilish
-Baby|Justin Bieber
-Sorry|Justin Bieber
-Love Yourself|Justin Bieber
-Counting Stars|OneRepublic
-Believer|Imagine Dragons
-Radioactive|Imagine Dragons
-Wake Me Up|Avicii
-The Nights|Avicii
-Titanium|David Guetta
 Memories|David Guetta
-Summer|Calvin Harris
-Closer|The Chainsmokers
-Moves Like Jagger|Maroon 5
-Happy|Pharrell Williams
-Chandelier|Sia
-Cheap Thrills|Sia
-Party Rock Anthem|LMFAO
-Gangnam Style|PSY
-Somebody That I Used to Know|Gotye
-Dance Monkey|Tones and I
-Despacito|Luis Fonsi
 Gasolina|Daddy Yankee
 Danza Kuduro|Don Omar
-Havana|Camila Cabello
 Señorita|Shawn Mendes
-drivers license|Olivia Rodrigo
-good 4 u|Olivia Rodrigo
-As It Was|Harry Styles
-Watermelon Sugar|Harry Styles
-Someone You Loved|Lewis Capaldi
-Beautiful Things|Benson Boone
-APT.|ROSÉ
-Espresso|Sabrina Carpenter
-Good Luck, Babe!|Chappell Roan
-Too Sweet|Hozier
 Die With A Smile|Lady Gaga
-Birds of a Feather|Billie Eilish
-My Heart Will Go On|Céline Dion
-Let It Go|Idina Menzel
-Ghostbusters|Ray Parker Jr.
-Footloose|Kenny Loggins
-What Is Love|Haddaway
 The Ketchup Song (Aserejé)|Las Ketchup
-Dragostea Din Tei|O-Zone
-Freed from Desire|Gala
-Blue (Da Ba Dee)|Eiffel 65
-Macarena|Los del Río
 Cotton Eye Joe|Rednex
-Barbie Girl|Aqua
 I'm a Believer|Smash Mouth
-All Star|Smash Mouth
-Seven Nation Army|The White Stripes
-Can't Stop the Feeling!|Justin Timberlake
-I Gotta Feeling|The Black Eyed Peas
-Where Is The Love?|The Black Eyed Peas
-Let's Get It Started|The Black Eyed Peas\nTeenage Dream|Katy Perry
-Dark Horse|Katy Perry
+Let's Get It Started|Black Eyed Peas
+Teenage Dream|Katy Perry
 California Gurls|Katy Perry
 24K Magic|Bruno Mars
 Treasure|Bruno Mars
-Fix You|Coldplay
 A Sky Full of Stars|Coldplay
-The Scientist|Coldplay
-Demons|Imagine Dragons
 Thunder|Imagine Dragons
 The Real Slim Shady|Eminem
 Stan|Eminem
-Don't Stop The Music|Rihanna
 Only Girl (In The World)|Rihanna
 Irreplaceable|Beyoncé
 If I Were A Boy|Beyoncé
-Set Fire to the Rain|Adele
 Skyfall|Adele
-Just Dance|Lady Gaga
-Born This Way|Lady Gaga
 Somebody Told Me|The Killers
 Roses|Outkast
 Feel Good Inc.|Gorillaz
 Clint Eastwood|Gorillaz
-Under the Bridge|Red Hot Chili Peppers
-Can't Stop|Red Hot Chili Peppers
 Snow (Hey Oh)|Red Hot Chili Peppers
-What I've Done|Linkin Park
 Faint|Linkin Park
 Back In Black|AC/DC
 Highway to Hell|AC/DC
@@ -363,12 +271,8 @@ Thunderstruck|AC/DC
 T.N.T.|AC/DC
 Lithium|Nirvana
 Heart-Shaped Box|Nirvana
-Paradise City|Guns N' Roses
-November Rain|Guns N' Roses
 Sweet Emotion|Aerosmith
 Dream On|Aerosmith
-You Give Love A Bad Name|Bon Jovi
-Bad|Michael Jackson
 Don't Stop 'Til You Get Enough|Michael Jackson
 Fantasy|Mariah Carey
 Hero|Mariah Carey
@@ -376,20 +280,16 @@ Because You Loved Me|Céline Dion
 In the Air Tonight|Phil Collins
 I'm Still Standing|Elton John
 Crazy Little Thing Called Love|Queen
-I Want to Break Free|Queen
-The Winner Takes It All|ABBA
 Champagne Supernova|Oasis
 Roxanne|The Police
 Take It Easy|Eagles
-Hold The Line|TOTO
+Hold the Line|Toto
 Everybody Wants to Rule the World|Tears for Fears
 Wake Me Up When September Ends|Green Day
-American Idiot|Green Day
 Hollaback Girl|Snoop Dogg
 Gold Digger|Kanye West
 Stronger|Kanye West
 Super Bass|Gwen Stefani
-I Gotta Feeling|Black Eyed Peas
 Pump It|Black Eyed Peas
 Promiscuous|Nelly Furtado
 Maneater|Nelly Furtado
@@ -401,10 +301,8 @@ Thnks fr th Mmrs|Fall Out Boy
 I Write Sins Not Tragedies|Panic! At The Disco
 Misery Business|Paramore
 Mr. Brightside|The Killers
-All The Small Things|Fall Out Boy
-Wrecking Ball|Miley Cyrus
 Chasing Cars|Snow Patrol
-How to Save a Life|Snow Patrol\nHey Brother|Avicii
+Hey Brother|Avicii
 Waiting For Love|Avicii
 Levels|Avicii
 Without You|David Guetta feat. Usher
@@ -422,16 +320,15 @@ Can't Hold Us|Macklemore & Ryan Lewis
 In Da Club|50 Cent
 Candy Shop|50 Cent
 Young, Wild & Free|Snoop Dogg & Wiz Khalifa
-Boom Boom Pow|The Black Eyed Peas
-Meet Me Halfway|The Black Eyed Peas
-My Humps|The Black Eyed Peas
+Boom Boom Pow|Black Eyed Peas
+Meet Me Halfway|Black Eyed Peas
+My Humps|Black Eyed Peas
 Human|The Killers
 Read My Mind|The Killers
 Bleed It Out|Linkin Park
 Breaking the Habit|Linkin Park
 Basket Case|Green Day
-Wake Me Up When September Ends|Green Day
-All The Small Things|Blink-182
+All the Small Things|Blink-182
 I Miss You|Blink-182
 What's My Age Again?|Blink-182
 All I Want|The Offspring
@@ -443,39 +340,28 @@ Welcome to the Black Parade|My Chemical Romance
 Teenagers|My Chemical Romance
 Hells Bells|AC/DC
 You Shook Me All Night Long|AC/DC
-Enter Sandman|Metallica
 Master of Puppets|Metallica
 In Bloom|Nirvana
-Come As You Are|Nirvana
 Otherside|Red Hot Chili Peppers
 Dani California|Red Hot Chili Peppers
 By the Way|Red Hot Chili Peppers
 We Can't Stop|Miley Cyrus
 Peaches|Justin Bieber
 What Do You Mean?|Justin Bieber
-Anti-Hero|Taylor Swift
 You Belong With Me|Taylor Swift
 I Knew You Were Trouble|Taylor Swift
 We Are Never Ever Getting Back Together|Taylor Swift
 The Hills|The Weeknd
-Can't Feel My Face|The Weeknd
 Call Out My Name|The Weeknd
 Sign of the Times|Harry Styles
 New Rules|Dua Lipa
 Physical|Dua Lipa
-Dance The Night|Dua Lipa
-Take A Chance On Me|ABBA
 Chiquitita|ABBA
 Fernando|ABBA
 Man in the Mirror|Michael Jackson
 The Way You Make Me Feel|Michael Jackson
-La Isla Bonita|Madonna
-Because You Loved Me|Céline Dion
-It Must Have Been Love|Roxette
 Joyride|Roxette
-The Look|Roxette
 Please Forgive Me|Bryan Adams
-(Everything I Do) I Do It For You|Bryan Adams
 Bed of Roses|Bon Jovi
 I Don't Want to Miss a Thing|Aerosmith
 Crazy|Aerosmith
@@ -491,7 +377,6 @@ Natural|Imagine Dragons
 Whatever It Takes|Imagine Dragons
 Enemy|Imagine Dragons
 Galway Girl|Ed Sheeran
-Photograph|Ed Sheeran
 Shivers|Ed Sheeran
 Bad Habits|Ed Sheeran
 That's What I Like|Bruno Mars
@@ -499,11 +384,11 @@ S&M|Rihanna
 Rude Boy|Rihanna
 Pon de Replay|Rihanna
 Disturbia|Rihanna
-Waka Waka (This Time for Africa)|Shakira
-Bailando|Enrique Iglesias\n`);
+`);
 
 const LOCAL_HITS: Record<AppLanguage, SongCard[]> = {
-  sk: parseSongs(`\nV dolinách|Karol Duchoň
+  sk: parseSongs(`
+V dolinách|Karol Duchoň
 Čardáš dvoch sŕdc|Karol Duchoň
 Mám ťa rád|Karol Duchoň
 Dievča z Budmeríc|Karol Duchoň
@@ -564,7 +449,6 @@ Viac|IMT Smile
 Žily|No Name
 Ty a tvoja sestra|No Name
 Čím to je|No Name
-Prvá|No Name
 Lekná|No Name
 Hľadám|No Name
 Nie alebo áno|No Name
@@ -587,7 +471,6 @@ Ta ne|Kristína
 Pri oltári|Kristína
 Jabĺčko|Kristína
 V sieti ťa mám|Kristína
-Mám ťa rád|Adam Ďurica
 Neľutujem|Adam Ďurica
 Mandolína|Adam Ďurica
 Spolu|Adam Ďurica
@@ -634,7 +517,7 @@ Být stále mlád|Karel Gott
 Trezor|Karel Gott
 Když muž se ženou snídá|Karel Gott
 Včelka Mája|Karel Gott
-Zvonky štěstí|Karel Gott
+Zvonky štěstí|Karel Gott & Darina Rolincová
 Holubí dům|Jiří Schelinger
 Jasná zpráva|Olympic
 Slza z tváře padá|Olympic
@@ -677,100 +560,47 @@ Cesta z města|Support Lesbiens
 Šrouby a matice|Mandrage
 Hledá se žena|Mandrage
 František|Buty
-Nad stádem koní|Buty\nZRPŠ|Iné Kafe
-Ružová záhrada|Iné Kafe
-Úspešne zapojený|Iné Kafe
-Spomienky na budúcnosť|Iné Kafe
-Aj tak sme frajeri|Peter Nagy
-Sme svoji|Peter Nagy
-Kristínka iba spí|Peter Nagy
-Profesor Indigo|Peter Nagy
+Nad stádem koní|Buty
 Láska je tu s vami|Peter Nagy
-Báječný chlap|Michal Tučný
 Tam u nebeských bran|Michal Tučný
-Když muž se ženou snídá|Karel Gott
-Včelka Mája|Karel Gott
-Zvonky štěstí|Karel Gott
-Slza z tváře padá|Olympic
 Želva|Olympic
-Dej mi víc své lásky|Olympic
-Sladké mámení|Helena Vondráčková
-Dlouhá noc|Helena Vondráčková
 Lásko má ja stůňu|Helena Vondráčková
-Decibely lásky|Michal David
-Láska je láska|Lucie Bílá
-Černí andělé|Lucie
-Chci zas v tobě spát|Lucie
 Sen|Lucie
-Dole v dole|Kabát
-V pekle sudy válej|Kabát
-Colorado|Kabát
-1. signální|Chinaski
 Zlatíčko|Chinaski
-Cesta|Kryštof
-Anděl|Mirai
-Boky jako skříň|Ewa Farna
-Nafrněná|Barbora Poláková
-Cesta z města|Support Lesbiens
-Šrouby a matice|Mandrage
-František|Buty
-Nad stádem koní|Buty\nTanečnice z Lúčnice|Elán
-Kaskadér|Elán
 Zlodej slnečníc|Elán
 Smrtka na pražskom orloji|Elán
 Malá nočná búrka|Team
-Je to vo hviezdach|Team
 Ženská menom Panika|Team
-Ty, ja a môj brat|Modus
 Dievčatá|Modus
-Bozk|IMT Smile
-Viac|IMT Smile
 Tajné milovanie|IMT Smile
 Mám krásny sen|IMT Smile
-Lekná|No Name
 Ďakujem že si|No Name
-Nie alebo áno|No Name
 Starosta|No Name
 Niekto ti to povie skôr než ja|Desmod
 Hemeroidy|Desmod
 Lavíny|Desmod
-To nie je možné|Desmod
-Deň medzi nedeľou a pondelkom|Peha
 Slnečná balada|Peha
 Láska drž ma nad hladinou|Tublatanka
-Skúsime to cez vesmír|Tublatanka
-Žeravé znamenie osudu|Tublatanka
 Loď do neznáma|Tublatanka
-Spomienky na budúcnosť|Iné Kafe
 Vianoce|Iné Kafe
 30. február|Iné Kafe
-Vlak|Horkýže Slíže
 Logická hádanka|Horkýže Slíže
 Nazdar|Horkýže Slíže
-A ja sprostá|Horkýže Slíže
 Banda tupých hláv|Horkýže Slíže
-Nikdy nebolo lepšie|Hex
-V piatok podvečer|Hex
 Matura|Smola a Hrušky
 Kávu si osladím|Karel Gott
 Zůstanu svůj|Karel Gott
 Poupata|Michal David
 Pátá|Helena Vondráčková
 Žal se odkládá|Jiří Korn
-Snad jsem to zavinil já|Olympic
-Šrouby do hlavy|Lucie
 Daniela|Lucie
 Panic|Lucie
 Oheň|Lucie
-Malá dáma|Kabát
 Šaman|Kabát
 Bára|Kabát
 Drobná paralela|Chinaski
 Vrchlabí|Chinaski
-Klára|Chinaski
-Zlatíčko|Chinaski
 Obchodník s deštěm|Kryštof
-Atentát|Kryštof
 Srdce|Kryštof
 Brouk Pytlík|Karel Gott
 Kde si|Pavol Habera
@@ -779,7 +609,8 @@ Boli sme raz milovaní|Pavol Habera
 Kým ťa mám|Pavol Habera
 V slepých uličkách|Miroslav Žbirka
 Mám rád|Miroslav Žbirka
-Prvá|Miroslav Žbirka\nZlatokopky|Rytmus
+Prvá|Miroslav Žbirka
+Zlatokopky|Rytmus
 Deti stratenej generácie|Rytmus
 JBMNT|Kontrafakt
 Kým neskapem|Kontrafakt
@@ -789,19 +620,16 @@ Primetime|Majk Spirit
 Ženy treba ľúbiť|Majk Spirit
 Všetko alebo nič|Dara Rolins
 Čaba neblázni|Elán
-Fero|Elán
 Od Tatier k Dunaju|Elán
 Ulica|Elán
 Zanedbaný sex|Elán
 Kapela|IMT Smile
 Vyvedený z miery|IMT Smile
 Niekto ako kráľ|IMT Smile
-Hľadám|No Name
 Biologické hodiny|No Name
 Večnosť|No Name
 Som na tebe závislý|Desmod
 Zostalo ticho|Desmod
-Pár dní|Desmod
 Kúpim si pekný deň|Gladiator
 Láska|Gladiator
 Nemôžem dýchať|Gladiator
@@ -816,71 +644,37 @@ RnB Soul|Horkýže Slíže
 Maštaľ|Horkýže Slíže
 Motorkárska|Horkýže Slíže
 Emanuel Bacigala|Horkýže Slíže
-Mám v p... na lehátku|Horkýže Slíže
 Puf a Muf|Zóna A
 Chleba|Zóna A
 Podvod|Slobodná Európa
 Unavený a zničený|Slobodná Európa
-Maťo a Linda|Hex
 Keď sme sami|Hex
 Život|Hex
 Ja som to vedel|Polemic
-Tancuj|Polemic
 Fajčiť treba|Smola a Hrušky
-Matura|Smola a Hrušky
-Cigaretka na 2 ťahy|Richard Müller
-Baroko|Richard Müller
 Štěstí je krásná věc|Richard Müller
 Rozeznávám|Richard Müller
 Šaty|Marika Gombitová
-Nespáľme to krásne v nás|Miroslav Žbirka
-Kým ťa mám|Pavol Habera
-Láska necestuj tým vlakom|Pavol Habera
-Boli sme raz milovaní|Pavol Habera
-Severanka|Team
-Mám na teba chuť|Team
 Nároční|Team
-Kráľovná bielych tenisiek|Elán
-Poupata|Michal David
 Céčka, sbírá céčka|Michal David
 Nenapovídej|Michal David
 S Láskou|Michal David
-Pátá|Helena Vondráčková
-Lásko má ja stůňu|Helena Vondráčková
-Žal se odkládá|Jiří Korn
-Snad jsem to zavinil já|Olympic
 Daj mi víc své lásky|Olympic
-Želva|Olympic
-Šrouby do hlavy|Lucie
-Sen|Lucie
 Klobouk ve křoví|Lucie
 Dotknu se ohně|Lucie
-Bára|Kabát
-Pohoda|Kabát
 Na sever|Kabát
 Kdoví jestli|Kabát
 Stará Lou|Kabát
-Zlatíčko|Chinaski
-Tabáček|Chinaski
-Víno|Chinaski
-Každý ráno|Chinaski
-Rubikon|Kryštof
 Zamilovaný/Nešťastná|Rybičky 48
 Sliby se maj plnit o Vánocích|Janek Ledecký
 Proklínám|Janek Ledecký
 Měls mě vůbec rád|Ewa Farna
 Boží mlejny melou|Amor
-Láska je tu s vami|Peter Nagy
-Sme svoji|Peter Nagy
-Korálky od Natálky|Peter Nagy
-Báječný chlap|Michal Tučný
-Tam u nebeských bran|Michal Tučný
-Zůstanu svůj|Karel Gott
-Kávu si osladím|Karel Gott
 Dám dělovou ránu|Karel Gott
 Když milenky pláčou|Karel Gott
-Zvonky štěstí|Karel Gott & Darinka Rolincová\n`),
-  en: parseSongs(`\nHotel California|Eagles
+`),
+  en: parseSongs(`
+Hotel California|Eagles
 Yesterday|The Beatles
 Hey Jude|The Beatles
 Let It Be|The Beatles
@@ -891,8 +685,6 @@ Imagine|John Lennon
 Stairway to Heaven|Led Zeppelin
 Purple Rain|Prince
 Kiss|Prince
-Mr. Brightside|The Killers
-Somebody Told Me|The Killers
 Hallelujah|Leonard Cohen
 I Want to Hold Your Hand|The Beatles
 Stay|The Kid LAROI
@@ -923,38 +715,17 @@ Born in the U.S.A.|Bruce Springsteen
 Born to Run|Bruce Springsteen
 Last Christmas|Wham!
 All I Want for Christmas Is You|Mariah Carey
-Hero|Mariah Carey
 Respect|Aretha Franklin
-Superstition|Stevie Wonder
-Isn't She Lovely|Stevie Wonder
-Brown Eyed Girl|Van Morrison
-Sweet Home Alabama|Lynyrd Skynyrd
-Every Breath You Take|The Police
-Message in a Bottle|The Police
-Englishman In New York|Sting
 Waterloo Sunset|The Kinks
 Paint It, Black|The Rolling Stones
 (I Can't Get No) Satisfaction|The Rolling Stones
 Angie|The Rolling Stones
 Sympathy for the Devil|The Rolling Stones
 Start Me Up|The Rolling Stones
-Dream On|Aerosmith
-I Don't Want to Miss a Thing|Aerosmith
-Sweet Emotion|Aerosmith
 Walk This Way|Aerosmith
-Hey Ya!|Outkast
-Drop It Like It's Hot|Snoop Dogg
-Yeah!|Usher
-Lose Yourself|Eminem
-Without Me|Eminem
-The Real Slim Shady|Eminem
-Stan|Eminem
-Creep|Radiohead
-Karma Police|Radiohead
 Supermassive Black Hole|Muse
 Starlight|Muse
 Uprising|Muse
-Chasing Cars|Snow Patrol
 Take Me Out|Franz Ferdinand
 I Bet You Look Good On The Dancefloor|Arctic Monkeys
 Do I Wanna Know?|Arctic Monkeys
@@ -963,12 +734,7 @@ Fluorescent Adolescent|Arctic Monkeys
 Use Somebody|Kings of Leon
 Sex on Fire|Kings of Leon
 Lonely Boy|The Black Keys
-Gold Digger|Kanye West
-Stronger|Kanye West
 Power|Kanye West
-In Da Club|50 Cent
-Candy Shop|50 Cent
-Ignition (Remix)|R. Kelly
 Empire State of Mind|Jay-Z
 Ni**as In Paris|Jay-Z
 California Love|2Pac
@@ -979,68 +745,14 @@ Drops of Jupiter|Train
 How to Save a Life|The Fray
 Iris|Goo Goo Dolls
 Slide|Goo Goo Dolls
-All The Small Things|Blink-182
-What's My Age Again?|Blink-182
-I Miss You|Blink-182
-Sugar, We're Goin Down|Fall Out Boy
-Thnks fr th Mmrs|Fall Out Boy
 Dance, Dance|Fall Out Boy
-Misery Business|Paramore
 Still Into You|Paramore
-Welcome to the Black Parade|My Chemical Romance
-Teenagers|My Chemical Romance
 Mr. Jones|Counting Crows
 Semi-Charmed Life|Third Eye Blind
-Wonderwall|Oasis\nCome Together|The Beatles
-Yellow Submarine|The Beatles
-Stairway to Heaven|Led Zeppelin
-Purple Rain|Prince
-Mr. Brightside|The Killers
-Hallelujah|Leonard Cohen
-I Want to Hold Your Hand|The Beatles
-Wonderwall|Oasis
-Don't Look Back In Anger|Oasis
-Stay|The Kid LAROI
-Stand by Me|Ben E. King
-My Way|Frank Sinatra
-Fly Me to the Moon|Frank Sinatra
-Can't Help Falling in Love|Elvis Presley
-Suspicious Minds|Elvis Presley
-Jailhouse Rock|Elvis Presley
-Hound Dog|Elvis Presley
-Jolene|Dolly Parton
-9 to 5|Dolly Parton
-Always on My Mind|Willie Nelson
-On the Road Again|Willie Nelson
-Ring of Fire|Johnny Cash
-Sweet Child o' Mine|Guns N' Roses
 Welcome To The Jungle|Guns N' Roses
-Blowin' in the Wind|Bob Dylan
-Like a Rolling Stone|Bob Dylan
-Rocket Man|Elton John
-Your Song|Elton John
-Tiny Dancer|Elton John
-Piano Man|Billy Joel
-Uptown Girl|Billy Joel
-We Didn't Start the Fire|Billy Joel
-Dancing in the Dark|Bruce Springsteen
-Born in the U.S.A.|Bruce Springsteen
-Born to Run|Bruce Springsteen
-Smells Like Teen Spirit|Nirvana
-Come As You Are|Nirvana
-Losing My Religion|R.E.M.
-Everybody Hurts|R.E.M.
-Last Christmas|Wham!
-All I Want for Christmas Is You|Mariah Carey
-I Will Always Love You|Whitney Houston
-Respect|Aretha Franklin
-Superstition|Stevie Wonder
-Isn't She Lovely|Stevie Wonder
-Brown Eyed Girl|Van Morrison
-Sweet Home Alabama|Lynyrd Skynyrd
-Don't Stop Believin'|Journey
-Livin' on a Prayer|Bon Jovi\n`),
-  de: parseSongs(`\n99 Luftballons|Nena
+`),
+  de: parseSongs(`
+99 Luftballons|Nena
 Irgendwie, irgendwo, irgendwann|Nena
 Nur geträumt|Nena
 Atemlos durch die Nacht|Helene Fischer
@@ -1139,37 +851,11 @@ Du weinst keine Träne um mir|Die Ärzte
 Schrei nach Liebe|Die Ärzte
 Westerland|Die Ärzte
 Männer sind Schweine|Die Ärzte
-Junge|Die Ärzte\nBye Bye|Cro
-Schwarz zu Blau|Peter Fox
-Alles Neu|Peter Fox
-Altes Fieber|Die Toten Hosen
-Hier kommt Alex|Die Toten Hosen
-Je ne parle pas français|Namika
-Keine Maschine|Tim Bendzko
-Irgendwas bleibt|Silbermond
-Schrei|Tokio Hotel
-Bilder im Kopf|Peter Fox
-Cello|Udo Lindenberg
-Der Kommissar|Falco
-Ich war noch niemals in New York|Udo Jürgens
-Schickeria|Spider Murphy Gang
-Engel|Rammstein
-Deutschland|Rammstein
-Verlieben, verloren, vergessen, verzeih'n|Wolfgang Petry
-Anton aus Tirol|DJ Ötzi
-Hey Baby|DJ Ötzi
-Lass uns gehen|Revolverheld
-Halt dich an mir fest|Revolverheld
-Emanuela|Fettes Brot
+Junge|Die Ärzte
 Erfolg ist nicht alles|Cro
-Chöre|Mark Forster
-Au revoir|Mark Forster
-Bauch und Kopf|Mark Forster
-Geiles Leben|Glasperlenspiel
-Lila Wolken|Marteria
-Kids (2 Finger an den Kopf)|Marteria\n`),
-  es: parseSongs(`\nLa Bamba|Ritchie Valens
-Bailando|Enrique Iglesias
+`),
+  es: parseSongs(`
+La Bamba|Ritchie Valens
 El Perdedor|Enrique Iglesias
 Duele El Corazón|Enrique Iglesias
 Súbeme La Radio|Enrique Iglesias
@@ -1182,7 +868,6 @@ Me Enamora|Juanes
 Es Por Ti|Juanes
 Waka Waka (Esto es África)|Shakira
 La Tortura|Shakira
-Hips Don't Lie|Shakira
 Chantaje|Shakira
 Ciega, Sordomuda|Shakira
 Inevitable|Shakira
@@ -1230,7 +915,6 @@ En El Muelle De San Blas|Maná
 Labios Compartidos|Maná
 Oye Mi Amor|Maná
 Mariposa Traicionera|Maná
-Livin' la Vida Loca|Ricky Martin
 La Copa de la Vida|Ricky Martin
 María|Ricky Martin
 Vente Pa' Ca|Ricky Martin
@@ -1240,13 +924,10 @@ Travesuras|Nicky Jam
 Bamboléo|Gipsy Kings
 Volare|Gipsy Kings
 Djobi Djoba|Gipsy Kings
-Danza Kuduro|Don Omar
 Dile|Don Omar
 Taboo|Don Omar
-Gasolina|Daddy Yankee
 Con Calma|Daddy Yankee
 Limbo|Daddy Yankee
-Despacito|Luis Fonsi
 Échame La Culpa|Luis Fonsi
 Querida|Juan Gabriel
 Hasta Que Te Conocí|Juan Gabriel
@@ -1257,7 +938,6 @@ Hermoso Cariño|Vicente Fernández
 Bésame Mucho|Consuelo Velázquez
 Pedro|Raffaella Carrà
 Aserejé|Las Ketchup
-Macarena|Los del Río
 Amante Bandido|Miguel Bosé
 Devuélveme a mi chica|Hombres G
 Marta tiene un marcapasos|Hombres G
@@ -1274,26 +954,10 @@ Oye Como Va|Celia Cruz
 La Vida Es Un Carnaval|Celia Cruz
 La Negra Tiene Tumbao|Celia Cruz
 El Cantante|Héctor Lavoe
-Llorarás|Oscar D'León\nAmiga Mía|Alejandro Sanz
-Labios Compartidos|Maná
-Oye Mi Amor|Maná
-La Copa de la Vida|Ricky Martin
-María|Ricky Martin
-Hasta el Amanecer|Nicky Jam
-Volare|Gipsy Kings
-Con Calma|Daddy Yankee
-Hasta Que Te Conocí|Juan Gabriel
-Volver, Volver|Vicente Fernández
-Marta tiene un marcapasos|Hombres G
-Trátame Suavemente|Soda Stereo
-Color Esperanza|Diego Torres
-Me Gustas Tú|Julieta Venegas
-Limón y Sal|Julieta Venegas
-Suavemente|Elvis Crespo
-Oye Como Va|Celia Cruz
-La Vida Es Un Carnaval|Celia Cruz
-El Cantante|Héctor Lavoe\n`),
-  fr: parseSongs(`\nAlors on danse|Stromae
+Llorarás|Oscar D'León
+`),
+  fr: parseSongs(`
+Alors on danse|Stromae
 Papaoutai|Stromae
 Formidable|Stromae
 Tous les mêmes|Stromae
@@ -1395,38 +1059,11 @@ Requiem pour un fou|Johnny Hallyday
 Quelqu'un m'a dit|Carla Bruni
 Ma philosophie|Amel Bent
 Le temps qui court|Alain Chamfort
-Tombé pour la France|Étienne Daho\nTous les mêmes|Stromae
-Copines|Aya Nakamura
-Est-ce que tu m'aimes ?|Gims
-On ira|Zaz
-Hymne à l'amour|Édith Piaf
-Jour 1|Louane
-Color Gitano|Kendji Girac
-Les yeux de la mama|Kendji Girac
-Balance ton quoi|Angèle
+Tombé pour la France|Étienne Daho
 Fever|Dua Lipa
-S'il suffisait d'aimer|Céline Dion
-Envole-moi|Jean-Jacques Goldman
-Il suffira d'un signe|Jean-Jacques Goldman
-Et si tu n'existais pas|Joe Dassin
-La maladie d'amour|Michel Sardou
-Laisse béton|Renaud
-Hier encore|Charles Aznavour
-Amsterdam|Jacques Brel
-Sans contrefaçon|Mylène Farmer
-Petite Marie|Francis Cabrel
-La Corrida|Francis Cabrel
-C'est la vie|Khaled
-Toi + Moi|Grégoire
-Ta main|Grégoire
-J'ai demandé à la lune|Indochine
-L'Aventurier|Indochine
-Allumer le feu|Johnny Hallyday
-Que je t'aime|Johnny Hallyday
-Le pénitencier|Johnny Hallyday
-L'envie|Johnny Hallyday
-Quelqu'un m'a dit|Carla Bruni\n`),
-  pt: parseSongs(`\nAi Se Eu Te Pego|Michel Teló
+`),
+  pt: parseSongs(`
+Ai Se Eu Te Pego|Michel Teló
 Fugidinha|Michel Teló
 Humilde Residência|Michel Teló
 Balada|Gusttavo Lima
@@ -1522,28 +1159,9 @@ Pelados em Santos|Mamonas Assassinas
 Vira-Vira|Mamonas Assassinas
 Robocop Gay|Mamonas Assassinas
 O Canto da Cidade|Daniela Mercury
-Avisa Lá|Olodum\nGostava Tanto de Você|Tim Maia
-Contentores|Xutos & Pontapés
-Chuva|Mariza
-Desfado|Ana Moura
-Bang|Anitta
-Sonhos de Menino|Tony Carreira
-O Que Será|Chico Buarque
-Poeira|Ivete Sangalo
-Tindolelê|Xuxa
-Ainda Bem|Marisa Monte
-Dona|Roupa Nova
-Canção do Mar|Dulce Pontes
-Pó de Arroz|Carlos Paião
-Lisboa Menina e Moça|Carlos do Carmo
-Sangue Oculto|GNR
-Milla|Netinho
+Avisa Lá|Olodum
 Tempo de Alegria|Ivete Sangalo
-Burguesinha|Seu Jorge
-Mina do Condomínio|Seu Jorge
-Ex Mai Love|Thiaguinho
-Camaro Amarelo|Munhoz & Mariano
-Lepo Lepo|Psirico\n`),
+`),
 };
 
 function songId(song: SongCard) {

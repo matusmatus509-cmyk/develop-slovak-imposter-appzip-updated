@@ -28,38 +28,123 @@ function normalizeArtist(value: string) {
     .trim();
 }
 
+/**
+ * Značky verzií, ktoré nie sú originálna nahrávka.
+ *
+ * Remaster tu zámerne nie je — je to tá istá nahrávka, len premasterovaná, a
+ * v katalógoch poskytovateľov je pri starších hitoch často jediná dostupná.
+ * Rovnako nie je „radio edit", ktorý je bežne práve singlová verzia originálu.
+ */
+const NON_ORIGINAL_VERSION =
+  /\b(?:live|remix|rmx|mix|karaoke|instrumental|acoustic|unplugged|acapella|cappella|rerecorded|re recorded|taylor s version|sped up|slowed|nightcore|lullaby|mashup|medley|demo|rehearsal|reprise|from the vault|8 bit)\b/u;
+
+/** Interpret, ktorý priamo priznáva, že nejde o originálneho autora. */
+const IMPERSONATOR =
+  /\b(?:tribute|cover|covers|karaoke|soundalike|made famous|in the style of|as made popular by)\b/u;
+
+/** Meno interpreta kratšie ako toto sa nesmie párovať ako podstring. */
+const SHORT_ARTIST_LIMIT = 5;
+
+/** Obsahuje `haystack` celé `needle` ako súvislú sekvenciu slov? */
+function containsWords(haystack: string, needle: string) {
+  if (!haystack || !needle) return false;
+  const hay = haystack.split(" ");
+  const need = needle.split(" ");
+  if (need.length > hay.length) return false;
+  for (let start = 0; start <= hay.length - need.length; start++) {
+    if (need.every((word, offset) => hay[start + offset] === word)) return true;
+  }
+  return false;
+}
+
+/**
+ * Text, ktorý poskytovateľ pridal nad očakávaný názov — typicky „(Live)",
+ * „- Remix" alebo „(Taylor's Version)".
+ *
+ * Značky sa hľadajú len v tomto zvyšku, nie v celom názve. Inak by filter
+ * zamietol skladby, ktoré majú dané slovo v samotnom názve, ako „Live and Let
+ * Die" alebo „Love Me like You Do".
+ */
+function versionResidue(expectedTitle: string, actualTitle: string) {
+  if (!expectedTitle || !actualTitle) return "";
+  const at = actualTitle.indexOf(expectedTitle);
+  if (at < 0) return actualTitle;
+  return `${actualTitle.slice(0, at)} ${actualTitle.slice(at + expectedTitle.length)}`.trim();
+}
+
+/** Je to originálna nahrávka, alebo iná verzia či prevzatie? */
+function isOriginalRecording(song: SongCard, title: string, artist: string) {
+  const actualArtist = normalizeArtist(artist);
+  if (IMPERSONATOR.test(actualArtist)) return false;
+
+  const residue = versionResidue(normalize(song.title), normalize(title));
+  return !NON_ORIGINAL_VERSION.test(residue);
+}
+
 function matchParts(song: SongCard, title: string, artist: string) {
   const expectedTitle = normalize(song.title);
   const expectedArtist = normalizeArtist(song.artist);
   const actualTitle = normalize(title);
   const actualArtist = normalizeArtist(artist);
-  const looksLikeUnofficialCover =
-    /\b(?:tribute|cover|karaoke|soundalike|made famous)\b/u.test(actualArtist);
+
   const titleScore =
     expectedTitle && actualTitle
       ? actualTitle === expectedTitle
         ? 6
-        : actualTitle.includes(expectedTitle) ||
-            expectedTitle.includes(actualTitle)
+        : containsWords(actualTitle, expectedTitle) ||
+            containsWords(expectedTitle, actualTitle)
           ? 3
           : 0
       : 0;
-  const artistScore =
-    expectedArtist && actualArtist && !looksLikeUnofficialCover
-      ? actualArtist === expectedArtist
-        ? 4
-        : actualArtist.includes(expectedArtist) ||
-            expectedArtist.includes(actualArtist)
-          ? 2
-          : 0
-      : 0;
-  return { titleScore, artistScore, total: titleScore + artistScore };
+
+  const artistExact = Boolean(
+    expectedArtist && actualArtist && actualArtist === expectedArtist
+  );
+  const artistPartial = Boolean(
+    expectedArtist &&
+    actualArtist &&
+    !artistExact &&
+    (containsWords(actualArtist, expectedArtist) ||
+      containsWords(expectedArtist, actualArtist))
+  );
+  const artistScore = artistExact ? 4 : artistPartial ? 2 : 0;
+
+  return {
+    titleScore,
+    artistScore,
+    total: titleScore + artistScore,
+    /**
+     * Krátke mená ako U2, Sia alebo Toto sa ako slovo trafia aj do cudzieho
+     * mena („Toto" v „Totó la Momposina"), takže pri nich samotná čiastočná
+     * zhoda nestačí.
+     */
+    weakShortArtist:
+      artistPartial && expectedArtist.length < SHORT_ARTIST_LIMIT,
+  };
 }
 
 function isConfidentMatch(song: SongCard, title: string, artist: string) {
-  const { titleScore, artistScore } = matchParts(song, title, artist);
-  return titleScore >= 3 && artistScore >= 2;
+  if (!isOriginalRecording(song, title, artist)) return false;
+  const { titleScore, artistScore, weakShortArtist } = matchParts(
+    song,
+    title,
+    artist
+  );
+  if (titleScore < 3 || artistScore < 2) return false;
+  // Pri krátkom mene interpreta pustíme ďalej len presný názov skladby.
+  if (weakShortArtist && titleScore < 6) return false;
+  return true;
 }
+
+/**
+ * Vystavené len pre testy — párovanie rozhoduje, či hráč dostane bod, takže
+ * jeho pravidlá si zaslúžia vlastné pokrytie.
+ */
+export const __songMatching = {
+  isConfidentMatch,
+  isOriginalRecording,
+  matchParts,
+};
 
 /** Resolves and plays a legal provider-hosted preview without bundling copyrighted audio. */
 export function useSongPreview(
@@ -136,8 +221,17 @@ export function useSongPreview(
           artworkUrl100?: string;
         }>;
       }) => {
+        // Neoriginálne verzie sa vyhadzujú ešte pred zoradením. Keby sa
+        // filtrovali až po ňom, „(Live)" s rovnakým skóre by mohol vyhrať nad
+        // použiteľným originálom a zamietnutie by zahodilo obe.
         const candidates = (result.results ?? []).filter(
-          item => item.previewUrl
+          item =>
+            item.previewUrl &&
+            isOriginalRecording(
+              song,
+              item.trackName ?? "",
+              item.artistName ?? ""
+            )
         );
         const match = candidates.sort(
           (a, b) =>
@@ -178,7 +272,11 @@ export function useSongPreview(
       }>;
     }) => {
       if (!active || fallbackStarted) return;
-      const candidates = (result.data ?? []).filter(item => item.preview);
+      const candidates = (result.data ?? []).filter(
+        item =>
+          item.preview &&
+          isOriginalRecording(song, item.title ?? "", item.artist?.name ?? "")
+      );
       const match = candidates.sort(
         (a, b) =>
           matchParts(song, b.title ?? "", b.artist?.name ?? "").total -

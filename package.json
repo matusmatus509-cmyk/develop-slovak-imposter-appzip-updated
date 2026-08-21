@@ -10,6 +10,7 @@
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
     "test": "vitest run",
+    "validate:songs": "node scripts/validate-songs.mjs",
     "format": "prettier --write ."
   },
   "dependencies": {
