@@ -131,7 +131,11 @@ function SetupScreen({
     const trimmedNames = names
       .slice(0, count)
       .map((name, index) => name.trim() || defaultPlayerName(language, index + 1));
-    onStart(trimmedNames, source, timer);
+    const selectedSource = source.kind === "custom"
+      && !customCategories.some((category) => category.id === source.collectionId)
+      ? { kind: "builtin" as const, categoryId: fallbackCategory?.id ?? "" }
+      : source;
+    onStart(trimmedNames, selectedSource, timer);
   }
 
   if (view === "category") {
