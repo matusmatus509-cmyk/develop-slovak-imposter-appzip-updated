@@ -1,6 +1,12 @@
 import { TEAM_COLORS } from "../../data/teamBattle";
 import { Icons } from "../../components/icons";
-import { PartyBackdrop, PartyEyebrow, PartyScoreboard } from "./PartyChrome";
+import { useAutoAdvance } from "../../hooks/useAutoAdvance";
+import {
+  PartyAutoAdvance,
+  PartyBackdrop,
+  PartyEyebrow,
+  PartyScoreboard,
+} from "./PartyChrome";
 
 export default function FinaleIntro({
   teamNames,
@@ -14,6 +20,7 @@ export default function FinaleIntro({
   const [blue, red] = TEAM_COLORS;
   const difference = Math.abs(scores[0] - scores[1]);
   const leader = scores[0] === scores[1] ? null : scores[0] > scores[1] ? 0 : 1;
+  const auto = useAutoAdvance(6, onContinue);
 
   return (
     <PartyBackdrop>
@@ -24,10 +31,16 @@ export default function FinaleIntro({
           <section className="party-finale-reveal mt-8 w-full">
             <div className="relative mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-fuchsia-300/30 bg-fuchsia-500/10 shadow-[0_0_80px_rgba(217,70,239,.3)]">
               <div className="absolute inset-2 rounded-full border border-white/20" />
-              <span className="text-fuchsia-200"><Icons.crown size={52} /></span>
+              <span className="text-fuchsia-200">
+                <Icons.crown size={52} />
+              </span>
             </div>
-            <p className="mt-6 text-[10px] font-black uppercase tracking-[0.3em] text-fuchsia-300/70">Posledná šanca zmeniť výsledok</p>
-            <h1 className="mt-2 text-4xl font-black tracking-tight text-white">Finále za 3× body</h1>
+            <p className="mt-6 text-[10px] font-black uppercase tracking-[0.3em] text-fuchsia-300/70">
+              Posledná šanca zmeniť výsledok
+            </p>
+            <h1 className="mt-2 text-4xl font-black tracking-tight text-white">
+              Finále za 3× body
+            </h1>
             <p className="mx-auto mt-3 max-w-xs text-sm leading-relaxed text-white/45">
               {leader === null
                 ? "Do finále vstupujete s remízou. Rozhodne posledná hra."
@@ -46,14 +59,14 @@ export default function FinaleIntro({
             />
           </div>
 
-          <div className="mt-auto w-full pt-8">
-            <button
-              type="button"
-              onClick={onContinue}
-              className="party-shine relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 via-fuchsia-500 to-pink-500 px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white shadow-[0_18px_50px_rgba(168,85,247,.38)] transition active:scale-[.97]"
-            >
-              Vstúpiť do finále
-            </button>
+          <div className="party-auto-dock mt-auto w-full">
+            <PartyAutoAdvance
+              secondsLeft={auto.secondsLeft}
+              percentLeft={auto.percentLeft}
+              onSkip={auto.skip}
+              label="Finále začína"
+              skipLabel="Vstúpiť do finále ihneď"
+            />
           </div>
         </div>
       </main>

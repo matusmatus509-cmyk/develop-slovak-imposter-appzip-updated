@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { Icons } from "../../components/icons";
 import { TEAM_COLORS } from "../../data/teamBattle";
-import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
+import { useAutoAdvance } from "../../hooks/useAutoAdvance";
+import { PartyAutoAdvance, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 
 export default function TeamBattleIntro({
   teamNames,
@@ -15,17 +16,21 @@ export default function TeamBattleIntro({
   const [count, setCount] = useState(3);
   const [blue, red] = TEAM_COLORS;
 
+  // Predstavenie tímov si partia prečíta a obrazovka ide ďalej sama.
+  const auto = useAutoAdvance(4, onDone, phase === "reveal");
+
   useEffect(() => {
     if (phase !== "countdown") return;
     const timeout = window.setTimeout(
-      () => (count > 0 ? setCount((value) => value - 1) : setPhase("reveal")),
-      count > 0 ? 850 : 650,
+      () => (count > 0 ? setCount(value => value - 1) : setPhase("reveal")),
+      count > 0 ? 850 : 650
     );
     return () => window.clearTimeout(timeout);
   }, [count, phase]);
 
   if (phase === "countdown") {
-    const progress = count === 3 ? 25 : count === 2 ? 50 : count === 1 ? 75 : 100;
+    const progress =
+      count === 3 ? 25 : count === 2 ? 50 : count === 1 ? 75 : 100;
     return (
       <PartyBackdrop>
         <main className="flex h-full flex-col items-center justify-between px-6 py-10 text-center">
@@ -61,22 +66,35 @@ export default function TeamBattleIntro({
               Bitka sa začína
             </p>
             <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
-              {teamNames.map((name, index) => {
-                const color = index === 0 ? blue : red;
-                return (
-                  <div
-                    key={name}
-                    className="truncate rounded-2xl border px-3 py-3 text-sm font-black text-white"
-                    style={{ borderColor: `${color}66`, background: `${color}22` }}
-                  >
-                    {name}
-                  </div>
-                );
-              }).reduce<ReactNode[]>((items, team, index) => {
-                if (index > 0) items.push(<span key="versus" className="text-xs font-black text-white/25">VS</span>);
-                items.push(team);
-                return items;
-              }, [])}
+              {teamNames
+                .map((name, index) => {
+                  const color = index === 0 ? blue : red;
+                  return (
+                    <div
+                      key={name}
+                      className="truncate rounded-2xl border px-3 py-3 text-sm font-black text-white"
+                      style={{
+                        borderColor: `${color}66`,
+                        background: `${color}22`,
+                      }}
+                    >
+                      {name}
+                    </div>
+                  );
+                })
+                .reduce<ReactNode[]>((items, team, index) => {
+                  if (index > 0)
+                    items.push(
+                      <span
+                        key="versus"
+                        className="text-xs font-black text-white/25"
+                      >
+                        VS
+                      </span>
+                    );
+                  items.push(team);
+                  return items;
+                }, [])}
             </div>
           </div>
         </main>
@@ -97,50 +115,71 @@ export default function TeamBattleIntro({
             </div>
           </div>
 
-          <p className="mt-7 text-xs font-black uppercase tracking-[0.28em] text-fuchsia-300/75">Súboj večera</p>
+          <p className="mt-7 text-xs font-black uppercase tracking-[0.28em] text-fuchsia-300/75">
+            Súboj večera
+          </p>
           <h1 className="mt-2 text-4xl font-black leading-[0.95] tracking-tight text-white">
-            KTO OVLÁDNE<br />PARTY?
+            KTO OVLÁDNE
+            <br />
+            PARTY?
           </h1>
 
           <div className="mt-9 grid w-full grid-cols-[1fr_auto_1fr] items-stretch gap-3">
-            {teamNames.map((name, index) => {
-              const color = index === 0 ? blue : red;
-              return (
-                <div
-                  key={name}
-                  className="party-glass flex min-w-0 flex-col items-center rounded-[1.75rem] px-3 py-6"
-                  style={{ borderColor: `${color}55`, boxShadow: `0 18px 50px ${color}18` }}
-                >
-                  <span
-                    className="flex h-12 w-12 items-center justify-center rounded-2xl text-lg font-black text-white"
-                    style={{ background: color, boxShadow: `0 0 25px ${color}70` }}
+            {teamNames
+              .map((name, index) => {
+                const color = index === 0 ? blue : red;
+                return (
+                  <div
+                    key={name}
+                    className="party-glass flex min-w-0 flex-col items-center rounded-[1.75rem] px-3 py-6"
+                    style={{
+                      borderColor: `${color}55`,
+                      boxShadow: `0 18px 50px ${color}18`,
+                    }}
                   >
-                    {index === 0 ? "A" : "B"}
-                  </span>
-                  <span className="mt-4 w-full truncate text-base font-black text-white">{name}</span>
-                  <span className="mt-1 text-[9px] font-bold uppercase tracking-[0.2em] text-white/30">pripravený</span>
-                </div>
-              );
-            }).reduce<ReactNode[]>((items, team, index) => {
-              if (index > 0) {
-                items.push(
-                  <div key="versus" className="flex items-center">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-[#11101d] text-xs font-black italic text-white shadow-xl">VS</span>
-                  </div>,
+                    <span
+                      className="flex h-12 w-12 items-center justify-center rounded-2xl text-lg font-black text-white"
+                      style={{
+                        background: color,
+                        boxShadow: `0 0 25px ${color}70`,
+                      }}
+                    >
+                      {index === 0 ? "A" : "B"}
+                    </span>
+                    <span className="mt-4 w-full truncate text-base font-black text-white">
+                      {name}
+                    </span>
+                    <span className="mt-1 text-[9px] font-bold uppercase tracking-[0.2em] text-white/30">
+                      pripravený
+                    </span>
+                  </div>
                 );
-              }
-              items.push(team);
-              return items;
-            }, [])}
+              })
+              .reduce<ReactNode[]>((items, team, index) => {
+                if (index > 0) {
+                  items.push(
+                    <div key="versus" className="flex items-center">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-[#11101d] text-xs font-black italic text-white shadow-xl">
+                        VS
+                      </span>
+                    </div>
+                  );
+                }
+                items.push(team);
+                return items;
+              }, [])}
           </div>
         </div>
 
-        <button
-          onClick={onDone}
-          className="party-shine mx-auto mt-7 w-full max-w-md overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 via-fuchsia-500 to-pink-500 px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white shadow-[0_18px_50px_rgba(168,85,247,.35)] transition active:scale-[.97]"
-        >
-          Vstúpiť do arény
-        </button>
+        <div className="party-auto-dock">
+          <PartyAutoAdvance
+            secondsLeft={auto.secondsLeft}
+            percentLeft={auto.percentLeft}
+            onSkip={auto.skip}
+            label="Aréna sa otvára"
+            skipLabel="Vstúpiť do arény ihneď"
+          />
+        </div>
       </main>
     </PartyBackdrop>
   );

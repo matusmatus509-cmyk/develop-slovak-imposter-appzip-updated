@@ -1662,140 +1662,406 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   to { opacity: 1; transform: translate(-50%, 0); }
 }
 
+/* ── Party mode: „nočná herná šou" ──────────────────────────────────────────
+   Vlastná identita módu: hlboká inková modrá + zlatý akcent (trofej, reflektor).
+   Zámerne NEpoužíva fialovo-ružový gradient, ktorý mal predtým každý button —
+   ten je najbežnejším generickým vzorom a mód vďaka nemu vyzeral neautorsky.
+   Tímové farby (modrá/červená) zostávajú, zlatá je vyhradená pre akcie a víťaza. */
 .party-mode-experience {
-  --party-surface: #111820;
-  --party-surface-2: #17212b;
-  --party-surface-3: #0b1118;
-  --party-line: rgba(255, 255, 255, .12);
-  --party-muted: rgba(255, 255, 255, .48);
-  --party-radius: 1rem;
-  color: #f7f8fa;
-}
-.party-mode-experience .party-backdrop {
-  background: color-mix(in srgb, var(--theme-bg, #080b10) 82%, #090e14) !important;
-}
-.party-mode-experience .party-orb,
-.party-mode-experience .party-beam { display: none; }
-.party-mode-experience .party-grid {
-  opacity: .055;
-  animation: none;
-  background-size: 34px 34px;
-  mask-image: linear-gradient(to bottom, black, transparent 76%);
-}
-.party-mode-experience .party-grain { opacity: .025; }
-.party-mode-experience .party-backdrop > div[class*="bg-gradient-to-b"] { opacity: .25; }
-.party-mode-experience .party-stage-enter {
-  animation: partyModernEnter .26s ease-out both !important;
-}
-.party-mode-experience .party-phase-shell {
-  min-height: 100dvh;
+  /* Plochy */
+  --pm-bg: #080c16;
+  --pm-bg-2: #0b1020;
+  --pm-panel: #141d2c;
+  --pm-panel-2: #101827;
+  --pm-hairline: rgba(255, 255, 255, 0.085);
+  --pm-hairline-strong: rgba(255, 255, 255, 0.17);
+
+  /* Text */
+  --pm-text: #f4f7fb;
+  --pm-muted: rgba(226, 235, 247, 0.5);
+  --pm-muted-soft: rgba(226, 235, 247, 0.3);
+
+  /* Akcent */
+  --pm-gold: #ffc247;
+  --pm-gold-deep: #ff9f1c;
+  --pm-gold-glow: rgba(255, 194, 71, 0.45);
+
+  /* Geometria a pohyb */
+  --pm-r-lg: 1.5rem;
+  --pm-r-md: 1.1rem;
+  --pm-r-sm: 0.8rem;
+  --pm-shadow: 0 22px 55px -32px rgba(0, 0, 0, 0.95);
+  --pm-ease: cubic-bezier(0.22, 1, 0.32, 1);
+
+  color: var(--pm-text);
 }
 
+/* Pozadie: tri tiché svetelné zdroje namiesto jednej plochej farby. */
+.party-mode-experience .party-backdrop {
+  background:
+    radial-gradient(118% 76% at 50% -14%, rgba(255, 194, 71, 0.1), transparent 62%),
+    radial-gradient(76% 50% at 110% 16%, rgba(59, 130, 246, 0.16), transparent 66%),
+    radial-gradient(76% 50% at -12% 84%, rgba(239, 68, 68, 0.13), transparent 66%),
+    linear-gradient(178deg, var(--pm-bg) 0%, var(--pm-bg-2) 54%, #070a12 100%) !important;
+}
+
+/* Orby sa vracajú, ale ako pomalé svetlo v pozadí — nie ako farebné gule. */
+.party-mode-experience .party-orb {
+  display: block;
+  opacity: 0.1;
+  filter: blur(72px);
+  animation: pmOrbDrift 19s ease-in-out infinite;
+}
+.party-mode-experience .party-orb-one { background: var(--pm-gold); }
+.party-mode-experience .party-orb-two { background: #3b82f6; animation-delay: -7s; }
+.party-mode-experience .party-orb-three { background: #ef4444; animation-delay: -13s; }
+.party-mode-experience .party-beam { display: none; }
+.party-mode-experience .party-grid {
+  opacity: 0.05;
+  animation: none;
+  background-size: 38px 38px;
+  mask-image: linear-gradient(to bottom, black, transparent 72%);
+}
+.party-mode-experience .party-grain { opacity: 0.03; }
+.party-mode-experience .party-backdrop > div[class*="bg-gradient-to-b"] { opacity: 0.4; }
+
+@keyframes pmOrbDrift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(2.5rem, -1.6rem, 0) scale(1.1); }
+}
+
+/* Vstup obrazovky a postupné nabehnutie prvkov. */
+.party-mode-experience .party-stage-enter { animation: pmStageEnter 0.5s var(--pm-ease) both !important; }
+.party-mode-experience .party-phase-shell { min-height: 100dvh; }
+@keyframes pmStageEnter {
+  from { opacity: 0; transform: translateY(14px) scale(0.988); }
+  to { opacity: 1; transform: none; }
+}
+.pm-rise {
+  animation: pmRise 0.52s var(--pm-ease) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+@keyframes pmRise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Panely: skutočná hĺbka — gradient, vlasová linka, vnútorný odlesk, mäkký tieň. */
 .party-mode-experience .party-glass,
 .party-mode-experience .glass {
-  border: 1px solid var(--party-line) !important;
-  border-radius: var(--party-radius) !important;
-  background: var(--party-surface) !important;
-  box-shadow: none !important;
+  position: relative;
+  border: 1px solid var(--pm-hairline) !important;
+  border-radius: var(--pm-r-lg) !important;
+  background: linear-gradient(168deg, var(--pm-panel), var(--pm-panel-2)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), var(--pm-shadow) !important;
   backdrop-filter: none !important;
 }
 .party-mode-experience .party-glass::before,
-.party-mode-experience .party-glass::after,
-.party-mode-experience .party-scoreboard::before { display: none; }
+.party-mode-experience .party-glass::after { display: none; }
+
+/* Zlatá vlasová linka nad tabuľkou skóre — drobný „šou" detail. */
+.party-mode-experience .party-scoreboard::before {
+  display: block;
+  content: "";
+  position: absolute;
+  inset-inline: 16%;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pm-gold), transparent);
+  opacity: 0.55;
+}
+
 .party-mode-experience .party-eyebrow {
-  gap: .45rem;
-  border: 1px solid var(--party-line);
-  border-radius: .6rem;
-  background: var(--party-surface);
-  padding: .55rem .7rem;
-  color: rgba(255, 255, 255, .62);
-  letter-spacing: .13em;
-  box-shadow: none;
-  backdrop-filter: none;
+  gap: 0.5rem;
+  border: 1px solid var(--pm-hairline);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  padding: 0.5rem 0.85rem;
+  color: rgba(255, 255, 255, 0.66);
+  letter-spacing: 0.2em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
 }
 .party-mode-experience .party-live-dot {
-  width: .38rem;
-  height: .38rem;
-  border-radius: 2px;
-  animation: none;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--pm-gold) !important;
+  box-shadow: 0 0 10px var(--pm-gold);
+  animation: partyLivePulse 2s ease-in-out infinite;
 }
 
-.party-mode-experience button {
-  transition-duration: 150ms !important;
-  transition-timing-function: ease-out !important;
+/* Hlavná akcia: zlatá. Prepisuje pôvodné fialovo-ružové gradientové buttony
+   centrálne, takže identitu netreba prepisovať v každom súbore zvlášť. */
+.party-mode-experience button[class*="from-violet-600"],
+.party-mode-experience .party-cta {
+  border: 0 !important;
+  border-radius: 1.15rem !important;
+  background: linear-gradient(135deg, var(--pm-gold) 0%, var(--pm-gold-deep) 100%) !important;
+  color: #1b1305 !important;
+  text-shadow: none !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 18px 36px -20px var(--pm-gold-glow) !important;
+  transition: transform 0.16s var(--pm-ease), box-shadow 0.22s ease, filter 0.22s ease !important;
 }
-.party-mode-experience button:hover { transform: none !important; }
-.party-mode-experience button:active { transform: scale(.985) !important; }
-.party-mode-experience .party-shine { box-shadow: none !important; }
-.party-mode-experience .party-shine::after { display: none !important; }
-.party-mode-experience button[class*="from-violet-600"][class*="to-pink-500"] {
-  border: 1px solid color-mix(in srgb, var(--theme-a, #8b5cf6) 75%, white 12%) !important;
-  border-radius: .9rem !important;
-  background: var(--theme-a, #8b5cf6) !important;
-  color: white !important;
-  box-shadow: none !important;
-}
-.party-mode-experience button[class*="bg-white/[0.05]"] {
-  border-color: var(--party-line) !important;
-  background: var(--party-surface) !important;
-  backdrop-filter: none !important;
-}
+.party-mode-experience button[class*="from-violet-600"]:active,
+.party-mode-experience .party-cta:active { transform: scale(0.975) !important; }
+.party-mode-experience button[class*="from-violet-600"]:disabled,
+.party-mode-experience .party-cta:disabled { filter: grayscale(0.55) brightness(0.75); }
 
+/* Sekundárna akcia: tichá, nesúťaží so zlatou. */
+.party-mode-experience .party-cta-ghost {
+  border: 1px solid var(--pm-hairline-strong) !important;
+  border-radius: 1.15rem !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+  transition: transform 0.16s var(--pm-ease), background 0.2s ease !important;
+}
+.party-mode-experience .party-cta-ghost:active { transform: scale(0.975) !important; }
+
+.party-mode-experience .party-shine { box-shadow: none; }
+.party-mode-experience .party-shine::after { opacity: 0.3; }
+
+/* Tímové odznaky si nechávajú svoju farbu z inline štýlu — pridávame len hĺbku. */
 .party-mode-experience .party-team-badge {
-  border-radius: .85rem !important;
-  background: var(--party-surface) !important;
-  box-shadow: none !important;
-  filter: none !important;
-  transition: border-color .15s ease, background-color .15s ease !important;
+  border-radius: var(--pm-r-md) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 16px 38px -28px rgba(0, 0, 0, 0.9) !important;
+  transition: transform 0.24s var(--pm-ease), border-color 0.24s ease, box-shadow 0.24s ease !important;
 }
-.party-mode-experience .party-team-badge.is-active {
-  transform: none;
-  background: var(--party-surface-2) !important;
-}
-.party-mode-experience .party-team-badge span[style*="box-shadow"] { box-shadow: none !important; }
-.party-mode-experience .party-scoreboard { overflow: hidden; }
-.party-mode-experience .party-scoreboard > div:last-child { box-shadow: none !important; }
-.party-mode-experience .party-leader-crown { animation: none; }
+.party-mode-experience .party-team-badge.is-active { transform: translateY(-2px); filter: brightness(1.06); }
+.party-mode-experience .party-leader-crown { animation: partyCrownFloat 2.4s ease-in-out infinite; }
 
+/* Kruhový časovač a veľký odpočet. */
 .party-mode-experience .party-timer {
-  box-shadow: none !important;
-  filter: none !important;
+  filter: drop-shadow(0 0 16px color-mix(in srgb, var(--timer-color, #ffc247) 40%, transparent));
 }
 .party-mode-experience .party-timer > div {
-  border-color: var(--party-line);
-  background: var(--party-surface-3);
-  box-shadow: none;
+  border-color: var(--pm-hairline);
+  background: #0a0f1a;
 }
-.party-mode-experience .party-countdown-pop {
-  animation: partyModernCount .28s ease-out both !important;
-  text-shadow: none !important;
-}
-
-.party-mode-experience h1 { text-shadow: none !important; }
-.party-mode-experience [style*="text-shadow"] { text-shadow: none !important; }
-.party-mode-experience [style*="box-shadow"] { box-shadow: none !important; }
-.party-mode-experience .party-finale-reveal,
-.party-mode-experience .party-winner-trophy,
-.party-mode-experience .party-winner-name,
-.party-mode-experience .party-podium.winner {
-  animation: partyModernEnter .3s ease-out both !important;
-  text-shadow: none !important;
-  transform: none;
-}
-.party-mode-experience .party-winner-trophy::before { display: none; }
-.party-mode-experience .party-winner-crown {
-  animation: partyModernCrown .28s ease-out both !important;
+.party-mode-experience .party-countdown-pop { animation: pmCountPop 0.44s var(--pm-ease) both !important; }
+@keyframes pmCountPop {
+  0% { opacity: 0; transform: scale(0.55); }
+  58% { opacity: 1; transform: scale(1.13); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
+/* Automatický posun medziobrazovky — kruh, ktorý sa vyprázdňuje. */
+.party-auto {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid var(--pm-hairline, rgba(255, 255, 255, 0.085));
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  padding: 0.4rem 0.45rem 0.4rem 1rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.party-auto-label {
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pm-muted, rgba(226, 235, 247, 0.5));
+}
+.party-auto-ring {
+  position: relative;
+  display: grid;
+  width: 2.2rem;
+  height: 2.2rem;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 999px;
+  background: conic-gradient(
+    var(--pm-gold, #ffc247) calc(var(--pm-progress, 100) * 1%),
+    rgba(255, 255, 255, 0.11) 0
+  );
+}
+.party-auto-ring::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 999px;
+  background: #0b1120;
+}
+.party-auto-ring span {
+  position: relative;
+  font-size: 0.82rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+}
+
+/* Odpočet musí byť vidieť aj vtedy, keď je obsah medziobrazovky dlhší ako displej. */
+.party-auto-dock {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.25rem;
+  padding-block: 1.15rem 0.4rem;
+}
+/* Stmavenie ide na celú šírku displeja, aby dok nepôsobil ako plávajúci pás. */
+.party-auto-dock::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  margin-inline: -50vw;
+  background: linear-gradient(
+    to top,
+    var(--pm-bg, #080c16) 0%,
+    var(--pm-bg, #080c16) 58%,
+    color-mix(in srgb, var(--pm-bg, #080c16) 70%, transparent) 80%,
+    transparent 100%
+  );
+}
+/* V doku je pilulka hlavnou akciou, takže dostane plnú plochu, nie priehľadnú. */
+.party-auto-dock .party-auto {
+  background: linear-gradient(168deg, #1b2634, #131c29);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.075), 0 16px 32px -18px rgba(0, 0, 0, 1);
+}
+
+/* Jemné zjednotenie geometrie a skrytie posuvníkov. */
 .party-mode-experience main { scrollbar-width: none; }
 .party-mode-experience main::-webkit-scrollbar { display: none; }
 .party-mode-experience section[class*="rounded-[2rem]"],
 .party-mode-experience section[class*="rounded-[1.8rem]"],
 .party-mode-experience section[class*="rounded-[1.75rem]"] {
-  border-radius: var(--party-radius) !important;
+  border-radius: var(--pm-r-lg) !important;
 }
-.party-mode-experience [class*="blur-3xl"] { display: none; }
-.party-mode-experience [class*="shadow-[0_0_"] { box-shadow: none !important; }
+.party-mode-experience [class*="blur-3xl"] { opacity: 0.45; }
+
+/* ── Nastavenia party hry ───────────────────────────────────────────────────
+   Vrstva .mobile-party-settings tieto panely predtým sploštila na sivé boxy
+   s vypnutými tieňmi. Tu ich vraciame do rovnakého jazyka ako zvyšok módu. */
+.party-mode-experience .mobile-party-settings,
+.party-mode-experience .party-battle-settings {
+  --settings-accent: var(--pm-gold);
+  --settings-line: var(--pm-hairline);
+  background: transparent;
+}
+.party-mode-experience .mobile-party-settings .party-glass {
+  border: 1px solid var(--pm-hairline) !important;
+  border-radius: var(--pm-r-lg) !important;
+  background: linear-gradient(168deg, var(--pm-panel), var(--pm-panel-2)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), var(--pm-shadow) !important;
+  backdrop-filter: none !important;
+}
+.party-mode-experience .mobile-party-settings .party-eyebrow {
+  border-color: var(--pm-hairline);
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+}
+.party-mode-experience .mobile-party-settings header > button {
+  border-color: var(--pm-hairline) !important;
+  border-radius: 1rem !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+/* Hlavná akcia je zlatá aj v nastaveniach. */
+.party-mode-experience .mobile-party-settings button[class*="bg-gradient"] {
+  border: 0 !important;
+  border-radius: 1.15rem !important;
+  background: linear-gradient(135deg, var(--pm-gold), var(--pm-gold-deep)) !important;
+  color: #1b1305 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 18px 36px -20px var(--pm-gold-glow) !important;
+}
+.party-mode-experience .mobile-settings button:active { transform: scale(0.975) !important; }
+/* Polia s menami tímov nesú farbu tímu, takže sivý rámček z nastavení tu neplatí. */
+.party-mode-experience .party-battle-settings .party-team-fields input {
+  min-height: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+/* ── Výber minihier v party móde ────────────────────────────────────────────
+   Vybraná hra sa označí zlatou linkou a poradovým číslom; potvrdenie je zlaté. */
+.party-game-picker-screen .minigame-tile {
+  transition:
+    transform 0.24s cubic-bezier(0.22, 1, 0.32, 1),
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+.party-game-picker-screen .minigame-tile.is-party-selected {
+  border-color: color-mix(in srgb, #ffc247 70%, white 10%) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 194, 71, 0.55),
+    0 20px 40px -26px rgba(255, 194, 71, 0.75) !important;
+}
+.party-game-picker-screen .party-picker-order {
+  background: linear-gradient(135deg, #ffc247, #ff9f1c);
+  color: #1b1305;
+  box-shadow: 0 8px 18px -8px rgba(255, 194, 71, 0.9);
+}
+.party-game-picker-screen .party-picker-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  background: linear-gradient(to top, #070b12 62%, rgba(7, 11, 18, 0.86));
+  backdrop-filter: blur(14px);
+}
+.party-game-picker-screen .party-picker-footer button {
+  background: linear-gradient(135deg, #ffc247, #ff9f1c);
+  color: #1b1305;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 14px 28px -16px rgba(255, 194, 71, 0.8);
+}
+.party-game-picker-screen .party-picker-footer button:disabled {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.35);
+  box-shadow: none;
+}
+
+/* ── Nastavenia aplikácie ───────────────────────────────────────────────────
+   Obrazovka bola mimo dizajnového jazyka (ploché #111820 boxy bez hierarchie). */
+.settings-screen {
+  background:
+    radial-gradient(110% 62% at 50% -10%, rgba(255, 194, 71, 0.07), transparent 60%),
+    radial-gradient(80% 50% at 108% 20%, rgba(59, 130, 246, 0.1), transparent 66%),
+    linear-gradient(178deg, #080c16 0%, #0b1020 56%, #070a12 100%) !important;
+}
+.settings-screen h1 {
+  background: linear-gradient(120deg, #ffffff 30%, #ffd987 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.settings-screen h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.settings-screen h2::before {
+  content: "";
+  width: 0.28rem;
+  height: 1.05rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffc247, #ff9f1c);
+}
+/* Panely dostanú rovnakú hĺbku ako v party móde. */
+.settings-screen .bg-\[\#111820\] {
+  border-color: rgba(255, 255, 255, 0.085) !important;
+  border-radius: 1.15rem !important;
+  background: linear-gradient(168deg, #141d2c, #101827) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 18px 40px -30px rgba(0, 0, 0, 0.95) !important;
+}
+.settings-screen section { animation: pmRise 0.5s cubic-bezier(0.22, 1, 0.32, 1) both; }
+.settings-screen section:nth-of-type(1) { animation-delay: 0.04s; }
+.settings-screen section:nth-of-type(2) { animation-delay: 0.1s; }
+.settings-screen section:nth-of-type(3) { animation-delay: 0.16s; }
+.settings-screen section:nth-of-type(4) { animation-delay: 0.22s; }
+.settings-screen section:nth-of-type(5) { animation-delay: 0.28s; }
+/* Aktívna voľba témy aj režimu je zlatá, nie biela. */
+.settings-screen button[aria-pressed="true"][class*="bg-white"] {
+  background: linear-gradient(135deg, #ffc247, #ff9f1c) !important;
+  color: #1b1305 !important;
+}
+.settings-screen button[aria-pressed="true"][class*="border-white/35"] {
+  border-color: rgba(255, 194, 71, 0.6) !important;
+  background: rgba(255, 194, 71, 0.1) !important;
+}
+.settings-screen button:active { transform: scale(0.985); }
 
 /* Party Hub is the front door of the mode and uses the same restrained system. */
 .party-hub-page {
