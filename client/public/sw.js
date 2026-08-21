@@ -1,4 +1,4 @@
-const CACHE_NAME = "podvodnik-pwa-v2";
+const CACHE_NAME = "podvodnik-pwa-v3";
 const CACHE_PREFIX = "podvodnik-pwa-";
 const scope = self.registration.scope;
 const appUrl = (path) => new URL(path, scope).toString();
@@ -6,8 +6,8 @@ const APP_SHELL = [
   appUrl(""),
   appUrl("index.html"),
   appUrl("manifest.webmanifest"),
-  appUrl("icons/podvodnik-icon.svg"),
-  appUrl("icons/podvodnik-icon-maskable.svg"),
+  appUrl("icons/icon-192x192.png"),
+  appUrl("icons/icon-512x512.png"),
 ];
 const OFFLINE_DOCUMENT = appUrl("index.html");
 
