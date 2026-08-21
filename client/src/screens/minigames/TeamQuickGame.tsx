@@ -278,7 +278,7 @@ export default function TeamQuickGame({
     const draw = winners.length > 1;
     return (
       <PartyBackdrop>
-        <main className="flex h-full flex-col items-center overflow-hidden px-5 py-4 text-center">
+        <main className="flex h-full flex-col items-center fit-or-scroll overflow-hidden px-5 py-4 text-center">
           <PartyEyebrow>Koniec minihry</PartyEyebrow>
           <div className="quick-result-emblem mx-auto mt-7 flex h-20 w-20 items-center justify-center rounded-[1.8rem] border border-white/15 bg-white/[.06] text-white">
             {draw ? (

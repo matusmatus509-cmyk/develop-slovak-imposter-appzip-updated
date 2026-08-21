@@ -120,7 +120,7 @@ export default function RoundIntro({
 
   return (
     <PartyBackdrop>
-      <main className="flex h-full flex-col overflow-hidden px-5 pb-1 pt-4">
+      <main className="flex h-full flex-col fit-or-scroll overflow-hidden px-5 pb-1 pt-4">
         <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col gap-3">
           <header className="text-center">
             <PartyEyebrow>

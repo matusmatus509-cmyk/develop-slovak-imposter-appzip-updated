@@ -38,7 +38,7 @@ export default function RoundResult({
 
   return (
     <PartyBackdrop>
-      <main className="flex h-full flex-col overflow-hidden px-5 pb-1 pt-4 text-center">
+      <main className="flex h-full flex-col fit-or-scroll overflow-hidden px-5 pb-1 pt-4 text-center">
         <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col gap-3">
           <header>
             <PartyEyebrow>Výsledok {round.index + 1}. kola</PartyEyebrow>
