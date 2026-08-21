@@ -152,6 +152,81 @@ for (const file of [...oneScreenFiles].sort()) {
   });
 }
 
+// ── Nastavenia a výbery sa musia dať doskrolovať ────────────────────────────
+// Toto je ochrana proti chybe, ktorú som už raz spravil: pri prechode na jednu
+// obrazovku som hromadne prepol obrazovky na `overflow-hidden` a nastavenia by
+// sa tým stali nedostupné. Buď obrazovka nie je v one-screen sete (skroluje
+// celá), alebo musí mať vnútorný `.scroll-panel`.
+const REACHABLE_MUST_SCROLL = [
+  { screen: "settings", file: `${ROOT}/screens/Settings.tsx` },
+  { screen: "statistics", file: `${ROOT}/screens/Statistics.tsx` },
+  { screen: "party-hub", file: `${ROOT}/screens/PartyHub.tsx` },
+  { screen: "impostor-setup", file: `${ROOT}/screens/impostor/Setup.tsx` },
+  { screen: "drawing-setup", file: `${ROOT}/screens/drawing/Setup.tsx` },
+  { screen: "impostor-history", file: `${ROOT}/screens/impostor/History.tsx` },
+  // Setupy a výbery vnútri hier — tie sú v one-screen sete, takže potrebujú
+  // výslovný `.scroll-panel`.
+  {
+    screen: "teambattle",
+    file: `${ROOT}/screens/teamBattle/Setup.tsx`,
+    needsPanel: true,
+  },
+  {
+    screen: "teambattle",
+    file: `${ROOT}/screens/teamBattle/GamePicker.tsx`,
+    needsPanel: true,
+  },
+  {
+    screen: "tic-tac-toe",
+    file: `${ROOT}/screens/minigames/TicTacToe.tsx`,
+    needsPanel: true,
+  },
+  {
+    screen: "battleship",
+    file: `${ROOT}/screens/minigames/Battleship.tsx`,
+    needsPanel: true,
+  },
+  {
+    screen: "zakazane",
+    file: `${ROOT}/screens/minigames/TeamQuickGame.tsx`,
+    needsPanel: true,
+  },
+];
+
+const reachability = [];
+for (const entry of REACHABLE_MUST_SCROLL) {
+  let source = "";
+  try {
+    source = readFileSync(entry.file, "utf8");
+  } catch {
+    reachability.push(`chýba súbor ${entry.file}`);
+    continue;
+  }
+  const inOneScreen = oneScreen.has(entry.screen);
+  const hasPanel = /\bscroll-panel\b/.test(source);
+  const scrollsWholeScreen = !inOneScreen;
+
+  if (entry.needsPanel && !hasPanel) {
+    reachability.push(
+      `${entry.file}: je v one-screen obrazovke „${entry.screen}" a NEMÁ .scroll-panel — ` +
+        `nastavenia by sa nedali doskrolovať`
+    );
+  } else if (!entry.needsPanel && !scrollsWholeScreen && !hasPanel) {
+    reachability.push(
+      `${entry.file}: obrazovka „${entry.screen}" je v ONE_SCREEN_GAME_SCREENS a nemá ` +
+        `.scroll-panel — obsah by sa orezal namiesto skrolovania`
+    );
+  }
+}
+
+// Pravidlo pre .scroll-panel musí v CSS existovať, inak je trieda bezzubá.
+const css = readFileSync(`${ROOT}/index.css`, "utf8");
+if (!/\.is-game-stage\s+main\.scroll-panel/.test(css)) {
+  reachability.push(
+    "index.css: chýba pravidlo `.is-game-stage main.scroll-panel` — trieda by nič nerobila"
+  );
+}
+
 const order = { vysoká: 0, stredná: 1, nízka: 2 };
 findings.sort(
   (a, b) => order[a.severity] - order[b.severity] || a.at.localeCompare(b.at)
@@ -176,7 +251,22 @@ for (const [key, list] of byKind) {
   if (list.length > 14) console.log(`    … a ďalších ${list.length - 14}`);
 }
 
+console.log(`\n${"─".repeat(66)}`);
+if (reachability.length === 0) {
+  console.log(
+    "✓ Dostupnosť: nastavenia, štatistiky, história a všetky setupy sa"
+  );
+  console.log("  dajú doskrolovať — buď skroluje celá obrazovka, alebo majú");
+  console.log("  vnútorný .scroll-panel.");
+} else {
+  console.log(`✗ Dostupnosť: ${reachability.length} problémov`);
+  reachability.forEach(r => console.log(`  • ${r}`));
+}
+
 const high = findings.filter(f => f.severity === "vysoká").length;
 console.log(
   `\nCELKOM: ${findings.length} zistení, z toho ${high} s vysokou závažnosťou`
 );
+
+// Nedostupné nastavenia sú chyba, ktorá musí zhodiť validáciu.
+if (reachability.length > 0 || high > 0) process.exitCode = 1;
