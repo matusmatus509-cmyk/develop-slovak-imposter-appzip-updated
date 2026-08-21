@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { getCharacterCategories, type CharacterCategory } from "../../data/characters";
 import { Button, Shell, TopBar } from "../../components/ui";
-import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
+import type { CustomContentControls } from "../../components/CustomContentSelector";
 import type { WordGuessRecordInput, WorkshopEntry } from "../../types";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { Icons } from "../../components/icons";
@@ -14,6 +14,10 @@ import { TurnAnswerRecap, type TurnAnswer } from "../../components/TurnAnswerRec
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 type Phase = "setup" | "who-starts" | "playing" | "round-result" | "final-result";
+type DeckSource =
+  | { kind: "builtin"; categoryId: string }
+  | { kind: "custom"; collectionId: string; collectionName: string }
+  | { kind: "all" };
 
 interface PlayerScore {
   name: string;
@@ -30,10 +34,16 @@ interface Card {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function buildDeck(categories: CharacterCategory[], catIds: string[], extraCards: Array<{ id: string; word: string }> = []): Card[] {
-  const cats = catIds.includes("all")
+function buildDeck(
+  categories: CharacterCategory[],
+  source: DeckSource,
+  extraCards: Array<{ id: string; word: string; collectionIds: string[] }> = [],
+): Card[] {
+  const cats = source.kind === "all"
     ? categories.filter((category) => category.id !== "all")
-    : categories.filter((category) => catIds.includes(category.id));
+    : source.kind === "builtin"
+      ? categories.filter((category) => category.id === source.categoryId)
+      : [];
   const cards: Card[] = [];
   const seen = new Set<string>();
   for (const cat of cats) {
@@ -44,11 +54,14 @@ function buildDeck(categories: CharacterCategory[], catIds: string[], extraCards
       cards.push({ word: ch, categoryName: cat.name });
     }
   }
-  for (const { id, word } of extraCards) {
-    const key = word.trim().toLocaleLowerCase("sk");
-    if (!key || seen.has(key)) continue;
-    seen.add(key);
-      cards.push({ id: `custom:${id}`, word, categoryName: "Vlastná téma" });
+  if (source.kind === "custom") {
+    for (const { id, word, collectionIds } of extraCards) {
+      if (!collectionIds.includes(source.collectionId)) continue;
+      const key = word.trim().toLocaleLowerCase("sk");
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      cards.push({ id: `custom:${id}`, word, categoryName: source.collectionName });
+    }
   }
   return cards;
 }
@@ -59,169 +72,223 @@ function SetupScreen({
   onBack,
   onStart,
   categories,
+  customEntries,
   customControls,
 }: {
   onBack: () => void;
-  onStart: (names: string[], catIds: string[], timerSeconds: number) => void;
+  onStart: (names: string[], source: DeckSource, timerSeconds: number) => void;
   categories: CharacterCategory[];
+  customEntries: WorkshopEntry[];
   customControls?: CustomContentControls;
 }) {
   const { language } = useLanguage();
-  const [count, setCount] = useState(3);
-  const [names, setNames] = useState(
-    Array.from({ length: 8 }, (_, i) => defaultPlayerName(language, i + 1))
-  );
-  const [selectedCats, setSelectedCats] = useState([categories[0].id]);
-  const [timer, setTimer] = useState(60);
-
-  function toggleCat(id: string) {
-    if (id === "all") {
-      setSelectedCats(["all"]);
-      return;
-    }
-    setSelectedCats((prev) =>
-      (prev.includes("all") ? [] : prev).includes(id)
-        ? (prev.includes("all") ? [] : prev).length > 1
-          ? prev.filter((c) => c !== id)
-          : prev
-        : [...prev.filter((categoryId) => categoryId !== "all"), id]
-    );
-  }
-
-  const allCardsCount = useMemo(
-    () => categories.filter((category) => category.id !== "all").reduce((total, category) => total + category.characters.length, 0),
+  const builtinCategories = useMemo(
+    () => categories.filter((category) => category.id !== "all"),
     [categories],
   );
+  const customCategories = useMemo(() => {
+    if (!customControls) return [];
+    return customControls.collections
+      .map((collection) => ({
+        ...collection,
+        count: customEntries.filter((entry) => entry.collectionIds.includes(collection.id)).length,
+      }))
+      .filter((collection) => collection.count > 0);
+  }, [customControls, customEntries]);
+  const fallbackCategory = builtinCategories[0];
+  const [view, setView] = useState<"main" | "category">("main");
+  const [count, setCount] = useState(3);
+  const [names, setNames] = useState(
+    Array.from({ length: 8 }, (_, i) => defaultPlayerName(language, i + 1)),
+  );
+  const [source, setSource] = useState<DeckSource>(() => ({
+    kind: "builtin",
+    categoryId: fallbackCategory?.id ?? "",
+  }));
+  const [timer, setTimer] = useState(60);
+
+  const selectedCategory = useMemo(() => {
+    if (source.kind === "custom") {
+      const category = customCategories.find((item) => item.id === source.collectionId);
+      if (category) return { icon: category.icon, name: category.name, count: category.count };
+    }
+    const category = builtinCategories.find(
+      (item) => source.kind === "builtin" && item.id === source.categoryId,
+    ) ?? fallbackCategory;
+    return {
+      icon: category?.icon ?? "🎭",
+      name: category?.name ?? "Vyber kategóriu",
+      count: category?.characters.length ?? 0,
+    };
+  }, [builtinCategories, customCategories, fallbackCategory, source]);
+
+  function chooseSource(nextSource: DeckSource) {
+    setSource(nextSource);
+    setView("main");
+  }
 
   function start() {
     const trimmedNames = names
       .slice(0, count)
-      .map((n, i) => n.trim() || defaultPlayerName(language, i + 1));
-    onStart(trimmedNames, selectedCats, timer);
+      .map((name, index) => name.trim() || defaultPlayerName(language, index + 1));
+    onStart(trimmedNames, source, timer);
+  }
+
+  if (view === "category") {
+    return (
+      <Shell className="mobile-settings mobile-settings-guess-who guess-who-category-picker scroll-panel">
+        <TopBar title="Vyber kategóriu" onBack={() => setView("main")} />
+        <div className="guess-who-category-list">
+          <div className="guess-who-picker-heading">
+            <span>Jedna kategória</span>
+            <p>Karty sa nebudú miešať s inou témou.</p>
+          </div>
+          <section aria-label="Základné kategórie">
+            <p className="guess-who-section-label">Kategórie</p>
+            <div className="guess-who-picker-options">
+              {builtinCategories.map((category) => {
+                const active = source.kind === "builtin" && source.categoryId === category.id;
+                return (
+                  <button
+                    key={category.id}
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() => chooseSource({ kind: "builtin", categoryId: category.id })}
+                    className={active ? "is-active" : ""}
+                  >
+                    <span className="guess-who-picker-icon">{category.icon}</span>
+                    <span className="guess-who-picker-copy">
+                      <strong>{category.name}</strong>
+                      <small>{category.characters.length} kariet</small>
+                    </span>
+                    <span className="guess-who-picker-check" aria-hidden="true">
+                      {active ? <Icons.circleCheck size={17} /> : <Icons.chevronRight size={17} />}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+          {customCategories.length > 0 && (
+            <section aria-label="Vlastné kategórie">
+              <p className="guess-who-section-label">Moje kategórie</p>
+              <div className="guess-who-picker-options">
+                {customCategories.map((category) => {
+                  const active = source.kind === "custom" && source.collectionId === category.id;
+                  return (
+                    <button
+                      key={category.id}
+                      type="button"
+                      aria-pressed={active}
+                      onClick={() => chooseSource({
+                        kind: "custom",
+                        collectionId: category.id,
+                        collectionName: category.name,
+                      })}
+                      className={active ? "is-active" : ""}
+                    >
+                      <span className="guess-who-picker-icon">{category.icon}</span>
+                      <span className="guess-who-picker-copy">
+                        <strong>{category.name}</strong>
+                        <small>{category.count} vlastných kariet</small>
+                      </span>
+                      <span className="guess-who-picker-check" aria-hidden="true">
+                        {active ? <Icons.circleCheck size={17} /> : <Icons.chevronRight size={17} />}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+        </div>
+      </Shell>
+    );
   }
 
   return (
-    <Shell className="mobile-settings mobile-settings-guess-who scroll-panel">
+    <Shell className="mobile-settings mobile-settings-guess-who guess-who-setup">
       <TopBar title="Hádaj kto som" onBack={onBack} />
+      <div className="guess-who-setup-form">
+        <button
+          type="button"
+          onClick={() => setView("category")}
+          className="guess-who-category-field"
+        >
+          <span className="guess-who-category-icon">{selectedCategory.icon}</span>
+          <span className="min-w-0 flex-1 text-left">
+            <small>Kategória</small>
+            <strong>{selectedCategory.name}</strong>
+          </span>
+          <span className="guess-who-category-meta">
+            <small>{selectedCategory.count} kariet</small>
+            <Icons.chevronRight size={18} />
+          </span>
+        </button>
 
-      <div
-        className="glass mb-5 rounded-3xl border-cyan-500/20 bg-cyan-500/10 p-4 text-sm text-white/70 leading-relaxed"
-        style={{ animation: "fadeIn 0.5s ease-out both" }}
-      >
-        Drž telefón naplocho. Ostatní nakláňajú mobil{" "}
-        <strong className="text-white">hore = uhádnuté ✓</strong>,{" "}
-        <strong className="text-white">dole = preskočiť ✗</strong>.
-        Daj čo najviac za čas!
+        <section className="guess-who-setting-block">
+          <div className="guess-who-setting-heading">
+            <span><Icons.timer size={15} /> Čas na kolo</span>
+            <strong>{timer} sekúnd</strong>
+          </div>
+          <div className="guess-who-time-grid">
+            {[30, 45, 60, 90, 120].map((value) => (
+              <button
+                key={value}
+                type="button"
+                onClick={() => setTimer(value)}
+                className={timer === value ? "is-active" : ""}
+              >
+                {value}s
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="guess-who-setting-block">
+          <div className="guess-who-setting-heading">
+            <span><Icons.users size={15} /> Počet hráčov</span>
+            <strong>{count}</strong>
+          </div>
+          <div className="guess-who-player-grid">
+            {[2, 3, 4, 5, 6, 7, 8].map((value) => (
+              <button
+                key={value}
+                type="button"
+                onClick={() => setCount(value)}
+                className={count === value ? "is-active" : ""}
+              >
+                {value}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="guess-who-names-block">
+          <div className="guess-who-setting-heading">
+            <span><Icons.users size={15} /> Mená hráčov</span>
+            <small>{count} hráči</small>
+          </div>
+          <div className="guess-who-name-grid">
+            {Array.from({ length: count }, (_, index) => (
+              <label key={index}>
+                <span>{index + 1}</span>
+                <input
+                  value={names[index]}
+                  onChange={(event) => setNames((current) =>
+                    current.map((name, nameIndex) => nameIndex === index ? event.target.value : name)
+                  )}
+                  placeholder={defaultPlayerName(language, index + 1)}
+                />
+              </label>
+            ))}
+          </div>
+        </section>
+
+        <Button fullWidth onClick={start} className="guess-who-start-button">
+          <span className="inline-flex items-center gap-2"><Icons.mask size={18} /> Začať hru</span>
+        </Button>
       </div>
-
-      {customControls && <div className="mb-4"><CustomContentSelector controls={customControls} compact /></div>}
-
-      {/* Category */}
-      <div
-        className="glass mb-4 rounded-3xl p-4"
-        style={{ animation: "slideUp 0.5s ease-out 0.05s both" }}
-      >
-        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
-          Kategória
-        </p>
-        <div className="flex flex-col gap-2">
-          {categories.map((cat, i) => (
-            <button
-              key={cat.id}
-              onClick={() => toggleCat(cat.id)}
-              className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition active:scale-[0.98] hover:scale-[1.02] ${
-                selectedCats.includes(cat.id)
-                  ? "border-cyan-400/60 bg-cyan-500/20"
-                  : "border-white/10 bg-white/5"
-              }`}
-              style={{ animation: `slideUp 0.4s ease-out ${0.1 + i * 0.05}s both` }}
-            >
-              <span className="text-2xl">{cat.icon}</span>
-              <span className="flex-1">
-                <span className="block font-bold">{cat.name}</span>
-                <span className="mt-0.5 block text-xs font-semibold text-white/35">
-                  {cat.id === "all" ? allCardsCount : cat.characters.length} kariet
-                </span>
-              </span>
-              {selectedCats.includes(cat.id) && (
-                <span className="text-cyan-400 font-bold">✓</span>
-              )}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Timer */}
-      <div
-        className="glass mb-4 rounded-3xl p-4"
-        style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}
-      >
-        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
-          Čas na kolo
-        </p>
-        <div className="flex gap-2">
-          {[30, 45, 60, 90, 120].map((t) => (
-            <button
-              key={t}
-              onClick={() => setTimer(t)}
-              className={`flex-1 rounded-2xl border py-3 text-sm font-bold transition active:scale-95 hover:scale-[1.02] ${
-                timer === t
-                  ? "border-cyan-400/60 bg-cyan-500/30 text-cyan-300"
-                  : "border-white/10 bg-white/5 text-white/50"
-              }`}
-            >
-              {t}s
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Player count */}
-      <div
-        className="glass mb-4 rounded-3xl p-4"
-        style={{ animation: "slideUp 0.5s ease-out 0.15s both" }}
-      >
-        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
-          Počet hráčov
-        </p>
-        <div className="flex gap-2 flex-wrap">
-          {[2, 3, 4, 5, 6, 7, 8].map((n) => (
-            <button
-              key={n}
-              onClick={() => setCount(n)}
-              className={`h-10 w-10 rounded-2xl text-sm font-bold border transition active:scale-95 hover:scale-[1.02] ${
-                count === n
-                  ? "border-cyan-400/60 bg-cyan-500/30 text-cyan-300"
-                  : "border-white/10 bg-white/5 text-white/50"
-              }`}
-            >
-              {n}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Names */}
-      <div className="mb-6 flex flex-col gap-2">
-        {Array.from({ length: count }, (_, i) => (
-          <input
-            key={i}
-            value={names[i]}
-            onChange={(e) =>
-              setNames((prev) =>
-                prev.map((n, idx) => (idx === i ? e.target.value : n))
-              )
-            }
-            placeholder={defaultPlayerName(language, i + 1)}
-            className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-cyan-400/60"
-            style={{ animation: `slideUp 0.4s ease-out ${0.2 + i * 0.04}s both` }}
-          />
-        ))}
-      </div>
-
-      <Button fullWidth onClick={start} className="hover:scale-[1.02] active:scale-95">
-        <span className="inline-flex items-center gap-2"><Icons.mask size={18} /> Začať hru</span>
-      </Button>
     </Shell>
   );
 }
@@ -488,12 +555,12 @@ export default function HadajKtoSom({
   const [currentPlayer, setCurrentPlayer] = useState(0);
   const [timerSeconds, setTimerSeconds] = useState(partyConfig?.timerSeconds ?? 60);
   const [roundAnswers, setRoundAnswers] = useState<TurnAnswer[]>([]);
-  const [allCatIds, setAllCatIds] = useState<string[]>(() => partyConfig
-    ? categories.map((category) => category.id)
-    : [categories[0].id]);
+  const [deckSource, setDeckSource] = useState<DeckSource>(() => partyConfig
+    ? { kind: "all" }
+    : { kind: "builtin", categoryId: categories.find((category) => category.id !== "all")?.id ?? "" });
 
-  function handleSetupStart(names: string[], catIds: string[], timer: number) {
-    setAllCatIds(catIds);
+  function handleSetupStart(names: string[], source: DeckSource, timer: number) {
+    setDeckSource(source);
     setTimerSeconds(timer);
     setPlayers(names.map((name) => ({ name, correct: 0, skipped: 0, played: false })));
     setCurrentPlayer(0);
@@ -502,7 +569,24 @@ export default function HadajKtoSom({
 
   async function startPlaying() {
     await requestTiltPermission();
-    setCurrentDeck(buildDeck(categories, allCatIds, customEntries.map((entry) => ({ id: entry.id, word: entry.text }))));
+    const deck = buildDeck(
+      categories,
+      deckSource,
+      customEntries.map((entry) => ({
+        id: entry.id,
+        word: entry.text,
+        collectionIds: entry.collectionIds,
+      })),
+    );
+    if (deck.length === 0) {
+      setDeckSource({
+        kind: "builtin",
+        categoryId: categories.find((category) => category.id !== "all")?.id ?? "",
+      });
+      setPhase("setup");
+      return;
+    }
+    setCurrentDeck(deck);
     setPriorityCards([]);
     setPhase("playing");
   }
@@ -529,7 +613,7 @@ export default function HadajKtoSom({
 
   // ── Setup ─────────────────────────────────────────────────────────────────
   if (phase === "setup") {
-    return <SetupScreen key={language} categories={categories} customControls={customControls} onBack={onBack} onStart={handleSetupStart} />;
+    return <SetupScreen key={language} categories={categories} customEntries={customEntries} customControls={customControls} onBack={onBack} onStart={handleSetupStart} />;
   }
 
   // ── Who starts ────────────────────────────────────────────────────────────

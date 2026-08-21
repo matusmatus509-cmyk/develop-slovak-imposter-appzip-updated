@@ -793,6 +793,13 @@ export default function App() {
     );
   }
 
+  function allCustomEntries(game: CustomContentGame) {
+    return filterWorkshopEntries(workshopEntries, game, {
+      enabled: true,
+      collectionIds: workshopCollections.map(collection => collection.id),
+    });
+  }
+
   function navigateFromMenu(next: Screen) {
     const enteringGame = !NON_GAME_SCREENS.includes(next);
     if (enteringGame && NON_GAME_SCREENS.includes(screen))
@@ -1179,7 +1186,7 @@ export default function App() {
         return (
           <HadajKtoSom
             onBack={() => returnFromActiveGame("minigames-menu")}
-            customEntries={customEntries("hadajktosom")}
+            customEntries={allCustomEntries("hadajktosom")}
             customControls={customControls("hadajktosom")}
             onWordGuessed={recordFastestGuess}
           />
