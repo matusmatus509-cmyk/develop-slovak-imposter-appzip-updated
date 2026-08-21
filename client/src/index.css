@@ -3461,7 +3461,21 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
   --guess-accent: #22d3ee;
   background: radial-gradient(circle at 88% 3%, rgba(34, 211, 238, .13), transparent 16rem), #080d12 !important;
 }
-.guess-who-category-list { display: flex; flex-direction: column; gap: 1rem; padding-bottom: .6rem; }
+/* Zoznam kategórií skroluje sám osebe — klik iba oznaří výber, nikdy nezatvorí
+   obrazovku. Potvrdenie je samostatné pevné tlačidlo Hotovo pod zoznamom. */
+.guess-who-category-picker .app-shell-content { display: flex; flex-direction: column; }
+.guess-who-category-list {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: .6rem;
+}
+.guess-who-picker-confirm { flex: none; margin-top: .8rem; }
 .guess-who-picker-heading {
   border: 1px solid rgba(34, 211, 238, .2);
   border-radius: 1rem;

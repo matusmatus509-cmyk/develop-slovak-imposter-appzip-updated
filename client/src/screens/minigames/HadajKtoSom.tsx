@@ -132,7 +132,6 @@ function SetupScreen({
 
   function chooseSource(nextSource: DeckSource) {
     setSource(nextSource);
-    setView("main");
   }
 
   function start() {
@@ -199,9 +198,11 @@ function SetupScreen({
 
   if (view === "category") {
     return (
-      <Shell className="mobile-settings mobile-settings-guess-who guess-who-category-picker scroll-panel">
+      <Shell className="mobile-settings mobile-settings-guess-who guess-who-category-picker">
         <TopBar title="Vyber kategóriu" onBack={() => setView("main")} />
-        <div className="guess-who-category-list">
+        {/* scroll-panel: zoznam kategórií sa dá skrolovať a pozerať, klik iba
+            oznaří výber; tlačidlo Hotovo zostáva pod ním pevné. */}
+        <div className="guess-who-category-list scroll-panel">
           <div className="guess-who-picker-heading">
             <span>Jedna kategória</span>
             <p>Karty sa nebudú miešať s inou témou.</p>
@@ -265,6 +266,9 @@ function SetupScreen({
             </section>
           )}
         </div>
+        <Button fullWidth onClick={() => setView("main")} className="guess-who-start-button guess-who-picker-confirm">
+          <span className="inline-flex items-center gap-2"><Icons.circleCheck size={18} /> Hotovo</span>
+        </Button>
       </Shell>
     );
   }
