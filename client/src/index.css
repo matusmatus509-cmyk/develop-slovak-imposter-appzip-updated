@@ -3211,22 +3211,113 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
   width: 100%;
   padding-bottom: .1rem;
 }
-/* Štart drží spodok obrazovky, aj keď je nad ním len pár riadkov. */
-.guess-who-setup-form > .app-button { margin-top: auto; }
+/* Hero pohltí všetko voľné miesto, takže setup zaplní displej bez skrolovania:
+   na veľkom telefóne je veľký, na nízkom sa zmenší a ostatné riadky zostanú. */
+.guess-who-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 5.5rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 1.35rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 26px 52px -34px rgba(8, 145, 178, .85);
+}
+.guess-who-hero-art {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  transform: scale(1.07);
+  background-repeat: no-repeat;
+  filter: saturate(.92);
+}
+.guess-who-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(4, 12, 20, .12) 0%, rgba(6, 14, 22, .58) 52%, rgba(6, 13, 20, .95) 100%),
+    linear-gradient(125deg, rgba(255, 255, 255, .1), transparent 30%);
+}
+.guess-who-hero-copy { padding: .85rem .95rem; }
+.guess-who-hero-eyebrow {
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  background: rgba(8, 15, 24, .7);
+  padding: .26rem .6rem;
+  color: rgba(224, 250, 255, .82);
+  font-size: .53rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.guess-who-hero-copy h1 {
+  margin: .42rem 0 0;
+  color: #fff;
+  font-family: "Manrope", "Inter", system-ui, sans-serif;
+  font-size: clamp(1.3rem, 4.6dvh, 1.95rem);
+  font-weight: 950;
+  letter-spacing: -.045em;
+  line-height: 1.02;
+}
+.guess-who-hero-stats { display: flex; flex-wrap: wrap; gap: .32rem; margin-top: .5rem; }
+.guess-who-hero-stats span {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: .26rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: .6rem;
+  background: rgba(8, 15, 24, .66);
+  padding: .24rem .5rem;
+  color: rgba(255, 255, 255, .82);
+  font-size: .6rem;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.guess-who-hero-stats span:first-child { border-color: rgba(103, 232, 249, .3); color: #a5f3fc; }
+
+.guess-who-field,
+.guess-who-players-field {
+  border: 1px solid rgba(34, 211, 238, .24);
+  border-radius: 1rem;
+  background: linear-gradient(120deg, rgba(34, 211, 238, .11), rgba(17, 25, 35, .96) 58%);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .055);
+  transition: border-color .16s ease, transform .16s ease;
+}
 .guess-who-field {
   display: flex;
   min-height: 3.65rem;
   align-items: center;
   gap: .72rem;
-  border: 1px solid rgba(34, 211, 238, .24);
-  border-radius: 1rem;
-  background: linear-gradient(120deg, rgba(34, 211, 238, .11), rgba(17, 25, 35, .96) 58%);
   padding: .56rem .7rem;
-  color: #fff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .055);
-  transition: border-color .16s ease, transform .16s ease;
 }
-.guess-who-field:active { transform: scale(.985); }
+.guess-who-players-field { display: block; padding: .56rem .7rem .62rem; }
+.guess-who-players-field-head { display: flex; align-items: center; gap: .72rem; }
+.guess-who-players-chips { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .55rem; }
+.guess-who-players-chips span {
+  max-width: 7.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: .55rem;
+  background: rgba(255, 255, 255, .05);
+  padding: .22rem .48rem;
+  color: rgba(255, 255, 255, .74);
+  font-size: .62rem;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.guess-who-field:active,
+.guess-who-players-field:active { transform: scale(.985); }
 .guess-who-field-icon {
   display: grid;
   width: 2.35rem;
@@ -3238,7 +3329,8 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
   background: rgba(34, 211, 238, .1);
   font-size: 1.22rem;
 }
-.guess-who-field small {
+.guess-who-field small,
+.guess-who-players-field small {
   display: block;
   color: rgba(255, 255, 255, .42);
   font-size: .55rem;
@@ -3246,7 +3338,8 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
   letter-spacing: .12em;
   text-transform: uppercase;
 }
-.guess-who-field strong {
+.guess-who-field strong,
+.guess-who-players-field strong {
   display: block;
   overflow: hidden;
   margin-top: .12rem;
@@ -3404,10 +3497,23 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
   .guess-who-setup .app-topbar { margin-bottom: .48rem; }
   .guess-who-setup-form { gap: .38rem; }
   .guess-who-field { min-height: 3.2rem; padding-block: .38rem; }
+  .guess-who-players-field { padding-block: .38rem .44rem; }
+  .guess-who-hero { min-height: 4.4rem; }
+  .guess-who-hero-copy { padding: .6rem .7rem; }
+  .guess-who-hero-stats { margin-top: .35rem; }
+  .guess-who-players-chips { margin-top: .38rem; }
   .guess-who-setting-block { padding-block: .38rem; }
   .guess-who-setting-heading { margin-bottom: .25rem; }
   .guess-who-time-grid button, .guess-who-player-grid button { min-height: 1.9rem; }
   .guess-who-name-list { gap: .35rem; }
   .guess-who-name-list label { min-height: 2.7rem; }
   .mobile-settings .guess-who-start-button { min-height: 2.6rem !important; height: 2.6rem !important; padding-block: .65rem !important; }
+}
+
+/* Najnižšie displeje: ustúpi dekoratívny text v hero a náhľad mien — voľby
+   kategórie, času aj hráčov zostávajú dostupné. */
+@media (max-height: 600px) {
+  .guess-who-hero-eyebrow { display: none; }
+  .guess-who-hero-copy h1 { font-size: 1.15rem; }
+  .guess-who-players-chips { display: none; }
 }
