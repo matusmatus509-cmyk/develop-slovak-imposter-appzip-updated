@@ -6,6 +6,8 @@ import { ANIMATED_CHARACTERS as ANIMATED_CHARACTERS_DECK, ANIMATED_CHARACTERS_SK
 import { ANIMATED_MOVIES_BY_LANGUAGE } from "./animatedMovies";
 import { WORLD_MOVIES_BY_LANGUAGE } from "./worldMovies";
 import { MOVIE_CHARACTERS_BY_LANGUAGE } from "./movieCharacters";
+import { SERIES_CHARACTERS_BY_LANGUAGE } from "./seriesCharacters";
+import { WORLD_YOUTUBERS_BY_LANGUAGE } from "./worldYoutubers";
 
 export interface CharacterCategory {
   id: string;
@@ -336,17 +338,6 @@ const WORLD_ATHLETES_MORE = [
   "Teddy Riner", "Clarisse Agbégnénou", "Aleksandr Karelin", "Mijaín López", "Jan-Ove Waldner", "Ma Long", "Lin Dan", "Viktor Axelsen", "Magnus Carlsen", "Garry Kasparov",
 ];
 
-const WORLD_YOUTUBERS_EXTRA = [
-  "IShowSpeed", "Kai Cenat", "Vikkstar123", "Miniminter", "Zerkaa", "Behzinga", "W2S", "TBJZL", "Kwebbelkop", "Unspeakable",
-  "PrestonPlayz", "Technoblade", "Skeppy", "GeorgeNotFound", "Sapnap", "BadBoyHalo", "CaptainSparklez", "PopularMMOs", "ItsFunneh", "LDShadowLady",
-  "Aphmau", "StacyPlays", "Grian", "Mumbo Jumbo", "Ssundee", "TheOdd1sOut", "Jaiden Animations", "Domics", "Kurzgesagt", "Vsauce",
-  "Veritasium", "Mark Rober", "Nerdwriter", "HowToBasic", "Nelk", "Good Mythical Morning", "Rhett and Link", "Safiya Nygaard", "Tana Mongeau", "James Charles",
-  "Jeffree Star", "Bretman Rock", "Liza Koshy", "David Dobrik", "Zane Hijazi", "Lele Pons", "Miranda Sings", "Colleen Ballinger", "Philip DeFranco", "H3H3Productions",
-  "Mo Vlogs", "Faze Rug", "FaZe Banks", "RiceGum", "Ali-A", "Typical Gamer", "Lachlan", "Muselk", "Nick Eh 30", "SypherPK",
-  "CoryxKenshin", "Berleezy", "Kubz Scouts", "The Game Theorists", "MatPat", "Screen Junkies", "CinemaSins", "Joshua Weissman", "Binging with Babish", "Gordon Ramsay",
-  "Mrwhosetheboss", "Unbox Therapy", "Linus Tech Tips", "Austin Evans", "The Try Guys",
-];
-
 const SLOVAK_PERSONALITIES_EXTRA = [
   "Mária Bartalos", "Mária Čírová", "Katarína Knechtová", "Nela Pocisková", "Celeste Buckingham", "Emma Drobná", "Mária Kolárová", "Veronika Strapková", "Lucia Barmošová", "Adela Vinczeová",
   "Dara Rolins", "Rytmus", "Majk Spirit", "Kali", "Ego", "Separ", "Sima", "Ewa Farna", "Michaela Čobejová", "Zuzana Fialová",
@@ -363,20 +354,6 @@ const SLOVAK_ATHLETES_EXTRA = [
   "Ivan Klement", "Ján Svorada", "Peter Velits", "Martin Velits", "Jozef Metelka", "Tibor Linka", "Denisa Baránková", "Boris Valábik", "Mário Lunter", "Richard Tóth",
   "Lukáš Krpálek", "Attila Végh", "Ivan Buchinger", "Gábor Boráros", "Monika Chochlíková", "Alex Molčan", "Lukáš Lacko", "Karol Kučera", "Miloš Mečíř", "Dominik Hrbatý",
   "Martin Kližan", "Viktória Kužmová", "Rebecca Šramková", "Jana Čepelová", "Michal Martikán", "Vladimír Országh",
-];
-
-const SERIES_CHARACTERS = [
-  "Rachel Greenová", "Ross Geller", "Monica Gellerová", "Chandler Bing", "Joey Tribbiani", "Phoebe Buffayová", "Sheldon Cooper", "Leonard Hofstadter", "Penny", "Howard Wolowitz",
-  "Walter White", "Jesse Pinkman", "Saul Goodman", "Gus Fring", "Hank Schrader", "Michael Scott", "Dwight Schrute", "Jim Halpert", "Pam Beeslyová", "Andy Bernard",
-  "Ted Mosby", "Barney Stinson", "Robin Scherbatská", "Marshall Eriksen", "Lily Aldrinová", "Wednesday Addamsová", "Enid Sinclairová", "Eleven", "Mike Wheeler", "Dustin Henderson",
-  "Steve Harrington", "Jim Hopper", "Jon Snow", "Daenerys Targaryen", "Tyrion Lannister", "Arya Starková", "Sansa Starková", "Cersei Lannisterová", "Jaime Lannister", "Khal Drogo",
-  "Thomas Shelby", "Arthur Shelby", "Sherlock Holmes", "John Watson", "Moriarty", "Dexter Morgan", "Joe Goldberg", "Lucifer Morningstar", "Dr. House", "Perry Cox",
-  "Meredith Greyová", "Derek Shepherd", "Carrie Bradshawová", "Samantha Jonesová", "Bridgerton Anthony", "Bridgerton Daphne", "Emily Cooperová", "Beth Harmonová", "June Osborneová", "Villanelle",
-  "Profesor z Money Heist", "Tokio z Money Heist", "Berlín z Money Heist", "Nairobi z Money Heist", "Denver z Money Heist", "Seong Gi-hun", "Front Man", "Wednesday – Vec", "Geralt z Rivie", "Yennefer",
-  "Ciri", "Joel Miller", "Ellie Williamsová", "Pedro z Narcos", "Pablo Escobar", "Rick Grimes", "Daryl Dixon", "Negan", "Homelander", "Billy Butcher",
-  "Loki zo seriálu", "Mandalorian", "Grogu", "Ahsoka Tano", "Obi-Wan Kenobi", "Jack Reacher", "Jack Ryan", "Harvey Specter", "Mike Ross", "Donna Paulsenová",
-  "Mr. Bean", "Alf", "MacGyver", "Walker, texaský ranger", "Mitch Buchannon", "Xena", "Herkules zo seriálu", "Buffy", "Dean Winchester", "Sam Winchester",
-  "Mulder", "Scullyová", "Columbo", "Monk", "Hawkeye Pierce", "Tony Soprano", "Don Draper", "Frank Underwood", "Tommy z The Last of Us", "Cobra Kai Johnny Lawrence",
 ];
 
 const VIDEO_GAME_CHARACTERS = [
@@ -436,6 +413,8 @@ const LANGUAGE_DECKS: Record<string, Record<AppLanguage, string[]>> = {
   "animated-movies": ANIMATED_MOVIES_BY_LANGUAGE,
   "world-movies": WORLD_MOVIES_BY_LANGUAGE,
   "movie-characters": MOVIE_CHARACTERS_BY_LANGUAGE,
+  "series-characters": SERIES_CHARACTERS_BY_LANGUAGE,
+  "world-youtubers": WORLD_YOUTUBERS_BY_LANGUAGE,
 };
 
 function localizedCategory(category: CharacterCategory, language: AppLanguage): CharacterCategory {
@@ -477,7 +456,8 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     id: "world-youtubers",
     name: "Svetovi YouTuberi",
     icon: "▶️",
-    characters: uniqueCards([...cards("world-youtubers"), ...WORLD_YOUTUBERS_EXTRA]),
+    // Cards come from LANGUAGE_DECKS so every language gets its own creators.
+    characters: WORLD_YOUTUBERS_BY_LANGUAGE.sk,
   },
   {
     id: "slovak-personalities",
@@ -508,7 +488,8 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     id: "series-characters",
     name: "Postavy zo seriálov",
     icon: "📺",
-    characters: uniqueCards(SERIES_CHARACTERS),
+    // Cards come from LANGUAGE_DECKS so every language gets its own names.
+    characters: SERIES_CHARACTERS_BY_LANGUAGE.sk,
   },
   {
     id: "video-game-characters",
