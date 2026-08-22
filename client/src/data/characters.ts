@@ -4,6 +4,8 @@ import { GENERATED_CHARACTER_CARDS } from "./expandedContent";
 import { MARVEL_CHARACTERS } from "./marvelCharacters";
 import { ANIMATED_CHARACTERS as ANIMATED_CHARACTERS_DECK, ANIMATED_CHARACTERS_SK_ONLY } from "./animatedCharacters";
 import { ANIMATED_MOVIES_BY_LANGUAGE } from "./animatedMovies";
+import { WORLD_MOVIES_BY_LANGUAGE } from "./worldMovies";
+import { MOVIE_CHARACTERS_BY_LANGUAGE } from "./movieCharacters";
 
 export interface CharacterCategory {
   id: string;
@@ -363,21 +365,6 @@ const SLOVAK_ATHLETES_EXTRA = [
   "Martin Kližan", "Viktória Kužmová", "Rebecca Šramková", "Jana Čepelová", "Michal Martikán", "Vladimír Országh",
 ];
 
-const MOVIE_CHARACTERS_EXTRA = [
-  "Neo", "Trinity", "Morpheus", "Terminátor", "John Rambo", "Ethan Hunt", "Marty McFly", "Doc Brown", "Maximus Decimus Meridius", "Katniss Everdeen",
-  "Peeta Mellark", "Dumbledore", "Severus Snape", "Rubeus Hagrid", "Draco Malfoy", "Sirius Black", "Dobby", "Princezná Leia", "Han Solo", "Yoda",
-  "Chewbacca", "Obi-Wan Kenobi", "Anakin Skywalker", "Rey", "Kylo Ren", "Aragorn", "Samwise Gamgee", "Glum", "Gimli", "Sauron",
-  "Čierna vdova", "Hawkeye", "Deadpool", "Wolverine", "Black Panther", "Doctor Strange", "Thanos", "Loki", "Ant-Man", "Groot",
-  "Rocket Raccoon", "Star-Lord", "Captain Marvel", "Aquaman", "Flash", "Harley Quinn", "Catwoman", "Green Lantern", "Shazam", "Venom",
-  "Mary Poppins", "Willy Wonka", "Edward Nožnicovoruký", "Beetlejuice", "Ace Ventura", "Maska", "Kevin McCallister", "Votrelkyňa Ripleyová", "Predátor", "Robocop",
-  "Jack Dawson", "Rose DeWitt Bukater", "Jake Sully", "Neytiri", "Barbie", "Ken", "Dominic Toretto", "Brian O'Conner", "Letty Ortiz", "Mia Toretto",
-  "Will Turner", "Elizabeth Swannová", "Davy Jones", "Hannibal Lecter", "Clarice Starlingová", "Norman Bates", "Ghostface", "Freddy Krueger", "Jason Voorhees", "Michael Myers",
-  "Regan MacNeilová", "Indiana Jones", "Lara Croft", "Agent J", "Agent K", "Peter Venkman", "Alan Grant", "John Hammond", "Forrest Gump", "Chuck Noland",
-  "Vito Corleone", "Michael Corleone", "Tony Montana", "Jordan Belfort", "Tyler Durden", "Truman Burbank", "Borat", "Mr. Bean", "Bridget Jonesová", "Elle Woodsová",
-  "Maverick", "Rocky Balboa", "Ivan Drago", "Daniel LaRusso", "Pán Miyagi", "John McClane", "Beatrix Kiddo", "Amélie Poulainová", "Biela pani", "Perinbaba",
-  "Popolvár", "Princezná Fantaghirò", "Arabela", "Rumburak", "Lietajúci Cyprián", "Jánošík", "Bathory", "Pelíšky – Kraus", "Cisárov pekár", "Kráľ Drozdia brada",
-];
-
 const SERIES_CHARACTERS = [
   "Rachel Greenová", "Ross Geller", "Monica Gellerová", "Chandler Bing", "Joey Tribbiani", "Phoebe Buffayová", "Sheldon Cooper", "Leonard Hofstadter", "Penny", "Howard Wolowitz",
   "Walter White", "Jesse Pinkman", "Saul Goodman", "Gus Fring", "Hank Schrader", "Michael Scott", "Dwight Schrute", "Jim Halpert", "Pam Beeslyová", "Andy Bernard",
@@ -405,24 +392,6 @@ const VIDEO_GAME_CHARACTERS = [
   "Teemo", "Garen", "Fortnite Jonesy", "Peely", "Among Us Crewmate", "Fall Guys postavička", "Gordon Freeman", "GLaDOS", "Chell", "Alyx Vanceová",
   "Marcus Fenix", "Commander Shepard", "Tali'Zorah", "Joel Miller", "Ellie Williamsová", "Big Daddy z BioShock", "Dutch van der Linde", "Handsome Jack", "Claptrap", "Vault Boy",
   "Sans", "Papyrus", "Cuphead", "Mugman", "Freddy Fazbear", "Bonnie", "Chica", "Foxy", "Bendy", "Huggy Wuggy",
-];
-
-const WORLD_MOVIES = [
-  "Titanic", "Avatar", "Avatar: The Way of Water", "The Godfather", "The Godfather Part II", "The Dark Knight", "Pulp Fiction", "Fight Club", "Forrest Gump", "The Green Mile",
-  "The Shawshank Redemption", "Schindler's List", "Gladiator", "Braveheart", "Saving Private Ryan", "The Pianist", "Oppenheimer", "Barbie", "Inception", "Interstellar",
-  "Tenet", "Dunkirk", "The Prestige", "Memento", "The Matrix", "The Matrix Reloaded", "Terminator", "Terminator 2", "Alien", "Aliens",
-  "Predator", "Blade Runner", "Blade Runner 2049", "The Martian", "Gravity", "Apollo 13", "Dune", "Dune: Part Two", "Everything Everywhere All at Once", "Arrival",
-  "Star Wars: A New Hope", "The Empire Strikes Back", "Return of the Jedi", "The Force Awakens", "Rogue One", "The Lord of the Rings: The Fellowship of the Ring", "The Two Towers", "The Return of the King", "The Hobbit", "Harry Potter and the Philosopher's Stone",
-  "Harry Potter and the Prisoner of Azkaban", "Harry Potter and the Goblet of Fire", "Harry Potter and the Deathly Hallows", "Fantastic Beasts", "Pirates of the Caribbean", "The Hunger Games", "Catching Fire", "Twilight", "The Chronicles of Narnia", "Jurassic Park",
-  "Jurassic World", "King Kong", "Godzilla", "Jaws", "E.T.", "Back to the Future", "Ghostbusters", "Indiana Jones", "Raiders of the Lost Ark", "Top Gun",
-  "Top Gun: Maverick", "Mission: Impossible", "James Bond: Casino Royale", "Skyfall", "John Wick", "Die Hard", "Rocky", "Creed", "Rambo", "The Karate Kid",
-  "Kill Bill", "Mad Max: Fury Road", "Fast & Furious", "The Transporter", "Ocean's Eleven", "Now You See Me", "The Italian Job", "The Bourne Identity", "The Equalizer", "The Revenant",
-  "The Wolf of Wall Street", "Catch Me If You Can", "The Great Gatsby", "Once Upon a Time in Hollywood", "Goodfellas", "Scarface", "Taxi Driver", "The Silence of the Lambs", "Se7en", "Zodiac",
-  "The Sixth Sense", "Shutter Island", "A Quiet Place", "The Conjuring", "It", "Scream", "Halloween", "A Nightmare on Elm Street", "The Exorcist", "Saw",
-  "Home Alone", "Mrs. Doubtfire", "The Mask", "Ace Ventura", "Dumb and Dumber", "The Hangover", "Mean Girls", "Legally Blonde", "Pretty Woman", "Notting Hill",
-  "Love Actually", "The Devil Wears Prada", "Mamma Mia!", "La La Land", "The Greatest Showman", "A Star Is Born", "Bohemian Rhapsody", "Rocketman", "Dirty Dancing", "Grease",
-  "The Notebook", "The Fault in Our Stars", "Me Before You", "Edward Scissorhands", "Charlie and the Chocolate Factory", "Alice in Wonderland", "The Wizard of Oz", "Mary Poppins", "Wonka", "Enola Holmes",
-  "The Truman Show", "Cast Away", "The Terminal", "Green Book", "Intouchables", "Slumdog Millionaire", "Parasite", "The Grand Budapest Hotel", "Knives Out", "Glass Onion",
 ];
 
 const HEROES_AND_VILLAINS = [
@@ -465,6 +434,8 @@ const LANGUAGE_ONLY_CARDS: Record<string, Partial<Record<AppLanguage, string[]>>
  * their official title in each language. */
 const LANGUAGE_DECKS: Record<string, Record<AppLanguage, string[]>> = {
   "animated-movies": ANIMATED_MOVIES_BY_LANGUAGE,
+  "world-movies": WORLD_MOVIES_BY_LANGUAGE,
+  "movie-characters": MOVIE_CHARACTERS_BY_LANGUAGE,
 };
 
 function localizedCategory(category: CharacterCategory, language: AppLanguage): CharacterCategory {
@@ -524,7 +495,8 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     id: "movie-characters",
     name: "Filmové postavy",
     icon: "🍿",
-    characters: uniqueCards([...cards("movie-characters"), ...MOVIE_CHARACTERS_EXTRA]),
+    // Cards come from LANGUAGE_DECKS so every language gets its own names.
+    characters: MOVIE_CHARACTERS_BY_LANGUAGE.sk,
   },
   {
     id: "animated-characters",
@@ -548,7 +520,8 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     id: "world-movies",
     name: "Svetové filmy",
     icon: "🎞️",
-    characters: uniqueCards(WORLD_MOVIES),
+    // Cards come from LANGUAGE_DECKS so every language gets its own titles.
+    characters: WORLD_MOVIES_BY_LANGUAGE.sk,
   },
   {
     id: "animated-movies",
