@@ -352,6 +352,7 @@ const DEFAULT_SETTINGS: GameSettings = {
   impostorCount: 1,
   hintsEnabled: true,
   noRepeatWords: true,
+  hideCategoryFromImpostor: false,
   timerSeconds: 90,
   strokesPerPlayer: 3,
 };

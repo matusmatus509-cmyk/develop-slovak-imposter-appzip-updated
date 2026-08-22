@@ -38,6 +38,9 @@ export default function Setup({
   const [impostorCount, setImpostorCount] = useState(initial.impostorCount);
   const [hintsEnabled, setHintsEnabled] = useState(initial.hintsEnabled);
   const [noRepeatWords, setNoRepeatWords] = useState(initial.noRepeatWords);
+  const [hideCategoryFromImpostor, setHideCategoryFromImpostor] = useState(
+    initial.hideCategoryFromImpostor
+  );
   const [timerSeconds, setTimerSeconds] = useState(initial.timerSeconds);
 
   const maxImpostors = maxImpostorsFor(players.length);
@@ -73,6 +76,7 @@ export default function Setup({
       impostorCount: Math.min(impostorCount, maxImpostors),
       hintsEnabled,
       noRepeatWords,
+      hideCategoryFromImpostor,
       timerSeconds,
       strokesPerPlayer: initial.strokesPerPlayer,
     });
@@ -196,6 +200,12 @@ export default function Setup({
             onChange={setNoRepeatWords}
             label="Režim kôl — bez opakovania"
             description="Rovnaké slovo sa nezopakuje, kým sa nevystriedajú všetky"
+          />
+          <Toggle
+            checked={hideCategoryFromImpostor}
+            onChange={setHideCategoryFromImpostor}
+            label="Skryť kategóriu podvodníkovi"
+            description="Podvodník nevidí, z akej kategórie slovo je — ťažšie sa mu bude hádať"
           />
         </section>
       </div>

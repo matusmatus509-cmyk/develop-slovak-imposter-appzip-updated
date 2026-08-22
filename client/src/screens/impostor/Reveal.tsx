@@ -99,22 +99,28 @@ export default function Reveal({
                         {assignment.hintWord}
                       </p>
                     </div>
-                    <span className="mt-3 inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/60">
-                      {assignment.categoryIcon} {assignment.categoryName}
-                    </span>
+                    {!settings.hideCategoryFromImpostor && (
+                      <span className="mt-3 inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/60">
+                        {assignment.categoryIcon} {assignment.categoryName}
+                      </span>
+                    )}
                     <p className="mt-3 text-xs leading-relaxed text-white/50">
                       Znáš nápovedu. Použi ju ako svoju prvú asociáciu v kole.
                     </p>
                   </div>
                 ) : (
                   <div className="relative text-center" style={{ animation: "slideUp 0.5s ease-out 0.2s both" }}>
-                    <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/60">
-                      {assignment.categoryIcon} {assignment.categoryName}
-                    </span>
+                    {!settings.hideCategoryFromImpostor && (
+                      <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/60">
+                        {assignment.categoryIcon} {assignment.categoryName}
+                      </span>
+                    )}
                     <p className="mt-3 text-xs leading-relaxed text-white/50">
                       {mode === "drawing"
                         ? "Nepoznáš tajné slovo. Sleduj kresbu ostatných a pridaj nenápadný ťah, aby ťa neodhalili."
-                        : "Nepoznáš tajné slovo. Počúvaj ostatných a snaž sa zapadnúť, aby ťa neodhalili."}
+                        : settings.hideCategoryFromImpostor
+                          ? "Nepoznáš tajné slovo ani kategóriu. Počúvaj ostatných a snaž sa zapadnúť, aby ťa neodhalili."
+                          : "Nepoznáš tajné slovo. Počúvaj ostatných a snaž sa zapadnúť, aby ťa neodhalili."}
                     </p>
                   </div>
                 )}
