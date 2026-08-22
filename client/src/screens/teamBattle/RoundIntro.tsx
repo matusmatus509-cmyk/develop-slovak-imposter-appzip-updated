@@ -15,7 +15,7 @@ const GAME_DESC: Record<string, string> = {
     "Predvádzajte pohybom bez slov. Tím háda čo najviac výrazov za čas.",
   sarady:
     "Opisujte bez zakázaných výrazov. Každá správna odpoveď prináša body.",
-  quiz: "Rýchly tímový kvíz. Prvý tím na bzučiaku získava právo odpovedať.",
+  quiz: "Päť otázok v štyroch formátoch: tipovanie čísel, viac či menej aj klasické možnosti. Nerozhoduje rýchlosť, ale odhad.",
   pingpong:
     "Súboj jeden na jedného. Striedajte slová a udržte tempo až do konca.",
   hadajktosom:

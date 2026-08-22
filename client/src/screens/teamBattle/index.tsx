@@ -6,7 +6,15 @@ import {
   type QuizDifficulty,
   type QuizQuestion,
 } from "../../data/teamBattle";
-import { getQuizQuestionsByDifficulty } from "../../data/quizMaster";
+import {
+  drawQuizDuelQuestions,
+  type ResolvedQuizDuelQuestion,
+} from "../../data/quizDuel";
+import {
+  buildQuizDuelKindOrder,
+  QUIZ_DUEL_QUESTIONS_PER_ROUND,
+  type TeamIndex,
+} from "./quizDuelRound";
 
 import TeamBattleSetup, { type TeamBattleOptions } from "./Setup";
 /** Dizajn: Párty výber sa otvára až po štarte vlastnej zostavy; aktuálne hero karty potvrdia poradie a potom sa hra začne priamo. */
@@ -26,7 +34,6 @@ import SoundBuzzer from "./SoundBuzzer";
 import MusicBuzzer from "./MusicBuzzer";
 import { FiveInTenGame, LetterChallengeGame } from "./QuickChallenges";
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
-import { takePersistentItems } from "../../utils/persistentDeck";
 import type { WordGuessRecordInput } from "../../types";
 import type { CustomContentControls } from "../../components/CustomContentSelector";
 
@@ -62,10 +69,18 @@ export default function TeamBattle({
   customControls?: CustomContentControls;
 }) {
   const { language } = useLanguage();
+  /**
+   * Kvízový súboj: najprv sa vyžrebuje zloženie kola (typy otázok) a potom sa
+   * pre každý typ vytiahne otázka z vlastného decku bez opakovania.
+   *
+   * Poznámka: vlastné otázky z Dielne (`customQuestions`) majú len text a
+   * odpoveď — nové formáty potrebujú možnosti alebo číselnú hodnotu, takže sa
+   * do kvízového kola nepridávajú. (Ani v predchádzajúcej verzii sa nepoužili,
+   * lebo im chýbala náročnosť, podľa ktorej sa filtrovalo.)
+   */
   function chooseQuizQuestions(difficulty: QuizDifficulty) {
-    const customPool = customQuestions.filter((question) => question.difficulty === difficulty);
-    const pool = [...getQuizQuestionsByDifficulty(language, difficulty), ...customPool];
-    return takePersistentItems(`party:quiz:${language}:${difficulty}`, pool, 5, (item) => item.id ?? item.question);
+    const kinds = buildQuizDuelKindOrder(QUIZ_DUEL_QUESTIONS_PER_ROUND);
+    return drawQuizDuelQuestions(language, difficulty, kinds);
   }
   const [phase, setPhase] = useState<Phase>("setup");
   const [teamNames, setTeamNames] = useState<[string, string]>([
@@ -88,7 +103,9 @@ export default function TeamBattle({
   const partyStartedAtRef = useRef<number | null>(null);
 
   // Per-round questions are selected at round start.
-  const [roundQuestions, setRoundQuestions] = useState<QuizQuestion[]>([]);
+  const [roundQuestions, setRoundQuestions] = useState<ResolvedQuizDuelQuestion[]>([]);
+  /** Kto v kvíze začína pri sekvenčných typoch — striedanie drží kolo férové. */
+  const [quizStartTeam, setQuizStartTeam] = useState<TeamIndex>(0);
 
   const currentRound = rounds[currentRoundIdx] ?? null;
 
@@ -128,6 +145,7 @@ export default function TeamBattle({
     if (!r) return;
     if (r.game === "quiz") {
       setRoundQuestions(chooseQuizQuestions(quizDifficulty));
+      setQuizStartTeam(Math.random() < 0.5 ? 0 : 1);
     }
   }
 
@@ -268,6 +286,7 @@ export default function TeamBattle({
         <TeamQuiz
           questions={roundQuestions}
           teamNames={teamNames}
+          startTeam={quizStartTeam}
           onDone={handleRoundDone}
         />
       );
