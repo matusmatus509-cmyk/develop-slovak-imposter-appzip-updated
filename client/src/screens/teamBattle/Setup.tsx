@@ -63,10 +63,10 @@ export default function TeamBattleSetup({
   const quizDifficultyControls = (
     <div className="mt-5 border-t border-white/10 pt-4">
       <p className="text-[10px] font-black uppercase tracking-[0.24em] text-amber-300/70">
-        Náročnosť kvízu
+        Náročnosť Kvízového súboja
       </p>
       <p className="mt-1 text-sm font-bold text-white/70">
-        Zvoľte otázky pre kvízové kolo
+        Platí pre tipovanie čísel aj klasické otázky
       </p>
       <div className="mt-3 grid grid-cols-2 gap-2">
         {(
@@ -276,7 +276,6 @@ export default function TeamBattleSetup({
                 Hry a poradie vyberie aplikácia náhodne. Posledné kolo bude
                 kvízové finále.
               </p>
-              {quizDifficultyControls}
             </section>
           ) : null}
 
@@ -343,6 +342,9 @@ export default function TeamBattleSetup({
                 výzvy majú vlastný rýchly limit.
               </p>
             </div>
+
+            {/* Náročnosť kvízu platí v oboch režimoch — aj keď si hry vyberiete sami. */}
+            {quizDifficultyControls}
           </section>
 
           <button
