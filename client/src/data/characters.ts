@@ -3,6 +3,7 @@ import { LOCAL_PERSONALITY_CATEGORIES } from "./localizedPersonalities";
 import { GENERATED_CHARACTER_CARDS } from "./expandedContent";
 import { MARVEL_CHARACTERS } from "./marvelCharacters";
 import { ANIMATED_CHARACTERS as ANIMATED_CHARACTERS_DECK, ANIMATED_CHARACTERS_SK_ONLY } from "./animatedCharacters";
+import { ANIMATED_MOVIES_BY_LANGUAGE } from "./animatedMovies";
 
 export interface CharacterCategory {
   id: string;
@@ -424,23 +425,6 @@ const WORLD_MOVIES = [
   "The Truman Show", "Cast Away", "The Terminal", "Green Book", "Intouchables", "Slumdog Millionaire", "Parasite", "The Grand Budapest Hotel", "Knives Out", "Glass Onion",
 ];
 
-const ANIMATED_MOVIES = [
-  "The Lion King", "Frozen", "Frozen 2", "Moana", "Encanto", "Coco", "Tangled", "The Little Mermaid", "Beauty and the Beast", "Aladdin",
-  "Mulan", "Pocahontas", "Hercules", "Tarzan", "Lilo & Stitch", "Peter Pan", "Pinocchio", "Dumbo", "Bambi", "Snow White and the Seven Dwarfs",
-  "Cinderella", "Sleeping Beauty", "The Jungle Book", "The Aristocats", "One Hundred and One Dalmatians", "Robin Hood", "The Sword in the Stone", "The Princess and the Frog", "Wreck-It Ralph", "Ralph Breaks the Internet",
-  "Zootopia", "Big Hero 6", "Raya and the Last Dragon", "Wish", "Bolt", "The Emperor's New Groove", "Atlantis: The Lost Empire", "Treasure Planet", "The Hunchback of Notre Dame", "Oliver & Company",
-  "Toy Story", "Toy Story 2", "Toy Story 3", "Toy Story 4", "Finding Nemo", "Finding Dory", "Monsters, Inc.", "Monsters University", "The Incredibles", "Incredibles 2",
-  "Cars", "Cars 2", "Cars 3", "Ratatouille", "WALL-E", "Up", "Brave", "Inside Out", "Inside Out 2", "The Good Dinosaur",
-  "Onward", "Soul", "Luca", "Turning Red", "Elemental", "Lightyear", "A Bug's Life", "Kung Fu Panda", "Kung Fu Panda 2", "Kung Fu Panda 3",
-  "Shrek", "Shrek 2", "Puss in Boots", "Puss in Boots: The Last Wish", "Madagascar", "Madagascar 2", "The Penguins of Madagascar", "How to Train Your Dragon", "How to Train Your Dragon 2", "The Croods",
-  "Megamind", "The Boss Baby", "Trolls", "Spirit: Stallion of the Cimarron", "The Prince of Egypt", "Chicken Run", "Wallace & Gromit", "Flushed Away", "Bee Movie", "Over the Hedge",
-  "Despicable Me", "Despicable Me 2", "Minions", "Sing", "Sing 2", "The Secret Life of Pets", "The Lorax", "The Grinch", "Migration", "The Super Mario Bros. Movie",
-  "Ice Age", "Ice Age: The Meltdown", "Rio", "Rio 2", "Ferdinand", "The Peanuts Movie", "Epic", "Robots", "Horton Hears a Who!", "Spies in Disguise",
-  "Hotel Transylvania", "Cloudy with a Chance of Meatballs", "The Smurfs", "Open Season", "Surf's Up", "The Angry Birds Movie", "Vivo", "The Mitchells vs. the Machines", "Spider-Man: Into the Spider-Verse", "Spider-Man: Across the Spider-Verse",
-  "Coraline", "The Nightmare Before Christmas", "Corpse Bride", "Kubo and the Two Strings", "ParaNorman", "The Lego Movie", "The Lego Batman Movie", "Rango", "The Polar Express", "Arthur Christmas",
-  "Pokémon: The First Movie", "My Neighbor Totoro", "Spirited Away", "Howl's Moving Castle", "Ponyo", "Kiki's Delivery Service", "The Boy and the Heron", "Your Name", "The Iron Giant", "The Simpsons Movie",
-];
-
 const HEROES_AND_VILLAINS = [
   "Spider-Man", "Iron Man", "Captain America", "Thor", "Hulk", "Black Widow", "Hawkeye", "Doctor Strange", "Black Panther", "Captain Marvel",
   "Ant-Man", "Wasp", "Scarlet Witch", "Vision", "Falcon", "Winter Soldier", "Star-Lord", "Gamora", "Drax", "Groot",
@@ -475,14 +459,24 @@ const LANGUAGE_ONLY_CARDS: Record<string, Partial<Record<AppLanguage, string[]>>
   "animated-characters": { sk: ANIMATED_CHARACTERS_SK_ONLY },
 };
 
+/** Decks that are fully translated per language. The entry in
+ * CHARACTER_CATEGORIES keeps the deck's position in the category list, while
+ * the language deck supplies the cards — e.g. animated movies are shown under
+ * their official title in each language. */
+const LANGUAGE_DECKS: Record<string, Record<AppLanguage, string[]>> = {
+  "animated-movies": ANIMATED_MOVIES_BY_LANGUAGE,
+};
+
 function localizedCategory(category: CharacterCategory, language: AppLanguage): CharacterCategory {
+  const languageDeck = LANGUAGE_DECKS[category.id]?.[language];
   const languageOnlyCards = LANGUAGE_ONLY_CARDS[category.id]?.[language];
+  const characters = languageDeck ?? category.characters;
   return {
     ...category,
     name: CATEGORY_LABELS[category.id]?.[language] ?? category.name,
     characters: languageOnlyCards
-      ? uniqueCards([...category.characters, ...languageOnlyCards])
-      : category.characters,
+      ? uniqueCards([...characters, ...languageOnlyCards])
+      : characters,
   };
 }
 
@@ -560,7 +554,8 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     id: "animated-movies",
     name: "Animované filmy",
     icon: "🎥",
-    characters: uniqueCards(ANIMATED_MOVIES),
+    // Cards come from LANGUAGE_DECKS so every language gets its own titles.
+    characters: ANIMATED_MOVIES_BY_LANGUAGE.sk,
   },
   {
     id: "heroes-villains",
