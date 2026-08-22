@@ -25,17 +25,34 @@ import {
 } from "./quizDuelRound";
 
 const LETTERS = ["A", "B", "C", "D"] as const;
-const BRIEF_DURATION_MS = 4200;
+/** Čas na prečítanie typu kola, pravidla aj otázky. Klepnutím sa preskočí. */
+const BRIEF_DURATION_MS = 5200;
 
 /** Popis typu kola pre hlavičku aj pre úvodné vysvetlenie. */
 const KIND_INFO: Record<
   ResolvedQuizDuelQuestion["kind"],
   { label: string; rule: string; icon: string }
 > = {
-  classic: { label: "Klasická otázka", rule: "Obaja vyberte odpoveď", icon: "🧠" },
-  estimate: { label: "Tipni číslo", rule: "Tip, potom VIAC/MENEJ", icon: "🎯" },
-  closest: { label: "Najbližší tip", rule: "Obaja tajne tipnite", icon: "📏" },
-  "higher-lower": { label: "Viac či menej", rule: "Je to viac alebo menej?", icon: "⚖️" },
+  classic: {
+    label: "Klasická otázka",
+    rule: "Oba tímy naraz vyberú jednu zo štyroch možností.",
+    icon: "🧠",
+  },
+  estimate: {
+    label: "Tipni číslo",
+    rule: "Jeden tím zadá číslo, druhý háda, či je pravda viac alebo menej.",
+    icon: "🎯",
+  },
+  closest: {
+    label: "Najbližší tip",
+    rule: "Oba tímy tajne zadajú číslo. Bod berie bližší tip.",
+    icon: "📏",
+  },
+  "higher-lower": {
+    label: "Viac či menej",
+    rule: "Je skutočná hodnota vyššia alebo nižšia ako v tvrdení?",
+    icon: "⚖️",
+  },
 };
 
 /** Krátke, aby sa vo výsledku nezmestil odsek textu. */
@@ -101,6 +118,71 @@ function QuestionCard({
         {text}
       </p>
     </div>
+  );
+}
+
+/**
+ * Úvod otázky: jedna karta, tri jasné úrovne — typ kola, pravidlo, otázka.
+ * Celá karta je tlačidlo, takže netreba samostatné „Pokračovať“.
+ */
+function BriefCard({
+  icon,
+  label,
+  rule,
+  question,
+  color,
+  onTap,
+}: {
+  icon: string;
+  label: string;
+  rule: string;
+  question: string;
+  color: string;
+  onTap: () => void;
+}) {
+  return (
+    <>
+      <div
+        role="button"
+        onClick={onTap}
+        className="party-glass flex min-h-0 w-full flex-1 cursor-pointer flex-col overflow-hidden rounded-2xl border transition active:scale-[.99]"
+        style={{
+          borderColor: `${color}44`,
+          background: "rgba(255,255,255,0.04)",
+          animation: "popIn .35s cubic-bezier(0.34,1.56,0.64,1) both",
+        }}
+      >
+        {/* Hlavička karty: čo je to za typ kola a ako sa hrá. */}
+        <div
+          className="flex shrink-0 flex-col items-center gap-0.5 px-3 py-1.5"
+          style={{ background: `${color}1f`, borderBottom: `1px solid ${color}33` }}
+        >
+          <p
+            className="text-[11px] font-black uppercase tracking-[0.16em]"
+            style={{ color }}
+          >
+            {icon} {label}
+          </p>
+          <p className="text-center text-[10px] font-bold leading-snug text-white/55">
+            {rule}
+          </p>
+        </div>
+
+        {/* Samotná otázka dostane celý zvyšok karty. */}
+        <div className="flex min-h-0 flex-1 items-center justify-center px-3 py-2">
+          <p
+            className="text-center font-black leading-snug text-white"
+            style={{ fontSize: "clamp(1.05rem, 4.3vw, 1.6rem)" }}
+          >
+            {question}
+          </p>
+        </div>
+      </div>
+
+      <div className="quiz-reveal-bar-wrapper shrink-0">
+        <div className="quiz-reveal-bar" />
+      </div>
+    </>
   );
 }
 
@@ -275,29 +357,18 @@ function QuizFace({
       style={{ transform: flipped ? "rotate(180deg)" : undefined }}
     >
       {/* ── Predstavenie otázky ─────────────────────────────────────────────
-          Typ kola sa vysvetlí len tu. Ďalej už hovoria samotné tlačidlá,
-          takže hlavička na každej obrazovke nie je potrebná. Klepnutie na
-          otázku posunie kolo — netreba samostatné tlačidlo. */}
+          Pred KAŽDOU otázkou je typ kola aj pravidlo — nikto nemusí hádať,
+          čo sa od neho čaká. Všetko je v jednej karte, aby to zostalo
+          prehľadné. Ďalej už hovoria samotné tlačidlá. */}
       {stage.t === "brief" && (
-        <>
-          <p
-            className="shrink-0 text-[10px] font-black uppercase tracking-widest"
-            style={{ color }}
-          >
-            {info.icon} {info.label}
-          </p>
-          <QuestionCard
-            text={question.prompt}
-            large
-            onTap={() => dispatch({ t: "start" })}
-          />
-          <p className="shrink-0 text-[10px] font-bold text-white/35">
-            {info.rule}
-          </p>
-          <div className="quiz-reveal-bar-wrapper shrink-0">
-            <div className="quiz-reveal-bar" />
-          </div>
-        </>
+        <BriefCard
+          icon={info.icon}
+          label={info.label}
+          rule={info.rule}
+          question={question.prompt}
+          color={color}
+          onTap={() => dispatch({ t: "start" })}
+        />
       )}
 
       {/* ── ISTOTA / RISK ───────────────────────────────────────────────── */}

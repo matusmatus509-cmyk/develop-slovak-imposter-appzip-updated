@@ -213,46 +213,46 @@ export function scoreClosest(
 
 // ── Zloženie kola ────────────────────────────────────────────────────────────
 
-/** Prvá otázka je vždy klasická — je najzrozumiteľnejšia na rozohriatie. */
-const OPENING_KIND: QuizDuelKind = "classic";
-const ROTATION: QuizDuelKind[] = ["estimate", "closest", "higher-lower"];
-
-function shuffleWith<T>(items: readonly T[], random: () => number): T[] {
-  const copy = [...items];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
+/**
+ * Pevné poradie striedania typov. Nie je náhodné zámerne:
+ *
+ *  • partia sa pravidelné striedanie naučí po prvom kole a vie, čo príde,
+ *  • nikdy neprídu dva rovnaké typy za sebou,
+ *  • kolo vždy začína klasickou otázkou (najzrozumiteľnejšia na rozohriatie)
+ *    a vždy končí symetrickým typom, takže finále je férové.
+ *
+ * Náhodné zostávajú samotné otázky — tie sa ťahajú z deckov bez opakovania.
+ */
+export const QUIZ_DUEL_KIND_ROTATION: readonly QuizDuelKind[] = [
+  "classic",
+  "estimate",
+  "closest",
+  "higher-lower",
+];
 
 /**
- * Poradie typov v kole. Päť otázok pokryje všetky štyri typy a posledná otázka
- * je vždy symetrická (oba tímy odpovedajú naraz) — finále má byť férové.
+ * Poradie typov v kole — round robin cez `QUIZ_DUEL_KIND_ROTATION`.
+ * Pri piatich otázkach vyjde: klasická → tipni číslo → najbližší tip →
+ * viac/menej → klasická.
  */
 export function buildQuizDuelKindOrder(
-  count: number = QUIZ_DUEL_QUESTIONS_PER_ROUND,
-  random: () => number = Math.random
+  count: number = QUIZ_DUEL_QUESTIONS_PER_ROUND
 ): QuizDuelKind[] {
   if (count <= 0) return [];
+  const kinds = Array.from(
+    { length: count },
+    (_, index) => QUIZ_DUEL_KIND_ROTATION[index % QUIZ_DUEL_KIND_ROTATION.length]
+  );
 
-  const order: QuizDuelKind[] = [OPENING_KIND, ...shuffleWith(ROTATION, random)];
-  while (order.length < count) {
-    const extras = shuffleWith(SYMMETRIC_QUIZ_DUEL_KINDS, random);
-    order.push(extras[0]);
-  }
-  const kinds = order.slice(0, count);
-
+  // Posledná otázka nesmie byť asymetrická — pri „Tipni číslo“ má druhý tím
+  // informačnú výhodu a na rozhodujúcu otázku kola to nie je fér.
   const last = kinds.length - 1;
   if (last > 0 && !SYMMETRIC_QUIZ_DUEL_KINDS.includes(kinds[last])) {
     const swapAt = kinds.findIndex(
       (kind, index) => index > 0 && index < last && SYMMETRIC_QUIZ_DUEL_KINDS.includes(kind)
     );
-    if (swapAt > 0) {
-      [kinds[swapAt], kinds[last]] = [kinds[last], kinds[swapAt]];
-    } else {
-      kinds[last] = "closest";
-    }
+    if (swapAt > 0) [kinds[swapAt], kinds[last]] = [kinds[last], kinds[swapAt]];
+    else kinds[last] = "closest";
   }
   return kinds;
 }
