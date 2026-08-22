@@ -197,6 +197,27 @@ describe("zloženie kola", () => {
     expect(new Set(kinds).size).toBe(4);
   });
 
+  it("typy sa striedajú pravidelne a vždy v rovnakom poradí", () => {
+    expect(buildQuizDuelKindOrder(5)).toEqual([
+      "classic",
+      "estimate",
+      "closest",
+      "higher-lower",
+      "classic",
+    ]);
+    // Poradie nie je náhodné — každé kolo vyjde rovnako.
+    for (let i = 0; i < 20; i++) {
+      expect(buildQuizDuelKindOrder(5)).toEqual(buildQuizDuelKindOrder(5));
+    }
+  });
+
+  it("nikdy neprídu dva rovnaké typy za sebou", () => {
+    const kinds = buildQuizDuelKindOrder(8);
+    for (let i = 1; i < kinds.length; i++) {
+      expect(kinds[i]).not.toBe(kinds[i - 1]);
+    }
+  });
+
   it("prvá otázka je vždy klasická", () => {
     for (let i = 0; i < 40; i++) {
       expect(buildQuizDuelKindOrder(5)[0]).toBe("classic");

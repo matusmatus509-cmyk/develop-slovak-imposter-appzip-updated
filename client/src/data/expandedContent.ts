@@ -990,53 +990,6 @@ export const GENERATED_FORBIDDEN_CARDS = exact(
   card => card.word
 );
 
-export interface GeneratedQuizQuestion {
-  question: string;
-  answer: string;
-  category: string;
-}
-const ADDITION_QUESTIONS: GeneratedQuizQuestion[] = Array.from(
-  { length: 50 },
-  (_, a) =>
-    Array.from({ length: 50 }, (_, b) => ({
-      question: `Koľko je ${a + 11} + ${b + 7}?`,
-      answer: String(a + b + 18),
-      category: "🔢 Matematika",
-    }))
-).flat();
-const SUBTRACTION_QUESTIONS: GeneratedQuizQuestion[] = Array.from(
-  { length: 50 },
-  (_, a) =>
-    Array.from({ length: 30 }, (_, b) => ({
-      question: `Koľko je ${a + b + 51} − ${b + 9}?`,
-      answer: String(a + 42),
-      category: "🔢 Matematika",
-    }))
-).flat();
-const MULTIPLICATION_QUESTIONS: GeneratedQuizQuestion[] = Array.from(
-  { length: 25 },
-  (_, a) =>
-    Array.from({ length: 25 }, (_, b) => ({
-      question: `Koľko je ${a + 2} × ${b + 2}?`,
-      answer: String((a + 2) * (b + 2)),
-      category: "✖️ Násobenie",
-    }))
-).flat();
-const DIVISION_QUESTIONS: GeneratedQuizQuestion[] = Array.from(
-  { length: 40 },
-  (_, divisor) =>
-    Array.from({ length: 20 }, (_, quotient) => ({
-      question: `Koľko je ${(divisor + 2) * (quotient + 2)} ÷ ${divisor + 2}?`,
-      answer: String(quotient + 2),
-      category: "➗ Delenie",
-    }))
-).flat();
-export const GENERATED_QUIZ_QUESTIONS = [
-  ...ADDITION_QUESTIONS,
-  ...SUBTRACTION_QUESTIONS,
-  ...MULTIPLICATION_QUESTIONS,
-  ...DIVISION_QUESTIONS,
-];
 
 const TONES = [
   ["veľmi hlboký", 110],

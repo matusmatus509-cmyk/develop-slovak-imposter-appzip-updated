@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { TEAM_COLORS } from "../../data/teamBattle";
-import { Icons } from "../../components/icons";
 import type {
   ResolvedClassicQuestion,
   ResolvedNumericQuestion,
@@ -14,7 +13,6 @@ import {
   higherLowerTruth,
   otherTeam,
   parseGuessInput,
-  pointsAtStake,
   quizDuelReducer,
   type QuizDuelAction,
   type QuizDuelPlan,
@@ -25,49 +23,73 @@ import {
   type Wager,
 } from "./quizDuelRound";
 
-const LETTERS = ["A", "B", "C", "D"] as const;
-const BRIEF_DURATION_MS = 4200;
+/**
+ * ── Vizuálny systém ─────────────────────────────────────────────────────────
+ *
+ * Obrazovka je obojstranná, takže každý prvok sa kreslí dvakrát a jedna
+ * polovica má necelú polovicu výšky displeja. Preto platia tri pravidlá:
+ *
+ *  1. Na jednu fázu maximálne TRI prvky.
+ *  2. Iba tri úrovne textu (nadpisok, popis, hlavný text) — nie osem odtieňov
+ *     bielej ako predtým.
+ *  3. Jeden vzhľad karty pre všetko, aby obrazovka pôsobila ako celok.
+ */
 
-/** Popis typu kola pre hlavičku aj pre úvodné vysvetlenie. */
+const LETTERS = ["A", "B", "C", "D"] as const;
+
+/** Čas na prečítanie typu kola, pravidla aj otázky. Klepnutím sa preskočí. */
+const BRIEF_DURATION_MS = 5200;
+
+const CARD_RADIUS = "1.25rem";
+const SURFACE = "rgba(255,255,255,0.045)";
+const SURFACE_BORDER = "rgba(255,255,255,0.09)";
+
+/** Nadpisok nad obsahom — jediný povolený „malý“ štýl textu. */
+const EYEBROW = "text-[10px] font-black uppercase tracking-[0.18em]";
+/** Vysvetľujúci text — jediný povolený „stredný“ štýl. */
+const CAPTION = "text-[11px] font-bold leading-snug";
+
+const VERDICT_COLORS = { viac: "#4ade80", menej: "#60a5fa" } as const;
+
 const KIND_INFO: Record<
   ResolvedQuizDuelQuestion["kind"],
   { label: string; rule: string; icon: string }
 > = {
   classic: {
     label: "Klasická otázka",
-    rule: "Oba tímy si vyberú odpoveď. Až potom sa odhalí správna.",
+    rule: "Oba tímy naraz vyberú jednu zo štyroch možností.",
     icon: "🧠",
   },
   estimate: {
     label: "Tipni číslo",
-    rule: "Jeden tím zadá odhad, druhý háda, či je pravda VIAC alebo MENEJ.",
+    rule: "Jeden tím zadá číslo, druhý háda, či je pravda viac alebo menej.",
     icon: "🎯",
   },
   closest: {
-    label: "Najbližší tip vyhráva",
-    rule: "Oba tímy tajne zadajú číslo. Bližší tip berie bod.",
+    label: "Najbližší tip",
+    rule: "Oba tímy tajne zadajú číslo. Bod berie bližší tip.",
     icon: "📏",
   },
   "higher-lower": {
-    label: "Viac alebo menej",
+    label: "Viac či menej",
     rule: "Je skutočná hodnota vyššia alebo nižšia ako v tvrdení?",
     icon: "⚖️",
   },
 };
 
 const REASON_TEXT: Record<QuizDuelReason, string> = {
-  correct: "Správna odpoveď",
-  wrong: "Nesprávna odpoveď",
+  correct: "Správne",
+  wrong: "Nesprávne",
   "no-answer": "Bez odpovede",
-  "verdict-correct": "Uhádli ste správne",
+  "verdict-correct": "Uhádli ste",
   "verdict-wrong": "Netrafili ste",
-  "estimate-defended": "Súper sa pomýlil pri vašom tipe",
-  "estimate-beaten": "Súper váš tip prečítal správne",
+  "estimate-defended": "Súper sa pomýlil",
+  "estimate-beaten": "Súper vás prečítal",
   "estimate-exact": "Presný zásah!",
-  "estimate-void": "Tip súpera bol presný — rozhodnutie neplatí",
+  "estimate-void": "Tip bol presný",
   "closest-win": "Boli ste bližšie",
   "closest-lose": "Súper bol bližšie",
-  "closest-tie": "Rovnaká vzdialenosť",
+  "closest-tie": "Rovnako blízko",
   "closest-exact": "Presný zásah!",
 };
 
@@ -77,35 +99,24 @@ function deltaLabel(delta: number) {
   return "0";
 }
 
-// ── Malé stavebné prvky ──────────────────────────────────────────────────────
+// ── Stavebné prvky ───────────────────────────────────────────────────────────
 
-function QuestionCard({
-  text,
-  large,
-  accent,
-}: {
-  text: string;
-  large?: boolean;
-  accent?: string;
-}) {
+/** Otázka počas hrania — kompaktná, aby ovládanie dostalo čo najviac miesta. */
+function QuestionBar({ text }: { text: string }) {
   return (
     <div
       key={text}
-      className="party-glass flex w-full shrink-0 items-center justify-center overflow-hidden rounded-2xl border px-3 text-center"
+      className="flex w-full shrink-0 items-center justify-center border px-3 py-2 text-center"
       style={{
-        padding: large ? "1.25rem .9rem" : ".5rem .7rem",
-        background: accent ? `${accent}1a` : "rgba(255,255,255,0.04)",
-        borderColor: accent ? `${accent}55` : "rgba(255,255,255,0.09)",
-        animation: "popIn .35s cubic-bezier(0.34,1.56,0.64,1) both",
+        borderRadius: CARD_RADIUS,
+        background: SURFACE,
+        borderColor: SURFACE_BORDER,
+        animation: "popIn .3s cubic-bezier(0.34,1.56,0.64,1) both",
       }}
     >
       <p
         className="font-black leading-snug text-white"
-        style={{
-          fontSize: large
-            ? "clamp(1.15rem, 4.6vw, 1.7rem)"
-            : "clamp(.8rem, 3.1vw, 1.1rem)",
-        }}
+        style={{ fontSize: "clamp(.8rem, 3.2vw, 1.05rem)" }}
       >
         {text}
       </p>
@@ -113,15 +124,92 @@ function QuestionCard({
   );
 }
 
-function WaitingNote({ text }: { text: string }) {
+/**
+ * Úvod otázky — jediný prvok na obrazovke a zároveň tlačidlo.
+ * Ikona v krúžku, názov typu, pravidlo, oddeľovač a pod ním samotná otázka.
+ * Hráč tak vždy vie, čo je to za kolo a čo má robiť.
+ */
+function BriefCard({
+  icon,
+  label,
+  rule,
+  question,
+  color,
+  onTap,
+}: {
+  icon: string;
+  label: string;
+  rule: string;
+  question: string;
+  color: string;
+  onTap: () => void;
+}) {
   return (
-    <p className="shrink-0 text-center text-[11px] font-bold uppercase tracking-widest text-white/30">
-      {text}
-    </p>
+    <>
+      <div
+        role="button"
+        aria-label={`${label}: ${rule}`}
+        onClick={onTap}
+        className="flex min-h-0 w-full flex-1 cursor-pointer flex-col items-center overflow-hidden border px-4 py-3 transition active:scale-[.99]"
+        style={{
+          borderRadius: CARD_RADIUS,
+          background: `linear-gradient(180deg, ${color}1c, ${SURFACE})`,
+          borderColor: `${color}3d`,
+          boxShadow: `0 18px 40px -30px ${color}`,
+          animation: "popIn .35s cubic-bezier(0.34,1.56,0.64,1) both",
+        }}
+      >
+        <span
+          className="flex shrink-0 items-center justify-center rounded-full border"
+          style={{
+            width: "clamp(2.1rem, 8vw, 2.75rem)",
+            height: "clamp(2.1rem, 8vw, 2.75rem)",
+            fontSize: "clamp(1rem, 4vw, 1.35rem)",
+            background: `${color}24`,
+            borderColor: `${color}55`,
+          }}
+        >
+          {icon}
+        </span>
+
+        <p className={`${EYEBROW} mt-1.5 shrink-0`} style={{ color }}>
+          {label}
+        </p>
+        <p className={`${CAPTION} mt-0.5 shrink-0 text-center text-white/50`}>
+          {rule}
+        </p>
+
+        <span
+          className="my-2 h-px w-10 shrink-0"
+          style={{ background: `${color}4d` }}
+        />
+
+        <div className="flex min-h-0 flex-1 items-center justify-center">
+          <p
+            className="text-center font-black leading-snug text-white"
+            style={{ fontSize: "clamp(1rem, 4.2vw, 1.55rem)" }}
+          >
+            {question}
+          </p>
+        </div>
+      </div>
+
+      <div className="quiz-reveal-bar-wrapper shrink-0">
+        <div className="quiz-reveal-bar" />
+      </div>
+    </>
   );
 }
 
-function BigChoiceButton({
+/** Prázdny text nič nevykreslí — pokyn patrí na obrazovku len keď niečo hovorí. */
+function WaitingNote({ text }: { text: string }) {
+  if (!text) return null;
+  return (
+    <p className={`${EYEBROW} shrink-0 text-center text-white/25`}>{text}</p>
+  );
+}
+
+function ChoiceButton({
   label,
   hint,
   color,
@@ -143,25 +231,22 @@ function BigChoiceButton({
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className="flex min-h-[min(3rem,7.5dvh)] flex-1 flex-col items-center justify-center gap-0.5 rounded-2xl border px-2 py-2 transition enabled:active:scale-[.97] disabled:cursor-default"
+      className="flex min-h-[min(3.1rem,7.5dvh)] flex-1 flex-col items-center justify-center gap-0.5 border px-2 transition enabled:active:scale-[.97] disabled:cursor-default"
       style={{
-        background: selected ? `${color}33` : "rgba(255,255,255,0.05)",
-        borderColor: selected ? `${color}cc` : "rgba(255,255,255,0.12)",
-        opacity: dimmed ? 0.35 : 1,
-        boxShadow: selected ? `0 8px 24px -14px ${color}` : undefined,
+        borderRadius: CARD_RADIUS,
+        background: selected ? `${color}30` : SURFACE,
+        borderColor: selected ? `${color}cc` : SURFACE_BORDER,
+        opacity: dimmed ? 0.3 : 1,
+        boxShadow: selected ? `0 10px 26px -18px ${color}` : undefined,
       }}
     >
       <span
-        className="text-sm font-black leading-none text-white"
-        style={{ fontSize: "clamp(.85rem, 3.4vw, 1.05rem)" }}
+        className="font-black leading-none text-white"
+        style={{ fontSize: "clamp(.9rem, 3.6vw, 1.1rem)" }}
       >
         {label}
       </span>
-      {hint && (
-        <span className="text-[9px] font-bold uppercase tracking-wider text-white/45">
-          {hint}
-        </span>
-      )}
+      {hint && <span className={`${EYEBROW} text-white/40`}>{hint}</span>}
     </button>
   );
 }
@@ -194,33 +279,29 @@ function NumberPad({
   }
 
   return (
-    <div className="flex w-full min-h-0 flex-1 flex-col gap-1.5">
-      {/* Jednotka je vo farbe tímu a nikdy sa neskracuje — hráč musí okamžite
-          vedieť, v čom má tipovať (litry, km, °C…). */}
+    <div className="flex min-h-0 w-full flex-1 flex-col gap-1.5">
+      {/* Číslo a jednotka na jednom riadku. Jednotka je vo farbe tímu a nikdy
+          sa neskracuje — hráč musí vedieť, v čom tipuje (litry, km, °C…). */}
       <div
-        className="flex shrink-0 flex-col items-center gap-0.5 rounded-2xl border px-3 py-1.5"
-        style={{ borderColor: `${color}55`, background: `${color}12` }}
+        className="flex shrink-0 items-baseline justify-center gap-1.5 border px-3 py-1.5"
+        style={{
+          borderRadius: CARD_RADIUS,
+          borderColor: `${color}55`,
+          background: `${color}14`,
+        }}
       >
-        <p className="text-[9px] font-black uppercase tracking-[0.2em] text-white/40">
-          Váš tip
-        </p>
-        <div className="flex w-full items-baseline justify-center gap-1.5">
-          <span
-            className="font-black tabular-nums leading-none"
-            style={{
-              fontSize: "clamp(1.25rem, 5.6vw, 1.9rem)",
-              color: value ? "#ffffff" : "rgba(255,255,255,.28)",
-            }}
-          >
-            {value || "0"}
-          </span>
-          <span
-            className="text-[11px] font-black uppercase leading-tight tracking-wider"
-            style={{ color }}
-          >
-            {unit}
-          </span>
-        </div>
+        <span
+          className="font-black tabular-nums leading-none"
+          style={{
+            fontSize: "clamp(1.3rem, 5.8vw, 1.95rem)",
+            color: value ? "#ffffff" : "rgba(255,255,255,.25)",
+          }}
+        >
+          {value || "0"}
+        </span>
+        <span className={`${EYEBROW} leading-tight`} style={{ color }}>
+          {unit}
+        </span>
       </div>
 
       <div className="grid shrink-0 grid-cols-4 gap-1.5">
@@ -230,7 +311,8 @@ function NumberPad({
             type="button"
             onClick={() => press(key)}
             aria-label={key === "⌫" ? "Zmazať číslicu" : key}
-            className="min-h-[min(2.3rem,5dvh)] rounded-xl border border-white/10 bg-white/[0.06] text-base font-black text-white transition active:scale-95"
+            className="min-h-[min(2.4rem,5dvh)] rounded-xl border text-base font-black text-white transition active:scale-95"
+            style={{ background: SURFACE, borderColor: SURFACE_BORDER }}
           >
             {key}
           </button>
@@ -241,11 +323,48 @@ function NumberPad({
         type="button"
         disabled={!ready}
         onClick={onSubmit}
-        className="min-h-[min(2.6rem,5.5dvh)] shrink-0 rounded-xl text-sm font-black text-white transition active:scale-95 disabled:opacity-35"
+        className="min-h-[min(2.6rem,5.5dvh)] shrink-0 rounded-xl text-sm font-black text-white transition active:scale-95 disabled:opacity-30"
         style={{ background: `linear-gradient(135deg, ${color}, ${color}aa)` }}
       >
         Potvrdiť tip
       </button>
+    </div>
+  );
+}
+
+/** Číslo s jednotkou v jednom riadku — používa sa pri rozhodovaní VIAC/MENEJ. */
+function GuessChip({
+  eyebrow,
+  guess,
+  unit,
+  color,
+}: {
+  eyebrow: string;
+  guess: number | null;
+  unit: string;
+  color: string;
+}) {
+  return (
+    <div
+      className="flex w-full shrink-0 flex-col items-center border px-3 py-1.5"
+      style={{
+        borderRadius: CARD_RADIUS,
+        borderColor: `${color}44`,
+        background: `${color}12`,
+      }}
+    >
+      <p className={`${EYEBROW} text-white/40`}>{eyebrow}</p>
+      <p className="flex items-baseline gap-1.5">
+        <span
+          className="font-black tabular-nums leading-none text-white"
+          style={{ fontSize: "clamp(1.4rem, 6vw, 2.1rem)" }}
+        >
+          {guess === null ? "—" : formatQuizNumber(guess)}
+        </span>
+        <span className={`${EYEBROW} leading-tight`} style={{ color }}>
+          {unit}
+        </span>
+      </p>
     </div>
   );
 }
@@ -283,69 +402,26 @@ function QuizFace({
 
   return (
     <div
-      className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-1.5 overflow-hidden px-3 py-1.5"
+      className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-2 overflow-hidden px-3 py-2"
       style={{ transform: flipped ? "rotate(180deg)" : undefined }}
     >
-      <div className="flex w-full shrink-0 items-center justify-between gap-2">
-        <p className="truncate text-[9px] font-bold uppercase tracking-widest text-white/30">
-          {question.topicLabel}
-        </p>
-        <p
-          className="shrink-0 text-[9px] font-black uppercase tracking-widest"
-          style={{ color }}
-        >
-          {info.icon} {info.label}
-        </p>
-      </div>
-
-      {/* ── Predstavenie otázky ─────────────────────────────────────────── */}
+      {/* Pred KAŽDOU otázkou: typ kola + čo majú tímy robiť + otázka. */}
       {stage.t === "brief" && (
-        <>
-          <QuestionCard text={question.prompt} large />
-          {question.kind === "higher-lower" && (
-            <p
-              className="shrink-0 text-center font-black text-white"
-              style={{ fontSize: "clamp(1rem, 4vw, 1.4rem)" }}
-            >
-              {question.claimDisplay}
-            </p>
-          )}
-          <p className="shrink-0 text-center text-[10px] font-bold leading-snug text-white/45">
-            {info.rule}
-          </p>
-          <div className="quiz-reveal-bar-wrapper shrink-0">
-            <div className="quiz-reveal-bar" />
-          </div>
-          <button
-            type="button"
-            onClick={() => dispatch({ t: "start" })}
-            aria-label={`${teamName} je pripravený`}
-            className="group relative flex h-11 w-full shrink-0 items-center justify-center gap-2 overflow-hidden rounded-2xl border border-white/25 text-white transition active:scale-[.985]"
-            style={{
-              background: `linear-gradient(120deg, ${color}dd, ${color}77)`,
-              boxShadow: `0 10px 26px -16px ${color}`,
-            }}
-          >
-            <span className="relative flex h-6 w-6 items-center justify-center rounded-full border-2 border-white/70 bg-white/15 transition group-active:scale-90">
-              <span className="h-2 w-2 rounded-full bg-white/90" />
-            </span>
-            <span className="relative truncate text-sm font-black leading-none">
-              Sme pripravení
-            </span>
-          </button>
-        </>
+        <BriefCard
+          icon={info.icon}
+          label={info.label}
+          rule={info.rule}
+          question={question.prompt}
+          color={color}
+          onTap={() => dispatch({ t: "start" })}
+        />
       )}
 
-      {/* ── ISTOTA / RISK ───────────────────────────────────────────────── */}
       {stage.t === "wager" && (
         <>
-          <QuestionCard text={question.prompt} />
-          <p className="shrink-0 text-center text-[10px] font-black uppercase tracking-widest text-amber-300/80">
-            Koľko si vsadíte? V hre je {pointsAtStake(slot, state.wagers[team])}{" "}
-            {pointsAtStake(slot, state.wagers[team]) === 1 ? "bod" : "body"}
-          </p>
+          <QuestionBar text={question.prompt} />
           <div className="flex w-full shrink-0 gap-2">
-            <BigChoiceButton
+            <ChoiceButton
               label="ISTOTA"
               hint="+1 bod"
               color="#34d399"
@@ -354,9 +430,9 @@ function QuizFace({
               disabled={state.wagers[team] !== null}
               onClick={() => dispatch({ t: "wager", team, value: "istota" })}
             />
-            <BigChoiceButton
+            <ChoiceButton
               label="RISK"
-              hint="+2 body / −1"
+              hint="+2 / −1"
               color="#fb7185"
               selected={state.wagers[team] === "risk"}
               dimmed={state.wagers[team] === "istota"}
@@ -364,17 +440,10 @@ function QuizFace({
               onClick={() => dispatch({ t: "wager", team, value: "risk" })}
             />
           </div>
-          <WaitingNote
-            text={
-              state.wagers[team] === null
-                ? "Vyberte si stávku"
-                : "Čakáme na súpera…"
-            }
-          />
+          <WaitingNote text={state.wagers[team] === null ? "" : "Čakáme na súpera"} />
         </>
       )}
 
-      {/* ── Klasická otázka: 4 možnosti ─────────────────────────────────── */}
       {stage.t === "answer" && question.kind === "classic" && (
         <ClassicOptions
           question={question}
@@ -384,48 +453,22 @@ function QuizFace({
         />
       )}
 
-      {/* ── Viac / menej ────────────────────────────────────────────────── */}
       {stage.t === "answer" && question.kind === "higher-lower" && (
         <>
-          <QuestionCard text={question.prompt} />
-          <p
-            className="shrink-0 text-center font-black text-white"
-            style={{ fontSize: "clamp(1.1rem, 4.6vw, 1.6rem)" }}
-          >
-            {question.claimDisplay}
-          </p>
-          <div className="flex w-full shrink-0 gap-2">
-            <BigChoiceButton
-              label="↑ VIAC"
-              color="#4ade80"
-              selected={state.verdicts[team] === "viac"}
-              dimmed={state.verdicts[team] === "menej"}
-              disabled={state.verdicts[team] !== null}
-              onClick={() => dispatch({ t: "verdict", team, value: "viac" })}
-            />
-            <BigChoiceButton
-              label="↓ MENEJ"
-              color="#60a5fa"
-              selected={state.verdicts[team] === "menej"}
-              dimmed={state.verdicts[team] === "viac"}
-              disabled={state.verdicts[team] !== null}
-              onClick={() => dispatch({ t: "verdict", team, value: "menej" })}
-            />
-          </div>
+          <QuestionBar text={question.prompt} />
+          <VerdictButtons
+            chosen={state.verdicts[team]}
+            onChoose={value => dispatch({ t: "verdict", team, value })}
+          />
           <WaitingNote
-            text={
-              state.verdicts[team] === null
-                ? "Rozhodnite sa"
-                : "Odpoveď uzamknutá — čakáme na súpera…"
-            }
+            text={state.verdicts[team] === null ? "" : "Uzamknuté — čakáme na súpera"}
           />
         </>
       )}
 
-      {/* ── Zadávanie čísla ─────────────────────────────────────────────── */}
       {stage.t === "guess" && stage.team === team && question.kind !== "classic" && (
         <>
-          <QuestionCard text={question.prompt} />
+          <QuestionBar text={question.prompt} />
           <NumberPad
             value={draft}
             unit={question.unit}
@@ -442,30 +485,20 @@ function QuizFace({
 
       {stage.t === "guess" && stage.team !== team && (
         <HiddenPanel
-          title={
-            state.guesses[team] === null
-              ? "Súper zadáva svoj tip"
-              : "Tip uložený — nekukajte!"
-          }
-          detail={
-            question.kind === "closest"
-              ? "Váš tip zostáva skrytý, kým netipne aj súper."
-              : "Potom rozhodnete VIAC alebo MENEJ."
-          }
+          title={state.guesses[team] === null ? "Súper tipuje" : "Tip uložený"}
         />
       )}
 
-      {/* ── Rozhodovanie VIAC / MENEJ po tipe súpera ────────────────────── */}
       {stage.t === "decide" && question.kind !== "classic" && (
         <DecidePanel
           question={question}
+          color={color}
           isDecider={slot.firstTeam !== team}
           guess={state.guesses[slot.firstTeam]}
           onDecide={value => dispatch({ t: "decide", value })}
         />
       )}
 
-      {/* ── Odhalenie ───────────────────────────────────────────────────── */}
       {stage.t === "reveal" && state.outcome && (
         <RevealPanel
           question={question}
@@ -484,6 +517,31 @@ function QuizFace({
   );
 }
 
+/** VIAC / MENEJ — používa sa v dvoch fázach, preto samostatný komponent. */
+function VerdictButtons({
+  chosen,
+  onChoose,
+}: {
+  chosen?: Verdict | null;
+  onChoose: (value: Verdict) => void;
+}) {
+  return (
+    <div className="flex w-full shrink-0 gap-2">
+      {(["viac", "menej"] as const).map(verdict => (
+        <ChoiceButton
+          key={verdict}
+          label={verdict === "viac" ? "↑ VIAC" : "↓ MENEJ"}
+          color={VERDICT_COLORS[verdict]}
+          selected={chosen === verdict}
+          dimmed={chosen !== null && chosen !== undefined && chosen !== verdict}
+          disabled={chosen !== null && chosen !== undefined}
+          onClick={() => onChoose(verdict)}
+        />
+      ))}
+    </div>
+  );
+}
+
 function ClassicOptions({
   question,
   color,
@@ -495,16 +553,16 @@ function ClassicOptions({
   picked: number | null;
   onPick: (index: number) => void;
 }) {
+  const locked = picked !== null;
   return (
     <>
-      <QuestionCard text={question.prompt} />
+      <QuestionBar text={question.prompt} />
       <div
         className="grid w-full shrink-0 grid-cols-2 gap-1.5"
         style={{ animation: "slideUp .3s ease-out both" }}
       >
         {question.options.map((option, index) => {
           const selected = picked === index;
-          const locked = picked !== null;
           return (
             <button
               key={index}
@@ -512,26 +570,26 @@ function ClassicOptions({
               disabled={locked}
               onClick={() => onPick(index)}
               aria-label={`Možnosť ${LETTERS[index]}: ${option}`}
-              className="flex min-h-[min(3rem,7.5dvh)] items-center gap-2 rounded-xl border px-2 py-1.5 text-left transition enabled:active:scale-[.97] disabled:cursor-default"
+              className="flex min-h-[min(3.1rem,7.5dvh)] items-center gap-2 rounded-xl border px-2 py-1.5 text-left transition enabled:active:scale-[.97] disabled:cursor-default"
               style={{
-                background: selected ? `${color}30` : "rgba(255,255,255,0.05)",
-                borderColor: selected ? `${color}cc` : "rgba(255,255,255,0.1)",
-                opacity: locked && !selected ? 0.3 : 1,
-                animation: `scaleIn .25s ease-out ${index * 0.06}s both`,
+                background: selected ? `${color}30` : SURFACE,
+                borderColor: selected ? `${color}cc` : SURFACE_BORDER,
+                opacity: locked && !selected ? 0.25 : 1,
+                animation: `scaleIn .25s ease-out ${index * 0.05}s both`,
               }}
             >
               <span
                 className="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg text-[10px] font-black"
                 style={{
                   background: selected ? color : "rgba(255,255,255,0.1)",
-                  color: selected ? "#08111d" : "rgba(255,255,255,0.55)",
+                  color: selected ? "#08111d" : "rgba(255,255,255,0.5)",
                 }}
               >
                 {LETTERS[index]}
               </span>
               <span
                 className="flex-1 font-bold leading-tight text-white"
-                style={{ fontSize: "clamp(.68rem, 2.7vw, .9rem)" }}
+                style={{ fontSize: "clamp(.7rem, 2.8vw, .92rem)" }}
               >
                 {option}
               </span>
@@ -539,79 +597,47 @@ function ClassicOptions({
           );
         })}
       </div>
-      <WaitingNote
-        text={
-          picked === null
-            ? "Vyberte odpoveď — súper vás nevidí"
-            : "Odpoveď uzamknutá — čakáme na súpera…"
-        }
-      />
+      <WaitingNote text={locked ? "Uzamknuté — čakáme na súpera" : ""} />
     </>
   );
 }
 
-function HiddenPanel({ title, detail }: { title: string; detail: string }) {
+/** Kým tipuje súper, táto polovica má byť prázdna — nie je čo čítať. */
+function HiddenPanel({ title }: { title: string }) {
   return (
-    <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-2 text-center">
-      <span className="text-3xl">🙈</span>
-      <p className="text-sm font-black text-white/70">{title}</p>
-      <p className="max-w-[16rem] text-[10px] font-bold leading-relaxed text-white/35">
-        {detail}
-      </p>
-      <span className="text-lg tracking-[0.4em] text-white/25">●●●●</span>
+    <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-2">
+      <span style={{ fontSize: "clamp(2rem, 9vw, 2.75rem)" }}>🙈</span>
+      <p className={`${EYEBROW} text-white/35`}>{title}</p>
     </div>
   );
 }
 
 function DecidePanel({
   question,
+  color,
   isDecider,
   guess,
   onDecide,
 }: {
   question: ResolvedNumericQuestion;
+  color: string;
   isDecider: boolean;
   guess: number | null;
   onDecide: (value: Verdict) => void;
 }) {
   return (
     <>
-      <QuestionCard text={question.prompt} />
-      <div className="flex shrink-0 flex-col items-center">
-        <p className="text-[9px] font-black uppercase tracking-widest text-white/40">
-          {isDecider ? "Tip súpera" : "Váš tip"}
-        </p>
-        <p
-          className="font-black tabular-nums leading-none text-white"
-          style={{ fontSize: "clamp(1.4rem, 6vw, 2.1rem)" }}
-        >
-          {guess === null ? "—" : formatQuizNumber(guess)}
-        </p>
-        <p className="text-[10px] font-bold uppercase tracking-wider text-white/40">
-          {question.unit}
-        </p>
-      </div>
-
+      <QuestionBar text={question.prompt} />
+      <GuessChip
+        eyebrow={isDecider ? "Tip súpera" : "Váš tip"}
+        guess={guess}
+        unit={question.unit}
+        color={color}
+      />
       {isDecider ? (
-        <>
-          <p className="shrink-0 text-center text-[10px] font-bold text-white/45">
-            Je skutočná hodnota vyššia alebo nižšia?
-          </p>
-          <div className="flex w-full shrink-0 gap-2">
-            <BigChoiceButton
-              label="↑ VIAC"
-              color="#4ade80"
-              onClick={() => onDecide("viac")}
-            />
-            <BigChoiceButton
-              label="↓ MENEJ"
-              color="#60a5fa"
-              onClick={() => onDecide("menej")}
-            />
-          </div>
-        </>
+        <VerdictButtons onChoose={onDecide} />
       ) : (
-        <WaitingNote text="Súper sa rozhoduje…" />
+        <WaitingNote text="Súper sa rozhoduje" />
       )}
     </>
   );
@@ -640,125 +666,106 @@ function RevealPanel({
   result: { correct: boolean | null; delta: number; reason: QuizDuelReason };
   onNext: () => void;
 }) {
-  const positive = result.delta > 0;
-  const tone = positive ? "#4ade80" : result.delta < 0 ? "#f87171" : "#94a3b8";
+  const tone = result.delta > 0 ? "#4ade80" : result.delta < 0 ? "#f87171" : "#94a3b8";
 
   const answerText =
     question.kind === "classic"
       ? `${LETTERS[question.correctIndex]}) ${question.options[question.correctIndex]}`
       : question.display;
 
+  const answerEyebrow =
+    question.kind === "higher-lower"
+      ? higherLowerTruth(question) === "viac"
+        ? "↑ Bolo to viac"
+        : "↓ Bolo to menej"
+      : "Správna odpoveď";
+
+  /** Jeden krátky riadok s tým, čo tím zadal — pre každý typ inak. */
+  let detail = "";
+  if (question.kind === "closest") {
+    const mine = myGuess === null ? null : guessDistance(question.value, myGuess);
+    const theirs =
+      opponentGuess === null ? null : guessDistance(question.value, opponentGuess);
+    detail = `Vy ±${mine === null ? "—" : formatQuizNumber(mine)}  ·  Súper ±${
+      theirs === null ? "—" : formatQuizNumber(theirs)
+    }`;
+  } else if (question.kind === "estimate") {
+    detail =
+      myGuess !== null
+        ? `Váš tip ${formatQuizNumber(myGuess)}`
+        : `Tip súpera ${opponentGuess === null ? "—" : formatQuizNumber(opponentGuess)}`;
+  } else if (question.kind === "classic" && myPick !== null) {
+    detail = `Vaša odpoveď ${LETTERS[myPick]}`;
+  } else if (question.kind === "higher-lower" && myVerdict) {
+    detail = `Vaša odpoveď ${myVerdict === "viac" ? "↑ Viac" : "↓ Menej"}`;
+  }
+
   return (
     <>
+      {/* Správna odpoveď a fakt sú jedna karta — fakt patrí k odpovedi,
+          nie do samostatného odseku pod ňou. */}
       <div
-        className="flex w-full shrink-0 flex-col items-center gap-0.5 rounded-2xl border px-3 py-2"
+        className="flex min-h-0 w-full flex-1 flex-col items-center justify-center border px-3 py-2"
         style={{
-          borderColor: "rgba(74,222,128,.4)",
-          background: "rgba(34,197,94,.12)",
+          borderRadius: CARD_RADIUS,
+          borderColor: "rgba(74,222,128,.38)",
+          background: "linear-gradient(180deg, rgba(34,197,94,.16), rgba(34,197,94,.06))",
           animation: "scaleIn .35s cubic-bezier(0.34,1.56,0.64,1) both",
         }}
       >
-        <p className="text-[9px] font-black uppercase tracking-widest text-emerald-300/70">
-          Správna odpoveď
-        </p>
+        <p className={`${EYEBROW} shrink-0 text-emerald-300/70`}>{answerEyebrow}</p>
         <p
-          className="text-center font-black leading-tight text-white"
-          style={{ fontSize: "clamp(1rem, 4.2vw, 1.45rem)" }}
+          className="mt-0.5 shrink-0 text-center font-black leading-tight text-white"
+          style={{ fontSize: "clamp(1.05rem, 4.4vw, 1.5rem)" }}
         >
           {answerText}
         </p>
-        {question.kind === "higher-lower" && (
-          <p className="text-[10px] font-black uppercase tracking-wider text-white/50">
-            {higherLowerTruth(question) === "viac" ? "↑ Viac" : "↓ Menej"} ako{" "}
-            {question.claimDisplay}
-          </p>
-        )}
+        <span className="my-1.5 h-px w-10 shrink-0 bg-white/12" />
+        <p
+          className={`${CAPTION} line-clamp-3 min-h-0 text-center font-medium text-white/45`}
+        >
+          {question.fact}
+        </p>
       </div>
 
-      {/* Ukazujeme aj o koľko sa každý tím minul — presne z toho vzniká
-          moment „fúha, bol som fakt blízko“. */}
-      {question.kind === "closest" && (
-        <div className="flex w-full shrink-0 justify-center gap-2 text-[10px] font-bold">
-          {(
-            [
-              { label: "Váš tip", guess: myGuess, mine: true },
-              { label: "Súper", guess: opponentGuess, mine: false },
-            ] as const
-          ).map(({ label, guess, mine }) => (
-            <span
-              key={label}
-              className="rounded-lg border px-2 py-1 text-center"
-              style={{
-                borderColor: mine ? `${color}66` : "rgba(255,255,255,.1)",
-                background: mine ? `${color}14` : "rgba(255,255,255,.04)",
-              }}
-            >
-              <span className="text-white/40">{label}: </span>
-              <span className="tabular-nums text-white/80">
-                {guess === null ? "—" : formatQuizNumber(guess)}
-              </span>
-              {guess !== null && (
-                <span className="text-white/30">
-                  {" "}
-                  (±{formatQuizNumber(guessDistance(question.value, guess))})
-                </span>
-              )}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {/* Pri „Tipni číslo“ tipuje len jeden tím — druhý vidí ten istý tip ako súperov. */}
-      {question.kind === "estimate" && (
-        <p className="shrink-0 text-center text-[10px] font-bold text-white/40">
-          {myGuess !== null
-            ? `Váš tip: ${formatQuizNumber(myGuess)}`
-            : `Tip súpera: ${opponentGuess === null ? "—" : formatQuizNumber(opponentGuess)}`}
-        </p>
-      )}
-
-      {question.kind === "classic" && myPick !== null && (
-        <p className="shrink-0 text-center text-[10px] font-bold text-white/40">
-          Vaša odpoveď: {LETTERS[myPick]}) {question.options[myPick]}
-        </p>
-      )}
-
-      {question.kind === "higher-lower" && myVerdict && (
-        <p className="shrink-0 text-center text-[10px] font-bold text-white/40">
-          Vaša odpoveď: {myVerdict === "viac" ? "↑ Viac" : "↓ Menej"}
-        </p>
-      )}
-
+      {/* Body, dôvod aj vlastný tip v jednom riadku. */}
       <div
-        className="flex w-full shrink-0 items-center justify-center gap-2 rounded-xl border px-3 py-1.5"
-        style={{ borderColor: `${tone}44`, background: `${tone}14` }}
+        className="flex w-full shrink-0 items-center gap-2.5 border px-3 py-1.5"
+        style={{
+          borderRadius: CARD_RADIUS,
+          borderColor: `${tone}40`,
+          background: `${tone}14`,
+        }}
       >
-        <span className="text-xl font-black tabular-nums" style={{ color: tone }}>
+        <span
+          className="shrink-0 font-black tabular-nums leading-none"
+          style={{ color: tone, fontSize: "clamp(1.2rem, 5vw, 1.6rem)" }}
+        >
           {deltaLabel(result.delta)}
         </span>
-        <span className="min-w-0 flex-1 text-[10px] font-bold leading-tight text-white/60">
-          {REASON_TEXT[result.reason]}
-          {wager && (
-            <span className="text-white/35">
-              {" "}
-              · {wager === "risk" ? "RISK" : "ISTOTA"}
+        <span className="min-w-0 flex-1 text-left">
+          <span className="block text-[11px] font-black leading-tight text-white/80">
+            {REASON_TEXT[result.reason]}
+            {wager && (
+              <span className="text-white/35">
+                {" · "}
+                {wager === "risk" ? "RISK" : "ISTOTA"}
+              </span>
+            )}
+          </span>
+          {detail && (
+            <span className="block text-[10px] font-bold tabular-nums text-white/40">
+              {detail}
             </span>
           )}
         </span>
       </div>
 
-      <p className="min-h-0 shrink overflow-hidden text-center text-[10px] font-medium leading-snug text-white/45">
-        {question.fact}
-      </p>
-      <p className="shrink-0 truncate text-center text-[8px] font-bold uppercase tracking-wider text-white/20">
-        {question.source}
-      </p>
-
       <button
         type="button"
         onClick={onNext}
         aria-label={`${teamName}: ďalšia otázka`}
-        className="min-h-[min(2.5rem,5.5dvh)] w-full shrink-0 rounded-xl text-sm font-black text-white transition active:scale-95"
+        className="min-h-[min(2.6rem,5.5dvh)] w-full shrink-0 rounded-xl text-sm font-black text-white transition active:scale-95"
         style={{ background: `linear-gradient(135deg, ${color}, ${color}99)` }}
       >
         Ďalšia otázka →
@@ -780,9 +787,13 @@ export default function TeamQuiz({
   startTeam?: TeamIndex;
   onDone: (scores: [number, number]) => void;
 }) {
-  const plan = useMemo(() => buildQuizDuelPlan(questions, startTeam), [questions, startTeam]);
+  const plan = useMemo(
+    () => buildQuizDuelPlan(questions, startTeam),
+    [questions, startTeam]
+  );
   const reduce = useCallback(
-    (state: QuizDuelState, action: QuizDuelAction) => quizDuelReducer(plan, state, action),
+    (state: QuizDuelState, action: QuizDuelAction) =>
+      quizDuelReducer(plan, state, action),
     [plan]
   );
   const [state, dispatch] = useReducer(reduce, createQuizDuelState());
@@ -792,10 +803,13 @@ export default function TeamQuiz({
 
   const slot = plan[state.slot];
 
-  // Predstavenie otázky sa po chvíli posunie samo, aby partia nezasekla na tlačidle.
+  // Predstavenie otázky sa po chvíli posunie samo, aby partia nezasekla.
   useEffect(() => {
     if (state.stage.t !== "brief") return;
-    const timeout = window.setTimeout(() => dispatch({ t: "start" }), BRIEF_DURATION_MS);
+    const timeout = window.setTimeout(
+      () => dispatch({ t: "start" }),
+      BRIEF_DURATION_MS
+    );
     return () => window.clearTimeout(timeout);
   }, [state.stage.t, state.slot]);
 
@@ -828,11 +842,7 @@ export default function TeamQuiz({
     });
   }
 
-  const faceProps = {
-    plan,
-    state,
-    dispatch,
-  };
+  const faceProps = { plan, state, dispatch };
 
   return (
     <div
@@ -859,38 +869,48 @@ export default function TeamQuiz({
         onDraft={next => setDraft(0, next)}
       />
 
-      {/* Stredový pás: skóre, poradie otázky a čo je v hre. */}
-      <div className="exit-slot-gap relative z-20 mx-3 shrink-0 rounded-2xl border border-white/10 bg-white/[0.06] px-3 py-1.5 backdrop-blur-xl">
-        <div className="flex items-center justify-between gap-2">
-          {([0, 1] as const).map(index => (
-            <div
-              key={index}
-              className="flex items-center gap-2 rounded-xl px-2.5 py-1 font-black"
-              style={{
-                background: `${index === 0 ? colorA : colorB}20`,
-                border: `1px solid ${index === 0 ? colorA : colorB}40`,
-              }}
-            >
-              <span
-                className="h-2.5 w-2.5 rounded-full"
-                style={{ background: index === 0 ? colorA : colorB }}
-              />
-              <span className="text-base tabular-nums text-white">
-                {state.scores[index]}
-              </span>
-            </div>
-          ))}
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">
-              {state.slot + 1} / {plan.length}
+      {/* Stredový pás: skóre a postup kolom. Bodky sa čítajú z oboch strán
+          rovnako, na rozdiel od textu „3 / 5“. */}
+      <div className="exit-slot-gap relative z-20 mx-3 flex shrink-0 items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.055] px-3 py-1.5 backdrop-blur-xl">
+        {([0, 1] as const).map(index => (
+          <span
+            key={index}
+            className="flex items-center gap-2 rounded-xl px-2.5 py-1"
+            style={{
+              background: `${index === 0 ? colorA : colorB}1f`,
+              border: `1px solid ${index === 0 ? colorA : colorB}3d`,
+            }}
+          >
+            <span
+              className="h-2.5 w-2.5 rounded-full"
+              style={{ background: index === 0 ? colorA : colorB }}
+            />
+            <span className="text-base font-black tabular-nums text-white">
+              {state.scores[index]}
             </span>
-            {slot.wager && (
-              <span className="flex items-center gap-1 rounded-full border border-amber-300/40 bg-amber-400/15 px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-amber-200">
-                <Icons.star size={9} /> Stávka
-              </span>
-            )}
-          </div>
-        </div>
+          </span>
+        ))}
+
+        <span className="flex items-center gap-1.5" aria-label="Postup kolom">
+          {plan.map((planSlot, index) => (
+            <span
+              key={index}
+              className="rounded-full transition-all"
+              style={{
+                width: index === state.slot ? ".5rem" : ".3rem",
+                height: index === state.slot ? ".5rem" : ".3rem",
+                background:
+                  index === state.slot
+                    ? "#ffffff"
+                    : index < state.slot
+                      ? "rgba(255,255,255,.4)"
+                      : "rgba(255,255,255,.14)",
+                outline: planSlot.wager ? "1px solid rgba(251,191,36,.55)" : undefined,
+                outlineOffset: "2px",
+              }}
+            />
+          ))}
+        </span>
       </div>
 
       {/* Strana tímu B — v normálnej orientácii. */}
