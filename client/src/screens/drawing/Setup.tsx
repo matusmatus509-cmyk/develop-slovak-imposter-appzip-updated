@@ -68,6 +68,7 @@ export default function DrawingSetup({
       impostorCount: Math.min(impostorCount, maxImpostors),
       hintsEnabled: false,
       noRepeatWords: initial.noRepeatWords,
+      hideCategoryFromImpostor: initial.hideCategoryFromImpostor,
       timerSeconds: initial.timerSeconds,
       strokesPerPlayer,
     });

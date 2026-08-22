@@ -273,6 +273,232 @@ function resultLabel(result: ShotResult, ship?: ShipState) {
   return "Všetky lode potopené!";
 }
 
+/**
+ * ── Skutočné loďky ──────────────────────────────────────────────────────────
+ *
+ * Lode sa nekreslia ako sivé kocky, ale ako trup s guľatou provou, zaoblenou
+ * zadnou časťou, palubou, nadstavbou a delom. Na mape sa loď skladá z jedného
+ * segmentu na políčko (`ShipSegment`), v lište a pri ťahaní sa kreslí celá
+ * loď naraz (`ShipIcon`). Vodorovná loď má provu vpravo; zvislá sa len otočí
+ * o 90°, takže prova ukazuje dolu — presne v poradí, v akom sú uložené cells.
+ */
+
+const HULL_TOP = "#8ea6c0";
+const HULL_BODY = "#5a7591";
+const HULL_DEEP = "#38495f";
+const DECK = "#a9bed3";
+const TOWER = "#dbe4ee";
+const STEEL = "#1d2836";
+
+/** Zaoblená zadná časť trupu (najkrajnejší segment vzadu). */
+const SEGMENT_STERN = "M100 22 H24 Q6 22 6 42 V58 Q6 78 24 78 H100 Z";
+/** Priebežný stred trupu. */
+const SEGMENT_MID = "M0 22 H100 V78 H0 Z";
+/** Prova — zužuje sa do špičky vpravo. */
+const SEGMENT_BOW = "M0 22 H50 Q84 22 99 50 Q84 78 50 78 H0 Z";
+/** Loď dlhá jedno políčko (v aktuálnej flotile sa nevyskytuje, ale je bezpečná). */
+const SEGMENT_SOLO =
+  "M20 22 Q6 22 6 42 V58 Q6 78 20 78 H52 Q86 78 99 50 Q86 22 52 22 Z";
+
+function segmentPath(offset: number, length: number) {
+  if (length === 1) return SEGMENT_SOLO;
+  if (offset === 0) return SEGMENT_STERN;
+  if (offset === length - 1) return SEGMENT_BOW;
+  return SEGMENT_MID;
+}
+
+/** Nadstavba nikdy nesedí na prove — pri každej dĺžke padne do stredu či bližšie k zadnej časti. */
+function towerOffset(length: number) {
+  return Math.max(0, Math.floor((length - 1) / 2));
+}
+
+function ShipSegment({
+  ship,
+  index,
+  damaged,
+  sunk,
+}: {
+  ship: ShipState;
+  index: number;
+  damaged: boolean;
+  sunk: boolean;
+}) {
+  const offset = ship.cells.indexOf(index);
+  if (offset < 0) return null;
+  const length = ship.cells.length;
+  const vertical = length > 1 && ship.cells[1] - ship.cells[0] !== 1;
+  const isBow = offset === length - 1;
+  const isStern = offset === 0;
+  const hasTower = offset === towerOffset(length);
+  const carrier = ship.id === "carrier";
+
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      className={[
+        "battle-hull",
+        vertical ? "battle-hull-vertical" : "",
+        sunk ? "battle-hull-sunk" : damaged ? "battle-hull-damaged" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      {/* trup */}
+      <path d={segmentPath(offset, length)} fill={HULL_BODY} />
+      {/* horná hrana a tieň pri vodoryske dávajú trupu objem */}
+      <path
+        d={segmentPath(offset, length)}
+        fill="none"
+        stroke={HULL_TOP}
+        strokeWidth="4"
+        strokeLinejoin="round"
+      />
+      <rect
+        x={isStern ? 10 : 0}
+        y="62"
+        width={isBow ? 78 : 100}
+        height="16"
+        fill={HULL_DEEP}
+        opacity=".55"
+      />
+
+      {carrier ? (
+        <>
+          {/* lietadlová loď má plochú palubu s prerušovanou osou */}
+          <rect
+            x={isStern ? 12 : 0}
+            y="32"
+            width={isBow ? 74 : 100}
+            height="36"
+            fill={DECK}
+            opacity=".92"
+          />
+          <line
+            x1={isStern ? 20 : 0}
+            y1="50"
+            x2={isBow ? 78 : 100}
+            y2="50"
+            stroke={STEEL}
+            strokeWidth="3"
+            strokeDasharray="9 8"
+            opacity=".65"
+          />
+          {hasTower && (
+            <>
+              {/* ostrov je na boku, aby zostala paluba priechodná */}
+              <rect x="38" y="20" width="24" height="16" rx="3" fill={TOWER} />
+              <rect x="46" y="10" width="6" height="12" rx="2" fill={TOWER} />
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          <rect
+            x={isStern ? 14 : 0}
+            y="38"
+            width={isBow ? 66 : 100}
+            height="24"
+            rx="3"
+            fill={DECK}
+            opacity=".88"
+          />
+          {hasTower && (
+            <>
+              {/* mostík, komín a stožiar */}
+              <rect x="30" y="28" width="40" height="44" rx="6" fill={TOWER} />
+              <rect x="42" y="16" width="16" height="16" rx="4" fill={HULL_TOP} />
+              <rect x="47" y="4" width="6" height="14" rx="3" fill={TOWER} />
+            </>
+          )}
+          {isBow && !hasTower && (
+            /* delová veža na prove */
+            <>
+              <circle cx="34" cy="50" r="13" fill={STEEL} opacity=".9" />
+              <rect x="44" y="46" width="30" height="8" rx="4" fill={STEEL} />
+            </>
+          )}
+          {!hasTower && !isBow && (
+            /* palubné príklopy, aby stred nebol prázdny */
+            <>
+              <rect x="24" y="44" width="16" height="12" rx="3" fill={STEEL} opacity=".45" />
+              <rect x="60" y="44" width="16" height="12" rx="3" fill={STEEL} opacity=".45" />
+            </>
+          )}
+        </>
+      )}
+    </svg>
+  );
+}
+
+/** Celá loď v jednom obrázku — pre lištu flotily a pre náhľad pri ťahaní. */
+function ShipIcon({
+  length,
+  vertical = false,
+  unit = 9,
+  carrier = false,
+  tone = "idle",
+}: {
+  length: number;
+  vertical?: boolean;
+  unit?: number;
+  carrier?: boolean;
+  tone?: "idle" | "placed" | "ghost";
+}) {
+  const width = length * 100;
+  const bow = width - 70;
+  const hull =
+    length === 1
+      ? SEGMENT_SOLO
+      : `M20 22 H${bow} Q${width - 14} 22 ${width - 2} 50 Q${width - 14} 78 ${bow} 78 H20 Q4 78 4 58 V42 Q4 22 20 22 Z`;
+  const deck = tone === "placed" ? "#bbf7d0" : tone === "ghost" ? "#cffafe" : DECK;
+  const body = tone === "placed" ? "#3f7f5f" : tone === "ghost" ? "#3d7590" : HULL_BODY;
+  const towerCentre = (towerOffset(length) + 0.5) * 100;
+  // Loď je nakreslená vodorovne. Zvislá sa otočí, preto obal dostane vymenené
+  // rozmery a samotné SVG si drží svoj pomer strán — inak by sa trup roztiahol.
+  const drawWidth = unit * length;
+  const drawHeight = unit;
+
+  return (
+    <span
+      style={{
+        position: "relative",
+        display: "inline-block",
+        width: vertical ? drawHeight : drawWidth,
+        height: vertical ? drawWidth : drawHeight,
+      }}
+    >
+      <svg
+        viewBox={`0 0 ${width} 100`}
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          width: drawWidth,
+          height: drawHeight,
+          transform: `translate(-50%, -50%)${vertical ? " rotate(90deg)" : ""}`,
+        }}
+      >
+        <path d={hull} fill={body} stroke={deck} strokeWidth="5" strokeLinejoin="round" />
+        {carrier ? (
+          <>
+            <rect x="24" y="34" width={width - 90} height="32" rx="4" fill={deck} opacity=".9" />
+            <rect x={towerCentre - 12} y="22" width="24" height="14" rx="3" fill={deck} />
+          </>
+        ) : (
+          <>
+            <rect x="26" y="40" width={width - 96} height="20" rx="4" fill={deck} opacity=".85" />
+            <rect x={towerCentre - 18} y="28" width="36" height="42" rx="6" fill={deck} />
+            <rect x={towerCentre - 5} y="14" width="10" height="16" rx="4" fill={deck} />
+          </>
+        )}
+      </svg>
+    </span>
+  );
+}
+
 function BattleGrid({
   board,
   revealShips,
@@ -393,9 +619,13 @@ function BattleGrid({
                 placement ||
                 (Boolean(onCell) && !disabled && !board.shots[index]);
               const preview = previewCells.includes(index);
-              const placedShip = placement
-                ? board.ships.find(ship => ship.cells.includes(index))
-                : undefined;
+              const shipHere = board.ships.find(ship =>
+                ship.cells.includes(index)
+              );
+              const placedShip = placement ? shipHere : undefined;
+              // Trup kreslíme aj pod zásahom (vlastná loď má vidieť poškodenie)
+              // a pri potopenej lodi súpera, aby bolo jasné, čo sa potopilo.
+              const showHull = Boolean(shipHere) && (revealShips || shipHere!.sunk);
               return (
                 <button
                   key={index}
@@ -411,6 +641,14 @@ function BattleGrid({
                   className={`battle-cell relative aspect-square min-w-0 overflow-hidden ${compact ? "rounded-[3px]" : "rounded-[5px]"} border transition ${lastShot === index ? "battle-cell-latest" : ""} ${preview ? (previewValid ? "battle-preview-valid" : "battle-preview-invalid") : ""}`}
                 >
                   <span className="battle-wave" />
+                  {showHull && (
+                    <ShipSegment
+                      ship={shipHere!}
+                      index={index}
+                      damaged={state === "HIT"}
+                      sunk={shipHere!.sunk}
+                    />
+                  )}
                   {state === "MISS" && <span className="battle-miss-dot" />}
                   {state === "HIT" && (
                     <span className="battle-hit-burst">×</span>
@@ -1148,18 +1386,16 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
                           onPointerDown={event =>
                             beginDrag(definition.id, event)
                           }
-                          className={`battle-ship-silhouette flex min-h-7 min-w-7 cursor-grab rounded-md border p-1 active:cursor-grabbing ${placed ? "border-emerald-200/30 bg-emerald-400/[.12]" : "border-cyan-200/20 bg-cyan-400/[.08]"} ${vertical ? "flex-col" : "flex-row"} gap-px`}
+                          className={`battle-ship-silhouette flex min-h-7 min-w-7 cursor-grab items-center justify-center rounded-md border p-1 active:cursor-grabbing ${placed ? "border-emerald-200/30 bg-emerald-400/[.12]" : "border-cyan-200/20 bg-cyan-400/[.08]"}`}
                           aria-label={`Presunúť ${definition.name}`}
                         >
-                          {Array.from(
-                            { length: definition.length },
-                            (_, index) => (
-                              <i
-                                key={index}
-                                className={`h-1 w-1 rounded-[1px] ${placed ? "bg-emerald-200" : "bg-cyan-200"}`}
-                              />
-                            )
-                          )}
+                          <ShipIcon
+                            length={definition.length}
+                            vertical={vertical}
+                            unit={6}
+                            carrier={definition.id === "carrier"}
+                            tone={placed ? "placed" : "idle"}
+                          />
                         </span>
                         <small
                           className={`mt-0.5 max-w-full truncate px-0.5 text-[5px] font-black uppercase tracking-wide ${placed ? "text-emerald-100" : "text-cyan-100/65"}`}
@@ -1231,21 +1467,14 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
               className="battle-drag-ghost pointer-events-none fixed z-[200] -translate-x-1/2 -translate-y-1/2 rounded-xl border border-cyan-200/35 bg-[#102a3d]/95 px-3 py-2 shadow-2xl shadow-cyan-500/25"
               style={{ left: drag.x, top: drag.y }}
             >
-              <div
-                className={`flex ${orientations[drag.shipId] === "vertical" ? "flex-col" : "flex-row"} gap-1`}
-              >
-                {Array.from(
-                  {
-                    length:
-                      FLEET.find(ship => ship.id === drag.shipId)?.length ?? 0,
-                  },
-                  (_, index) => (
-                    <i
-                      key={index}
-                      className="h-3 w-3 rounded-[3px] bg-cyan-200"
-                    />
-                  )
-                )}
+              <div className="flex items-center justify-center">
+                <ShipIcon
+                  length={FLEET.find(ship => ship.id === drag.shipId)?.length ?? 1}
+                  vertical={orientations[drag.shipId] === "vertical"}
+                  unit={13}
+                  carrier={drag.shipId === "carrier"}
+                  tone="ghost"
+                />
               </div>
             </div>
           )}

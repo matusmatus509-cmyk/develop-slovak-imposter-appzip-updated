@@ -153,6 +153,8 @@ export interface GameSettings {
   impostorCount: number;
   hintsEnabled: boolean;
   noRepeatWords: boolean;
+  /** Podvodník nevidí, z akej kategórie slovo je — sťaží sa tak jeho odhalenie. */
+  hideCategoryFromImpostor: boolean;
   timerSeconds: number; // 0 = bez časovača
   strokesPerPlayer: number; // used by drawing game
 }

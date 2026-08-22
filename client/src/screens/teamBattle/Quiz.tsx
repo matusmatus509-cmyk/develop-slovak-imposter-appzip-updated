@@ -37,9 +37,6 @@ import {
 
 const LETTERS = ["A", "B", "C", "D"] as const;
 
-/** Čas na prečítanie typu kola, pravidla aj otázky. Klepnutím sa preskočí. */
-const BRIEF_DURATION_MS = 5200;
-
 const CARD_RADIUS = "1.25rem";
 const SURFACE = "rgba(255,255,255,0.045)";
 const SURFACE_BORDER = "rgba(255,255,255,0.09)";
@@ -145,59 +142,57 @@ function BriefCard({
   onTap: () => void;
 }) {
   return (
-    <>
-      <div
-        role="button"
-        aria-label={`${label}: ${rule}`}
-        onClick={onTap}
-        className="flex min-h-0 w-full flex-1 cursor-pointer flex-col items-center overflow-hidden border px-4 py-3 transition active:scale-[.99]"
+    <div
+      role="button"
+      aria-label={`${label}: ${rule}`}
+      onClick={onTap}
+      className="flex min-h-0 w-full flex-1 cursor-pointer flex-col items-center overflow-hidden border px-4 py-3 transition active:scale-[.99]"
+      style={{
+        borderRadius: CARD_RADIUS,
+        background: `linear-gradient(180deg, ${color}1c, ${SURFACE})`,
+        borderColor: `${color}3d`,
+        boxShadow: `0 18px 40px -30px ${color}`,
+        animation: "popIn .35s cubic-bezier(0.34,1.56,0.64,1) both",
+      }}
+    >
+      <span
+        className="flex shrink-0 items-center justify-center rounded-full border"
         style={{
-          borderRadius: CARD_RADIUS,
-          background: `linear-gradient(180deg, ${color}1c, ${SURFACE})`,
-          borderColor: `${color}3d`,
-          boxShadow: `0 18px 40px -30px ${color}`,
-          animation: "popIn .35s cubic-bezier(0.34,1.56,0.64,1) both",
+          width: "clamp(2.1rem, 8vw, 2.75rem)",
+          height: "clamp(2.1rem, 8vw, 2.75rem)",
+          fontSize: "clamp(1rem, 4vw, 1.35rem)",
+          background: `${color}24`,
+          borderColor: `${color}55`,
         }}
       >
-        <span
-          className="flex shrink-0 items-center justify-center rounded-full border"
-          style={{
-            width: "clamp(2.1rem, 8vw, 2.75rem)",
-            height: "clamp(2.1rem, 8vw, 2.75rem)",
-            fontSize: "clamp(1rem, 4vw, 1.35rem)",
-            background: `${color}24`,
-            borderColor: `${color}55`,
-          }}
+        {icon}
+      </span>
+
+      <p className={`${EYEBROW} mt-1.5 shrink-0`} style={{ color }}>
+        {label}
+      </p>
+      <p className={`${CAPTION} mt-0.5 shrink-0 text-center text-white/50`}>
+        {rule}
+      </p>
+
+      <span
+        className="my-2 h-px w-10 shrink-0"
+        style={{ background: `${color}4d` }}
+      />
+
+      <div className="flex min-h-0 flex-1 items-center justify-center">
+        <p
+          className="text-center font-black leading-snug text-white"
+          style={{ fontSize: "clamp(1rem, 4.2vw, 1.55rem)" }}
         >
-          {icon}
-        </span>
-
-        <p className={`${EYEBROW} mt-1.5 shrink-0`} style={{ color }}>
-          {label}
+          {question}
         </p>
-        <p className={`${CAPTION} mt-0.5 shrink-0 text-center text-white/50`}>
-          {rule}
-        </p>
-
-        <span
-          className="my-2 h-px w-10 shrink-0"
-          style={{ background: `${color}4d` }}
-        />
-
-        <div className="flex min-h-0 flex-1 items-center justify-center">
-          <p
-            className="text-center font-black leading-snug text-white"
-            style={{ fontSize: "clamp(1rem, 4.2vw, 1.55rem)" }}
-          >
-            {question}
-          </p>
-        </div>
       </div>
 
-      <div className="quiz-reveal-bar-wrapper shrink-0">
-        <div className="quiz-reveal-bar" />
-      </div>
-    </>
+      <p className={`${EYEBROW} mt-1.5 shrink-0 animate-pulse text-white/45`}>
+        Ťukni, keď je tím pripravený →
+      </p>
+    </div>
   );
 }
 
@@ -802,16 +797,6 @@ export default function TeamQuiz({
   const doneRef = useRef(false);
 
   const slot = plan[state.slot];
-
-  // Predstavenie otázky sa po chvíli posunie samo, aby partia nezasekla.
-  useEffect(() => {
-    if (state.stage.t !== "brief") return;
-    const timeout = window.setTimeout(
-      () => dispatch({ t: "start" }),
-      BRIEF_DURATION_MS
-    );
-    return () => window.clearTimeout(timeout);
-  }, [state.stage.t, state.slot]);
 
   // Prázdne políčka pre ďalšiu otázku.
   useEffect(() => {

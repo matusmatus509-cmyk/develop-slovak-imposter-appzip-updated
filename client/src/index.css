@@ -628,10 +628,26 @@ html[data-theme="light"] .settings-screen [class*="text-emerald-"] { color: #047
 
 .battle-cell { border-color: rgba(125,211,252,.09); background: linear-gradient(145deg, rgba(14,165,233,.11), rgba(8,47,73,.34)); }
 .battle-cell:not(:disabled):hover { border-color: rgba(103,232,249,.65); background: rgba(34,211,238,.2); transform: scale(1.06); z-index: 2; }
-.battle-cell[data-state="SHIP"] { border-color: rgba(103,232,249,.34); background: linear-gradient(145deg, #64748b, #263548); box-shadow: inset 0 0 0 2px rgba(255,255,255,.08); }
+/* Loď kreslí SVG trup (.battle-hull), políčko preto zostáva vodou. */
+.battle-cell[data-state="SHIP"] { border-color: rgba(148,197,255,.2); background: linear-gradient(145deg, rgba(14,165,233,.1), rgba(8,47,73,.3)); }
 .battle-cell[data-state="MISS"] { background: rgba(14,116,144,.14); }
-.battle-cell[data-state="HIT"] { border-color: rgba(251,146,60,.65); background: radial-gradient(circle, rgba(251,146,60,.55), rgba(127,29,29,.5)); }
-.battle-cell[data-state="SUNK"] { border-color: rgba(251,113,133,.62); background: linear-gradient(145deg, rgba(190,18,60,.78), rgba(69,10,10,.82)); }
+.battle-cell[data-state="HIT"] { border-color: rgba(251,146,60,.65); background: radial-gradient(circle, rgba(251,146,60,.42), rgba(127,29,29,.44)); }
+.battle-cell[data-state="SUNK"] { border-color: rgba(251,113,133,.55); background: linear-gradient(145deg, rgba(120,20,45,.56), rgba(40,8,12,.62)); }
+
+/* ── Trup lode na mape ──────────────────────────────────────────── */
+.battle-hull { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+/* Zvislá loď je len otočená — políčko je štvorec, takže prova ukáže dolu. */
+.battle-hull-vertical { transform: rotate(90deg); }
+.battle-hull-damaged { filter: saturate(.4) brightness(.66); }
+.battle-hull-sunk { filter: saturate(.16) brightness(.46) contrast(1.08); }
+/* Nábeh rieši iba opacita — transform je vyhradený pre otočenie zvislej lode. */
+@media (prefers-reduced-motion: no-preference) {
+  .battle-cell[data-state="SHIP"] .battle-hull { animation: battleHullSettle .3s ease-out both; }
+}
+@keyframes battleHullSettle {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 .battle-wave { position: absolute; inset: 45% -65% auto; height: 30%; border-top: 1px solid rgba(125,211,252,.1); border-radius: 50%; animation: battleWaveDrift 4s linear infinite; pointer-events: none; }
 .battle-miss-dot { position: absolute; left: 50%; top: 50%; width: 22%; aspect-ratio: 1; border-radius: 999px; background: #bae6fd; box-shadow: 0 0 8px rgba(186,230,253,.7); transform: translate(-50%,-50%); animation: battleImpact .36s ease-out both; }
 .battle-hit-burst, .battle-sunk-mark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff7ed; font-size: clamp(.65rem, 4vw, 1.2rem); font-weight: 1000; text-shadow: 0 0 9px #fb923c; animation: battleImpact .42s cubic-bezier(.2,.9,.25,1.3) both; }
@@ -2881,12 +2897,6 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
 @keyframes only-lies-clock-beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.055); } }
 @media (max-width: 359px), (max-height: 699px) { .only-lies-stage { grid-template-rows: auto auto minmax(8.5rem, 1fr) auto; gap: .6rem; } .only-lies-rule { font-size: .7rem; padding: .34rem .66rem; } .only-lies-streak { padding: .32rem .6rem; } .only-lies-clock { border-radius: 1.1rem; padding: .5rem .8rem .58rem; } .only-lies-clock-label { font-size: .6rem; letter-spacing: .16em; } .only-lies-clock-value { font-size: clamp(2.4rem, 12.5vw, 3.2rem); } .only-lies-question { border-radius: 1.4rem; padding: 1.1rem .9rem; } .only-lies-question p { font-size: clamp(1.55rem, 7.6vw, 2.1rem); } .only-lies-question-mark { font-size: 7.5rem; } .is-game-stage .only-lies-answer, .only-lies-answer { min-height: 3.5rem !important; font-size: .88rem !important; border-radius: 1.1rem !important; } }
 @media (prefers-reduced-motion: reduce) { .only-lies-question { animation: none; } .only-lies-clock[data-urgent="true"] .only-lies-clock-value { animation: none; } .only-lies-failure, .only-lies-failure-card { animation: none; } }
-
-/* Kvíz: reveal countdown bar — čiara sa za 3 sekundy úplne vyprázdni. */
-.quiz-reveal-bar-wrapper { width: 100%; height: .35rem; flex-shrink: 0; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.1); }
-.quiz-reveal-bar { height: 100%; border-radius: inherit; background: linear-gradient(90deg, #a78bfa, #c084fc, #e879f9); animation: quiz-reveal-shrink 3s linear both; }
-@keyframes quiz-reveal-shrink { from { width: 100%; } to { width: 0%; } }
-@media (prefers-reduced-motion: reduce) { .quiz-reveal-bar { animation: none; width: 50%; } }
 
 /* Krátke kartové minihry: jeden motív, jedno pravidlo, dominantný obsah. */
 .prompt-game-shell { position: relative; isolation: isolate; overflow: hidden; background: radial-gradient(circle at 83% 8%, var(--prompt-glow), transparent 17rem), radial-gradient(circle at 4% 95%, var(--prompt-wash), transparent 17rem), #080b13 !important; }
