@@ -2,7 +2,7 @@ import type { AppLanguage } from "../i18n/LanguageProvider";
 import { LOCAL_PERSONALITY_CATEGORIES } from "./localizedPersonalities";
 import { GENERATED_CHARACTER_CARDS } from "./expandedContent";
 import { MARVEL_CHARACTERS } from "./marvelCharacters";
-import { ANIMATED_CHARACTERS as ANIMATED_CHARACTERS_DECK } from "./animatedCharacters";
+import { ANIMATED_CHARACTERS as ANIMATED_CHARACTERS_DECK, ANIMATED_CHARACTERS_SK_ONLY } from "./animatedCharacters";
 
 export interface CharacterCategory {
   id: string;
@@ -468,8 +468,22 @@ function uniqueCards(characters: string[]) {
   return [...new Set(characters)];
 }
 
+/** Cards that only belong to one language. Slovak players instantly recognise
+ * the local cartoon classics, but an English or Spanish player would never
+ * guess Maťko a Kubko, so those cards stay out of the other decks. */
+const LANGUAGE_ONLY_CARDS: Record<string, Partial<Record<AppLanguage, string[]>>> = {
+  "animated-characters": { sk: ANIMATED_CHARACTERS_SK_ONLY },
+};
+
 function localizedCategory(category: CharacterCategory, language: AppLanguage): CharacterCategory {
-  return { ...category, name: CATEGORY_LABELS[category.id]?.[language] ?? category.name };
+  const languageOnlyCards = LANGUAGE_ONLY_CARDS[category.id]?.[language];
+  return {
+    ...category,
+    name: CATEGORY_LABELS[category.id]?.[language] ?? category.name,
+    characters: languageOnlyCards
+      ? uniqueCards([...category.characters, ...languageOnlyCards])
+      : category.characters,
+  };
 }
 
 function additionalCategories(language: AppLanguage): CharacterCategory[] {
