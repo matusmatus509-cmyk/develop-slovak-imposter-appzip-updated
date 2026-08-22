@@ -139,9 +139,9 @@ const WINNIE_THE_POOH = toon(`
 Macko Puf|Prasiatko|Tiger|Ijáčik
 `);
 
-/** Slovenská a česká klasika. */
-const SLOVAK_CZECH_CLASSICS = toon(`
-Krtko|Včielka Maja|Pat a Mat|Bob a Bobek|Maťko a Kubko|Macko Uško
+/** Včielka Maja je európska klasika, poznajú ju aj ostatné jazyky. */
+const EUROPEAN_CLASSICS = toon(`
+Včielka Maja
 `);
 
 /** Komiksové a ďalšie známe postavičky. */
@@ -178,7 +178,18 @@ export const ANIMATED_CHARACTERS: string[] = [
     ...SIMPSONS,
     ...ADULT_CARTOONS,
     ...WINNIE_THE_POOH,
-    ...SLOVAK_CZECH_CLASSICS,
+    ...EUROPEAN_CLASSICS,
     ...OTHER_FAMOUS,
   ]),
 ];
+
+/**
+ * Slovak and Czech cartoon classics.
+ *
+ * These are only added to the Slovak deck. A player using English, German,
+ * Spanish, French or Portuguese would have no chance of guessing Maťko a Kubko
+ * or Bob a Bobek, so the other languages never see them.
+ */
+export const ANIMATED_CHARACTERS_SK_ONLY: string[] = toon(`
+Krtko|Pat a Mat|Bob a Bobek|Maťko a Kubko|Macko Uško
+`);
