@@ -1,6 +1,7 @@
 import type { AppLanguage } from "../i18n/LanguageProvider";
 import { LOCAL_PERSONALITY_CATEGORIES } from "./localizedPersonalities";
 import { GENERATED_CHARACTER_CARDS } from "./expandedContent";
+import { MARVEL_CHARACTERS } from "./marvelCharacters";
 
 export interface CharacterCategory {
   id: string;
@@ -27,6 +28,7 @@ const CATEGORY_LABELS: Record<string, CategoryLabels> = {
   "world-movies": { sk: "Svetové filmy", en: "World movies", de: "Internationale Filme", es: "Películas del mundo", fr: "Films du monde", pt: "Filmes do mundo" },
   "animated-movies": { sk: "Animované filmy", en: "Animated movies", de: "Animationsfilme", es: "Películas de animación", fr: "Films d’animation", pt: "Filmes de animação" },
   "heroes-villains": { sk: "Hrdinovia a zloduchovia", en: "Heroes and villains", de: "Helden und Schurken", es: "Héroes y villanos", fr: "Héros et méchants", pt: "Heróis e vilões" },
+  marvel: { sk: "Marvel postavy", en: "Marvel characters", de: "Marvel-Figuren", es: "Personajes de Marvel", fr: "Personnages Marvel", pt: "Personagens da Marvel" },
   "character-archetypes": { sk: "Postavy a archetypy", en: "Roles and archetypes", de: "Rollen und Archetypen", es: "Roles y arquetipos", fr: "Rôles et archétypes", pt: "Papéis e arquétipos" },
   professions: { sk: "Povolania", en: "Professions", de: "Berufe", es: "Profesiones", fr: "Métiers", pt: "Profissões" },
   food: { sk: "Jedlo a nápoje", en: "Food and drinks", de: "Essen und Getränke", es: "Comida y bebidas", fr: "Nourriture et boissons", pt: "Comida e bebidas" },
@@ -567,6 +569,12 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     name: "Hrdinovia a zloduchovia",
     icon: "🦸",
     characters: uniqueCards(HEROES_AND_VILLAINS),
+  },
+  {
+    id: "marvel",
+    name: "Marvel postavy",
+    icon: "🕷️",
+    characters: uniqueCards(MARVEL_CHARACTERS),
   },
   {
     id: "character-archetypes",
