@@ -14,7 +14,6 @@ import {
   higherLowerTruth,
   otherTeam,
   parseGuessInput,
-  pointsAtStake,
   quizDuelReducer,
   type QuizDuelAction,
   type QuizDuelPlan,
@@ -33,41 +32,26 @@ const KIND_INFO: Record<
   ResolvedQuizDuelQuestion["kind"],
   { label: string; rule: string; icon: string }
 > = {
-  classic: {
-    label: "Klasická otázka",
-    rule: "Oba tímy si vyberú odpoveď. Až potom sa odhalí správna.",
-    icon: "🧠",
-  },
-  estimate: {
-    label: "Tipni číslo",
-    rule: "Jeden tím zadá odhad, druhý háda, či je pravda VIAC alebo MENEJ.",
-    icon: "🎯",
-  },
-  closest: {
-    label: "Najbližší tip vyhráva",
-    rule: "Oba tímy tajne zadajú číslo. Bližší tip berie bod.",
-    icon: "📏",
-  },
-  "higher-lower": {
-    label: "Viac alebo menej",
-    rule: "Je skutočná hodnota vyššia alebo nižšia ako v tvrdení?",
-    icon: "⚖️",
-  },
+  classic: { label: "Klasická otázka", rule: "Obaja vyberte odpoveď", icon: "🧠" },
+  estimate: { label: "Tipni číslo", rule: "Tip, potom VIAC/MENEJ", icon: "🎯" },
+  closest: { label: "Najbližší tip", rule: "Obaja tajne tipnite", icon: "📏" },
+  "higher-lower": { label: "Viac či menej", rule: "Je to viac alebo menej?", icon: "⚖️" },
 };
 
+/** Krátke, aby sa vo výsledku nezmestil odsek textu. */
 const REASON_TEXT: Record<QuizDuelReason, string> = {
-  correct: "Správna odpoveď",
-  wrong: "Nesprávna odpoveď",
+  correct: "Správne",
+  wrong: "Nesprávne",
   "no-answer": "Bez odpovede",
-  "verdict-correct": "Uhádli ste správne",
+  "verdict-correct": "Uhádli ste",
   "verdict-wrong": "Netrafili ste",
-  "estimate-defended": "Súper sa pomýlil pri vašom tipe",
-  "estimate-beaten": "Súper váš tip prečítal správne",
+  "estimate-defended": "Súper sa pomýlil",
+  "estimate-beaten": "Súper vás prečítal",
   "estimate-exact": "Presný zásah!",
-  "estimate-void": "Tip súpera bol presný — rozhodnutie neplatí",
+  "estimate-void": "Tip bol presný",
   "closest-win": "Boli ste bližšie",
   "closest-lose": "Súper bol bližšie",
-  "closest-tie": "Rovnaká vzdialenosť",
+  "closest-tie": "Rovnako blízko",
   "closest-exact": "Presný zásah!",
 };
 
@@ -301,16 +285,10 @@ function QuizFace({
       {/* ── Predstavenie otázky ─────────────────────────────────────────── */}
       {stage.t === "brief" && (
         <>
+          {/* Tvrdenie pri „Viac či menej“ je už súčasťou otázky, takže sa
+              nikde nezdvojuje. */}
           <QuestionCard text={question.prompt} large />
-          {question.kind === "higher-lower" && (
-            <p
-              className="shrink-0 text-center font-black text-white"
-              style={{ fontSize: "clamp(1rem, 4vw, 1.4rem)" }}
-            >
-              {question.claimDisplay}
-            </p>
-          )}
-          <p className="shrink-0 text-center text-[10px] font-bold leading-snug text-white/45">
+          <p className="shrink-0 text-[10px] font-bold uppercase tracking-widest text-white/35">
             {info.rule}
           </p>
           <div className="quiz-reveal-bar-wrapper shrink-0">
@@ -341,8 +319,7 @@ function QuizFace({
         <>
           <QuestionCard text={question.prompt} />
           <p className="shrink-0 text-center text-[10px] font-black uppercase tracking-widest text-amber-300/80">
-            Koľko si vsadíte? V hre je {pointsAtStake(slot, state.wagers[team])}{" "}
-            {pointsAtStake(slot, state.wagers[team]) === 1 ? "bod" : "body"}
+            Koľko si vsadíte?
           </p>
           <div className="flex w-full shrink-0 gap-2">
             <BigChoiceButton
@@ -388,12 +365,6 @@ function QuizFace({
       {stage.t === "answer" && question.kind === "higher-lower" && (
         <>
           <QuestionCard text={question.prompt} />
-          <p
-            className="shrink-0 text-center font-black text-white"
-            style={{ fontSize: "clamp(1.1rem, 4.6vw, 1.6rem)" }}
-          >
-            {question.claimDisplay}
-          </p>
           <div className="flex w-full shrink-0 gap-2">
             <BigChoiceButton
               label="↑ VIAC"
@@ -648,10 +619,30 @@ function RevealPanel({
       ? `${LETTERS[question.correctIndex]}) ${question.options[question.correctIndex]}`
       : question.display;
 
+  /** Jeden krátky riadok s tým, čo tím zadal — pre každý typ inak. */
+  let detail = "";
+  if (question.kind === "closest") {
+    const mine = myGuess === null ? null : guessDistance(question.value, myGuess);
+    const theirs =
+      opponentGuess === null ? null : guessDistance(question.value, opponentGuess);
+    detail = `Vy ±${mine === null ? "—" : formatQuizNumber(mine)}  ·  Súper ±${
+      theirs === null ? "—" : formatQuizNumber(theirs)
+    }`;
+  } else if (question.kind === "estimate") {
+    detail =
+      myGuess !== null
+        ? `Váš tip: ${formatQuizNumber(myGuess)}`
+        : `Tip súpera: ${opponentGuess === null ? "—" : formatQuizNumber(opponentGuess)}`;
+  } else if (question.kind === "classic" && myPick !== null) {
+    detail = `Vaša odpoveď: ${LETTERS[myPick]}`;
+  } else if (question.kind === "higher-lower" && myVerdict) {
+    detail = `Vaša odpoveď: ${myVerdict === "viac" ? "↑ Viac" : "↓ Menej"}`;
+  }
+
   return (
     <>
       <div
-        className="flex w-full shrink-0 flex-col items-center gap-0.5 rounded-2xl border px-3 py-2"
+        className="flex w-full shrink-0 flex-col items-center rounded-2xl border px-3 py-1.5"
         style={{
           borderColor: "rgba(74,222,128,.4)",
           background: "rgba(34,197,94,.12)",
@@ -659,7 +650,11 @@ function RevealPanel({
         }}
       >
         <p className="text-[9px] font-black uppercase tracking-widest text-emerald-300/70">
-          Správna odpoveď
+          {question.kind === "higher-lower"
+            ? higherLowerTruth(question) === "viac"
+              ? "↑ Bolo to viac"
+              : "↓ Bolo to menej"
+            : "Správna odpoveď"}
         </p>
         <p
           className="text-center font-black leading-tight text-white"
@@ -667,91 +662,38 @@ function RevealPanel({
         >
           {answerText}
         </p>
-        {question.kind === "higher-lower" && (
-          <p className="text-[10px] font-black uppercase tracking-wider text-white/50">
-            {higherLowerTruth(question) === "viac" ? "↑ Viac" : "↓ Menej"} ako{" "}
-            {question.claimDisplay}
-          </p>
-        )}
       </div>
 
-      {/* Ukazujeme aj o koľko sa každý tím minul — presne z toho vzniká
-          moment „fúha, bol som fakt blízko“. */}
-      {question.kind === "closest" && (
-        <div className="flex w-full shrink-0 justify-center gap-2 text-[10px] font-bold">
-          {(
-            [
-              { label: "Váš tip", guess: myGuess, mine: true },
-              { label: "Súper", guess: opponentGuess, mine: false },
-            ] as const
-          ).map(({ label, guess, mine }) => (
-            <span
-              key={label}
-              className="rounded-lg border px-2 py-1 text-center"
-              style={{
-                borderColor: mine ? `${color}66` : "rgba(255,255,255,.1)",
-                background: mine ? `${color}14` : "rgba(255,255,255,.04)",
-              }}
-            >
-              <span className="text-white/40">{label}: </span>
-              <span className="tabular-nums text-white/80">
-                {guess === null ? "—" : formatQuizNumber(guess)}
-              </span>
-              {guess !== null && (
-                <span className="text-white/30">
-                  {" "}
-                  (±{formatQuizNumber(guessDistance(question.value, guess))})
-                </span>
-              )}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {/* Pri „Tipni číslo“ tipuje len jeden tím — druhý vidí ten istý tip ako súperov. */}
-      {question.kind === "estimate" && (
-        <p className="shrink-0 text-center text-[10px] font-bold text-white/40">
-          {myGuess !== null
-            ? `Váš tip: ${formatQuizNumber(myGuess)}`
-            : `Tip súpera: ${opponentGuess === null ? "—" : formatQuizNumber(opponentGuess)}`}
-        </p>
-      )}
-
-      {question.kind === "classic" && myPick !== null && (
-        <p className="shrink-0 text-center text-[10px] font-bold text-white/40">
-          Vaša odpoveď: {LETTERS[myPick]}) {question.options[myPick]}
-        </p>
-      )}
-
-      {question.kind === "higher-lower" && myVerdict && (
-        <p className="shrink-0 text-center text-[10px] font-bold text-white/40">
-          Vaša odpoveď: {myVerdict === "viac" ? "↑ Viac" : "↓ Menej"}
+      {/* Jediný riadok s detailom namiesto štyroch samostatných blokov.
+          Pri „Najbližšom tipe“ ukazuje priamo odchýlky, takže je hneď vidno,
+          kto bol bližšie — bez toho, aby to hráč musel počítať. */}
+      {detail && (
+        <p className="shrink-0 text-center text-[10px] font-bold tabular-nums text-white/45">
+          {detail}
         </p>
       )}
 
       <div
-        className="flex w-full shrink-0 items-center justify-center gap-2 rounded-xl border px-3 py-1.5"
+        className="flex w-full shrink-0 items-center justify-center gap-2 rounded-xl border px-3 py-1"
         style={{ borderColor: `${tone}44`, background: `${tone}14` }}
       >
-        <span className="text-xl font-black tabular-nums" style={{ color: tone }}>
+        <span className="text-lg font-black tabular-nums" style={{ color: tone }}>
           {deltaLabel(result.delta)}
         </span>
-        <span className="min-w-0 flex-1 text-[10px] font-bold leading-tight text-white/60">
+        <span className="text-[10px] font-bold leading-tight text-white/60">
           {REASON_TEXT[result.reason]}
           {wager && (
             <span className="text-white/35">
-              {" "}
-              · {wager === "risk" ? "RISK" : "ISTOTA"}
+              {" · "}
+              {wager === "risk" ? "RISK" : "ISTOTA"}
             </span>
           )}
         </span>
       </div>
 
-      <p className="min-h-0 shrink overflow-hidden text-center text-[10px] font-medium leading-snug text-white/45">
+      {/* Fakt je orezaný na dva riadky — dlhší text nikto na párty nečíta. */}
+      <p className="line-clamp-2 shrink-0 text-center text-[10px] font-medium leading-snug text-white/40">
         {question.fact}
-      </p>
-      <p className="shrink-0 truncate text-center text-[8px] font-bold uppercase tracking-wider text-white/20">
-        {question.source}
       </p>
 
       <button
