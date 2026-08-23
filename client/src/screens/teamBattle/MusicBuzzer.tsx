@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 /** Design: Nočný herný salón — hudobný kvíz používa hostovaný vizuál kvízu. */
 import { musicQuizGameHero as songArt } from "../../media";
-import { getSongCardsForLanguage } from "../../data/localizedSongs";
+import { drawSongs } from "../../data/songSelection";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { useSongPreview } from "../../hooks/useSongPreview";
 import { useLanguage } from "../../i18n/LanguageProvider";
 import { soundsEnabled, vibrate } from "../../utils/deviceFeedback";
-import { takePersistentItems } from "../../utils/persistentDeck";
 import { PartyBackdrop } from "./PartyChrome";
 import {
   makeEmptyScores,
@@ -41,15 +40,13 @@ export default function MusicBuzzer({
   const { language } = useLanguage();
   const { playFeedback } = useFeedback();
   const soundAllowed = soundsEnabled();
-  const deck = useMemo(() => {
-    const catalogue = getSongCardsForLanguage(language);
-    return takePersistentItems(
-      `party:music-buzzer:${language}`,
-      catalogue,
-      catalogue.length,
-      song => `${song.title}|${song.artist}`.toLocaleLowerCase()
-    );
-  }, [language]);
+  // Deck si vyžiadame naraz, ale s rezervou — `skipUnavailable()` prepáli slot,
+  // keď sa u poskytovateľa nenájde ukážka. Session zabezpečí, že skladby už
+  // použité v „Zahmkaj pesničku" sa sem nedostanú.
+  const deck = useMemo(
+    () => drawSongs({ language, minigame: "buzzer", count: rounds * 3 + 10 }),
+    [language, rounds]
+  );
   const [questionIndex, setQuestionIndex] = useState(0);
   const [deckIndex, setDeckIndex] = useState(0);
   const [scores, setScores] = useState<number[]>(() =>

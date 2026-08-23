@@ -3541,3 +3541,806 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
   .guess-who-hero-copy h1 { font-size: 1.15rem; }
   .guess-who-players-chips { display: none; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Editorial refresh — menu, nastavenia a obrazovky pred hrou
+   ═══════════════════════════════════════════════════════════════════════
+
+   Predchádzajúci vzhľad týchto obrazoviek stál na fialovo-ružových
+   gradientoch, neónových žiarach a dekoratívnych orboch. Vyzeralo to
+   generické. Tento vzhľad stavia na troch pravidlách:
+
+   1. Farbu nesie OBSAH, nie chróm. Každá hra má svoj akcent, tímy majú
+      modrú a červenú. Okolie je teplá neutrálna tmavá.
+   2. Hierarchiu drží TYPOGRAFIA, nie efekty. Žiadne žiary, žiadne
+      rozmazané kruhy, minimum tieňov. Vlasové linky namiesto ohraničení.
+   3. Jedna škála zaoblenia a jeden odstup. Nie sedem rôznych radiusov
+      na jednej obrazovke.
+   ─────────────────────────────────────────────────────────────────── */
+
+.ui {
+  --ui-bg: #101116;
+  --ui-surface: #181a21;
+  --ui-surface-2: #1f222b;
+  --ui-surface-3: #262a34;
+  --ui-line: rgba(255, 255, 255, 0.085);
+  --ui-line-strong: rgba(255, 255, 255, 0.16);
+  --ui-ink: #f6f7f9;
+  --ui-ink-2: rgba(246, 247, 249, 0.64);
+  --ui-ink-3: rgba(246, 247, 249, 0.4);
+  --ui-accent: #e0a83c;
+  --ui-r: 0.75rem;
+  --ui-r-lg: 1.1rem;
+  --ui-gap: 0.65rem;
+  color: var(--ui-ink);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* ── Plocha obrazovky ─────────────────────────────────────────────────
+   Skroluje vnútro obrazovky, nie stránka — rovnaká konvencia ako
+   `.scroll-panel` v projekte. Zámerne bez `position: fixed`: rám hry má
+   `overflow: hidden` a keby k nemu niekto pridal transform, fixed obsah by
+   sa mlčky odrezal. */
+.ui-screen {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  background: var(--ui-bg);
+  -webkit-overflow-scrolling: touch;
+}
+/* Jemný teplý spád pod hlavičkou — jediný „efekt", ktorý si obrazovka dovolí. */
+.ui-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 18rem;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent);
+}
+.ui-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: max(0.9rem, env(safe-area-inset-top)) 1.05rem
+    max(1.4rem, env(safe-area-inset-bottom));
+}
+
+/* ── Hlavička ─────────────────────────────────────────────────────── */
+.ui-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 2.75rem;
+}
+.ui-back {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-r);
+  background: var(--ui-surface);
+  color: var(--ui-ink-2);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.ui-back:active {
+  transform: scale(0.94);
+}
+.ui-back:hover {
+  background: var(--ui-surface-2);
+  color: var(--ui-ink);
+}
+/* Namiesto piatich rozstrkaných uppercase štítkov jeden vecný nadpis pásu. */
+.ui-bar-title {
+  min-width: 0;
+  flex: 1;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ui-ink-2);
+  letter-spacing: -0.01em;
+}
+.ui-bar-note {
+  flex: 0 0 auto;
+  border: 1px solid var(--ui-line);
+  border-radius: 999px;
+  background: var(--ui-surface);
+  padding: 0.3rem 0.6rem;
+  color: var(--ui-ink-2);
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Titulok obrazovky ───────────────────────────────────────────── */
+.ui-head {
+  margin: 1.15rem 0 1.25rem;
+}
+.ui-title {
+  margin: 0;
+  font-family: "Manrope", "Inter", system-ui, sans-serif;
+  font-size: clamp(1.8rem, 7.6vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--ui-ink);
+}
+.ui-lead {
+  margin: 0.5rem 0 0;
+  max-width: 26rem;
+  font-size: 0.88rem;
+  font-weight: 450;
+  line-height: 1.5;
+  color: var(--ui-ink-2);
+}
+
+/* ── Panel a riadky ──────────────────────────────────────────────── */
+.ui-panel {
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-r-lg);
+  background: var(--ui-surface);
+  overflow: hidden;
+}
+.ui-panel + .ui-panel {
+  margin-top: var(--ui-gap);
+}
+.ui-panel-head {
+  padding: 0.9rem 0.95rem 0.15rem;
+}
+.ui-panel-title {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  color: var(--ui-ink);
+}
+.ui-panel-sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.76rem;
+  font-weight: 450;
+  line-height: 1.45;
+  color: var(--ui-ink-3);
+}
+.ui-panel-body {
+  padding: 0.7rem 0.95rem 0.95rem;
+}
+.ui-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 0.95rem;
+}
+.ui-row + .ui-row {
+  border-top: 1px solid var(--ui-line);
+}
+
+/* ── Segmentované prepínače ──────────────────────────────────────── */
+/* Nahrádzajú mriežky žiariacich pilúľ. Vybraná možnosť je svetlá plocha,
+   nie neón — rozdiel je čitateľný aj na slnku. */
+.ui-seg {
+  display: grid;
+  gap: 0.3rem;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-r);
+  background: rgba(0, 0, 0, 0.22);
+  padding: 0.3rem;
+}
+.ui-seg-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ui-seg-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ui-seg-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ui-seg-opt {
+  border: 0;
+  border-radius: calc(var(--ui-r) - 0.22rem);
+  background: transparent;
+  padding: 0.6rem 0.35rem;
+  color: var(--ui-ink-3);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 650;
+  line-height: 1.15;
+  text-align: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.ui-seg-opt:hover {
+  color: var(--ui-ink-2);
+}
+.ui-seg-opt[aria-pressed="true"],
+.ui-seg-opt[data-on="true"] {
+  background: var(--ui-surface-3);
+  color: var(--ui-ink);
+  box-shadow: inset 0 0 0 1px var(--ui-line-strong);
+}
+.ui-seg-opt small {
+  display: block;
+  margin-top: 0.18rem;
+  font-size: 0.63rem;
+  font-weight: 550;
+  opacity: 0.62;
+}
+.ui-seg-opt:active {
+  transform: scale(0.97);
+}
+
+/* ── Voliteľné karty (dve veľké možnosti vedľa seba) ─────────────── */
+.ui-choice {
+  position: relative;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-r);
+  background: var(--ui-surface-2);
+  padding: 0.85rem 0.85rem 0.9rem;
+  text-align: left;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.ui-choice:active { transform: scale(0.98); }
+.ui-choice[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--ui-choice-accent, var(--ui-accent)) 60%, transparent);
+  background: color-mix(in srgb, var(--ui-choice-accent, var(--ui-accent)) 11%, var(--ui-surface-2));
+}
+.ui-choice-name {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  color: var(--ui-ink);
+}
+.ui-choice-note {
+  display: block;
+  margin-top: 0.22rem;
+  font-size: 0.72rem;
+  font-weight: 450;
+  line-height: 1.35;
+  color: var(--ui-ink-3);
+}
+/* Vybranú možnosť značí tenká linka vo farbe akcentu, nie emoji fajka. */
+.ui-choice[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: var(--ui-choice-accent, var(--ui-accent));
+}
+
+/* ── Textové pole tímu ───────────────────────────────────────────── */
+.ui-field {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-r-lg);
+  background: var(--ui-surface);
+  padding: 0.75rem 0.9rem;
+  transition: border-color 0.15s ease;
+}
+.ui-field:focus-within {
+  border-color: color-mix(in srgb, var(--ui-field-accent, var(--ui-accent)) 55%, transparent);
+}
+.ui-field-mark {
+  display: grid;
+  width: 2.3rem;
+  height: 2.3rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 0.6rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+.ui-field-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 650;
+  color: var(--ui-ink-3);
+}
+.ui-field input {
+  width: 100%;
+  margin-top: 0.1rem;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--ui-ink);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  outline: none;
+}
+.ui-field input::placeholder {
+  color: var(--ui-ink-3);
+  font-weight: 550;
+}
+
+/* ── Hlavné tlačidlo ─────────────────────────────────────────────── */
+.ui-cta {
+  display: flex;
+  width: 100%;
+  min-height: 3.35rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border: 0;
+  border-radius: var(--ui-r);
+  background: var(--ui-cta-bg, var(--ui-accent));
+  padding: 0 0.9rem 0 1.15rem;
+  color: var(--ui-cta-ink, #17150c);
+  font: inherit;
+  font-size: 0.98rem;
+  font-weight: 750;
+  letter-spacing: -0.012em;
+  transition: filter 0.15s ease, opacity 0.15s ease;
+}
+.ui-cta:hover { filter: brightness(1.06); }
+.ui-cta:active { transform: scale(0.985); }
+.ui-cta:disabled { opacity: 0.35; }
+.ui-cta-arrow {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 0.55rem;
+  background: rgba(0, 0, 0, 0.16);
+}
+.ui-btn-quiet {
+  width: 100%;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-r);
+  background: var(--ui-surface);
+  padding: 0.85rem;
+  color: var(--ui-ink-2);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+.ui-btn-quiet:active { transform: scale(0.985); }
+
+/* ── Mriežka minihier ────────────────────────────────────────────── */
+.ui-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ui-gap);
+}
+.ui-tile {
+  position: relative;
+  display: flex;
+  min-height: 11.5rem;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-r-lg);
+  background: var(--ui-surface);
+  transition: border-color 0.16s ease, transform 0.16s ease;
+}
+.ui-tile:hover {
+  border-color: var(--ui-line-strong);
+  transform: translateY(-2px);
+}
+.ui-tile:has(.ui-tile-hit:active) { transform: scale(0.985); }
+.ui-tile-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+}
+/* Obraz hry je stmavený tak, aby text nad ním bol vždy čitateľný. */
+.ui-tile-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  opacity: 0.5;
+  filter: saturate(0.9);
+}
+.ui-tile-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 17, 22, 0.35) 0%,
+    rgba(16, 17, 22, 0.72) 52%,
+    rgba(16, 17, 22, 0.95) 100%
+  );
+}
+.ui-tile-top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0.7rem 0.75rem 0;
+  pointer-events: none;
+}
+/* Akcent hry sa objaví len tu — na ikone. Žiadna žiara, len farba. */
+.ui-tile-icon {
+  display: grid;
+  width: 2.1rem;
+  height: 2.1rem;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--tile-accent) 40%, transparent);
+  border-radius: 0.6rem;
+  background: color-mix(in srgb, var(--tile-accent) 16%, rgba(0, 0, 0, 0.35));
+  color: color-mix(in srgb, var(--tile-accent) 82%, #fff);
+}
+.ui-tile-fav {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  width: 1.85rem;
+  height: 1.85rem;
+  place-items: center;
+  border: 1px solid var(--ui-line);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--ui-ink-3);
+  pointer-events: auto;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.ui-tile-fav:active { transform: scale(0.9); }
+.ui-tile-fav.is-on {
+  border-color: rgba(244, 114, 132, 0.5);
+  color: #f47284;
+}
+.ui-tile-fav.is-on svg { fill: currentColor; }
+.ui-tile-copy {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  padding: 0.75rem;
+}
+.ui-tile-copy h2 {
+  margin: 0;
+  font-family: "Manrope", "Inter", system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 750;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+.ui-tile-meta {
+  margin: 0.3rem 0 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--ui-ink-3);
+}
+.ui-tile-desc {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0.28rem 0 0;
+  font-size: 0.71rem;
+  font-weight: 450;
+  line-height: 1.34;
+  color: var(--ui-ink-2);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* ── Zoznam hier v jednom stĺpci (Imposter menu) ─────────────────── */
+.ui-list-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  overflow: hidden;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-r-lg);
+  background: var(--ui-surface);
+  min-height: 7.4rem;
+  transition: border-color 0.16s ease;
+}
+.ui-list-card:hover { border-color: var(--ui-line-strong); }
+.ui-list-card:has(.ui-tile-hit:active) { transform: scale(0.99); }
+.ui-list-art {
+  position: relative;
+  overflow: hidden;
+  background: #0d0e13;
+}
+.ui-list-art > * {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  opacity: 0.72;
+}
+.ui-list-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 40%, var(--ui-surface));
+}
+.ui-list-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.85rem 0.9rem;
+}
+.ui-list-body h2 {
+  margin: 0;
+  font-family: "Manrope", "Inter", system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 750;
+  letter-spacing: -0.028em;
+  color: #fff;
+}
+.ui-list-meta {
+  margin: 0.25rem 0 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ui-ink-3);
+}
+.ui-list-desc {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0.35rem 0 0;
+  font-size: 0.76rem;
+  font-weight: 450;
+  line-height: 1.4;
+  color: var(--ui-ink-2);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* ── Obrazovka pred hrou ─────────────────────────────────────────── */
+/* Obrazovka pred hrou sa nikdy neskroluje — musí sa zmestiť na jeden displej. */
+.ui-pre {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--ui-bg);
+}
+.ui-pre-inner {
+  display: flex;
+  width: 100%;
+  max-width: 30rem;
+  height: 100%;
+  margin: 0 auto;
+  flex-direction: column;
+  padding: max(0.75rem, env(safe-area-inset-top)) 1.05rem
+    max(0.85rem, env(safe-area-inset-bottom));
+}
+.ui-pre-art {
+  position: relative;
+  min-height: 0;
+  flex: 1.15 1 0;
+  overflow: hidden;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-r-lg);
+  background: #0d0e13;
+}
+.ui-pre-art > .ui-pre-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  object-fit: cover;
+}
+/* Obraz ide do tmy zdola, aby na ňom text držal kontrast bez rozmazania. */
+.ui-pre-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 17, 22, 0.12) 0%,
+    rgba(16, 17, 22, 0.55) 55%,
+    var(--ui-bg) 100%
+  );
+}
+.ui-pre-back {
+  position: absolute;
+  z-index: 3;
+  top: 0.7rem;
+  left: 0.7rem;
+}
+.ui-pre-caption {
+  position: absolute;
+  z-index: 3;
+  right: 1rem;
+  bottom: 0.9rem;
+  left: 1rem;
+}
+.ui-pre-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 650;
+  color: rgba(255, 255, 255, 0.72);
+}
+.ui-pre-kicker i {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--ui-pre-accent);
+}
+.ui-pre-caption h1 {
+  margin: 0;
+  max-width: 20rem;
+  font-family: "Manrope", "Inter", system-ui, sans-serif;
+  font-size: clamp(1.9rem, 8.4vw, 2.5rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+.ui-pre-body {
+  display: flex;
+  min-height: 0;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding-top: 0.85rem;
+}
+.ui-pre-text {
+  margin: 0;
+  font-size: 0.84rem;
+  font-weight: 450;
+  line-height: 1.48;
+  color: var(--ui-ink-2);
+}
+.ui-pre-facts {
+  display: flex;
+  gap: 1.4rem;
+  border-top: 1px solid var(--ui-line);
+  border-bottom: 1px solid var(--ui-line);
+  padding: 0.7rem 0;
+}
+.ui-pre-fact dt {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--ui-ink-3);
+}
+.ui-pre-fact dd {
+  margin: 0.15rem 0 0;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ui-ink);
+}
+.ui-pre-rule {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 550;
+  line-height: 1.4;
+  color: var(--ui-ink-2);
+}
+.ui-pre-rule span {
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--ui-pre-accent) 18%, transparent);
+  color: var(--ui-pre-accent);
+}
+
+/* ── Malé displeje ───────────────────────────────────────────────── */
+@media (max-height: 720px) {
+  .ui-pre-art { flex: 0.95 1 0; }
+  .ui-pre-body { gap: 0.45rem; padding-top: 0.65rem; }
+  .ui-pre-text {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 0.8rem;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+  .ui-pre-facts { padding: 0.55rem 0; }
+  .ui-cta { min-height: 3.05rem; }
+}
+@media (max-width: 360px) {
+  .ui-wrap { padding-inline: 0.85rem; }
+  .ui-grid { gap: 0.55rem; }
+  .ui-tile { min-height: 10.6rem; }
+  .ui-list-card { grid-template-columns: 7rem 1fr; min-height: 6.8rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ui-tile,
+  .ui-list-card,
+  .ui-back,
+  .ui-seg-opt,
+  .ui-choice,
+  .ui-cta { transition: none; }
+}
+
+/* Svetlý režim: rovnaká štruktúra, obrátený inkoust. */
+html[data-theme="light"] .ui {
+  --ui-bg: #f4f4f6;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f0f1f4;
+  --ui-surface-3: #e4e6ea;
+  --ui-line: rgba(16, 17, 22, 0.1);
+  --ui-line-strong: rgba(16, 17, 22, 0.2);
+  --ui-ink: #14161c;
+  --ui-ink-2: rgba(20, 22, 28, 0.66);
+  --ui-ink-3: rgba(20, 22, 28, 0.45);
+}
+html[data-theme="light"] .ui-screen::before {
+  background: linear-gradient(180deg, rgba(16, 17, 22, 0.04), transparent);
+}
+html[data-theme="light"] .ui-tile-copy h2,
+html[data-theme="light"] .ui-list-body h2,
+html[data-theme="light"] .ui-pre-caption h1 { color: #fff; }
+
+
+/* ── Výber minihier do Party modu ────────────────────────────────── */
+/* Vybraná hra sa nezvýrazňuje žiarou, ale plným rámom vo farbe hry
+   a číslom poradia. Číslo zároveň nesie informáciu, ktorú fajka nemá. */
+.ui-pick.is-picked {
+  border-color: color-mix(in srgb, var(--tile-accent) 70%, transparent);
+}
+.ui-pick.is-picked .ui-tile-art { opacity: 0.62; }
+.ui-pick-order {
+  position: absolute;
+  z-index: 4;
+  top: 0.6rem;
+  left: 0.6rem;
+  display: grid;
+  min-width: 1.7rem;
+  height: 1.7rem;
+  place-items: center;
+  border-radius: 0.5rem;
+  background: var(--tile-accent);
+  padding: 0 0.4rem;
+  color: #111319;
+  font-size: 0.82rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Ukotvený spodný pás s potvrdením ────────────────────────────── */
+.ui-dock {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  border-top: 1px solid var(--ui-line);
+  background: color-mix(in srgb, var(--ui-bg) 92%, transparent);
+  padding: 0.7rem 1.05rem max(0.7rem, env(safe-area-inset-bottom));
+  backdrop-filter: blur(12px);
+}
+.ui-dock-inner {
+  display: flex;
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+}
+.ui-dock-note {
+  min-width: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ui-ink-2);
+}
+/* Tlačidlo v páse je užšie a jeho výška škáluje s displejom, aby na nízkych
+   obrazovkách nepretlačilo obsah. */
+.ui-cta-compact {
+  width: auto;
+  min-height: clamp(2.6rem, 6.4dvh, 3.15rem);
+  padding-left: 1rem;
+}

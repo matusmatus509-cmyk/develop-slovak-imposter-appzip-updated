@@ -1,6 +1,10 @@
-/** Dizajn: Samostatný Párty výber používa aktuálne hero obrázky menu Minihry; poradie je viditeľné priamo na kartách a potvrdenie hru spustí. */
+/**
+ * Dizajn: rovnaká mriežka ako menu Minihry, aby výber v Party mode nepôsobil
+ * ako iná aplikácia. Poradie hier je viditeľné priamo na kartách a potvrdenie
+ * je ukotvené v spodnom páse, takže je dosiahnuteľné palcom.
+ */
 import { useState, type CSSProperties } from "react";
-import { Shell, TopBar } from "../../components/ui";
+import { Icons } from "../../components/icons";
 import { GAME_LABELS, type GameType } from "../../data/teamBattle";
 import {
   fiveTenGameHero,
@@ -90,84 +94,91 @@ export default function TeamBattleGamePicker({
     );
   }
 
+  const count = selectedGames.length;
+
   return (
-    <Shell className="minigame-tile-shell party-game-picker-screen scroll-panel">
-      <TopBar onBack={onBack} />
-      <header
-        className="minigame-tile-header"
-        style={{ animation: "slideUp .22s cubic-bezier(.23,1,.32,1) both" }}
-      >
-        <div>
-          <p>PÁRTY MÓD</p>
-          <h1>Vyber minihry</h1>
+    <main className="ui ui-screen scroll-panel">
+      <div className="ui-wrap pb-24">
+        <div className="ui-bar">
+          <button type="button" onClick={onBack} aria-label="Späť" className="ui-back">
+            <Icons.arrowLeft size={19} />
+          </button>
+          <span className="ui-bar-title">Party mode</span>
+          <span className="ui-bar-note">{count} vybraných</span>
         </div>
-        <span>{selectedGames.length}</span>
-      </header>
 
-      <p className="party-picker-intro">
-        Ťukaj na hry v poradí, v akom ich chceš hrať. Posledná bude finále s
-        trojnásobnými bodmi.
-      </p>
+        <header className="ui-head">
+          <h1 className="ui-title">Vyber minihry</h1>
+          <p className="ui-lead">
+            Ťukaj na hry v poradí, v akom ich chcete hrať. Posledná bude finále
+            s trojnásobnými bodmi.
+          </p>
+        </header>
 
-      <div
-        className="minigame-tile-grid pb-5"
-        aria-label="Výber minihier do Párty módu"
-      >
-        {ALL_GAMES.map((game, index) => {
-          const order = selectedGames.indexOf(game);
-          const selected = order >= 0;
-          const art = GAME_ART[game];
-          return (
-            <article
-              key={game}
-              className={`minigame-tile group relative overflow-hidden ${selected ? "is-party-selected" : ""}`}
-              style={
-                {
-                  "--tile-accent": GAME_META[game].accent,
-                  animation: `slideUp .32s cubic-bezier(.23,1,.32,1) ${Math.min(35 + index * 22, 260)}ms both`,
-                } as CSSProperties
-              }
-            >
-              <button
-                type="button"
-                onClick={() => toggleGame(game)}
-                aria-label={`${selected ? "Zrušiť výber" : "Vybrať"} ${GAME_LABELS[game]}`}
-                aria-pressed={selected}
-                className="absolute inset-0 z-10 rounded-[1.1rem] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--tile-accent)]"
-              />
-              <span
-                className="absolute inset-0 scale-[1.04] bg-no-repeat transition duration-500 group-hover:scale-[1.1]"
-                style={{
-                  backgroundImage: `url(${art.src})`,
-                  backgroundPosition: art.position,
-                  backgroundSize: art.size,
-                }}
-              />
-              <span className="absolute inset-0 bg-gradient-to-t from-[#070b12]/95 via-[#070b12]/18 to-transparent" />
-              <span className="minigame-tile-edge" />
-              {selected && (
-                <span className="party-picker-order">{order + 1}</span>
-              )}
-              <h2>{GAME_LABELS[game]}</h2>
-            </article>
-          );
-        })}
+        <div className="ui-grid" aria-label="Výber minihier do Party modu">
+          {ALL_GAMES.map((game, index) => {
+            const order = selectedGames.indexOf(game);
+            const selected = order >= 0;
+            const art = GAME_ART[game];
+            return (
+              <article
+                key={game}
+                className={`ui-tile ui-pick ${selected ? "is-picked" : ""}`}
+                style={
+                  {
+                    "--tile-accent": GAME_META[game].accent,
+                    animation: `slideUp .3s ease-out ${Math.min(index * 28, 280)}ms both`,
+                  } as CSSProperties
+                }
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleGame(game)}
+                  aria-label={`${selected ? "Zrušiť výber" : "Vybrať"} ${GAME_LABELS[game]}`}
+                  aria-pressed={selected}
+                  className="ui-tile-hit"
+                />
+                <span
+                  aria-hidden="true"
+                  className="ui-tile-art"
+                  style={{
+                    backgroundImage: `url(${art.src})`,
+                    backgroundPosition: art.position,
+                    backgroundSize: art.size,
+                  }}
+                />
+                <span aria-hidden="true" className="ui-tile-veil" />
+                {/* Poradie je jediný ukazovateľ výberu — číslo nesie informáciu. */}
+                {selected && <span className="ui-pick-order">{order + 1}</span>}
+                <div className="ui-tile-copy">
+                  <h2>{GAME_LABELS[game]}</h2>
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </div>
 
-      <div className="party-picker-footer">
-        <span>
-          {selectedGames.length === 0
-            ? "Vyber aspoň jednu hru"
-            : `${selectedGames.length} ${selectedGames.length === 1 ? "minihra" : selectedGames.length < 5 ? "minihry" : "minihier"}`}
-        </span>
-        <button
-          type="button"
-          disabled={selectedGames.length === 0}
-          onClick={() => onConfirm(selectedGames)}
-        >
-          Hotovo a hrať
-        </button>
+      <div className="ui-dock">
+        <div className="ui-dock-inner">
+          <span className="ui-dock-note">
+            {count === 0
+              ? "Vyber aspoň jednu hru"
+              : `${count} ${count === 1 ? "minihra" : count < 5 ? "minihry" : "minihier"}`}
+          </span>
+          <button
+            type="button"
+            disabled={count === 0}
+            onClick={() => onConfirm(selectedGames)}
+            className="ui-cta ui-cta-compact shrink-0"
+          >
+            <span>Hrať</span>
+            <span className="ui-cta-arrow" aria-hidden="true">
+              <Icons.chevronRight size={17} />
+            </span>
+          </button>
+        </div>
       </div>
-    </Shell>
+    </main>
   );
 }

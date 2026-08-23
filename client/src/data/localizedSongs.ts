@@ -1,17 +1,223 @@
 import type { AppLanguage } from "../i18n/LanguageProvider";
 import type { SongCard } from "./teamBattleExtras";
 
-function parseSongs(library: string): SongCard[] {
+/**
+ * ── Hudobný katalóg ─────────────────────────────────────────────────────────
+ *
+ * Formát riadku je `Názov|Interpret` a voliteľne ďalšie stĺpce:
+ *
+ *   Názov|Interpret
+ *   Názov|Interpret|Rok|Žáner|Náročnosť|Príznaky
+ *
+ * Staršie dvojstĺpcové riadky zostávajú platné — metadáta zdedia od sekcie,
+ * takže rozšírenie katalógu nevyžaduje prepísanie už zapísaných skladieb.
+ *
+ * Príznaky (oddelené medzerou):
+ *   hum / nohum   — melódia sa dá / nedá zahmkať bez textu
+ *   lang=xx       — spievaný jazyk, ak sa líši od sekcie (napr. Nena v svetovom poole)
+ *   region=XX     — krajina či región (napr. region=AT)
+ */
+
+/** Jazyk, v ktorom sa skladba spieva. Je širší ako `AppLanguage` — hra po
+ *  slovensky má zmysel dopĺňať českými skladbami, hoci čeština nie je jazyk UI. */
+export type SongLanguage =
+  | "en" | "sk" | "cs" | "de" | "es" | "fr" | "pt"
+  | "it" | "sv" | "pl" | "hu" | "nl" | "instrumental" | "other";
+
+export type SongGenre =
+  | "pop" | "rock" | "rap" | "rnb" | "soul" | "dance" | "indie" | "disco" | "funk"
+  | "metal" | "punk" | "soundtrack" | "folk" | "country" | "oldies"
+  | "schlager" | "chanson" | "latin" | "reggae" | "jazz";
+
+/** Ako ľahko skladbu spozná priemerný hráč. */
+export type SongTier = "easy" | "medium" | "hard";
+
+export interface Song extends SongCard {
+  /** Stabilné id — nezávisí od sekcie ani od poradia, takže tú istú skladbu
+   *  spoľahlivo rozpoznáme aj keby bola vo viacerých pooloch. */
+  id: string;
+  /** Normalizovaný interpret — kľúč pre cooldown interpreta. */
+  artistKey: string;
+  language: SongLanguage;
+  year?: number;
+  /** Dekáda odvodená z roku, napr. „80s". */
+  decade?: string;
+  genre?: SongGenre;
+  tier: SongTier;
+  /** Skladba je rozpoznateľná podľa melódie, nie podľa textu. */
+  hummable: boolean;
+  region?: string;
+  scope: "global" | "local";
+}
+
+interface SectionDefaults {
+  language: SongLanguage;
+  scope: "global" | "local";
+  region?: string;
+}
+
+const GENRES = new Set<string>([
+  "pop", "rock", "rap", "rnb", "soul", "dance", "indie", "disco", "funk",
+  "metal", "punk", "soundtrack", "folk", "country", "oldies",
+  "schlager", "chanson", "latin", "reggae", "jazz",
+]);
+const TIERS = new Set<string>(["easy", "medium", "hard"]);
+const SONG_LANGUAGES = new Set<string>([
+  "en", "sk", "cs", "de", "es", "fr", "pt",
+  "it", "sv", "pl", "hu", "nl", "instrumental", "other",
+]);
+
+/** Rap a spoken-word sa hádajú podľa textu, nie podľa melódie. */
+const LYRIC_DRIVEN_GENRES = new Set<SongGenre>(["rap"]);
+
+/**
+ * Metadáta na úrovni interpreta. Doplnia žáner a náročnosť tým skladbám, ktoré
+ * ich nemajú uvedené v riadku — teda celej pôvodnej zásobe, bez toho, aby sme
+ * museli prepísať tisíc riadkov.
+ *
+ * Rapoví interpreti sú tu hlavne preto, aby „Zahmkaj pesničku" nedostala
+ * skladbu, ktorú sa nedá zahmkať. Náročnosť `easy` nesú interpreti, ktorých
+ * pozná naozaj každý.
+ */
+const ARTIST_PROFILES: Record<string, { genre?: SongGenre; tier?: SongTier }> = {};
+
+function profileArtists(
+  artists: readonly string[],
+  profile: { genre?: SongGenre; tier?: SongTier },
+) {
+  for (const artist of artists) {
+    const key = normalizeArtistKey(artist);
+    ARTIST_PROFILES[key] = { ...ARTIST_PROFILES[key], ...profile };
+  }
+}
+
+// Rap a hip-hop — rozpoznanie stojí na texte, nie na melódii.
+profileArtists(
+  [
+    "2Pac", "50 Cent", "Eminem", "Jay-Z", "Kanye West", "Snoop Dogg",
+    "Snoop Dogg & Wiz Khalifa", "The Notorious B.I.G.", "Outkast",
+    "Macklemore & Ryan Lewis", "Nicki Minaj", "Drake", "Kendrick Lamar",
+    "Kali", "Rytmus", "Kontrafakt", "Majk Spirit", "Sima", "Separ", "Ego",
+    "Sido", "BONEZ MC", "Apache 207", "Cro", "Fettes Brot", "Marteria",
+    "Alligatoah", "Ski Aggu", "Peter Fox", "Kamini", "Gims",
+  ],
+  { genre: "rap" },
+);
+
+// Svetoznámi interpreti — skladbu z ich katalógu spozná takmer každý.
+profileArtists(
+  [
+    "ABBA", "Queen", "Michael Jackson", "The Beatles", "Madonna", "Adele",
+    "Ed Sheeran", "Bon Jovi", "AC/DC", "Nirvana", "Metallica", "Coldplay",
+    "Rihanna", "Beyoncé", "Lady Gaga", "Bruno Mars", "Dua Lipa", "Elton John",
+    "Whitney Houston", "Tina Turner", "Elvis Presley", "Bee Gees", "Scorpions",
+    "Guns N' Roses", "U2", "Katy Perry", "Britney Spears", "Shakira",
+    "Justin Bieber", "The Weeknd", "Billie Eilish", "Taylor Swift",
+    "Elán", "Karel Gott", "Helena Vondráčková", "Falco", "Rammstein",
+    "Helene Fischer", "Nena", "Modern Talking", "Boney M.",
+  ],
+  { tier: "easy" },
+);
+
+export function normalizeArtistKey(artist: string): string {
+  return artist
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLocaleLowerCase()
+    .replace(/[^a-z0-9]+/g, "");
+}
+
+function slug(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLocaleLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/** Stabilné id skladby. Rovnaká skladba v dvoch pooloch dá rovnaké id. */
+export function songIdFor(title: string, artist: string): string {
+  return `${slug(artist)}--${slug(title)}`;
+}
+
+function decadeOf(year: number | undefined): string | undefined {
+  if (year === undefined) return undefined;
+  if (year < 1960) return "oldies";
+  return `${String(Math.floor(year / 10) * 10).slice(2)}s`;
+}
+
+function parseSongs(library: string, defaults: SectionDefaults): Song[] {
   return library.trim().split("\n").map((rawLine, index) => {
     const line = rawLine.trim();
     const parts = line.split("|");
-    if (parts.length !== 2 || !parts[0].trim() || !parts[1].trim()) {
-      throw new Error(`Neplatný riadok hudobného katalógu ${index + 1}: ${rawLine}`);
+    const fail = (reason: string) => {
+      throw new Error(`Neplatný riadok hudobného katalógu ${index + 1} (${reason}): ${rawLine}`);
+    };
+    if (parts.length < 2 || parts.length > 6) fail("počet stĺpcov");
+    const title = parts[0].trim();
+    const artist = parts[1].trim();
+    if (!title || !artist) fail("chýba názov alebo interpret");
+
+    const rawYear = (parts[2] ?? "").trim();
+    let year: number | undefined;
+    if (rawYear) {
+      year = Number(rawYear);
+      if (!Number.isInteger(year) || year < 1900 || year > 2100) fail(`rok „${rawYear}"`);
     }
-    return { title: parts[0].trim(), artist: parts[1].trim() };
+
+    const artistKey = normalizeArtistKey(artist);
+    // Čo nie je v riadku, doplní profil interpreta — tak získa metadáta aj
+    // pôvodná zásoba zapísaná v dvoch stĺpcoch.
+    const profile = ARTIST_PROFILES[artistKey];
+
+    const rawGenre = (parts[3] ?? "").trim();
+    if (rawGenre && !GENRES.has(rawGenre)) fail(`žáner „${rawGenre}"`);
+    const genre = (rawGenre || profile?.genre || undefined) as SongGenre | undefined;
+
+    const rawTier = (parts[4] ?? "").trim();
+    if (rawTier && !TIERS.has(rawTier)) fail(`náročnosť „${rawTier}"`);
+    // Bez uvedenej náročnosti je skladba „medium" — nevypadne tak zo žiadneho
+    // rozumného filtra, ale ani sa nevydáva za svetoznámy hit.
+    const tier = (rawTier || profile?.tier || "medium") as SongTier;
+
+    let language = defaults.language;
+    let region = defaults.region;
+    // Melódiu vieme zahmkať vždy, kým to žáner alebo príznak nevylúči.
+    let hummable = !(genre && LYRIC_DRIVEN_GENRES.has(genre));
+
+    for (const flag of (parts[5] ?? "").trim().split(/\s+/).filter(Boolean)) {
+      if (flag === "hum") hummable = true;
+      else if (flag === "nohum") hummable = false;
+      else if (flag.startsWith("lang=")) {
+        const value = flag.slice(5);
+        if (!SONG_LANGUAGES.has(value)) fail(`jazyk „${value}"`);
+        language = value as SongLanguage;
+      } else if (flag.startsWith("region=")) region = flag.slice(7);
+      else fail(`neznámy príznak „${flag}"`);
+    }
+
+    return {
+      id: songIdFor(title, artist),
+      title,
+      artist,
+      artistKey,
+      language,
+      year,
+      decade: decadeOf(year),
+      genre,
+      tier,
+      hummable,
+      region,
+      scope: defaults.scope,
+    };
   });
 }
 
+/**
+ * Svetový pool — dostupný pre každý jazyk hry. Predvolený spievaný jazyk je
+ * angličtina; neanglické svetové hity to prepíšu príznakom `lang=`.
+ */
 const WORLD_HITS = parseSongs(`
 Dancing Queen|ABBA
 Mamma Mia|ABBA
@@ -384,9 +590,162 @@ S&M|Rihanna
 Rude Boy|Rihanna
 Pon de Replay|Rihanna
 Disturbia|Rihanna
-`);
+Dreams|Fleetwood Mac|1977|rock|easy
+Go Your Own Way|Fleetwood Mac|1977|rock|medium
+The Chain|Fleetwood Mac|1977|rock|medium
+Eleanor Rigby|The Beatles|1966|oldies|medium
+A Hard Day's Night|The Beatles|1964|oldies|medium
+Something|The Beatles|1969|oldies|medium
+Ob-La-Di, Ob-La-Da|The Beatles|1968|oldies|easy
+SOS|ABBA|1975|pop|easy
+Super Trouper|ABBA|1980|pop|easy
+Money, Money, Money|ABBA|1976|pop|easy
+Knowing Me, Knowing You|ABBA|1977|pop|medium
+We Are the Champions|Queen|1977|rock|easy
+Killer Queen|Queen|1974|rock|medium
+Who Wants to Live Forever|Queen|1986|rock|medium
+That's Amore|Dean Martin|1953|oldies|easy
+Another Day in Paradise|Phil Collins|1989|pop|medium
+You Can't Hurry Love|Phil Collins|1982|pop|medium
+You'll Be in My Heart|Phil Collins|1999|soundtrack|medium
+Heaven|Bryan Adams|1984|rock|medium
+Angels|Robbie Williams|1997|pop|easy
+Rock DJ|Robbie Williams|2000|pop|easy
+Everlong|Foo Fighters|1997|rock|medium
+Best of You|Foo Fighters|2005|rock|medium
+The Pretender|Foo Fighters|2007|rock|medium
+Learn to Fly|Foo Fighters|1999|rock|medium
+Don't Speak|No Doubt|1996|rock|easy
+Just a Girl|No Doubt|1995|rock|medium
+Man! I Feel Like a Woman!|Shania Twain|1997|country|easy
+You're Still the One|Shania Twain|1998|country|medium
+That Don't Impress Me Much|Shania Twain|1998|country|medium
+So What|P!nk|2008|pop|easy
+Raise Your Glass|P!nk|2010|pop|easy
+Try|P!nk|2012|pop|medium
+Because of You|Kelly Clarkson|2004|pop|medium
+Breakaway|Kelly Clarkson|2004|pop|medium
+Circus|Britney Spears|2008|pop|medium
+Gimme More|Britney Spears|2007|pop|medium
+Reflection|Christina Aguilera|1998|soundtrack|medium
+Fighter|Christina Aguilera|2002|pop|medium
+What a Girl Wants|Christina Aguilera|1999|pop|medium
+Survivor|Destiny's Child|2001|rnb|easy
+Say My Name|Destiny's Child|1999|rnb|easy
+Sugar|Maroon 5|2014|pop|easy
+Girls Like You|Maroon 5|2018|pop|easy
+This Love|Maroon 5|2002|pop|easy
+She Will Be Loved|Maroon 5|2004|pop|medium
+Maps|Maroon 5|2014|pop|medium
+Love Me Like You Do|Ellie Goulding|2015|pop|easy
+Burn|Ellie Goulding|2013|pop|easy
+Lights|Ellie Goulding|2010|pop|medium
+Positions|Ariana Grande|2020|pop|medium
+Thank U, Next|Ariana Grande|2018|pop|easy
+7 Rings|Ariana Grande|2019|pop|easy
+Problem|Ariana Grande|2014|pop|medium
+Break Free|Ariana Grande|2014|pop|medium
+No Tears Left to Cry|Ariana Grande|2018|pop|medium
+Style|Taylor Swift|2014|pop|medium
+Cardigan|Taylor Swift|2020|pop|medium
+Look What You Made Me Do|Taylor Swift|2017|pop|medium
+Bad Blood|Taylor Swift|2014|pop|medium
+Wildest Dreams|Taylor Swift|2014|pop|medium
+Lover|Taylor Swift|2019|pop|medium
+Houdini|Dua Lipa|2023|pop|medium
+Training Season|Dua Lipa|2024|pop|medium
+Break My Heart|Dua Lipa|2020|pop|medium
+Be the One|Dua Lipa|2015|pop|medium
+Texas Hold 'Em|Beyoncé|2024|country|medium
+Run the World (Girls)|Beyoncé|2011|rnb|medium
+Love on Top|Beyoncé|2011|rnb|medium
+Break My Soul|Beyoncé|2022|dance|medium
+No One|Alicia Keys|2007|rnb|easy
+If I Ain't Got You|Alicia Keys|2003|rnb|easy
+Fallin'|Alicia Keys|2001|rnb|easy
+Girl on Fire|Alicia Keys|2012|rnb|medium
+Story of My Life|One Direction|2013|pop|easy
+What Makes You Beautiful|One Direction|2011|pop|easy
+Drag Me Down|One Direction|2015|pop|medium
+Night Changes|One Direction|2014|pop|medium
+Easy on Me|Adele|2021|pop|easy
+When We Were Young|Adele|2015|pop|medium
+Make You Feel My Love|Adele|2008|pop|medium
+I Ain't Worried|OneRepublic|2022|pop|easy
+Secrets|OneRepublic|2009|pop|medium
+Love Runs Out|OneRepublic|2014|pop|medium
+Treat You Better|Shawn Mendes|2016|pop|easy
+Stitches|Shawn Mendes|2015|pop|easy
+There's Nothing Holdin' Me Back|Shawn Mendes|2017|pop|medium
+Marry You|Bruno Mars|2010|pop|easy
+The Lazy Song|Bruno Mars|2010|pop|easy
+When I Was Your Man|Bruno Mars|2012|pop|easy
+Talking to the Moon|Bruno Mars|2010|pop|medium
+Good as Hell|Lizzo|2016|pop|medium
+About Damn Time|Lizzo|2022|pop|medium
+Truth Hurts|Lizzo|2017|pop|medium
+Ain't It Fun|Paramore|2013|rock|medium
+Decode|Paramore|2008|rock|medium
+Papercut|Linkin Park|2000|rock|medium
+Somewhere I Belong|Linkin Park|2003|rock|medium
+Castle of Glass|Linkin Park|2012|rock|medium
+Girlfriend|Avril Lavigne|2007|pop|easy
+I'm with You|Avril Lavigne|2002|pop|medium
+My Happy Ending|Avril Lavigne|2004|pop|medium
+Dog Days Are Over|Florence + the Machine|2008|indie|medium
+Shake It Out|Florence + the Machine|2011|indie|medium
+Unwritten|Natasha Bedingfield|2004|pop|medium
+Pocketful of Sunshine|Natasha Bedingfield|2007|pop|medium
+Don't Cha|The Pussycat Dolls|2005|pop|medium
+Buttons|The Pussycat Dolls|2006|pop|medium
+Price Tag|Jessie J|2011|pop|easy
+Domino|Jessie J|2011|pop|medium
+I'm Like a Bird|Nelly Furtado|2000|pop|medium
+Say It Right|Nelly Furtado|2006|pop|medium
+Love You Like a Love Song|Selena Gomez|2011|pop|easy
+Lose You to Love Me|Selena Gomez|2019|pop|medium
+Attention|Charlie Puth|2017|pop|easy
+One Call Away|Charlie Puth|2015|pop|medium
+Last Friday Night|Katy Perry|2010|pop|easy
+The One That Got Away|Katy Perry|2011|pop|medium
+Sofia|Álvaro Soler|2016|latin|medium
+El Mismo Sol|Álvaro Soler|2015|latin|medium
+Dynamite|BTS|2020|pop|easy
+Butter|BTS|2021|pop|medium
+How You Like That|BLACKPINK|2020|pop|medium
+Kill This Love|BLACKPINK|2019|pop|medium
+Sucker|Jonas Brothers|2019|pop|medium
+Alone|Alan Walker|2016|dance|medium
+The Spectre|Alan Walker|2017|dance|medium
+Are You With Me|Lost Frequencies|2014|dance|medium
+Reality|Lost Frequencies|2015|dance|medium
+Glad You Came|The Wanted|2011|pop|medium
+Sarà perché ti amo|Ricchi e Poveri|1981|pop|medium|lang=it
+I Wanna Be Your Slave|Måneskin|2021|rock|medium
+Vampire|Olivia Rodrigo|2023|pop|medium
+Déjà Vu|Olivia Rodrigo|2021|pop|medium
+Pink Pony Club|Chappell Roan|2020|pop|medium
+HOT TO GO!|Chappell Roan|2023|pop|medium
+What Was I Made For?|Billie Eilish|2023|pop|medium
+Happier Than Ever|Billie Eilish|2021|pop|medium
+Wildflower|Billie Eilish|2024|pop|hard
+Please Please Please|Sabrina Carpenter|2024|pop|medium
+Feather|Sabrina Carpenter|2023|pop|medium
+Nonsense|Sabrina Carpenter|2022|pop|hard
+Can You Feel the Love Tonight|Elton John|1994|soundtrack|easy
+Circle of Life|Elton John|1994|soundtrack|easy
+Waka Waka|Shakira|2010|latin|easy
+She Wolf|Shakira|2009|pop|medium
+Unfaithful|Rihanna|2006|rnb|medium
+Man Down|Rihanna|2010|reggae|medium
+Love Me Again|John Newman|2013|pop|medium
+Rude|MAGIC!|2013|reggae|medium
+Cheerleader|OMI|2014|reggae|easy
+Sunshine Reggae|Laid Back|1983|reggae|medium
+Take Five|Dave Brubeck|1959|jazz|medium
+`, { language: "en", scope: "global" });
 
-const LOCAL_HITS: Record<AppLanguage, SongCard[]> = {
+const LOCAL_HITS: Partial<Record<SongLanguage, Song[]>> = {
   sk: parseSongs(`
 V dolinách|Karol Duchoň
 Čardáš dvoch sŕdc|Karol Duchoň
@@ -564,7 +923,6 @@ Nad stádem koní|Buty
 Láska je tu s vami|Peter Nagy
 Tam u nebeských bran|Michal Tučný
 Želva|Olympic
-Lásko má ja stůňu|Helena Vondráčková
 Sen|Lucie
 Zlatíčko|Chinaski
 Zlodej slnečníc|Elán
@@ -580,7 +938,6 @@ Niekto ti to povie skôr než ja|Desmod
 Hemeroidy|Desmod
 Lavíny|Desmod
 Slnečná balada|Peha
-Láska drž ma nad hladinou|Tublatanka
 Loď do neznáma|Tublatanka
 Vianoce|Iné Kafe
 30. február|Iné Kafe
@@ -672,7 +1029,7 @@ Měls mě vůbec rád|Ewa Farna
 Boží mlejny melou|Amor
 Dám dělovou ránu|Karel Gott
 Když milenky pláčou|Karel Gott
-`),
+`, { language: "sk", scope: "local" }),
   en: parseSongs(`
 Hotel California|Eagles
 Yesterday|The Beatles
@@ -750,7 +1107,7 @@ Still Into You|Paramore
 Mr. Jones|Counting Crows
 Semi-Charmed Life|Third Eye Blind
 Welcome To The Jungle|Guns N' Roses
-`),
+`, { language: "en", scope: "local" }),
   de: parseSongs(`
 99 Luftballons|Nena
 Irgendwie, irgendwo, irgendwann|Nena
@@ -853,7 +1210,7 @@ Westerland|Die Ärzte
 Männer sind Schweine|Die Ärzte
 Junge|Die Ärzte
 Erfolg ist nicht alles|Cro
-`),
+`, { language: "de", scope: "local" }),
   es: parseSongs(`
 La Bamba|Ritchie Valens
 El Perdedor|Enrique Iglesias
@@ -955,7 +1312,7 @@ La Vida Es Un Carnaval|Celia Cruz
 La Negra Tiene Tumbao|Celia Cruz
 El Cantante|Héctor Lavoe
 Llorarás|Oscar D'León
-`),
+`, { language: "es", scope: "local" }),
   fr: parseSongs(`
 Alors on danse|Stromae
 Papaoutai|Stromae
@@ -1061,7 +1418,7 @@ Ma philosophie|Amel Bent
 Le temps qui court|Alain Chamfort
 Tombé pour la France|Étienne Daho
 Fever|Dua Lipa
-`),
+`, { language: "fr", scope: "local" }),
   pt: parseSongs(`
 Ai Se Eu Te Pego|Michel Teló
 Fugidinha|Michel Teló
@@ -1161,33 +1518,515 @@ Robocop Gay|Mamonas Assassinas
 O Canto da Cidade|Daniela Mercury
 Avisa Lá|Olodum
 Tempo de Alegria|Ivete Sangalo
-`),
+`, { language: "pt", scope: "local" }),
 };
 
-function songId(song: SongCard) {
-  return `${song.title.toLocaleLowerCase()}|${song.artist.toLocaleLowerCase()}`;
+/**
+ * Rozšírenie svetového poolu. Pôvodný blok zostáva nedotknutý — nové skladby
+ * majú navyše rok, žáner a náročnosť, takže výber s nimi vie pracovať.
+ * Neanglicky spievané svetové hity nesú príznak `lang=`.
+ */
+const WORLD_HITS_EXTENDED = parseSongs(`
+Twist and Shout|The Beatles|1963|oldies|easy
+Here Comes the Sun|The Beatles|1969|oldies|easy
+Help!|The Beatles|1965|oldies|easy
+Good Vibrations|The Beach Boys|1966|oldies|easy
+Wouldn't It Be Nice|The Beach Boys|1966|oldies|medium
+My Girl|The Temptations|1964|oldies|easy
+Unchained Melody|The Righteous Brothers|1965|oldies|easy
+California Dreamin'|The Mamas & the Papas|1965|oldies|easy
+House of the Rising Sun|The Animals|1964|rock|easy
+Space Oddity|David Bowie|1969|rock|medium
+Let's Dance|David Bowie|1983|pop|easy
+Heroes|David Bowie|1977|rock|medium
+Whole Lotta Love|Led Zeppelin|1969|rock|easy
+Another Brick in the Wall|Pink Floyd|1979|rock|easy
+Wish You Were Here|Pink Floyd|1975|rock|medium
+Comfortably Numb|Pink Floyd|1979|rock|medium
+Money|Pink Floyd|1973|rock|medium
+Layla|Derek and the Dominos|1970|rock|medium
+Free Bird|Lynyrd Skynyrd|1973|rock|medium
+More Than a Feeling|Boston|1976|rock|medium
+Carry On Wayward Son|Kansas|1976|rock|medium
+Bennie and the Jets|Elton John|1973|pop|medium
+Night Fever|Bee Gees|1977|disco|medium
+Le Freak|Chic|1978|disco|medium
+Good Times|Chic|1979|disco|medium
+September|Earth, Wind & Fire|1978|funk|easy
+Let's Groove|Earth, Wind & Fire|1981|funk|medium
+Boogie Wonderland|Earth, Wind & Fire|1979|disco|medium
+Hot Stuff|Donna Summer|1979|disco|medium
+I Feel Love|Donna Summer|1977|disco|medium
+Sultans of Swing|Dire Straits|1978|rock|medium
+Money for Nothing|Dire Straits|1985|rock|medium
+Wanted Dead or Alive|Bon Jovi|1986|rock|medium
+Paranoid|Black Sabbath|1970|metal|medium
+Crazy Train|Ozzy Osbourne|1980|metal|medium
+Smoke on the Water|Deep Purple|1972|rock|easy
+The Trooper|Iron Maiden|1983|metal|medium
+Vogue|Madonna|1990|pop|medium
+Total Eclipse of the Heart|Bonnie Tyler|1983|pop|easy
+Livin' in America|James Brown|1985|funk|medium
+I Got You (I Feel Good)|James Brown|1965|funk|easy
+Simply the Best|Tina Turner|1989|pop|easy
+Tainted Love|Soft Cell|1981|pop|medium
+Boys Don't Cry|The Cure|1979|indie|medium
+Just Like Heaven|The Cure|1987|indie|medium
+Love Will Tear Us Apart|Joy Division|1980|indie|hard
+Blue Monday|New Order|1983|dance|medium
+Enjoy the Silence|Depeche Mode|1990|pop|medium
+Personal Jesus|Depeche Mode|1989|pop|medium
+Bizarre Love Triangle|New Order|1986|indie|hard
+Don't You (Forget About Me)|Simple Minds|1985|pop|easy
+Voyage Voyage|Desireless|1986|pop|medium|lang=fr
+Self Control|Laura Branigan|1984|pop|medium
+Maniac|Michael Sembello|1983|pop|medium
+Flashdance... What a Feeling|Irene Cara|1983|soundtrack|medium
+Danger Zone|Kenny Loggins|1986|soundtrack|medium
+The Power of Love|Huey Lewis and the News|1985|rock|medium
+Walking on Sunshine|Katrina and the Waves|1983|pop|easy
+Come On Eileen|Dexys Midnight Runners|1982|pop|easy
+I Ran (So Far Away)|A Flock of Seagulls|1982|pop|medium
+Tarzan Boy|Baltimora|1985|pop|medium
+Black Hole Sun|Soundgarden|1994|rock|medium
+Alive|Pearl Jam|1991|rock|medium
+Bitter Sweet Symphony|The Verve|1997|rock|medium
+Song 2|Blur|1997|rock|medium
+When I Come Around|Green Day|1994|punk|medium
+Give It Away|Red Hot Chili Peppers|1991|rock|medium
+No Rain|Blind Melon|1992|rock|medium
+Torn|Natalie Imbruglia|1997|pop|medium
+Nothing Compares 2 U|Sinéad O'Connor|1990|pop|medium
+Believe|Cher|1998|dance|easy
+Mr. Vain|Culture Beat|1993|dance|medium
+Rhythm Is a Dancer|Snap!|1992|dance|medium
+The Sign|Ace of Base|1993|pop|easy
+All That She Wants|Ace of Base|1992|pop|easy
+Saturday Night|Whigfield|1994|dance|medium
+No Woman No Cry|Bob Marley & The Wailers|1974|reggae|easy
+Three Little Birds|Bob Marley & The Wailers|1977|reggae|easy
+Could You Be Loved|Bob Marley & The Wailers|1980|reggae|medium
+Waiting in Vain|Bob Marley & The Wailers|1977|reggae|hard
+Killing Me Softly with His Song|Fugees|1996|rnb|medium
+No Diggity|Blackstreet|1996|rnb|medium
+Bailamos|Enrique Iglesias|1999|latin|medium
+Smooth|Santana|1999|latin|medium
+Maria Maria|Santana|1999|latin|medium
+Kiss from a Rose|Seal|1994|pop|medium
+Chop Suey!|System of a Down|2001|metal|medium
+Toxicity|System of a Down|2001|metal|medium
+Last Resort|Papa Roach|2000|metal|medium
+Bodies|Drowning Pool|2001|metal|hard
+I'm Not Okay (I Promise)|My Chemical Romance|2004|punk|medium
+Clocks|Coldplay|2002|rock|easy
+Since You've Been Gone|Rainbow|1979|rock|hard
+SexyBack|Justin Timberlake|2006|pop|medium
+Cry Me a River|Justin Timberlake|2002|pop|medium
+Beautiful Girls|Sean Kingston|2007|pop|medium
+Apologize|OneRepublic|2006|pop|easy
+Sexy and I Know It|LMFAO|2011|dance|medium
+Animals|Martin Garrix|2013|dance|medium
+Lean On|Major Lazer|2015|dance|easy
+Don't You Worry Child|Swedish House Mafia|2012|dance|medium
+Faded|Alan Walker|2015|dance|easy
+Rather Be|Clean Bandit|2014|dance|medium
+Rockabye|Clean Bandit|2016|dance|medium
+Get Lucky|Daft Punk|2013|dance|easy
+One More Time|Daft Punk|2000|dance|easy
+Around the World|Daft Punk|1997|dance|medium
+All of Me|John Legend|2013|rnb|easy
+Stay with Me|Sam Smith|2014|pop|easy
+Take Me to Church|Hozier|2013|indie|easy
+Ho Hey|The Lumineers|2012|indie|medium
+Little Talks|Of Monsters and Men|2011|indie|medium
+Riptide|Vance Joy|2013|indie|medium
+Budapest|George Ezra|2013|indie|medium
+Ocean Eyes|Billie Eilish|2016|pop|medium
+Lovely|Billie Eilish|2018|pop|medium
+Heat Waves|Glass Animals|2020|indie|easy
+Believer of Nothing|Nothing But Thieves|2017|rock|hard
+Unstoppable|Sia|2016|pop|medium
+Cruel|Sabrina Carpenter|2024|pop|hard
+Paint the Town Red|Doja Cat|2023|rap|medium|hum
+Say So|Doja Cat|2019|pop|easy
+Golden Hour|JVKE|2022|pop|medium
+Lose Control|Teddy Swims|2023|rnb|easy
+Sunroof|Nicky Youre|2021|pop|medium
+泡沫|G.E.M.|2012|pop|hard|lang=other
+Zitti e buoni|Måneskin|2021|rock|medium|lang=it
+Beggin'|Måneskin|2017|rock|easy
+Bella Ciao|Traditional|1943|folk|easy|lang=it
+`, { language: "en", scope: "global" });
+
+/**
+ * Rozšírenie lokálnych poolov. Kľúčom je spievaný jazyk, takže čeština je
+ * samostatný pool — slovenská hra ho berie cez `RELEVANT_SONG_LANGUAGES`.
+ */
+const LOCAL_HITS_EXTENDED: Partial<Record<SongLanguage, Song[]>> = {
+  sk: parseSongs(`
+Všetko má svoj čas|Kali|2011|rap|medium|hum
+Navždy|Kali|2013|rap|medium|hum
+Jazero|Kali|2014|rap|medium|hum
+Mesto snov|Katarína Knechtová|2007|pop|medium
+Načo pôjdem domov|Katarína Knechtová|2008|pop|medium
+Horšie ako inokedy|Katarína Knechtová|2010|pop|hard
+Dážď|Peter Cmorik|2007|pop|medium
+Jedno si želám|Peter Cmorik|2008|pop|medium
+Chvíľu áno|Para|2005|rock|medium
+Abstinent|Para|2007|rock|medium
+Otec|Para|2009|rock|hard
+Láska, necestuj tým vlakom|Pavol Hammel|1972|pop|medium
+Učiteľka tanca|Pavol Hammel|1974|pop|medium
+Mám ťa málo|Mária Čírová|2009|pop|medium
+Unikát|Mária Čírová|2011|pop|medium
+Nestrácaj nádej|Mária Čírová|2013|pop|hard
+Tobogan|Miro Jaroš|2013|pop|hard
+Len sa smej|Billy Barman|2013|indie|hard
+Traja|Billy Barman|2015|indie|hard
+Láska je tu s nami|Peter Nagy|1987|pop|easy
+Poďme sa zachrániť|Peter Nagy|1989|pop|medium
+Len pomaly|Peter Nagy|1988|pop|medium
+Tam kde sa neumiera|Zuzana Smatanová|2004|pop|medium
+V dobrom aj v zlom|Zuzana Smatanová|2006|pop|medium
+Horou|Zuzana Smatanová|2008|pop|hard
+Chlapci spod Tatier|Kollárovci|2010|folk|medium
+Daj mi lásku|Kollárovci|2012|folk|medium
+Čo o mne vieš|Dara Rolins|1997|pop|medium
+Party DJ|Dara Rolins|2011|pop|medium
+Keď je 7 ráno|Vidiek|1997|rock|medium
+Fajčenie škodí zdraviu|Vidiek|1999|rock|medium
+Všetko sa dá|Gladiator|2001|pop|medium
+Bonboniéra|Gladiator|2003|pop|medium
+Hlavu maj hore|Sima|2019|rap|medium|hum
+Máme svoj deň|Peter Bič Project|2011|pop|medium
+Skúšame sa nájsť|Peter Bič Project|2013|pop|hard
+Niečo nové|Korben Dallas|2013|indie|hard
+Kým sa rozídeme|Korben Dallas|2015|indie|hard
+Zostaň|Adam Ďurica|2014|pop|medium
+Voňavý deň|Adam Ďurica|2016|pop|medium
+Neverím|Adam Ďurica|2018|pop|medium
+Slnko|Kristína|2011|pop|medium
+Na hranici|Kristína|2012|pop|hard
+Zamilovaná|Jana Kirschner|1999|pop|medium
+Nespavosť|Miroslav Žbirka|1986|pop|hard
+Zlomená|No Name|2003|pop|medium
+Kráľ|Desmod|2007|rock|medium
+Tisíc dní|Desmod|2009|rock|medium
+Nekonečná|IMT Smile|2010|pop|medium
+Trilogia|IMT Smile|2012|pop|hard
+Voda|Polemic|1998|reggae|medium
+Kráľovná|Polemic|2001|reggae|hard
+Slobodná|Slobodná Európa|1990|punk|medium
+Ružinov|Slobodná Európa|1991|punk|hard
+Ahoj|Horkýže Slíže|2001|punk|medium
+Nakopnutá|Iné Kafe|2002|punk|medium
+Bezvetrie|Iné Kafe|2004|punk|hard
+Zbohom|Team|1989|pop|medium
+Vyznanie duše|Marika Gombitová|1984|pop|hard
+Zvonky štastia|Karel Gott & Darina Rolincová|1984|pop|easy
+Cigánsky bál|Elán|1985|rock|medium
+Amnestia na neveru|Elán|1991|rock|medium
+Nebúchaj|Rytmus|2008|rap|medium|hum
+Bengoro|Rytmus|2010|rap|medium|hum
+Pekelná|Kontrafakt|2006|rap|hard|hum
+Toto je môj štýl|Majk Spirit|2011|rap|medium|hum
+Nový človek|Majk Spirit|2012|rap|medium|hum
+Anjel|Peha|2004|pop|medium
+Spomaly|Peha|2002|pop|medium
+Muoj bože|Peha|2006|pop|hard
+Na jednej lodi|Kali|2012|rap|medium|hum
+Srdce ako z kameňa|Kali|2013|rap|medium|hum
+Čakám|Kali|2015|rap|hard|hum
+Ideme ďalej|Kali|2016|rap|hard|hum
+Láska moja|Elán|1984|rock|medium
+Ako málo|Desmod|2005|rock|medium
+Keď jazdíme my|Ego|2011|rap|medium|hum
+Čo bolo, bolo|No Name|2001|pop|medium
+Len tak stáť|Hex|1996|pop|medium
+Exotica|IMT Smile|2008|pop|medium
+Sľúbili sme si lásku|Ivan Hoffman|1989|folk|hard
+Medulienka|Pavol Hammel|1970|pop|medium
+Domovina|Adam Ďurica|2019|pop|medium
+Strážca pokladov|Jana Kirschner|2001|pop|medium
+Smej sa|Mária Čírová|2012|pop|medium
+S tebou ma baví svet|Peter Cmorik|2010|pop|medium
+Sokoly|Kollárovci|2014|folk|medium
+Naša|Para|2011|rock|hard
+Ó, maňo|Vidiek|1998|rock|medium
+Keď sa láska podarí|Gladiator|1997|pop|medium
+Femina|Sima|2021|rap|hard|hum
+Motýľ hlavolam|Katarína Knechtová|2011|pop|hard
+Vo svetle žiariacich hviezd|Katarína Knechtová|2013|pop|hard
+Mladým chýba vojna|Billy Barman|2014|indie|hard
+Hannah|Billy Barman|2016|indie|hard
+Pocit|Bystrík|2006|pop|medium
+Hej, dievča|Bystrík|2008|pop|medium
+Všetko bude fajn|Misha|2010|pop|medium
+Náladu mi dvíhaš|Misha|2012|pop|hard
+Kým vieš snívať|Katarína Koščová|2005|pop|medium
+Môj Bože|Katarína Koščová|2007|pop|hard
+Lietajúci Cyprián|Komajota|1996|rock|hard
+Ráno v novinách|Komajota|1998|rock|hard
+Ako to prežijem|Polemic|2003|reggae|medium
+Mesto|Polemic|2005|reggae|hard
+Čumil|Iné Kafe|2003|punk|medium
+Kašovité jedlá|Iné Kafe|2005|punk|hard
+S tebou alebo bez teba|Tomáš Bezdeda|2007|pop|medium
+Len ty|Tomáš Bezdeda|2009|pop|hard
+Run Run Run|Celeste Buckingham|2012|pop|medium
+Crushin' My Fairytale|Celeste Buckingham|2013|pop|hard
+Čisté tvary|Miro Jaroš|2014|pop|hard
+Kto vie|Miro Jaroš|2016|pop|hard
+Technotronic Flow|Majk Spirit|2013|rap|hard|hum
+Hej, sokoly|Traditional|1900|folk|easy
+Na Kráľovej holi|Traditional|1900|folk|medium
+Tancuj, tancuj, vykrúcaj|Traditional|1900|folk|easy
+Prší, prší|Traditional|1900|folk|easy
+Kukulienka, kde si bola|Traditional|1900|folk|medium
+`, { language: "sk", scope: "local", region: "SK" }),
+
+  cs: parseSongs(`
+Kometa|Jaromír Nohavica|1994|folk|medium
+Sarajevo|Jaromír Nohavica|1988|folk|medium
+Tři čuníci|Jaromír Nohavica|1986|folk|medium
+Mikymauz|Jaromír Nohavica|1996|folk|hard
+Až mě andělé|Jaromír Nohavica|2000|folk|hard
+Okno mé lásky|Olympic|1969|rock|medium
+Holky z naší školky|Michal David|1984|pop|easy
+Chtěl jsem mít|Michal David|1986|pop|hard
+Dáša Nováková|Ivan Mládek|1979|folk|hard
+Jsi můj pán|Lucie Bílá|1993|pop|medium
+Trouba|Lucie Bílá|1995|pop|hard
+Chtěl jsem být|Lucie|1994|rock|medium
+Dobrák od kosti|Chinaski|2002|rock|medium
+Vedle sebe|Chinaski|2004|rock|medium
+Znamení|Divokej Bill|2004|folk|medium
+Cirkus|Divokej Bill|2003|folk|medium
+Krásný ztráty|Buty|1995|rock|medium
+Pretty Girl|Buty|1997|rock|hard
+Ta pravá|Mirai|2016|indie|medium
+Inzerát|Kryštof|2007|pop|hard
+Františkovy Lázně|Mandrage|2010|pop|hard
+Kluci z fabriky|Rybičky 48|2012|punk|medium
+Malá noční můra|Rybičky 48|2014|punk|hard
+Na ptáky jsme krátký|Janek Ledecký|1993|pop|hard
+Až na věky|Ewa Farna|2007|pop|medium
+Nebe|Barbora Poláková|2015|indie|hard
+Kdyby|Hana Hegerová|1968|chanson|medium
+Levandulová|Hana Hegerová|1970|chanson|medium
+Miláčku|Jiří Korn|1980|pop|medium
+Jsem prý blázen jen|Jiří Schelinger|1976|rock|medium
+Báječná ženská|Michal Tučný|1985|country|medium
+Pověste ho vejš|Michal Tučný|1983|country|medium
+Snídaně v trávě|Michal Tučný|1987|country|hard
+Mám jizvu na rtu|Jaromír Nohavica|1988|folk|hard
+Hlídač krav|Jaromír Nohavica|1990|folk|medium
+Zatímco se koupeš|Jaromír Nohavica|1994|folk|hard
+Slzy tvý mámy|Olympic|1970|rock|medium
+Děti ráje|Michal David|1984|pop|easy
+Colu, pijeme colu|Michal David|1985|pop|medium
+Pánu bohu do oken|Tomáš Klus|2010|pop|medium
+Marie|Tomáš Klus|2012|pop|medium
+Růže z papíru|Nedvědi|1988|folk|medium
+Stánky|Nedvědi|1985|folk|medium
+Proměny|Čechomor|2001|folk|medium
+Mezi horami|Čechomor|2000|folk|medium
+Srdce jako kníže Rohan|Richard Müller|1994|pop|medium
+Jahody mražený|Jiří Schelinger|1977|rock|medium
+Malovaný džbánku|Helena Vondráčková|1975|pop|medium
+Most přes minulost|Lucie Bílá|1996|pop|medium
+Na dlani|Mandrage|2012|pop|hard
+Žízeň|Kabát|2001|rock|medium
+Černé oči jděte spát|Traditional|1900|folk|medium
+`, { language: "cs", scope: "local", region: "CZ" }),
+
+  de: parseSongs(`
+Hey|Andreas Bourani|2011|pop|medium
+Schüttel deinen Speck|Peter Fox|2008|rap|medium|hum
+Nur ein Wort|Wir sind Helden|2005|indie|medium
+Denkmal|Wir sind Helden|2003|indie|medium
+Von hier an blind|Wir sind Helden|2005|indie|hard
+Bonnie und Clyde|Die Toten Hosen|1996|punk|hard
+Ohne dich|Rammstein|2004|metal|hard
+Wind of Change auf Deutsch|Peter Maffay|1980|rock|hard
+So bist du|Peter Maffay|1979|rock|hard
+Merci Chérie|Udo Jürgens|1966|schlager|hard
+Verlieben, verloren|Wolfgang Petry|1997|schlager|hard
+Da Da Da|Trio|1982|pop|medium
+Aha|Nena|1984|pop|hard
+Wunder|Nina Chuba|2022|pop|medium
+200 km/h|Apache 207|2020|rap|medium|hum
+Bad Habits auf Deutsch|Mark Forster|2018|pop|hard
+Krieger des Lichts|Silbermond|2009|pop|hard
+Nur wir zwei|Glasperlenspiel|2011|pop|hard
+Nordisch by Nature|Fettes Brot|1995|rap|hard|hum
+Bring die Nacht|BONEZ MC|2018|rap|hard|hum
+Ich und meine Maske|Alligatoah|2013|rap|hard|hum
+Hulapalu|Andreas Gabalier|2015|schlager|medium|region=AT
+I sing a Liad für di|Andreas Gabalier|2011|schlager|medium|region=AT
+Amoi seg' ma uns wieder|Andreas Gabalier|2011|schlager|hard|region=AT
+Fürstenfeld|STS|1984|rock|hard|region=AT
+Großvater|STS|1984|rock|hard|region=AT
+Bungalow|Bilderbuch|2015|indie|hard|region=AT
+Maschin|Bilderbuch|2014|indie|hard|region=AT
+`, { language: "de", scope: "local", region: "DE" }),
+
+  en: parseSongs(`
+Sweet Caroline|Neil Diamond|1969|oldies|easy
+Livin' Thing|Electric Light Orchestra|1976|rock|medium
+Mr. Blue Sky|Electric Light Orchestra|1977|rock|medium
+Ain't No Mountain High Enough|Marvin Gaye|1967|soul|easy
+Let's Get It On|Marvin Gaye|1973|soul|medium
+Lovely Day|Bill Withers|1977|soul|easy
+Ain't No Sunshine|Bill Withers|1971|soul|easy
+Wonderful World|Louis Armstrong|1967|jazz|easy
+Feeling Good|Nina Simone|1965|jazz|medium
+Valerie|Amy Winehouse|2007|rnb|easy
+Rehab|Amy Winehouse|2006|rnb|medium
+Back to Black|Amy Winehouse|2006|rnb|medium
+Mad World|Gary Jules|2001|indie|medium
+Skinny Love|Bon Iver|2007|indie|hard
+The A Team|Ed Sheeran|2011|pop|medium
+Chasing Pavements|Adele|2008|pop|medium
+Video Games|Lana Del Rey|2011|indie|medium
+Summertime Sadness|Lana Del Rey|2012|indie|medium
+Royals|Lorde|2013|pop|easy
+Team|Lorde|2013|pop|medium
+Electric Feel|MGMT|2007|indie|medium
+Kids|MGMT|2007|indie|medium
+Pumped Up Kicks|Foster the People|2010|indie|medium
+Sweater Weather|The Neighbourhood|2012|indie|easy
+505|Arctic Monkeys|2007|indie|hard
+`, { language: "en", scope: "local" }),
+
+  es: parseSongs(`
+Corazón Partido|Alejandro Sanz|1997|latin|medium
+Rosas|La Oreja de Van Gogh|2003|pop|medium
+Puedes Contar Conmigo|La Oreja de Van Gogh|2003|pop|hard
+Clandestino|Manu Chao|1998|latin|medium
+Me Gustas Tu|Manu Chao|2001|latin|easy
+`, { language: "es", scope: "local" }),
+
+  fr: parseSongs(`
+Comme d'habitude|Claude François|1967|chanson|medium
+Alexandrie Alexandra|Claude François|1978|pop|medium
+Je t'aime... moi non plus|Serge Gainsbourg|1969|chanson|medium
+La Javanaise|Serge Gainsbourg|1963|chanson|hard
+Bruxelles je t'aime|Angèle|2021|pop|hard
+Les Champs-Élysées|Joe Dassin|1969|pop|easy
+`, { language: "fr", scope: "local" }),
+
+  pt: parseSongs(`
+Chega de Saudade|João Gilberto|1958|jazz|medium
+Trem Bala|Ana Vilela|2017|pop|medium
+Amor de Índio|Beto Guedes|1978|pop|hard
+Sozinho|Caetano Veloso|1998|pop|medium
+Sampa|Caetano Veloso|1978|pop|hard
+Cálice|Chico Buarque|1978|pop|hard
+Pais e Filhos|Legião Urbana|1989|rock|medium
+Tempo Perdido|Legião Urbana|1986|rock|medium
+Faroeste Caboclo|Legião Urbana|1987|rock|hard
+Do Seu Lado|Jota Quest|1999|rock|medium
+Sinal Fechado|Paulinho da Viola|1969|pop|hard
+Vapor Barato|O Rappa|1996|rock|hard
+Grândola, Vila Morena|José Afonso|1971|folk|medium
+Uma Casa Portuguesa|Amália Rodrigues|1953|folk|medium
+Estranha Forma de Vida|Amália Rodrigues|1962|folk|medium
+`, { language: "pt", scope: "local" }),
+};
+
+function uniqueSongs(songs: readonly Song[]): Song[] {
+  return Array.from(new Map(songs.map((song) => [song.id, song])).values());
 }
 
-function uniqueSongs(songs: readonly SongCard[]) {
-  return Array.from(new Map(songs.map((song) => [songId(song), song])).values());
-}
+/** Svetový pool — mieša sa do každého jazyka hry. */
+export const GLOBAL_SONGS: Song[] = uniqueSongs([...WORLD_HITS, ...WORLD_HITS_EXTENDED]);
 
-export const CURATED_WORLD_HITS = uniqueSongs(WORLD_HITS);
-export const CURATED_LOCAL_HITS = Object.fromEntries(
-  Object.entries(LOCAL_HITS).map(([language, songs]) => [language, uniqueSongs(songs)]),
-) as Record<AppLanguage, SongCard[]>;
+const LOCAL_LANGUAGE_KEYS = [
+  ...new Set([...Object.keys(LOCAL_HITS), ...Object.keys(LOCAL_HITS_EXTENDED)]),
+] as SongLanguage[];
+
+/** Lokálne pooly podľa spievaného jazyka. Kľúč je `SongLanguage`, nie jazyk UI,
+ *  takže sa dá pridať čeština či poľština bez zmeny jazykov aplikácie. */
+export const LOCAL_SONGS_BY_LANGUAGE: Partial<Record<SongLanguage, Song[]>> =
+  Object.fromEntries(
+    LOCAL_LANGUAGE_KEYS.map((language) => [
+      language,
+      uniqueSongs([...(LOCAL_HITS[language] ?? []), ...(LOCAL_HITS_EXTENDED[language] ?? [])]),
+    ]),
+  ) as Partial<Record<SongLanguage, Song[]>>;
+
+/**
+ * Ktoré spievané jazyky sú relevantné pre daný jazyk hry. Slovenská hra berie
+ * aj české skladby — sú súčasťou spoločného hudobného prostredia. Nemecká hra
+ * pokrýva Nemecko, Rakúsko aj švajčiarsku nemčinu jedným poolom `de`.
+ *
+ * Nový lokálny pool sa pridá tu a v `LOCAL_HITS` — nikde inde.
+ */
+export const RELEVANT_SONG_LANGUAGES: Record<AppLanguage, SongLanguage[]> = {
+  sk: ["sk", "cs"],
+  en: ["en"],
+  de: ["de"],
+  es: ["es"],
+  fr: ["fr"],
+  pt: ["pt"],
+};
+
+/** Lokálne skladby pre jazyk hry vrátane blízkych jazykov. */
+export function getLocalSongsForLanguage(language: AppLanguage): Song[] {
+  return uniqueSongs(
+    RELEVANT_SONG_LANGUAGES[language].flatMap(
+      (songLanguage) => LOCAL_SONGS_BY_LANGUAGE[songLanguage] ?? [],
+    ),
+  );
+}
 
 const CURATED_SONGS_BY_LANGUAGE = Object.fromEntries(
-  Object.entries(CURATED_LOCAL_HITS).map(([language, localSongs]) => [
+  (Object.keys(RELEVANT_SONG_LANGUAGES) as AppLanguage[]).map((language) => [
     language,
-    uniqueSongs([...localSongs, ...CURATED_WORLD_HITS]),
+    uniqueSongs([...getLocalSongsForLanguage(language), ...GLOBAL_SONGS]),
   ]),
-) as Record<AppLanguage, SongCard[]>;
+) as Record<AppLanguage, Song[]>;
 
-export function getSongCardsForLanguage(language: AppLanguage): SongCard[] {
+/** Celá zásoba dostupná pre daný jazyk hry (lokálne + svetové, bez duplikátov). */
+export function getSongCardsForLanguage(language: AppLanguage): Song[] {
   return CURATED_SONGS_BY_LANGUAGE[language];
 }
+
+/** Každá skladba v katalógu presne raz — pre kontroly integrity a testy. */
+export const ALL_SONGS: Song[] = uniqueSongs([
+  ...GLOBAL_SONGS,
+  ...Object.values(LOCAL_SONGS_BY_LANGUAGE).flatMap((songs) => songs ?? []),
+]);
 
 export const SONG_COUNTS_BY_LANGUAGE = Object.fromEntries(
   Object.entries(CURATED_SONGS_BY_LANGUAGE).map(([language, songs]) => [language, songs.length]),
 ) as Record<AppLanguage, number>;
+
+/** Prehľad zásoby — používajú testy aj report po rozšírení katalógu. */
+export function songCatalogueStats() {
+  const byLanguage = Object.fromEntries(
+    Object.entries(LOCAL_SONGS_BY_LANGUAGE).map(([language, songs]) => [language, (songs ?? []).length]),
+  ) as Partial<Record<SongLanguage, number>>;
+  const byTier = { easy: 0, medium: 0, hard: 0 } as Record<SongTier, number>;
+  let hummable = 0;
+  let withYear = 0;
+  let withGenre = 0;
+  for (const song of ALL_SONGS) {
+    byTier[song.tier] += 1;
+    if (song.hummable) hummable += 1;
+    if (song.year !== undefined) withYear += 1;
+    if (song.genre !== undefined) withGenre += 1;
+  }
+  return {
+    total: ALL_SONGS.length,
+    global: GLOBAL_SONGS.length,
+    local: ALL_SONGS.length - GLOBAL_SONGS.length,
+    byLanguage,
+    byTier,
+    hummable,
+    withYear,
+    withGenre,
+    perGameLanguage: SONG_COUNTS_BY_LANGUAGE,
+  };
+}
