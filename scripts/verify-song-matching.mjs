@@ -221,6 +221,59 @@ check(
   true
 );
 
+// ── Iný zápis toho istého interpreta ──────────────────────────────────────
+// Katalógy poskytovateľov píšu tie isté mená rôzne. Presný názov skladby plus
+// zdieľané výrazné slovo v mene je stále tá istá nahrávka.
+check(
+  "prijať Miroslav Žbirka pre Miro Žbirka",
+  isConfidentMatch(
+    song("Balada o poľných vtákoch", "Miro Žbirka"),
+    "Balada o poľných vtákoch",
+    "Miroslav Žbirka"
+  ),
+  true
+);
+check(
+  "prijať Bratři Nedvědi pre Nedvědi",
+  isConfidentMatch(song("Podvod", "Nedvědi"), "Podvod", "Bratři Nedvědi"),
+  true
+);
+check(
+  "zamietnuť iný zápis pri nepresnom názve",
+  isConfidentMatch(
+    song("Balada o poľných vtákoch", "Miro Žbirka"),
+    "Balada o poľných vtákoch (verzia 2)",
+    "Miroslav Žbirka"
+  ),
+  false
+);
+check(
+  "zamietnuť zhodu iba na všeobecnom slove",
+  isConfidentMatch(
+    song("Nočná jazda", "Rocková Banda"),
+    "Nočná jazda",
+    "Iná Banda"
+  ),
+  false
+);
+
+// ── Štylizované mená ──────────────────────────────────────────────────────
+check(
+  "prijať Pink pre P!nk",
+  isConfidentMatch(song("So What", "P!nk"), "So What", "Pink"),
+  true
+);
+check(
+  "prijať Kesha pre Ke$ha",
+  isConfidentMatch(song("Tik Tok", "Ke$ha"), "Tik Tok", "Kesha"),
+  true
+);
+check(
+  "výkričník na konci názvu nič nemení",
+  isConfidentMatch(song("Hey Ya!", "OutKast"), "Hey Ya!", "OutKast"),
+  true
+);
+
 rmSync(TMP, { recursive: true, force: true });
 
 console.log(`\nPárovanie ukážok: ${pass} prešlo, ${failures.length} zlyhalo`);

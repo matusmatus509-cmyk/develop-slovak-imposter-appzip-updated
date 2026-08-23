@@ -20,6 +20,15 @@ type Phase =
   | { type: "revealed"; participant: number | null };
 
 /**
+ * Koľko nedostupných skladieb za sebou hra preskočí sama.
+ *
+ * Pri jednej-dvoch chýbajúcich ukážkach je preskočenie to, čo hráči chcú.
+ * Keby však vypadla sieť, bez stropu by sa preskákal celý deck za pár sekúnd —
+ * po vyčerpaní série obrazovka zostane stáť a vysvetlí, čo sa deje.
+ */
+const AUTO_SKIP_LIMIT = 6;
+
+/**
  * Obrazovka je „obojstranná": telefón leží na stole a hráči sedia z dvoch strán.
  * Preto je layout mriežka s piatimi pevnými pásmi — horné dva sú otočené o 180°,
  * takže protistrana čita rovnako pohodlne ako blizšia strana.
@@ -54,7 +63,9 @@ export default function MusicBuzzer({
   );
   const [phase, setPhase] = useState<Phase>({ type: "question" });
   const [played, setPlayed] = useState(false);
+  const [autoSkips, setAutoSkips] = useState(0);
   const autoStartedFor = useRef<number | null>(null);
+  const autoSkippedFor = useRef<number | null>(null);
   const song = deck[deckIndex] ?? null;
   const { status, source, play, stop } = useSongPreview(
     song,
@@ -99,8 +110,28 @@ export default function MusicBuzzer({
     )
       return;
     autoStartedFor.current = deckIndex;
+    // Ukážka sa našla, takže séria preskočení sa počíta od nuly.
+    setAutoSkips(0);
     void playPreview();
   }, [deckIndex, soundAllowed, status]);
+
+  // ── Nedostupná ukážka ─────────────────────────────────────────────────────
+  // Skladba bez ukážky nemá pre hráčov obsah — nie je čo bzučať. Deck je práve
+  // na to nadimenzovaný s rezervou, takže hra rovno posunie na ďalšiu skladbu
+  // a číslo otázky pri tom nespotrebuje.
+  useEffect(() => {
+    if (!soundAllowed || status !== "missing" || phase.type !== "question")
+      return;
+    if (autoSkippedFor.current === deckIndex || autoSkips >= AUTO_SKIP_LIMIT)
+      return;
+    autoSkippedFor.current = deckIndex;
+    // Krátka pauza, aby hráči zachytili, prečo sa skladba mení.
+    const timer = window.setTimeout(() => {
+      setAutoSkips(value => value + 1);
+      skipUnavailable();
+    }, 600);
+    return () => window.clearTimeout(timer);
+  }, [autoSkips, deckIndex, phase.type, soundAllowed, status]);
 
   function resetQuestion() {
     setPhase({ type: "question" });
@@ -178,9 +209,13 @@ export default function MusicBuzzer({
     phase.type === "question"
       ? status === "loading"
         ? "Hľadám ukážku…"
-        : played
-          ? "Kto pozná túto pesničku?"
-          : "Spúšťam ukážku…"
+        : status === "missing"
+          ? autoSkips >= AUTO_SKIP_LIMIT
+            ? "Ukážka sa nenašla"
+            : "Beriem ďalšiu pesničku…"
+          : played
+            ? "Kto pozná túto pesničku?"
+            : "Spúšťam ukážku…"
       : phase.type === "buzzed"
         ? `${participantNames[phase.participant]} odpovedá`
         : (song?.title ?? "Hudobný kvíz");
@@ -188,9 +223,11 @@ export default function MusicBuzzer({
   const hint = !soundAllowed
     ? "Zvuky sú vypnuté — zapni ich v nastaveniach"
     : status === "missing"
-      ? "Ukážka nie je dostupná"
+      ? autoSkips >= AUTO_SKIP_LIMIT
+        ? "Ukážky sa nedajú načítať — skontroluj pripojenie"
+        : "Ukážka nie je dostupná — beriem ďalšiu pesničku"
       : status === "error"
-        ? "Prehrávanie sa nepodarilo"
+        ? "Prehrávanie sa nepodarilo — ťukni na obal a skús znova"
         : phase.type === "question"
           ? played
             ? "Bzuč, keď poznáš názov aj interpreta"
