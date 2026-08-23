@@ -3906,20 +3906,42 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--ui-gap);
 }
+/* Rám dlaždice nesie farbu hry (`--tile-accent`), rovnaký princíp ako
+   `.minigame-polish-card` v menu Minihry — jemný farebný okraj a žiarivá
+   linka navrchu, aby dlaždice pôsobili farebne už bez ohľadu na obrázok. */
 .ui-tile {
   position: relative;
+  isolation: isolate;
   display: flex;
   min-height: 11.5rem;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid var(--ui-line);
+  border: 1px solid color-mix(in srgb, var(--tile-accent) 40%, var(--ui-line));
   border-radius: var(--ui-r-lg);
   background: var(--ui-surface);
-  transition: border-color 0.16s ease, transform 0.16s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+}
+.ui-tile::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 4%,
+    var(--tile-accent) 40%,
+    color-mix(in srgb, var(--tile-accent) 25%, transparent) 86%
+  );
+  box-shadow: 0 0 12px var(--tile-accent);
 }
 .ui-tile:hover {
-  border-color: var(--ui-line-strong);
+  border-color: color-mix(in srgb, var(--tile-accent) 68%, var(--ui-line));
   transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 18px 36px -24px color-mix(in srgb, var(--tile-accent) 70%, transparent);
 }
 .ui-tile:has(.ui-tile-hit:active) { transform: scale(0.985); }
 .ui-tile-hit {
@@ -3928,11 +3950,10 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
   z-index: 3;
   border-radius: inherit;
 }
-/* Obraz hry je stmavený tak, aby text nad ním bol vždy čitateľný, ale musí
-   zostať rozpoznateľný — pri .5 opacite a tmavom veile skoro po celej ploche
-   pôsobil ako sotva viditeľná textúra. Vyššia opacita + krátky kontrastný
-   dolet (rovnaký princíp ako `.minigame-polish-art` v menu Minihry) nechá
-   obraz žiť v hornej a strednej časti a stmavuje iba pás pod textom. */
+/* Obraz hry nesie farbu celej dlaždice, takže dostáva plnú sýtosť a jemné
+   zväčšenie pri nábehu — rovnaký princíp ako `.minigame-polish-art` v menu
+   Minihry. Veil stmavuje iba pás pod textom a jeho spodná hrana je zafarbená
+   akcentom hry, takže farba žije aj v tieni, nielen v samotnom obrázku. */
 .ui-tile-art {
   position: absolute;
   inset: 0;
@@ -3940,18 +3961,31 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
   height: 100%;
   background-repeat: no-repeat;
   object-fit: cover;
-  opacity: 0.72;
-  filter: saturate(1.08) contrast(1.05) brightness(1.05);
+  opacity: 0.86;
+  filter: saturate(1.3) contrast(1.1) brightness(1.06);
+  transform: scale(1.04);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.2s ease;
+}
+.ui-tile:hover .ui-tile-art {
+  transform: scale(1.1);
+  opacity: 0.94;
 }
 .ui-tile-veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(16, 17, 22, 0.1) 0%,
-    rgba(16, 17, 22, 0.3) 46%,
-    rgba(16, 17, 22, 0.9) 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16, 17, 22, 0.04) 0%,
+      rgba(16, 17, 22, 0.12) 40%,
+      rgba(16, 17, 22, 0.88) 100%
+    ),
+    linear-gradient(
+      0deg,
+      color-mix(in srgb, var(--tile-accent) 30%, transparent) 0%,
+      transparent 62%
+    );
 }
 .ui-tile-top {
   position: relative;
@@ -4293,9 +4327,13 @@ html[data-theme="light"] .ui-pre-caption h1 { color: #fff; }
 /* Vybraná hra sa nezvýrazňuje žiarou, ale plným rámom vo farbe hry
    a číslom poradia. Číslo zároveň nesie informáciu, ktorú fajka nemá. */
 .ui-pick.is-picked {
-  border-color: color-mix(in srgb, var(--tile-accent) 70%, transparent);
+  border-color: var(--tile-accent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px color-mix(in srgb, var(--tile-accent) 55%, transparent),
+    0 16px 34px -22px color-mix(in srgb, var(--tile-accent) 85%, transparent);
 }
-.ui-pick.is-picked .ui-tile-art { opacity: 0.62; }
+.ui-pick.is-picked .ui-tile-art { opacity: 0.7; }
 .ui-pick-order {
   position: absolute;
   z-index: 4;
