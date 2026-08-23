@@ -224,11 +224,13 @@ export default function TeamBattle({
 
   if (phase === "finale" && currentRound) {
     return (
-      <FinaleIntro
-        teamNames={teamNames}
-        scores={totalScores}
-        onContinue={() => setPhase("round-intro")}
-      />
+      <div className="party-phase-shell" key="finale">
+        <FinaleIntro
+          teamNames={teamNames}
+          scores={totalScores}
+          onContinue={() => setPhase("round-intro")}
+        />
+      </div>
     );
   }
 
