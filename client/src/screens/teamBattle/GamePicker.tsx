@@ -98,7 +98,7 @@ export default function TeamBattleGamePicker({
 
   return (
     <main className="ui ui-screen scroll-panel">
-      <div className="ui-wrap pb-24">
+      <div className="ui-wrap ui-wrap-dock-gap">
         <div className="ui-bar">
           <button type="button" onClick={onBack} aria-label="Späť" className="ui-back">
             <Icons.arrowLeft size={19} />

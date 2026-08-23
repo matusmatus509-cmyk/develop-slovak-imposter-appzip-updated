@@ -3928,7 +3928,11 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
   z-index: 3;
   border-radius: inherit;
 }
-/* Obraz hry je stmavený tak, aby text nad ním bol vždy čitateľný. */
+/* Obraz hry je stmavený tak, aby text nad ním bol vždy čitateľný, ale musí
+   zostať rozpoznateľný — pri .5 opacite a tmavom veile skoro po celej ploche
+   pôsobil ako sotva viditeľná textúra. Vyššia opacita + krátky kontrastný
+   dolet (rovnaký princíp ako `.minigame-polish-art` v menu Minihry) nechá
+   obraz žiť v hornej a strednej časti a stmavuje iba pás pod textom. */
 .ui-tile-art {
   position: absolute;
   inset: 0;
@@ -3936,17 +3940,17 @@ html[data-theme="light"] .settings-screen [class*="text-white/"] { color: rgba(1
   height: 100%;
   background-repeat: no-repeat;
   object-fit: cover;
-  opacity: 0.5;
-  filter: saturate(0.9);
+  opacity: 0.72;
+  filter: saturate(1.08) contrast(1.05) brightness(1.05);
 }
 .ui-tile-veil {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(16, 17, 22, 0.35) 0%,
-    rgba(16, 17, 22, 0.72) 52%,
-    rgba(16, 17, 22, 0.95) 100%
+    rgba(16, 17, 22, 0.1) 0%,
+    rgba(16, 17, 22, 0.3) 46%,
+    rgba(16, 17, 22, 0.9) 100%
   );
 }
 .ui-tile-top {
@@ -4308,6 +4312,16 @@ html[data-theme="light"] .ui-pre-caption h1 { color: #fff; }
   font-size: 0.82rem;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
+}
+
+/* Keď je pod obrazovkou ukotvený `.ui-dock`, obsah potrebuje vlastnú
+   rezervu navyše k bežnému `.ui-wrap` odsadeniu — inak posledný riadok
+   mriežky skončí čiastočne pod pásom a nedá sa doskrolovať k nemu celý
+   (presne tento prípad: výber minihier do Party modu). Hodnota je
+   zámerne vyššia než skutočná výška pásu (~4.5–5rem), aby držala aj na
+   telefónoch s bezpečnou zónou dole. */
+.ui-wrap-dock-gap {
+  padding-bottom: calc(6.5rem + env(safe-area-inset-bottom));
 }
 
 /* ── Ukotvený spodný pás s potvrdením ────────────────────────────── */
