@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { drawSong } from "../../data/songSelection";
 import { type ForbiddenCard, type SongCard } from "../../data/teamBattleExtras";
 import { getForbiddenCardsForLanguage } from "../../data/localizedForbiddenWord";
@@ -22,6 +22,15 @@ import { Icons } from "../../components/icons";
 
 type PassMode = "zakazane" | "pesnicka";
 type Phase = "ready" | "playing" | "team-result";
+
+/**
+ * Koľko skladieb bez ukážky za sebou sa vymení samo.
+ *
+ * Ukážka je pri hmkaní pomôcka, nie podmienka, takže strop je nižší ako v
+ * hudobnom kvíze: keď ukážky nefungujú vôbec (napr. bez siete), karta zostane
+ * na obrazovke a dá sa zahmkať aj bez nej.
+ */
+const SONG_AUTO_SKIP_LIMIT = 4;
 
 const MODE_COPY = {
   zakazane: {
@@ -99,6 +108,42 @@ function PassAndPlay({
     soundAllowed && mode === "pesnicka" && phase === "playing",
     8
   );
+  const [autoSkips, setAutoSkips] = useState(0);
+  const autoSkippedFor = useRef<number | null>(null);
+
+  // ── Skladba bez ukážky ────────────────────────────────────────────────────
+  // Keď poskytovateľ ukážku nemá, karta je pre hráča, ktorý skladbu nepozná,
+  // slepá ulička. Vymení sa teda sama — ale len dokým na nej nikto nič
+  // nezískal, aby výmena nezmazala rozohranú kartu, a bez záznamu do prehľadu,
+  // pretože to nie je preskočenie hráča.
+  useEffect(() => {
+    if (mode !== "pesnicka" || phase !== "playing") return;
+    if (!soundAllowed || previewStatus !== "missing") return;
+    if (songAwards.title || songAwards.artist) return;
+    if (autoSkippedFor.current === index || autoSkips >= SONG_AUTO_SKIP_LIMIT)
+      return;
+    autoSkippedFor.current = index;
+    const timer = window.setTimeout(() => {
+      setAutoSkips(value => value + 1);
+      swapUnavailableSong();
+    }, 700);
+    return () => window.clearTimeout(timer);
+  }, [
+    autoSkips,
+    index,
+    mode,
+    phase,
+    previewStatus,
+    soundAllowed,
+    songAwards.artist,
+    songAwards.title,
+  ]);
+
+  // Nájdená ukážka znamená, že poskytovateľ odpovedá — séria sa počíta odznova.
+  useEffect(() => {
+    if (previewStatus === "ready" || previewStatus === "playing")
+      setAutoSkips(0);
+  }, [previewStatus]);
 
   function addTurnAnswer(answer: TurnAnswer) {
     turnAnswersRef.current = [...turnAnswersRef.current, answer];
@@ -158,6 +203,10 @@ function PassAndPlay({
     setTurnAnswers([]);
     resetCountdown();
     setSongAwards({ title: false, artist: false });
+    // Nový ťah dostáva čistú sériu, inak by prvá karta zdedila strop z konca
+    // predošlého ťahu a nevymenila by sa, ani keby ukážka chýbala.
+    setAutoSkips(0);
+    autoSkippedFor.current = null;
     drawCard();
     setPhase("playing");
   }
@@ -185,6 +234,17 @@ function PassAndPlay({
   function nextSongCard() {
     stopPreview();
     recordSongAnswer("skipped");
+    setSongAwards({ title: false, artist: false });
+    drawCard();
+    setIndex(value => value + 1);
+  }
+
+  /**
+   * Výmena karty, ktorá sa nedá pustiť. Do prehľadu ťahu sa nezapisuje nič —
+   * hráč skladbu nepreskočil ani nepremeškal, len k nej nebola ukážka.
+   */
+  function swapUnavailableSong() {
+    stopPreview();
     setSongAwards({ title: false, artist: false });
     drawCard();
     setIndex(value => value + 1);
@@ -477,8 +537,14 @@ function PassAndPlay({
                 </button>
                 {previewStatus === "missing" && (
                   <p className="mt-2 text-[9px] font-bold text-white/25">
-                    Deezer ani iTunes nemajú pre túto skladbu dostupný audio
-                    preview.
+                    {autoSkips >= SONG_AUTO_SKIP_LIMIT
+                      ? "Ukážky sa teraz nedajú načítať — skontroluj pripojenie. Zahmkať sa dá aj bez nich."
+                      : "Ukážka sa nenašla — beriem ďalšiu skladbu."}
+                  </p>
+                )}
+                {previewStatus === "error" && (
+                  <p className="mt-2 text-[9px] font-bold text-white/25">
+                    Prehrávanie sa nepodarilo — ťukni ešte raz.
                   </p>
                 )}
               </div>
