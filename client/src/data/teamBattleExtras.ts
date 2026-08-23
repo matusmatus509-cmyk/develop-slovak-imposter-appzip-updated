@@ -3,7 +3,6 @@ import tabooCardDatabase from "./tabooCardsSk.json";
 import {
   GENERATED_FORBIDDEN_CARDS,
   GENERATED_LETTER_CATEGORIES,
-  GENERATED_SOUND_CLUES,
 } from "./expandedContent";
 
 export interface ForbiddenCard {
@@ -1949,169 +1948,96 @@ export interface SoundClue {
   tonePattern?: Array<{ frequency: number; duration: number; pause: number }>;
 }
 
+/**
+ * ── Uhádni zvuk: databáza ────────────────────────────────────────────────────
+ *
+ * Pravidlo tejto databázy: KAŽDÁ položka je konkrétny, reálne existujúci zvuk,
+ * ktorý hráč dokáže rozpoznať aj bez textu. Žiadne syntetické tóny, pulzy ani
+ * abstraktné efekty — tie sa odtiaľto odstránili, pretože tvorili väčšinu poolu
+ * a hráč tak namiesto zvuku dostával bezvýznamné pípnutie.
+ *
+ * Do `SOUND_CLUES` smie vstúpiť len položka so skutočne funkčným `audioUrl`.
+ * Hra pri chybe načítania nemá auto-skip, takže neoverený odkaz by znamenal
+ * mŕtve kolo. Kurátorské koncepty, ktoré ešte nemajú nahrávku, sú preto
+ * oddelené v `SOUND_CLUE_BACKLOG` a hra ich nikdy nečerpá.
+ *
+ * Deduplikačný kľúč hry je `label` (SoundBuzzer.tsx), takže labely musia byť
+ * neprázdne a jedinečné — kolidujúce položky by sa mlčky zlúčili a pool zmenšili.
+ */
+
+/** Zvuky s vlastnou nahrávkou a vlastným uvedením autora a licencie. */
 const CORE_SOUND_CLUES: SoundClue[] = [
-  { id: "engine", label: "Motor auta", emoji: "🚗", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b5/WWS_CarPrinzNSU1200Cengine.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:WWS_CarPrinzNSU1200Cengine.ogg", credit: "Work With Sounds / Technical Museum of Slovenia", license: "CC BY 4.0" },
-  { id: "cat", label: "Mňaukajúca mačka", emoji: "🐈", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Meow_of_a_pleading_cat.oga", sourcePage: "https://commons.wikimedia.org/wiki/File:Meow_of_a_pleading_cat.oga", credit: "Heismark", license: "Public domain" },
-  { id: "can", label: "Otvorenie plechovky", emoji: "🥫", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Opening_a_can.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Opening_a_can.ogg", credit: "stephan", license: "Public domain" },
-  { id: "dog", label: "Štekajúci pes", emoji: "🐕", audioUrl: "/sounds/dog.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Barking_of_a_dog.ogg", credit: "Amada44", license: "CC BY-SA 3.0" },
-  { id: "rain", label: "Dážď na okne", emoji: "🌧️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/4/41/Rain_against_the_window.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Rain_against_the_window.ogg", credit: "cori", license: "Public domain" },
-  { id: "siren", label: "Policajná siréna", emoji: "🚓", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ae/American_police_siren_i.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:American_police_siren_i.ogg", credit: "lezer", license: "Public domain" },
-  { id: "clock", label: "Tikajúce hodiny", emoji: "🕰️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Alarm_clock_ticking.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Alarm_clock_ticking.ogg", credit: "ezwa", license: "Public domain" },
-  { id: "doorbell", label: "Zvonček pri dverách", emoji: "🔔", audioUrl: "/sounds/doorbell.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Doorbell-cheap-dingdong.ogg", credit: "Wikimedia Commons", license: "Public domain" },
-  { id: "phone", label: "Zvonenie telefónu", emoji: "☎️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/1/1c/Telephone.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Telephone.ogg", credit: "Dsw4", license: "Public domain" },
-  { id: "train", label: "Klaksón vlaku", emoji: "🚆", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8a/4000_class_train_horn.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:4000_class_train_horn.ogg", credit: "Cityedit14", license: "CC BY-SA 4.0" },
-  { id: "heartbeat", label: "Búšenie srdca", emoji: "❤️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2b/Heartbeat_mitral_valve_150_bpm.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Heartbeat_mitral_valve_150_bpm.ogg", credit: "ezwa", license: "Public domain" },
-  { id: "helicopter", label: "Vrtuľník", emoji: "🚁", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Helicopter_over_quiet_neighbourhood.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Helicopter_over_quiet_neighbourhood.ogg", credit: "ezwa", license: "Public domain" },
-  { id: "microwave", label: "Mikrovlnná rúra", emoji: "📟", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Microwave_oven.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Microwave_oven.ogg", credit: "stephan", license: "Public domain" },
-  { id: "keyboard", label: "Písanie na klávesnici", emoji: "⌨️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Keyboard_noise.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Keyboard_noise.ogg", credit: "Yuyudevil", license: "Public domain" },
-  { id: "alarm", label: "Budík", emoji: "⏰", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f4/Alarm_Clock_%28Directory.Audio%29.mp3", sourcePage: "https://commons.wikimedia.org/wiki/File:Alarm_Clock_(Directory.Audio).mp3", credit: "Yoo-toob-FX", license: "CC0" },
-  { id: "applause", label: "Potlesk", emoji: "👏", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/0/09/Applause_ii.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Applause_ii.ogg", credit: "thore", license: "Public domain" },
-  { id: "horse", label: "Cválajúce kone", emoji: "🐎", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/9/96/Six_Horses_Galloping_By.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Six_Horses_Galloping_By.ogg", credit: "Freesound Community / Bruno Auzet", license: "CC0" },
-  { id: "fire", label: "Praskajúci oheň", emoji: "🔥", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/8/80/Bones_breaking_wood_fire_ice_crackling.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Bones_breaking_wood_fire_ice_crackling.ogg", credit: "stephan", license: "Public domain" },
-  { id: "rooster", label: "Kikiríkanie kohúta", emoji: "🐓", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Rooster_crowing.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Rooster_crowing.ogg", credit: "Filo gèn'", license: "CC BY-SA 4.0" },
-  { id: "sheep", label: "Bľačanie ovce", emoji: "🐑", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sheep_bleating.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Sheep_bleating.ogg", credit: "earthcalling", license: "Public domain" },
-  { id: "cow", label: "Bučanie kravy", emoji: "🐄", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Single_Cow_Moo.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Single_Cow_Moo.ogg", credit: "MichaeltheFox8621", license: "CC BY-SA 4.0" },
-  { id: "thunder", label: "Hrom", emoji: "⛈️", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tonitrus.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Tonitrus.ogg", credit: "Wikimedia Commons", license: "Public domain" },
-  { id: "church-bells", label: "Kostolné zvony", emoji: "🔔", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Churchbells.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Churchbells.ogg", credit: "Natalie", license: "Public domain" },
-  { id: "waves", label: "Morské vlny", emoji: "🌊", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Waves.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Waves.ogg", credit: "Dsw4", license: "Public domain" },
-  { id: "lion", label: "Rev leva", emoji: "🦁", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lion_raring-sound1TamilNadu178.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg", credit: "Info-farmer", license: "Public domain" },
+  { id: "sk-engine-idle", label: "Motor auta", emoji: "🚗", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b5/WWS_CarPrinzNSU1200Cengine.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:WWS_CarPrinzNSU1200Cengine.ogg", credit: "Work With Sounds / Technical Museum of Slovenia", license: "CC BY 4.0" },
+  { id: "sk-cat-meow", label: "Mňaukanie mačky", emoji: "🐈", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Meow_of_a_pleading_cat.oga", sourcePage: "https://commons.wikimedia.org/wiki/File:Meow_of_a_pleading_cat.oga", credit: "Heismark", license: "Public domain" },
+  { id: "sk-can-open", label: "Otvorenie plechovky", emoji: "🥫", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Opening_a_can.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Opening_a_can.ogg", credit: "stephan", license: "Public domain" },
+  // Pôvodne ukazovalo na /sounds/dog.ogg, ale client/public/sounds/ neexistuje.
+  // Názov súboru je zdokumentovaný v sourcePage, takže odkaz vedieme rovnakým
+  // Commons mechanizmom ako ostatné položky nižšie.
+  { id: "sk-dog-bark", label: "Štekot psa", emoji: "🐕", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Barking_of_a_dog.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Barking_of_a_dog.ogg", credit: "Amada44", license: "CC BY-SA 3.0" },
+  { id: "sk-rain-window", label: "Dážď na okne", emoji: "🌧️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/4/41/Rain_against_the_window.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Rain_against_the_window.ogg", credit: "cori", license: "Public domain" },
+  { id: "sk-police-siren", label: "Policajná siréna", emoji: "🚓", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ae/American_police_siren_i.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:American_police_siren_i.ogg", credit: "lezer", license: "Public domain" },
+  { id: "sk-clock-tick", label: "Tikajúce hodiny", emoji: "🕰️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Alarm_clock_ticking.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Alarm_clock_ticking.ogg", credit: "ezwa", license: "Public domain" },
+  // Rovnaká oprava ako pri štekote psa — pôvodné /sounds/doorbell.ogg neexistuje.
+  { id: "sk-doorbell", label: "Zvonček pri dverách", emoji: "🔔", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Doorbell-cheap-dingdong.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Doorbell-cheap-dingdong.ogg", credit: "Wikimedia Commons", license: "Public domain" },
+  { id: "sk-phone-ring", label: "Zvonenie telefónu", emoji: "☎️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/1/1c/Telephone.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Telephone.ogg", credit: "Dsw4", license: "Public domain" },
+  { id: "sk-train-horn", label: "Klaksón vlaku", emoji: "🚆", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8a/4000_class_train_horn.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:4000_class_train_horn.ogg", credit: "Cityedit14", license: "CC BY-SA 4.0" },
+  { id: "sk-heartbeat", label: "Búšenie srdca", emoji: "❤️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2b/Heartbeat_mitral_valve_150_bpm.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Heartbeat_mitral_valve_150_bpm.ogg", credit: "ezwa", license: "Public domain" },
+  { id: "sk-helicopter", label: "Vrtuľník", emoji: "🚁", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Helicopter_over_quiet_neighbourhood.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Helicopter_over_quiet_neighbourhood.ogg", credit: "ezwa", license: "Public domain" },
+  { id: "sk-microwave", label: "Mikrovlnná rúra", emoji: "📟", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Microwave_oven.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Microwave_oven.ogg", credit: "stephan", license: "Public domain" },
+  { id: "sk-keyboard", label: "Písanie na klávesnici", emoji: "⌨️", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Keyboard_noise.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Keyboard_noise.ogg", credit: "Yuyudevil", license: "Public domain" },
+  { id: "sk-alarm-clock", label: "Budík", emoji: "⏰", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f4/Alarm_Clock_%28Directory.Audio%29.mp3", sourcePage: "https://commons.wikimedia.org/wiki/File:Alarm_Clock_(Directory.Audio).mp3", credit: "Yoo-toob-FX", license: "CC0" },
+  { id: "sk-applause", label: "Potlesk", emoji: "👏", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/0/09/Applause_ii.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Applause_ii.ogg", credit: "thore", license: "Public domain" },
+  { id: "sk-horses-gallop", label: "Cválajúce kone", emoji: "🐎", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/9/96/Six_Horses_Galloping_By.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Six_Horses_Galloping_By.ogg", credit: "Freesound Community / Bruno Auzet", license: "CC0" },
+  { id: "sk-fire-crackle", label: "Praskajúci oheň", emoji: "🔥", audioUrl: "https://upload.wikimedia.org/wikipedia/commons/8/80/Bones_breaking_wood_fire_ice_crackling.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Bones_breaking_wood_fire_ice_crackling.ogg", credit: "stephan", license: "Public domain" },
+  { id: "sk-rooster", label: "Kikiríkanie kohúta", emoji: "🐓", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Rooster_crowing.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Rooster_crowing.ogg", credit: "Filo gèn'", license: "CC BY-SA 4.0" },
+  { id: "sk-sheep", label: "Bľačanie ovce", emoji: "🐑", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sheep_bleating.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Sheep_bleating.ogg", credit: "earthcalling", license: "Public domain" },
+  { id: "sk-cow", label: "Bučanie kravy", emoji: "🐄", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Single_Cow_Moo.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Single_Cow_Moo.ogg", credit: "MichaeltheFox8621", license: "CC BY-SA 4.0" },
+  { id: "sk-thunder", label: "Hrom", emoji: "⛈️", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tonitrus.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Tonitrus.ogg", credit: "Wikimedia Commons", license: "Public domain" },
+  { id: "sk-church-bells", label: "Kostolné zvony", emoji: "🔔", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Churchbells.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Churchbells.ogg", credit: "Natalie", license: "Public domain" },
+  { id: "sk-sea-waves", label: "Morské vlny", emoji: "🌊", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Waves.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Waves.ogg", credit: "Dsw4", license: "Public domain" },
+  { id: "sk-lion", label: "Rev leva", emoji: "🦁", audioUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lion_raring-sound1TamilNadu178.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg", credit: "Info-farmer", license: "Public domain" },
 ];
 
+/**
+ * Ďalšie zvuky z Wikimedia Commons vo formáte `label|emoji|názov súboru`.
+ * Kurátorský výber: z pôvodných 127 položiek zostali len tie, ktoré sú
+ * konkrétne a rozpoznateľné. Odstránilo sa najmä 47 variantov „Motor <model>",
+ * ktoré predstavovali ten istý zvuk, a desiatky neznámych druhov vtákov,
+ * gibonov a vymyslených filmových príšer.
+ */
 const COMMONS_SOUND_LIBRARY = `
 Híkanie osla|🫏|157763 felix-blume a-donkey-is-braying-in-his-enclosure-in-south-of-france.wav
+Bzučanie včely|🐝|Bee buzzing sound (animal noises).opus
+Kvákanie žiab|🐸|Frogs croak calling chorus at night.ogg
+Pradenie mačky|🐈|Purr (10 sec loopable).ogg
+Eržanie koňa|🐎|Segregation-of-information-about-emotional-arousal-and-valence-in-horse-whinnies-srep09989-s2.oga
+Bľačanie kôz|🐐|Herd of goats bleating.ogg
+Vytie psa|🐕|Jem howls.ogg
+Papagáj|🦜|Psittacara erythrogenys - Red masked Parakeet.wav
+Vrčanie diviaka|🐗|Boar.Grwls(1).ogg
 Delfín pod vodou|🐬|161691 felixblume dolphin-screaming-underwater-in-caribbean-sea-mexico.wav
 Veverička|🐿️|A three-striped palm squirrel (Funambulus palmarum) chirping 16January2015.oga
-Cvrčky a vtáky|🦗|Atmo – Grillen mit Vögel.mp3
-Prairie dog|🐕|Bark Huayra.ogg
-Bzučanie včely|🐝|Bee buzzing sound (animal noises).opus
-Silné bzučanie včiel|🐝|Bee Buzzing Sound - Animal Sounds.opus
-Vrčiaci diviak|🐗|Boar.Grwls(1).ogg
-Spev vtáka|🐦|Cantorchilus superciliaris.wav
-Lelek|🐦|Caprimulgus europaeus.ogg
-Stádo oviec|🐑|Corner of a sheep field in summer.ogg
-Vták peppershrike|🐦|Cyclarhis gujanensis - Rufous browed Peppershrike.wav
-Morská korytnačka|🐢|Dermochelys coriacea 001.ogg
-Čierny vták|🐦‍⬛|Dives warszewiczi - Scrub Blackbird.wav
-Pes|🐕|Dog.ogg
-Kvákajúce žaby|🐸|Frogs croak calling chorus at night.ogg
-Spievajúci vták|🐦|Garrulax-leucolophus-white-crested-laughingthrush-singing.ogg
-Gekón|🦎|Gekko gecko.wav
-Veľký pes|🐕|Giant Canine (Koopzilla) Sounds.ogg
-Veľká mačkovitá šelma|🐆|Giant Feline Sounds.ogg
-Gibony 1|🐒|Gibbon Rehabilitation Project - Phuket - 20131029 - Cris de singes 1.ogg
-Gibony 2|🐒|Gibbon Rehabilitation Project - Phuket - 20131029 - Cris de singes 2.ogg
-Gibony 3|🐒|Gibbon Rehabilitation Project - Phuket - 20131029 - Cris de singes.ogg
-Guacharaca|🐦|Guacharaca.ogg
-Ježko|🦔|Hedgehog O.ogg
-Stádo kôz|🐐|Herd of goats bleating.ogg
-Gibon spievajúci 1|🐒|Hylobates-pileatus-pileated-gibbon-calling-singing-1.oga
-Gibon spievajúci 2|🐒|Hylobates-pileatus-pileated-gibbon-calling-singing-2.oga
-Tropická žaba|🐸|Hyloxalus elachyhistus.wav
-Žluva|🐦|Icterus graceannae - White edge Oriole.wav
-Veverička palmová|🐿️|Indian palm squirrel sound.wav
-Jaguár|🐆|Jaguar saw.flac
-Vyjúci pes|🐕|Jem howls.ogg
-Praveké zviera daeodon|🐗|Lane Daeodon.ogg
-Veľryby|🐋|Long finned Pilot Whales orig.ogg
-Pes hyenovitý|🐕|Lycaon pictus hoo-sound.wav
-Srnec|🦌|Male roe deer growl.ogg
-Drozd|🐦|Mimus longicaudatus - Long tailed Mockingbird.wav
-Los|🫎|Moose mate.ogg
-Morské cicavce|🐋|Oceancetaceen Test ogg.ogg
-Guán bielokrídly 1|🐦|Penelope albipennis - White winged Guan 2.wav
-Guán bielokrídly 2|🐦|Penelope albipennis - White winged Guan.wav
-Guán bradatý|🐦|Penelope barbata - Bearded Guan.wav
-Štekajúca sučka|🐕|Perro hembra ladrando.mp3
-Štekajúci pes|🐕|Perro ladrando.ogg
-Hádajúce sa psy|🐕|Perros peleando.ogg
-Netopier|🦇|Petit rhinolophe.ogg
-Papagáj|🦜|Psittacara erythrogenys - Red masked Parakeet.wav
-Pradenie mačky|🐈|Purr (10 sec loopable).ogg
+Spev veľrýb|🐋|Long finned Pilot Whales orig.ogg
 Nočný les|🌲|Rufe nachts im Wald.ogg
-Eržanie koňa 1|🐎|Segregation-of-information-about-emotional-arousal-and-valence-in-horse-whinnies-srep09989-s2.oga
-Eržanie koňa 2|🐎|Segregation-of-information-about-emotional-arousal-and-valence-in-horse-whinnies-srep09989-s3.oga
-Bľačanie ovce|🐑|Sheep bleating.ogg
-Vydra|🦦|Smooth-coated otter sound.wav
-Delfínie pulzy|🐬|Sons pulsantes.Sotalia.WAV
-Delfínie kliknutia|🐬|Sotalia Clicks.wav
-Makak|🐒|Sound-of-stump-tailed-macaque-(macaca-arctoides).ogg
-Antilopa springbok|🦌|Springbok grunt (asthma).ogg
-Japonský vták|🐦|Tsutsubo.ogg
-Srnec 2|🦌|Verso capriolo.theora.ogg
-Motor auta Honda|🚗|2002-Honda-F20C.ogg
-Motor auta Slant Six|🚗|225 Slant Six.ogg
-Odchádzajúce auto|🚙|255122 ylearkisto henkiloauto-lahto-asfaltilla-a-car-pulling-away-on-asphalt-lada-1500-combi-a-1981-model.wav
-Prichádzajúce auto|🚙|255126 ylearkisto henkiloauto-tulo-asfaltilla-a-car-approaching-stopping-shutting-down-lada-1500-combi-a-1981-model.wav
-Motor športového auta Alfa Romeo|🏎️|Alfa Romeo 8C Spider.ogg
-Premávka v meste|🚦|Ambient sound city street Berlin 2026-05-17.oga
-Pouličná premávka|🚦|Ambient sound street traffic Berlin 2026-05-17.oga
-Motor športového auta Ariel Atom|🏎️|Ariel Atom 3.ogg
-Motor športového auta Aston Martin|🏎️|Aston Martin Rapide.ogg
-Motor auta Aston Martin V12|🏎️|Aston-Martin-V12-Vantage.ogg
-Autá na diaľnici|🛣️|Autos auf der Bundesautobahn 23 01.ogg
 Štartovanie auta|🚗|Autostarten und wegfahren 01.ogg
-Upozornenie elektromobilu|🔊|Avertisseur piétons Renault Zoe.opus
-Motor Bugatti Veyron|🏎️|Bugatti Veyron Grand Sport.ogg
-Motor Bugatti Veyron Pur Sang|🏎️|Bugatti Veyron Pur Sang.ogg
-Autá na moste|🌉|Cars passing over bridge.ogg
-Motor Chevrolet Corvette|🏎️|Chevrolet Corvette C6 ZR1 recorded2010.ogg
-Motor Citroën GT|🏎️|Citroen GT.ogg
-Hydraulické pruženie auta|🚗|Citroën BX - Suspension - Maximum to minimum-audio.ogg
-Motor Farbio|🏎️|Farbio GTS350.ogg
-Motor Ferrari 458|🏎️|Ferrari 458 Italia.ogg
-Motor Ferrari 599 GTO|🏎️|Ferrari 599 GTO.ogg
-Motor Ferrari 599 HGTE|🏎️|Ferrari 599 HGTE.ogg
-Motor Ferrari California|🏎️|Ferrari California (2009).ogg
-Výfuk Ferrari|🏎️|Ferrari F355 under-hood exhaust sound.ogg
-Motor Ferrari Scuderia|🏎️|Ferrari Scuderia Spider 16M.ogg
-Motor Ford Focus RS|🚗|Ford Focus RS.ogg
-Motor Ginetta|🏎️|Ginetta F400.ogg
-Motor auta Nissan March|🚗|HR12DE-March-K13.oga
-Motor Jaguar|🏎️|Jaguar XKR (2009).ogg
-Motor Koenigsegg Agera|🏎️|Koenigsegg Agera.ogg
-Motor Koenigsegg CCX-R|🏎️|Koenigsegg CCX-R.ogg
-Motor KTM X-Bow|🏎️|KTM X-Bow.ogg
-Motor Lamborghini Aventador|🏎️|Lamborghini Aventador LP700-4 (2011).ogg
-Motor Lamborghini Gallardo|🏎️|Lamborghini Gallardo LP570-4 Superleggera.ogg
-Štart športového auta|🏎️|Launching sound Challenger.ogg
-Motor Lexus IS-F|🚗|Lexus IS-F dynamometer 2UR-GSE (2008).ogg
-Motor Lexus LF-A|🏎️|Lexus LF-A.ogg
-Vytáčanie motora Lexus|🏎️|Lexus LFA revving 1LR-GUE (2009).ogg
-Motor Lotus Evora|🏎️|Lotus Evora.ogg
-Výfuk Maserati|🏎️|Maserati GranTurismo S Exhaust.ogg
-Motor McLaren|🏎️|McLaren MP4-12C.ogg
-Motor Mercedes SLR|🏎️|Mercedes-Benz SLR McLaren 722.ogg
-Motor Mercedes SLS|🏎️|Mercedes-Benz SLS AMG.ogg
-Motor Morgan 3 Wheeler|🚗|Morgan 3 Wheeler.ogg
-Motor Morgan Aero 1|🏎️|Morgan Aero Supersports recorded2010.ogg
-Motor Morgan Aero 2|🏎️|Morgan Aero Supersports.ogg
-Motor Nissan GT-R|🏎️|Nissan GT-R SpecV.ogg
-Motor Nissan VQ35|🚗|NISSAN VQ35HR engine.ogg
-Štartovanie Opel Corsa|🚗|Open Corsa E model 2014 engine startup sound.ogg
+Trúbenie auta|📣|WWS VolkswagenBeetle8211horn.ogg
+Premávka v meste|🚦|Ambient sound city street Berlin 2026-05-17.oga
+Autá na diaľnici|🛣️|Autos auf der Bundesautobahn 23 01.ogg
+Prichádzajúce auto|🚙|255126 ylearkisto henkiloauto-tulo-asfaltilla-a-car-approaching-stopping-shutting-down-lada-1500-combi-a-1981-model.wav
+Odchádzajúce auto|🚙|255122 ylearkisto henkiloauto-lahto-asfaltilla-a-car-pulling-away-on-asphalt-lada-1500-combi-a-1981-model.wav
+Motor športového auta|🏎️|Ferrari 458 Italia.ogg
+Zvuk elektromobilu|🔊|Avertisseur piétons Renault Zoe.opus
 Parkovací senzor|📡|Open Corsa E model 2014 parking sensor sound.oga
-Motor Pagani Zonda|🏎️|Pagani Zonda Roadster F.ogg
-Auto odchádza z garáže|🚗|Parkhaus Einsteigen und wegfahren 01.ogg
-Motor RUF CTR3|🏎️|RUF CTR3.ogg
-Motor Volkswagen Scirocco|🚗|Scirocco r 0.ogg
-Motor Chrysler Stratus|🚗|Son stratus 2L.ogg
-Motor Spyker 1|🏎️|Spyker C8 Aileron recorded2010.ogg
-Motor Spyker 2|🏎️|Spyker C8 Aileron.ogg
-Elektromobil Tesla|🔋|Tesla Roadster.ogg
-Motor Tramontana|🏎️|Tramontana R.ogg
-Motor Triumph|🚗|Triumph-I6 engine.ogg
-Motor Vauxhall|🚗|Vauxhall VXR8 Bathurst S.ogg
-Motor Volvo|🚗|Volvo C30 Polestar Concept.ogg
-Prechádzajúce policajné auto|🚓|WWS Policevanpassingby.ogg
-Motor Volkswagen Beetle|🚗|WWS VolkswagenBeetle8211engine.ogg
-Klaksón Volkswagen Beetle|📣|WWS VolkswagenBeetle8211horn.ogg
-Rally auto Toyota|🏁|Zero car Toyota Corolla 1600 GT 2 Door AE86 Jyväskylän Talviralli 2023 Kuohu.opus
+Rally auto na trati|🏁|Zero car Toyota Corolla 1600 GT 2 Door AE86 Jyväskylän Talviralli 2023 Kuohu.opus
 `.trim().split("\n");
 
-const COMMONS_SOUND_CLUES: SoundClue[] = COMMONS_SOUND_LIBRARY.map((entry, index) => {
+const COMMONS_SOUND_CLUES: SoundClue[] = COMMONS_SOUND_LIBRARY.map(entry => {
   const [label, emoji, fileName] = entry.split("|");
   const encodedFileName = encodeURIComponent(fileName);
   return {
-    id: `commons-library-${index + 1}`,
+    // ID je odvodené od názvu súboru, nie od poradia — presúvanie riadkov
+    // v zozname už teda nemení ID existujúcich položiek.
+    id: `commons-${fileName.replace(/[^a-zA-Z0-9]+/g, "-").toLowerCase().slice(0, 48)}`,
     label,
     emoji,
     audioUrl: `https://commons.wikimedia.org/wiki/Special:Redirect/file/${encodedFileName}`,
@@ -2121,11 +2047,193 @@ const COMMONS_SOUND_CLUES: SoundClue[] = COMMONS_SOUND_LIBRARY.map((entry, index
   };
 });
 
+/**
+ * Kurátorský zoznam konkrétnych slovenských zvukov, ktoré ešte nemajú
+ * priradenú nahrávku. Zámerne NIE JE súčasťou `SOUND_CLUES`: hra pri
+ * nefunkčnom zdroji zvuku nezobrazí ďalšiu otázku, len chybu, takže položka
+ * bez overenej nahrávky by pokazila kolo. Slúži ako pripravený obsah — po
+ * doplnení `audioUrl` sa položka presunie medzi hrateľné.
+ */
+export interface SoundClueDraft {
+  label: string;
+  emoji: string;
+  category: string;
+}
+
+export const SOUND_CLUE_BACKLOG: SoundClueDraft[] = [
+  // Domácnosť
+  { label: "Vysávač", emoji: "🧹", category: "domácnosť" },
+  { label: "Práčka", emoji: "🧺", category: "domácnosť" },
+  { label: "Umývačka nádobia", emoji: "🍽️", category: "domácnosť" },
+  { label: "Fén na vlasy", emoji: "💇", category: "domácnosť" },
+  { label: "Šijací stroj", emoji: "🧵", category: "domácnosť" },
+  { label: "Splachovanie toalety", emoji: "🚽", category: "domácnosť" },
+  { label: "Tečúca voda z kohútika", emoji: "🚰", category: "domácnosť" },
+  { label: "Sprcha", emoji: "🚿", category: "domácnosť" },
+  { label: "Klopanie na dvere", emoji: "🚪", category: "domácnosť" },
+  { label: "Škrípanie dverí", emoji: "🚪", category: "domácnosť" },
+  { label: "Zabuchnutie dverí", emoji: "🚪", category: "domácnosť" },
+  { label: "Cvaknutie vypínača", emoji: "💡", category: "domácnosť" },
+  { label: "Štrngot kľúčov", emoji: "🔑", category: "domácnosť" },
+  { label: "Trhanie papiera", emoji: "📄", category: "domácnosť" },
+  { label: "Šušťanie plastového sáčku", emoji: "🛍️", category: "domácnosť" },
+  { label: "Zapínanie zipsu", emoji: "🧥", category: "domácnosť" },
+  { label: "Vrzganie parkiet", emoji: "🪵", category: "domácnosť" },
+  { label: "Hodiny odbíjajúce hodinu", emoji: "🕕", category: "domácnosť" },
+  { label: "Kosačka na trávu", emoji: "🌱", category: "domácnosť" },
+  { label: "Žehlička", emoji: "👔", category: "domácnosť" },
+
+  // Kuchyňa
+  { label: "Varná kanvica", emoji: "☕", category: "kuchyňa" },
+  { label: "Mixér", emoji: "🥤", category: "kuchyňa" },
+  { label: "Smaženie na panvici", emoji: "🍳", category: "kuchyňa" },
+  { label: "Krájanie na doske", emoji: "🔪", category: "kuchyňa" },
+  { label: "Otváranie fľaše", emoji: "🍾", category: "kuchyňa" },
+  { label: "Nalievanie do pohára", emoji: "🥛", category: "kuchyňa" },
+  { label: "Miešanie lyžičkou v šálke", emoji: "🥄", category: "kuchyňa" },
+  { label: "Praskanie popcornu", emoji: "🍿", category: "kuchyňa" },
+  { label: "Mletie kávy", emoji: "☕", category: "kuchyňa" },
+  { label: "Cinknutie príboru", emoji: "🍴", category: "kuchyňa" },
+  { label: "Rozbitie taniera", emoji: "🍽️", category: "kuchyňa" },
+  { label: "Šľahanie metličkou", emoji: "🥚", category: "kuchyňa" },
+  { label: "Bublanie hrnca", emoji: "🍲", category: "kuchyňa" },
+  { label: "Šuchot alobalu", emoji: "🧻", category: "kuchyňa" },
+  { label: "Toastovač", emoji: "🍞", category: "kuchyňa" },
+
+  // Elektronika
+  { label: "Klik myšou", emoji: "🖱️", category: "elektronika" },
+  { label: "Vibrovanie telefónu", emoji: "📳", category: "elektronika" },
+  { label: "Cvaknutie fotoaparátu", emoji: "📷", category: "elektronika" },
+  { label: "Tlačiareň", emoji: "🖨️", category: "elektronika" },
+  { label: "Spúšťanie počítača", emoji: "💻", category: "elektronika" },
+  { label: "Notifikácia správy", emoji: "📱", category: "elektronika" },
+
+  // Doprava
+  { label: "Vlak prechádzajúci stanicou", emoji: "🚉", category: "doprava" },
+  { label: "Električka", emoji: "🚊", category: "doprava" },
+  { label: "Metro", emoji: "🚇", category: "doprava" },
+  { label: "Otváranie dverí autobusu", emoji: "🚌", category: "doprava" },
+  { label: "Lietadlo pri štarte", emoji: "✈️", category: "doprava" },
+  { label: "Hučanie lode", emoji: "🚢", category: "doprava" },
+  { label: "Motorka", emoji: "🏍️", category: "doprava" },
+  { label: "Bicyklový zvonček", emoji: "🚲", category: "doprava" },
+  { label: "Železničné priecestie", emoji: "🚧", category: "doprava" },
+  { label: "Hlásenie na stanici", emoji: "📢", category: "doprava" },
+  { label: "Kotúľanie kufra", emoji: "🧳", category: "doprava" },
+  { label: "Klaksón nákladného auta", emoji: "🚚", category: "doprava" },
+
+  // Stroje a náradie
+  { label: "Vŕtačka", emoji: "🛠️", category: "stroje" },
+  { label: "Motorová píla", emoji: "🪚", category: "stroje" },
+  { label: "Kotúčová píla", emoji: "🪚", category: "stroje" },
+  { label: "Uhlová brúska", emoji: "⚙️", category: "stroje" },
+  { label: "Kladivo a klince", emoji: "🔨", category: "stroje" },
+  { label: "Zbíjačka", emoji: "🚧", category: "stroje" },
+  { label: "Miešačka betónu", emoji: "🏗️", category: "stroje" },
+  { label: "Zváranie", emoji: "🔧", category: "stroje" },
+  { label: "Akumulátorový skrutkovač", emoji: "🪛", category: "stroje" },
+  { label: "Ručná píla", emoji: "🪚", category: "stroje" },
+  { label: "Šmirgľovanie dreva", emoji: "🪵", category: "stroje" },
+  { label: "Kompresor", emoji: "💨", category: "stroje" },
+
+  // Príroda a počasie
+  { label: "Vietor v korunách stromov", emoji: "🌬️", category: "príroda" },
+  { label: "Lesný potok", emoji: "🏞️", category: "príroda" },
+  { label: "Vodopád", emoji: "💦", category: "príroda" },
+  { label: "Kvapkanie vody", emoji: "💧", category: "príroda" },
+  { label: "Krupobitie", emoji: "🧊", category: "počasie" },
+  { label: "Sneh pod nohami", emoji: "❄️", category: "počasie" },
+  { label: "Praskanie ľadu", emoji: "🧊", category: "počasie" },
+  { label: "Cvrlikanie cvrčkov", emoji: "🦗", category: "príroda" },
+  { label: "Šuchot listov", emoji: "🍂", category: "príroda" },
+  { label: "Bzučanie komára", emoji: "🦟", category: "príroda" },
+
+  // Zvieratá
+  { label: "Chrochtanie prasaťa", emoji: "🐖", category: "zvieratá" },
+  { label: "Kvokanie kury", emoji: "🐔", category: "zvieratá" },
+  { label: "Trúbenie slona", emoji: "🐘", category: "zvieratá" },
+  { label: "Vytie vlka", emoji: "🐺", category: "zvieratá" },
+  { label: "Syčanie hada", emoji: "🐍", category: "zvieratá" },
+  { label: "Rev medveďa", emoji: "🐻", category: "zvieratá" },
+  { label: "Húkanie sovy", emoji: "🦉", category: "zvieratá" },
+  { label: "Kukanie kukučky", emoji: "🐦", category: "zvieratá" },
+  { label: "Klepanie ďatľa", emoji: "🪶", category: "zvieratá" },
+  { label: "Krákanie vrany", emoji: "🐦‍⬛", category: "zvieratá" },
+  { label: "Čvirikanie vrabcov", emoji: "🐦", category: "zvieratá" },
+  { label: "Gagotanie husí", emoji: "🦢", category: "zvieratá" },
+  { label: "Kvákanie kačíc", emoji: "🦆", category: "zvieratá" },
+
+  // Šport
+  { label: "Odraz basketbalového míča", emoji: "🏀", category: "šport" },
+  { label: "Úder do tenisovej loptičky", emoji: "🎾", category: "šport" },
+  { label: "Píšťalka rozhodcu", emoji: "🨺", category: "šport" },
+  { label: "Strela na hokejovú bránku", emoji: "🏒", category: "šport" },
+  { label: "Kop do futbalového míča", emoji: "⚽", category: "šport" },
+  { label: "Boxovacie vrece", emoji: "🥊", category: "šport" },
+  { label: "Skákanie na trampolíne", emoji: "🤸", category: "šport" },
+  { label: "Bicyklové prehadzovanie", emoji: "🚴", category: "šport" },
+
+  // Človek a bežné činnosti
+  { label: "Smiech", emoji: "😄", category: "človek" },
+  { label: "Kýchanie", emoji: "🤧", category: "človek" },
+  { label: "Kašeľ", emoji: "😷", category: "človek" },
+  { label: "Chrápanie", emoji: "😴", category: "človek" },
+  { label: "Pískanie melódie", emoji: "🎵", category: "človek" },
+  { label: "Dupanie nôh", emoji: "👣", category: "človek" },
+  { label: "Šepot", emoji: "🤫", category: "človek" },
+  { label: "Plač dieťaťa", emoji: "👶", category: "človek" },
+  { label: "Chrumkanie chipsov", emoji: "🥔", category: "človek" },
+  { label: "Zubná kefka", emoji: "🪥", category: "človek" },
+  { label: "Fúkanie sviečok", emoji: "🎂", category: "človek" },
+  { label: "Zívanie", emoji: "🥱", category: "človek" },
+  { label: "Hvizd na prsty", emoji: "👌", category: "človek" },
+  { label: "Kroky na chodníku", emoji: "🚶", category: "človek" },
+
+  // Ulica, mesto, obchody
+  { label: "Pípanie pri kase", emoji: "🛒", category: "mesto" },
+  { label: "Bankomat", emoji: "🏧", category: "mesto" },
+  { label: "Kaviarenský ruch", emoji: "☕", category: "mesto" },
+  { label: "Detské hrisko", emoji: "🛝", category: "mesto" },
+  { label: "Fontána", emoji: "⛲", category: "mesto" },
+  { label: "Kostolný organ", emoji: "🎹", category: "mesto" },
+  { label: "Ohňostroj", emoji: "🎆", category: "mesto" },
+  { label: "Vyprázdňovanie kontejnera", emoji: "🗑️", category: "mesto" },
+
+  // Hudobné nástroje
+  { label: "Klavír", emoji: "🎹", category: "nástroje" },
+  { label: "Akord na gitare", emoji: "🎸", category: "nástroje" },
+  { label: "Bicie", emoji: "🥁", category: "nástroje" },
+  { label: "Trúbka", emoji: "🎺", category: "nástroje" },
+  { label: "Violončelo", emoji: "🎻", category: "nástroje" },
+  { label: "Flauta", emoji: "🪈", category: "nástroje" },
+  { label: "Harmonika", emoji: "🪗", category: "nástroje" },
+  { label: "Zvonkohra", emoji: "🎐", category: "nástroje" },
+
+  // Predmety, hračky a zábava
+  { label: "Prasknutie balóna", emoji: "🎈", category: "predmety" },
+  { label: "Nafukovanie balóna", emoji: "🎈", category: "predmety" },
+  { label: "Detská hrkálka", emoji: "🍼", category: "hračky" },
+  { label: "Naťahovacia hračka", emoji: "🧸", category: "hračky" },
+  { label: "Píšťalka", emoji: "🪈", category: "hračky" },
+  { label: "Miešanie kariet", emoji: "🃏", category: "zábava" },
+  { label: "Hod kockou", emoji: "🎲", category: "zábava" },
+  { label: "Cvaknutie zapaľovača", emoji: "🔥", category: "predmety" },
+  { label: "Ostrenie ceruzky", emoji: "✏️", category: "predmety" },
+  { label: "Klikanie perom", emoji: "🖊️", category: "predmety" },
+  { label: "Suchý zips", emoji: "🧷", category: "predmety" },
+  { label: "Rozbaľovanie darčeka", emoji: "🎁", category: "zábava" },
+  { label: "Otváranie šampanského", emoji: "🍾", category: "zábava" },
+];
+
+/**
+ * Zdroj pre hru. Obsahuje výhradne položky s funkčným zvukom — bez
+ * `.slice()` limitu, pretože pool už nie je nafúknutý výplňou a hra
+ * potrebuje najviac 20 zvukov na partiu.
+ */
 export const SOUND_CLUES: SoundClue[] = [
   ...CORE_SOUND_CLUES,
   ...COMMONS_SOUND_CLUES,
-  ...GENERATED_SOUND_CLUES,
-].slice(0, 500);
+];
 
 const LETTER_CATEGORIES = [
   "Zviera", "Jedlo", "Mesto", "Meno", "Povolanie", "Šport", "Krajina", "Rastlina",
