@@ -2,12 +2,10 @@ import type { CSSProperties } from "react";
 import type { Screen } from "../types";
 import type { IconsType } from "../components/icons";
 import { Icon, Icons } from "../components/icons";
+import { Shell, TopBar } from "../components/ui";
 import { GAME_WELCOMES } from "../components/GameWelcome";
 import { PLAYABLE_GAMES } from "../data/engagement";
-/**
- * Dizajn: farbu nesie obraz hry a jej akcent na ikone. Chróm okolo je teplá
- * neutrálna tmavá — bez fialových gradientov, žiar a dekoratívnych orbov.
- */
+/** Dizajn: Minihry majú stručné dvojstĺpcové karty s oddelenými ovládacími prvkami, jednotnou výškou názvov, tlmeným herným obrazom a vysokým kontrastom. */
 import { gameArt } from "../media";
 
 export interface MenuGame {
@@ -59,25 +57,7 @@ const SHORT_DESCRIPTIONS: Partial<Record<Screen, string>> = {
   battleship: "Potop súperovu flotilu skôr než on tvoju.",
 };
 
-/** Obraz hry — buď samostatný súbor, alebo výrez z atlasu. */
-function gameArtStyle(welcome: (typeof GAME_WELCOMES)[Screen]): CSSProperties {
-  return {
-    backgroundImage: `url(${welcome?.artAtlas ? welcome.art : gameArt})`,
-    backgroundSize:
-      welcome?.artSize ?? (welcome?.artAtlas ? "300% 300%" : "400% 300%"),
-    backgroundPosition: welcome?.artPosition ?? "50% 50%",
-  };
-}
-
-export default function GameMenu({
-  title,
-  subtitle,
-  games,
-  onBack,
-  onNavigate,
-  favoriteIds,
-  onToggleFavorite,
-}: {
+export default function GameMenu({ title, subtitle, games, onBack, onNavigate, favoriteIds, onToggleFavorite }: {
   title: string;
   subtitle: string;
   games: MenuGame[];
@@ -88,190 +68,129 @@ export default function GameMenu({
 }) {
   const isMinigamesMenu = title === "Minihry";
 
-  // ── Imposter menu: málo hier, preto široké karty v jednom stĺpci ──────
   if (!isMinigamesMenu) {
     return (
-      <main className="ui ui-screen scroll-panel">
-        <div className="ui-wrap">
-          <div className="ui-bar">
-            <button type="button" onClick={onBack} aria-label="Späť" className="ui-back">
-              <Icons.arrowLeft size={19} />
-            </button>
-            <span className="ui-bar-title">Späť na úvod</span>
-          </div>
-
-          <header className="ui-head">
-            <h1 className="ui-title">{title}</h1>
-            <p className="ui-lead">{subtitle}</p>
-          </header>
-
-          <div className="grid gap-[var(--ui-gap)] pb-6" aria-label="Výber hier Imposter">
-            {games.map((game, index) => {
-              const welcome = GAME_WELCOMES[game.screen];
-              const playable = PLAYABLE_GAMES.find(item => item.screen === game.screen);
-              const isFavorite = playable ? favoriteIds.includes(playable.id) : false;
-              const accent = welcome?.accent ?? "#94a3b8";
-
-              return (
-                <article
-                  key={game.screen}
-                  className="ui-list-card"
-                  style={
-                    {
-                      "--tile-accent": accent,
-                      animation: `slideUp .3s ease-out ${index * 45}ms both`,
-                    } as CSSProperties
-                  }
-                >
-                  <button
-                    type="button"
-                    onClick={() => onNavigate(game.screen)}
-                    aria-label={`Otvoriť ${game.title}`}
-                    className="ui-tile-hit"
-                  />
-                  <div className="ui-list-art">
-                    {welcome?.art && !welcome.artAtlas ? (
-                      <img
-                        src={welcome.art}
-                        alt=""
-                        aria-hidden="true"
-                        style={{ objectPosition: welcome.artPosition }}
-                      />
-                    ) : (
-                      <span aria-hidden="true" style={gameArtStyle(welcome)} />
-                    )}
-                  </div>
-                  <div className="ui-list-body">
-                    <div className="flex min-w-0 items-center gap-2">
-                      <h2 className="truncate">{game.title}</h2>
-                      {game.badge && (
-                        <span className="ui-bar-note shrink-0 !px-2 !py-0.5 !text-[0.62rem]">
-                          {game.badge}
-                        </span>
-                      )}
-                    </div>
-                    {welcome && (
-                      <p className="ui-list-meta">
-                        {welcome.players} · {welcome.duration}
-                      </p>
-                    )}
-                    <p className="ui-list-desc">{game.description}</p>
-                  </div>
-                  {playable && (
-                    <button
-                      type="button"
-                      onClick={() => onToggleFavorite(playable.id)}
-                      aria-pressed={isFavorite}
-                      aria-label={
-                        isFavorite
-                          ? `Odobrať ${game.title} z obľúbených`
-                          : `Pridať ${game.title} medzi obľúbené`
-                      }
-                      className={`ui-tile-fav absolute right-2.5 top-2.5 ${isFavorite ? "is-on" : ""}`}
-                    >
-                      <Icons.heart size={14} />
-                    </button>
-                  )}
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </main>
-    );
-  }
-
-  // ── Minihry: veľa hier, preto kompaktná dvojstĺpcová mriežka ─────────
-  return (
-    <main className="ui ui-screen scroll-panel">
-      <div className="ui-wrap">
-        <div className="ui-bar">
-          <button type="button" onClick={onBack} aria-label="Späť" className="ui-back">
-            <Icons.arrowLeft size={19} />
-          </button>
-          <span className="ui-bar-title">Späť na úvod</span>
-          <span className="ui-bar-note">{games.length} hier</span>
-        </div>
-
-        <header className="ui-head">
-          <h1 className="ui-title">Minihry</h1>
-          <p className="ui-lead">
-            Rýchle hry pre každú partiu. Stačí telefón a chuť sa zabaviť.
-          </p>
+      <Shell className="bg-[#090c14]">
+        <TopBar onBack={onBack} />
+        <header className="game-menu-heading relative mb-5 overflow-hidden rounded-[1.35rem] border border-white/[.08] px-5 py-5" style={{ animation: "slideUp .32s ease-out both" }}>
+          <p className="relative text-[10px] font-extrabold uppercase tracking-[.24em] text-white/35">Vyberte hru</p>
+          <h1 className="relative mt-2 text-4xl font-black tracking-[-.045em]">{title}</h1>
+          <p className="relative mt-2 max-w-xs text-sm leading-relaxed text-white/50">{subtitle}</p>
         </header>
-
-        <div className="ui-grid pb-6" aria-label="Výber minihier">
+        <div className="grid grid-cols-1 gap-3 pb-5" aria-label="Výber hier Imposter">
           {games.map((game, index) => {
             const welcome = GAME_WELCOMES[game.screen];
-            const accent = MINIGAME_ACCENTS[game.screen] ?? welcome?.accent ?? "#94a3b8";
-            const isFavorite = favoriteIds.includes(game.screen);
-            const meta = welcome
-              ? `${welcome.players} · ${welcome.duration}`
-              : "2–8 hráčov · 5–15 min";
-            const shortDescription = SHORT_DESCRIPTIONS[game.screen] ?? game.description;
-
+            const playable = PLAYABLE_GAMES.find((item) => item.screen === game.screen);
+            const isFavorite = playable ? favoriteIds.includes(playable.id) : false;
             return (
               <article
                 key={game.screen}
-                className="ui-tile"
-                style={
-                  {
-                    "--tile-accent": accent,
-                    animation: `slideUp .3s ease-out ${Math.min(index * 32, 320)}ms both`,
-                  } as CSSProperties
-                }
+                className="game-menu-card group relative grid min-h-[148px] grid-cols-[44%_1fr] overflow-hidden rounded-[20px] border bg-[#111820] text-left transition duration-200 active:scale-[.99]"
+                style={{
+                  animation: `slideUp .45s ease-out ${70 + index * 55}ms both`,
+                  borderColor: welcome ? `color-mix(in srgb, ${welcome.accent} 16%, rgba(255,255,255,.09))` : "rgba(255,255,255,.1)",
+                  boxShadow: welcome ? `0 18px 36px -32px ${welcome.accent}` : undefined,
+                }}
+              >
+                <button type="button" onClick={() => onNavigate(game.screen)} aria-label={`Spustiť ${game.title}`} className="absolute inset-0 z-[1] rounded-[20px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300" />
+                <div className="relative min-h-[148px] overflow-hidden bg-[#0c111a]">
+                  {welcome?.art && !welcome.artAtlas ? (
+                    <img src={welcome.art} alt="" className="absolute inset-0 h-full w-full object-cover saturate-[.82] transition duration-700 group-hover:scale-[1.035]" style={{ objectPosition: welcome.artPosition }} />
+                  ) : welcome ? (
+                    <div className="absolute inset-0 bg-no-repeat transition duration-700 group-hover:scale-[1.06]" style={{ backgroundImage: `url(${welcome.artAtlas ? welcome.art : gameArt})`, backgroundSize: welcome.artSize ?? (welcome.artAtlas ? "300% 300%" : "400% 300%"), backgroundPosition: welcome.artPosition }} />
+                  ) : (
+                    <div className={`absolute inset-0 bg-gradient-to-br ${game.color} opacity-75`} />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-white/10" />
+                  <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-r from-transparent to-[#111722]" />
+                  <span className="absolute bottom-0 left-0 top-0 w-1" style={{ background: welcome?.accent ?? "#64748b" }} />
+                </div>
+                <div className="relative flex min-w-0 flex-col justify-center py-4 pl-4 pr-10">
+                  <div className="mb-1.5 flex min-w-0 items-center gap-2">
+                    <h2 className="truncate text-[15px] font-black tracking-[-.015em] text-white">{game.title}</h2>
+                    {game.badge && <span className="shrink-0 rounded-full border border-white/10 bg-white/[.07] px-2 py-0.5 text-[8px] font-black uppercase tracking-wider text-white/55">{game.badge}</span>}
+                  </div>
+                  {welcome && <p className="mb-1.5 text-[8px] font-black uppercase tracking-[.16em]" style={{ color: welcome.accent }}>{welcome.players} · {welcome.duration}</p>}
+                  <p className="line-clamp-2 text-[11px] font-medium leading-[1.45] text-white/45">{game.description}</p>
+                </div>
+                {playable && (
+                  <button type="button" onClick={() => onToggleFavorite(playable.id)} aria-pressed={isFavorite} aria-label={isFavorite ? `Odobrať ${game.title} z obľúbených` : `Pridať ${game.title} medzi obľúbené`} className={`absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full border transition ${isFavorite ? "border-rose-300/25 bg-rose-400/15 text-rose-300" : "border-white/[.08] bg-black/25 text-white/35 hover:text-rose-200"}`}>
+                    <Icons.heart size={15} fill={isFavorite ? "currentColor" : "none"} />
+                  </button>
+                )}
+              </article>
+            );
+          })}
+        </div>
+      </Shell>
+    );
+  }
+
+  return (
+    <Shell className="minigame-tile-shell bg-[#070b12] minigame-polish-shell">
+      <TopBar onBack={onBack} />
+      <header className="minigame-polish-hero" style={{ animation: "slideUp .24s cubic-bezier(.23,1,.32,1) both" }}>
+        <div className="minigame-polish-hero-copy">
+          <p>VYBER SI HRU</p>
+          <h1>Minihry</h1>
+          <span>Rýchle hry pre každú partiu</span>
+        </div>
+        <b className="minigame-count-pill" aria-label={`${games.length} hier`}>{games.length} hier</b>
+      </header>
+
+      <div className="minigame-polish-grid pb-6" aria-label="Výber minihier">
+        {games.map((game, index) => {
+          const welcome = GAME_WELCOMES[game.screen];
+          const accent = MINIGAME_ACCENTS[game.screen] ?? welcome?.accent ?? "#94a3b8";
+          const isFavorite = favoriteIds.includes(game.screen);
+          const meta = welcome ? `${welcome.players} · ${welcome.duration}` : "2–8 hráčov · 5–15 min";
+          const shortDescription = SHORT_DESCRIPTIONS[game.screen] ?? game.description;
+
+          return (
+              <article
+                key={game.screen}
+                className="minigame-polish-card relative"
+                style={{ "--tile-accent": accent, animation: `slideUp .34s cubic-bezier(.23,1,.32,1) ${Math.min(40 + index * 38, 420)}ms both` } as CSSProperties}
               >
                 <button
                   type="button"
                   onClick={() => onNavigate(game.screen)}
                   aria-label={`Spustiť ${game.title}`}
-                  className="ui-tile-hit"
+                  className="minigame-polish-launch absolute inset-0 z-10 rounded-[1.1rem] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--tile-accent)]"
                 />
                 {welcome?.art && !welcome.artAtlas ? (
-                  <img
-                    src={welcome.art}
-                    alt=""
-                    aria-hidden="true"
-                    className="ui-tile-art"
-                    style={{ objectPosition: welcome.artPosition }}
-                  />
+                  <img src={welcome.art} alt="" aria-hidden="true" className="minigame-polish-art" style={{ objectPosition: welcome.artPosition }} />
                 ) : (
-                  <span aria-hidden="true" className="ui-tile-art" style={gameArtStyle(welcome)} />
+                  <span
+                    aria-hidden="true"
+                    className="minigame-polish-art"
+                    style={{ backgroundImage: `url(${welcome?.artAtlas ? welcome.art : gameArt})`, backgroundSize: welcome?.artSize ?? (welcome?.artAtlas ? "300% 300%" : "400% 300%"), backgroundPosition: welcome?.artPosition ?? "50% 50%" }}
+                  />
                 )}
-                <span aria-hidden="true" className="ui-tile-veil" />
-
-                <div className="ui-tile-top">
-                  <span className="ui-tile-icon" aria-hidden="true">
-                    <Icon name={game.icon} size={19} />
-                  </span>
-                  <button
-                    type="button"
-                    onClick={event => {
-                      event.stopPropagation();
-                      onToggleFavorite(game.screen);
-                    }}
-                    aria-pressed={isFavorite}
-                    aria-label={
-                      isFavorite
-                        ? `Odobrať ${game.title} z obľúbených`
-                        : `Pridať ${game.title} medzi obľúbené`
-                    }
-                    className={`ui-tile-fav ${isFavorite ? "is-on" : ""}`}
-                  >
-                    <Icon name="heart" size={14} />
-                  </button>
+                <span aria-hidden="true" className="minigame-polish-art-shade" />
+                <div className="minigame-polish-card-top">
+                  <span className="minigame-polish-icon" aria-hidden="true"><Icon name={game.icon} size={22} /></span>
+                  <div className="minigame-polish-card-actions">
+                    <button
+                      type="button"
+                      onClick={(event) => { event.stopPropagation(); onToggleFavorite(game.screen); }}
+                      aria-label={isFavorite ? `Odobrať ${game.title} z obľúbených` : `Pridať ${game.title} medzi obľúbené`}
+                      aria-pressed={isFavorite}
+                      className={`minigame-polish-favorite ${isFavorite ? "is-favorite" : ""}`}
+                    >
+                      <Icon name="heart" size={15} />
+                    </button>
+                  </div>
                 </div>
-
-                <div className="ui-tile-copy">
+                <div className="minigame-polish-copy">
                   <h2>{game.title}</h2>
-                  <p className="ui-tile-meta">{meta}</p>
-                  <p className="ui-tile-desc">{shortDescription}</p>
+                  <p className="minigame-polish-meta">{meta}</p>
+                  <p className="minigame-polish-description">{shortDescription}</p>
                 </div>
               </article>
-            );
-          })}
-        </div>
+          );
+        })}
       </div>
-    </main>
+    </Shell>
   );
 }
