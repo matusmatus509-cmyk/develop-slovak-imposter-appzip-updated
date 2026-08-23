@@ -100,6 +100,7 @@ profileArtists(
     "Kali", "Rytmus", "Kontrafakt", "Majk Spirit", "Sima", "Separ", "Ego",
     "Sido", "BONEZ MC", "Apache 207", "Cro", "Fettes Brot", "Marteria",
     "Alligatoah", "Ski Aggu", "Peter Fox", "Kamini", "Gims",
+    "Bushido", "Black M", "Soprano", "Nekfeu", "Bigflo & Oli",
   ],
   { genre: "rap" },
 );
@@ -499,7 +500,7 @@ Super Bass|Gwen Stefani
 Pump It|Black Eyed Peas
 Promiscuous|Nelly Furtado
 Maneater|Nelly Furtado
-Sk8er Boi|Gwen Stefani
+Sk8er Boi|Avril Lavigne|2002|pop|easy
 Complicated|Avril Lavigne
 Since U Been Gone|Kelly Clarkson
 Sugar, We're Goin Down|Fall Out Boy
@@ -1655,7 +1656,290 @@ Sunroof|Nicky Youre|2021|pop|medium
 泡沫|G.E.M.|2012|pop|hard|lang=other
 Zitti e buoni|Måneskin|2021|rock|medium|lang=it
 Beggin'|Måneskin|2017|rock|easy
-Bella Ciao|Traditional|1943|folk|easy|lang=it
+Unholy|Sam Smith|2022|pop|easy
+Kill Bill|SZA|2022|rnb|easy
+Calm Down|Rema|2022|pop|easy
+Greedy|Tate McRae|2023|pop|easy
+Rain On Me|Lady Gaga|2020|dance|medium
+Pompeii|Bastille|2013|indie|easy
+Sweet Dreams|Eurythmics|1983|pop|easy
+Better Off Alone|Alice Deejay|1999|dance|medium
+Sandstorm|Darude|1999|dance|easy
+Sicko Mode|Travis Scott|2018|rap|medium
+God's Plan|Drake|2018|rap|easy|hum
+One Dance|Drake|2016|rap|easy|hum
+Hotline Bling|Drake|2015|rap|easy|hum
+Old Town Road|Lil Nas X|2019|rap|easy|hum
+Industry Baby|Lil Nas X|2021|rap|medium
+Rockstar|Post Malone|2017|rap|easy|hum
+Circles|Post Malone|2019|pop|easy
+Sunflower|Post Malone|2018|pop|easy
+Shut Up and Dance|Walk the Moon|2014|pop|easy
+Shotgun|George Ezra|2018|pop|medium
+7 Years|Lukas Graham|2015|pop|easy
+How You Remind Me|Nickelback|2001|rock|easy
+Take Me Home, Country Roads|John Denver
+MMMBop|Hanson
+Everything I Do|Bryan Adams
+More Than Words|Extreme
+Wonderful Tonight|Eric Clapton
+Tears in Heaven|Eric Clapton
+Barracuda|Heart
+I Love Rock 'n' Roll|Joan Jett
+When Doves Cry|Prince
+I Just Called to Say I Love You|Stevie Wonder
+I Say a Little Prayer|Aretha Franklin
+What's Going On|Marvin Gaye
+Ain't No Other Man|Christina Aguilera
+Dirrty|Christina Aguilera
+No More Drama|Mary J. Blige
+Family Affair|Mary J. Blige
+Bills, Bills, Bills|Destiny's Child
+Independent Women|Destiny's Child
+Bootylicious|Destiny's Child
+Killing Me Softly|Fugees
+Ready or Not|Fugees
+Doo Wop (That Thing)|Lauryn Hill
+Gangsta's Paradise|Coolio
+Changes|2Pac
+Dear Mama|2Pac
+Big Poppa|The Notorious B.I.G.
+It Was a Good Day|Ice Cube
+Nuthin' but a G Thang|Dr. Dre
+Still D.R.E.|Dr. Dre
+The Next Episode|Dr. Dre
+Gin and Juice|Snoop Dogg
+Jump Around|House of Pain
+Insane in the Brain|Cypress Hill
+Hypnotize|The Notorious B.I.G.
+Family Portrait|P!nk
+Just Give Me a Reason|P!nk
+What About Us|P!nk
+When You're Gone|Avril Lavigne
+Big Girls Don't Cry|Fergie
+London Bridge|Fergie
+Fireflies|Owl City
+Good Time|Owl City
+Call Me Maybe|Carly Rae Jepsen
+I Really Like You|Carly Rae Jepsen
+Save the World|Swedish House Mafia
+Silhouettes|Avicii
+Clarity|Zedd
+Stay the Night|Zedd
+The Middle|Zedd
+Turn Down for What|DJ Snake
+Let Me Love You|DJ Snake
+Where Are Ü Now|Skrillex
+Bangarang|Skrillex
+Scary Monsters and Nice Sprites|Skrillex
+Outside|Calvin Harris
+One Kiss|Calvin Harris
+Sweet Nothing|Calvin Harris
+Holding Out for a Hero|Bonnie Tyler
+Eternal Flame|The Bangles
+Walk Like an Egyptian|The Bangles
+Boom, Boom, Boom, Boom!!|Vengaboys
+We Like to Party|Vengaboys
+Mambo No. 5|Lou Bega
+Tubthumping|Chumbawamba
+Flying Without Wings|Westlife
+Swear It Again|Westlife
+No Matter What|Boyzone
+When You Say Nothing at All|Ronan Keating
+Don't Go Breaking My Heart|Elton John
+You're the One That I Want|John Travolta
+Summer Nights|John Travolta
+Can't Take My Eyes Off You|Frankie Valli
+Fame|Irene Cara
+It's Raining Men|The Weather Girls
+YMCA|Village People
+In the Navy|Village People
+Get Down On It|Kool & The Gang
+Celebration|Kool & The Gang
+Ma Baker|Boney M.
+Rivers of Babylon|Boney M.
+Brother Louie|Modern Talking
+Gloria|Laura Branigan
+Live Is Life|Opus
+Words|F.R. David
+Living on My Own|Freddie Mercury
+Fat Bottomed Girls|Queen
+Freedom! '90|George Michael
+Father Figure|George Michael
+Don't Cry|Guns N' Roses
+Patience|Guns N' Roses
+Shout|Tears for Fears
+Just Can't Get Enough|Depeche Mode
+Friday I'm in Love|The Cure
+This Charming Man|The Smiths
+There Is a Light That Never Goes Out|The Smiths
+Where Is My Mind?|Pixies
+Man on the Moon|R.E.M.
+Shiny Happy People|R.E.M.
+Stop Crying Your Heart Out|Oasis
+Penny Lane|The Beatles
+Lucy in the Sky with Diamonds|The Beatles
+While My Guitar Gently Weeps|The Beatles
+Blackbird|The Beatles
+Michelle|The Beatles
+Satisfaction|The Rolling Stones
+Wild Horses|The Rolling Stones
+Woman|John Lennon
+Sound of Silence|Simon & Garfunkel
+Bridge over Troubled Water|Simon & Garfunkel
+Mrs. Robinson|Simon & Garfunkel
+The Boxer|Simon & Garfunkel
+Country Roads|John Denver
+Suzanne|Leonard Cohen
+Knockin' on Heaven's Door|Bob Dylan
+Heart of Gold|Neil Young
+Rockin' in the Free World|Neil Young
+Brothers in Arms|Dire Straits
+Walk of Life|Dire Straits
+Time|Pink Floyd
+The Unforgiven|Metallica
+One|Metallica
+Fade to Black|Metallica
+Iron Man|Black Sabbath
+War Pigs|Black Sabbath
+Mama, I'm Coming Home|Ozzy Osbourne
+Still Loving You|Scorpions
+Send Me an Angel|Scorpions
+Carrie|Europe
+Cherokee|Europe
+Is This Love|Whitesnake
+Here I Go Again|Whitesnake
+Don't Stop Believing|Journey
+Separate Ways|Journey
+Faithfully|Journey
+Rosanna|Toto
+Sailing|Christopher Cross
+Arthur's Theme|Christopher Cross
+Willow|Taylor Swift
+Take a Bow|Rihanna
+The Edge of Glory|Lady Gaga
+Million Reasons|Lady Gaga
+Part of Me|Katy Perry
+Unconditionally|Katy Perry
+Formation|Beyoncé
+Send My Love|Adele
+Count on Me|Bruno Mars
+Lego House|Ed Sheeran
+Sing|Ed Sheeran
+Happier|Ed Sheeran
+Never Say Never|Justin Bieber
+Boyfriend|Justin Bieber
+Beauty and a Beat|Justin Bieber
+Ghost|Justin Bieber
+Earned It|The Weeknd
+I Feel It Coming|The Weeknd
+Die For You|The Weeknd
+IDGAF|Dua Lipa
+Side to Side|Ariana Grande
+Into You|Ariana Grande
+One Last Time|Ariana Grande
+God is a Woman|Ariana Grande
+When the Party's Over|Billie Eilish
+Everything I Wanted|Billie Eilish
+Therefore I Am|Billie Eilish
+The Climb|Miley Cyrus
+Malibu|Miley Cyrus
+Midnight Sky|Miley Cyrus
+Lucky|Britney Spears
+Mirrors|Justin Timberlake
+Rock Your Body|Justin Timberlake
+Suit & Tie|Justin Timberlake
+Get the Party Started|P!nk
+Who Knew|P!nk
+Underneath Your Clothes|Shakira
+Jenny from the Block|Jennifer Lopez
+Waiting for Tonight|Jennifer Lopez
+If You Had My Love|Jennifer Lopez
+Ain't It Funny|Jennifer Lopez
+Payphone|Maroon 5
+One More Night|Maroon 5
+Hymn for the Weekend|Coldplay
+Bad Liar|Imagine Dragons
+On Top of the World|Imagine Dragons
+Good Life|OneRepublic
+If I Lose Myself|OneRepublic
+Addicted to You|Avicii
+When Love Takes Over|David Guetta
+Turn Me On|David Guetta
+Dangerous|David Guetta
+I Know You Want Me|Pitbull
+Rain Over Me|Pitbull
+Fireball|Pitbull
+Not Afraid|Eminem
+Love the Way You Lie|Eminem
+Mockingbird|Eminem
+Cleanin' Out My Closet|Eminem
+Crawling|Linkin Park
+One Step Closer|Linkin Park
+New Divide|Linkin Park
+Holiday|Green Day
+21 Guns|Green Day
+Good Riddance (Time of Your Life)|Green Day
+Longview|Green Day
+Scar Tissue|Red Hot Chili Peppers
+Some Might Say|Oasis
+Voulez-Vous|ABBA
+The Name of the Game|ABBA
+Show Me the Meaning of Being Lonely|Backstreet Boys
+Quit Playing Games (with My Heart)|Backstreet Boys
+Larger Than Life|Backstreet Boys
+Dangerous Woman|Ariana Grande
+DJ Got Us Fallin' in Love|Usher
+U Got It Bad|Usher
+Confessions Part II|Usher
+Forever|Chris Brown
+With You|Chris Brown
+Yeah 3x|Chris Brown
+So Sick|Ne-Yo
+Miss Independent|Ne-Yo
+Lonely|Akon
+Smack That|Akon
+Don't Matter|Akon
+Right Now (Na Na Na)|Akon
+Good Feeling|Flo Rida
+Tik Tok|Kesha
+Die Young|Kesha
+We R Who We R|Kesha
+Blow|Kesha
+Elastic Heart|Sia
+Ordinary People|John Legend
+I'm Not the Only One|Sam Smith
+Too Good at Goodbyes|Sam Smith
+Before You Go|Lewis Capaldi
+Adore You|Harry Styles
+Late Night Talking|Harry Styles
+Never Be the Same|Camila Cabello
+Come & Get It|Selena Gomez
+Sorry Not Sorry|Demi Lovato
+Heart Attack|Demi Lovato
+Skyscraper|Demi Lovato
+Stronger (What Doesn't Kill You)|Kelly Clarkson
+Far Away|Nickelback
+Someday|Nickelback
+Going Under|Evanescence
+Madness|Muse
+When You Were Young|The Killers
+Feel It Still|Portugal. The Man
+Instant Crush|Daft Punk
+Harder, Better, Faster, Stronger|Daft Punk
+Scared to Be Lonely|Martin Garrix
+In the Name of Love|Martin Garrix
+Firestone|Kygo
+It Ain't Me|Kygo
+Stole the Show|Kygo
+Silence|Marshmello
+Symphony|Clean Bandit
+Solo|Clean Bandit
+Perfect Strangers|Jonas Blue
+Mama|Jonas Blue
+Prayer in C|Robin Schulz
+OK|Robin Schulz
+Ain't Nobody|Felix Jaehn
 `, { language: "en", scope: "global" });
 
 /**
@@ -1778,11 +2062,131 @@ Crushin' My Fairytale|Celeste Buckingham|2013|pop|hard
 Čisté tvary|Miro Jaroš|2014|pop|hard
 Kto vie|Miro Jaroš|2016|pop|hard
 Technotronic Flow|Majk Spirit|2013|rap|hard|hum
-Hej, sokoly|Traditional|1900|folk|easy
-Na Kráľovej holi|Traditional|1900|folk|medium
-Tancuj, tancuj, vykrúcaj|Traditional|1900|folk|easy
-Prší, prší|Traditional|1900|folk|easy
-Kukulienka, kde si bola|Traditional|1900|folk|medium
+Detektívka|Elán
+Hodina zemepisu|Elán
+Ružová dáma|Elán
+Nespáľ tie mosty|Pavol Habera
+Nádej|Pavol Habera
+Verklík|Team
+Múr, ktorý stavám|Miroslav Žbirka
+Zlomená duša|Miroslav Žbirka
+Zbohom buď|Miroslav Žbirka
+Srdce ako kladivo|Richard Müller
+Oči vlka|Richard Müller
+Vlak čo nikde nestojí|Richard Müller
+Neusínaj|Jana Kirschner
+Pokoj|Jana Kirschner
+Modré hory|Jana Kirschner
+Láska sa nevracia|Jana Kirschner
+Pelikán|Jana Kirschner
+Zabudnutá|Zuzana Smatanová
+Little Miss Sunshine|Zuzana Smatanová
+Nechaj ma byť|Zuzana Smatanová
+Snežná kráľovná|Zuzana Smatanová
+Vráť mi tie hviezdy|Zuzana Smatanová
+Emócie|Kristína
+Vráť mi tie ruže|Kristína
+Vyhraj alebo prehraj|IMT Smile
+Kým ťa nájdem|IMT Smile
+Zlatá rybka|IMT Smile
+Nočná obloha|Desmod
+Bolí|Desmod
+Prekliaty|Desmod
+Vetrom hnaný|Desmod
+Kde bolo tam bolo|Desmod
+Nedokonalý|Desmod
+Sladké mámenie|Desmod
+Nemôžem tomu uveriť|No Name
+Prečo|No Name
+Sníček|No Name
+Kým ťa mám ja|No Name
+Aleluja|No Name
+Nezabudni|Peha
+Kým ťa nemám|Peha
+Rock and roll|Horkýže Slíže
+Vlak do neba|Horkýže Slíže
+Šampón|Horkýže Slíže
+Mám v hlave chaos|Horkýže Slíže
+Nemám na to nervy|Horkýže Slíže
+Alkohol|Iné Kafe
+Vlčie maky|Iné Kafe
+Zabudni na to|Iné Kafe
+Dva dni|Polemic
+Nechaj to na mne|Polemic
+Šarmantný|Polemic
+Zlatokopka|Rytmus
+Technik|Rytmus
+Bystrica|Rytmus
+Chráň si to|Hex
+Kým ťa nájdem ja|Hex
+Zvláštny sen|Hex
+Nočný vlak|Kali
+Sám|Kali
+Prázdny dom|Kali
+Do rána|Kali
+Nedokonalá|Separ
+Zlomený|Separ
+Sám sebou|Separ
+Rande|Majk Spirit
+Som ako som|Majk Spirit
+Naposledy|Adam Ďurica
+Malé veľké lásky|Adam Ďurica
+Neplač|Adam Ďurica
+Blue Guitar|Celeste Buckingham
+Nezabudnem|Dominika Mirgová
+Prsteň|Sima
+Nočná|Sima
+Ty a ja|Tina
+Znovu|Tina
+Anjel strážny|Gleb
+Ona|Gleb
+Neexistuješ|Ego
+Chcem ťa|Ego
+Múr|Miroslav Žbirka
+Zostaň so mnou|Marika Gombitová
+Môj malý princ|Marika Gombitová
+Ruže|Marika Gombitová
+Slnečnice|Peter Nagy
+Sme si rovní|Peter Nagy
+Kristínka|Peter Nagy
+Poslední mohykáni|Peter Nagy
+Nezabudni na mňa|Tublatanka
+Nebo, peklo, raj|Tublatanka
+Skús mi vrátiť tie hviezdy|Tublatanka
+Buď mojou hviezdou|Tublatanka
+Ranná hviezda|Karol Duchoň
+Nikdy nebudem viac sám|Karol Duchoň
+Chýbaš mi|Katarína Knechtová
+Zmráka sa|Katarína Knechtová
+Vstávaj|Katarína Knechtová
+Vietor|Katarína Knechtová
+Nechaj to na mňa|Zuzana Smatanová
+Nočná mora|Desmod
+Nezomieraj|No Name
+Kým ťa stretnem|No Name
+Ostávam|No Name
+Prázdna|Hex
+Kým budeš so mnou|Hex
+Ostrov|Hex
+Ale ja|Peha
+Nezabúdaj|Peha
+Traumatická|Peha
+Vlny|Jana Kirschner
+Anjelik|Jana Kirschner
+Nechaj ma spať|Kristína
+Mesiac|Kristína
+Kaskadéri|Elán
+Zanedbaná|Elán
+Kým nás smrť nerozdelí|Desmod
+Vlak do Bratislavy|IMT Smile
+Nedá sa|No Name
+Bosý|Hex
+Kúsok|Peha
+Ryba|Horkýže Slíže
+Silvia|Horkýže Slíže
+Zabudni|Zuzana Smatanová
+Sama|Nocadeň
+Ostaň|Nocadeň
 `, { language: "sk", scope: "local", region: "SK" }),
 
   cs: parseSongs(`
@@ -1837,7 +2241,38 @@ Malovaný džbánku|Helena Vondráčková|1975|pop|medium
 Most přes minulost|Lucie Bílá|1996|pop|medium
 Na dlani|Mandrage|2012|pop|hard
 Žízeň|Kabát|2001|rock|medium
-Černé oči jděte spát|Traditional|1900|folk|medium
+Jednou budem dál|Karel Gott
+Přejdi Jordán|Helena Vondráčková
+Kdyby se vrátil čas|Lucie Bílá
+Miss Moskva|Jiří Korn
+Bum bum bum|Petr Kotvald
+Nespoutaný kůň|Petr Kotvald
+Punčochy|Chinaski
+1970|Chinaski
+Panická|Chinaski
+Až mě odvedou|Divokej Bill
+Modré nebe|Olympic
+Dej mi ještě jeden den|Olympic
+Lásko voníš deštěm|Petra Janů
+Motorest|Petra Janů
+Valčík|Daniel Landa
+Pozdrav|Daniel Landa
+Nigredo|Daniel Landa
+Malá čarodějnice|Rybičky 48
+Ještě jednu|Rybičky 48
+Šrouby a matky|Mandrage
+Pití|Wohnout
+Pedro se vrací|Wohnout
+Uragán|Support Lesbiens
+Kingdom Come|Support Lesbiens
+Na kolena|Tři sestry
+Bílá paní|Tři sestry
+Cudzinka v tvojej zemi|Xindl X
+Vrať mi ty hvězdy|Marek Ztracený
+Ticho|Ewa Farna
+Voní|Aneta Langerová
+Hlídej si mě|Aneta Langerová
+Když nemůžeš|Ben Cristovao
 `, { language: "cs", scope: "local", region: "CZ" }),
 
   de: parseSongs(`
@@ -1869,6 +2304,105 @@ Fürstenfeld|STS|1984|rock|hard|region=AT
 Großvater|STS|1984|rock|hard|region=AT
 Bungalow|Bilderbuch|2015|indie|hard|region=AT
 Maschin|Bilderbuch|2014|indie|hard|region=AT
+Nur zu Besuch|Die Toten Hosen
+Alles aus Liebe|Die Toten Hosen
+Zehn kleine Jägermeister|Die Toten Hosen
+Ein Schwein namens Männer|Die Ärzte
+Manchmal haben Frauen|Die Ärzte
+Leuchtturm|Nena
+Vienna Calling|Falco||||region=AT
+Männer|Herbert Grönemeyer
+Bochum|Herbert Grönemeyer
+Halt mich|Herbert Grönemeyer
+Mensch|Herbert Grönemeyer
+Flugzeuge im Bauch|Herbert Grönemeyer
+Hinterm Horizont geht's weiter|Udo Lindenberg
+Verdammt lang her|BAP
+Frag nicht nach Sonnenschein|Peter Maffay
+Über sieben Brücken musst du gehen|Peter Maffay
+Ja|Silbermond
+Perfekte Welle|Juli
+Elektrisches Gefühl|Juli
+Dieses Leben|Juli
+Geile Zeit|Juli
+Ding|Seeed
+Aufstehn!|Seeed
+Augenbling|Seeed
+Bad Chick|Cro
+Wie ich bin|Mark Forster
+Ozean|AnnenMayKantereit
+Feuerwerk|Wincent Weiss
+Musik sein|Wincent Weiss
+An Wunder|Wincent Weiss
+80 Millionen|Max Giesinger
+Legenden|Max Giesinger
+Nicht so schnell|Max Giesinger
+Bad Boys Cry|Apache 207
+Bruder|Sido
+Ich baller|Bushido
+Sonnenbank Flavour|Bushido
+Bologna|Wanda||||region=AT
+Columbo|Wanda||||region=AT
+Auseinandergehen ist schwer|Wanda||||region=AT
+Ich lebe|Christina Stürmer||||region=AT
+Engel fliegen einsam|Christina Stürmer||||region=AT
+Millionen Lichter|Christina Stürmer||||region=AT
+Macho Macho|Rainhard Fendrich||||region=AT
+I Am from Austria|Rainhard Fendrich||||region=AT
+Ein Stern|DJ Ötzi
+Schifoan|Wolfgang Ambros
+Es lebe der Zentralfriedhof|Wolfgang Ambros
+Da Hofa|Wolfgang Ambros
+Pack die Badehose ein|Cornelia Froboess
+Am Tag als Conny Kramer starb|Juliane Werding
+Ein bisschen Frieden|Nicole
+Ich will nur dass du weißt|Sportfreunde Stiller
+Kleine Taschenlampe brenn|Markus
+Ich bin wie du|Marianne Rosenberg
+Er gehört zu mir|Marianne Rosenberg
+Moskau|Dschinghis Khan
+Dschinghis Khan|Dschinghis Khan
+Ich hab getanzt|Matthias Reim
+Weißt du noch|Peter Maffay
+Josie|Peter Maffay
+Du|Peter Maffay
+Alt wie ein Baum|Karat
+Über sieben Brücken|Karat
+Am Fenster|City
+Sonne, Mond und Sterne|Ich + Ich
+Vom selben Stern|Ich + Ich
+Stark|Ich + Ich
+So soll es bleiben|Ich + Ich
+Guten Tag|Wir sind Helden
+Dieser Weg|Xavier Naidoo
+Ich kenne nichts|Xavier Naidoo
+Sie sieht mich nicht|Xavier Naidoo
+Was wir alleine nicht schaffen|Xavier Naidoo
+Der letzte Tag|Tokio Hotel
+Spring nicht|Tokio Hotel
+Monsoon|Tokio Hotel
+Wunder geschehen|Nena
+Liebe ist|Nena
+Ich hab dich lieb|Nena
+Halt mich fest|Silbermond
+Himmel auf|Silbermond
+Unendlich|Silbermond
+Mutter|Rammstein
+Nie vergessen|Glasperlenspiel
+Keinen Zentimeter|Clueso
+Kein Liebeslied|Kraftklub
+Ich will nicht nach Berlin|Kraftklub
+Hurra, die Welt geht unter|Kraftklub
+Hier kommt die Sonne|Beatsteaks
+Leider geil|Deichkind
+Bück dich hoch|Deichkind
+MfG|Die Fantastischen Vier
+Troy|Die Fantastischen Vier
+Geboren um zu leben|Unheilig
+Hilf mir fliegen|Unheilig
+Hyper Hyper|Scooter
+How Much Is the Fish?|Scooter
+Nessaja|Scooter
 `, { language: "de", scope: "local", region: "DE" }),
 
   en: parseSongs(`
@@ -1897,6 +2431,102 @@ Kids|MGMT|2007|indie|medium
 Pumped Up Kicks|Foster the People|2010|indie|medium
 Sweater Weather|The Neighbourhood|2012|indie|easy
 505|Arctic Monkeys|2007|indie|hard
+Wonderful Life|Black
+Sit Down|James
+She's So Lovely|Scouting for Girls
+Grace Kelly|Mika
+Relax, Take It Easy|Mika
+Nine Million Bicycles|Katie Melua
+Closest Thing to Crazy|Katie Melua
+Trouble|Coldplay
+Speed of Sound|Coldplay
+Don't Let Me Down|The Chainsmokers
+Paris|The Chainsmokers
+Every Teardrop Is a Waterfall|Coldplay
+Chelsea Dagger|The Fratellis
+Why'd You Only Call Me When You're High?|Arctic Monkeys
+Naive|The Kooks
+She Moves in Her Own Way|The Kooks
+Time Is Running Out|Muse
+Plug In Baby|Muse
+Hysteria|Muse
+Knights of Cydonia|Muse
+Dakota|Stereophonics
+Have a Nice Day|Stereophonics
+You Give Me Something|James Morrison
+Broken Strings|James Morrison
+Say You Won't Let Go|James Arthur
+Impossible|James Arthur
+Castle on the Hill|Ed Sheeran
+I Don't Care|Ed Sheeran
+Giant|Rag'n'Bone Man
+Cassy O'|George Ezra
+Let Her Go|Passenger
+Dirty Paws|Of Monsters and Men
+Home|Edward Sharpe
+I Will Wait|Mumford & Sons
+Little Lion Man|Mumford & Sons
+The Cave|Mumford & Sons
+Stubborn Love|The Lumineers
+Ophelia|The Lumineers
+Cleopatra|The Lumineers
+Rivers and Roads|The Head and the Heart
+Sweet Disposition|The Temper Trap
+Youngblood|5 Seconds of Summer
+She Looks So Perfect|5 Seconds of Summer
+Centuries|Fall Out Boy
+Helena|My Chemical Romance
+Pretty Fly (For a White Guy)|The Offspring
+Feeling This|Blink-182
+First Date|Blink-182
+Whistle|Flo Rida
+Club Can't Handle Me|Flo Rida
+Break Your Heart|Taio Cruz
+Hotel Room Service|Pitbull
+Don't Phunk with My Heart|Black Eyed Peas
+Applause|Lady Gaga
+Wide Awake|Katy Perry
+Where Have You Been|Rihanna
+Work|Rihanna
+Grown Woman|Beyoncé
+Everytime|Britney Spears
+Sometimes|Britney Spears
+You Know I'm No Good|Amy Winehouse
+Dancing in the Moonlight|Toploader
+Somewhere Only We Know|Keane
+Everybody's Changing|Keane
+The Drugs Don't Work|The Verve
+Fake Plastic Trees|Radiohead
+High and Dry|Radiohead
+Rockferry|Duffy
+Mercy|Duffy
+Warwick Avenue|Duffy
+Put Your Records On|Corinne Bailey Rae
+Bleeding Love|Leona Lewis
+Run|Leona Lewis
+You're Beautiful|James Blunt
+Goodbye My Lover|James Blunt
+1973|James Blunt
+The Blower's Daughter|Damien Rice
+Cannonball|Damien Rice
+Set the Fire to the Third Bar|Snow Patrol
+Sex Bomb|Tom Jones
+It's Not Unusual|Tom Jones
+Delilah|Tom Jones
+Baby Can I Hold You|Tracy Chapman
+Fast Car|Tracy Chapman
+Talkin' Bout a Revolution|Tracy Chapman
+Linger|The Cranberries
+Ode to My Family|The Cranberries
+Truly Madly Deeply|Savage Garden
+I Knew I Loved You|Savage Garden
+To the Moon and Back|Savage Garden
+Never Tear Us Apart|INXS
+Need You Tonight|INXS
+Beds Are Burning|Midnight Oil
+Down Under|Men at Work
+Are You Gonna Be My Girl|Jet
+Look What You've Done|Jet
 `, { language: "en", scope: "local" }),
 
   es: parseSongs(`
@@ -1905,6 +2535,95 @@ Rosas|La Oreja de Van Gogh|2003|pop|medium
 Puedes Contar Conmigo|La Oreja de Van Gogh|2003|pop|hard
 Clandestino|Manu Chao|1998|latin|medium
 Me Gustas Tu|Manu Chao|2001|latin|easy
+Cuando Me Enamoro|Enrique Iglesias
+La Mordidita|Ricky Martin
+Corazón Espinado|Maná
+Vivir Sin Aire|Maná
+Crimen|Gustavo Cerati
+Y, ¿Si Fuera Ella?|Alejandro Sanz
+No Es Lo Mismo|Alejandro Sanz
+Bulería|David Bisbal
+Ave María|David Bisbal
+Dígale|David Bisbal
+Solamente Tú|Pablo Alborán
+Tanto|Pablo Alborán
+Perdóname|Pablo Alborán
+La Playa|La Oreja de Van Gogh
+Muñeca de Trapo|La Oreja de Van Gogh
+Cuídate|La Oreja de Van Gogh
+Tuyo Siempre|Melendi
+Caminando por la Vida|Melendi
+Lágrimas Desordenadas|Melendi
+Como Camarón|Estopa
+La Raja de Tu Falda|Estopa
+Malditos Callejones|Estopa
+Ahora Quién|Marc Anthony
+Dura|Daddy Yankee
+Rompe|Daddy Yankee
+Ella y Yo|Don Omar
+Rakata|Wisin & Yandel
+Abusadora|Wisin & Yandel
+Algo Me Gusta de Ti|Wisin & Yandel
+El Amante|Nicky Jam
+X|Nicky Jam
+Taki Taki|Ozuna
+Se Preparó|Ozuna
+Baila Baila Baila|Ozuna
+Criminal|Ozuna
+Ay, DiOs Mío!|Karol G
+Yo Perreo Sola|Bad Bunny
+Moscow Mule|Bad Bunny
+Tattoo|Rauw Alejandro
+Tú|Shakira
+Ojos Así|Shakira
+Antología|Shakira
+Te Felicito|Shakira
+Tacones Rojos|Sebastián Yatra
+Tutu|Camilo
+Vida de Rico|Camilo
+Una Lady Como Tú|Manuel Turizo
+Guantanamera|Compay Segundo
+Chan Chan|Compay Segundo
+La Gota Fría|Carlos Vives
+Colgando en Tus Manos|Carlos Baute
+Corazón Latino|David Bisbal
+Esclavo de Sus Besos|David Bisbal
+Todo Cambió|Camila
+Mientes|Camila
+Abrázame Muy Fuerte|Juan Gabriel
+Como Han Pasado los Años|Luis Miguel
+La Incondicional|Luis Miguel
+Ahora Te Puedes Marchar|Luis Miguel
+Te Extraño|Luis Miguel
+Mi Marciana|Alejandro Sanz
+Un Beso y una Flor|Nino Bravo
+Libre|Nino Bravo
+Mediterráneo|Joan Manuel Serrat
+Mi Niñez|Joan Manuel Serrat
+Cuéntame|Fórmula V
+La Chica de Ayer|Nacha Pop
+Bailar Pegados|Sergio Dalma
+Escuela de Calor|Radio Futura
+Torero|Chayanne
+Salomé|Chayanne
+Un Siglo Sin Ti|Chayanne
+Amor a la Mexicana|Thalía
+Arrasando|Thalía
+Ni Una Sola Palabra|Paulina Rubio
+Y Yo Sigo Aquí|Paulina Rubio
+Sin Documentos|Los Rodríguez
+Venezia|Hombres G
+Sin Ti No Soy Nada|Amaral
+El Universo Sobre Mí|Amaral
+La Playa de Los Alemanes|El Canto del Loco
+Zapatillas|El Canto del Loco
+Peter Pan|El Canto del Loco
+Corazón Contento|Reik
+Me Niego|Reik
+Yo Te Esperaré|Sin Bandera
+Entra en Mi Vida|Sin Bandera
+Corre|Jesse & Joy
+Espacio Sideral|Jesse & Joy
 `, { language: "es", scope: "local" }),
 
   fr: parseSongs(`
@@ -1914,6 +2633,101 @@ Je t'aime... moi non plus|Serge Gainsbourg|1969|chanson|medium
 La Javanaise|Serge Gainsbourg|1963|chanson|hard
 Bruxelles je t'aime|Angèle|2021|pop|hard
 Les Champs-Élysées|Joe Dassin|1969|pop|easy
+La Thune|Angèle
+Doudou|Aya Nakamura
+Si t'étais là|Louane
+On était beau|Louane
+Je te promets|Zaz
+Sur ma route|Black M
+Mme Pavoshko|Black M
+Est-ce que tu m'aimes|Maître Gims
+Cool|Maître Gims
+Reste|Maître Gims
+Le Lac|Julien Doré
+Paris-Seychelles|Julien Doré
+Nos Absences|Julien Doré
+On dirait|Amir
+J'ai cherché|Amir
+Longtemps|Amir
+Clique|Slimane
+À fleur de toi|Slimane
+Le Coup de Soleil|Vianney
+Je m'en vais|Vianney
+Pas là|Vianney
+Beau-Papa|Vianney
+Tomber la neige|Christophe Maé
+On s'attache|Christophe Maé
+Il est où le bonheur|Christophe Maé
+Le Téléphone Pleure|Claude François
+Cendrillon|Téléphone
+Ça (c'est vraiment toi)|Téléphone
+Un autre monde|Téléphone
+Foule sentimentale|Alain Souchon
+J'ai dix ans|Alain Souchon
+Comme toi|Jean-Jacques Goldman
+Savoir aimer|Florent Pagny
+Ma liberté de penser|Florent Pagny
+Caruso|Florent Pagny
+Casser la voix|Patrick Bruel
+Place des grands hommes|Patrick Bruel
+Qui a le droit|Patrick Bruel
+Je sais pas|Céline Dion
+En amour|Calogero
+Si seulement je pouvais lui manquer|Calogero
+Face à la mer|Calogero
+Basique|Orelsan
+La Terre est ronde|Orelsan
+Défaite de famille|Orelsan
+Dommage|Bigflo & Oli
+Papa|Bigflo & Oli
+Sur le Fil|Bigflo & Oli
+Mon Précieux|Soprano
+Cosmo|Soprano
+Le Diable ne s'habille plus en Prada|Soprano
+Réalité augmentée|Nekfeu
+Divinidylle|Vanessa Paradis
+Be My Baby|Vanessa Paradis
+Ella Elle L'a|France Gall
+Résiste|France Gall
+Poupée de Cire, Poupée de Son|France Gall
+Il Jouait du Piano Debout|France Gall
+Laissez-Moi Danser|Dalida
+Gigi l'Amoroso|Dalida
+Paroles, Paroles|Dalida
+Je Suis Malade|Serge Lama
+Trois Nuits par Semaine|Indochine
+Le Sud|Nino Ferrer
+She|Charles Aznavour
+Ma Gueule|Johnny Hallyday
+L'Hymne à l'Amour|Édith Piaf
+Padam Padam|Édith Piaf
+Les Feuilles Mortes|Yves Montand
+Sous le Ciel de Paris|Yves Montand
+Que Reste-t-il de Nos Amours|Charles Trenet
+La Mer|Charles Trenet
+Douce France|Charles Trenet
+Les Copains d'Abord|Georges Brassens
+Chanson pour l'Auvergnat|Georges Brassens
+Göttingen|Barbara
+L'Aigle Noir|Barbara
+Mon Amie la Rose|Françoise Hardy
+Tous les Garçons et les Filles|Françoise Hardy
+Le Métèque|Georges Moustaki
+Quand On N'a Que l'Amour|Jacques Brel
+La Valse à Mille Temps|Jacques Brel
+Je vais t'aimer|Michel Sardou
+Le Chanteur|Daniel Balavoine
+Mon fils ma bataille|Daniel Balavoine
+Aziza|Daniel Balavoine
+Je suis un homme|Zazie
+Lucie|Pascal Obispo
+Tombé pour elle|Pascal Obispo
+Je m'appelle Hélène|Hélène Rollès
+Tout|Lara Fabian
+Je t'aime|Lara Fabian
+Le Vent Nous Portera|Noir Désir
+Manhattan-Kaboul|Renaud
+Dès que le vent soufflera|Renaud
 `, { language: "fr", scope: "local" }),
 
   pt: parseSongs(`
@@ -1932,6 +2746,128 @@ Vapor Barato|O Rappa|1996|rock|hard
 Grândola, Vila Morena|José Afonso|1971|folk|medium
 Uma Casa Portuguesa|Amália Rodrigues|1953|folk|medium
 Estranha Forma de Vida|Amália Rodrigues|1962|folk|medium
+60 Segundos|Gusttavo Lima
+Meteoro|Luan Santana
+Te Esperando|Luan Santana
+Você Não Sabe o Que É Amor|Luan Santana
+Escreve Aí|Luan Santana
+Camisa 10|Turma do Pagode
+Aquele 1|Turma do Pagode
+Deixa Alagar|Turma do Pagode
+Coração Vazio|Jorge e Mateus
+Pode Chorar|Jorge e Mateus
+Amo Noite e Dia|Jorge e Mateus
+Os Anjos Cantam|Jorge e Mateus
+Aquele Lugar|Henrique e Juliano
+Mistura Louca|Henrique e Juliano
+Liberdade Provisória|Henrique e Juliano
+Bem Pior Que Eu|Marília Mendonça
+Graveto|Marília Mendonça
+Camarote|Wesley Safadão
+Ar Condicionado no 15|Wesley Safadão
+Ainda Gosto de Você|Wesley Safadão
+Céu da Boca|Ivete Sangalo
+Não Precisa Mudar|Ivete Sangalo
+Vai Malandra|Anitta
+Girl from Rio|Anitta
+Cheguei|Ludmilla
+Onde É Que Eu Errei|Ludmilla
+Rainha da Favela|Ludmilla
+K.O.|Pabllo Vittar
+Sua Cara|Pabllo Vittar
+Ocean|Alok
+Un Ratito|Alok
+É o Amor|Zezé Di Camargo e Luciano
+Como Vai Você|Roberto Carlos
+Detalhes|Roberto Carlos
+Emoções|Roberto Carlos
+Amigo|Roberto Carlos
+Fico Assim Sem Você|Adriana Calcanhotto
+Eduardo e Mônica|Legião Urbana
+Que País É Este|Legião Urbana
+Vento no Litoral|Legião Urbana
+Garota Nacional|Skank
+É Uma Partida de Futebol|Skank
+Sutilmente|Skank
+Ainda Gosto Dela|Skank
+Fica|Jota Quest
+Na Moral|Jota Quest
+Só Hoje|Jota Quest
+Encontrar Alguém|Jota Quest
+Zé Trindade|Charlie Brown Jr.
+Só Os Loucos Sabem|Charlie Brown Jr.
+Sonífera Ilha|Titãs
+Comida|Titãs
+Epitáfio|Titãs
+Alagados|Paralamas do Sucesso
+Lanterna dos Afogados|Paralamas do Sucesso
+Vital e Sua Moto|Paralamas do Sucesso
+Bete Balanço|Barão Vermelho
+Pro Dia Nascer Feliz|Barão Vermelho
+Independência|Capital Inicial
+Primeiros Erros|Capital Inicial
+Á Sua Maneira|Capital Inicial
+O Que Sobrou do Céu|O Rappa
+Minha Alma|O Rappa
+Roots Bloody Roots|Sepultura
+Chuva de Arroz|Luan Santana
+Chá de Sumiço|Léo Santana
+Zona de Perigo|Léo Santana
+Amor de Verdade|MC Kekel
+Bum Bum Tam Tam|MC Fioti
+Vai Dar PT|Zé Neto e Cristiano
+Largado às Traças|Zé Neto e Cristiano
+Barquinho|Zé Neto e Cristiano
+Chuva de Prata|Xutos & Pontapés
+Pontes de Papel|Rui Veloso
+Porto Sentido|Rui Veloso
+Búzios|Ana Moura
+Wave|Tom Jobim
+Corcovado|Tom Jobim
+Desafinado|João Gilberto
+Insensatez|João Gilberto
+Carinhoso|Pixinguinha
+Asa Branca|Luiz Gonzaga
+Baião|Luiz Gonzaga
+A Vida do Viajante|Luiz Gonzaga
+O Xote das Meninas|Luiz Gonzaga
+Ovelha Negra|Rita Lee
+Mania de Você|Rita Lee
+Lança Perfume|Rita Lee
+Doce Vampiro|Rita Lee
+Alegria, Alegria|Caetano Veloso
+Você é Linda|Caetano Veloso
+Tigresa|Caetano Veloso
+O Leãozinho|Caetano Veloso
+Roda Viva|Chico Buarque
+Apesar de Você|Chico Buarque
+Trocando em Miúdos|Chico Buarque
+Divino Maravilhoso|Gal Costa
+Como 2 e 2|Gal Costa
+Andar com Fé|Gilberto Gil
+Aquele Abraço|Gilberto Gil
+Palco|Gilberto Gil
+Se Eu Quiser Falar com Deus|Gilberto Gil
+Maria, Maria|Milton Nascimento
+Travessia|Milton Nascimento
+Nos Bailes da Vida|Milton Nascimento
+Sina|Djavan
+Oceano|Djavan
+Flor de Lis|Djavan
+Se|Djavan
+Samurai|Djavan
+Preciso Me Encontrar|Cartola
+As Rosas Não Falam|Cartola
+O Mundo é um Moinho|Cartola
+Vai Passar|Chico Buarque
+Meu Mundo Caiu|Maysa
+Zóio de Lula|Charlie Brown Jr.
+Exagerado|Cazuza
+Beija Eu|Marisa Monte
+Deixa a Vida Me Levar|Zeca Pagodinho
+Verdade|Zeca Pagodinho
+Dormi na Praça|Bruno & Marrone
+Borboletas|Victor & Leo
 `, { language: "pt", scope: "local" }),
 };
 
