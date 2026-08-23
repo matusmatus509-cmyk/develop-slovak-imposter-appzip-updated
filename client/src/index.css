@@ -1250,6 +1250,71 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   .music-quiz-eq-bar { transform: scaleY(0.7); }
 }
 
+/* ── Uhádni zvuk ─────────────────────────────────────────────────────────────
+   Preberá celý layout Hudobného kvízu (`.music-quiz-*` triedy na tých istých
+   prvkoch), takže obojstranné rozloženie, výšky pásov a škálovanie textu sú
+   zdieľané a nemôžu sa rozísť. Tu sa mení len identita: tyrkysový akcent
+   namiesto fialového, pretože zvuková minihra má v celej aplikácii túto farbu.
+   Vlastné triedy prepisujú farbu, nikdy nie geometriu. */
+.sound-quiz-stage {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.16), transparent 60%),
+    radial-gradient(circle at 12% 8%, rgba(20, 184, 166, 0.13), transparent 22rem),
+    radial-gradient(circle at 88% 92%, rgba(56, 189, 248, 0.13), transparent 22rem);
+}
+
+.sound-quiz-eyebrow {
+  border-color: rgba(103, 232, 249, 0.25);
+  background: rgba(34, 211, 238, 0.1);
+  color: rgba(165, 243, 252, 0.9);
+}
+
+.sound-quiz-disc {
+  border-color: rgba(103, 232, 249, 0.35);
+  box-shadow: 0 0 46px rgba(34, 211, 238, 0.34);
+}
+.sound-quiz-disc.is-playing {
+  animation: soundQuizDiscPulse 2.4s ease-in-out infinite;
+}
+@keyframes soundQuizDiscPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 42px rgba(34, 211, 238, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 74px rgba(34, 211, 238, 0.5);
+  }
+}
+
+.sound-quiz-eq-bar {
+  background: linear-gradient(to top, rgba(153, 246, 228, 0.35), #22d3ee);
+}
+
+.sound-quiz-rule {
+  --tw-gradient-to: rgba(103, 232, 249, 0.45);
+}
+
+/* Emoji je po odhalení hlavný obsah disku, takže škáluje s jeho veľkosťou. */
+.sound-quiz-emoji {
+  font-size: min(3.4rem, 8dvh);
+  line-height: 1;
+}
+
+/* Zdroj zvuku je povinné uvedenie autora, ale nesmie súťažiť s odpoveďou. */
+.sound-quiz-credit {
+  font-size: clamp(0.56rem, 1.5dvh, 0.68rem);
+}
+
+@media (max-height: 620px) {
+  .sound-quiz-credit { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sound-quiz-disc.is-playing,
+  .sound-quiz-eq-bar { animation: none !important; }
+  .sound-quiz-eq-bar { transform: scaleY(0.7); }
+}
+
 /* App-wide product finish — photographic, restrained and mobile-first. */
 :root {
   --app-surface: #111820;
