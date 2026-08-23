@@ -4344,3 +4344,148 @@ html[data-theme="light"] .ui-pre-caption h1 { color: #fff; }
   min-height: clamp(2.6rem, 6.4dvh, 3.15rem);
   padding-left: 1rem;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Kvízový súboj — čitateľnosť obojstrannej obrazovky
+   ═══════════════════════════════════════════════════════════════════════
+
+   Túto obrazovku sleduje celá partia naraz a polovica hráčov ju číta
+   otočenú o 180°. Pôvodné veľkosti boli odvodené iba od `vw`, ale
+   obmedzením obrazovky je VÝŠKA jednej polovice (~45dvh), nie šírka
+   displeja — na vysokom telefóne preto zostával text malý a nad aj pod
+   obsahom ostávalo prázdne miesto.
+
+   Preto tu platí: každá veľkosť má `vw` aj `dvh` člen a `min()` z nich
+   berie ten prísnejší. Text tak vyrastie, keď je miesto, a nikdy
+   nepretlačí polovicu, keď miesto nie je. Obe polovice čerpajú z tých
+   istých pravidiel, takže obrazovka zostáva symetrická.
+   ─────────────────────────────────────────────────────────────────── */
+
+/* ── Tri úrovne textu ────────────────────────────────────────────────── */
+.quiz-eyebrow {
+  font-size: clamp(0.64rem, min(3vw, 1.95dvh), 0.86rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+.quiz-caption {
+  font-size: clamp(0.72rem, min(3.3vw, 2.2dvh), 0.98rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* ── Otázka ──────────────────────────────────────────────────────────── */
+/* `balance` rozloží riadky rovnomerne, takže dve-tri riadkové otázky
+   nekončia jedným osamoteným slovom — pri obojstrannom rozložení je
+   symetria bloku viditeľnejšia než inde. */
+.quiz-question-text {
+  line-height: 1.2;
+  text-wrap: balance;
+}
+/* Karta má rovnaký vzhľad ako ostatné, len sa smie roztiahnuť. */
+.quiz-question-card {
+  overflow: hidden;
+}
+
+/* ── Tlačidlá voľby (VIAC / MENEJ, ISTOTA / RISK) ─────────────────────── */
+.quiz-choice {
+  min-height: clamp(3.1rem, 9dvh, 4.6rem);
+  padding: 0.4rem 0.6rem;
+}
+.quiz-choice-label {
+  font-size: clamp(1rem, min(6vw, 3.2dvh), 1.5rem);
+  letter-spacing: 0.02em;
+}
+/* Šípka je väčšia než text: smer sa z odstupu rozlíši rýchlejšie podľa
+   symbolu než podľa slova. */
+.quiz-choice-glyph {
+  font-size: clamp(1.15rem, min(7vw, 3.8dvh), 1.8rem);
+}
+
+/* ── Tip s jednotkou ─────────────────────────────────────────────────── */
+.quiz-guess-value {
+  font-size: clamp(1.7rem, min(9vw, 6dvh), 3rem);
+}
+.quiz-guess-unit {
+  font-size: clamp(0.68rem, min(3.2vw, 2.1dvh), 0.92rem);
+}
+
+/* ── Stav („Súper sa rozhoduje“) ──────────────────────────────────────── */
+/* Bodka nesie pohyb, text zostáva statický a čitateľný. */
+.quiz-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  text-align: center;
+}
+.quiz-status-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  animation: quizStatusPulse 1.4s ease-in-out infinite;
+}
+@keyframes quizStatusPulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Odhalenie výsledku ──────────────────────────────────────────────── */
+/* Bodový rozdiel je pointa kola, dôvod je jeho vysvetlenie. */
+.quiz-delta {
+  font-size: clamp(1.25rem, min(6vw, 4dvh), 1.85rem);
+}
+.quiz-reason {
+  font-size: clamp(0.76rem, min(3.4vw, 2.3dvh), 1.05rem);
+}
+.quiz-reason-detail {
+  font-size: clamp(0.68rem, min(3vw, 2dvh), 0.9rem);
+}
+
+/* ── Potvrdzovacie tlačidlá ("Potvrdiť tip", "Ďalšia otázka") ─────────── */
+.quiz-next {
+  min-height: clamp(2.6rem, 6.5dvh, 3.4rem);
+  font-size: clamp(0.82rem, min(3.8vw, 2.5dvh), 1.1rem);
+}
+
+/* ── Klasické možnosti A–D ───────────────────────────────────────────── */
+.quiz-option {
+  min-height: clamp(3rem, 8dvh, 4.1rem);
+}
+.quiz-option-letter {
+  width: clamp(1.25rem, 3.4dvh, 1.6rem);
+  height: clamp(1.25rem, 3.4dvh, 1.6rem);
+  font-size: clamp(0.62rem, min(2.8vw, 1.9dvh), 0.8rem);
+}
+.quiz-option-text {
+  font-size: clamp(0.75rem, min(3.4vw, 2.3dvh), 1.05rem);
+}
+
+/* Na nízkych displejoch (na šírku, malé telefóny) sa dvh členy stanú
+   prísnymi samy — netreba osobitný media query. Pri veľmi nízkej výške
+   však stlačíme aj odsadenia, aby sa zmestili tri prvky fázy. */
+@media (max-height: 640px) {
+  .quiz-choice {
+    min-height: 2.85rem;
+  }
+  .quiz-option {
+    min-height: 2.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-status-dot {
+    animation: none;
+    opacity: 0.7;
+  }
+}
