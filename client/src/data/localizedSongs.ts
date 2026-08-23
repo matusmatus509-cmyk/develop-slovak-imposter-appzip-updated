@@ -1940,6 +1940,85 @@ Mama|Jonas Blue
 Prayer in C|Robin Schulz
 OK|Robin Schulz
 Ain't Nobody|Felix Jaehn
+West End Girls|Pet Shop Boys
+It's a Sin|Pet Shop Boys
+Go West|Pet Shop Boys
+Rio|Duran Duran
+Hungry Like the Wolf|Duran Duran
+Ordinary World|Duran Duran
+Heart of Glass|Blondie
+Call Me|Blondie
+One Way or Another|Blondie
+Light My Fire|The Doors
+Riders on the Storm|The Doors
+Have You Ever Seen the Rain|Creedence Clearwater Revival
+Proud Mary|Creedence Clearwater Revival
+Bad Moon Rising|Creedence Clearwater Revival
+Fortunate Son|Creedence Clearwater Revival
+Baba O'Riley|The Who
+My Generation|The Who
+Jump|Van Halen
+Panama|Van Halen
+I Was Made for Lovin' You|Kiss
+Rock and Roll All Nite|Kiss
+Pour Some Sugar on Me|Def Leppard
+Animal|Def Leppard
+Breakfast in America|Supertramp
+The Logical Song|Supertramp
+Dreamer|Supertramp
+Don't Dream It's Over|Crowded House
+Weather with You|Crowded House
+Holding Back the Years|Simply Red
+Stars|Simply Red
+Breathless|The Corrs
+Runaway|The Corrs
+I Don't Want a Lover|Texas
+Say What You Want|Texas
+Stupid Girl|Garbage
+Only Happy When It Rains|Garbage
+Every You Every Me|Placebo
+The Bitter End|Placebo
+Forever Young|Alphaville
+Big in Japan|Alphaville
+A Little Respect|Erasure
+True|Spandau Ballet
+Gold|Spandau Ballet
+Don't You Want Me|The Human League
+Invisible Touch|Genesis
+I Can't Dance|Genesis
+Should I Stay or Should I Go|The Clash
+London Calling|The Clash
+Blitzkrieg Bop|Ramones
+I Wanna Be Sedated|Ramones
+Once in a Lifetime|Talking Heads
+Psycho Killer|Talking Heads
+Common People|Pulp
+Disco 2000|Pulp
+Girls & Boys|Blur
+Parklife|Blur
+Coffee & TV|Blur
+Why Does It Always Rain on Me?|Travis
+Breakeven|The Script
+Hall of Fame|The Script
+The Man Who Can't Be Moved|The Script
+Ruby|Kaiser Chiefs
+I Predict a Riot|Kaiser Chiefs
+What You Know|Two Door Cinema Club
+Club Foot|Kasabian
+Munich|Editors
+Papillon|Editors
+Love Is All Around|Wet Wet Wet
+Hard to Say I'm Sorry|Chicago
+I Want to Know What Love Is|Foreigner
+Can't Fight This Feeling|REO Speedwagon
+(I Just) Died in Your Arms|Cutting Crew
+Broken Wings|Mr. Mister
+The Sun Always Shines on T.V.|a-ha
+Hunting High and Low|a-ha
+If You Leave|Orchestral Manoeuvres in the Dark
+Enola Gay|Orchestral Manoeuvres in the Dark
+A-Punk|Vampire Weekend
+No Surprises|Radiohead
 `, { language: "en", scope: "global" });
 
 /**
@@ -2187,6 +2266,44 @@ Silvia|Horkýže Slíže
 Zabudni|Zuzana Smatanová
 Sama|Nocadeň
 Ostaň|Nocadeň
+Kozáci|Heľenine oči
+Uhorčík|Heľenine oči
+Profesionál|Heľenine oči
+Hoja hop|Heľenine oči
+Plavčík Milan|Heľenine oči
+Tak tu som|Heľenine oči
+Pálila babka pálenku|Heľenine oči
+Podnikateľ|Heľenine oči
+Ta to som ja|Chiki liki tu-a
+Harmonika|Chiki liki tu-a
+Dobrý večer mladý pán|Chiki liki tu-a
+O päť minút dvanásť|Chiki liki tu-a
+Kávu alebo čaj?|Le Payaco
+Hodím si korunou|Le Payaco
+Ponorka|Le Payaco
+V Tatrách|Le Payaco
+Poď so mnou von|Le Payaco
+Zlatý jeleň|Korben Dallas
+Kamene|Korben Dallas
+Železný vlak|Korben Dallas
+Čierne ráno|Korben Dallas
+Na chate|Smola a Hrušky
+Posteľ|Smola a Hrušky
+Cigareta|Smola a Hrušky
+Elvis Presný|Smola a Hrušky
+Kubánske pomaranče|Smola a Hrušky
+Nechajte si ju|Vidiek
+Rádioaktívny udavač|Vidiek
+Miska s mliekom|Nocadeň
+V žiare noci|Nocadeň
+Letíš padáš|Nocadeň
+Slová už nevravia nič|Nocadeň
+Zaľúbená žaba|Metalinda
+Maj May|Metalinda
+Majstri sveta|Metalinda
+Edo|Robo Grigorov
+Liza a Wendy|Horkýže Slíže
+Tanečnica z Lúčnice|Elán
 `, { language: "sk", scope: "local", region: "SK" }),
 
   cs: parseSongs(`
@@ -2273,6 +2390,17 @@ Ticho|Ewa Farna
 Voní|Aneta Langerová
 Hlídej si mě|Aneta Langerová
 Když nemůžeš|Ben Cristovao
+Celá|Slza
+Lhůta|Slza
+Magdaléna|Jelen
+Klidná jako voda|Jelen
+Až|Katapult
+Čmelák|Divokej Bill
+Vedle mě|Chinaski
+Klídek|Chinaski
+Osmý den|Olympic
+Krtek|Buty
+Nikdy nebudeme dospělí|Rybičky 48
 `, { language: "cs", scope: "local", region: "CZ" }),
 
   de: parseSongs(`
@@ -2403,6 +2531,36 @@ Hilf mir fliegen|Unheilig
 Hyper Hyper|Scooter
 How Much Is the Fish?|Scooter
 Nessaja|Scooter
+Millionär|Die Prinzen
+Alles nur geklaut|Die Prinzen
+Küssen verboten|Die Prinzen
+Abenteuerland|PUR
+Lena|PUR
+Und wenn ein Lied|Söhne Mannheims
+Geh davon aus|Söhne Mannheims
+Ich bin ich|Rosenstolz
+Liebe ist alles|Rosenstolz
+Hamma!|Culcha Candela
+Monsta|Culcha Candela
+Freiheit|Marius Müller-Westernhagen
+Sexy|Marius Müller-Westernhagen
+Jetzt ist Sommer|Wise Guys
+Schönste Zeit|Bosse
+Lieder|Adel Tawil
+Ist da jemand|Adel Tawil
+Wovon sollen wir träumen|Frida Gold
+An guten Tagen|Johannes Oerding
+Wie schön du bist|Sarah Connor
+Vincent|Sarah Connor
+Ham kummst|Seiler und Speer
+Jenseits von Eden|Nino de Angelo
+Santa Maria|Roland Kaiser
+Hello again|Howard Carpendale
+Hurra, hurra, die Schule brennt|Extrabreit
+Blaue Augen|Ideal
+Remmidemmi|Deichkind
+Die Da!?|Die Fantastischen Vier||rap
+Delmenhorst|Element of Crime
 `, { language: "de", scope: "local", region: "DE" }),
 
   en: parseSongs(`
@@ -2624,6 +2782,48 @@ Yo Te Esperaré|Sin Bandera
 Entra en Mi Vida|Sin Bandera
 Corre|Jesse & Joy
 Espacio Sideral|Jesse & Joy
+Hijo de la luna|Mecano
+Me cuesta tanto olvidarte|Mecano
+Mujer contra mujer|Mecano
+Maquillaje|Mecano
+Cruz de navajas|Mecano
+Un año más|Mecano
+La fuerza del destino|Mecano
+Entre dos tierras|Héroes del Silencio
+Maldito duende|Héroes del Silencio
+La chispa adecuada|Héroes del Silencio
+Eres|Café Tacvba
+La ingrata|Café Tacvba
+Chilanga banda|Café Tacvba
+Gimme tha power|Molotov||rap
+Frijolero|Molotov||rap
+Matador|Los Fabulosos Cadillacs
+El satánico Dr. Cadillac|Los Fabulosos Cadillacs
+Soldadito marinero|Fito & Fitipaldis
+Por la boca vive el pez|Fito & Fitipaldis
+La casa por el tejado|Fito & Fitipaldis
+Insurrección|El Último de la Fila
+Como un burro amarrado en la puerta del baile|El Último de la Fila
+Cien gaviotas|Duncan Dhu
+En algún lugar|Duncan Dhu
+La célula que explota|Caifanes
+Afuera|Caifanes
+Loco (tu forma de ser)|Los Auténticos Decadentes
+El murguero|Los Auténticos Decadentes
+Tren al sur|Los Prisioneros
+El sol no regresa|La Quinta Estación
+Me muero|La Quinta Estación
+Déjame|Los Secretos
+Pero a tu lado|Los Secretos
+Florecita rockera|Aterciopelados
+Bolero falaz|Aterciopelados
+La muralla verde|Enanitos Verdes
+La raja|Estopa
+Tu calorro|Estopa
+Aquí|La Ley
+El duelo|La Ley
+Bombón asesino|Vilma Palma e Vampiros
+Caraluna|Bacilos
 `, { language: "es", scope: "local" }),
 
   fr: parseSongs(`
@@ -2728,6 +2928,37 @@ Je t'aime|Lara Fabian
 Le Vent Nous Portera|Noir Désir
 Manhattan-Kaboul|Renaud
 Dès que le vent soufflera|Renaud
+J't'emmène au vent|Louise Attaque
+Léa|Louise Attaque
+Lola|Superbus
+Le Chemin|Kyo
+L'hymne de nos campagnes|Tryo
+Désolé pour hier soir|Tryo
+Marcia Baila|Les Rita Mitsouko
+C'est comme ça|Les Rita Mitsouko
+Un peu plus près des étoiles|Gold
+Ville de lumière|Gold
+Les Démons de minuit|Images
+Nuit de folie|Début de Soirée
+Tomber la chemise|Zebda
+Je danse le Mia|IAM||rap
+Nés sous la même étoile|IAM||rap
+Laisse pas traîner ton fils|Suprême NTM||rap
+Désolé|Sexion d'Assaut||rap
+Avant qu'elle parte|Sexion d'Assaut||rap
+Dis-moi|BB Brunes
+Le gang|BB Brunes
+Comme elle vient|Noir Désir
+Femme libérée|Cookie Dingler
+Partenaire particulier|Partenaire Particulier
+Voilà l'été|Les Négresses Vertes
+C'est bon pour le moral|La Compagnie Créole
+Ça fait rire les oiseaux|La Compagnie Créole
+Le Pouvoir des fleurs|Laurent Voulzy
+Rockollection|Laurent Voulzy
+Goodbye Marylou|Michel Polnareff
+Lettre à France|Michel Polnareff
+Femmes, je vous aime|Julien Clerc
 `, { language: "fr", scope: "local" }),
 
   pt: parseSongs(`
@@ -2868,6 +3099,49 @@ Deixa a Vida Me Levar|Zeca Pagodinho
 Verdade|Zeca Pagodinho
 Dormi na Praça|Bruno & Marrone
 Borboletas|Victor & Leo
+Infinita Highway|Engenheiros do Hawaii
+Toda Forma de Poder|Engenheiros do Hawaii
+Somos Quem Podemos Ser|Engenheiros do Hawaii
+Um Minuto para o Fim do Mundo|CPM 22
+Regina Let's Go|CPM 22
+Cedo ou Tarde|NX Zero
+Razões e Emoções|NX Zero
+Mulher de Fases|Raimundos
+A Mais Pedida|Raimundos
+Como Eu Quero|Kid Abelha
+Pintura Íntima|Kid Abelha
+Rádio Pirata|RPM
+Olhar 43|RPM
+Vento Ventania|Biquini Cavadão
+Timidez|Biquini Cavadão
+Onde Você Mora?|Cidade Negra
+Firmamento|Cidade Negra
+Presente de um Beija-Flor|Natiruts
+Quero Ser Feliz Também|Natiruts
+Envelheço na Cidade|Ira!
+Flores em Você|Ira!
+Admirável Chip Novo|Pitty
+Na Sua Estante|Pitty
+Flores|Titãs
+Vou Deixar|Skank
+Uma Partida de Futebol|Skank
+Óculos|Paralamas do Sucesso
+Todo Carnaval Tem Seu Fim|Los Hermanos
+Camila Camila|Nenhum de Nós
+Inútil|Ultraje a Rigor
+Nós Vamos Invadir Sua Praia|Ultraje a Rigor
+Você Não Soube Me Amar|Blitz
+Quando o Sol se For|Detonautas
+Homem do Mar|Xutos & Pontapés
+Efectivamente|GNR
+Sempre que o Amor me Quiser|Delfins
+Nasce Selvagem|Delfins
+Chico Fininho|Rui Veloso
+A Paixão|Rui Veloso
+Balada do Desajeitado|D.A.M.A
+Ouvi Dizer|Ornatos Violeta
+Problema de Expressão|Clã
+Cavalos de Corrida|UHF
 `, { language: "pt", scope: "local" }),
 };
 
