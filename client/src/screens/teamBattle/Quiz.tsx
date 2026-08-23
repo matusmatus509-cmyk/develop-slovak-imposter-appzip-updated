@@ -41,10 +41,14 @@ const CARD_RADIUS = "1.25rem";
 const SURFACE = "rgba(255,255,255,0.045)";
 const SURFACE_BORDER = "rgba(255,255,255,0.09)";
 
-/** Nadpisok nad obsahom — jediný povolený „malý“ štýl textu. */
-const EYEBROW = "text-[10px] font-black uppercase tracking-[0.18em]";
+/**
+ * Nadpisok nad obsahom — jediný povolený „malý“ štýl textu.
+ * Veľkosť je fluidná v index.css: párty kvíz sleduje viac ľudí naraz a často
+ * z opačnej strany stola, takže ani nadpisok nesmie byť 10px konštanta.
+ */
+const EYEBROW = "quiz-eyebrow";
 /** Vysvetľujúci text — jediný povolený „stredný“ štýl. */
-const CAPTION = "text-[11px] font-bold leading-snug";
+const CAPTION = "quiz-caption";
 
 const VERDICT_COLORS = { viac: "#4ade80", menej: "#60a5fa" } as const;
 
@@ -98,13 +102,35 @@ function deltaLabel(delta: number) {
 
 // ── Stavebné prvky ───────────────────────────────────────────────────────────
 
-/** Otázka počas hrania — kompaktná, aby ovládanie dostalo čo najviac miesta. */
-function QuestionBar({ text }: { text: string }) {
+/**
+ * Otázka počas hrania. Je to jediný text, ktorý musia prečítať všetci hráči
+ * naraz, preto dostane všetko voľné miesto polovice namiesto toho, aby ho
+ * nechala prázdne:
+ *
+ *  - `flex: 1 1 auto` — karta vyrastie do zvyšného miesta, ale nikdy sa
+ *    nezmenší pod svoj obsah (basis je výška textu, nie 0 ako pri `flex-1`).
+ *  - veľkosť písma sa škáluje podľa `dvh`, nie iba `vw`. Obmedzením tejto
+ *    obrazovky je výška polovice, nie šírka displeja — `vw` samo o sebe na
+ *    vysokom telefóne nechá text malý.
+ *
+ * `compact` je pre fázy, kde voľné miesto potrebuje iný prvok: mriežka
+ * štyroch možností a číselná klávesnica. Tam karta drží výšku obsahu
+ * (`flex: 0 0 auto`), inak by o to isté miesto súťažili dva prvky naraz.
+ */
+function QuestionBar({ text, compact }: { text: string; compact?: boolean }) {
   return (
     <div
       key={text}
-      className="flex w-full shrink-0 items-center justify-center border px-3 py-2 text-center"
+      className="quiz-question-card flex w-full items-center justify-center border text-center"
       style={{
+        // Rastie len tam, kde je čo získať. V kompaktnom režime drží výšku
+        // obsahu, aby všetko voľné miesto dostala klávesnica alebo mriežka
+        // odpovedí — inak by o rovnaké miesto súťažili dva prvky.
+        flex: compact ? "0 0 auto" : "1 1 auto",
+        minHeight: 0,
+        padding: compact
+          ? ".6rem .9rem"
+          : "clamp(.7rem, 1.8dvh, 1.25rem) clamp(.9rem, 3.5vw, 1.4rem)",
         borderRadius: CARD_RADIUS,
         background: SURFACE,
         borderColor: SURFACE_BORDER,
@@ -112,8 +138,12 @@ function QuestionBar({ text }: { text: string }) {
       }}
     >
       <p
-        className="font-black leading-snug text-white"
-        style={{ fontSize: "clamp(.8rem, 3.2vw, 1.05rem)" }}
+        className="quiz-question-text font-black text-white"
+        style={{
+          fontSize: compact
+            ? "clamp(.85rem, min(4vw, 2.5dvh), 1.2rem)"
+            : "clamp(1.05rem, min(7vw, 4.2dvh), 1.9rem)",
+        }}
       >
         {text}
       </p>
@@ -180,10 +210,12 @@ function BriefCard({
         style={{ background: `${color}4d` }}
       />
 
+      {/* Úvod je jediný prvok na polovici, takže otázka smie byť najväčšia
+          na obrazovke — nikdy nesmie byť menšia než tá istá otázka počas hry. */}
       <div className="flex min-h-0 flex-1 items-center justify-center">
         <p
-          className="text-center font-black leading-snug text-white"
-          style={{ fontSize: "clamp(1rem, 4.2vw, 1.55rem)" }}
+          className="quiz-question-text text-center font-black text-white"
+          style={{ fontSize: "clamp(1.1rem, min(7.4vw, 4.6dvh), 2.05rem)" }}
         >
           {question}
         </p>
@@ -196,16 +228,29 @@ function BriefCard({
   );
 }
 
-/** Prázdny text nič nevykreslí — pokyn patrí na obrazovku len keď niečo hovorí. */
+/**
+ * Prázdny text nič nevykreslí — pokyn patrí na obrazovku len keď niečo hovorí.
+ * Stav je vlastný pás s bodkou, aby sa dal prečítať aj z druhej strany stola;
+ * pôvodné `text-white/25` bolo pri hre z odstupu nečitateľné.
+ */
 function WaitingNote({ text }: { text: string }) {
   if (!text) return null;
   return (
-    <p className={`${EYEBROW} shrink-0 text-center text-white/25`}>{text}</p>
+    <p className="quiz-status shrink-0">
+      <span aria-hidden="true" className="quiz-status-dot" />
+      <span className={`${EYEBROW} text-white/55`}>{text}</span>
+    </p>
   );
 }
 
+/**
+ * Tlačidlo voľby — spoločné pre VIAC/MENEJ aj ISTOTA/RISK.
+ * `glyph` je nepovinná šípka vykreslená vo vlastnej veľkosti: z opačnej strany
+ * stola sa smer rozlíši rýchlejšie podľa symbolu než podľa slova.
+ */
 function ChoiceButton({
   label,
+  glyph,
   hint,
   color,
   selected,
@@ -214,6 +259,7 @@ function ChoiceButton({
   onClick,
 }: {
   label: string;
+  glyph?: string;
   hint?: string;
   color: string;
   selected?: boolean;
@@ -226,22 +272,31 @@ function ChoiceButton({
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className="flex min-h-[min(3.1rem,7.5dvh)] flex-1 flex-col items-center justify-center gap-0.5 border px-2 transition enabled:active:scale-[.97] disabled:cursor-default"
+      aria-label={glyph ? label : undefined}
+      className="quiz-choice flex flex-1 flex-col items-center justify-center border transition enabled:active:scale-[.97] disabled:cursor-default"
       style={{
         borderRadius: CARD_RADIUS,
-        background: selected ? `${color}30` : SURFACE,
+        background: selected ? `${color}33` : SURFACE,
         borderColor: selected ? `${color}cc` : SURFACE_BORDER,
         opacity: dimmed ? 0.3 : 1,
-        boxShadow: selected ? `0 10px 26px -18px ${color}` : undefined,
+        boxShadow: selected ? `0 12px 30px -18px ${color}` : undefined,
       }}
     >
-      <span
-        className="font-black leading-none text-white"
-        style={{ fontSize: "clamp(.9rem, 3.6vw, 1.1rem)" }}
-      >
-        {label}
+      <span className="flex items-center justify-center gap-2">
+        {glyph && (
+          <span
+            aria-hidden="true"
+            className="quiz-choice-glyph font-black leading-none"
+            style={{ color: selected ? color : "rgba(255,255,255,.55)" }}
+          >
+            {glyph}
+          </span>
+        )}
+        <span className="quiz-choice-label font-black leading-none text-white">
+          {label}
+        </span>
       </span>
-      {hint && <span className={`${EYEBROW} text-white/40`}>{hint}</span>}
+      {hint && <span className={`${EYEBROW} mt-1 text-white/45`}>{hint}</span>}
     </button>
   );
 }
@@ -286,15 +341,15 @@ function NumberPad({
         }}
       >
         <span
-          className="font-black tabular-nums leading-none"
-          style={{
-            fontSize: "clamp(1.3rem, 5.8vw, 1.95rem)",
-            color: value ? "#ffffff" : "rgba(255,255,255,.25)",
-          }}
+          className="quiz-guess-value font-black tabular-nums leading-none"
+          style={{ color: value ? "#ffffff" : "rgba(255,255,255,.25)" }}
         >
           {value || "0"}
         </span>
-        <span className={`${EYEBROW} leading-tight`} style={{ color }}>
+        <span
+          className="quiz-guess-unit font-black uppercase leading-tight tracking-[0.12em]"
+          style={{ color }}
+        >
           {unit}
         </span>
       </div>
@@ -318,7 +373,7 @@ function NumberPad({
         type="button"
         disabled={!ready}
         onClick={onSubmit}
-        className="min-h-[min(2.6rem,5.5dvh)] shrink-0 rounded-xl text-sm font-black text-white transition active:scale-95 disabled:opacity-30"
+        className="quiz-next shrink-0 rounded-xl font-black text-white transition active:scale-95 disabled:opacity-30"
         style={{ background: `linear-gradient(135deg, ${color}, ${color}aa)` }}
       >
         Potvrdiť tip
@@ -341,22 +396,23 @@ function GuessChip({
 }) {
   return (
     <div
-      className="flex w-full shrink-0 flex-col items-center border px-3 py-1.5"
+      className="flex w-full shrink-0 flex-col items-center border"
       style={{
         borderRadius: CARD_RADIUS,
-        borderColor: `${color}44`,
-        background: `${color}12`,
+        borderColor: `${color}55`,
+        background: `${color}16`,
+        padding: "clamp(.45rem, 1.2dvh, .85rem) 1rem",
       }}
     >
-      <p className={`${EYEBROW} text-white/40`}>{eyebrow}</p>
-      <p className="flex items-baseline gap-1.5">
-        <span
-          className="font-black tabular-nums leading-none text-white"
-          style={{ fontSize: "clamp(1.4rem, 6vw, 2.1rem)" }}
-        >
+      <p className={`${EYEBROW} text-white/50`}>{eyebrow}</p>
+      <p className="mt-0.5 flex items-baseline gap-2">
+        <span className="quiz-guess-value font-black tabular-nums leading-none text-white">
           {guess === null ? "—" : formatQuizNumber(guess)}
         </span>
-        <span className={`${EYEBROW} leading-tight`} style={{ color }}>
+        <span
+          className="quiz-guess-unit font-black uppercase leading-tight tracking-[0.12em]"
+          style={{ color }}
+        >
           {unit}
         </span>
       </p>
@@ -463,7 +519,8 @@ function QuizFace({
 
       {stage.t === "guess" && stage.team === team && question.kind !== "classic" && (
         <>
-          <QuestionBar text={question.prompt} />
+          {/* Kompaktná: voľné miesto tu patrí číselnej klávesnici. */}
+          <QuestionBar text={question.prompt} compact />
           <NumberPad
             value={draft}
             unit={question.unit}
@@ -525,7 +582,8 @@ function VerdictButtons({
       {(["viac", "menej"] as const).map(verdict => (
         <ChoiceButton
           key={verdict}
-          label={verdict === "viac" ? "↑ VIAC" : "↓ MENEJ"}
+          label={verdict === "viac" ? "VIAC" : "MENEJ"}
+          glyph={verdict === "viac" ? "↑" : "↓"}
           color={VERDICT_COLORS[verdict]}
           selected={chosen === verdict}
           dimmed={chosen !== null && chosen !== undefined && chosen !== verdict}
@@ -551,7 +609,8 @@ function ClassicOptions({
   const locked = picked !== null;
   return (
     <>
-      <QuestionBar text={question.prompt} />
+      {/* Kompaktná otázka: o miesto tu súťaží aj mriežka štyroch odpovedí. */}
+      <QuestionBar text={question.prompt} compact />
       <div
         className="grid w-full shrink-0 grid-cols-2 gap-1.5"
         style={{ animation: "slideUp .3s ease-out both" }}
@@ -565,16 +624,16 @@ function ClassicOptions({
               disabled={locked}
               onClick={() => onPick(index)}
               aria-label={`Možnosť ${LETTERS[index]}: ${option}`}
-              className="flex min-h-[min(3.1rem,7.5dvh)] items-center gap-2 rounded-xl border px-2 py-1.5 text-left transition enabled:active:scale-[.97] disabled:cursor-default"
+              className="quiz-option flex items-center gap-2 rounded-xl border px-2 py-1.5 text-left transition enabled:active:scale-[.97] disabled:cursor-default"
               style={{
-                background: selected ? `${color}30` : SURFACE,
+                background: selected ? `${color}33` : SURFACE,
                 borderColor: selected ? `${color}cc` : SURFACE_BORDER,
                 opacity: locked && !selected ? 0.25 : 1,
                 animation: `scaleIn .25s ease-out ${index * 0.05}s both`,
               }}
             >
               <span
-                className="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg text-[10px] font-black"
+                className="quiz-option-letter flex shrink-0 items-center justify-center rounded-lg font-black"
                 style={{
                   background: selected ? color : "rgba(255,255,255,0.1)",
                   color: selected ? "#08111d" : "rgba(255,255,255,0.5)",
@@ -582,10 +641,7 @@ function ClassicOptions({
               >
                 {LETTERS[index]}
               </span>
-              <span
-                className="flex-1 font-bold leading-tight text-white"
-                style={{ fontSize: "clamp(.7rem, 2.8vw, .92rem)" }}
-              >
+              <span className="quiz-option-text flex-1 font-bold leading-tight text-white">
                 {option}
               </span>
             </button>
@@ -710,8 +766,8 @@ function RevealPanel({
       >
         <p className={`${EYEBROW} shrink-0 text-emerald-300/70`}>{answerEyebrow}</p>
         <p
-          className="mt-0.5 shrink-0 text-center font-black leading-tight text-white"
-          style={{ fontSize: "clamp(1.05rem, 4.4vw, 1.5rem)" }}
+          className="quiz-question-text mt-0.5 shrink-0 text-center font-black text-white"
+          style={{ fontSize: "clamp(1.1rem, min(6.6vw, 4dvh), 1.85rem)" }}
         >
           {answerText}
         </p>
@@ -733,23 +789,23 @@ function RevealPanel({
         }}
       >
         <span
-          className="shrink-0 font-black tabular-nums leading-none"
-          style={{ color: tone, fontSize: "clamp(1.2rem, 5vw, 1.6rem)" }}
+          className="quiz-delta shrink-0 font-black tabular-nums leading-none"
+          style={{ color: tone }}
         >
           {deltaLabel(result.delta)}
         </span>
         <span className="min-w-0 flex-1 text-left">
-          <span className="block text-[11px] font-black leading-tight text-white/80">
+          <span className="quiz-reason block font-black leading-tight text-white/85">
             {REASON_TEXT[result.reason]}
             {wager && (
-              <span className="text-white/35">
+              <span className="text-white/40">
                 {" · "}
                 {wager === "risk" ? "RISK" : "ISTOTA"}
               </span>
             )}
           </span>
           {detail && (
-            <span className="block text-[10px] font-bold tabular-nums text-white/40">
+            <span className="quiz-reason-detail block font-bold tabular-nums text-white/50">
               {detail}
             </span>
           )}
@@ -760,7 +816,7 @@ function RevealPanel({
         type="button"
         onClick={onNext}
         aria-label={`${teamName}: ďalšia otázka`}
-        className="min-h-[min(2.6rem,5.5dvh)] w-full shrink-0 rounded-xl text-sm font-black text-white transition active:scale-95"
+        className="quiz-next w-full shrink-0 rounded-xl font-black text-white transition active:scale-95"
         style={{ background: `linear-gradient(135deg, ${color}, ${color}99)` }}
       >
         Ďalšia otázka →
