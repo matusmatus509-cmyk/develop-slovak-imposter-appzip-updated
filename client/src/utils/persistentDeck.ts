@@ -82,3 +82,21 @@ export function takePersistentItem<T>(key: string, items: readonly T[], getId?: 
   if (item === undefined) throw new Error(`Empty content deck: ${key}`);
   return item;
 }
+
+/** Ids, ktoré už tento deck vydal. Pre výbery, ktoré si riadia poradie samé
+ *  (napr. hudobné minihry) a deck používajú len na dlhodobú rotáciu obsahu. */
+export function seenDeckIds(key: string): Set<string> {
+  if (typeof window === "undefined") return new Set();
+  return new Set(readDecks()[key] ?? []);
+}
+
+/** Doplní videné ids. Keď sa zásoba vyčerpá, cyklus začne odznova — rovnako
+ *  ako v `takePersistentItems`, takže obsah sa nikdy nezablokuje natrvalo. */
+export function rememberDeckIds(key: string, ids: readonly string[], poolSize: number) {
+  if (typeof window === "undefined" || ids.length === 0) return;
+  const decks = readDecks();
+  const used = new Set(decks[key] ?? []);
+  ids.forEach((id) => used.add(id));
+  decks[key] = poolSize > 0 && used.size >= poolSize ? [] : [...used];
+  saveDecks(decks);
+}

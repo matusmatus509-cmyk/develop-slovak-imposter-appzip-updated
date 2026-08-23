@@ -307,90 +307,86 @@ export default function GameWelcome({
   onBack: () => void;
   onStart: () => void;
 }) {
-  const style = {
-    "--welcome-accent": config.accent,
-    "--welcome-soft": config.accentSoft,
-    "--welcome-deep": config.deep,
-  } as CSSProperties;
+  const style = { "--ui-pre-accent": config.accent } as CSSProperties;
 
   return (
-    <main
-      className={`game-welcome relative h-[100dvh] overflow-hidden text-white ${config.variant === "song" ? "game-welcome-song" : ""}`}
-      style={{ ...style, background: `linear-gradient(180deg, ${config.deep}, #080b10 68%)` }}
-    >
-      <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_50%_5%,var(--welcome-soft),transparent_38%)]" />
-
-      <div className="game-welcome-content relative mx-auto flex h-full w-full max-w-lg flex-col px-4 pb-[max(.75rem,env(safe-area-inset-bottom))] pt-[max(.75rem,env(safe-area-inset-top))]">
-        <div className={`game-welcome-hero relative mb-3 min-h-0 basis-0 grow-[1.25] shrink overflow-hidden rounded-[26px] border border-white/12 shadow-2xl animate-welcome-reveal ${config.variant === "song" ? "game-welcome-song-hero" : ""}`}>
+    <main className="ui ui-pre" style={style}>
+      <div className="ui-pre-inner">
+        {/* Obraz hry nesie celú farebnosť obrazovky — okolo neho je len tma. */}
+        <div className="ui-pre-art">
           {config.art && !config.artAtlas ? (
             <img
               src={config.art}
               alt=""
-              className="absolute inset-0 h-full w-full scale-[1.06] object-cover saturate-[.9]"
+              aria-hidden="true"
+              className="ui-pre-media"
               style={{ objectPosition: config.artPosition }}
             />
           ) : (
-            <div
-              className="absolute inset-0 scale-[1.07] bg-no-repeat"
+            <span
+              aria-hidden="true"
+              className="ui-pre-media"
               style={{
                 backgroundImage: `url(${config.artAtlas ? config.art : gameArt})`,
-                backgroundSize: config.artSize ?? (config.artAtlas ? "300% 300%" : "400% 300%"),
+                backgroundSize:
+                  config.artSize ?? (config.artAtlas ? "300% 300%" : "400% 300%"),
                 backgroundPosition: config.artPosition,
               }}
             />
           )}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-[#080b12]" />
-          <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[var(--welcome-soft)] blur-3xl" />
-          <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(255,255,255,.12),transparent_28%,transparent_70%,rgba(0,0,0,.35))]" />
-          {config.variant === "song" && <div className="song-welcome-equalizer pointer-events-none absolute bottom-[7.3rem] right-5 flex h-10 items-end gap-1 opacity-80" aria-hidden="true">{[16, 28, 20, 36, 25, 32, 18].map((height, index) => <i key={index} style={{ height }} />)}</div>}
 
           <button
             type="button"
             onClick={onBack}
             aria-label="Späť"
-            className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/16 bg-[#0d1218]/80 text-white shadow-lg transition hover:bg-[#18202a] active:scale-90"
+            className="ui-back ui-pre-back"
           >
-            <Icons.chevronLeft size={23} />
+            <Icons.arrowLeft size={19} />
           </button>
 
-          <div className="absolute inset-x-0 bottom-0 p-5">
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/12 bg-[#0d1218]/70 px-3 py-1.5">
-              <span className="h-2 w-2 rounded-full" style={{ background: config.accent }} />
-              <span className="text-[10px] font-black uppercase tracking-[.19em] text-white/75">{config.eyebrow}</span>
-            </div>
-            <h1 className="max-w-[360px] text-[2.35rem] font-extrabold leading-[.96] tracking-[-.045em] drop-shadow-xl">{config.title}</h1>
+          <div className="ui-pre-caption">
+            <p className="ui-pre-kicker">
+              <i aria-hidden="true" />
+              {config.eyebrow}
+            </p>
+            <h1>{config.title}</h1>
           </div>
         </div>
 
-        <section className="game-welcome-details flex min-h-0 basis-0 grow flex-col justify-between gap-2 animate-welcome-content">
-          <p className="game-welcome-description text-[13px] font-medium leading-[1.5] text-white/62">{config.description}</p>
+        <section className="ui-pre-body">
+          <p className="ui-pre-text">{config.description}</p>
 
-          <div className="game-welcome-stats grid grid-cols-2 gap-2">
-            <div className="game-welcome-stat rounded-2xl border border-white/10 bg-[#121922]/90 px-3.5 py-3">
-              <p className="text-[9px] font-black uppercase tracking-[.17em] text-white/35">Hráči</p>
-              <p className="mt-1 text-sm font-extrabold text-white/85">{config.players}</p>
+          {/* Hráči a trvanie sú fakty, nie karty — stačí im linka a typografia. */}
+          <dl className="ui-pre-facts">
+            <div className="ui-pre-fact">
+              <dt>Hráči</dt>
+              <dd>{config.players}</dd>
             </div>
-            <div className="game-welcome-stat rounded-2xl border border-white/10 bg-[#121922]/90 px-3.5 py-3">
-              <p className="text-[9px] font-black uppercase tracking-[.17em] text-white/35">Trvanie</p>
-              <p className="mt-1 text-sm font-extrabold text-white/85">{config.duration}</p>
+            <div className="ui-pre-fact">
+              <dt>Trvanie</dt>
+              <dd>{config.duration}</dd>
             </div>
-          </div>
+          </dl>
 
-          <div className="game-welcome-rule flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0d131a]/75 px-4 py-3">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg" style={{ background: config.accentSoft, color: config.accent }}>
-              <Icons.sparkles size={18} />
+          <p className="ui-pre-rule">
+            <span aria-hidden="true">
+              <Icons.sparkles size={15} />
             </span>
-            <p className="text-xs font-bold leading-snug text-white/68">{config.rule}</p>
-          </div>
+            {config.rule}
+          </p>
 
           <button
             type="button"
             onClick={onStart}
-            className="flex min-h-14 w-full items-center justify-between rounded-xl border border-white/10 px-5 text-left font-extrabold text-white shadow-xl transition hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 active:scale-[.98]"
-            style={{ background: `linear-gradient(135deg, ${config.accent}, color-mix(in srgb, ${config.accent} 70%, #202a38))`, boxShadow: `0 18px 34px -24px ${config.accent}` }}
+            className="ui-cta"
+            style={{ "--ui-cta-bg": config.accent, "--ui-cta-ink": "#111319" } as CSSProperties}
           >
-            <span>{config.variant === "song" ? "Pripraviť hudobné kolo" : "Pripraviť hru"}</span>
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/18"><Icons.chevronRight size={20} /></span>
+            <span>
+              {config.variant === "song" ? "Pripraviť hudobné kolo" : "Pripraviť hru"}
+            </span>
+            <span className="ui-cta-arrow" aria-hidden="true">
+              <Icons.chevronRight size={18} />
+            </span>
           </button>
         </section>
       </div>

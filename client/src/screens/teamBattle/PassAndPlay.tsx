@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { getSongCardsForLanguage } from "../../data/localizedSongs";
+import { drawSong } from "../../data/songSelection";
 import { type ForbiddenCard, type SongCard } from "../../data/teamBattleExtras";
 import { getForbiddenCardsForLanguage } from "../../data/localizedForbiddenWord";
 import { takePersistentItem } from "../../utils/persistentDeck";
@@ -131,13 +131,10 @@ function PassAndPlay({
       );
       return;
     }
-    setCard(
-      takePersistentItem(
-        `quick:songs:${language}`,
-        getSongCardsForLanguage(language),
-        item => `${item.title}|${item.artist}`.toLocaleLowerCase("sk")
-      )
-    );
+    // Zahmkaj pesničku: vyberáme len skladby rozpoznateľné podľa melódie a
+    // rešpektujeme session, aby tú istú skladbu nedostal aj Hudobný kvíz.
+    const song = drawSong({ language, minigame: "hum" });
+    if (song) setCard(song);
   }
 
   // Počas prehrávania ukážky pesničky sa čas zastaví, inak beží podľa reálneho času.
