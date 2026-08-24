@@ -18,6 +18,8 @@ export const letterGameHero = publicAsset("party-letter-hero-v2.png");
 export const fiveTenGameHero = publicAsset("party-five-ten-hero-v2.png");
 export const musicQuizGameHero = publicAsset("party-music-quiz-hero-v2.png");
 export const onlyLiesGameHero = publicAsset("party-quiz-battle-v3.png");
+/** Samostatný aktuálny vizuál Hádaj emoji — nepoužíva už starý výrez z atlasu. */
+export const emojiGuessGameHero = publicAsset("emoji-guess-hero-v1.svg");
 export const forbiddenWordGameHero = publicAsset("party-forbidden.svg");
 export const partyHubHero = publicAsset("party-hub-hero.png");
 export const partyTableBackground = publicAsset("party-table-bg.png");
