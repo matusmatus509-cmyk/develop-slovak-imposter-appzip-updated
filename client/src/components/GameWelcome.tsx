@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Screen } from "../types";
 /** Dizajnové pravidlo: pôvodný GitHub vzhľad — hero vizuály majú mierny presah cez atlasové okraje. */
-import { forbiddenWordGameHero, fiveTenGameHero, gameArt, letterGameHero, minigameArtAtlas, musicQuizGameHero, onlyLiesGameHero, partyMinigameAtlas, songGameHero } from "../media";
+import { fiveTenGameHero, gameArt, letterGameHero, minigameArtAtlas, musicQuizGameHero, partyMinigameAtlas, songGameHero } from "../media";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -118,8 +118,11 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#f43f5e",
     accentSoft: "rgba(244,63,94,.25)",
     deep: "#2b0913",
-    artPosition: "50% 56%",
-    art: onlyLiesGameHero,
+    // Zlatá a puknutá maska z atlasu — motív pretvárky sedí na hru, kde je
+    // pravda zakázaná, a hra už nezdieľa fotku s kvízovým duelom.
+    artPosition: "0% 100%",
+    art: minigameArtAtlas,
+    artAtlas: true,
   },
   ktodostanebombu: {
     eyebrow: "Nikto nevie, kedy vybuchne",
@@ -195,8 +198,12 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#14b8a6",
     accentSoft: "rgba(20,184,166,.23)",
     deep: "#2b0d18",
-    artPosition: "50% 56%",
-    art: forbiddenWordGameHero,
+    // Pizza z party atlasu je presne tá karta, ktorú hráč opisuje — vyzerá
+    // lepšie ako pôvodná plochá vektorová grafika.
+    artPosition: "0% 50%",
+    art: partyMinigameAtlas,
+    artAtlas: true,
+    artSize: "400% 300%",
   },
   pesnicka: {
     eyebrow: "Melódia bez textu",
