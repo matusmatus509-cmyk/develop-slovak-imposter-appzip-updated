@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Screen } from "../types";
 /** Dizajnové pravidlo: pôvodný GitHub vzhľad — hero vizuály majú mierny presah cez atlasové okraje. */
-import { forbiddenWordGameHero, fiveTenGameHero, gameArt, letterGameHero, minigameArtAtlas, musicQuizGameHero, onlyLiesGameHero, partyMinigameAtlas, songGameHero } from "../media";
+import { emojiGuessGameHero, forbiddenWordGameHero, fiveTenGameHero, gameArt, letterGameHero, minigameArtAtlas, musicQuizGameHero, onlyLiesGameHero, partyMinigameAtlas, songGameHero } from "../media";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -145,9 +145,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#facc15",
     accentSoft: "rgba(250,204,21,.23)",
     deep: "#292005",
-    artPosition: "100% 100%",
-    art: minigameArtAtlas,
-    artAtlas: true,
+    artPosition: "50% 50%",
+    art: emojiGuessGameHero,
   },
   "impostor-setup": {
     eyebrow: "Tajné slovo. Tajný hráč.",
