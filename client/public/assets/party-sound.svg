@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#062a34"/><stop offset=".58" stop-color="#0c1726"/><stop offset="1" stop-color="#070a12"/></linearGradient>
+    <linearGradient id="sp" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#67e8f9"/><stop offset="1" stop-color="#0284c7"/></linearGradient>
+    <radialGradient id="gl"><stop stop-color="#22d3ee" stop-opacity=".55"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></radialGradient>
+    <filter id="sh"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".6"/></filter>
+  </defs>
+  <rect width="480" height="320" fill="url(#bg)"/><circle cx="240" cy="155" r="190" fill="url(#gl)"/>
+  <g opacity=".22" stroke="#a5f3fc"><path d="M0 70h75M405 70h75M0 250h92M388 250h92"/><circle cx="54" cy="160" r="28"/><circle cx="426" cy="160" r="28"/></g>
+  <g filter="url(#sh)"><path d="M112 126h58l75-58v175l-75-51h-58z" fill="url(#sp)"/><path d="M287 111c32 25 32 73 0 98M321 81c55 42 55 117 0 159M354 52c78 61 78 154 0 216" fill="none" stroke="#cffafe" stroke-width="13" stroke-linecap="round"/></g>
+  <g transform="translate(72 58)" fill="#fff" opacity=".8"><circle r="6"/><circle cx="327" cy="14" r="5"/><circle cx="22" cy="212" r="4"/><circle cx="302" cy="212" r="7"/></g>
+</svg>

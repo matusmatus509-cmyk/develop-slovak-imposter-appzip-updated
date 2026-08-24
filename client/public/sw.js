@@ -1,4 +1,4 @@
-const CACHE_NAME = "podvodnik-pwa-v3";
+const CACHE_NAME = "podvodnik-pwa-v4";
 const CACHE_PREFIX = "podvodnik-pwa-";
 const scope = self.registration.scope;
 const appUrl = (path) => new URL(path, scope).toString();
@@ -8,6 +8,24 @@ const APP_SHELL = [
   appUrl("manifest.webmanifest"),
   appUrl("icons/icon-192x192.png"),
   appUrl("icons/icon-512x512.png"),
+  appUrl("assets/app-background-v2.webp"),
+  appUrl("assets/brand-mark.svg"),
+  appUrl("assets/party-mode-card.jpg"),
+  appUrl("assets/imposter-card.jpg"),
+  appUrl("assets/minigames-card.jpg"),
+  appUrl("assets/game-art-sprite.jpg"),
+  appUrl("assets/minigame-art-atlas.png"),
+  appUrl("assets/party-minigame-atlas.png"),
+  appUrl("assets/party-song-hero-v2.png"),
+  appUrl("assets/party-letter-hero-v2.png"),
+  appUrl("assets/party-five-ten-hero-v2.png"),
+  appUrl("assets/party-music-quiz-hero-v2.png"),
+  appUrl("assets/party-quiz-battle-v3.png"),
+  appUrl("assets/party-forbidden.svg"),
+  appUrl("assets/party-hub-hero.png"),
+  appUrl("assets/party-table-bg.png"),
+  appUrl("assets/party-sound.svg"),
+  appUrl("assets/settings-control-hero.png"),
 ];
 const OFFLINE_DOCUMENT = appUrl("index.html");
 
