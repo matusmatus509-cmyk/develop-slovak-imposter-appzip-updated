@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Screen } from "../types";
 /** Dizajnové pravidlo: pôvodný GitHub vzhľad — hero vizuály majú mierny presah cez atlasové okraje. */
-import { fiveTenGameHero, gameArt, letterGameHero, minigameArtAtlas, musicQuizGameHero, partyMinigameAtlas, songGameHero } from "../media";
+import { fiveTenGameHero, gameArt, letterGameHero, minigameArtAtlas, partyMinigameAtlas, songGameHero } from "../media";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -118,11 +118,10 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#f43f5e",
     accentSoft: "rgba(244,63,94,.25)",
     deep: "#2b0913",
-    // Zlatá a puknutá maska z atlasu — motív pretvárky sedí na hru, kde je
-    // pravda zakázaná, a hra už nezdieľa fotku s kvízovým duelom.
-    artPosition: "0% 100%",
-    art: minigameArtAtlas,
-    artAtlas: true,
+    // Maľovaná ilustrácia zo spritu: hráč s maskou a prstom na ústach. Motív
+    // pretvárky sedí na hru, kde je pravda zakázaná, a hra už nezdieľa obrázok
+    // s kvízovým duelom. Bez `art` sa berie sprite `gameArt` (400 % 300 %).
+    artPosition: "66.667% 50%",
   },
   ktodostanebombu: {
     eyebrow: "Nikto nevie, kedy vybuchne",
@@ -198,12 +197,9 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#14b8a6",
     accentSoft: "rgba(20,184,166,.23)",
     deep: "#2b0d18",
-    // Pizza z party atlasu je presne tá karta, ktorú hráč opisuje — vyzerá
-    // lepšie ako pôvodná plochá vektorová grafika.
-    artPosition: "0% 50%",
-    art: partyMinigameAtlas,
-    artAtlas: true,
-    artSize: "400% 300%",
+    // Maľovaná ilustrácia zo spritu: partia vysvetľuje pri kartách a bublinách
+    // — presne to, čo sa v hre robí. Nahrádza plochú vektorovú grafiku.
+    artPosition: "100% 0%",
   },
   pesnicka: {
     eyebrow: "Melódia bez textu",
@@ -229,8 +225,12 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#d946ef",
     accentSoft: "rgba(217,70,239,.23)",
     deep: "#240b2f",
-    artPosition: "50% 50%",
-    art: musicQuizGameHero,
+    // DJ pult s farebným ekvalizérom z party atlasu. Predtým tu bol vinyl so
+    // slúchadlami, ktorý pôsobil takmer rovnako ako „Zahmkaj pesničku".
+    artPosition: "66.667% 50%",
+    art: partyMinigameAtlas,
+    artAtlas: true,
+    artSize: "400% 300%",
   },
   zvuk: {
     eyebrow: "Počúvaj a bzuč",
