@@ -1,26 +1,30 @@
-/** Dizajnové pravidlo: verná GitHub aplikácia — hostované vizuály, bez lokálnych binárnych assetov. */
-const externalAssetBase = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663652453277";
+/**
+ * Vizuály sú súčasťou nasadenia aplikácie. Neodkazujeme na dočasné session URL,
+ * pretože tie po publikovaní alebo v nainštalovanej PWA môžu vracať 403.
+ */
+const publicAsset = (fileName: string) => `${import.meta.env.BASE_URL}assets/${fileName}`;
 
-export const appBackground = `${externalAssetBase}/JDXdiQNGlfPDvVHt.webp`;
-export const brandMark = `${externalAssetBase}/rkdQWXKuTZrmupbU.png`;
-export const partyModeArt = `${externalAssetBase}/BdvACxmzuuNFyUXo.jpg`;
-export const imposterArt = `${externalAssetBase}/THxdZLnfWsgohiZN.jpg`;
-export const minigamesArt = `${externalAssetBase}/uCbfkhEMZrsqQxWc.jpg`;
+export const appBackground = publicAsset("app-background-v2.webp");
+export const brandMark = publicAsset("brand-mark.svg");
+export const partyModeArt = publicAsset("party-mode-card.jpg");
+export const imposterArt = publicAsset("imposter-card.jpg");
+export const minigamesArt = publicAsset("minigames-card.jpg");
 
-export const gameArt = `${externalAssetBase}/kGDlengJxxJjpCCW.jpg`;
-export const minigameArtAtlas = `${externalAssetBase}/JJkrCttDUVKPUgkW.png`;
-export const partyMinigameAtlas = `${externalAssetBase}/WkCbXWLcCGbxOpzl.png`;
-export const songGameHero = `${externalAssetBase}/QEXNCTEtiRMsZfQy.png`;
-export const letterGameHero = `${externalAssetBase}/unHyMWwtbQDjFNYU.png`;
-export const fiveTenGameHero = `${externalAssetBase}/EUrlDNYtSMGLMgdF.png`;
-export const musicQuizGameHero = `${externalAssetBase}/VSkCdhSlUSrxtdNK.png`;
-export const onlyLiesGameHero = `${externalAssetBase}/ccsooHOaUiIwizgj.png`;
-export const forbiddenWordGameHero = `${externalAssetBase}/crNLBtPzzHfcpLtQ.png`;
-export const partyHubHero = `${externalAssetBase}/vQsMZVhDVKxoeyGY.png`;
-export const partyTableBackground = `${externalAssetBase}/kAQfzkLYRJviwoaH.png`;
-export const quizBattleArt = `${externalAssetBase}/fDSTajAapnwBuOTX.png`;
-export const forbiddenArt = `${externalAssetBase}/RdVimNcwFywxbDSE.svg`;
-export const soundArt = `${externalAssetBase}/RMEqYKIPfANUByOT.svg`;
+export const gameArt = publicAsset("game-art-sprite.jpg");
+export const minigameArtAtlas = publicAsset("minigame-art-atlas.png");
+export const partyMinigameAtlas = publicAsset("party-minigame-atlas.png");
+export const songGameHero = publicAsset("party-song-hero-v2.png");
+export const letterGameHero = publicAsset("party-letter-hero-v2.png");
+export const fiveTenGameHero = publicAsset("party-five-ten-hero-v2.png");
+export const musicQuizGameHero = publicAsset("party-music-quiz-hero-v2.png");
+export const onlyLiesGameHero = publicAsset("party-quiz-battle-v3.png");
+export const forbiddenWordGameHero = publicAsset("party-forbidden.svg");
+export const partyHubHero = publicAsset("party-hub-hero.png");
+export const partyTableBackground = publicAsset("party-table-bg.png");
+export const quizBattleArt = publicAsset("party-quiz-battle-v3.png");
+export const forbiddenArt = publicAsset("party-forbidden.svg");
+export const soundArt = publicAsset("party-sound.svg");
 
-export const dogSound = `${externalAssetBase}/LnDgQPsgjkzdhAda.ogg`;
-export const doorbellSound = `${externalAssetBase}/QYtbvSMqLnkJSIRh.ogg`;
+// Tieto zvuky sa momentálne neprehrávajú; prázdny data URI nevyžaduje externé CDN.
+export const dogSound = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
+export const doorbellSound = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";

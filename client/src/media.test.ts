@@ -10,7 +10,7 @@ import {
 } from "./media";
 
 describe("minigame artwork registry", () => {
-  it("keeps every core artwork on a public CDN for external deployments", () => {
+  it("serves every core artwork from the deployed app", () => {
     const assets = [
       gameArt,
       minigameArtAtlas,
@@ -22,10 +22,11 @@ describe("minigame artwork registry", () => {
     ];
 
     expect(assets).toHaveLength(7);
-    expect(assets.every((asset) => asset.startsWith("https://files.manuscdn.com/"))).toBe(true);
+    expect(assets.every((asset) => asset.includes("assets/"))).toBe(true);
+    expect(assets.every((asset) => !asset.includes("files.manuscdn.com"))).toBe(true);
   });
 
-  it("uses the refreshed music quiz hero", () => {
-    expect(musicQuizGameHero).toBe("https://files.manuscdn.com/user_upload_by_module/session_file/310519663652453277/VSkCdhSlUSrxtdNK.png");
+  it("uses the bundled music quiz hero", () => {
+    expect(musicQuizGameHero).toContain("assets/party-music-quiz-hero-v2.png");
   });
 });

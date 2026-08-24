@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#33111c"/><stop offset="1" stop-color="#090b13"/></linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff8f4"/><stop offset="1" stop-color="#f8d9da"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#fb7185" stop-opacity=".55"/><stop offset="1" stop-color="#fb7185" stop-opacity="0"/></radialGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#000" flood-opacity=".55"/></filter>
+  </defs>
+  <rect width="480" height="320" fill="url(#bg)"/><circle cx="235" cy="155" r="180" fill="url(#glow)"/>
+  <g opacity=".2" stroke="#fff" fill="none"><path d="M20 54h96M360 35h88M16 280h130M354 270h110"/><circle cx="55" cy="105" r="28"/><circle cx="421" cy="190" r="38"/></g>
+  <g filter="url(#shadow)" transform="rotate(-5 240 160)">
+    <rect x="125" y="42" width="230" height="245" rx="28" fill="url(#card)"/>
+    <rect x="145" y="62" width="190" height="58" rx="16" fill="#be123c"/>
+    <text x="240" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="29" font-weight="900" fill="#fff">PIZZA</text>
+    <g font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#5f2732" text-anchor="middle">
+      <rect x="150" y="141" width="82" height="38" rx="12" fill="#f5b9bf"/><text x="191" y="166">SYR</text>
+      <rect x="248" y="141" width="82" height="38" rx="12" fill="#f5b9bf"/><text x="289" y="166">JEDLO</text>
+      <rect x="150" y="194" width="82" height="38" rx="12" fill="#f5b9bf"/><text x="191" y="219">OKRÚHLA</text>
+      <rect x="248" y="194" width="82" height="38" rx="12" fill="#f5b9bf"/><text x="289" y="219">TALIANSKO</text>
+    </g>
+  </g>
+  <g transform="translate(346 54)"><circle r="48" fill="#fb7185"/><circle r="36" fill="#881337"/><path d="M-22-22 22 22M22-22-22 22" stroke="#fff" stroke-width="10" stroke-linecap="round"/></g>
+</svg>
