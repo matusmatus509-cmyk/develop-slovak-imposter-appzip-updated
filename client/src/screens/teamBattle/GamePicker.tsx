@@ -8,7 +8,6 @@ import { Icons } from "../../components/icons";
 import { GAME_LABELS, type GameType } from "../../data/teamBattle";
 import {
   fiveTenGameHero,
-  forbiddenWordGameHero,
   letterGameHero,
   minigameArtAtlas,
   musicQuizGameHero,
@@ -55,7 +54,11 @@ const GAME_ART: Record<
     size: "400% 300%",
   },
   sarady: { src: partyMinigameAtlas, position: "0% 100%", size: "400% 300%" },
-  zakazane: { src: forbiddenWordGameHero, position: "50% 56%", size: "cover" },
+  zakazane: {
+    src: partyMinigameAtlas,
+    position: "0% 50%",
+    size: "400% 300%",
+  },
   pesnicka: { src: songGameHero, position: "50% 50%", size: "cover" },
   "hudobny-kviz": {
     src: musicQuizGameHero,
