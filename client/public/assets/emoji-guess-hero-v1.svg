@@ -1,42 +1,120 @@
-<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="48" y1="26" x2="1152" y2="604" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#36218B"/>
-      <stop offset="0.46" stop-color="#A43AE5"/>
+    <linearGradient id="egBg" x1="0" y1="0" x2="1200" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2A1065"/>
+      <stop offset="0.5" stop-color="#7E22CE"/>
+      <stop offset="1" stop-color="#B45309"/>
+    </linearGradient>
+    <radialGradient id="egGlowA" cx="0.16" cy="0.14" r="0.5">
+      <stop stop-color="#FDE047" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FDE047" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="egGlowB" cx="0.86" cy="0.88" r="0.52">
+      <stop stop-color="#FB7185" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FB7185" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="egCard" x1="180" y1="330" x2="1020" y2="880" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.12"/>
+    </linearGradient>
+    <linearGradient id="egFace" x1="330" y1="420" x2="530" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FEF08A"/>
+      <stop offset="0.55" stop-color="#FACC15"/>
+      <stop offset="1" stop-color="#EA9A0B"/>
+    </linearGradient>
+    <linearGradient id="egFace2" x1="670" y1="420" x2="870" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FEF3C7"/>
+      <stop offset="0.55" stop-color="#FBBF24"/>
+      <stop offset="1" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="egBadge" x1="920" y1="222" x2="1080" y2="382" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FDE047"/>
       <stop offset="1" stop-color="#F59E0B"/>
     </linearGradient>
-    <linearGradient id="card" x1="600" y1="106" x2="600" y2="500" gradientUnits="userSpaceOnUse">
-      <stop stop-color="white" stop-opacity="0.28"/>
-      <stop offset="1" stop-color="white" stop-opacity="0.1"/>
-    </linearGradient>
-    <filter id="shadow" x="173" y="82" width="854" height="500" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="20" stdDeviation="20" flood-color="#24104F" flood-opacity="0.35"/>
+    <filter id="egShadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="30" stdDeviation="28" flood-color="#1B0B3A" flood-opacity="0.55"/>
     </filter>
-    <filter id="blur"><feGaussianBlur stdDeviation="22"/></filter>
+    <filter id="egSoft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="30"/></filter>
   </defs>
-  <rect width="1200" height="630" rx="44" fill="url(#bg)"/>
-  <circle cx="116" cy="88" r="180" fill="#FDE047" fill-opacity="0.34" filter="url(#blur)"/>
-  <circle cx="1080" cy="566" r="230" fill="#FB7185" fill-opacity="0.38" filter="url(#blur)"/>
-  <path d="M0 486C126 428 220 514 342 466C459 420 505 334 652 379C814 429 913 581 1200 454V630H0V486Z" fill="#160B42" fill-opacity="0.2"/>
-  <g opacity="0.26" fill="white">
-    <path d="M79 275h35v-35h18v35h35v18h-35v35h-18v-35H79v-18Z"/>
-    <path d="M1050 150h35v-35h18v35h35v18h-35v35h-18v-35h-35v-18Z"/>
-    <circle cx="188" cy="484" r="11"/><circle cx="1022" cy="436" r="9"/><circle cx="970" cy="85" r="6"/>
+
+  <rect width="1200" height="1200" fill="url(#egBg)"/>
+  <rect width="1200" height="1200" fill="url(#egGlowA)"/>
+  <rect width="1200" height="1200" fill="url(#egGlowB)"/>
+  <path d="M0 960C150 890 250 986 400 940 540 898 610 806 760 856 900 902 1010 1028 1200 946V1200H0Z" fill="#1B0B3A" fill-opacity="0.28"/>
+
+  <g filter="url(#egSoft)" opacity="0.55">
+    <circle cx="230" cy="256" r="120" fill="#FDE047"/>
+    <circle cx="1000" cy="960" r="140" fill="#F472B6"/>
   </g>
-  <g filter="url(#shadow)">
-    <rect x="220" y="112" width="760" height="406" rx="52" fill="url(#card)" stroke="white" stroke-opacity="0.35" stroke-width="2"/>
-    <rect x="260" y="152" width="195" height="48" rx="24" fill="#FDE047" fill-opacity="0.22" stroke="#FDE047" stroke-opacity="0.55"/>
-    <text x="357" y="184" text-anchor="middle" fill="#FFF9C4" font-family="Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="3">HÁDAJ EMOJI</text>
-    <text x="600" y="264" text-anchor="middle" font-family="Arial, sans-serif" font-size="83">🦁</text>
-    <text x="720" y="264" text-anchor="middle" font-family="Arial, sans-serif" font-size="83">👑</text>
-    <text x="600" y="343" text-anchor="middle" fill="white" fill-opacity="0.84" font-family="Arial, sans-serif" font-size="28" font-weight="700">Rozlúšti nápovedu. Kto ju povie prvý?</text>
-    <rect x="406" y="391" width="388" height="76" rx="38" fill="#FDE047"/>
-    <path d="M532 430h118" stroke="#38235C" stroke-width="5" stroke-linecap="round" stroke-dasharray="8 12"/>
-    <path d="M681 430l-13-13m13 13l-13 13" stroke="#38235C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g filter="url(#egShadow)">
+    <rect x="176" y="330" width="848" height="548" rx="76" fill="url(#egCard)" stroke="#FFFFFF" stroke-opacity="0.34" stroke-width="3"/>
+
+    <g>
+      <circle cx="430" cy="520" r="122" fill="url(#egFace)"/>
+      <circle cx="430" cy="520" r="122" stroke="#78350F" stroke-opacity="0.22" stroke-width="4" fill="none"/>
+      <ellipse cx="392" cy="492" rx="17" ry="24" fill="#3F2410"/>
+      <ellipse cx="468" cy="492" rx="17" ry="24" fill="#3F2410"/>
+      <path d="M378 560c14 26 38 40 62 40s48-14 62-40" stroke="#3F2410" stroke-width="17" stroke-linecap="round" fill="none"/>
+      <ellipse cx="384" cy="466" rx="30" ry="16" fill="#FFFBEB" fill-opacity="0.42" transform="rotate(-24 384 466)"/>
+    </g>
+
+    <g>
+      <rect x="562" y="500" width="76" height="20" rx="10" fill="#FFFFFF" fill-opacity="0.72"/>
+      <rect x="590" y="472" width="20" height="76" rx="10" fill="#FFFFFF" fill-opacity="0.72"/>
+    </g>
+
+    <g>
+      <circle cx="770" cy="520" r="122" fill="url(#egFace2)"/>
+      <circle cx="770" cy="520" r="122" stroke="#78350F" stroke-opacity="0.22" stroke-width="4" fill="none"/>
+      <path d="M700 470c18-16 44-16 62 0" stroke="#3F2410" stroke-width="15" stroke-linecap="round" fill="none"/>
+      <ellipse cx="808" cy="496" rx="17" ry="24" fill="#3F2410"/>
+      <ellipse cx="734" cy="504" rx="17" ry="12" fill="#3F2410"/>
+      <ellipse cx="778" cy="572" rx="30" ry="22" fill="#3F2410"/>
+      <ellipse cx="724" cy="466" rx="28" ry="15" fill="#FFFBEB" fill-opacity="0.4" transform="rotate(-24 724 466)"/>
+    </g>
+
+    <g>
+      <rect x="286" y="710" width="628" height="34" rx="17" fill="#FFFFFF" fill-opacity="0.5"/>
+      <rect x="286" y="710" width="252" height="34" rx="17" fill="#FDE047" fill-opacity="0.85"/>
+      <rect x="366" y="778" width="468" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.26"/>
+    </g>
   </g>
-  <g opacity="0.95">
-    <circle cx="215" cy="212" r="42" fill="#FBBF24"/><text x="215" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="42">🍿</text>
-    <circle cx="968" cy="383" r="43" fill="#FB7185"/><text x="968" y="398" text-anchor="middle" font-family="Arial, sans-serif" font-size="42">🧩</text>
-    <circle cx="920" cy="165" r="32" fill="#34D399"/><text x="920" y="177" text-anchor="middle" font-family="Arial, sans-serif" font-size="32">🎬</text>
+
+  <g transform="translate(1000 302)">
+    <circle r="88" fill="url(#egBadge)"/>
+    <circle r="66" fill="#3B1073" fill-opacity="0.92"/>
+    <text x="0" y="34" text-anchor="middle" fill="#FDE047" font-family="Arial, Helvetica, sans-serif" font-size="94" font-weight="800">?</text>
+  </g>
+
+  <g transform="rotate(-12 214 928)">
+    <rect x="120" y="880" width="216" height="150" rx="26" fill="#1F1147" stroke="#F0ABFC" stroke-opacity="0.45" stroke-width="4"/>
+    <rect x="120" y="880" width="216" height="44" rx="20" fill="#F0ABFC" fill-opacity="0.8"/>
+    <g fill="#1F1147">
+      <rect x="142" y="890" width="30" height="24" rx="6" transform="rotate(18 157 902)"/>
+      <rect x="198" y="890" width="30" height="24" rx="6" transform="rotate(18 213 902)"/>
+      <rect x="254" y="890" width="30" height="24" rx="6" transform="rotate(18 269 902)"/>
+    </g>
+    <g fill="#F0ABFC" fill-opacity="0.35">
+      <rect x="146" y="948" width="164" height="16" rx="8"/>
+      <rect x="146" y="980" width="112" height="16" rx="8"/>
+    </g>
+  </g>
+
+  <g transform="translate(946 806)">
+    <rect x="0" y="0" width="150" height="150" rx="34" fill="#34D399" fill-opacity="0.9"/>
+    <circle cx="150" cy="52" r="30" fill="#34D399" fill-opacity="0.9"/>
+    <circle cx="52" cy="150" r="30" fill="#0F172A" fill-opacity="0.25"/>
+    <rect x="30" y="34" width="60" height="16" rx="8" fill="#04231A" fill-opacity="0.35"/>
+  </g>
+
+  <g fill="#FFFBEB">
+    <path d="M176 168h22v-22h18v22h22v18h-22v22h-18v-22h-22Z" fill-opacity="0.75"/>
+    <path d="M1054 606h22v-22h18v22h22v18h-22v22h-18v-22h-22Z" fill-opacity="0.6"/>
+    <circle cx="356" cy="240" r="9" fill-opacity="0.7"/>
+    <circle cx="880" cy="196" r="7" fill-opacity="0.6"/>
+    <circle cx="122" cy="640" r="8" fill-opacity="0.55"/>
+    <circle cx="1118" cy="472" r="6" fill-opacity="0.5"/>
+    <circle cx="660" cy="1088" r="7" fill-opacity="0.45"/>
   </g>
 </svg>
