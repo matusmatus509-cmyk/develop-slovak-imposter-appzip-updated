@@ -1,0 +1,75 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="olBg" x1="0" y1="0" x2="1200" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2B0913"/>
+      <stop offset="0.48" stop-color="#7F1032"/>
+      <stop offset="1" stop-color="#170611"/>
+    </linearGradient>
+    <radialGradient id="olGlow" cx="0.5" cy="0.34" r="0.62">
+      <stop stop-color="#F43F5E" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#F43F5E" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="olLie" x1="300" y1="300" x2="720" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF1F2"/>
+      <stop offset="1" stop-color="#FECDD3"/>
+    </linearGradient>
+    <linearGradient id="olTruth" x1="700" y1="560" x2="1030" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3F1220" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#25060F" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="olClock" x1="420" y1="806" x2="700" y2="1086" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FB7185"/>
+      <stop offset="1" stop-color="#881337"/>
+    </linearGradient>
+    <filter id="olShadow" x="-25%" y="-25%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="30" stdDeviation="28" flood-color="#170208" flood-opacity="0.62"/>
+    </filter>
+    <filter id="olSoft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="28"/></filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#olBg)"/>
+  <rect width="1200" height="1200" fill="url(#olGlow)"/>
+
+  <g filter="url(#olSoft)" opacity="0.45">
+    <circle cx="150" cy="170" r="150" fill="#FDA4AF"/>
+    <circle cx="1070" cy="1030" r="180" fill="#BE123C"/>
+  </g>
+
+  <path d="M0 618 96 618 150 520 214 706 286 566 352 662 430 618 1200 618" stroke="#FDA4AF" stroke-opacity="0.5" stroke-width="7" fill="none" stroke-linejoin="round"/>
+  <path d="M0 664 1200 664" stroke="#FFE4E6" stroke-opacity="0.12" stroke-width="3"/>
+
+  <g filter="url(#olShadow)" transform="rotate(-5 520 470)">
+    <path d="M262 244h516a58 58 0 0 1 58 58v250a58 58 0 0 1-58 58H474l-118 96v-96h-94a58 58 0 0 1-58-58V302a58 58 0 0 1 58-58Z" fill="url(#olLie)"/>
+    <g transform="translate(520 430)">
+      <path d="M-96-96 96 96M96-96-96 96" stroke="#E11D48" stroke-width="46" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <g filter="url(#olShadow)" transform="rotate(6 862 726)" opacity="0.9">
+    <path d="M706 566h330a44 44 0 0 1 44 44v190a44 44 0 0 1-44 44H842l-88 72v-72h-48a44 44 0 0 1-44-44V610a44 44 0 0 1 44-44Z" fill="url(#olTruth)" stroke="#FDA4AF" stroke-opacity="0.4" stroke-width="4"/>
+    <path d="M782 712 838 768 962 640" stroke="#FDA4AF" stroke-opacity="0.55" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M726 838 1024 596" stroke="#F43F5E" stroke-width="18" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(272 872) scale(0.84)">
+    <rect x="-34" y="-196" width="68" height="42" rx="18" fill="#FDA4AF"/>
+    <rect x="-14" y="-232" width="28" height="44" rx="14" fill="#FB7185"/>
+    <circle r="160" fill="url(#olClock)"/>
+    <circle r="130" fill="#2A0710"/>
+    <circle r="130" stroke="#FDA4AF" stroke-opacity="0.35" stroke-width="4" fill="none"/>
+    <g stroke="#FECDD3" stroke-opacity="0.65" stroke-width="9" stroke-linecap="round">
+      <path d="M0-108v-24"/><path d="M108 0h24"/><path d="M0 108v24"/><path d="M-108 0h-24"/>
+    </g>
+    <path d="M0 0 74-64" stroke="#FFF1F2" stroke-width="14" stroke-linecap="round"/>
+    <path d="M0 0v82" stroke="#FB7185" stroke-width="11" stroke-linecap="round"/>
+    <circle r="14" fill="#FFF1F2"/>
+  </g>
+
+  <g fill="#FFE4E6">
+    <rect x="1004" y="188" width="34" height="34" rx="8" transform="rotate(24 1021 205)" fill-opacity="0.75"/>
+    <rect x="176" y="836" width="30" height="30" rx="7" transform="rotate(-18 191 851)" fill-opacity="0.6"/>
+    <rect x="1096" y="700" width="26" height="26" rx="6" transform="rotate(38 1109 713)" fill-opacity="0.5"/>
+    <circle cx="128" cy="452" r="8" fill-opacity="0.7"/><circle cx="944" cy="1136" r="7" fill-opacity="0.6"/>
+    <circle cx="330" cy="120" r="6" fill-opacity="0.6"/><circle cx="1140" cy="316" r="5" fill-opacity="0.5"/>
+  </g>
+</svg>

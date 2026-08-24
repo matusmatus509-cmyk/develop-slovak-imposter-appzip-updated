@@ -118,7 +118,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#f43f5e",
     accentSoft: "rgba(244,63,94,.25)",
     deep: "#2b0913",
-    artPosition: "50% 56%",
+    artPosition: "50% 50%",
     art: onlyLiesGameHero,
   },
   ktodostanebombu: {
@@ -194,7 +194,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#14b8a6",
     accentSoft: "rgba(20,184,166,.23)",
     deep: "#2b0d18",
-    artPosition: "50% 56%",
+    artPosition: "50% 50%",
     art: forbiddenWordGameHero,
   },
   pesnicka: {
