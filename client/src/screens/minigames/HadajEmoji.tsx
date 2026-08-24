@@ -4,7 +4,6 @@ import {
   type EmojiCategory,
   type EmojiPuzzle,
 } from "../../data/emojiCategories";
-import { emojiGuessGameHero } from "../../media";
 import { Button, Shell, TopBar } from "../../components/ui";
 import CustomContentSelector, {
   type CustomContentControls,
@@ -115,28 +114,6 @@ export default function HadajEmoji({
           </div>
         )}
 
-        <section className="relative w-full overflow-hidden rounded-3xl border border-amber-200/20 bg-violet-950/35 text-left shadow-[0_18px_44px_rgba(0,0,0,.2)]">
-          <img
-            src={emojiGuessGameHero}
-            alt="Farebný vizuál hry Hádaj emoji"
-            className="h-28 w-full object-cover object-center opacity-80 sm:h-32"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-violet-950/60 via-transparent to-amber-950/35" />
-          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4">
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-200/80">
-                Nová party zásoba
-              </p>
-              <p className="mt-1 text-sm font-black text-white">
-                Hádaj súvislosť, nie obrázok
-              </p>
-            </div>
-            <span className="rounded-full border border-white/20 bg-black/20 px-2.5 py-1 text-[10px] font-black text-white/75 backdrop-blur">
-              {category.puzzles.length} kariet
-            </span>
-          </div>
-        </section>
-
         <div className="w-full">
           <p className="mb-3 text-xs font-bold uppercase tracking-widest text-white/40">
             Vyber kategóriu
@@ -162,6 +139,9 @@ export default function HadajEmoji({
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-amber-300/70">
             {category.icon} {category.title}
+            <span className="ml-2 font-bold text-white/30">
+              {category.puzzles.length} kariet
+            </span>
           </p>
           <p className="mt-1 text-xs text-white/40">
             Čo tieto emoji naozaj naznačujú?
