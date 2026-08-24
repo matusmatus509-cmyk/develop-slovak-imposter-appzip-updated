@@ -55,7 +55,7 @@ const GAME_ART: Record<
     size: "400% 300%",
   },
   sarady: { src: partyMinigameAtlas, position: "0% 100%", size: "400% 300%" },
-  zakazane: { src: forbiddenWordGameHero, position: "50% 50%", size: "cover" },
+  zakazane: { src: forbiddenWordGameHero, position: "50% 56%", size: "cover" },
   pesnicka: { src: songGameHero, position: "50% 50%", size: "cover" },
   "hudobny-kviz": {
     src: musicQuizGameHero,

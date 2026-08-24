@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Screen } from "../types";
 /** Dizajnové pravidlo: pôvodný GitHub vzhľad — hero vizuály majú mierny presah cez atlasové okraje. */
-import { emojiGuessGameHero, forbiddenWordGameHero, fiveTenGameHero, gameArt, letterGameHero, minigameArtAtlas, musicQuizGameHero, onlyLiesGameHero, partyMinigameAtlas, songGameHero } from "../media";
+import { forbiddenWordGameHero, fiveTenGameHero, gameArt, letterGameHero, minigameArtAtlas, musicQuizGameHero, onlyLiesGameHero, partyMinigameAtlas, songGameHero } from "../media";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -118,7 +118,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#f43f5e",
     accentSoft: "rgba(244,63,94,.25)",
     deep: "#2b0913",
-    artPosition: "50% 50%",
+    artPosition: "50% 56%",
     art: onlyLiesGameHero,
   },
   ktodostanebombu: {
@@ -145,8 +145,9 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#facc15",
     accentSoft: "rgba(250,204,21,.23)",
     deep: "#292005",
-    artPosition: "50% 50%",
-    art: emojiGuessGameHero,
+    artPosition: "100% 100%",
+    art: minigameArtAtlas,
+    artAtlas: true,
   },
   "impostor-setup": {
     eyebrow: "Tajné slovo. Tajný hráč.",
@@ -194,7 +195,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#14b8a6",
     accentSoft: "rgba(20,184,166,.23)",
     deep: "#2b0d18",
-    artPosition: "50% 50%",
+    artPosition: "50% 56%",
     art: forbiddenWordGameHero,
   },
   pesnicka: {
