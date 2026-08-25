@@ -163,6 +163,7 @@ const REACHABLE_MUST_SCROLL = [
   { screen: "party-hub", file: `${ROOT}/screens/PartyHub.tsx` },
   { screen: "impostor-setup", file: `${ROOT}/screens/impostor/Setup.tsx` },
   { screen: "drawing-setup", file: `${ROOT}/screens/drawing/Setup.tsx` },
+  { screen: "buzz-setup", file: `${ROOT}/screens/buzz/Setup.tsx` },
   { screen: "impostor-history", file: `${ROOT}/screens/impostor/History.tsx` },
   // Setupy a výbery vnútri hier — tie sú v one-screen sete, takže potrebujú
   // výslovný `.scroll-panel`.

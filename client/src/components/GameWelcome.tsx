@@ -179,6 +179,18 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     deep: "#201035",
     artPosition: "66.666% 100%",
   },
+  "buzz-setup": {
+    eyebrow: "Jedno slovo. Beží čas.",
+    title: "Imposter Buzz",
+    description: "Odpočet beží celej partii. Každý povie k tajnému slovu jedno slovo — a kto niečo tuší, buchne do bzučiaka.",
+    rule: "Bzučiak zastaví čas a spustí hlasovanie",
+    players: "3–12 hráčov",
+    duration: "3–10 min",
+    accent: "#f43f5e",
+    accentSoft: "rgba(244,63,94,.24)",
+    deep: "#2b0912",
+    artPosition: "66.666% 50%",
+  },
   teambattle: {
     eyebrow: "Veľká hra na celý večer",
     title: "Party mode",

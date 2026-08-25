@@ -15,7 +15,7 @@ export default function Reveal({
   assignment: RoundAssignment;
   onExit: () => void;
   onDone: () => void;
-  mode?: "impostor" | "drawing";
+  mode?: "impostor" | "drawing" | "buzz";
 }) {
   const [seen, setSeen] = useState<Set<number>>(new Set());
   const [viewing, setViewing] = useState<number | null>(null);
@@ -118,9 +118,11 @@ export default function Reveal({
                     <p className="mt-3 text-xs leading-relaxed text-white/50">
                       {mode === "drawing"
                         ? "Nepoznáš tajné slovo. Sleduj kresbu ostatných a pridaj nenápadný ťah, aby ťa neodhalili."
-                        : settings.hideCategoryFromImpostor
-                          ? "Nepoznáš tajné slovo ani kategóriu. Počúvaj ostatných a snaž sa zapadnúť, aby ťa neodhalili."
-                          : "Nepoznáš tajné slovo. Počúvaj ostatných a snaž sa zapadnúť, aby ťa neodhalili."}
+                        : mode === "buzz"
+                          ? "Nepoznáš tajné slovo. Keď si na slove, povedz jedno slovo, ktoré bude znieť dôveryhodne."
+                          : settings.hideCategoryFromImpostor
+                            ? "Nepoznáš tajné slovo ani kategóriu. Počúvaj ostatných a snaž sa zapadnúť, aby ťa neodhalili."
+                            : "Nepoznáš tajné slovo. Počúvaj ostatných a snaž sa zapadnúť, aby ťa neodhalili."}
                     </p>
                   </div>
                 )}
@@ -153,7 +155,9 @@ export default function Reveal({
                 <p className="relative text-xs leading-relaxed text-white/50">
                   {mode === "drawing"
                     ? "Zapamätaj si slovo. Pri svojom ťahu nakresli iba jednu súvislú čiaru a mobil odovzdaj ďalej."
-                    : "Povedz asociáciu súvisiacu so slovom, ale nie príliš zjavnú — pomôž odhaliť podvodníka."}
+                    : mode === "buzz"
+                      ? "Kým beží odpočet, povedz k slovu jedno jediné slovo — nie príliš zjavné, aby podvodník nezískal nápovedu."
+                      : "Povedz asociáciu súvisiacu so slovom, ale nie príliš zjavnú — pomôž odhaliť podvodníka."}
                 </p>
               </>
             )}
@@ -250,7 +254,7 @@ export default function Reveal({
             </p>
           </div>
           <Button fullWidth onClick={onDone}>
-            <span className="inline-flex items-center gap-2">{mode === "drawing" ? <Icons.palette size={18} /> : <Icons.messageCircle size={18} />}{mode === "drawing" ? "Začať kreslenie" : "Začať diskusiu"}</span>
+            <span className="inline-flex items-center gap-2">{mode === "drawing" ? <Icons.palette size={18} /> : mode === "buzz" ? <Icons.timer size={18} /> : <Icons.messageCircle size={18} />}{mode === "drawing" ? "Začať kreslenie" : mode === "buzz" ? "Spustiť odpočet" : "Začať diskusiu"}</span>
           </Button>
         </div>
       )}
