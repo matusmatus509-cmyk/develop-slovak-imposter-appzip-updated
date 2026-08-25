@@ -1,23 +1,33 @@
 import { useState } from "react";
-import { CATEGORIES } from "../../data/categories";
-import type { GameSettings } from "../../types";
-import { Button, Chip, Shell, Stepper, Toggle, TopBar } from "../../components/ui";
+import type { BuzzSettings } from "../../types";
+import { Button, Chip, Shell, Toggle, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
-import { maxImpostorsFor } from "../../utils/gameLogic";
 import {
   defaultPlayerName,
   localizeGeneratedParticipantName,
   useLanguage,
 } from "../../i18n/LanguageProvider";
 
-// Buzz kolo je krátke — hráči povedia po jednom slove a hneď sa hlasuje,
-// takže ponúkame kratšie časy než klasická diskusia.
-const TIMER_OPTIONS = [
+// Okno, z ktorého sa losuje tajný čas kola. Kratšie časy sa trafia ľahšie,
+// dlhšie rozhádžu výsledky viac a podvodník sa v nich lepšie skryje.
+const TARGET_WINDOWS = [
+  { label: "3 – 6 s", min: 3, max: 6 },
+  { label: "5 – 10 s", min: 5, max: 10 },
+  { label: "8 – 15 s", min: 8, max: 15 },
+  { label: "10 – 20 s", min: 10, max: 20 },
+];
+
+// Čím širší rozsah, tým ľahšie sa podvodník skryje.
+const RANGE_OPTIONS = [
+  { label: "1 s — ťažké", value: 1 },
+  { label: "2 s — bežné", value: 2 },
+  { label: "3 s — ľahké", value: 3 },
+];
+
+const DISCUSSION_OPTIONS = [
   { label: "30 s", value: 30 },
-  { label: "45 s", value: 45 },
   { label: "60 s", value: 60 },
   { label: "90 s", value: 90 },
-  { label: "2 min", value: 120 },
   { label: "Bez limitu", value: 0 },
 ];
 
@@ -26,26 +36,21 @@ export default function Setup({
   onBack,
   onStart,
 }: {
-  initial: GameSettings;
+  initial: BuzzSettings;
   onBack: () => void;
-  onStart: (settings: GameSettings) => void;
+  onStart: (settings: BuzzSettings) => void;
 }) {
   const { language } = useLanguage();
   const [players, setPlayers] = useState<string[]>(() =>
     initial.playerNames.map((name) => localizeGeneratedParticipantName(name, language)),
   );
-  const [categoryIds, setCategoryIds] = useState<string[]>(
-    initial.categoryIds
+  const [targetMinSeconds, setTargetMinSeconds] = useState(initial.targetMinSeconds);
+  const [targetMaxSeconds, setTargetMaxSeconds] = useState(initial.targetMaxSeconds);
+  const [impostorRangeSeconds, setImpostorRangeSeconds] = useState(
+    initial.impostorRangeSeconds
   );
-  const [impostorCount, setImpostorCount] = useState(initial.impostorCount);
-  const [hintsEnabled, setHintsEnabled] = useState(initial.hintsEnabled);
-  const [noRepeatWords, setNoRepeatWords] = useState(initial.noRepeatWords);
-  const [hideCategoryFromImpostor, setHideCategoryFromImpostor] = useState(
-    initial.hideCategoryFromImpostor
-  );
-  const [timerSeconds, setTimerSeconds] = useState(initial.timerSeconds);
-
-  const maxImpostors = maxImpostorsFor(players.length);
+  const [blindTiming, setBlindTiming] = useState(initial.blindTiming);
+  const [discussionSeconds, setDiscussionSeconds] = useState(initial.discussionSeconds);
 
   function addPlayer() {
     if (players.length >= 12) return;
@@ -61,26 +66,14 @@ export default function Setup({
     setPlayers(players.map((p, i) => (i === index ? value : p)));
   }
 
-  function toggleCategory(id: string) {
-    setCategoryIds((prev) => {
-      if (prev.includes(id)) {
-        if (prev.length === 1) return prev;
-        return prev.filter((c) => c !== id);
-      }
-      return [...prev, id];
-    });
-  }
-
   function handleStart() {
     onStart({
       playerNames: players.map((p) => p.trim() || defaultPlayerName(language)),
-      categoryIds,
-      impostorCount: Math.min(impostorCount, maxImpostors),
-      hintsEnabled,
-      noRepeatWords,
-      hideCategoryFromImpostor,
-      timerSeconds,
-      strokesPerPlayer: initial.strokesPerPlayer,
+      targetMinSeconds,
+      targetMaxSeconds,
+      impostorRangeSeconds,
+      blindTiming,
+      discussionSeconds,
     });
   }
 
@@ -136,87 +129,84 @@ export default function Setup({
           )}
         </section>
 
-        {/* Categories */}
+        {/* Tajný čas */}
         <section>
           <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-white/70">
-            Kategórie slov
+            Tajný čas kola
           </h2>
           <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map((cat) => {
-              return (
-                <Chip
-                  key={cat.id}
-                  active={categoryIds.includes(cat.id)}
-                  onClick={() => toggleCategory(cat.id)}
-                >
-                  <span aria-hidden="true">{cat.icon}</span>
-                  {cat.name}
-                </Chip>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* Impostor count */}
-        <section className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5">
-          <div>
-            <p className="text-sm font-bold">Počet podvodníkov</p>
-            <p className="text-xs text-white/50">Max {maxImpostors} pri tomto počte hráčov</p>
-          </div>
-          <Stepper
-            value={Math.min(impostorCount, maxImpostors)}
-            min={1}
-            max={maxImpostors}
-            onChange={setImpostorCount}
-          />
-        </section>
-
-        {/* Timer */}
-        <section>
-          <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-white/70">
-            Časovač kola
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {TIMER_OPTIONS.map((opt) => (
+            {TARGET_WINDOWS.map((opt) => (
               <Chip
-                key={opt.value}
-                active={timerSeconds === opt.value}
-                onClick={() => setTimerSeconds(opt.value)}
+                key={opt.label}
+                active={targetMinSeconds === opt.min && targetMaxSeconds === opt.max}
+                onClick={() => {
+                  setTargetMinSeconds(opt.min);
+                  setTargetMaxSeconds(opt.max);
+                }}
               >
                 {opt.label}
               </Chip>
             ))}
           </div>
           <p className="mt-2 text-xs text-white/40">
-            Odpočet beží celému kolu. Kedykoľvek ho zastaví bzučiak a hra prejde na hlasovanie.
+            Z tohto okna sa vylosuje jedno presné číslo na dve desatinné miesta,
+            napríklad 5,77 s. Dostanú ho všetci hráči okrem podvodníka.
           </p>
+        </section>
+
+        {/* Rozsah podvodníka */}
+        <section>
+          <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-white/70">
+            Rozsah pre podvodníka
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {RANGE_OPTIONS.map((opt) => (
+              <Chip
+                key={opt.value}
+                active={impostorRangeSeconds === opt.value}
+                onClick={() => setImpostorRangeSeconds(opt.value)}
+              >
+                {opt.label}
+              </Chip>
+            ))}
+          </div>
+          <p className="mt-2 text-xs text-white/40">
+            Podvodník nedostane presné číslo, iba takto široký rozsah — napríklad
+            5 – 7 s. Musí preto blafovať.
+          </p>
+        </section>
+
+        {/* Diskusia */}
+        <section>
+          <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-white/70">
+            Čas na diskusiu
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {DISCUSSION_OPTIONS.map((opt) => (
+              <Chip
+                key={opt.value}
+                active={discussionSeconds === opt.value}
+                onClick={() => setDiscussionSeconds(opt.value)}
+              >
+                {opt.label}
+              </Chip>
+            ))}
+          </div>
         </section>
 
         {/* Toggles */}
         <section className="space-y-3">
           <Toggle
-            checked={hintsEnabled}
-            onChange={setHintsEnabled}
-            label="Nápoveda pre podvodníka"
-            description="Podvodník dostane nápovedu zo svojej kategórie, ktorú použije ako svoje slovo"
-          />
-          <Toggle
-            checked={noRepeatWords}
-            onChange={setNoRepeatWords}
-            label="Režim kôl — bez opakovania"
-            description="Rovnaké slovo sa nezopakuje, kým sa nevystriedajú všetky"
-          />
-          <Toggle
-            checked={hideCategoryFromImpostor}
-            onChange={setHideCategoryFromImpostor}
-            label="Skryť kategóriu podvodníkovi"
-            description="Podvodník nevidí, z akej kategórie slovo je — ťažšie sa mu bude hádať"
+            checked={blindTiming}
+            onChange={setBlindTiming}
+            label="Stopovať naslepo"
+            description="Hráč počas merania nevidí bežiaci čas. Bez toho je trafiť tajný čas takmer isté a hra stráca zmysel"
           />
         </section>
       </div>
 
       <Button fullWidth onClick={handleStart} className="mt-4">
-        <span className="inline-flex items-center gap-2">Spustiť Imposter Buzz <Icons.bell size={18} /></span>
+        <span className="inline-flex items-center gap-2">Rozdať tajné zadania <Icons.timer size={18} /></span>
       </Button>
     </Shell>
   );
