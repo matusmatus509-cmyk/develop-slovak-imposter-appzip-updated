@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Screen } from "../types";
 /** Dizajnové pravidlo: pôvodný GitHub vzhľad — hero vizuály majú mierny presah cez atlasové okraje. */
-import { fiveTenGameHero, gameArt, letterGameHero, minigameArtAtlas, musicQuizGameHero, musicQuizGameHeroWide, partyMinigameAtlas, songGameHero } from "../media";
+import { fiveTenGameHero, forbiddenWordGameHero, gameArt, letterGameHero, minigameArtAtlas, musicQuizGameHero, musicQuizGameHeroWide, partyMinigameAtlas, songGameHero } from "../media";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -201,11 +201,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#14b8a6",
     accentSoft: "rgba(20,184,166,.23)",
     deep: "#2b0d18",
-    // Neónové 3D bubliny s kartou z atlasu — najbližšie k požadovanému štýlu
-    // karty so zakázanými výrazmi, aké je v repozitári dostupné.
-    artPosition: "0% 50%",
-    art: minigameArtAtlas,
-    artAtlas: true,
+    artPosition: "50% 50%",
+    art: forbiddenWordGameHero,
   },
   pesnicka: {
     eyebrow: "Melódia bez textu",

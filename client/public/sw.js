@@ -1,4 +1,4 @@
-const CACHE_NAME = "podvodnik-pwa-v8";
+const CACHE_NAME = "podvodnik-pwa-v9";
 const CACHE_PREFIX = "podvodnik-pwa-";
 const scope = self.registration.scope;
 const appUrl = (path) => new URL(path, scope).toString();
@@ -23,7 +23,8 @@ const APP_SHELL = [
   appUrl("assets/party-music-quiz-hero-v3-wide.jpg"),
   appUrl("assets/party-music-quiz-setup-hero.jpg"),
   appUrl("assets/party-quiz-battle-v3.png"),
-  appUrl("assets/party-forbidden.svg"),
+  appUrl("assets/party-forbidden-hero.jpg"),
+  appUrl("assets/party-forbidden-setup-hero.jpg"),
   appUrl("assets/party-hub-hero.png"),
   appUrl("assets/party-table-bg.png"),
   appUrl("assets/party-sound.svg"),
