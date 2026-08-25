@@ -63,6 +63,8 @@ import History from "./screens/impostor/History";
 import TruthOrDare from "./screens/minigames/TruthOrDare";
 import NeverHaveIEver from "./screens/minigames/NeverHaveIEver";
 import WouldYouRather from "./screens/minigames/WouldYouRather";
+import BuzzSetup from "./screens/buzz/Setup";
+import BuzzRound from "./screens/buzz/Round";
 import DrawingSetup from "./screens/drawing/Setup";
 import DrawingCanvas from "./screens/drawing/Canvas";
 import DrawingVote from "./screens/drawing/Vote";
@@ -100,6 +102,15 @@ const IMPOSTOR_GAMES: MenuGame[] = [
     description: "Všetci kreslia rovnaké zadanie, iba imposter ho nepozná.",
     icon: "paintbrush",
     color: "from-violet-500 to-cyan-500",
+  },
+  {
+    screen: "buzz-setup",
+    title: "Imposter Buzz",
+    description:
+      "Beží odpočet, každý povie jedno slovo. Bzučiak spustí hlasovanie.",
+    icon: "bell",
+    color: "from-rose-500 to-amber-500",
+    badge: "Novinka",
   },
   {
     screen: "impostor-history",
@@ -322,6 +333,10 @@ const ONE_SCREEN_GAME_SCREENS = new Set<Screen>([
   "drawing-canvas",
   "drawing-vote",
   "drawing-result",
+  "buzz-reveal",
+  "buzz-round",
+  "buzz-voting",
+  "buzz-result",
   "truth-or-dare",
   "never-have-i-ever",
   "would-you-rather",
@@ -355,6 +370,13 @@ const DEFAULT_SETTINGS: GameSettings = {
   hideCategoryFromImpostor: false,
   timerSeconds: 90,
   strokesPerPlayer: 3,
+};
+
+// Buzz kolo je svižnejšie než klasická diskusia — každý povie iba jedno slovo,
+// takže štartujeme na minúte namiesto 90 sekúnd.
+const DEFAULT_BUZZ_SETTINGS: GameSettings = {
+  ...DEFAULT_SETTINGS,
+  timerSeconds: 60,
 };
 
 export default function App() {
@@ -488,6 +510,17 @@ export default function App() {
   const [drawingVotedIndex, setDrawingVotedIndex] = useState<number | null>(
     null
   );
+
+  // Imposter Buzz state
+  const [buzzSettings, setBuzzSettings] = useLocalStorage<GameSettings>(
+    "buzz-settings",
+    DEFAULT_BUZZ_SETTINGS
+  );
+  const [buzzAssignment, setBuzzAssignment] = useState<RoundAssignment | null>(
+    null
+  );
+  const [buzzElapsedSeconds, setBuzzElapsedSeconds] = useState(0);
+  const [buzzVotedIndex, setBuzzVotedIndex] = useState<number | null>(null);
 
   const selectedTheme = safeFeedbackSettings.partyTheme ?? "dark";
   const activeTheme = GAME_WELCOMES[screen];
@@ -829,7 +862,9 @@ export default function App() {
     const fallback =
       current === "teambattle"
         ? "home"
-        : current === "impostor-setup" || current === "drawing-setup"
+        : current === "impostor-setup" ||
+            current === "drawing-setup" ||
+            current === "buzz-setup"
           ? "impostor-menu"
           : "minigames-menu";
     returnFromActiveGame(fallback);
@@ -875,6 +910,48 @@ export default function App() {
     setScreen("drawing-result");
   }
 
+  // Buzz hrá s rovnakými kategóriami ako klasika, takže zdieľa aj `usedWords`
+  // a zapisuje sa do spoločnej histórie kôl.
+  function startBuzzRound(s: GameSettings) {
+    const { assignment: a, usedWords: newUsed } = generateRound(
+      s,
+      CATEGORIES,
+      usedWords
+    );
+    setBuzzAssignment(a);
+    setUsedWords(newUsed);
+    setBuzzVotedIndex(null);
+    setBuzzElapsedSeconds(0);
+    setScreen("buzz-reveal");
+  }
+
+  function handleBuzzSetupStart(s: GameSettings) {
+    setBuzzSettings(s);
+    startBuzzRound(s);
+  }
+
+  function handleBuzzVote(voted: number | null) {
+    if (!buzzAssignment) return;
+    setBuzzVotedIndex(voted);
+    const caught =
+      voted !== null && buzzAssignment.impostorIndexes.includes(voted);
+    const entry: RoundHistoryEntry = {
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      roundNumber: history.length + 1,
+      word: buzzAssignment.word,
+      categoryName: buzzAssignment.categoryName,
+      categoryIcon: buzzAssignment.categoryIcon,
+      timeSeconds: buzzElapsedSeconds || buzzSettings.timerSeconds,
+      impostors: buzzAssignment.impostorIndexes.map(
+        i => buzzSettings.playerNames[i]
+      ),
+      playersWon: caught,
+      timestamp: Date.now(),
+    };
+    setHistory([...history, entry]);
+    setScreen("buzz-result");
+  }
+
   function handleVoteConfirm(voted: number | null) {
     if (!assignment) return;
     setVotedIndex(voted);
@@ -918,7 +995,11 @@ export default function App() {
 
   function leaveActiveGame() {
     if (screen === "teambattle") returnFromActiveGame("home");
-    else if (screen.startsWith("impostor") || screen.startsWith("drawing"))
+    else if (
+      screen.startsWith("impostor") ||
+      screen.startsWith("drawing") ||
+      screen.startsWith("buzz")
+    )
       returnFromActiveGame("impostor-menu");
     else returnFromActiveGame("minigames-menu");
   }
@@ -980,7 +1061,7 @@ export default function App() {
         return (
           <GameMenu
             title="Imposter"
-            subtitle="Dve verzie obľúbenej hry. Vyberte si tajné slovo alebo kreslenie."
+            subtitle="Tri verzie obľúbenej hry. Tajné slovo, kreslenie alebo odpočet s bzučiakom."
             games={IMPOSTOR_GAMES}
             onBack={() => setScreen("home")}
             onNavigate={navigateFromMenu}
@@ -1163,6 +1244,74 @@ export default function App() {
             votedIndex={drawingVotedIndex}
             onNewRound={() => startDrawingRound(drawingSettings)}
             onHome={() => returnFromActiveGame("impostor-menu")}
+          />
+        );
+
+      case "buzz-setup":
+        return (
+          <BuzzSetup
+            initial={buzzSettings}
+            onBack={() => returnFromActiveGame("impostor-menu")}
+            onStart={handleBuzzSetupStart}
+          />
+        );
+
+      case "buzz-reveal":
+        if (!buzzAssignment) {
+          setScreen("buzz-setup");
+          return null;
+        }
+        return (
+          <Reveal
+            settings={buzzSettings}
+            assignment={buzzAssignment}
+            mode="buzz"
+            onExit={() => returnFromActiveGame("impostor-menu")}
+            onDone={() => setScreen("buzz-round")}
+          />
+        );
+
+      case "buzz-round":
+        if (!buzzAssignment) {
+          setScreen("buzz-setup");
+          return null;
+        }
+        return (
+          <BuzzRound
+            settings={buzzSettings}
+            onExit={() => returnFromActiveGame("impostor-menu")}
+            onFinish={elapsed => {
+              setBuzzElapsedSeconds(elapsed);
+              setScreen("buzz-voting");
+            }}
+          />
+        );
+
+      case "buzz-voting":
+        return (
+          <Voting
+            settings={buzzSettings}
+            onExit={() => returnFromActiveGame("impostor-menu")}
+            onConfirm={handleBuzzVote}
+          />
+        );
+
+      case "buzz-result":
+        if (!buzzAssignment) {
+          setScreen("home");
+          return null;
+        }
+        return (
+          <Result
+            settings={buzzSettings}
+            assignment={buzzAssignment}
+            votedIndex={buzzVotedIndex}
+            onNewRound={() => startBuzzRound(buzzSettings)}
+            onHome={() => returnFromActiveGame("impostor-menu")}
+            onHistory={() => {
+              historyReturnScreenRef.current = gameReturnScreenRef.current;
+              setScreen("impostor-history");
+            }}
           />
         );
 
