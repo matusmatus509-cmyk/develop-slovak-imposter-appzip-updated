@@ -17,7 +17,7 @@ import {
   forbiddenArt,
   fiveTenGameHero as fiveTenArt,
   letterGameHero as letterArt,
-  musicQuizGameHero as musicQuizArt,
+  musicQuizSetupHero as musicQuizArt,
   soundArt,
 } from "../../media";
 import {

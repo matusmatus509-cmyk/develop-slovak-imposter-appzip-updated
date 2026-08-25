@@ -18,6 +18,16 @@ export const letterGameHero = publicAsset("party-letter-hero-v2.png");
 export const fiveTenGameHero = publicAsset("party-five-ten-hero-v2.png");
 export const musicQuizGameHero = publicAsset("party-music-quiz-hero-v3.png");
 /**
+ * Pre panel „Nastavenia hry" v `TeamQuickGame.tsx` (`.game-setup-hero`,
+ * `h-48` ≈ 350×192 px na bežnom mobile, pomer ~1,82 : 1). `musicQuizGameHero`
+ * je portrét (1113×1414, ~0,79 : 1) a v tomto landscape ráme sa silno
+ * odrezával po stranách. Tento obrázok má 1392×768 (~1,81 : 1), takže sedí
+ * takmer bez orezu.
+ */
+export const musicQuizSetupHero = publicAsset(
+  "party-music-quiz-setup-hero.jpg"
+);
+/**
  * Pre uvítaciu obrazovku — má vlastný orez (825×1024, ~0,8 : 1), ktorý sedí
  * na jej vyšší panel presnejšie než hlavný hero (1113×1414, ~0,79 : 1) alebo
  * pôvodná verzia na šírku (1536×1024), ktorá sa v žiadnom z panelov nezmestila
