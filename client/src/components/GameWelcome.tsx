@@ -177,7 +177,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#c084fc",
     accentSoft: "rgba(192,132,252,.24)",
     deep: "#201035",
-    artPosition: "66.666% 100%",
+    artPosition: "66.667% 100%",
   },
   "buzz-setup": {
     eyebrow: "Tajný čas. Tajný podvodník.",
@@ -189,7 +189,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#f43f5e",
     accentSoft: "rgba(244,63,94,.24)",
     deep: "#2b0912",
-    artPosition: "66.666% 50%",
+    artPosition: "66.667% 50%",
   },
   teambattle: {
     eyebrow: "Veľká hra na celý večer",
@@ -320,6 +320,58 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
   },
 };
 
+/**
+ * Obrázok hry pre uvítaciu obrazovku.
+ *
+ * Buď samostatná kresba, alebo jedna bunka z atlasového listu. Bunku
+ * nevyberáme cez `background-position` v percentách ako kartičky v menu —
+ * pri neceločíselných pomeroch tam prežierali okraje susedných buniek a
+ * kresba sa deformovala na pomer rámu. Namiesto toho obrázok zväčšíme na
+ * celý list a odsunieme ho o presný počet buniek.
+ */
+type HeroArt =
+  | { kind: "image"; src: string; position: string }
+  | { kind: "cell"; src: string; columns: number; rows: number; column: number; row: number };
+
+function parsePair(value: string, fallback: string) {
+  const parts = (value || fallback).trim().split(/\s+/);
+  return [parseFloat(parts[0]), parseFloat(parts[1] ?? parts[0])];
+}
+
+function resolveHeroArt(config: GameWelcomeConfig): HeroArt {
+  // `artWide` je orez pripravený presne pre uvítaciu obrazovku, preto má prednosť.
+  const standalone = config.artWide ?? (config.artAtlas ? undefined : config.art);
+  if (standalone) return { kind: "image", src: standalone, position: config.artPosition };
+
+  // Hry bez vlastnej kresby berú bunku zo spoločného sprite listu.
+  const src = config.artAtlas && config.art ? config.art : gameArt;
+  const [sizeX, sizeY] = parsePair(
+    config.artSize ?? (config.artAtlas ? "300% 300%" : "400% 300%"),
+    "300% 300%"
+  );
+  const columns = Math.max(1, Math.round(sizeX / 100));
+  const rows = Math.max(1, Math.round(sizeY / 100));
+  const [positionX, positionY] = parsePair(config.artPosition, "50% 50%");
+  return {
+    kind: "cell",
+    src,
+    columns,
+    rows,
+    column: Math.round((positionX / 100) * (columns - 1)),
+    row: Math.round((positionY / 100) * (rows - 1)),
+  };
+}
+
+/** Posun listu tak, aby v ráme sedela presne zvolená bunka. */
+function cellStyle(art: Extract<HeroArt, { kind: "cell" }>): CSSProperties {
+  return {
+    width: `${art.columns * 100}%`,
+    height: `${art.rows * 100}%`,
+    left: `${art.column * -100}%`,
+    top: `${art.row * -100}%`,
+  };
+}
+
 export default function GameWelcome({
   config,
   onBack,
@@ -334,6 +386,7 @@ export default function GameWelcome({
     "--welcome-soft": config.accentSoft,
     "--welcome-deep": config.deep,
   } as CSSProperties;
+  const art = resolveHeroArt(config);
 
   return (
     <main
@@ -343,35 +396,41 @@ export default function GameWelcome({
       <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_50%_5%,var(--welcome-soft),transparent_38%)]" />
 
       <div className="game-welcome-content relative mx-auto flex h-full w-full max-w-lg flex-col px-4 pb-[max(.75rem,env(safe-area-inset-bottom))] pt-[max(.75rem,env(safe-area-inset-top))]">
-        <div className={`game-welcome-hero relative mb-3 min-h-0 basis-0 grow-[1.25] shrink overflow-hidden rounded-[26px] border border-white/12 shadow-2xl animate-welcome-reveal ${config.variant === "song" ? "game-welcome-song-hero" : ""}`}>
-          {config.artWide ? (
-            <img
-              src={config.artWide}
-              alt=""
-              className="absolute inset-0 h-full w-full scale-[1.06] object-cover saturate-[.9]"
-              style={{ objectPosition: config.artPosition }}
-            />
-          ) : config.art && !config.artAtlas ? (
-            <img
-              src={config.art}
-              alt=""
-              className="absolute inset-0 h-full w-full scale-[1.06] object-cover saturate-[.9]"
-              style={{ objectPosition: config.artPosition }}
-            />
-          ) : (
-            <div
-              className="absolute inset-0 scale-[1.07] bg-no-repeat"
-              style={{
-                backgroundImage: `url(${config.artAtlas ? config.art : gameArt})`,
-                backgroundSize: config.artSize ?? (config.artAtlas ? "300% 300%" : "400% 300%"),
-                backgroundPosition: config.artPosition,
-              }}
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-[#080b12]" />
-          <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[var(--welcome-soft)] blur-3xl" />
-          <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(255,255,255,.12),transparent_28%,transparent_70%,rgba(0,0,0,.35))]" />
-          {config.variant === "song" && <div className="song-welcome-equalizer pointer-events-none absolute bottom-[7.3rem] right-5 flex h-10 items-end gap-1 opacity-80" aria-hidden="true">{[16, 28, 20, 36, 25, 32, 18].map((height, index) => <i key={index} style={{ height }} />)}</div>}
+        <div className={`game-welcome-hero relative overflow-hidden rounded-[26px] border border-white/12 animate-welcome-reveal ${config.variant === "song" ? "game-welcome-song-hero" : ""}`}>
+          {/* Kresba je vždy celá a na stred, okraje dopĺňa jej rozostrená kópia. */}
+          <div className="game-welcome-art" aria-hidden="true">
+            {art.kind === "cell" ? (
+              <>
+                <span className="game-welcome-art-fill">
+                  <span className="game-welcome-art-cell is-fill">
+                    <img src={art.src} alt="" style={cellStyle(art)} />
+                  </span>
+                </span>
+                <span className="game-welcome-art-stage">
+                  <span className="game-welcome-art-cell">
+                    <img src={art.src} alt="" style={cellStyle(art)} />
+                  </span>
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="game-welcome-art-fill">
+                  <img src={art.src} alt="" className="game-welcome-art-cover" />
+                </span>
+                <span className="game-welcome-art-stage">
+                  <img
+                    src={art.src}
+                    alt=""
+                    className="game-welcome-art-full"
+                    style={{ objectPosition: art.position }}
+                  />
+                </span>
+              </>
+            )}
+          </div>
+
+          <div className="game-welcome-hero-scrim" />
+          {config.variant === "song" && <div className="song-welcome-equalizer pointer-events-none absolute right-4 top-4 flex h-10 items-end gap-1 opacity-80" aria-hidden="true">{[16, 28, 20, 36, 25, 32, 18].map((height, index) => <i key={index} style={{ height }} />)}</div>}
 
           <button
             type="button"
@@ -382,16 +441,16 @@ export default function GameWelcome({
             <Icons.chevronLeft size={23} />
           </button>
 
-          <div className="absolute inset-x-0 bottom-0 p-5">
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/12 bg-[#0d1218]/70 px-3 py-1.5">
+          <div className="game-welcome-hero-copy absolute inset-x-0 bottom-0 p-5">
+            <div className="mb-2.5 inline-flex items-center gap-2 rounded-full border border-white/12 bg-[#0d1218]/70 px-3 py-1.5">
               <span className="h-2 w-2 rounded-full" style={{ background: config.accent }} />
               <span className="text-[10px] font-black uppercase tracking-[.19em] text-white/75">{config.eyebrow}</span>
             </div>
-            <h1 className="max-w-[360px] text-[2.35rem] font-extrabold leading-[.96] tracking-[-.045em] drop-shadow-xl">{config.title}</h1>
+            <h1 className="game-welcome-title font-extrabold leading-[.96] tracking-[-.045em] drop-shadow-xl">{config.title}</h1>
           </div>
         </div>
 
-        <section className="game-welcome-details flex min-h-0 basis-0 grow flex-col justify-between gap-2 animate-welcome-content">
+        <section className="game-welcome-details flex flex-col gap-2 animate-welcome-content">
           <p className="game-welcome-description text-[13px] font-medium leading-[1.5] text-white/62">{config.description}</p>
 
           <div className="game-welcome-stats grid grid-cols-2 gap-2">
