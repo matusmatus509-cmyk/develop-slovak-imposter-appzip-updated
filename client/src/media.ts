@@ -38,7 +38,19 @@ export const musicQuizGameHeroWide = publicAsset(
   "party-music-quiz-hero-v3-wide.jpg"
 );
 export const onlyLiesGameHero = publicAsset("party-quiz-battle-v3.png");
-export const forbiddenWordGameHero = publicAsset("party-forbidden.svg");
+/**
+ * Pre uvítaciu obrazovku a kartičku v menu — portrét 928×1152 (~0,81 : 1),
+ * blízko oboch panelov (kartička ~0,77–0,80 : 1, uvítacia obrazovka ~0,80 : 1).
+ */
+export const forbiddenWordGameHero = publicAsset("party-forbidden-hero.jpg");
+/**
+ * Pre panel „Nastavenia hry" v `TeamQuickGame.tsx` (`.game-setup-hero`,
+ * ~350×192 px na bežnom mobile, pomer ~1,82 : 1). 1392×768 (~1,81 : 1) sedí
+ * takmer bez orezu — rovnaká logika ako `musicQuizSetupHero`.
+ */
+export const forbiddenSetupHero = publicAsset(
+  "party-forbidden-setup-hero.jpg"
+);
 export const partyHubHero = publicAsset("party-hub-hero.png");
 export const partyTableBackground = publicAsset("party-table-bg.png");
 export const quizBattleArt = publicAsset("party-quiz-battle-v3.png");

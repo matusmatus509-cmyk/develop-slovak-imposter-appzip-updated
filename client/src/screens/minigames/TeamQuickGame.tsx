@@ -14,7 +14,7 @@ import {
 } from "../teamBattle/quickGameShared";
 /** Design: Nočný herný salón — rýchle hry používajú hostované tematické motívy. */
 import {
-  forbiddenArt,
+  forbiddenSetupHero as forbiddenArt,
   fiveTenGameHero as fiveTenArt,
   letterGameHero as letterArt,
   musicQuizSetupHero as musicQuizArt,
