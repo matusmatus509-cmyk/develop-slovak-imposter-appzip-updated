@@ -6,6 +6,7 @@ import {
   minigameArtAtlas,
   musicQuizGameHero,
   musicQuizGameHeroWide,
+  musicQuizSetupHero,
   partyMinigameAtlas,
   songGameHero,
 } from "./media";
@@ -21,9 +22,10 @@ describe("minigame artwork registry", () => {
       fiveTenGameHero,
       musicQuizGameHero,
       musicQuizGameHeroWide,
+      musicQuizSetupHero,
     ];
 
-    expect(assets).toHaveLength(8);
+    expect(assets).toHaveLength(9);
     expect(assets.every((asset) => asset.includes("assets/"))).toBe(true);
     expect(assets.every((asset) => !asset.includes("files.manuscdn.com"))).toBe(true);
   });
@@ -32,6 +34,9 @@ describe("minigame artwork registry", () => {
     expect(musicQuizGameHero).toContain("assets/party-music-quiz-hero-v3.png");
     expect(musicQuizGameHeroWide).toContain(
       "assets/party-music-quiz-hero-v3-wide.jpg"
+    );
+    expect(musicQuizSetupHero).toContain(
+      "assets/party-music-quiz-setup-hero.jpg"
     );
   });
 });
