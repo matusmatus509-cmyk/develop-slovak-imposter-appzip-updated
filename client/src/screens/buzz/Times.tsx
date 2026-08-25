@@ -1,15 +1,11 @@
 import type { CSSProperties } from "react";
-import { useState } from "react";
 import type { BuzzSettings } from "../../types";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
-import { cn } from "../../utils/designTokens";
 import { formatBuzzTime } from "../../utils/buzzLogic";
-import { formatTime } from "../../utils/format";
-import { useCountdown } from "../../hooks/useCountdown";
 
 /**
- * Verejné výsledky kola.
+ * Kto ako stopol.
  *
  * Časy sú v poradí hráčov a bez akéhokoľvek hodnotenia — žiadne poradie podľa
  * presnosti, žiadne farby, žiadne rozdiely. Z čísel sa nesmie dať vyčítať, kto
@@ -19,74 +15,23 @@ export default function Times({
   settings,
   times,
   onExit,
-  onVote,
+  onReveal,
 }: {
   settings: BuzzSettings;
   times: number[];
   onExit: () => void;
-  onVote: () => void;
+  onReveal: () => void;
 }) {
-  const hasTimer = settings.discussionSeconds > 0;
-  const [paused, setPaused] = useState(false);
-  const countdown = useCountdown(settings.discussionSeconds, hasTimer && !paused);
-  const remaining = countdown.secondsLeft;
-  const timeUp = hasTimer && remaining <= 0;
-
   return (
     <Shell>
-      <TopBar title="Výsledky kola" onBack={onExit} />
+      <TopBar title="Kto ako stopol" onBack={onExit} />
 
-      {/* Hlavička je zámerne nízka, aby sa aj pri plnej partii zmestilo do
-          zoznamu čo najviac časov bez skrolovania. */}
       <div className="mb-3 text-center" style={{ animation: "fadeIn 0.5s ease-out" }}>
         <h1 className="text-2xl font-black">Všetci vidia časy</h1>
         <p className="mt-1.5 text-[13px] leading-snug text-white/50">
           Nikto však nevie, komu patril presný čas a kto mal iba rozsah.
         </p>
       </div>
-
-      {hasTimer && (
-        <div
-          className={cn(
-            "mb-2.5 flex items-center justify-between gap-3 rounded-2xl border px-4 py-2",
-            timeUp
-              ? "border-red-500/35 bg-red-950/30"
-              : "border-white/10 bg-white/[.04]"
-          )}
-        >
-          <div className="flex items-center gap-2.5">
-            <span
-              className={cn(
-                "flex h-9 w-9 items-center justify-center rounded-xl",
-                timeUp ? "bg-red-500/15 text-red-300" : "bg-white/[.06] text-white/60"
-              )}
-            >
-              <Icons.hourglass size={17} />
-            </span>
-            <div className="text-left">
-              <p className="text-[10px] font-black uppercase tracking-[.18em] text-white/40">
-                {timeUp ? "Čas na diskusiu vypršal" : "Čas na diskusiu"}
-              </p>
-              <p
-                className={cn(
-                  "text-lg font-black tabular-nums",
-                  timeUp ? "text-red-300" : "text-white"
-                )}
-              >
-                {formatTime(remaining)}
-              </p>
-            </div>
-          </div>
-          <button
-            onClick={() => setPaused(p => !p)}
-            disabled={timeUp}
-            aria-label={paused ? "Pokračovať" : "Pozastaviť"}
-            className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/12 bg-white/[.06] text-white/70 transition-all hover:bg-white/12 active:scale-95 disabled:opacity-30"
-          >
-            {paused ? <Icons.play size={16} /> : <Icons.pause size={16} />}
-          </button>
-        </div>
-      )}
 
       <div className="min-h-0 flex-1 space-y-2 overflow-y-auto pb-2">
         {settings.playerNames.map((name, i) => (
@@ -106,8 +51,8 @@ export default function Times({
         ))}
       </div>
 
-      <Button fullWidth onClick={onVote} className="mt-3">
-        <span className="inline-flex items-center gap-2">Prejsť na hlasovanie <Icons.users size={18} /></span>
+      <Button fullWidth onClick={onReveal} className="mt-3">
+        <span className="inline-flex items-center gap-2">Odhaliť podvodníka <Icons.eye size={18} /></span>
       </Button>
     </Shell>
   );
