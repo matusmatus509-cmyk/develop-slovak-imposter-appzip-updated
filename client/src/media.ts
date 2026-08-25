@@ -17,6 +17,10 @@ export const songGameHero = publicAsset("party-song-hero-v2.png");
 export const letterGameHero = publicAsset("party-letter-hero-v2.png");
 export const fiveTenGameHero = publicAsset("party-five-ten-hero-v2.png");
 export const musicQuizGameHero = publicAsset("party-music-quiz-hero-v3.png");
+/** Verzia na šírku pre uvítaciu obrazovku — kartičky v menu zostávajú na výškovej verzii vyššie. */
+export const musicQuizGameHeroWide = publicAsset(
+  "party-music-quiz-hero-v3-wide.png"
+);
 export const onlyLiesGameHero = publicAsset("party-quiz-battle-v3.png");
 export const forbiddenWordGameHero = publicAsset("party-forbidden.svg");
 export const partyHubHero = publicAsset("party-hub-hero.png");

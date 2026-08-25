@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Screen } from "../types";
 /** Dizajnové pravidlo: pôvodný GitHub vzhľad — hero vizuály majú mierny presah cez atlasové okraje. */
-import { fiveTenGameHero, gameArt, letterGameHero, minigameArtAtlas, musicQuizGameHero, partyMinigameAtlas, songGameHero } from "../media";
+import { fiveTenGameHero, gameArt, letterGameHero, minigameArtAtlas, musicQuizGameHero, musicQuizGameHeroWide, partyMinigameAtlas, songGameHero } from "../media";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -16,6 +16,9 @@ export interface GameWelcomeConfig {
   deep: string;
   artPosition: string;
   art?: string;
+  /** Voliteľná verzia na šírku pre uvítaciu obrazovku — kartičky v menu
+   *  a výbere hier zostávajú na `art`, tie sú narezané na výšku. */
+  artWide?: string;
   artAtlas?: boolean;
   artSize?: string;
   variant?: "default" | "song";
@@ -229,8 +232,11 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accentSoft: "rgba(217,70,239,.23)",
     deep: "#240b2f",
     // Vinyl so slúchadlami na mixpulte — presne ten obrázok, ktorý má hra mať.
+    // Uvítacia obrazovka je široká, takže dostáva `artWide` verziu 1536×1024;
+    // kartička v menu je na výšku a zostáva na pôvodnej verzii 1113×1414.
     artPosition: "50% 50%",
     art: musicQuizGameHero,
+    artWide: musicQuizGameHeroWide,
   },
   zvuk: {
     eyebrow: "Počúvaj a bzuč",
@@ -329,7 +335,14 @@ export default function GameWelcome({
 
       <div className="game-welcome-content relative mx-auto flex h-full w-full max-w-lg flex-col px-4 pb-[max(.75rem,env(safe-area-inset-bottom))] pt-[max(.75rem,env(safe-area-inset-top))]">
         <div className={`game-welcome-hero relative mb-3 min-h-0 basis-0 grow-[1.25] shrink overflow-hidden rounded-[26px] border border-white/12 shadow-2xl animate-welcome-reveal ${config.variant === "song" ? "game-welcome-song-hero" : ""}`}>
-          {config.art && !config.artAtlas ? (
+          {config.artWide ? (
+            <img
+              src={config.artWide}
+              alt=""
+              className="absolute inset-0 h-full w-full scale-[1.06] object-cover saturate-[.9]"
+              style={{ objectPosition: config.artPosition }}
+            />
+          ) : config.art && !config.artAtlas ? (
             <img
               src={config.art}
               alt=""
