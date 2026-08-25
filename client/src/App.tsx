@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type {
+  BuzzAssignment,
+  BuzzSettings,
   CustomContentGame,
   FeedbackSettings,
   GameSettings,
@@ -16,6 +18,7 @@ import type {
 import { CATEGORIES } from "./data/categories";
 import { DRAWING_CATEGORIES } from "./data/drawingCategories";
 import { generateRound } from "./utils/gameLogic";
+import { generateBuzzAssignment } from "./utils/buzzLogic";
 import {
   applyPartyCompletionRecord,
   applyFastestGuessRecord,
@@ -64,7 +67,11 @@ import TruthOrDare from "./screens/minigames/TruthOrDare";
 import NeverHaveIEver from "./screens/minigames/NeverHaveIEver";
 import WouldYouRather from "./screens/minigames/WouldYouRather";
 import BuzzSetup from "./screens/buzz/Setup";
+import BuzzReveal from "./screens/buzz/Reveal";
 import BuzzRound from "./screens/buzz/Round";
+import BuzzTimes from "./screens/buzz/Times";
+import BuzzVoting from "./screens/buzz/Voting";
+import BuzzResult from "./screens/buzz/Result";
 import DrawingSetup from "./screens/drawing/Setup";
 import DrawingCanvas from "./screens/drawing/Canvas";
 import DrawingVote from "./screens/drawing/Vote";
@@ -105,10 +112,10 @@ const IMPOSTOR_GAMES: MenuGame[] = [
   },
   {
     screen: "buzz-setup",
-    title: "Imposter Buzz",
+    title: "Buzz Podvodník",
     description:
-      "Beží odpočet, každý povie jedno slovo. Bzučiak spustí hlasovanie.",
-    icon: "bell",
+      "Všetci stopujú rovnaký tajný čas naslepo. Podvodník pozná iba rozsah.",
+    icon: "timer",
     color: "from-rose-500 to-amber-500",
     badge: "Novinka",
   },
@@ -335,6 +342,7 @@ const ONE_SCREEN_GAME_SCREENS = new Set<Screen>([
   "drawing-result",
   "buzz-reveal",
   "buzz-round",
+  "buzz-times",
   "buzz-voting",
   "buzz-result",
   "truth-or-dare",
@@ -372,11 +380,15 @@ const DEFAULT_SETTINGS: GameSettings = {
   strokesPerPlayer: 3,
 };
 
-// Buzz kolo je svižnejšie než klasická diskusia — každý povie iba jedno slovo,
-// takže štartujeme na minúte namiesto 90 sekúnd.
-const DEFAULT_BUZZ_SETTINGS: GameSettings = {
-  ...DEFAULT_SETTINGS,
-  timerSeconds: 60,
+// Buzz Podvodník nepracuje so slovami ani kategóriami, takže má vlastný typ
+// nastavení: okno pre tajný čas, šírku rozsahu podvodníka a čas na diskusiu.
+const DEFAULT_BUZZ_SETTINGS: BuzzSettings = {
+  playerNames: ["Hráč 1", "Hráč 2", "Hráč 3", "Hráč 4"],
+  targetMinSeconds: 5,
+  targetMaxSeconds: 10,
+  impostorRangeSeconds: 2,
+  blindTiming: true,
+  discussionSeconds: 60,
 };
 
 export default function App() {
@@ -511,16 +523,17 @@ export default function App() {
     null
   );
 
-  // Imposter Buzz state
-  const [buzzSettings, setBuzzSettings] = useLocalStorage<GameSettings>(
-    "buzz-settings",
+  // Buzz Podvodník state. Kľúč je nový, pretože staršia verzia hry si sem
+  // ukladala `GameSettings` s iným tvarom.
+  const [buzzSettings, setBuzzSettings] = useLocalStorage<BuzzSettings>(
+    "buzz-podvodnik-settings",
     DEFAULT_BUZZ_SETTINGS
   );
-  const [buzzAssignment, setBuzzAssignment] = useState<RoundAssignment | null>(
+  const [buzzAssignment, setBuzzAssignment] = useState<BuzzAssignment | null>(
     null
   );
-  const [buzzElapsedSeconds, setBuzzElapsedSeconds] = useState(0);
-  const [buzzVotedIndex, setBuzzVotedIndex] = useState<number | null>(null);
+  const [buzzTimes, setBuzzTimes] = useState<number[]>([]);
+  const [buzzVotes, setBuzzVotes] = useState<(number | null)[]>([]);
 
   const selectedTheme = safeFeedbackSettings.partyTheme ?? "dark";
   const activeTheme = GAME_WELCOMES[screen];
@@ -910,46 +923,18 @@ export default function App() {
     setScreen("drawing-result");
   }
 
-  // Buzz hrá s rovnakými kategóriami ako klasika, takže zdieľa aj `usedWords`
-  // a zapisuje sa do spoločnej histórie kôl.
-  function startBuzzRound(s: GameSettings) {
-    const { assignment: a, usedWords: newUsed } = generateRound(
-      s,
-      CATEGORIES,
-      usedWords
-    );
-    setBuzzAssignment(a);
-    setUsedWords(newUsed);
-    setBuzzVotedIndex(null);
-    setBuzzElapsedSeconds(0);
+  // Buzz Podvodník nepracuje so slovami, takže sa nezapisuje do histórie kôl
+  // (tá je postavená na tajnom slove a kategórii).
+  function startBuzzRound(s: BuzzSettings) {
+    setBuzzAssignment(generateBuzzAssignment(s));
+    setBuzzTimes([]);
+    setBuzzVotes([]);
     setScreen("buzz-reveal");
   }
 
-  function handleBuzzSetupStart(s: GameSettings) {
+  function handleBuzzSetupStart(s: BuzzSettings) {
     setBuzzSettings(s);
     startBuzzRound(s);
-  }
-
-  function handleBuzzVote(voted: number | null) {
-    if (!buzzAssignment) return;
-    setBuzzVotedIndex(voted);
-    const caught =
-      voted !== null && buzzAssignment.impostorIndexes.includes(voted);
-    const entry: RoundHistoryEntry = {
-      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-      roundNumber: history.length + 1,
-      word: buzzAssignment.word,
-      categoryName: buzzAssignment.categoryName,
-      categoryIcon: buzzAssignment.categoryIcon,
-      timeSeconds: buzzElapsedSeconds || buzzSettings.timerSeconds,
-      impostors: buzzAssignment.impostorIndexes.map(
-        i => buzzSettings.playerNames[i]
-      ),
-      playersWon: caught,
-      timestamp: Date.now(),
-    };
-    setHistory([...history, entry]);
-    setScreen("buzz-result");
   }
 
   function handleVoteConfirm(voted: number | null) {
@@ -1061,7 +1046,7 @@ export default function App() {
         return (
           <GameMenu
             title="Imposter"
-            subtitle="Tri verzie obľúbenej hry. Tajné slovo, kreslenie alebo odpočet s bzučiakom."
+            subtitle="Tri verzie obľúbenej hry. Tajné slovo, kreslenie alebo stopovanie tajného času."
             games={IMPOSTOR_GAMES}
             onBack={() => setScreen("home")}
             onNavigate={navigateFromMenu}
@@ -1262,10 +1247,9 @@ export default function App() {
           return null;
         }
         return (
-          <Reveal
+          <BuzzReveal
             settings={buzzSettings}
             assignment={buzzAssignment}
-            mode="buzz"
             onExit={() => returnFromActiveGame("impostor-menu")}
             onDone={() => setScreen("buzz-round")}
           />
@@ -1279,20 +1263,34 @@ export default function App() {
         return (
           <BuzzRound
             settings={buzzSettings}
+            assignment={buzzAssignment}
             onExit={() => returnFromActiveGame("impostor-menu")}
-            onFinish={elapsed => {
-              setBuzzElapsedSeconds(elapsed);
-              setScreen("buzz-voting");
+            onFinish={times => {
+              setBuzzTimes(times);
+              setScreen("buzz-times");
             }}
+          />
+        );
+
+      case "buzz-times":
+        return (
+          <BuzzTimes
+            settings={buzzSettings}
+            times={buzzTimes}
+            onExit={() => returnFromActiveGame("impostor-menu")}
+            onVote={() => setScreen("buzz-voting")}
           />
         );
 
       case "buzz-voting":
         return (
-          <Voting
+          <BuzzVoting
             settings={buzzSettings}
             onExit={() => returnFromActiveGame("impostor-menu")}
-            onConfirm={handleBuzzVote}
+            onFinish={votes => {
+              setBuzzVotes(votes);
+              setScreen("buzz-result");
+            }}
           />
         );
 
@@ -1302,16 +1300,13 @@ export default function App() {
           return null;
         }
         return (
-          <Result
+          <BuzzResult
             settings={buzzSettings}
             assignment={buzzAssignment}
-            votedIndex={buzzVotedIndex}
+            times={buzzTimes}
+            votes={buzzVotes}
             onNewRound={() => startBuzzRound(buzzSettings)}
             onHome={() => returnFromActiveGame("impostor-menu")}
-            onHistory={() => {
-              historyReturnScreenRef.current = gameReturnScreenRef.current;
-              setScreen("impostor-history");
-            }}
           />
         );
 

@@ -1,25 +1,23 @@
 import { useState } from "react";
-import type { GameSettings, RoundAssignment } from "../../types";
+import type { BuzzAssignment, BuzzSettings } from "../../types";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import { cn } from "../../utils/designTokens";
+import { formatBuzzRange, formatBuzzTime } from "../../utils/buzzLogic";
 
 export default function Reveal({
   settings,
   assignment,
   onExit,
   onDone,
-  mode = "impostor",
 }: {
-  settings: GameSettings;
-  assignment: RoundAssignment;
+  settings: BuzzSettings;
+  assignment: BuzzAssignment;
   onExit: () => void;
   onDone: () => void;
-  mode?: "impostor" | "drawing";
 }) {
   const [seen, setSeen] = useState<Set<number>>(new Set());
   const [viewing, setViewing] = useState<number | null>(null);
-  const [starter, setStarter] = useState<number | null>(null);
 
   const allSeen = seen.size === settings.playerNames.length;
 
@@ -30,17 +28,13 @@ export default function Reveal({
 
   function handleDoneViewing() {
     if (viewing === null) return;
-    const newSeen = new Set([...seen, viewing]);
-    setSeen(newSeen);
-    if (newSeen.size === settings.playerNames.length && starter === null) {
-      setStarter(Math.floor(Math.random() * settings.playerNames.length));
-    }
+    setSeen(new Set([...seen, viewing]));
     setViewing(null);
   }
 
-  // ── Identity reveal overlay ──────────────────────────────────────
+  // ── Tajné zadanie jedného hráča ──────────────────────────────────
   if (viewing !== null) {
-    const isImpostor = assignment.impostorIndexes.includes(viewing);
+    const isImpostor = viewing === assignment.impostorIndex;
     return (
       <Shell>
         <div className="flex w-full flex-1 flex-col items-center justify-center gap-6">
@@ -89,41 +83,24 @@ export default function Reveal({
                 >
                   PODVODNÍK
                 </h2>
-                {settings.hintsEnabled ? (
-                  <div className="relative w-full" style={{ animation: "slideUp 0.5s ease-out 0.2s both" }}>
-                    <p className="mb-2 text-xs font-bold uppercase tracking-widest text-white/40">
-                      Nápoveda
-                    </p>
-                    <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-                      <p className="text-2xl font-black uppercase text-white">
-                        {assignment.hintWord}
-                      </p>
-                    </div>
-                    {!settings.hideCategoryFromImpostor && (
-                      <span className="mt-3 inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/60">
-                        {assignment.categoryIcon} {assignment.categoryName}
-                      </span>
-                    )}
-                    <p className="mt-3 text-xs leading-relaxed text-white/50">
-                      Znáš nápovedu. Použi ju ako svoju prvú asociáciu v kole.
-                    </p>
-                  </div>
-                ) : (
-                  <div className="relative text-center" style={{ animation: "slideUp 0.5s ease-out 0.2s both" }}>
-                    {!settings.hideCategoryFromImpostor && (
-                      <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/60">
-                        {assignment.categoryIcon} {assignment.categoryName}
-                      </span>
-                    )}
-                    <p className="mt-3 text-xs leading-relaxed text-white/50">
-                      {mode === "drawing"
-                        ? "Nepoznáš tajné slovo. Sleduj kresbu ostatných a pridaj nenápadný ťah, aby ťa neodhalili."
-                        : settings.hideCategoryFromImpostor
-                          ? "Nepoznáš tajné slovo ani kategóriu. Počúvaj ostatných a snaž sa zapadnúť, aby ťa neodhalili."
-                          : "Nepoznáš tajné slovo. Počúvaj ostatných a snaž sa zapadnúť, aby ťa neodhalili."}
-                    </p>
-                  </div>
-                )}
+                <p
+                  className="relative text-xs font-bold uppercase tracking-widest text-white/40"
+                  style={{ animation: "slideUp 0.5s ease-out 0.15s both" }}
+                >
+                  Tvoj rozsah
+                </p>
+                <div
+                  className="relative w-full rounded-2xl border border-red-500/20 bg-red-500/5 px-4 py-4"
+                  style={{ animation: "slideUp 0.5s ease-out 0.2s both" }}
+                >
+                  <p className="text-3xl font-black tabular-nums text-white">
+                    {formatBuzzRange(assignment.rangeMinSeconds, assignment.rangeMaxSeconds)}
+                  </p>
+                </div>
+                <p className="relative text-xs leading-relaxed text-white/50">
+                  Presný čas nepoznáš — ostatní ho majú. Zastav stopky niekde
+                  v rozsahu a tvár sa, že si trafil presne.
+                </p>
               </>
             ) : (
               <>
@@ -137,23 +114,19 @@ export default function Reveal({
                   className="relative text-xs font-bold uppercase tracking-widest text-white/40"
                   style={{ animation: "slideUp 0.5s ease-out 0.15s both" }}
                 >
-                  Tajné slovo
+                  Tvoj tajný čas
                 </p>
                 <div
                   className="relative w-full rounded-2xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-4"
                   style={{ animation: "slideUp 0.5s ease-out 0.2s both" }}
                 >
-                  <p className="text-3xl font-black uppercase text-white">
-                    {assignment.word}
+                  <p className="text-3xl font-black tabular-nums text-white">
+                    {formatBuzzTime(assignment.targetSeconds)}
                   </p>
                 </div>
-                <span className="relative rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/60">
-                  {assignment.categoryIcon} {assignment.categoryName}
-                </span>
                 <p className="relative text-xs leading-relaxed text-white/50">
-                  {mode === "drawing"
-                    ? "Zapamätaj si slovo. Pri svojom ťahu nakresli iba jednu súvislú čiaru a mobil odovzdaj ďalej."
-                    : "Povedz asociáciu súvisiacu so slovom, ale nie príliš zjavnú — pomôž odhaliť podvodníka."}
+                  Zapamätaj si ho. Pri stopovaní sa mu snaž zastaviť čo najbližšie —
+                  a nedaj ostatným najavo, že presné číslo poznáš.
                 </p>
               </>
             )}
@@ -170,7 +143,7 @@ export default function Reveal({
   // ── Player grid ──────────────────────────────────────────────────
   return (
     <Shell>
-      <TopBar title="Identita" onBack={onExit} />
+      <TopBar title="Tajné zadania" onBack={onExit} />
 
       <div className="mb-6 text-center" style={{ animation: "fadeIn 0.5s ease-out" }}>
         <div
@@ -181,7 +154,8 @@ export default function Reveal({
         </div>
         <h1 className="text-xl font-black">Ťukni na svoje meno</h1>
         <p className="mt-1 text-sm text-white/50">
-          Každý si pozrie svoju identitu a odovzdá telefón ďalej.
+          Každý si pozrie svoje zadanie a odovzdá telefón ďalej. Jeden z vás
+          dostane namiesto presného času iba rozsah.
         </p>
       </div>
 
@@ -220,7 +194,7 @@ export default function Reveal({
                     "flex h-14 w-14 items-center justify-center rounded-full text-lg font-black transition-all",
                     done
                       ? "bg-emerald-500/20 text-emerald-300"
-                      : "bg-gradient-to-br from-orange-500 to-fuchsia-600 text-white"
+                      : "bg-gradient-to-br from-rose-500 to-amber-500 text-white"
                   )}
                 >
                   {name.slice(0, 2).toUpperCase()}
@@ -235,22 +209,22 @@ export default function Reveal({
         </div>
       </div>
 
-      {allSeen && starter !== null && (
+      {allSeen && (
         <div
           className="mt-4 flex flex-col gap-3"
           style={{ animation: "slideUp 0.5s ease-out" }}
         >
-          <div className="flex flex-col items-center gap-2 rounded-3xl border border-amber-500/30 bg-amber-950/30 px-6 py-5 text-center">
-            <Icons.dice1 size={32} className="text-amber-400" />
-            <p className="text-xs font-bold uppercase tracking-widest text-amber-400/70">
-              {mode === "drawing" ? "Losovanie — kto kreslí prvý" : "Losovanie — kto začína"}
-            </p>
-            <p className="text-2xl font-black text-amber-300">
-              {settings.playerNames[starter]}
+          <div className="flex items-center gap-3 rounded-3xl border border-rose-500/25 bg-rose-950/25 px-4 py-3 text-left">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-rose-500/15 text-rose-300">
+              <Icons.timer size={18} />
+            </span>
+            <p className="text-xs leading-snug text-white/60">
+              Stopuje sa v poradí hráčov. Každý spustí a sám zastaví stopky —
+              nikto neuvidí, ako blízko bol.
             </p>
           </div>
           <Button fullWidth onClick={onDone}>
-            <span className="inline-flex items-center gap-2">{mode === "drawing" ? <Icons.palette size={18} /> : <Icons.messageCircle size={18} />}{mode === "drawing" ? "Začať kreslenie" : "Začať diskusiu"}</span>
+            <span className="inline-flex items-center gap-2">Začať stopovanie <Icons.timer size={18} /></span>
           </Button>
         </div>
       )}

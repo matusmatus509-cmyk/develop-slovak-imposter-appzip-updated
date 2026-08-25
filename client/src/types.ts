@@ -11,6 +11,7 @@ export type Screen =
   | "buzz-setup"
   | "buzz-reveal"
   | "buzz-round"
+  | "buzz-times"
   | "buzz-voting"
   | "buzz-result"
   | "truth-or-dare"
@@ -183,4 +184,30 @@ export interface RoundHistoryEntry {
   impostors: string[];
   playersWon: boolean;
   timestamp: number;
+}
+
+/**
+ * Buzz Podvodník má vlastné nastavenia namiesto `GameSettings` — nepracuje
+ * so slovami ani kategóriami, iba s tajným časom a rozsahom pre podvodníka.
+ */
+export interface BuzzSettings {
+  playerNames: string[];
+  /** Okno, z ktorého sa losuje tajný čas kola. */
+  targetMinSeconds: number;
+  targetMaxSeconds: number;
+  /** Šírka rozsahu, ktorý namiesto presného času dostane podvodník. */
+  impostorRangeSeconds: number;
+  /** Naslepo = hráč počas merania nevidí bežiaci čas, iba výsledok. */
+  blindTiming: boolean;
+  /** Čas na diskusiu nad verejnými výsledkami (0 = bez limitu). */
+  discussionSeconds: number;
+}
+
+export interface BuzzAssignment {
+  /** Presný cieľ — dostanú ho všetci hráči okrem podvodníka. */
+  targetSeconds: number;
+  impostorIndex: number;
+  /** Rozsah pre podvodníka. Vždy obsahuje `targetSeconds`. */
+  rangeMinSeconds: number;
+  rangeMaxSeconds: number;
 }

@@ -1,209 +1,265 @@
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
-import type { GameSettings } from "../../types";
-import { Shell, TopBar } from "../../components/ui";
+import type { BuzzAssignment, BuzzSettings } from "../../types";
+import { Button, Shell, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
-import { formatTime } from "../../utils/format";
-import { useCountdown, useStopwatch } from "../../hooks/useCountdown";
+import { cn } from "../../utils/designTokens";
+import { formatBuzzRange, formatBuzzTime } from "../../utils/buzzLogic";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { vibrate } from "../../utils/deviceFeedback";
-import { cn } from "../../utils/designTokens";
 
-/** Ako dlho vidí partia bzučiakový efekt, kým sa otvorí hlasovanie. */
-const BUZZ_HOLD_MS = 700;
+type Phase = "ready" | "running" | "done";
 
+/**
+ * Stopovanie tajného času.
+ *
+ * Najdôležitejšie pravidlo hry: obrazovka nikdy neprezradí, ako blízko bol
+ * hráč svojmu zadaniu. Po zastavení sa preto zobrazí iba nameraný čas — žiadny
+ * rozdiel, hodnotenie ani farba podľa úspešnosti.
+ */
 export default function Round({
   settings,
+  assignment,
   onExit,
   onFinish,
 }: {
-  settings: GameSettings;
+  settings: BuzzSettings;
+  assignment: BuzzAssignment;
   onExit: () => void;
-  onFinish: (elapsedSeconds: number) => void;
+  onFinish: (times: number[]) => void;
 }) {
-  const hasTimer = settings.timerSeconds > 0;
   const { playFeedback } = useFeedback();
-  const [paused, setPaused] = useState(false);
-  const [buzzed, setBuzzed] = useState(false);
-  const [speaker, setSpeaker] = useState(0);
-  const finishedRef = useRef(false);
-  const finishTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [index, setIndex] = useState(0);
+  const [phase, setPhase] = useState<Phase>("ready");
+  const [times, setTimes] = useState<number[]>([]);
+  const [peeking, setPeeking] = useState(false);
+  const [liveMs, setLiveMs] = useState(0);
+  const startedAtRef = useRef(0);
 
-  function finish(time: number) {
-    if (finishedRef.current) return;
-    finishedRef.current = true;
-    if (finishTimeoutRef.current) clearTimeout(finishTimeoutRef.current);
-    finishTimeoutRef.current = null;
-    onFinish(time);
-  }
+  const isImpostor = index === assignment.impostorIndex;
+  const isLastPlayer = index === settings.playerNames.length - 1;
 
-  // Rovnako ako diskusia v klasickom Imposterovi: odpočet aj stopky pracujú
-  // s reálnym časom, takže pauza čas naozaj zastaví a po návrate do aplikácie
-  // sa hodnota dorovná namiesto zaostávania.
-  const countdown = useCountdown(
-    settings.timerSeconds,
-    hasTimer && !paused && !buzzed,
-    () => {
-      if (finishedRef.current || finishTimeoutRef.current) return;
-      finishTimeoutRef.current = setTimeout(() => finish(settings.timerSeconds), 400);
-    },
-  );
-  const stopwatch = useStopwatch(!hasTimer && !paused && !buzzed);
+  // Živý čas dopočítavame z `performance.now()`, takže hodnota nezávisí od
+  // toho, ako často stihne prehliadač prekresliť.
+  useEffect(() => {
+    if (phase !== "running" || settings.blindTiming) return;
+    let frame = 0;
+    const tick = () => {
+      setLiveMs(performance.now() - startedAtRef.current);
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [phase, settings.blindTiming]);
 
-  useEffect(() => () => {
-    if (finishTimeoutRef.current) clearTimeout(finishTimeoutRef.current);
-  }, []);
-
-  const remaining = countdown.secondsLeft;
-  const elapsed = hasTimer
-    ? Math.max(0, settings.timerSeconds - remaining)
-    : stopwatch.elapsedSeconds;
-  const isLowestRemaining = hasTimer && remaining <= 10 && remaining > 0;
-  const timeUp = hasTimer && remaining <= 0;
-
-  const dialColor = buzzed
-    ? "#f43f5e"
-    : isLowestRemaining || timeUp
-      ? "#ef4444"
-      : "#fb7185";
-  const dialAngle = hasTimer ? (countdown.percentLeft / 100) * 360 : 360;
-  const label = buzzed ? "bzučiak" : hasTimer ? "zostáva" : "uplynulo";
-  const display = buzzed
-    ? "STOP"
-    : hasTimer
-      ? formatTime(remaining)
-      : formatTime(elapsed);
-
-  function handleBuzz() {
-    if (buzzed || finishedRef.current) return;
-    setBuzzed(true);
-    playFeedback("buzzer");
-    vibrate([90, 55, 150]);
-    finishTimeoutRef.current = setTimeout(() => finish(elapsed), BUZZ_HOLD_MS);
-  }
-
-  function nextSpeaker() {
-    if (buzzed) return;
+  function handleStart() {
+    setPeeking(false);
+    setLiveMs(0);
+    startedAtRef.current = performance.now();
     playFeedback("click");
-    setSpeaker((current) => (current + 1) % settings.playerNames.length);
+    vibrate(30);
+    setPhase("running");
   }
+
+  function handleStop() {
+    const elapsed = Math.round((performance.now() - startedAtRef.current) / 10) / 100;
+    setTimes(current => [...current, elapsed]);
+    playFeedback("buzzer");
+    vibrate(70);
+    setPhase("done");
+  }
+
+  function handleNext() {
+    if (isLastPlayer) {
+      onFinish(times);
+      return;
+    }
+    setIndex(current => current + 1);
+    setPhase("ready");
+  }
+
+  const measured = times[index] ?? 0;
+  const dialColor = phase === "done" ? "#fb7185" : phase === "running" ? "#f43f5e" : "#64748b";
 
   return (
     <Shell>
-      <TopBar title="Imposter Buzz" onBack={onExit} />
+      <TopBar title="Stopovanie" onBack={onExit} />
 
       <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-5 text-center">
-        <div style={{ animation: "fadeIn 0.5s ease-out" }}>
+        <div style={{ animation: "fadeIn 0.4s ease-out" }}>
           <p className="text-[11px] font-black uppercase tracking-[.2em] text-white/40">
-            {buzzed ? "Čas zastavený" : paused ? "Odpočet pozastavený" : "Odpočet beží"}
+            Hráč {index + 1} z {settings.playerNames.length}
           </p>
-          <h1 className="mt-1 text-xl font-black tracking-tight">
-            Každý povie jedno slovo
+          <h1 className="mt-1 text-2xl font-black tracking-tight">
+            {settings.playerNames[index]}
           </h1>
         </div>
 
-        <div
-          className={cn("buzz-dial", (isLowestRemaining || buzzed) && "buzz-dial-low")}
+        {/* Kruh je zároveň veľká tlačiaca plocha na štart aj stop. */}
+        <button
+          type="button"
+          onClick={phase === "ready" ? handleStart : phase === "running" ? handleStop : undefined}
+          disabled={phase === "done"}
+          aria-label={phase === "ready" ? "Spustiť stopky" : phase === "running" ? "Zastaviť stopky" : "Nameraný čas"}
+          className={cn("buzz-dial", phase === "running" && "buzz-dial-live")}
           style={
             {
-              "--buzz-angle": `${dialAngle}deg`,
+              "--buzz-angle": "360deg",
               "--buzz-dial-color": dialColor,
-              animation: "scaleIn 0.6s cubic-bezier(0.34,1.56,0.64,1)",
+              animation: "scaleIn 0.5s cubic-bezier(0.34,1.56,0.64,1)",
             } as CSSProperties
           }
         >
           <div className="buzz-value">
-            <span
-              key={display}
-              className={cn(
-                "buzz-number",
-                isLowestRemaining || buzzed || timeUp ? "text-red-400" : "text-white",
-              )}
-            >
-              {display}
-            </span>
-            <span className="buzz-caption">{label}</span>
-          </div>
-          {paused && !buzzed && (
-            <span className="buzz-paused-badge">
-              <Icons.pause size={13} /> Pauza
-            </span>
-          )}
-        </div>
+            {phase === "ready" && (
+              <>
+                <span className="buzz-dial-icon">
+                  <Icons.play size={44} />
+                </span>
+                <span className="buzz-caption">ťukni a spusti</span>
+              </>
+            )}
 
-        <div className="w-full rounded-3xl border border-white/10 bg-white/[.04] px-4 py-3">
-          <div className="flex items-center justify-between gap-3">
-            <div className="min-w-0 text-left">
-              <p className="text-[10px] font-black uppercase tracking-[.18em] text-white/40">
-                Na slove je
-              </p>
-              <p className="truncate text-base font-black text-rose-200">
-                {settings.playerNames[speaker]}
-              </p>
-            </div>
-            <div className="flex shrink-0 items-center gap-2">
-              <button
-                onClick={() => setPaused((p) => !p)}
-                disabled={buzzed}
-                aria-label={paused ? "Pokračovať" : "Pozastaviť"}
-                className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/12 bg-white/[.06] text-white/70 transition-all hover:bg-white/12 active:scale-95 disabled:opacity-30"
-              >
-                {paused ? <Icons.play size={16} /> : <Icons.pause size={16} />}
-              </button>
-              <button
-                onClick={nextSpeaker}
-                disabled={buzzed}
-                className="flex h-10 items-center gap-1 rounded-2xl border border-white/12 bg-white/[.06] px-3.5 text-xs font-bold transition-all hover:bg-white/12 active:scale-95 disabled:opacity-30"
-              >
-                Ďalší <Icons.chevronRight size={15} />
-              </button>
-            </div>
+            {phase === "running" && (
+              settings.blindTiming ? (
+                <>
+                  <span className="buzz-blind" aria-hidden="true">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span className="buzz-caption">ťukni a zastav</span>
+                </>
+              ) : (
+                <>
+                  <span className="buzz-number text-white">
+                    {(liveMs / 1000).toFixed(2).replace(".", ",")}
+                  </span>
+                  <span className="buzz-caption">ťukni a zastav</span>
+                </>
+              )
+            )}
+
+            {/* Jednotku nesieme v popise pod číslom — vo veľkom čísle by sa
+                „s“ tlačilo na okraj kruhu. */}
+            {phase === "done" && (
+              <>
+                <span key={measured} className="buzz-number text-white">
+                  {measured.toFixed(2).replace(".", ",")}
+                </span>
+                <span className="buzz-caption">sekúnd — tvoj čas</span>
+              </>
+            )}
           </div>
-          <div className="mt-2.5 flex flex-wrap items-center justify-center gap-1.5">
-            {settings.playerNames.map((name, i) => (
-              <span
-                key={i}
-                aria-hidden="true"
+        </button>
+
+        {/* Pripomenutie zadania — iba pred spustením a iba pre hráča na rade. */}
+        {phase === "ready" && (
+          <div className="w-full">
+            {peeking ? (
+              <div
                 className={cn(
-                  "buzz-dot",
-                  i === speaker && "buzz-dot-active",
-                  i < speaker && "buzz-dot-done",
+                  "flex items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-left",
+                  isImpostor
+                    ? "border-red-500/25 bg-red-950/30"
+                    : "border-emerald-500/25 bg-emerald-950/25"
                 )}
-                title={name}
-              />
-            ))}
+                style={{ animation: "popIn 0.3s ease-out" }}
+              >
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[.18em] text-white/40">
+                    {isImpostor ? "Tvoj rozsah" : "Tvoj tajný čas"}
+                  </p>
+                  <p className="text-lg font-black tabular-nums text-white">
+                    {isImpostor
+                      ? formatBuzzRange(assignment.rangeMinSeconds, assignment.rangeMaxSeconds)
+                      : formatBuzzTime(assignment.targetSeconds)}
+                  </p>
+                </div>
+                <button
+                  onClick={() => setPeeking(false)}
+                  className="rounded-xl border border-white/12 bg-white/[.06] px-3 py-2 text-xs font-bold text-white/70"
+                >
+                  Skryť
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setPeeking(true)}
+                className="mx-auto flex items-center gap-2 rounded-2xl border border-white/12 bg-white/[.05] px-4 py-2.5 text-xs font-bold text-white/60 transition-all hover:bg-white/10 active:scale-95"
+              >
+                <Icons.eye size={15} /> Pripomenúť moje zadanie
+              </button>
+            )}
           </div>
+        )}
+
+        {phase === "running" && (
+          <p className="text-xs leading-relaxed text-white/45">
+            {settings.blindTiming
+              ? "Čas beží skryto. Zastav ho vtedy, keď to podľa teba sedí."
+              : "Čas vidíš — zastav ho na svojom čísle."}
+          </p>
+        )}
+
+        {phase === "done" && (
+          <p className="text-xs leading-relaxed text-white/45">
+            Toto je celý tvoj výsledok. Hra ti neprezradí, ako blízko si bol.
+          </p>
+        )}
+
+        {/* Priebeh kola */}
+        <div className="flex flex-wrap items-center justify-center gap-1.5">
+          {settings.playerNames.map((name, i) => (
+            <span
+              key={i}
+              aria-hidden="true"
+              title={name}
+              className={cn(
+                "buzz-dot",
+                i === index && "buzz-dot-active",
+                i < index && "buzz-dot-done"
+              )}
+            />
+          ))}
         </div>
       </div>
 
-      <button
-        type="button"
-        onClick={handleBuzz}
-        disabled={buzzed}
-        className="buzz-button mt-4 flex w-full items-center justify-between px-5 py-4 text-left"
-      >
-        <span>
-          <span className="block text-lg font-black uppercase tracking-[.13em]">
-            Bzučiak
-          </span>
-          <span className="block text-[11px] font-bold text-white/70">
-            Zastav čas a prejdi na hlasovanie
-          </span>
-        </span>
-        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/20">
-          <Icons.bell size={22} />
-        </span>
-      </button>
+      {phase === "ready" && (
+        <Button fullWidth onClick={handleStart} className="mt-4">
+          <span className="inline-flex items-center gap-2">Spustiť stopky <Icons.play size={18} /></span>
+        </Button>
+      )}
 
-      {buzzed && (
-        <div
-          className="buzz-flash pointer-events-none fixed inset-0 z-40 grid place-items-center"
-          aria-hidden="true"
+      {phase === "running" && (
+        <button
+          type="button"
+          onClick={handleStop}
+          className="buzz-button mt-4 flex w-full items-center justify-between px-5 py-4 text-left"
         >
-          <span className="text-5xl font-black uppercase tracking-[.18em] drop-shadow-2xl">
-            Bzzz!
+          <span>
+            <span className="block text-lg font-black uppercase tracking-[.13em]">
+              Zastaviť
+            </span>
+            <span className="block text-[11px] font-bold text-white/70">
+              Teraz je ten správny moment?
+            </span>
           </span>
-        </div>
+          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/20">
+            <Icons.stopCircle size={22} />
+          </span>
+        </button>
+      )}
+
+      {phase === "done" && (
+        <Button fullWidth onClick={handleNext} className="mt-4">
+          <span className="inline-flex items-center gap-2">
+            {isLastPlayer
+              ? "Zobraziť výsledky"
+              : `Ďalší hráč: ${settings.playerNames[index + 1]}`}
+            <Icons.chevronRight size={18} />
+          </span>
+        </Button>
       )}
     </Shell>
   );

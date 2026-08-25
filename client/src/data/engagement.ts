@@ -12,7 +12,7 @@ export const PLAYABLE_GAMES: PlayableGame[] = [
   { id: "teambattle", screen: "teambattle", title: "Party mode", icon: "🏆", color: "#8b5cf6" },
   { id: "impostor", screen: "impostor-setup", title: "Imposter", icon: "🕵️", color: "#f97316" },
   { id: "drawing", screen: "drawing-setup", title: "Imposter kreslenie", icon: "🎨", color: "#06b6d4" },
-  { id: "buzz", screen: "buzz-setup", title: "Imposter Buzz", icon: "🔔", color: "#f43f5e" },
+  { id: "buzz", screen: "buzz-setup", title: "Buzz Podvodník", icon: "⏲️", color: "#f43f5e" },
   { id: "truth-or-dare", screen: "truth-or-dare", title: "Pravda alebo výzva", icon: "🎯", color: "#0ea5e9" },
   { id: "never-have-i-ever", screen: "never-have-i-ever", title: "Nikdy som nikdy", icon: "🙋", color: "#10b981" },
   { id: "would-you-rather", screen: "would-you-rather", title: "Radšej by som", icon: "🤔", color: "#f59e0b" },
