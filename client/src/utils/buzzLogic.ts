@@ -1,5 +1,9 @@
 import type { BuzzAssignment, BuzzSettings } from "../types";
 
+/** Tajný čas sa vždy losuje z tohto okna. */
+export const BUZZ_TARGET_MIN_SECONDS = 1;
+export const BUZZ_TARGET_MAX_SECONDS = 15;
+
 /** Zarovnanie na polovice sekundy — rozsah podvodníka má vyzerať ako „5 – 7 s“. */
 function toHalf(value: number, mode: "floor" | "ceil" = "floor") {
   const scaled = value * 2;
@@ -14,8 +18,8 @@ function toHalf(value: number, mode: "floor" | "ceil" = "floor") {
  * posunuté náhodne — z rozsahu sa teda nedá odvodiť presné číslo.
  */
 export function generateBuzzAssignment(settings: BuzzSettings): BuzzAssignment {
-  const min = Math.min(settings.targetMinSeconds, settings.targetMaxSeconds);
-  const max = Math.max(settings.targetMinSeconds, settings.targetMaxSeconds);
+  const min = BUZZ_TARGET_MIN_SECONDS;
+  const max = BUZZ_TARGET_MAX_SECONDS;
   const targetSeconds = Math.round((min + Math.random() * (max - min)) * 100) / 100;
 
   const width = Math.max(0.5, settings.impostorRangeSeconds);
@@ -30,46 +34,6 @@ export function generateBuzzAssignment(settings: BuzzSettings): BuzzAssignment {
     impostorIndex: Math.floor(Math.random() * settings.playerNames.length),
     rangeMinSeconds,
     rangeMaxSeconds: Math.round((rangeMinSeconds + width) * 2) / 2,
-  };
-}
-
-export interface BuzzOutcome {
-  /** Počet hlasov pre každého hráča. */
-  counts: number[];
-  /** Hráči s najvyšším počtom hlasov (pri remíze ich je viac). */
-  leaders: number[];
-  totalVotes: number;
-  playersWon: boolean;
-}
-
-/**
- * Hráči vyhrávajú iba vtedy, keď podvodník dostane najviac hlasov sám za seba.
- * Pravidlo „ak podvodník dostane menej hlasov než niekto iný, vyhráva
- * podvodník“ platí aj pri remíze na prvom mieste.
- */
-export function evaluateBuzzVotes(
-  votes: (number | null)[],
-  impostorIndex: number,
-  playerCount: number
-): BuzzOutcome {
-  const counts = Array.from({ length: playerCount }, () => 0);
-  let totalVotes = 0;
-  for (const vote of votes) {
-    if (vote === null || vote < 0 || vote >= playerCount) continue;
-    counts[vote] += 1;
-    totalVotes += 1;
-  }
-
-  const highest = counts.reduce((best, value) => Math.max(best, value), 0);
-  const leaders = counts.flatMap((value, index) =>
-    highest > 0 && value === highest ? [index] : []
-  );
-
-  return {
-    counts,
-    leaders,
-    totalVotes,
-    playersWon: leaders.length === 1 && leaders[0] === impostorIndex,
   };
 }
 

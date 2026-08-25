@@ -12,7 +12,6 @@ export type Screen =
   | "buzz-reveal"
   | "buzz-round"
   | "buzz-times"
-  | "buzz-voting"
   | "buzz-result"
   | "truth-or-dare"
   | "would-you-rather"
@@ -192,15 +191,10 @@ export interface RoundHistoryEntry {
  */
 export interface BuzzSettings {
   playerNames: string[];
-  /** Okno, z ktorého sa losuje tajný čas kola. */
-  targetMinSeconds: number;
-  targetMaxSeconds: number;
   /** Šírka rozsahu, ktorý namiesto presného času dostane podvodník. */
   impostorRangeSeconds: number;
   /** Naslepo = hráč počas merania nevidí bežiaci čas, iba výsledok. */
   blindTiming: boolean;
-  /** Čas na diskusiu nad verejnými výsledkami (0 = bez limitu). */
-  discussionSeconds: number;
 }
 
 export interface BuzzAssignment {

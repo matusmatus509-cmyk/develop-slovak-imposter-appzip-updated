@@ -70,7 +70,6 @@ import BuzzSetup from "./screens/buzz/Setup";
 import BuzzReveal from "./screens/buzz/Reveal";
 import BuzzRound from "./screens/buzz/Round";
 import BuzzTimes from "./screens/buzz/Times";
-import BuzzVoting from "./screens/buzz/Voting";
 import BuzzResult from "./screens/buzz/Result";
 import DrawingSetup from "./screens/drawing/Setup";
 import DrawingCanvas from "./screens/drawing/Canvas";
@@ -343,7 +342,6 @@ const ONE_SCREEN_GAME_SCREENS = new Set<Screen>([
   "buzz-reveal",
   "buzz-round",
   "buzz-times",
-  "buzz-voting",
   "buzz-result",
   "truth-or-dare",
   "never-have-i-ever",
@@ -384,11 +382,8 @@ const DEFAULT_SETTINGS: GameSettings = {
 // nastavení: okno pre tajný čas, šírku rozsahu podvodníka a čas na diskusiu.
 const DEFAULT_BUZZ_SETTINGS: BuzzSettings = {
   playerNames: ["Hráč 1", "Hráč 2", "Hráč 3", "Hráč 4"],
-  targetMinSeconds: 5,
-  targetMaxSeconds: 10,
   impostorRangeSeconds: 2,
   blindTiming: true,
-  discussionSeconds: 60,
 };
 
 export default function App() {
@@ -533,7 +528,6 @@ export default function App() {
     null
   );
   const [buzzTimes, setBuzzTimes] = useState<number[]>([]);
-  const [buzzVotes, setBuzzVotes] = useState<(number | null)[]>([]);
 
   const selectedTheme = safeFeedbackSettings.partyTheme ?? "dark";
   const activeTheme = GAME_WELCOMES[screen];
@@ -928,7 +922,6 @@ export default function App() {
   function startBuzzRound(s: BuzzSettings) {
     setBuzzAssignment(generateBuzzAssignment(s));
     setBuzzTimes([]);
-    setBuzzVotes([]);
     setScreen("buzz-reveal");
   }
 
@@ -1263,7 +1256,6 @@ export default function App() {
         return (
           <BuzzRound
             settings={buzzSettings}
-            assignment={buzzAssignment}
             onExit={() => returnFromActiveGame("impostor-menu")}
             onFinish={times => {
               setBuzzTimes(times);
@@ -1278,19 +1270,7 @@ export default function App() {
             settings={buzzSettings}
             times={buzzTimes}
             onExit={() => returnFromActiveGame("impostor-menu")}
-            onVote={() => setScreen("buzz-voting")}
-          />
-        );
-
-      case "buzz-voting":
-        return (
-          <BuzzVoting
-            settings={buzzSettings}
-            onExit={() => returnFromActiveGame("impostor-menu")}
-            onFinish={votes => {
-              setBuzzVotes(votes);
-              setScreen("buzz-result");
-            }}
+            onReveal={() => setScreen("buzz-result")}
           />
         );
 
@@ -1304,7 +1284,6 @@ export default function App() {
             settings={buzzSettings}
             assignment={buzzAssignment}
             times={buzzTimes}
-            votes={buzzVotes}
             onNewRound={() => startBuzzRound(buzzSettings)}
             onHome={() => returnFromActiveGame("impostor-menu")}
           />

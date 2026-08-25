@@ -3,32 +3,20 @@ import type { BuzzSettings } from "../../types";
 import { Button, Chip, Shell, Toggle, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
 import {
+  BUZZ_TARGET_MAX_SECONDS,
+  BUZZ_TARGET_MIN_SECONDS,
+} from "../../utils/buzzLogic";
+import {
   defaultPlayerName,
   localizeGeneratedParticipantName,
   useLanguage,
 } from "../../i18n/LanguageProvider";
-
-// Okno, z ktorého sa losuje tajný čas kola. Kratšie časy sa trafia ľahšie,
-// dlhšie rozhádžu výsledky viac a podvodník sa v nich lepšie skryje.
-const TARGET_WINDOWS = [
-  { label: "3 – 6 s", min: 3, max: 6 },
-  { label: "5 – 10 s", min: 5, max: 10 },
-  { label: "8 – 15 s", min: 8, max: 15 },
-  { label: "10 – 20 s", min: 10, max: 20 },
-];
 
 // Čím širší rozsah, tým ľahšie sa podvodník skryje.
 const RANGE_OPTIONS = [
   { label: "1 s — ťažké", value: 1 },
   { label: "2 s — bežné", value: 2 },
   { label: "3 s — ľahké", value: 3 },
-];
-
-const DISCUSSION_OPTIONS = [
-  { label: "30 s", value: 30 },
-  { label: "60 s", value: 60 },
-  { label: "90 s", value: 90 },
-  { label: "Bez limitu", value: 0 },
 ];
 
 export default function Setup({
@@ -44,13 +32,10 @@ export default function Setup({
   const [players, setPlayers] = useState<string[]>(() =>
     initial.playerNames.map((name) => localizeGeneratedParticipantName(name, language)),
   );
-  const [targetMinSeconds, setTargetMinSeconds] = useState(initial.targetMinSeconds);
-  const [targetMaxSeconds, setTargetMaxSeconds] = useState(initial.targetMaxSeconds);
   const [impostorRangeSeconds, setImpostorRangeSeconds] = useState(
     initial.impostorRangeSeconds
   );
   const [blindTiming, setBlindTiming] = useState(initial.blindTiming);
-  const [discussionSeconds, setDiscussionSeconds] = useState(initial.discussionSeconds);
 
   function addPlayer() {
     if (players.length >= 12) return;
@@ -69,11 +54,8 @@ export default function Setup({
   function handleStart() {
     onStart({
       playerNames: players.map((p) => p.trim() || defaultPlayerName(language)),
-      targetMinSeconds,
-      targetMaxSeconds,
       impostorRangeSeconds,
       blindTiming,
-      discussionSeconds,
     });
   }
 
@@ -130,28 +112,19 @@ export default function Setup({
         </section>
 
         {/* Tajný čas */}
-        <section>
-          <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-white/70">
-            Tajný čas kola
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {TARGET_WINDOWS.map((opt) => (
-              <Chip
-                key={opt.label}
-                active={targetMinSeconds === opt.min && targetMaxSeconds === opt.max}
-                onClick={() => {
-                  setTargetMinSeconds(opt.min);
-                  setTargetMaxSeconds(opt.max);
-                }}
-              >
-                {opt.label}
-              </Chip>
-            ))}
+        <section className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-rose-500/15 text-rose-300">
+            <Icons.timer size={19} />
+          </span>
+          <div>
+            <p className="text-sm font-bold">
+              Tajný čas: {BUZZ_TARGET_MIN_SECONDS} – {BUZZ_TARGET_MAX_SECONDS} s
+            </p>
+            <p className="text-xs text-white/50">
+              Vylosuje sa jedno presné číslo na dve desatinné miesta, napríklad
+              5,77 s. Dostanú ho všetci okrem podvodníka.
+            </p>
           </div>
-          <p className="mt-2 text-xs text-white/40">
-            Z tohto okna sa vylosuje jedno presné číslo na dve desatinné miesta,
-            napríklad 5,77 s. Dostanú ho všetci hráči okrem podvodníka.
-          </p>
         </section>
 
         {/* Rozsah podvodníka */}
@@ -174,24 +147,6 @@ export default function Setup({
             Podvodník nedostane presné číslo, iba takto široký rozsah — napríklad
             5 – 7 s. Musí preto blafovať.
           </p>
-        </section>
-
-        {/* Diskusia */}
-        <section>
-          <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-white/70">
-            Čas na diskusiu
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {DISCUSSION_OPTIONS.map((opt) => (
-              <Chip
-                key={opt.value}
-                active={discussionSeconds === opt.value}
-                onClick={() => setDiscussionSeconds(opt.value)}
-              >
-                {opt.label}
-              </Chip>
-            ))}
-          </div>
         </section>
 
         {/* Toggles */}
