@@ -31,7 +31,7 @@ describe("minigame artwork registry", () => {
   it("uses the bundled music quiz hero", () => {
     expect(musicQuizGameHero).toContain("assets/party-music-quiz-hero-v3.png");
     expect(musicQuizGameHeroWide).toContain(
-      "assets/party-music-quiz-hero-v3-wide.png"
+      "assets/party-music-quiz-hero-v3-wide.jpg"
     );
   });
 });
