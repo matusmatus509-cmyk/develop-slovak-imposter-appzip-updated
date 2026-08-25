@@ -17,9 +17,15 @@ export const songGameHero = publicAsset("party-song-hero-v2.png");
 export const letterGameHero = publicAsset("party-letter-hero-v2.png");
 export const fiveTenGameHero = publicAsset("party-five-ten-hero-v2.png");
 export const musicQuizGameHero = publicAsset("party-music-quiz-hero-v3.png");
-/** Verzia na šírku pre uvítaciu obrazovku — kartičky v menu zostávajú na výškovej verzii vyššie. */
+/**
+ * Pre uvítaciu obrazovku — má vlastný orez (825×1024, ~0,8 : 1), ktorý sedí
+ * na jej vyšší panel presnejšie než hlavný hero (1113×1414, ~0,79 : 1) alebo
+ * pôvodná verzia na šírku (1536×1024), ktorá sa v žiadnom z panelov nezmestila
+ * bez veľkého orezu po stranách. Kartičky v menu a Party mode zostávajú na
+ * `musicQuizGameHero` vyššie.
+ */
 export const musicQuizGameHeroWide = publicAsset(
-  "party-music-quiz-hero-v3-wide.png"
+  "party-music-quiz-hero-v3-wide.jpg"
 );
 export const onlyLiesGameHero = publicAsset("party-quiz-battle-v3.png");
 export const forbiddenWordGameHero = publicAsset("party-forbidden.svg");
