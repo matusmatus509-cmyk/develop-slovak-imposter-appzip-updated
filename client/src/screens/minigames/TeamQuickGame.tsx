@@ -18,7 +18,7 @@ import {
   fiveTenGameHeroV3 as fiveTenArt,
   letterGameHeroV3 as letterArt,
   musicQuizSetupHero as musicQuizArt,
-  soundArt,
+  soundGameHero as soundArt,
 } from "../../media";
 import {
   defaultPlayerName,

@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Screen } from "../types";
 /** Dizajnové pravidlo: pôvodný GitHub vzhľad — hero vizuály majú mierny presah cez atlasové okraje. */
-import { battleshipGameHero, bombGameHero, charadesGameHero, emojiGameHero, fiveTenGameHeroV3, forbiddenWordGameHero, gameArt, letterGameHeroV3, minigameArtAtlas, musicQuizGameHero, musicQuizGameHeroWide, partyMinigameAtlas, pingPongGameHero, songGameHeroV3, ticTacToeGameHero } from "../media";
+import { battleshipGameHero, bombGameHero, charadesGameHero, emojiGameHero, fiveTenGameHeroV3, forbiddenWordGameHero, gameArt, letterGameHeroV3, minigameArtAtlas, musicQuizGameHero, musicQuizGameHeroWide, partyMinigameAtlas, pingPongGameHero, songGameHeroV3, soundGameHero, ticTacToeGameHero } from "../media";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -252,10 +252,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#2563eb",
     accentSoft: "rgba(37,99,235,.24)",
     deep: "#062630",
-    artPosition: "100% 50%",
-    art: partyMinigameAtlas,
-    artAtlas: true,
-    artSize: "400% 300%",
+    artPosition: "50% 50%",
+    art: soundGameHero,
   },
   pismeno: {
     eyebrow: "Krátky čas na slovo",
