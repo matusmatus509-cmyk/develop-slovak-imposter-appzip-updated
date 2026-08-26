@@ -127,7 +127,6 @@ export default function TeamBattleSetup({
           </section>
 
           <PlayerNamesField
-            className="party-team-fields"
             names={names}
             // Počet tímov je fixný na dva, takže dĺžka poľa sa nikdy nezmení.
             onChange={next => setNames([next[0], next[1]])}
