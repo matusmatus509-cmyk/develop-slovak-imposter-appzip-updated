@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Screen } from "../types";
 /** Dizajnové pravidlo: pôvodný GitHub vzhľad — hero vizuály majú mierny presah cez atlasové okraje. */
-import { fiveTenGameHero, forbiddenWordGameHero, gameArt, letterGameHero, minigameArtAtlas, musicQuizGameHero, musicQuizGameHeroWide, partyMinigameAtlas, songGameHero } from "../media";
+import { battleshipGameHero, bombGameHero, charadesGameHero, emojiGameHero, fiveTenGameHeroV3, forbiddenWordGameHero, gameArt, letterGameHeroV3, minigameArtAtlas, musicQuizGameHero, musicQuizGameHeroWide, partyMinigameAtlas, pingPongGameHero, songGameHeroV3, ticTacToeGameHero } from "../media";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -77,10 +77,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#a78bfa",
     accentSoft: "rgba(167,139,250,.24)",
     deep: "#1b1035",
-    artPosition: "0% 100%",
-    art: partyMinigameAtlas,
-    artAtlas: true,
-    artSize: "400% 300%",
+    artPosition: "50% 50%",
+    art: charadesGameHero,
   },
   pingpong: {
     eyebrow: "Postreh proti času",
@@ -93,8 +91,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accentSoft: "rgba(34,211,238,.22)",
     deep: "#06242c",
     artPosition: "50% 50%",
-    art: minigameArtAtlas,
-    artAtlas: true,
+    art: pingPongGameHero,
   },
   hadajktosom: {
     eyebrow: "Telefón na čelo",
@@ -137,9 +134,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#fb923c",
     accentSoft: "rgba(251,146,60,.25)",
     deep: "#2c1106",
-    artPosition: "50% 100%",
-    art: minigameArtAtlas,
-    artAtlas: true,
+    artPosition: "50% 50%",
+    art: bombGameHero,
   },
   hadajemoji: {
     eyebrow: "Obrázky namiesto slov",
@@ -151,9 +147,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#facc15",
     accentSoft: "rgba(250,204,21,.23)",
     deep: "#292005",
-    artPosition: "100% 100%",
-    art: minigameArtAtlas,
-    artAtlas: true,
+    artPosition: "50% 50%",
+    art: emojiGameHero,
   },
   "impostor-setup": {
     eyebrow: "Tajné slovo. Tajný hráč.",
@@ -227,7 +222,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accentSoft: "rgba(232,121,249,.23)",
     deep: "#1c1039",
     artPosition: "50% 50%",
-    art: songGameHero,
+    art: songGameHeroV3,
     variant: "song",
   },
   "hudobny-kviz": {
@@ -273,7 +268,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accentSoft: "rgba(217,119,6,.24)",
     deep: "#2b1d05",
     artPosition: "50% 50%",
-    art: letterGameHero,
+    art: letterGameHeroV3,
   },
   patzadesat: {
     eyebrow: "Päť odpovedí. Rýchla výzva.",
@@ -286,7 +281,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accentSoft: "rgba(22,163,74,.23)",
     deep: "#06271c",
     artPosition: "50% 50%",
-    art: fiveTenGameHero,
+    art: fiveTenGameHeroV3,
   },
   "tic-tac-toe": {
     eyebrow: "Tri symboly v rade",
@@ -298,10 +293,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#6366f1",
     accentSoft: "rgba(99,102,241,.24)",
     deep: "#061d2c",
-    artPosition: "66.667% 0%",
-    art: partyMinigameAtlas,
-    artAtlas: true,
-    artSize: "400% 300%",
+    artPosition: "50% 50%",
+    art: ticTacToeGameHero,
   },
   battleship: {
     eyebrow: "Námorná bitka 10 × 10",
@@ -313,10 +306,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#1d4ed8",
     accentSoft: "rgba(29,78,216,.25)",
     deep: "#051a2b",
-    artPosition: "100% 0%",
-    art: partyMinigameAtlas,
-    artAtlas: true,
-    artSize: "400% 300%",
+    artPosition: "50% 50%",
+    art: battleshipGameHero,
   },
 };
 
