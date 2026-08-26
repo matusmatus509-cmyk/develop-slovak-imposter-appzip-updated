@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { createPortal } from "react-dom";
 import {
   ALL_SOLO_CHARADES_WORDS,
   getCharadesCardsByDifficulty,
@@ -94,6 +95,7 @@ function SetupScreen({
   const [maxSkips, setMaxSkips] = useState(3);
   const [teamMode, setTeamMode] = useState(false);
   const [difficulty, setDifficulty] = useState("all");
+  const [rulesOpen, setRulesOpen] = useState(false);
 
   return (
     <Shell className="mobile-settings mobile-settings-charades scroll-panel">
@@ -180,55 +182,113 @@ function SetupScreen({
 
       {customControls && <div className="mb-4"><CustomContentSelector controls={customControls} compact /></div>}
 
-      {/* Timer */}
-      <div
-        className="glass mb-4 rounded-3xl p-4"
+      {/* Nastavenia hry — čas na kolo a max. preskočení majú vlastnú stránku,
+          aby setup obrazovka zostala krátka. */}
+      <button
+        type="button"
+        onClick={() => setRulesOpen(true)}
+        className="glass mb-6 flex w-full items-center gap-3 rounded-3xl p-4 text-left transition active:scale-[.99]"
         style={{ animation: "slideUp 0.5s ease-out 0.25s both" }}
       >
-        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
-          Čas na kolo
-        </p>
-        <div className="flex gap-2">
-          {[30, 45, 60, 90, 120].map((t) => (
-            <button
-              key={t}
-              onClick={() => setTimerSecs(t)}
-              className={`flex-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 hover:scale-[1.02] ${
-                timerSecs === t
-                  ? "border-purple-400/60 bg-purple-500/30 text-purple-300"
-                  : "border-white/10 bg-white/5 text-white/50"
-              }`}
-            >
-              {t}s
-            </button>
-          ))}
-        </div>
-      </div>
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-purple-500/20 text-purple-300">
+          <Icons.timer size={22} />
+        </span>
+        <span className="min-w-0 flex-1">
+          <strong className="block text-sm font-black text-white">Nastavenia hry</strong>
+          <small className="mt-0.5 block truncate text-[11px] font-medium text-white/45">
+            {timerSecs}s na kolo · {maxSkips === 99 ? "∞" : maxSkips} preskočení
+          </small>
+        </span>
+        <span className="flex shrink-0 items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-purple-300">
+          Upraviť <Icons.chevronRight size={16} />
+        </span>
+      </button>
 
-      {/* Max skips */}
-      <div
-        className="glass mb-6 rounded-3xl p-4"
-        style={{ animation: "slideUp 0.5s ease-out 0.3s both" }}
-      >
-        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
-          Max. preskočení za kolo
-        </p>
-        <div className="flex gap-2">
-          {[0, 1, 2, 3, 5, 99].map((s) => (
-            <button
-              key={s}
-              onClick={() => setMaxSkips(s)}
-              className={`flex-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 hover:scale-[1.02] ${
-                maxSkips === s
-                  ? "border-purple-400/60 bg-purple-500/30 text-purple-300"
-                  : "border-white/10 bg-white/5 text-white/50"
-              }`}
-            >
-              {s === 99 ? "∞" : s}
-            </button>
-          ))}
-        </div>
-      </div>
+      {rulesOpen &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[300] flex flex-col bg-[#080b10] text-white"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Nastavenia hry"
+          >
+            <header className="flex shrink-0 items-center gap-3 border-b border-white/[0.07] px-4 pb-3 pt-[max(.85rem,env(safe-area-inset-top))]">
+              <button
+                type="button"
+                onClick={() => setRulesOpen(false)}
+                aria-label="Späť na nastavenia"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-white/75 transition active:scale-90"
+              >
+                <Icons.arrowLeft size={20} />
+              </button>
+              <span className="min-w-0 flex-1">
+                <strong className="block text-lg font-black leading-tight">
+                  Nastavenia hry
+                </strong>
+                <small className="mt-0.5 block text-[11px] font-medium text-white/40">
+                  Čas na kolo a limit preskočení
+                </small>
+              </span>
+            </header>
+
+            <div className="flex-1 space-y-4 overflow-y-auto px-4 py-4">
+              {/* Timer */}
+              <div className="glass rounded-3xl p-4">
+                <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
+                  Čas na kolo
+                </p>
+                <div className="flex gap-2">
+                  {[30, 45, 60, 90, 120].map((t) => (
+                    <button
+                      key={t}
+                      onClick={() => setTimerSecs(t)}
+                      className={`flex-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 hover:scale-[1.02] ${
+                        timerSecs === t
+                          ? "border-purple-400/60 bg-purple-500/30 text-purple-300"
+                          : "border-white/10 bg-white/5 text-white/50"
+                      }`}
+                    >
+                      {t}s
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Max skips */}
+              <div className="glass rounded-3xl p-4">
+                <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
+                  Max. preskočení za kolo
+                </p>
+                <div className="flex gap-2">
+                  {[0, 1, 2, 3, 5, 99].map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => setMaxSkips(s)}
+                      className={`flex-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 hover:scale-[1.02] ${
+                        maxSkips === s
+                          ? "border-purple-400/60 bg-purple-500/30 text-purple-300"
+                          : "border-white/10 bg-white/5 text-white/50"
+                      }`}
+                    >
+                      {s === 99 ? "∞" : s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="shrink-0 border-t border-white/[0.07] px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3">
+              <button
+                type="button"
+                onClick={() => setRulesOpen(false)}
+                className="w-full rounded-2xl bg-purple-400 py-4 text-sm font-black uppercase tracking-wider text-[#08111a] transition active:scale-[.98]"
+              >
+                Hotovo
+              </button>
+            </div>
+          </div>,
+          document.body
+        )}
 
       <Button
         fullWidth
