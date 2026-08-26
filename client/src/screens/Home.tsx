@@ -3,7 +3,7 @@ import type { GameStatistics, Screen } from "../types";
 import { getLevelInfo, normalizeStatistics } from "../utils/gameStats";
 import { Icons } from "../components/icons";
 /** Dizajnové pravidlo: verná GitHub aplikácia; mediálne súbory sú presunuté výhradne do hostovaného úložiska. */
-import { appBackground, imposterArt, minigamesArt, partyModeArtV2 as partyModeArt } from "../media";
+import { appBackground, imposterArt, minigamesArt, partyModeArt } from "../media";
 import { type AppLanguage, useLanguage } from "../i18n/LanguageProvider";
 import type { PlayableGame } from "../data/engagement";
 
