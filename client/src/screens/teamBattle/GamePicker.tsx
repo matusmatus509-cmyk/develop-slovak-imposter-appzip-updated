@@ -17,6 +17,7 @@ import {
   pingPongGameHero,
   quizBattleArt,
   songGameHeroV3,
+  soundGameHero,
 } from "../../media";
 
 const ALL_GAMES: GameType[] = [
@@ -60,7 +61,7 @@ const GAME_ART: Record<
     position: "50% 50%",
     size: "cover",
   },
-  zvuk: { src: partyMinigameAtlas, position: "100% 50%", size: "400% 300%" },
+  zvuk: { src: soundGameHero, position: "50% 50%", size: "cover" },
   pismeno: { src: letterGameHeroV3, position: "50% 50%", size: "cover" },
   patzadesat: { src: fiveTenGameHeroV3, position: "50% 50%", size: "cover" },
   hadajktosom: {
