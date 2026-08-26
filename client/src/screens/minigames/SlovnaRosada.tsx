@@ -99,14 +99,26 @@ function SetupScreen({
     <Shell className="mobile-settings mobile-settings-charades scroll-panel">
       <TopBar title="Slovné šarády" onBack={onBack} />
 
-      <div
-        className="glass mb-5 rounded-3xl border-purple-500/20 bg-purple-500/10 p-4 text-sm text-white/70 leading-relaxed"
-        style={{ animation: "fadeIn 0.5s ease-out both" }}
-      >
-        Vysvetluj slová bez toho, aby si ich povedal/a. Za každé uhádnuté slovo bod. Preskočiť môžeš obmedzený počet krát!
-      </div>
-
-      {customControls && <div className="mb-4"><CustomContentSelector controls={customControls} compact /></div>}
+      <PlayerNamesField
+        className="mb-4"
+        names={names}
+        onChange={setNames}
+        accent="#a78bfa"
+        min={2}
+        max={8}
+        nameForNew={(index) => defaultPlayerName(language, index + 1)}
+        placeholderFor={(index) => defaultPlayerName(language, index + 1)}
+        // V tímovom móde sa hráči striedajú v dvoch tímoch podľa poradia,
+        // takže odznak nesie tím, nie číslo hráča.
+        badgeFor={
+          teamMode
+            ? (index) => ({
+                text: `T${(index % 2) + 1}`,
+                color: index % 2 === 0 ? "#3b82f6" : "#f97316",
+              })
+            : undefined
+        }
+      />
 
       {/* Team mode */}
       <div
@@ -166,26 +178,7 @@ function SetupScreen({
         </div>
       </div>
 
-      <PlayerNamesField
-        className="mb-4"
-        names={names}
-        onChange={setNames}
-        accent="#a78bfa"
-        min={2}
-        max={8}
-        nameForNew={(index) => defaultPlayerName(language, index + 1)}
-        placeholderFor={(index) => defaultPlayerName(language, index + 1)}
-        // V tímovom móde sa hráči striedajú v dvoch tímoch podľa poradia,
-        // takže odznak nesie tím, nie číslo hráča.
-        badgeFor={
-          teamMode
-            ? (index) => ({
-                text: `T${(index % 2) + 1}`,
-                color: index % 2 === 0 ? "#3b82f6" : "#f97316",
-              })
-            : undefined
-        }
-      />
+      {customControls && <div className="mb-4"><CustomContentSelector controls={customControls} compact /></div>}
 
       {/* Timer */}
       <div
