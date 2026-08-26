@@ -48,6 +48,12 @@ export const letterGameHeroV3 = publicAsset("party-letter-hero-v3.jpg");
 export const songGameHeroV3 = publicAsset("party-song-hero-v3.jpg");
 export const charadesGameHero = publicAsset("party-sarady-hero.jpg");
 export const pantomimaGameHero = publicAsset("party-pantomima-hero.jpg");
+export const soundGameHero = publicAsset("party-sound-hero.jpg");
+/**
+ * Novšia verzia kartičky Party mode — rozjarený dav na hernom večierku,
+ * lepšie vystihuje energiu tímových minihier než pôvodná verzia.
+ */
+export const partyModeArtV2 = publicAsset("party-mode-card-v2.jpg");
 /**
  * Pre uvítaciu obrazovku a kartičku v menu — portrét 928×1152 (~0,81 : 1),
  * blízko oboch panelov (kartička ~0,77–0,80 : 1, uvítacia obrazovka ~0,80 : 1).
