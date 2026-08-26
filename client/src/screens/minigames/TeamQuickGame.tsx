@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import { Icons } from "../../components/icons";
 import { PartyBackdrop, PartyEyebrow } from "../teamBattle/PartyChrome";
 import { ForbiddenWordGame, GuessSongGame } from "../teamBattle/PassAndPlay";
@@ -25,6 +25,12 @@ import {
   defaultTeamName,
   useLanguage,
 } from "../../i18n/LanguageProvider";
+import {
+  defaultSongPools,
+  SONG_POOLS,
+  type SongPoolKey,
+} from "../../data/localizedSongs";
+import { countAvailableSongs } from "../../data/songSelection";
 import SongGameArtwork from "../../components/SongGameArtwork";
 
 type QuickGameType =
@@ -213,6 +219,37 @@ export default function TeamQuickGame({
   const playerRangeDescription =
     maxPlayers === 4 ? "2 až 4 hráči" : "2 až 8 hráčov";
 
+  // ── Kategórie hitov (len hudobné minihry) ─────────────────────────────────
+  const isMusicGame = game === "pesnicka" || game === "hudobny-kviz";
+  const [songPools, setSongPools] = useState<SongPoolKey[]>(() =>
+    defaultSongPools(language)
+  );
+  const [poolsOpen, setPoolsOpen] = useState(false);
+  const availableSongs = useMemo(
+    () =>
+      isMusicGame
+        ? countAvailableSongs(game === "pesnicka" ? "hum" : "buzzer", songPools)
+        : 0,
+    [game, isMusicGame, songPools]
+  );
+  const poolSummary =
+    songPools.length === SONG_POOLS.length
+      ? "Všetky kategórie"
+      : SONG_POOLS.filter(pool => songPools.includes(pool.key))
+          .map(pool => pool.short)
+          .join(" · ");
+
+  /** Aspoň jedna kategória musí zostať, inak by hra nemala z čoho ťahať. */
+  function togglePool(key: SongPoolKey) {
+    setSongPools(current => {
+      if (current.includes(key)) {
+        if (current.length === 1) return current;
+        return current.filter(pool => pool !== key);
+      }
+      return [...current, key];
+    });
+  }
+
   function chooseMode(mode: QuickPlayMode) {
     if (mode === gameMode) return;
     setGameMode(mode);
@@ -259,6 +296,7 @@ export default function TeamQuickGame({
       gameMode,
       rounds,
       timeSeconds,
+      songPools,
       onDone: finish,
     };
     if (game === "zakazane") return <ForbiddenWordGame key={run} {...shared} />;
@@ -546,6 +584,92 @@ export default function TeamQuickGame({
                 </span>
               </button>
             </section>
+
+            {isMusicGame && (
+              <section className="party-glass mt-3 overflow-hidden rounded-[1.55rem]">
+                <button
+                  type="button"
+                  onClick={() => setPoolsOpen(open => !open)}
+                  aria-expanded={poolsOpen}
+                  className="flex w-full items-center gap-3 p-4 text-left transition active:scale-[.99]"
+                >
+                  <span
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
+                    style={{ background: `${accent}30`, color: accent }}
+                  >
+                    <Icons.music size={22} />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <strong className="block text-sm font-black text-white">
+                      Kategórie hitov
+                    </strong>
+                    <small className="mt-0.5 block truncate text-[11px] font-medium text-white/45">
+                      {poolSummary} · {availableSongs} skladieb
+                    </small>
+                  </span>
+                  <span
+                    className="flex items-center gap-2 text-[10px] font-black uppercase tracking-wider"
+                    style={{ color: accent }}
+                  >
+                    Upraviť{" "}
+                    <Icons.chevronRight
+                      size={16}
+                      className={
+                        poolsOpen
+                          ? "rotate-90 transition-transform"
+                          : "transition-transform"
+                      }
+                    />
+                  </span>
+                </button>
+                {poolsOpen && (
+                  <div className="border-t border-white/[0.08] px-4 pb-4 pt-3">
+                    <p className="px-1 pb-2 text-[9px] font-black uppercase tracking-[0.2em] text-white/35">
+                      Vyber jednu alebo viac — dajú sa miešať
+                    </p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {SONG_POOLS.map(pool => {
+                        const active = songPools.includes(pool.key);
+                        return (
+                          <button
+                            key={pool.key}
+                            type="button"
+                            onClick={() => togglePool(pool.key)}
+                            aria-pressed={active}
+                            className={`rounded-2xl border p-3 text-left transition active:scale-95 ${active ? "text-white shadow-lg" : "border-white/10 bg-white/[0.035] text-white/40"}`}
+                            style={
+                              active
+                                ? {
+                                    borderColor: `${accent}aa`,
+                                    background: `${accent}2e`,
+                                    boxShadow: `0 10px 25px ${accent}18`,
+                                  }
+                                : undefined
+                            }
+                          >
+                            <span className="flex items-center gap-1.5">
+                              <span
+                                aria-hidden="true"
+                                className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-md border text-[9px] font-black leading-none ${active ? "border-transparent text-[#0b0f18]" : "border-white/20"}`}
+                                style={active ? { background: accent } : undefined}
+                              >
+                                {active ? "✓" : ""}
+                              </span>
+                              <strong className="truncate text-[13px] font-black">
+                                {pool.label}
+                              </strong>
+                            </span>
+                            <small className="mt-1 block text-[10px] font-semibold text-white/40">
+                              {pool.hint}
+                            </small>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </section>
+            )}
 
             <section className="party-glass mt-3 rounded-[1.8rem] p-5">
               <div className="flex items-center justify-between gap-3">

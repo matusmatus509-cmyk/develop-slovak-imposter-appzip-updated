@@ -1,3 +1,5 @@
+import type { SongPoolKey } from "../../data/localizedSongs";
+
 export type QuickPlayMode = "players" | "teams";
 
 export interface QuickParticipantsProps {
@@ -6,6 +8,11 @@ export interface QuickParticipantsProps {
   onDone: (scores: number[]) => void;
   rounds?: number;
   timeSeconds?: number;
+  /**
+   * Kategórie hitov pre hudobné minihry. Neuvedené = celá zásoba jazyka hry,
+   * takže hry bez hudby ani staršie volania nemusia nič predávať.
+   */
+  songPools?: readonly SongPoolKey[];
 }
 
 export const PARTY_PLAYER_COLORS = [

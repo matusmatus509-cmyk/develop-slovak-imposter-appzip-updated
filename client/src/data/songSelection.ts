@@ -4,7 +4,9 @@ import {
   GLOBAL_SONGS,
   getLocalSongsForLanguage,
   getSongCardsForLanguage,
+  getSongsForPools,
   type Song,
+  type SongPoolKey,
   type SongTier,
 } from "./localizedSongs";
 
@@ -35,6 +37,12 @@ export interface SongSelectionOptions {
   minigame: MusicMinigame;
   /** Povolené náročnosti. Prázdne/neuvedené = bez obmedzenia. */
   tiers?: SongTier[];
+  /**
+   * Kategórie hitov vybrané hráčom (svetové, slovenské, nemecké…). Dajú sa
+   * miešať. Prázdne/neuvedené = celá zásoba pre daný jazyk hry, teda presne
+   * to isté správanie ako pred zavedením kategórií.
+   */
+  pools?: readonly SongPoolKey[];
   /** Podiel lokálnych skladieb 0–1. Predvolene 0,3 (30 %). */
   localShare?: number;
   session?: SongSession;
@@ -48,9 +56,15 @@ export const ARTIST_COOLDOWN_DRAWS = 6;
  * Dlhodobá rotácia obsahu. Kľúč je spoločný pre OBE hudobné minihry, takže
  * skladby sa neopakujú ani po zatvorení aplikácie — session drží tvrdý zákaz
  * v rámci jednej párty, tento deck drží pestrosť medzi partiami.
+ *
+ * Kategórie sú súčasťou kľúča: rotácia sa vedie zvlášť pre každý výber, aby
+ * úzka voľba (napr. iba slovenské hity) nebola hneď „prejdená" tým, čo hráč
+ * videl pri širokom výbere.
  */
-function deckKeyFor(language: AppLanguage) {
-  return `party:songs:${language}`;
+function deckKeyFor(language: AppLanguage, pools?: readonly SongPoolKey[]) {
+  const base = `party:songs:${language}`;
+  if (!pools || pools.length === 0) return base;
+  return `${base}:${[...new Set(pools)].sort().join("+")}`;
 }
 
 /** Predvolený podiel lokálnych skladieb — zvyšok dopĺňa svetový pool. */
@@ -118,6 +132,26 @@ function passesTier(song: Song, tiers: SongTier[] | undefined): boolean {
   return tiers.includes(song.tier);
 }
 
+/**
+ * Zásoba a lokálne id pre daný výber kategórií.
+ *
+ * Bez kategórií sa použije pôvodná cesta (celá zásoba jazyka hry). S nimi je
+ * „lokálne" všetko okrem svetového poolu, takže `localShare` funguje ďalej:
+ * pri výbere „svetové + slovenské" mieša presne tieto dve vetvy.
+ */
+function resolvePool(language: AppLanguage, pools: readonly SongPoolKey[] | undefined) {
+  if (!pools || pools.length === 0) {
+    return {
+      everything: getSongCardsForLanguage(language),
+      localSongs: getLocalSongsForLanguage(language),
+    };
+  }
+  return {
+    everything: getSongsForPools(pools),
+    localSongs: getSongsForPools(pools.filter((pool) => pool !== "world")),
+  };
+}
+
 function pickRandom<T>(items: T[], random: () => number): T {
   return items[Math.floor(random() * items.length)];
 }
@@ -142,15 +176,16 @@ export function drawSong(options: SongSelectionOptions): Song | null {
     language,
     minigame,
     tiers,
+    pools,
     localShare = DEFAULT_LOCAL_SHARE,
     session = activeSession,
     random = Math.random,
   } = options;
 
-  const everything = getSongCardsForLanguage(language);
+  const { everything, localSongs } = resolvePool(language, pools);
   if (everything.length === 0) return null;
 
-  const localIds = new Set(getLocalSongsForLanguage(language).map((song) => song.id));
+  const localIds = new Set(localSongs.map((song) => song.id));
   // Rozhodnutie „teraz lokálna alebo svetová" padá pred filtrami, takže pomer
   // drží aj vtedy, keď je jedna z vetiev užšia.
   const wantLocal = random() < localShare;
@@ -166,7 +201,7 @@ export function drawSong(options: SongSelectionOptions): Song | null {
   const fresh = (songs: Song[]) => songs.filter((song) => !session.usedSongIds.has(song.id));
   const cool = (songs: Song[]) => songs.filter((song) => !artistBlocked(song, session));
   // Skladby, ktoré hráč nevidel ani v minulých partiách.
-  const seen = seenDeckIds(deckKeyFor(language));
+  const seen = seenDeckIds(deckKeyFor(language, pools));
   const unseen = (songs: Song[]) =>
     seen.size === 0 ? songs : songs.filter((song) => !seen.has(song.id));
 
@@ -198,7 +233,7 @@ export function drawSong(options: SongSelectionOptions): Song | null {
   if (candidates.length === 0) return null;
   const song = pickRandom(candidates, random);
   markSongUsed(song, session);
-  rememberDeckIds(deckKeyFor(language), [song.id], everything.length);
+  rememberDeckIds(deckKeyFor(language, pools), [song.id], everything.length);
   return song;
 }
 
@@ -222,10 +257,22 @@ export function songCandidates(
   language: AppLanguage,
   minigame: MusicMinigame,
   tiers?: SongTier[],
+  pools?: readonly SongPoolKey[],
 ): Song[] {
-  return getSongCardsForLanguage(language).filter(
+  return resolvePool(language, pools).everything.filter(
     (song) => passesMinigame(song, minigame) && passesTier(song, tiers),
   );
+}
+
+/**
+ * Koľko skladieb daná minihra reálne dostane pri tomto výbere kategórií.
+ * Nastavenia hry to zobrazujú, aby bolo hneď vidieť, či nie je výber priúzky.
+ */
+export function countAvailableSongs(
+  minigame: MusicMinigame,
+  pools: readonly SongPoolKey[],
+): number {
+  return getSongsForPools(pools).filter((song) => passesMinigame(song, minigame)).length;
 }
 
 export const __songSelectionInternals = {

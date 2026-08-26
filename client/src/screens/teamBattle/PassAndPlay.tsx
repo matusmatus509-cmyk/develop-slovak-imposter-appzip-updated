@@ -73,6 +73,7 @@ function PassAndPlay({
   timeSeconds,
   rounds = 1,
   onDone,
+  songPools,
   mode,
 }: SharedProps & { mode: PassMode }) {
   const { language } = useLanguage();
@@ -176,9 +177,10 @@ function PassAndPlay({
       );
       return;
     }
-    // Zahmkaj pesničku: vyberáme len skladby rozpoznateľné podľa melódie a
-    // rešpektujeme session, aby tú istú skladbu nedostal aj Hudobný kvíz.
-    const song = drawSong({ language, minigame: "hum" });
+    // Zahmkaj pesničku: vyberáme len skladby rozpoznateľné podľa melódie,
+    // z kategórií vybraných v nastaveniach, a rešpektujeme session, aby tú istú
+    // skladbu nedostal aj Hudobný kvíz.
+    const song = drawSong({ language, minigame: "hum", pools: songPools });
     if (song) setCard(song);
   }
 

@@ -3203,6 +3203,93 @@ export function getSongCardsForLanguage(language: AppLanguage): Song[] {
   return CURATED_SONGS_BY_LANGUAGE[language];
 }
 
+/**
+ * ── Kategórie hitov ─────────────────────────────────────────────────────────
+ *
+ * Hráč si pred hudobnou minihrou vyberá, z akých hitov chce hrať, a kategórie
+ * sa dajú ľubovoľne miešať (napr. svetové + slovenské + nemecké).
+ *
+ * Kategória nie je nová dátová vrstva — je to pohľad na už existujúce pooly:
+ * `world` je svetový pool, ostatné sú lokálne pooly podľa spievaného jazyka.
+ * Nová kategória sa preto pridá jedným záznamom nižšie a jedným poolom
+ * v `LOCAL_HITS`, nikde inde.
+ */
+export type SongPoolKey = "world" | "sk" | "cs" | "en" | "de" | "es" | "fr" | "pt";
+
+export interface SongPoolDefinition {
+  key: SongPoolKey;
+  /** Názov v nastaveniach hry. */
+  label: string;
+  /** Skrátený názov pre súhrn vybraných kategórií. */
+  short: string;
+  /** Krátke vysvetlenie pod názvom. */
+  hint: string;
+}
+
+/** Poradie určuje aj poradie v nastaveniach hry. */
+export const SONG_POOLS: readonly SongPoolDefinition[] = [
+  { key: "world", label: "Svetové hity", short: "Svetové", hint: "Medzinárodná klasika" },
+  { key: "sk", label: "Slovenské hity", short: "Slovenské", hint: "Domáca scéna" },
+  { key: "cs", label: "České hity", short: "České", hint: "Českí interpreti" },
+  { key: "en", label: "Anglické hity", short: "Anglické", hint: "Anglicky spievané" },
+  { key: "de", label: "Nemecké hity", short: "Nemecké", hint: "Nemecko a Rakúsko" },
+  { key: "es", label: "Španielske hity", short: "Španielske", hint: "Španielsky spievané" },
+  { key: "fr", label: "Francúzske hity", short: "Francúzske", hint: "Francúzsky spievané" },
+  { key: "pt", label: "Portugalské hity", short: "Portugalské", hint: "Portugalsky spievané" },
+];
+
+/** Ktorý lokálny pool kategória zahŕňa. `world` namiesto toho berie svetový pool. */
+const POOL_SONG_LANGUAGE: Record<Exclude<SongPoolKey, "world">, SongLanguage> = {
+  sk: "sk",
+  cs: "cs",
+  en: "en",
+  de: "de",
+  es: "es",
+  fr: "fr",
+  pt: "pt",
+};
+
+const POOL_CACHE = new Map<string, Song[]>();
+
+/** Výber je množina — poradie ani duplikáty nesmú meniť výsledok ani kľúč cache. */
+function poolCacheKey(pools: readonly SongPoolKey[]): string {
+  return [...new Set(pools)].sort().join("+");
+}
+
+/**
+ * Zásoba pre vybrané kategórie, bez duplikátov.
+ *
+ * Výsledok je memoizovaný, pretože sa volá pri každom ťahu — bez cache by sa
+ * pole skladalo a dedupovalo znova pre každú vytiahnutú kartu.
+ */
+export function getSongsForPools(pools: readonly SongPoolKey[]): Song[] {
+  const key = poolCacheKey(pools);
+  const cached = POOL_CACHE.get(key);
+  if (cached) return cached;
+  const selected = new Set(pools);
+  const songs = uniqueSongs([
+    ...(selected.has("world") ? GLOBAL_SONGS : []),
+    ...[...selected]
+      .filter((pool): pool is Exclude<SongPoolKey, "world"> => pool !== "world")
+      .flatMap((pool) => LOCAL_SONGS_BY_LANGUAGE[POOL_SONG_LANGUAGE[pool]] ?? []),
+  ]);
+  POOL_CACHE.set(key, songs);
+  return songs;
+}
+
+/**
+ * Predvolený výber pre jazyk hry. Zodpovedá presne zásobe, ktorú hra ponúkala
+ * pred zavedením kategórií (svetové + lokálne pooly daného jazyka), takže hráč,
+ * ktorý sa nastavení nedotkne, dostane rovnaké skladby ako doteraz.
+ */
+export function defaultSongPools(language: AppLanguage): SongPoolKey[] {
+  const local = RELEVANT_SONG_LANGUAGES[language].filter(
+    (songLanguage): songLanguage is Exclude<SongPoolKey, "world"> =>
+      songLanguage in POOL_SONG_LANGUAGE,
+  );
+  return ["world", ...local];
+}
+
 /** Každá skladba v katalógu presne raz — pre kontroly integrity a testy. */
 export const ALL_SONGS: Song[] = uniqueSongs([
   ...GLOBAL_SONGS,
