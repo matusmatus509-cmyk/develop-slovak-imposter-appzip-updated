@@ -10,6 +10,7 @@ import {
   type QuizDifficulty,
 } from "../../data/teamBattle";
 import PlayerNamesField from "../../components/PlayerNamesField";
+import GameSettingsPage from "../../components/GameSettingsPage";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 /** Dizajn: Nočný herný salón — vlastný výber minihier sa otvorí až po stlačení Začať party hru, nie priamo v nastaveniach. */
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
@@ -251,67 +252,69 @@ export default function TeamBattleSetup({
             </div>
           )}
 
-          <section className="party-glass party-setup-panel mt-4 rounded-[1.75rem] p-5">
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-emerald-300/70">
-                Pravidlá kôl
-              </p>
-              <p className="mt-1 text-sm font-bold text-white/70">
-                Nastavte tempo celej bitky
-              </p>
-            </div>
+          {/* Nastavenia hry — tempo kôl a náročnosť kvízu majú vlastnú
+              stránku, aby setup obrazovka zostala krátka. */}
+          <GameSettingsPage
+            className="mt-4"
+            accent="#34d399"
+            icon="timer"
+            title="Pravidlá kôl"
+            summary={`${quickRounds} rýchle výzvy · ${timeSeconds}s · kvíz: ${quizDifficulty === "lahke" ? "ľahší" : "ťažší"}`}
+            description="Tempo celej bitky a náročnosť kvízu"
+          >
+            <section className="party-glass party-setup-panel rounded-[1.75rem] p-5">
+              <div className="mt-0">
+                <div className="flex items-center justify-between">
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">
+                    Rýchle výzvy na tím
+                  </p>
+                  <span className="text-xs font-black text-emerald-300">
+                    {quickRounds}
+                  </span>
+                </div>
+                <div className="mt-2 grid grid-cols-4 gap-2">
+                  {[1, 2, 3, 4].map(value => (
+                    <button
+                      key={value}
+                      onClick={() => setQuickRounds(value)}
+                      className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${quickRounds === value ? "border-emerald-300/65 bg-emerald-400/20 text-white" : "border-white/10 bg-white/[0.035] text-white/35"}`}
+                    >
+                      {value}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-            <div className="mt-5">
-              <div className="flex items-center justify-between">
-                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">
-                  Rýchle výzvy na tím
+              <div className="mt-5">
+                <div className="flex items-center justify-between">
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">
+                    Čas časovaných hier
+                  </p>
+                  <span className="text-xs font-black text-emerald-300">
+                    {timeSeconds} s
+                  </span>
+                </div>
+                <div className="mt-2 grid grid-cols-4 gap-2">
+                  {[30, 45, 60, 90].map(value => (
+                    <button
+                      key={value}
+                      onClick={() => setTimeSeconds(value)}
+                      className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${timeSeconds === value ? "border-emerald-300/65 bg-emerald-400/20 text-white" : "border-white/10 bg-white/[0.035] text-white/35"}`}
+                    >
+                      {value}s
+                    </button>
+                  ))}
+                </div>
+                <p className="mt-3 text-[10px] leading-relaxed text-white/30">
+                  Platí pre pantomímu, šarády, zakázané slovo a pesničky. Krátke
+                  výzvy majú vlastný rýchly limit.
                 </p>
-                <span className="text-xs font-black text-emerald-300">
-                  {quickRounds}
-                </span>
               </div>
-              <div className="mt-2 grid grid-cols-4 gap-2">
-                {[1, 2, 3, 4].map(value => (
-                  <button
-                    key={value}
-                    onClick={() => setQuickRounds(value)}
-                    className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${quickRounds === value ? "border-emerald-300/65 bg-emerald-400/20 text-white" : "border-white/10 bg-white/[0.035] text-white/35"}`}
-                  >
-                    {value}
-                  </button>
-                ))}
-              </div>
-            </div>
 
-            <div className="mt-5">
-              <div className="flex items-center justify-between">
-                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">
-                  Čas časovaných hier
-                </p>
-                <span className="text-xs font-black text-emerald-300">
-                  {timeSeconds} s
-                </span>
-              </div>
-              <div className="mt-2 grid grid-cols-4 gap-2">
-                {[30, 45, 60, 90].map(value => (
-                  <button
-                    key={value}
-                    onClick={() => setTimeSeconds(value)}
-                    className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${timeSeconds === value ? "border-emerald-300/65 bg-emerald-400/20 text-white" : "border-white/10 bg-white/[0.035] text-white/35"}`}
-                  >
-                    {value}s
-                  </button>
-                ))}
-              </div>
-              <p className="mt-3 text-[10px] leading-relaxed text-white/30">
-                Platí pre pantomímu, šarády, zakázané slovo a pesničky. Krátke
-                výzvy majú vlastný rýchly limit.
-              </p>
-            </div>
-
-            {/* Náročnosť kvízu platí v oboch režimoch — aj keď si hry vyberiete sami. */}
-            {quizDifficultyControls}
-          </section>
+              {/* Náročnosť kvízu platí v oboch režimoch — aj keď si hry vyberiete sami. */}
+              {quizDifficultyControls}
+            </section>
+          </GameSettingsPage>
 
           <button
             onClick={() => {

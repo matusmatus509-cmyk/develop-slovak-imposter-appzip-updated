@@ -3,6 +3,7 @@ import { getCharacterCategories, type CharacterCategory } from "../../data/chara
 import { Button, Shell, TopBar } from "../../components/ui";
 import type { CustomContentControls } from "../../components/CustomContentSelector";
 import PlayerNamesField from "../../components/PlayerNamesField";
+import GameSettingsPage from "../../components/GameSettingsPage";
 import type { WordGuessRecordInput, WorkshopEntry } from "../../types";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { Icons } from "../../components/icons";
@@ -261,24 +262,34 @@ function SetupScreen({
           </span>
         </button>
 
-        <section className="guess-who-setting-block">
-          <div className="guess-who-setting-heading">
-            <span><Icons.timer size={15} /> Čas na kolo</span>
-            <strong>{timer} sekúnd</strong>
-          </div>
-          <div className="guess-who-time-grid">
-            {[30, 45, 60, 90, 120].map((value) => (
-              <button
-                key={value}
-                type="button"
-                onClick={() => setTimer(value)}
-                className={timer === value ? "is-active" : ""}
-              >
-                {value}s
-              </button>
-            ))}
-          </div>
-        </section>
+        {/* Nastavenia hry — čas na kolo má vlastnú stránku, aby setup
+            obrazovka zostala krátka. */}
+        <GameSettingsPage
+          accent="#38bdf8"
+          icon="timer"
+          title="Nastavenia hry"
+          summary={`${timer} sekúnd na kolo`}
+          description="Čas na kolo"
+        >
+          <section className="guess-who-setting-block">
+            <div className="guess-who-setting-heading">
+              <span><Icons.timer size={15} /> Čas na kolo</span>
+              <strong>{timer} sekúnd</strong>
+            </div>
+            <div className="guess-who-time-grid">
+              {[30, 45, 60, 90, 120].map((value) => (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => setTimer(value)}
+                  className={timer === value ? "is-active" : ""}
+                >
+                  {value}s
+                </button>
+              ))}
+            </div>
+          </section>
+        </GameSettingsPage>
 
         <PlayerNamesField
           names={names}
