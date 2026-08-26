@@ -45,16 +45,27 @@ export default function MusicBuzzer({
   onDone,
   rounds = 10,
   timeSeconds = 10,
+  songPools,
 }: QuickParticipantsProps) {
   const { language } = useLanguage();
   const { playFeedback } = useFeedback();
   const soundAllowed = soundsEnabled();
+  // Výber kategórií je množina — do závislostí ide jeho stabilný podpis, inak
+  // by nové pole pri každom rendere zbytočne pretiahlo celý deck odznova.
+  const poolKey = songPools ? [...songPools].sort().join("+") : "";
   // Deck si vyžiadame naraz, ale s rezervou — `skipUnavailable()` prepáli slot,
   // keď sa u poskytovateľa nenájde ukážka. Session zabezpečí, že skladby už
   // použité v „Zahmkaj pesničku" sa sem nedostanú.
   const deck = useMemo(
-    () => drawSongs({ language, minigame: "buzzer", count: rounds * 3 + 10 }),
-    [language, rounds]
+    () =>
+      drawSongs({
+        language,
+        minigame: "buzzer",
+        count: rounds * 3 + 10,
+        pools: songPools,
+      }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- `poolKey` zastupuje `songPools`
+    [language, rounds, poolKey]
   );
   const [questionIndex, setQuestionIndex] = useState(0);
   const [deckIndex, setDeckIndex] = useState(0);
