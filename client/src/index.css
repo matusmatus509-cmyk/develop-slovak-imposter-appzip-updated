@@ -2321,24 +2321,6 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   line-height: 1.5;
   color: rgba(255, 255, 255, .48);
 }
-.party-battle-settings .party-team-fields label {
-  min-height: 4.4rem;
-  padding: .75rem;
-  border-radius: 1rem !important;
-  background: var(--settings-surface) !important;
-}
-.party-battle-settings .party-team-fields label > span:first-child {
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: .7rem;
-  box-shadow: none !important;
-}
-.party-battle-settings .party-team-fields input {
-  min-height: auto;
-  border: 0 !important;
-  background: transparent !important;
-  padding: 0;
-}
 .party-battle-settings .party-selection-block { margin-top: 1rem; }
 .party-battle-settings .party-selection-card {
   min-height: 7.5rem;
@@ -2815,13 +2797,6 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 }
 .party-mode-experience .mobile-settings button:active { transform: scale(0.975) !important; }
 /* Polia s menami tímov nesú farbu tímu, takže sivý rámček z nastavení tu neplatí. */
-.party-mode-experience .party-battle-settings .party-team-fields input {
-  min-height: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-}
-
 /* ── Výber minihier v party móde ────────────────────────────────────────────
    Vybraná hra sa označí zlatou linkou a poradovým číslom; potvrdenie je zlaté. */
 .party-game-picker-screen .minigame-tile {
