@@ -15,6 +15,7 @@ import {
   musicQuizGameHero,
   musicQuizGameHeroWide,
   musicQuizSetupHero,
+  pantomimaGameHero,
   partyMinigameAtlas,
   pingPongGameHero,
   songGameHero,
@@ -45,9 +46,10 @@ describe("minigame artwork registry", () => {
       letterGameHeroV3,
       songGameHeroV3,
       charadesGameHero,
+      pantomimaGameHero,
     ];
 
-    expect(assets).toHaveLength(20);
+    expect(assets).toHaveLength(21);
     expect(assets.every((asset) => asset.includes("assets/"))).toBe(true);
     expect(assets.every((asset) => !asset.includes("files.manuscdn.com"))).toBe(true);
   });
