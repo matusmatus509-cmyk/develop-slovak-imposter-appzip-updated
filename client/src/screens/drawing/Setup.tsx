@@ -5,6 +5,7 @@ import type { GameSettings } from "../../types";
 import { Button, Chip, Shell, Stepper, TopBar } from "../../components/ui";
 import { maxImpostorsFor } from "../../utils/gameLogic";
 import PlayerNamesField from "../../components/PlayerNamesField";
+import GameSettingsPage from "../../components/GameSettingsPage";
 import { cn } from "../../utils/designTokens";
 import {
   defaultPlayerName,
@@ -77,45 +78,43 @@ export default function DrawingSetup({
           placeholderFor={(index) => defaultPlayerName(language, index + 1)}
         />
 
-        {/* Strokes per player */}
-        <section
-          className={cn(
-            "glass flex items-center justify-between rounded-2xl px-4 py-3.5",
-            "transition-all duration-200"
-          )}
-          style={{ animation: "slideUp 0.4s ease-out 100ms both" }}
+        {/* Nastavenia hry — ťahy na hráča a počet podvodníkov majú vlastnú
+            stránku, aby setup obrazovka zostala krátka. */}
+        <GameSettingsPage
+          accent="#8b5cf6"
+          icon="settings"
+          title="Nastavenia hry"
+          summary={`${strokesPerPlayer} ťah${strokesPerPlayer === 1 ? "" : "y"} na hráča · ${Math.min(impostorCount, maxImpostors)} podvodník${Math.min(impostorCount, maxImpostors) === 1 ? "" : "i"}`}
+          description="Počet ťahov na hráča a počet podvodníkov"
         >
-          <div>
-            <p className="text-sm font-bold">Ťahy na hráča</p>
-            <p className="text-xs text-white/50">Každý hráč nakreslí toľko ťahov</p>
-          </div>
-          <Stepper
-            value={strokesPerPlayer}
-            min={1}
-            max={10}
-            onChange={setStrokesPerPlayer}
-          />
-        </section>
+          {/* Strokes per player */}
+          <section className={cn("glass flex items-center justify-between rounded-2xl px-4 py-3.5")}>
+            <div>
+              <p className="text-sm font-bold">Ťahy na hráča</p>
+              <p className="text-xs text-white/50">Každý hráč nakreslí toľko ťahov</p>
+            </div>
+            <Stepper
+              value={strokesPerPlayer}
+              min={1}
+              max={10}
+              onChange={setStrokesPerPlayer}
+            />
+          </section>
 
-        {/* Impostor count */}
-        <section
-          className={cn(
-            "glass flex items-center justify-between rounded-2xl px-4 py-3.5",
-            "transition-all duration-200"
-          )}
-          style={{ animation: "slideUp 0.4s ease-out 150ms both" }}
-        >
-          <div>
-            <p className="text-sm font-bold">Počet podvodníkov</p>
-            <p className="text-xs text-white/50">Max {maxImpostors} pri tomto počte hráčov</p>
-          </div>
-          <Stepper
-            value={Math.min(impostorCount, maxImpostors)}
-            min={1}
-            max={maxImpostors}
-            onChange={setImpostorCount}
-          />
-        </section>
+          {/* Impostor count */}
+          <section className={cn("glass flex items-center justify-between rounded-2xl px-4 py-3.5")}>
+            <div>
+              <p className="text-sm font-bold">Počet podvodníkov</p>
+              <p className="text-xs text-white/50">Max {maxImpostors} pri tomto počte hráčov</p>
+            </div>
+            <Stepper
+              value={Math.min(impostorCount, maxImpostors)}
+              min={1}
+              max={maxImpostors}
+              onChange={setImpostorCount}
+            />
+          </section>
+        </GameSettingsPage>
 
         {/* Categories */}
         <section style={{ animation: "slideUp 0.4s ease-out 200ms both" }}>

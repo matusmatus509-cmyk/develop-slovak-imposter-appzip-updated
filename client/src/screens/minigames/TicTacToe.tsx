@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Icons } from "../../components/icons";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { PartyBackdrop, PartyEyebrow } from "../teamBattle/PartyChrome";
+import GameSettingsPage from "../../components/GameSettingsPage";
 
 type Mark = "X" | "O";
 type Cell = Mark | null;
@@ -198,61 +199,76 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
               </p>
             </section>
 
-            <section className="party-glass mt-7 rounded-[1.8rem] p-5">
-              <p className="text-[9px] font-black uppercase tracking-[.22em] text-white/35">
-                Herný režim
-              </p>
-              <div className="mt-3 grid grid-cols-1 gap-3 [&>button:first-child]:hidden">
-                {(["ai", "local"] as const).map(value => (
-                  <button
-                    key={value}
-                    onClick={() => setMode(value)}
-                    className={`flex items-center gap-4 rounded-2xl border p-4 text-left transition active:scale-95 ${mode === value ? "border-cyan-300/45 bg-cyan-400/12" : "border-white/8 bg-white/[.035]"}`}
-                  >
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-cyan-200/15 bg-cyan-300/[.1] text-cyan-100">
-                      {value === "ai" ? (
-                        <Icons.gamepad size={24} />
-                      ) : (
-                        <Icons.users size={25} />
-                      )}
-                    </span>
-                    <span>
-                      <strong className="block text-sm font-black">
-                        {value === "ai" ? "Proti robotovi" : "Dvaja hráči"}
-                      </strong>
-                      <small className="mt-1 block text-[10px] leading-relaxed text-white/38">
-                        {value === "ai"
-                          ? "Sólo hra na jednom mobile"
-                          : "Striedajte sa po každom ťahu"}
-                      </small>
-                    </span>
-                    <Icons.chevronRight
-                      size={17}
-                      className="ml-auto text-white/30"
-                    />
-                  </button>
-                ))}
-              </div>
-            </section>
-
-            {mode === "ai" && (
-              <section className="party-glass mt-3 rounded-[1.8rem] p-5">
+            {/* Nastavenia hry — herný režim a obtiažnosť robota majú vlastnú
+                stránku, aby setup obrazovka zostala krátka. */}
+            <GameSettingsPage
+              className="mt-7"
+              accent="#22d3ee"
+              icon="gamepad"
+              title="Nastavenia hry"
+              summary={
+                mode === "ai"
+                  ? `Proti robotovi · ${difficulty === "relaxed" ? "pohodová" : "majster"}`
+                  : "Dvaja hráči"
+              }
+              description="Herný režim a obtiažnosť robota"
+            >
+              <section className="party-glass rounded-[1.8rem] p-5">
                 <p className="text-[9px] font-black uppercase tracking-[.22em] text-white/35">
-                  Obtiažnosť robota
+                  Herný režim
                 </p>
-                <div className="mt-3 grid grid-cols-2 gap-2">
-                  {(["relaxed", "master"] as const).map(value => (
+                <div className="mt-3 grid grid-cols-1 gap-3 [&>button:first-child]:hidden">
+                  {(["ai", "local"] as const).map(value => (
                     <button
                       key={value}
-                      onClick={() => setDifficulty(value)}
-                      className={`rounded-xl border py-3 text-xs font-black transition active:scale-95 ${difficulty === value ? "border-fuchsia-300/45 bg-fuchsia-400/15 text-white" : "border-white/8 bg-white/[.03] text-white/38"}`}
+                      onClick={() => setMode(value)}
+                      className={`flex items-center gap-4 rounded-2xl border p-4 text-left transition active:scale-95 ${mode === value ? "border-cyan-300/45 bg-cyan-400/12" : "border-white/8 bg-white/[.035]"}`}
                     >
-                      {value === "relaxed" ? "Pohodová" : "Majster"}
+                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-cyan-200/15 bg-cyan-300/[.1] text-cyan-100">
+                        {value === "ai" ? (
+                          <Icons.gamepad size={24} />
+                        ) : (
+                          <Icons.users size={25} />
+                        )}
+                      </span>
+                      <span>
+                        <strong className="block text-sm font-black">
+                          {value === "ai" ? "Proti robotovi" : "Dvaja hráči"}
+                        </strong>
+                        <small className="mt-1 block text-[10px] leading-relaxed text-white/38">
+                          {value === "ai"
+                            ? "Sólo hra na jednom mobile"
+                            : "Striedajte sa po každom ťahu"}
+                        </small>
+                      </span>
+                      <Icons.chevronRight
+                        size={17}
+                        className="ml-auto text-white/30"
+                      />
                     </button>
                   ))}
                 </div>
               </section>
-            )}
+
+              {mode === "ai" && (
+                <section className="party-glass rounded-[1.8rem] p-5">
+                  <p className="text-[9px] font-black uppercase tracking-[.22em] text-white/35">
+                    Obtiažnosť robota
+                  </p>
+                  <div className="mt-3 grid grid-cols-2 gap-2">
+                    {(["relaxed", "master"] as const).map(value => (
+                      <button
+                        key={value}
+                        onClick={() => setDifficulty(value)}
+                        className={`rounded-xl border py-3 text-xs font-black transition active:scale-95 ${difficulty === value ? "border-fuchsia-300/45 bg-fuchsia-400/15 text-white" : "border-white/8 bg-white/[.03] text-white/38"}`}
+                      >
+                        {value === "relaxed" ? "Pohodová" : "Majster"}
+                      </button>
+                    ))}
+                  </div>
+                </section>
+              )}
+            </GameSettingsPage>
 
             <button
               onClick={startGame}

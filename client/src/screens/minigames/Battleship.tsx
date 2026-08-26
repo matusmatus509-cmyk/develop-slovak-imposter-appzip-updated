@@ -12,6 +12,7 @@ import { Icons } from "../../components/icons";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { PartyBackdrop, PartyEyebrow } from "../teamBattle/PartyChrome";
+import GameSettingsPage from "../../components/GameSettingsPage";
 
 type Orientation = "horizontal" | "vertical";
 type CellState = "EMPTY" | "SHIP" | "MISS" | "HIT" | "SUNK";
@@ -1230,52 +1231,55 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
                 />
               </button>
             </section>
-            <section className="battle-rules-card party-glass mt-4 rounded-[1.6rem] p-4">
-              <div className="mb-2 flex items-center gap-2">
-                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-200">
-                  <Icons.shieldCheck size={15} />
-                </span>
-                <p className="text-[9px] font-black uppercase tracking-[.2em] text-white/42">
-                  Pravidlá bitky
-                </p>
-              </div>
-              <label className="flex cursor-pointer items-center justify-between gap-3 py-2">
-                <span>
-                  <strong className="block text-xs font-black">
-                    Lode sa nedotýkajú
-                  </strong>
-                  <small className="text-[9px] text-white/35">
-                    Ani bokmi, ani rohmi
-                  </small>
-                </span>
-                <input
-                  type="checkbox"
-                  checked={noTouching}
-                  onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                    setNoTouching(event.target.checked)
-                  }
-                  className="battle-rule-check"
-                />
-              </label>
-              <label className="flex cursor-pointer items-center justify-between gap-3 border-t border-white/[.07] py-2">
-                <span>
-                  <strong className="block text-xs font-black">
-                    Zásah = ďalší výstrel
-                  </strong>
-                  <small className="text-[9px] text-white/35">
-                    Úspešný strelec pokračuje
-                  </small>
-                </span>
-                <input
-                  type="checkbox"
-                  checked={hitKeepsTurn}
-                  onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                    setHitKeepsTurn(event.target.checked)
-                  }
-                  className="battle-rule-check"
-                />
-              </label>
-            </section>
+            {/* Nastavenia hry — pravidlá bitky majú vlastnú stránku, aby
+                setup obrazovka zostala krátka. */}
+            <GameSettingsPage
+              className="mt-4"
+              accent="#22d3ee"
+              icon="shieldCheck"
+              title="Pravidlá bitky"
+              summary={`${noTouching ? "Bez dotyku" : "Dotyk povolený"} · ${hitKeepsTurn ? "zásah = ďalší výstrel" : "striedanie ťahov"}`}
+              description="Dotyk lodí a striedanie po zásahu"
+            >
+              <section className="battle-rules-card party-glass rounded-[1.6rem] p-4">
+                <label className="flex cursor-pointer items-center justify-between gap-3 py-2">
+                  <span>
+                    <strong className="block text-xs font-black">
+                      Lode sa nedotýkajú
+                    </strong>
+                    <small className="text-[9px] text-white/35">
+                      Ani bokmi, ani rohmi
+                    </small>
+                  </span>
+                  <input
+                    type="checkbox"
+                    checked={noTouching}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                      setNoTouching(event.target.checked)
+                    }
+                    className="battle-rule-check"
+                  />
+                </label>
+                <label className="flex cursor-pointer items-center justify-between gap-3 border-t border-white/[.07] py-2">
+                  <span>
+                    <strong className="block text-xs font-black">
+                      Zásah = ďalší výstrel
+                    </strong>
+                    <small className="text-[9px] text-white/35">
+                      Úspešný strelec pokračuje
+                    </small>
+                  </span>
+                  <input
+                    type="checkbox"
+                    checked={hitKeepsTurn}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                      setHitKeepsTurn(event.target.checked)
+                    }
+                    className="battle-rule-check"
+                  />
+                </label>
+              </section>
+            </GameSettingsPage>
           </div>
         </main>
       </PartyBackdrop>

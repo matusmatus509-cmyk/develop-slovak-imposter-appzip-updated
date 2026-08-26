@@ -7,6 +7,7 @@ import {
   BUZZ_TARGET_MIN_SECONDS,
 } from "../../utils/buzzLogic";
 import PlayerNamesField from "../../components/PlayerNamesField";
+import GameSettingsPage from "../../components/GameSettingsPage";
 import {
   defaultPlayerName,
   localizeGeneratedParticipantName,
@@ -78,37 +79,47 @@ export default function Setup({
           </div>
         </section>
 
-        {/* Rozsah podvodníka */}
-        <section>
-          <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-white/70">
-            Rozsah pre podvodníka
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {RANGE_OPTIONS.map((opt) => (
-              <Chip
-                key={opt.value}
-                active={impostorRangeSeconds === opt.value}
-                onClick={() => setImpostorRangeSeconds(opt.value)}
-              >
-                {opt.label}
-              </Chip>
-            ))}
-          </div>
-          <p className="mt-2 text-xs text-white/40">
-            Podvodník nedostane presné číslo, iba takto široký rozsah — napríklad
-            5 – 7 s. Musí preto blafovať.
-          </p>
-        </section>
+        {/* Nastavenia hry — rozsah pre podvodníka a stopovanie naslepo majú
+            vlastnú stránku, aby setup obrazovka zostala krátka. */}
+        <GameSettingsPage
+          accent="#f43f5e"
+          icon="settings"
+          title="Nastavenia hry"
+          summary={`${RANGE_OPTIONS.find((opt) => opt.value === impostorRangeSeconds)?.label ?? `${impostorRangeSeconds}s`} · ${blindTiming ? "naslepo" : "s časom"}`}
+          description="Rozsah pre podvodníka a stopovanie naslepo"
+        >
+          {/* Rozsah podvodníka */}
+          <section>
+            <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-white/70">
+              Rozsah pre podvodníka
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {RANGE_OPTIONS.map((opt) => (
+                <Chip
+                  key={opt.value}
+                  active={impostorRangeSeconds === opt.value}
+                  onClick={() => setImpostorRangeSeconds(opt.value)}
+                >
+                  {opt.label}
+                </Chip>
+              ))}
+            </div>
+            <p className="mt-2 text-xs text-white/40">
+              Podvodník nedostane presné číslo, iba takto široký rozsah — napríklad
+              5 – 7 s. Musí preto blafovať.
+            </p>
+          </section>
 
-        {/* Toggles */}
-        <section className="space-y-3">
-          <Toggle
-            checked={blindTiming}
-            onChange={setBlindTiming}
-            label="Stopovať naslepo"
-            description="Hráč počas merania nevidí bežiaci čas. Bez toho je trafiť tajný čas takmer isté a hra stráca zmysel"
-          />
-        </section>
+          {/* Toggles */}
+          <section className="space-y-3">
+            <Toggle
+              checked={blindTiming}
+              onChange={setBlindTiming}
+              label="Stopovať naslepo"
+              description="Hráč počas merania nevidí bežiaci čas. Bez toho je trafiť tajný čas takmer isté a hra stráca zmysel"
+            />
+          </section>
+        </GameSettingsPage>
       </div>
 
       <Button fullWidth onClick={handleStart} className="mt-4">

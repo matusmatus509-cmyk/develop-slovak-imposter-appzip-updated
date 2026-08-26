@@ -5,6 +5,7 @@ import { Button, Chip, Shell, Stepper, Toggle, TopBar } from "../../components/u
 import { Icons } from "../../components/icons";
 import { maxImpostorsFor } from "../../utils/gameLogic";
 import PlayerNamesField from "../../components/PlayerNamesField";
+import GameSettingsPage from "../../components/GameSettingsPage";
 import {
   defaultPlayerName,
   localizeGeneratedParticipantName,
@@ -106,59 +107,69 @@ export default function Setup({
           </div>
         </section>
 
-        {/* Impostor count */}
-        <section className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5">
-          <div>
-            <p className="text-sm font-bold">Počet podvodníkov</p>
-            <p className="text-xs text-white/50">Max {maxImpostors} pri tomto počte hráčov</p>
-          </div>
-          <Stepper
-            value={Math.min(impostorCount, maxImpostors)}
-            min={1}
-            max={maxImpostors}
-            onChange={setImpostorCount}
-          />
-        </section>
+        {/* Nastavenia hry — počet podvodníkov, časovač a pravidlá majú
+            vlastnú stránku, aby setup obrazovka zostala krátka. */}
+        <GameSettingsPage
+          accent="#f97316"
+          icon="settings"
+          title="Nastavenia hry"
+          summary={`${Math.min(impostorCount, maxImpostors)} podvodník${Math.min(impostorCount, maxImpostors) === 1 ? "" : "i"} · ${timerSeconds === 0 ? "bez limitu" : `${timerSeconds}s`}`}
+          description="Počet podvodníkov, časovač diskusie a pravidlá kola"
+        >
+          {/* Impostor count */}
+          <section className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5">
+            <div>
+              <p className="text-sm font-bold">Počet podvodníkov</p>
+              <p className="text-xs text-white/50">Max {maxImpostors} pri tomto počte hráčov</p>
+            </div>
+            <Stepper
+              value={Math.min(impostorCount, maxImpostors)}
+              min={1}
+              max={maxImpostors}
+              onChange={setImpostorCount}
+            />
+          </section>
 
-        {/* Timer */}
-        <section>
-          <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-white/70">
-            Časovač diskusie
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {TIMER_OPTIONS.map((opt) => (
-              <Chip
-                key={opt.value}
-                active={timerSeconds === opt.value}
-                onClick={() => setTimerSeconds(opt.value)}
-              >
-                {opt.label}
-              </Chip>
-            ))}
-          </div>
-        </section>
+          {/* Timer */}
+          <section>
+            <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-white/70">
+              Časovač diskusie
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {TIMER_OPTIONS.map((opt) => (
+                <Chip
+                  key={opt.value}
+                  active={timerSeconds === opt.value}
+                  onClick={() => setTimerSeconds(opt.value)}
+                >
+                  {opt.label}
+                </Chip>
+              ))}
+            </div>
+          </section>
 
-        {/* Toggles */}
-        <section className="space-y-3">
-          <Toggle
-            checked={hintsEnabled}
-            onChange={setHintsEnabled}
-            label="Nápoveda pre podvodníka"
-            description="Podvodník dostane nápovedu zo svojej kategórie, ktorú použije v prvom kole"
-          />
-          <Toggle
-            checked={noRepeatWords}
-            onChange={setNoRepeatWords}
-            label="Režim kôl — bez opakovania"
-            description="Rovnaké slovo sa nezopakuje, kým sa nevystriedajú všetky"
-          />
-          <Toggle
-            checked={hideCategoryFromImpostor}
-            onChange={setHideCategoryFromImpostor}
-            label="Skryť kategóriu podvodníkovi"
-            description="Podvodník nevidí, z akej kategórie slovo je — ťažšie sa mu bude hádať"
-          />
-        </section>
+          {/* Toggles */}
+          <section className="space-y-3">
+            <Toggle
+              checked={hintsEnabled}
+              onChange={setHintsEnabled}
+              label="Nápoveda pre podvodníka"
+              description="Podvodník dostane nápovedu zo svojej kategórie, ktorú použije v prvom kole"
+            />
+            <Toggle
+              checked={noRepeatWords}
+              onChange={setNoRepeatWords}
+              label="Režim kôl — bez opakovania"
+              description="Rovnaké slovo sa nezopakuje, kým sa nevystriedajú všetky"
+            />
+            <Toggle
+              checked={hideCategoryFromImpostor}
+              onChange={setHideCategoryFromImpostor}
+              label="Skryť kategóriu podvodníkovi"
+              description="Podvodník nevidí, z akej kategórie slovo je — ťažšie sa mu bude hádať"
+            />
+          </section>
+        </GameSettingsPage>
       </div>
 
       <Button fullWidth onClick={handleStart} className="mt-4">

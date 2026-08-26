@@ -32,6 +32,7 @@ import {
 } from "../../data/localizedSongs";
 import { countAvailableSongs } from "../../data/songSelection";
 import PlayerNamesField from "../../components/PlayerNamesField";
+import GameSettingsPage from "../../components/GameSettingsPage";
 import SongGameArtwork from "../../components/SongGameArtwork";
 
 type QuickGameType =
@@ -571,95 +572,94 @@ export default function TeamQuickGame({
               </section>
             )}
 
-            <section className="party-glass mt-3 rounded-[1.8rem] p-5">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p
-                    className="text-[10px] font-black uppercase tracking-[0.24em]"
-                    style={{ color: accent }}
-                  >
-                    Nastavenie hry
-                  </p>
-                  <p className="mt-1 text-sm font-bold text-white/65">
-                    Prispôsobte si tempo a dĺžku
-                  </p>
-                </div>
-                <span className="rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2 text-[10px] font-black text-white/45">
-                  {options.roundsArePerParticipant
-                    ? rounds * names.length
-                    : rounds}{" "}
-                  kôl
-                </span>
-              </div>
-
-              <div className="mt-5">
-                <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">
-                    {options.roundsLabel}
-                  </p>
-                  <span
-                    className="text-xs font-black"
-                    style={{ color: accent }}
-                  >
-                    {rounds}
+            <GameSettingsPage
+              className="mt-3"
+              accent={accent}
+              icon="timer"
+              title="Nastavenie hry"
+              summary={`${rounds} × ${options.roundsLabel.toLowerCase()} · ${timeSeconds}s`}
+              description="Prispôsobte si tempo a dĺžku"
+            >
+              <section className="party-glass rounded-[1.8rem] p-5">
+                <div className="flex items-center justify-end">
+                  <span className="rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2 text-[10px] font-black text-white/45">
+                    Celkovo{" "}
+                    {options.roundsArePerParticipant
+                      ? rounds * names.length
+                      : rounds}{" "}
+                    kôl
                   </span>
                 </div>
-                <div className="mt-2 grid grid-cols-4 gap-2">
-                  {options.rounds.map(value => (
-                    <button
-                      key={value}
-                      onClick={() => setRounds(value)}
-                      className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${rounds === value ? "text-white shadow-lg" : "border-white/10 bg-white/[0.035] text-white/35"}`}
-                      style={
-                        rounds === value
-                          ? {
-                              borderColor: `${accent}aa`,
-                              background: `${accent}2e`,
-                              boxShadow: `0 10px 25px ${accent}18`,
-                            }
-                          : undefined
-                      }
-                    >
-                      {value}
-                    </button>
-                  ))}
-                </div>
-              </div>
 
-              <div className="mt-5">
-                <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">
-                    {options.timeLabel}
-                  </p>
-                  <span
-                    className="text-xs font-black"
-                    style={{ color: accent }}
-                  >
-                    {timeSeconds} s
-                  </span>
-                </div>
-                <div className="mt-2 grid grid-cols-4 gap-2">
-                  {options.times.map(value => (
-                    <button
-                      key={value}
-                      onClick={() => setTimeSeconds(value)}
-                      className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${timeSeconds === value ? "text-white shadow-lg" : "border-white/10 bg-white/[0.035] text-white/35"}`}
-                      style={
-                        timeSeconds === value
-                          ? {
-                              borderColor: `${accent}aa`,
-                              background: `${accent}2e`,
-                              boxShadow: `0 10px 25px ${accent}18`,
-                            }
-                          : undefined
-                      }
+                <div className="mt-5">
+                  <div className="flex items-center justify-between">
+                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">
+                      {options.roundsLabel}
+                    </p>
+                    <span
+                      className="text-xs font-black"
+                      style={{ color: accent }}
                     >
-                      {value}s
-                    </button>
-                  ))}
+                      {rounds}
+                    </span>
+                  </div>
+                  <div className="mt-2 grid grid-cols-4 gap-2">
+                    {options.rounds.map(value => (
+                      <button
+                        key={value}
+                        onClick={() => setRounds(value)}
+                        className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${rounds === value ? "text-white shadow-lg" : "border-white/10 bg-white/[0.035] text-white/35"}`}
+                        style={
+                          rounds === value
+                            ? {
+                                borderColor: `${accent}aa`,
+                                background: `${accent}2e`,
+                                boxShadow: `0 10px 25px ${accent}18`,
+                              }
+                            : undefined
+                        }
+                      >
+                        {value}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </section>
+
+                <div className="mt-5">
+                  <div className="flex items-center justify-between">
+                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">
+                      {options.timeLabel}
+                    </p>
+                    <span
+                      className="text-xs font-black"
+                      style={{ color: accent }}
+                    >
+                      {timeSeconds} s
+                    </span>
+                  </div>
+                  <div className="mt-2 grid grid-cols-4 gap-2">
+                    {options.times.map(value => (
+                      <button
+                        key={value}
+                        onClick={() => setTimeSeconds(value)}
+                        className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${timeSeconds === value ? "text-white shadow-lg" : "border-white/10 bg-white/[0.035] text-white/35"}`}
+                        style={
+                          timeSeconds === value
+                            ? {
+                                borderColor: `${accent}aa`,
+                                background: `${accent}2e`,
+                                boxShadow: `0 10px 25px ${accent}18`,
+                              }
+                            : undefined
+                        }
+                      >
+                        {value}s
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            </GameSettingsPage>
 
             <button
               onClick={start}

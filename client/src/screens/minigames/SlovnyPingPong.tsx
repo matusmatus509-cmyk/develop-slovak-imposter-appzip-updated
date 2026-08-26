@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Button, Shell, TopBar } from "../../components/ui";
 import PlayerNamesField from "../../components/PlayerNamesField";
+import GameSettingsPage from "../../components/GameSettingsPage";
 import { PING_PONG_PROMPTS } from "../../data/pingPongPrompts";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
@@ -20,6 +21,13 @@ const COLOR_TOP = "#e85577"; // Player 1 — red/pink
 const COLOR_TOP_DARK = "#9e2a40";
 const COLOR_BOT = "#6b70d8"; // Player 2 — blue/purple
 const COLOR_BOT_DARK = "#3a3e8a";
+
+const SPEED_OPTIONS = [
+  { label: "Pomaly", val: 6 },
+  { label: "Stredne", val: 4 },
+  { label: "Rýchlo", val: 2.5 },
+  { label: "Šialene", val: 1.5 },
+];
 
 // ─── Setup Screen ─────────────────────────────────────────────────────────────
 
@@ -65,32 +73,37 @@ function SetupScreen({
         placeholderFor={index => defaultPlayerName(language, index + 1)}
       />
 
-      {/* Speed */}
-      <div className="mb-8 rounded-3xl border border-white/10 bg-white/5 p-4">
-        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
-          Rýchlosť
-        </p>
-        <div className="flex gap-2">
-          {[
-            { label: "Pomaly", val: 6 },
-            { label: "Stredne", val: 4 },
-            { label: "Rýchlo", val: 2.5 },
-            { label: "Šialene", val: 1.5 },
-          ].map(opt => (
-            <button
-              key={opt.val}
-              onClick={() => setSpeed(opt.val)}
-              className={`flex-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 ${
-                speed === opt.val
-                  ? "border-green-400/60 bg-green-500/30 text-green-300"
-                  : "border-white/10 bg-white/5 text-white/50"
-              }`}
-            >
-              {opt.label}
-            </button>
-          ))}
+      {/* Nastavenia hry — rýchlosť má vlastnú stránku, aby setup obrazovka
+          zostala krátka. */}
+      <GameSettingsPage
+        className="mb-8"
+        accent="#22d3ee"
+        icon="zap"
+        title="Nastavenia hry"
+        summary={SPEED_OPTIONS.find(opt => opt.val === speed)?.label ?? `${speed}s`}
+        description="Rýchlosť pohybu čiary"
+      >
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-4">
+          <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
+            Rýchlosť
+          </p>
+          <div className="flex gap-2">
+            {SPEED_OPTIONS.map(opt => (
+              <button
+                key={opt.val}
+                onClick={() => setSpeed(opt.val)}
+                className={`flex-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 ${
+                  speed === opt.val
+                    ? "border-green-400/60 bg-green-500/30 text-green-300"
+                    : "border-white/10 bg-white/5 text-white/50"
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      </GameSettingsPage>
 
       <Button
         fullWidth
