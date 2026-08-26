@@ -7,14 +7,15 @@ import { useState, type CSSProperties } from "react";
 import { Icons } from "../../components/icons";
 import { GAME_LABELS, type GameType } from "../../data/teamBattle";
 import {
-  fiveTenGameHero,
+  charadesGameHero,
+  fiveTenGameHeroV3,
   forbiddenWordGameHero,
-  letterGameHero,
-  minigameArtAtlas,
+  letterGameHeroV3,
   musicQuizGameHero,
   partyMinigameAtlas,
+  pingPongGameHero,
   quizBattleArt,
-  songGameHero,
+  songGameHeroV3,
 } from "../../media";
 
 const ALL_GAMES: GameType[] = [
@@ -54,24 +55,24 @@ const GAME_ART: Record<
     position: "33.333% 100%",
     size: "400% 300%",
   },
-  sarady: { src: partyMinigameAtlas, position: "0% 100%", size: "400% 300%" },
+  sarady: { src: charadesGameHero, position: "50% 50%", size: "cover" },
   zakazane: { src: forbiddenWordGameHero, position: "50% 50%", size: "cover" },
-  pesnicka: { src: songGameHero, position: "50% 50%", size: "cover" },
+  pesnicka: { src: songGameHeroV3, position: "50% 50%", size: "cover" },
   "hudobny-kviz": {
     src: musicQuizGameHero,
     position: "50% 50%",
     size: "cover",
   },
   zvuk: { src: partyMinigameAtlas, position: "100% 50%", size: "400% 300%" },
-  pismeno: { src: letterGameHero, position: "50% 50%", size: "cover" },
-  patzadesat: { src: fiveTenGameHero, position: "50% 50%", size: "cover" },
+  pismeno: { src: letterGameHeroV3, position: "50% 50%", size: "cover" },
+  patzadesat: { src: fiveTenGameHeroV3, position: "50% 50%", size: "cover" },
   hadajktosom: {
     src: partyMinigameAtlas,
     position: "66.667% 100%",
     size: "400% 300%",
   },
   quiz: { src: quizBattleArt, position: "50% 50%", size: "cover" },
-  pingpong: { src: minigameArtAtlas, position: "50% 50%", size: "300% 300%" },
+  pingpong: { src: pingPongGameHero, position: "50% 50%", size: "cover" },
 };
 
 export default function TeamBattleGamePicker({

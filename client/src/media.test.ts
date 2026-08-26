@@ -1,16 +1,25 @@
 import { describe, expect, it } from "vitest";
 import {
+  battleshipGameHero,
+  bombGameHero,
+  charadesGameHero,
+  emojiGameHero,
   fiveTenGameHero,
+  fiveTenGameHeroV3,
   forbiddenSetupHero,
   forbiddenWordGameHero,
   gameArt,
   letterGameHero,
+  letterGameHeroV3,
   minigameArtAtlas,
   musicQuizGameHero,
   musicQuizGameHeroWide,
   musicQuizSetupHero,
   partyMinigameAtlas,
+  pingPongGameHero,
   songGameHero,
+  songGameHeroV3,
+  ticTacToeGameHero,
 } from "./media";
 
 describe("minigame artwork registry", () => {
@@ -27,9 +36,18 @@ describe("minigame artwork registry", () => {
       musicQuizSetupHero,
       forbiddenWordGameHero,
       forbiddenSetupHero,
+      battleshipGameHero,
+      ticTacToeGameHero,
+      fiveTenGameHeroV3,
+      emojiGameHero,
+      bombGameHero,
+      pingPongGameHero,
+      letterGameHeroV3,
+      songGameHeroV3,
+      charadesGameHero,
     ];
 
-    expect(assets).toHaveLength(11);
+    expect(assets).toHaveLength(20);
     expect(assets.every((asset) => asset.includes("assets/"))).toBe(true);
     expect(assets.every((asset) => !asset.includes("files.manuscdn.com"))).toBe(true);
   });

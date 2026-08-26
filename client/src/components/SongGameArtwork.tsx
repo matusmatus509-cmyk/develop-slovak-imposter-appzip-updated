@@ -1,5 +1,5 @@
 /** Design: Nočný herný salón — hudobné hry zdieľajú hostovaný hero motív. */
-import { songGameHero } from "../media";
+import { songGameHeroV3 as songGameHero } from "../media";
 import { cn } from "../utils/designTokens";
 
 export default function SongGameArtwork({

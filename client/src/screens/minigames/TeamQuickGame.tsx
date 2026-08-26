@@ -15,8 +15,8 @@ import {
 /** Design: Nočný herný salón — rýchle hry používajú hostované tematické motívy. */
 import {
   forbiddenSetupHero as forbiddenArt,
-  fiveTenGameHero as fiveTenArt,
-  letterGameHero as letterArt,
+  fiveTenGameHeroV3 as fiveTenArt,
+  letterGameHeroV3 as letterArt,
   musicQuizSetupHero as musicQuizArt,
   soundArt,
 } from "../../media";

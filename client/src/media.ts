@@ -38,6 +38,15 @@ export const musicQuizGameHeroWide = publicAsset(
   "party-music-quiz-hero-v3-wide.jpg"
 );
 export const onlyLiesGameHero = publicAsset("party-quiz-battle-v3.png");
+export const battleshipGameHero = publicAsset("party-battleship-hero.jpg");
+export const ticTacToeGameHero = publicAsset("party-tic-tac-toe-hero.jpg");
+export const fiveTenGameHeroV3 = publicAsset("party-five-ten-hero-v3.jpg");
+export const emojiGameHero = publicAsset("party-hadaj-emoji-hero.jpg");
+export const bombGameHero = publicAsset("party-bomba-hero.jpg");
+export const pingPongGameHero = publicAsset("party-pingpong-hero.jpg");
+export const letterGameHeroV3 = publicAsset("party-letter-hero-v3.jpg");
+export const songGameHeroV3 = publicAsset("party-song-hero-v3.jpg");
+export const charadesGameHero = publicAsset("party-sarady-hero.jpg");
 /**
  * Pre uvítaciu obrazovku a kartičku v menu — portrét 928×1152 (~0,81 : 1),
  * blízko oboch panelov (kartička ~0,77–0,80 : 1, uvítacia obrazovka ~0,80 : 1).
