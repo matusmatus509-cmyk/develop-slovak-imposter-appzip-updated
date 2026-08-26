@@ -720,7 +720,102 @@ html[data-party-theme="galaxy"] .glass {
 .game-menu-heading { background: linear-gradient(135deg, rgba(255,255,255,.055), rgba(12,17,29,.82)); box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 22px 46px -38px rgba(0,0,0,.95); }
 .game-menu-card { box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 20px 42px -34px rgba(0,0,0,.95); }
 .game-menu-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: linear-gradient(105deg, rgba(255,255,255,.04), transparent 24%, transparent 77%, rgba(255,255,255,.025)); }
-.game-welcome-hero { box-shadow: 0 34px 70px -42px var(--welcome-accent), inset 0 1px 0 rgba(255,255,255,.12); }
+/* ── Uvítacia obrazovka hry ───────────────────────────────────────────
+   Jeden rám pre všetky hry a minihry:
+   • spodný blok (popis, štatistiky, pravidlo, tlačidlo) má vlastnú výšku,
+     takže tlačidlo nikdy neprepadne pod okraj displeja — voľnú výšku
+     dorovnáva obrázok nad ním,
+   • kresba sa nikdy neorezáva ani nedeformuje: zobrazí sa celá a na stred,
+     okraje dopĺňa jej rozostrená kópia,
+   • všetko je centrované, takže obrázok nie je bližšie k jednej strane. */
+.game-welcome-content { gap: .75rem; justify-content: space-between; }
+
+.game-welcome-hero {
+  flex: 1 1 auto;
+  min-height: 10rem;
+  max-height: 58dvh;
+  box-shadow: 0 34px 70px -42px var(--welcome-accent), inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.game-welcome-details { flex: 0 0 auto; }
+
+/* Dlhé popisy nesmú rozhodiť výšku bloku — kvôli tomu sa predtým tlačidlo
+   na niektorých hrách nezmestilo na obrazovku. */
+.game-welcome-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.game-welcome-title {
+  font-size: clamp(1.75rem, 8.2vw, 2.35rem);
+  max-width: 22ch;
+}
+
+.game-welcome-art { position: absolute; inset: 0; overflow: hidden; }
+
+.game-welcome-art-fill,
+.game-welcome-art-stage {
+  position: absolute;
+  inset: 0;
+}
+
+/* Rozostrená kópia kresby namiesto prázdnych pásov po stranách. */
+.game-welcome-art-fill {
+  transform: scale(1.22);
+  filter: blur(26px) saturate(1.25) brightness(.52);
+}
+
+.game-welcome-art-stage {
+  display: grid;
+  place-items: center;
+  padding: .4rem;
+}
+
+.game-welcome-art-cover { width: 100%; height: 100%; object-fit: cover; }
+
+.game-welcome-art-full {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Bunka z atlasového listu. Rám má pomer bunky (všetky listy majú
+   kvadratické bunky), obrázok v ňom je zväčšený na celý list a odsunutý
+   o presný počet buniek — nič sa nestrihá ani nedeformuje. */
+.game-welcome-art-cell {
+  position: relative;
+  height: 100%;
+  width: auto;
+  aspect-ratio: 1 / 1;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 1.1rem;
+}
+
+.game-welcome-art-cell > img {
+  position: absolute;
+  max-width: none;
+}
+
+.game-welcome-art-cell.is-fill {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  aspect-ratio: auto;
+  max-width: none;
+  border-radius: 0;
+}
+
+/* Prechod pre čitateľnosť názvu hry nad kresbou. */
+.game-welcome-hero-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 34%, rgba(8,11,18,.72) 78%, rgba(8,11,18,.94) 100%);
+}
 .game-welcome-hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; border: 1px solid rgba(255,255,255,.07); background: linear-gradient(120deg, rgba(255,255,255,.1), transparent 26%, transparent 68%, rgba(0,0,0,.16)); }
 .game-welcome-stat { box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 14px 32px -27px rgba(0,0,0,.9); }
 .game-welcome-rule { box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 18px 34px -29px rgba(0,0,0,.9); }
@@ -1950,22 +2045,23 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   .home-game-grid .home-mode-card p:last-child { font-size: .55rem; }
 }
 
-/* Welcome pages use the whole screen, with progressive compaction by height. */
+/* Welcome pages use the whole screen, with progressive compaction by height.
+   Výšku obrázka neurčujeme pevne (`height: 40dvh` predtým bojoval s flexom a
+   na každej hre vyšiel inak) — obrázok dostane presne to, čo zostane. */
 @media (max-height: 760px) {
-  .game-welcome-content { padding-left: 1rem; padding-right: 1rem; }
-  .game-welcome-hero { min-height: 220px; height: 40dvh; margin-bottom: .65rem; border-radius: 1.45rem; }
-  .game-welcome-hero > div:last-child { padding: 1rem; }
-  .game-welcome-hero h1 { font-size: 1.9rem; }
-  .game-welcome-description { font-size: .74rem; line-height: 1.42; }
-  .game-welcome-stats { margin-block: .55rem; }
+  .game-welcome-content { gap: .6rem; padding-left: 1rem; padding-right: 1rem; }
+  .game-welcome-hero { min-height: 8.5rem; border-radius: 1.45rem; }
+  .game-welcome-hero-copy { padding: 1rem; }
+  .game-welcome-description { font-size: .78rem; line-height: 1.45; }
   .game-welcome-stat { padding-block: .55rem; }
-  .game-welcome-rule { margin-bottom: .55rem; padding-block: .6rem; }
+  .game-welcome-rule { padding-block: .6rem; }
   .game-welcome-rule > span { width: 2rem; height: 2rem; }
 }
 
 @media (max-height: 640px) {
-  .game-welcome-hero { min-height: 170px; height: 33dvh; }
-  .game-welcome-description { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+  .game-welcome-content { gap: .5rem; }
+  .game-welcome-hero { min-height: 7rem; }
+  .game-welcome-description { -webkit-line-clamp: 2; }
   .game-welcome-stat { padding-block: .4rem; }
   .game-welcome-rule { padding-block: .45rem; }
   .is-game-stage .app-shell-content { padding-inline: .85rem; }
