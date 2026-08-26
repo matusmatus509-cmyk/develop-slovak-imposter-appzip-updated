@@ -47,6 +47,7 @@ export const pingPongGameHero = publicAsset("party-pingpong-hero.jpg");
 export const letterGameHeroV3 = publicAsset("party-letter-hero-v3.jpg");
 export const songGameHeroV3 = publicAsset("party-song-hero-v3.jpg");
 export const charadesGameHero = publicAsset("party-sarady-hero.jpg");
+export const pantomimaGameHero = publicAsset("party-pantomima-hero.jpg");
 /**
  * Pre uvítaciu obrazovku a kartičku v menu — portrét 928×1152 (~0,81 : 1),
  * blízko oboch panelov (kartička ~0,77–0,80 : 1, uvítacia obrazovka ~0,80 : 1).

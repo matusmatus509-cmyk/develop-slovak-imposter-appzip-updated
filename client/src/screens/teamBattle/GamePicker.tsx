@@ -12,6 +12,7 @@ import {
   forbiddenWordGameHero,
   letterGameHeroV3,
   musicQuizGameHero,
+  pantomimaGameHero,
   partyMinigameAtlas,
   pingPongGameHero,
   quizBattleArt,
@@ -50,11 +51,7 @@ const GAME_ART: Record<
   GameType,
   { src: string; position: string; size: string }
 > = {
-  pantomima: {
-    src: partyMinigameAtlas,
-    position: "33.333% 100%",
-    size: "400% 300%",
-  },
+  pantomima: { src: pantomimaGameHero, position: "50% 50%", size: "cover" },
   sarady: { src: charadesGameHero, position: "50% 50%", size: "cover" },
   zakazane: { src: forbiddenWordGameHero, position: "50% 50%", size: "cover" },
   pesnicka: { src: songGameHeroV3, position: "50% 50%", size: "cover" },
