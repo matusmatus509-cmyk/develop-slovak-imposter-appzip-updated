@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Button, Shell, TopBar } from "../../components/ui";
+import PlayerNamesField from "../../components/PlayerNamesField";
 import { PING_PONG_PROMPTS } from "../../data/pingPongPrompts";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
@@ -30,8 +31,10 @@ function SetupScreen({
   onStart: (name1: string, name2: string, secsToEdge: number) => void;
 }) {
   const { language } = useLanguage();
-  const [name1, setName1] = useState(() => defaultPlayerName(language, 1));
-  const [name2, setName2] = useState(() => defaultPlayerName(language, 2));
+  const [names, setNames] = useState(() => [
+    defaultPlayerName(language, 1),
+    defaultPlayerName(language, 2),
+  ]);
   const [speed, setSpeed] = useState(4); // seconds for ball to reach edge from centre
 
   return (
@@ -45,31 +48,22 @@ function SetupScreen({
         každom slove. Čiara sa pohybuje smerom k vám — kto nestihne, prehráva!
       </div>
 
-      {/* Player 1 */}
-      <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 p-4">
-        <p className="mb-2 text-xs font-bold uppercase tracking-widest text-white/40">
-          Hráč 1 (horná strana — ružová)
-        </p>
-        <input
-          value={name1}
-          onChange={e => setName1(e.target.value)}
-          placeholder={defaultPlayerName(language, 1)}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-pink-400/60"
-        />
-      </div>
-
-      {/* Player 2 */}
-      <div className="mb-4 rounded-3xl border border-white/10 bg-white/5 p-4">
-        <p className="mb-2 text-xs font-bold uppercase tracking-widest text-white/40">
-          Hráč 2 (dolná strana — modrá)
-        </p>
-        <input
-          value={name2}
-          onChange={e => setName2(e.target.value)}
-          placeholder={defaultPlayerName(language, 2)}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-blue-400/60"
-        />
-      </div>
+      <PlayerNamesField
+        className="mb-4"
+        names={names}
+        onChange={setNames}
+        accent="#22d3ee"
+        min={2}
+        max={2}
+        summary="Horná (ružová) a dolná (modrá) strana"
+        // Odznak drží stranu stola, na ktorej hráč sedí — tá je pre hru
+        // podstatnejšia než poradie.
+        badgeFor={index => ({
+          text: index === 0 ? "1" : "2",
+          color: index === 0 ? "#f472b6" : "#60a5fa",
+        })}
+        placeholderFor={index => defaultPlayerName(language, index + 1)}
+      />
 
       {/* Speed */}
       <div className="mb-8 rounded-3xl border border-white/10 bg-white/5 p-4">
@@ -102,8 +96,8 @@ function SetupScreen({
         fullWidth
         onClick={() =>
           onStart(
-            name1.trim() || defaultPlayerName(language, 1),
-            name2.trim() || defaultPlayerName(language, 2),
+            names[0].trim() || defaultPlayerName(language, 1),
+            names[1].trim() || defaultPlayerName(language, 2),
             speed
           )
         }

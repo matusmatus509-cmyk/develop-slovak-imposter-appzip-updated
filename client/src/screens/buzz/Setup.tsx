@@ -6,6 +6,7 @@ import {
   BUZZ_TARGET_MAX_SECONDS,
   BUZZ_TARGET_MIN_SECONDS,
 } from "../../utils/buzzLogic";
+import PlayerNamesField from "../../components/PlayerNamesField";
 import {
   defaultPlayerName,
   localizeGeneratedParticipantName,
@@ -37,20 +38,6 @@ export default function Setup({
   );
   const [blindTiming, setBlindTiming] = useState(initial.blindTiming);
 
-  function addPlayer() {
-    if (players.length >= 12) return;
-    setPlayers([...players, defaultPlayerName(language, players.length + 1)]);
-  }
-
-  function removePlayer(index: number) {
-    if (players.length <= 3) return;
-    setPlayers(players.filter((_, i) => i !== index));
-  }
-
-  function updatePlayer(index: number, value: string) {
-    setPlayers(players.map((p, i) => (i === index ? value : p)));
-  }
-
   function handleStart() {
     onStart({
       playerNames: players.map((p) => p.trim() || defaultPlayerName(language)),
@@ -64,52 +51,16 @@ export default function Setup({
       <TopBar title="Nastavenie hry" onBack={onBack} />
 
       <div className="flex-1 space-y-7 overflow-y-auto pb-4">
-        {/* Players */}
-        <section>
-          <div className="mb-3 flex items-center justify-between">
-            <h2 className="text-sm font-bold uppercase tracking-wide text-white/70">
-              Hráči ({players.length})
-            </h2>
-            <button
-              onClick={addPlayer}
-              disabled={players.length >= 12}
-              className="rounded-xl bg-white/10 px-3 py-1.5 text-xs font-bold disabled:opacity-30"
-            >
-              + Pridať
-            </button>
-          </div>
-          <div className="space-y-2">
-            {players.map((name, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2"
-              >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-amber-500 text-xs font-bold">
-                  {i + 1}
-                </span>
-                <input
-                  value={name}
-                  onChange={(e) => updatePlayer(i, e.target.value)}
-                  className="flex-1 bg-transparent text-sm font-semibold outline-none placeholder:text-white/30"
-                  placeholder={defaultPlayerName(language, i + 1)}
-                  maxLength={16}
-                />
-                <button
-                  onClick={() => removePlayer(i)}
-                  disabled={players.length <= 3}
-                  className="text-white/30 disabled:opacity-20"
-                >
-                  <Icons.x size={18} />
-                </button>
-              </div>
-            ))}
-          </div>
-          {players.length <= 3 && (
-            <p className="mt-2 text-xs text-white/40">
-              Minimálny počet hráčov je 3.
-            </p>
-          )}
-        </section>
+        <PlayerNamesField
+          names={players}
+          onChange={setPlayers}
+          accent="#f43f5e"
+          min={3}
+          max={12}
+          maxLength={16}
+          nameForNew={(index) => defaultPlayerName(language, index + 1)}
+          placeholderFor={(index) => defaultPlayerName(language, index + 1)}
+        />
 
         {/* Tajný čas */}
         <section className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5">

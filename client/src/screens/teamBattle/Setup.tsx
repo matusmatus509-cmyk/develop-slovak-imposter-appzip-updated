@@ -9,6 +9,7 @@ import {
   type GameType,
   type QuizDifficulty,
 } from "../../data/teamBattle";
+import PlayerNamesField from "../../components/PlayerNamesField";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 /** Dizajn: Nočný herný salón — vlastný výber minihier sa otvorí až po stlačení Začať party hru, nie priamo v nastaveniach. */
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
@@ -49,14 +50,6 @@ export default function TeamBattleSetup({
   const [timeSeconds, setTimeSeconds] = useState(60);
   const [quizDifficulty, setQuizDifficulty] = useState<QuizDifficulty>("lahke");
   const [blue, red] = TEAM_COLORS;
-
-  function setName(index: 0 | 1, value: string) {
-    setNames(current => {
-      const next = [...current] as [string, string];
-      next[index] = value;
-      return next;
-    });
-  }
 
   const roundCount = selectionType === "random" ? randomRounds : null;
   const canStart = Boolean(names[0].trim() && names[1].trim());
@@ -133,50 +126,24 @@ export default function TeamBattleSetup({
             </p>
           </section>
 
-          <section className="party-team-fields space-y-3">
-            {([0, 1] as const).map(index => {
-              const color = index === 0 ? blue : red;
-              return (
-                <label
-                  key={index}
-                  className="party-glass flex items-center gap-4 rounded-[1.6rem] p-4 transition focus-within:scale-[1.01]"
-                  style={{
-                    borderColor: `${color}55`,
-                    boxShadow: `0 14px 45px ${color}12`,
-                  }}
-                >
-                  <span
-                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-lg font-black text-white"
-                    style={{
-                      background: color,
-                      boxShadow: `0 0 24px ${color}55`,
-                    }}
-                  >
-                    {index === 0 ? "A" : "B"}
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span
-                      className="block text-[9px] font-black uppercase tracking-[0.22em]"
-                      style={{ color }}
-                    >
-                      {index === 0 ? "Modrý tím" : "Červený tím"}
-                    </span>
-                    <input
-                      value={names[index]}
-                      onChange={event => setName(index, event.target.value)}
-                      placeholder={defaultTeamName(
-                        language,
-                        index === 0 ? "A" : "B"
-                      )}
-                      maxLength={20}
-                      className="mt-1 w-full border-0 bg-transparent p-0 text-lg font-black text-white outline-none placeholder:text-white/25"
-                    />
-                  </span>
-                  <span className="h-2 w-2 rounded-full bg-white/20" />
-                </label>
-              );
+          <PlayerNamesField
+            className="party-team-fields"
+            names={names}
+            // Počet tímov je fixný na dva, takže dĺžka poľa sa nikdy nezmení.
+            onChange={next => setNames([next[0], next[1]])}
+            accent={blue}
+            entity="teams"
+            min={2}
+            max={2}
+            summary="Modrý a Červený tím"
+            badgeFor={index => ({
+              text: index === 0 ? "A" : "B",
+              color: index === 0 ? blue : red,
             })}
-          </section>
+            placeholderFor={index =>
+              defaultTeamName(language, index === 0 ? "A" : "B")
+            }
+          />
 
           <section className="party-selection-block mt-5">
             <div className="mb-3 flex items-end justify-between">
