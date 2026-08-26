@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { getCharacterCategories, type CharacterCategory } from "../../data/characters";
 import { Button, Shell, TopBar } from "../../components/ui";
 import type { CustomContentControls } from "../../components/CustomContentSelector";
+import PlayerNamesField from "../../components/PlayerNamesField";
 import type { WordGuessRecordInput, WorkshopEntry } from "../../types";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { Icons } from "../../components/icons";
@@ -97,10 +98,9 @@ function SetupScreen({
       .filter((collection) => collection.count > 0);
   }, [customControls, customEntries]);
   const fallbackCategory = builtinCategories[0];
-  const [view, setView] = useState<"main" | "category" | "players">("main");
-  const [count, setCount] = useState(3);
+  const [view, setView] = useState<"main" | "category">("main");
   const [names, setNames] = useState(
-    Array.from({ length: 8 }, (_, i) => defaultPlayerName(language, i + 1)),
+    Array.from({ length: 3 }, (_, i) => defaultPlayerName(language, i + 1)),
   );
   const [source, setSource] = useState<DeckSource>(() => ({
     kind: "builtin",
@@ -124,76 +124,21 @@ function SetupScreen({
   }, [builtinCategories, customCategories, fallbackCategory, source]);
 
   // Slovenčina skloňuje: 2–4 hráči, 5 a viac hráčov.
-  const playerLabel = `${count} ${count < 5 ? "hráči" : "hráčov"}`;
-  const activeNames = Array.from(
-    { length: count },
-    (_, index) => names[index]?.trim() || defaultPlayerName(language, index + 1),
-  );
+  const playerLabel = `${names.length} ${names.length < 5 ? "hráči" : "hráčov"}`;
 
   function chooseSource(nextSource: DeckSource) {
     setSource(nextSource);
   }
 
   function start() {
-    const trimmedNames = names
-      .slice(0, count)
-      .map((name, index) => name.trim() || defaultPlayerName(language, index + 1));
+    const trimmedNames = names.map(
+      (name, index) => name.trim() || defaultPlayerName(language, index + 1),
+    );
     const selectedSource = source.kind === "custom"
       && !customCategories.some((category) => category.id === source.collectionId)
       ? { kind: "builtin" as const, categoryId: fallbackCategory?.id ?? "" }
       : source;
     onStart(trimmedNames, selectedSource, timer);
-  }
-
-  if (view === "players") {
-    return (
-      <Shell className="mobile-settings mobile-settings-guess-who guess-who-players-screen scroll-panel">
-        <TopBar title="Hráči" onBack={() => setView("main")} />
-        <div className="guess-who-players-list">
-          <section className="guess-who-setting-block">
-            <div className="guess-who-setting-heading">
-              <span><Icons.users size={15} /> Počet hráčov</span>
-              <strong>{playerLabel}</strong>
-            </div>
-            <div className="guess-who-player-grid">
-              {[2, 3, 4, 5, 6, 7, 8].map((value) => (
-                <button
-                  key={value}
-                  type="button"
-                  onClick={() => setCount(value)}
-                  className={count === value ? "is-active" : ""}
-                >
-                  {value}
-                </button>
-              ))}
-            </div>
-          </section>
-
-          <section aria-label="Mená hráčov">
-            <p className="guess-who-section-label">Mená hráčov</p>
-            <div className="guess-who-name-list">
-              {Array.from({ length: count }, (_, index) => (
-                <label key={index}>
-                  <span className="guess-who-name-index">{index + 1}</span>
-                  <input
-                    value={names[index]}
-                    onChange={(event) => setNames((current) =>
-                      current.map((name, nameIndex) => nameIndex === index ? event.target.value : name)
-                    )}
-                    placeholder={defaultPlayerName(language, index + 1)}
-                    maxLength={16}
-                  />
-                </label>
-              ))}
-            </div>
-          </section>
-
-          <Button fullWidth onClick={() => setView("main")} className="guess-who-start-button">
-            <span className="inline-flex items-center gap-2"><Icons.circleCheck size={18} /> Hotovo</span>
-          </Button>
-        </div>
-      </Shell>
-    );
   }
 
   if (view === "category") {
@@ -335,28 +280,16 @@ function SetupScreen({
           </div>
         </section>
 
-        <button
-          type="button"
-          onClick={() => setView("players")}
-          className="guess-who-players-field"
-        >
-          <span className="guess-who-players-field-head">
-            <span className="guess-who-field-icon"><Icons.users size={19} /></span>
-            <span className="min-w-0 flex-1 text-left">
-              <small>Hráči</small>
-              <strong>{playerLabel}</strong>
-            </span>
-            <span className="guess-who-field-meta">
-              <small>Upraviť</small>
-              <Icons.chevronRight size={18} />
-            </span>
-          </span>
-          <span className="guess-who-players-chips">
-            {activeNames.map((name, index) => (
-              <span key={index}>{name}</span>
-            ))}
-          </span>
-        </button>
+        <PlayerNamesField
+          names={names}
+          onChange={setNames}
+          accent="#38bdf8"
+          min={2}
+          max={8}
+          maxLength={16}
+          nameForNew={(index) => defaultPlayerName(language, index + 1)}
+          placeholderFor={(index) => defaultPlayerName(language, index + 1)}
+        />
 
         <Button fullWidth onClick={start} className="guess-who-start-button">
           <span className="inline-flex items-center gap-2"><Icons.mask size={18} /> Začať hru</span>

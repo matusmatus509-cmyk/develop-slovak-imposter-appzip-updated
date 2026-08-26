@@ -1,4 +1,5 @@
 import type { SongPoolKey } from "../../data/localizedSongs";
+import { PLAYER_BADGE_COLORS } from "../../components/PlayerNamesField";
 
 export type QuickPlayMode = "players" | "teams";
 
@@ -15,16 +16,11 @@ export interface QuickParticipantsProps {
   songPools?: readonly SongPoolKey[];
 }
 
-export const PARTY_PLAYER_COLORS = [
-  "#3b82f6",
-  "#ef4444",
-  "#a855f7",
-  "#10b981",
-  "#f59e0b",
-  "#06b6d4",
-  "#ec4899",
-  "#84cc16",
-];
+/**
+ * Farby účastníkov. Definíciu drží `PlayerNamesField`, aby odznak pri zadávaní
+ * mena a farba toho istého hráča v skóre nikdy nerozišli.
+ */
+export const PARTY_PLAYER_COLORS = PLAYER_BADGE_COLORS;
 
 export function makeEmptyScores(names: string[]) {
   return names.map(() => 0);

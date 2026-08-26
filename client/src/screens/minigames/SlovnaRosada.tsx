@@ -8,6 +8,7 @@ import {
 } from "../../data/charades";
 import { Button, Shell, TopBar } from "../../components/ui";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
+import PlayerNamesField from "../../components/PlayerNamesField";
 import type { WordGuessRecordInput, WorkshopEntry } from "../../types";
 import { Icons } from "../../components/icons";
 import { defaultPlayerName, useLanguage, type AppLanguage } from "../../i18n/LanguageProvider";
@@ -86,9 +87,8 @@ function SetupScreen({
   customControls?: CustomContentControls;
 }) {
   const { language } = useLanguage();
-  const [count, setCount] = useState(4);
   const [names, setNames] = useState(
-    Array.from({ length: 8 }, (_, i) => defaultPlayerName(language, i + 1)),
+    Array.from({ length: 4 }, (_, i) => defaultPlayerName(language, i + 1)),
   );
   const [timerSecs, setTimerSecs] = useState(60);
   const [maxSkips, setMaxSkips] = useState(3);
@@ -166,61 +166,26 @@ function SetupScreen({
         </div>
       </div>
 
-      {/* Player count */}
-      <div
-        className="glass mb-4 rounded-3xl p-4"
-        style={{ animation: "slideUp 0.5s ease-out 0.15s both" }}
-      >
-        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
-          Počet hráčov
-        </p>
-        <div className="flex gap-2 flex-wrap">
-          {[2, 3, 4, 5, 6, 7, 8].map((n) => (
-            <button
-              key={n}
-              onClick={() => setCount(n)}
-              className={`h-10 w-10 rounded-2xl text-sm font-bold border transition active:scale-95 hover:scale-[1.02] ${
-                count === n
-                  ? "border-purple-400/60 bg-purple-500/30 text-purple-300"
-                  : "border-white/10 bg-white/5 text-white/50"
-              }`}
-            >
-              {n}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Names */}
-      <div className="mb-4 flex flex-col gap-2">
-        {Array.from({ length: count }, (_, i) => (
-          <div
-            key={i}
-            className="flex items-center gap-2"
-            style={{ animation: `slideUp 0.4s ease-out ${0.2 + i * 0.04}s both` }}
-          >
-            {teamMode && (
-              <span
-                className={`shrink-0 rounded-xl px-2.5 py-1 text-xs font-black ${
-                  i % 2 === 0
-                    ? "bg-blue-500/30 text-blue-300"
-                    : "bg-orange-500/30 text-orange-300"
-                }`}
-              >
-                T{(i % 2) + 1}
-              </span>
-            )}
-            <input
-              value={names[i]}
-              onChange={(e) =>
-                setNames((prev) => prev.map((n, idx) => (idx === i ? e.target.value : n)))
-              }
-              placeholder={defaultPlayerName(language, i + 1)}
-              className="flex-1 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white placeholder-white/30 outline-none focus:border-purple-400/60"
-            />
-          </div>
-        ))}
-      </div>
+      <PlayerNamesField
+        className="mb-4"
+        names={names}
+        onChange={setNames}
+        accent="#a78bfa"
+        min={2}
+        max={8}
+        nameForNew={(index) => defaultPlayerName(language, index + 1)}
+        placeholderFor={(index) => defaultPlayerName(language, index + 1)}
+        // V tímovom móde sa hráči striedajú v dvoch tímoch podľa poradia,
+        // takže odznak nesie tím, nie číslo hráča.
+        badgeFor={
+          teamMode
+            ? (index) => ({
+                text: `T${(index % 2) + 1}`,
+                color: index % 2 === 0 ? "#3b82f6" : "#f97316",
+              })
+            : undefined
+        }
+      />
 
       {/* Timer */}
       <div
@@ -276,7 +241,7 @@ function SetupScreen({
         fullWidth
         onClick={() =>
           onStart(
-            names.slice(0, count).map((n, i) => n.trim() || defaultPlayerName(language, i + 1)),
+            names.map((n, i) => n.trim() || defaultPlayerName(language, i + 1)),
             timerSecs,
             maxSkips,
             teamMode,

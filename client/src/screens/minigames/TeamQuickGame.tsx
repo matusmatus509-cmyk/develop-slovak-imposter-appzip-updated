@@ -31,6 +31,7 @@ import {
   type SongPoolKey,
 } from "../../data/localizedSongs";
 import { countAvailableSongs } from "../../data/songSelection";
+import PlayerNamesField from "../../components/PlayerNamesField";
 import SongGameArtwork from "../../components/SongGameArtwork";
 
 type QuickGameType =
@@ -206,7 +207,6 @@ export default function TeamQuickGame({
   const [names, setNames] = useState<string[]>(() =>
     defaultNames("players", language)
   );
-  const [playersOpen, setPlayersOpen] = useState(false);
   const [scores, setScores] = useState<number[]>([]);
   const [run, setRun] = useState(0);
   const theme = GAME_THEME[game];
@@ -216,8 +216,6 @@ export default function TeamQuickGame({
   const [timeSeconds, setTimeSeconds] = useState(options.defaultTime);
   const maxPlayers = options.maxPlayers ?? 8;
   const playerRange = `2–${maxPlayers}`;
-  const playerRangeDescription =
-    maxPlayers === 4 ? "2 až 4 hráči" : "2 až 8 hráčov";
 
   // ── Kategórie hitov (len hudobné minihry) ─────────────────────────────────
   const isMusicGame = game === "pesnicka" || game === "hudobny-kviz";
@@ -255,26 +253,6 @@ export default function TeamQuickGame({
     setGameMode(mode);
     setNames(defaultNames(mode, language));
     setScores([]);
-    setPlayersOpen(false);
-  }
-
-  function changeName(index: number, value: string) {
-    setNames(current =>
-      current.map((name, nameIndex) => (nameIndex === index ? value : name))
-    );
-  }
-
-  function addPlayer() {
-    if (names.length >= maxPlayers) return;
-    setNames(current => [
-      ...current,
-      defaultPlayerName(language, current.length + 1),
-    ]);
-  }
-
-  function removePlayer(index: number) {
-    if (names.length <= 2) return;
-    setNames(current => current.filter((_, nameIndex) => nameIndex !== index));
   }
 
   function start() {
@@ -449,98 +427,20 @@ export default function TeamQuickGame({
           </div>
 
           <>
-            <section className="party-glass mt-5 overflow-hidden rounded-[1.55rem]">
-              <button
-                type="button"
-                onClick={() => setPlayersOpen(open => !open)}
-                aria-expanded={playersOpen}
-                className="flex w-full items-center gap-3 p-4 text-left transition active:scale-[.99]"
-              >
-                <span
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
-                  style={{ background: `${accent}30`, color: accent }}
-                >
-                  <Icons.users size={22} />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <strong className="block text-sm font-black text-white">
-                    {gameMode === "teams" ? "Tímy" : "Hráči"}
-                  </strong>
-                  <small className="mt-0.5 block text-[11px] font-medium text-white/45">
-                    {gameMode === "teams"
-                      ? "2 tímy · spoločné body"
-                      : `${names.length} hráči · ${playerRangeDescription}`}
-                  </small>
-                </span>
-                <span
-                  className="flex items-center gap-2 text-[10px] font-black uppercase tracking-wider"
-                  style={{ color: accent }}
-                >
-                  Upraviť{" "}
-                  <Icons.chevronRight
-                    size={16}
-                    className={
-                      playersOpen
-                        ? "rotate-90 transition-transform"
-                        : "transition-transform"
-                    }
-                  />
-                </span>
-              </button>
-              {playersOpen && (
-                <div className="space-y-2 border-t border-white/[0.08] px-4 pb-4 pt-3">
-                  <p className="px-1 pb-1 text-[9px] font-black uppercase tracking-[0.2em] text-white/35">
-                    {gameMode === "teams" ? "Názvy tímov" : "Mená hráčov"}
-                  </p>
-                  {names.map((name, index) => {
-                    const color =
-                      PARTY_PLAYER_COLORS[index % PARTY_PLAYER_COLORS.length];
-                    return (
-                      <label
-                        key={index}
-                        className="party-glass flex items-center gap-3 rounded-2xl p-3"
-                        style={{ borderColor: `${color}55` }}
-                      >
-                        <span
-                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-sm font-black text-white"
-                          style={{ background: color }}
-                        >
-                          {gameMode === "teams"
-                            ? String.fromCharCode(65 + index)
-                            : index + 1}
-                        </span>
-                        <input
-                          value={name}
-                          onChange={event =>
-                            changeName(index, event.target.value)
-                          }
-                          maxLength={20}
-                          className="min-w-0 flex-1 border-0 bg-transparent text-base font-black text-white outline-none"
-                        />
-                        {gameMode === "players" && names.length > 2 && (
-                          <button
-                            type="button"
-                            onClick={() => removePlayer(index)}
-                            aria-label={`Odstrániť ${name}`}
-                            className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.06] text-lg text-white/40"
-                          >
-                            ×
-                          </button>
-                        )}
-                      </label>
-                    );
-                  })}
-                  {gameMode === "players" && names.length < maxPlayers && (
-                    <button
-                      onClick={addPlayer}
-                      className="party-glass w-full rounded-2xl py-3 text-sm font-black text-white/60 transition active:scale-95"
-                    >
-                      + Pridať hráča
-                    </button>
-                  )}
-                </div>
-              )}
-            </section>
+            <PlayerNamesField
+              className="mt-5"
+              names={names}
+              onChange={setNames}
+              accent={accent}
+              entity={gameMode === "teams" ? "teams" : "players"}
+              min={2}
+              max={gameMode === "teams" ? 2 : maxPlayers}
+              summary={
+                gameMode === "teams" ? "2 tímy · spoločné body" : undefined
+              }
+              nameForNew={index => defaultPlayerName(language, index + 1)}
+              placeholderFor={index => defaultPlayerName(language, index + 1)}
+            />
 
             <section className="party-glass mt-3 overflow-hidden rounded-[1.55rem]">
               <button
