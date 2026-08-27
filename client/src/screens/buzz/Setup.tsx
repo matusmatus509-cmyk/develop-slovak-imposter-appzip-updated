@@ -13,6 +13,7 @@ import {
   localizeGeneratedParticipantName,
   useLanguage,
 } from "../../i18n/LanguageProvider";
+import { buzzImposterGameHero } from "../../media";
 
 // Čím širší rozsah, tým ľahšie sa podvodník skryje.
 const RANGE_OPTIONS = [
@@ -52,6 +53,26 @@ export default function Setup({
       <TopBar title="Nastavenie hry" onBack={onBack} />
 
       <div className="flex-1 space-y-7 overflow-y-auto pb-4">
+        {/* Hero obrázok */}
+        <div className="guess-who-hero relative overflow-hidden rounded-2xl" style={{ background: "linear-gradient(135deg, rgba(244,63,94,.18), rgba(22,10,14,.92) 62%, rgba(15,8,10,.96))" }}>
+          <img
+            src={buzzImposterGameHero}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover opacity-50"
+            style={{ objectPosition: "50% 30%" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <div className="guess-who-hero-copy relative p-5">
+            <span className="guess-who-hero-eyebrow text-[10px] font-extrabold uppercase tracking-[.2em] text-rose-300/80">Časový podvodník</span>
+            <h1 className="mt-1 text-2xl font-black tracking-tight">Buzz Podvodník</h1>
+            <div className="guess-who-hero-stats mt-2 flex flex-wrap gap-3 text-xs text-white/60">
+              <span><Icons.users size={13} /> {players.length} hráčov</span>
+              <span><Icons.timer size={13} /> {BUZZ_TARGET_MIN_SECONDS}–{BUZZ_TARGET_MAX_SECONDS} s</span>
+            </div>
+          </div>
+        </div>
+
         <PlayerNamesField
           names={players}
           onChange={setPlayers}
