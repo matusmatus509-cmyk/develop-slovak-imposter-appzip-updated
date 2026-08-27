@@ -13,6 +13,7 @@ import {
   localizeGeneratedParticipantName,
   useLanguage,
 } from "../../i18n/LanguageProvider";
+import { imposterKreslenieGameHero } from "../../media";
 
 export default function DrawingSetup({
   initial,
@@ -176,15 +177,16 @@ export default function DrawingSetup({
     <Shell className="mobile-settings mobile-settings-drawing guess-who-setup drawing-theme">
       <TopBar title="Kreslenie — nastavenie" onBack={onBack} />
       <div className="guess-who-setup-form">
-        <div className="guess-who-hero" style={{ background: "linear-gradient(135deg, rgba(139,92,246,.18), rgba(18,14,28,.92) 62%, rgba(12,10,20,.96))" }}>
-          <div
-            className="guess-who-hero-art"
+        <div className="guess-who-hero relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(139,92,246,.18), rgba(18,14,28,.92) 62%, rgba(12,10,20,.96))" }}>
+          <img
+            src={imposterKreslenieGameHero}
+            alt=""
             aria-hidden="true"
-            style={{
-              background: "radial-gradient(circle at 30% 20%, rgba(139,92,246,.35), transparent 60%), radial-gradient(circle at 80% 80%, rgba(6,182,212,.22), transparent 55%)",
-            }}
+            className="guess-who-hero-art absolute inset-0 h-full w-full object-cover opacity-50"
+            style={{ objectPosition: "50% 30%" }}
           />
-          <div className="guess-who-hero-copy">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <div className="guess-who-hero-copy relative">
             <span className="guess-who-hero-eyebrow">Kresliaci režim</span>
             <h1>Imposter kreslenie</h1>
             <div className="guess-who-hero-stats">

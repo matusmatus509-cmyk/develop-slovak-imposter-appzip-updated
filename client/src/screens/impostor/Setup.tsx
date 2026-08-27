@@ -12,6 +12,7 @@ import {
   localizeGeneratedParticipantName,
   useLanguage,
 } from "../../i18n/LanguageProvider";
+import { imposterGameHero } from "../../media";
 
 const TIMER_OPTIONS = [
   { label: "30 s", value: 30 },
@@ -185,15 +186,16 @@ export default function Setup({
       <TopBar title="Nastavenie hry" onBack={onBack} />
       <div className="guess-who-setup-form">
         {/* Hero – zaberá voľné miesto, aby setup bol na jednu obrazovku */}
-        <div className="guess-who-hero" style={{ background: "linear-gradient(135deg, rgba(249,115,22,.18), rgba(22,15,10,.92) 62%, rgba(15,10,8,.96))" }}>
-          <div
-            className="guess-who-hero-art"
+        <div className="guess-who-hero relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(249,115,22,.18), rgba(22,15,10,.92) 62%, rgba(15,10,8,.96))" }}>
+          <img
+            src={imposterGameHero}
+            alt=""
             aria-hidden="true"
-            style={{
-              background: "radial-gradient(circle at 30% 20%, rgba(249,115,22,.35), transparent 60%), radial-gradient(circle at 80% 80%, rgba(239,68,68,.22), transparent 55%)",
-            }}
+            className="guess-who-hero-art absolute inset-0 h-full w-full object-cover opacity-50"
+            style={{ objectPosition: "50% 30%" }}
           />
-          <div className="guess-who-hero-copy">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <div className="guess-who-hero-copy relative">
             <span className="guess-who-hero-eyebrow">Klasický režim</span>
             <h1>Imposter</h1>
             <div className="guess-who-hero-stats">
