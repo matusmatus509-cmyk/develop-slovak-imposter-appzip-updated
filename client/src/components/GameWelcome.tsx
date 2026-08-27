@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Screen } from "../types";
 /** Dizajnové pravidlo: pôvodný GitHub vzhľad — hero vizuály majú mierny presah cez atlasové okraje. */
-import { battleshipGameHero, bombGameHero, charadesGameHero, emojiGameHero, fiveTenGameHeroV3, forbiddenWordGameHero, gameArt, letterGameHeroV3, minigameArtAtlas, musicQuizGameHero, musicQuizGameHeroWide, partyMinigameAtlas, partyModeArtV2, pingPongGameHero, songGameHeroV3, soundGameHero, ticTacToeGameHero } from "../media";
+import { battleshipGameHero, bombGameHero, charadesGameHero, emojiGameHero, fiveTenGameHeroV3, forbiddenWordGameHero, gameArt, letterGameHeroV3, minigameArtAtlas, musicQuizGameHero, musicQuizGameHeroWide, partyMinigameAtlas, partyModeArtV2, pingPongGameHero, songGameHeroV3, soundGameHero, ticTacToeGameHero, buzzImposterGameHero, hadajKtoSomGameHero, imposterGameHero, imposterKreslenieGameHero } from "../media";
 import { Icons } from "./icons";
 
 export interface GameWelcomeConfig {
@@ -103,10 +103,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#38bdf8",
     accentSoft: "rgba(56,189,248,.22)",
     deep: "#071f34",
-    artPosition: "66.667% 100%",
-    art: partyMinigameAtlas,
-    artAtlas: true,
-    artSize: "400% 300%",
+    artPosition: "50% 50%",
+    art: hadajKtoSomGameHero,
   },
   ibanepravda: {
     eyebrow: "Pravda je zakázaná",
@@ -160,7 +158,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#84cc16",
     accentSoft: "rgba(132,204,22,.23)",
     deep: "#281007",
-    artPosition: "33.333% 100%",
+    artPosition: "50% 50%",
+    art: imposterGameHero,
   },
   "drawing-setup": {
     eyebrow: "Jeden nevie, čo kreslí",
@@ -172,7 +171,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#c084fc",
     accentSoft: "rgba(192,132,252,.24)",
     deep: "#201035",
-    artPosition: "66.667% 100%",
+    artPosition: "50% 50%",
+    art: imposterKreslenieGameHero,
   },
   "buzz-setup": {
     eyebrow: "Tajný čas. Tajný podvodník.",
@@ -184,7 +184,8 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     accent: "#f43f5e",
     accentSoft: "rgba(244,63,94,.24)",
     deep: "#2b0912",
-    artPosition: "66.667% 50%",
+    artPosition: "50% 50%",
+    art: buzzImposterGameHero,
   },
   teambattle: {
     eyebrow: "Veľká hra na celý večer",

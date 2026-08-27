@@ -23,6 +23,10 @@ import {
   songGameHeroV3,
   soundGameHero,
   ticTacToeGameHero,
+  buzzImposterGameHero,
+  hadajKtoSomGameHero,
+  imposterGameHero,
+  imposterKreslenieGameHero,
 } from "./media";
 
 describe("minigame artwork registry", () => {
@@ -51,9 +55,13 @@ describe("minigame artwork registry", () => {
       pantomimaGameHero,
       soundGameHero,
       partyModeArtV2,
+      buzzImposterGameHero,
+      hadajKtoSomGameHero,
+      imposterGameHero,
+      imposterKreslenieGameHero,
     ];
 
-    expect(assets).toHaveLength(23);
+    expect(assets).toHaveLength(27);
     expect(assets.every((asset) => asset.includes("assets/"))).toBe(true);
     expect(assets.every((asset) => !asset.includes("files.manuscdn.com"))).toBe(true);
   });

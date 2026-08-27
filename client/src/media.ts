@@ -38,6 +38,10 @@ export const musicQuizGameHeroWide = publicAsset(
   "party-music-quiz-hero-v3-wide.jpg"
 );
 export const onlyLiesGameHero = publicAsset("party-quiz-battle-v3.png");
+export const buzzImposterGameHero = publicAsset("buzzimposter.jpg");
+export const hadajKtoSomGameHero = publicAsset("hadajktosom.jpg");
+export const imposterGameHero = publicAsset("imposter.jpg");
+export const imposterKreslenieGameHero = publicAsset("imposterkreslenie.jpg");
 export const battleshipGameHero = publicAsset("party-battleship-hero.jpg");
 export const ticTacToeGameHero = publicAsset("party-tic-tac-toe-hero.jpg");
 export const fiveTenGameHeroV3 = publicAsset("party-five-ten-hero-v3.jpg");
