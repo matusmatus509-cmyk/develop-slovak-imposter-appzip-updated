@@ -2390,6 +2390,181 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 }
 
 /* --------------------------------------------------------------------------
+   Party battle setup — „nočná kozmická aréna" (inšpirované referenčným dizajnom).
+   Tmavé sklenené karty, oranžové „UPRAVIŤ", vybraná karta s červeným glow +
+   tyrkysovým ✓, teal karta „Náhodne" s kockou a výrazné červené CTA.
+   -------------------------------------------------------------------------- */
+
+/* Mesiac + hviezdy v pozadí hero sekcie. */
+.party-battle-settings .party-battle-hero-cosmic { position: relative; overflow: visible; }
+
+.party-cosmic {
+  position: absolute;
+  top: -4.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24rem;
+  height: 24rem;
+  max-width: 110vw;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(46% 46% at 50% 34%, rgba(190, 205, 255, .30), rgba(96, 118, 218, .16) 38%, transparent 62%),
+    radial-gradient(1.4px 1.4px at 20% 26%, rgba(255, 255, 255, .95), transparent),
+    radial-gradient(1px 1px at 37% 60%, rgba(255, 255, 255, .7), transparent),
+    radial-gradient(1.5px 1.5px at 58% 18%, rgba(214, 228, 255, .95), transparent),
+    radial-gradient(1px 1px at 74% 44%, rgba(255, 255, 255, .8), transparent),
+    radial-gradient(1.3px 1.3px at 84% 68%, rgba(255, 255, 255, .7), transparent),
+    radial-gradient(1px 1px at 14% 78%, rgba(255, 255, 255, .65), transparent),
+    radial-gradient(1.2px 1.2px at 46% 88%, rgba(255, 255, 255, .7), transparent),
+    radial-gradient(1.4px 1.4px at 90% 28%, rgba(255, 255, 255, .8), transparent);
+  filter: drop-shadow(0 0 36px rgba(140, 160, 255, .4));
+  opacity: .9;
+}
+
+/* Nová štruktúra hero — zruší staré obmedzenie `.party-battle-hero > div`
+   (4.5rem), aby sa kozmická vrstva aj nadpis roztiahli. */
+.party-battle-settings .party-battle-hero > .party-cosmic {
+  width: 24rem;
+  height: 24rem;
+  border-radius: 9999px;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.party-battle-settings .party-battle-hero > div.relative {
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+/* Emblém — kruhová „moon base" s perom/mečom. */
+.party-battle-settings .party-arena-badge {
+  width: 5.4rem;
+  height: 5.4rem;
+  border-radius: 9999px !important;
+  border: 1px solid rgba(168, 184, 255, .35) !important;
+  background:
+    radial-gradient(circle at 50% 32%, #1b2442, #0b0f1d 70%) !important;
+  box-shadow:
+    inset 0 0 26px rgba(120, 140, 220, .4),
+    0 0 0 6px rgba(120, 140, 220, .06),
+    0 22px 55px -20px rgba(80, 100, 200, .6) !important;
+}
+
+.party-arena-badge svg { width: 2.1rem; height: 2.1rem; color: #e4eaff; }
+
+/* Súhrnné riadky (Tímy, Pravidlá kôl) — veľká tmavá karta s oranžovým UPRAVIŤ. */
+.party-battle-settings .arena-row-card {
+  border: 1px solid rgba(255, 255, 255, .09) !important;
+  background: linear-gradient(150deg, rgba(34, 36, 58, .55), rgba(11, 14, 25, .94)) !important;
+  border-radius: 1.3rem !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 18px 45px -30px rgba(0, 0, 0, .9) !important;
+}
+
+/* Červený „pill" vedľa nadpisu Zostava hier. */
+.party-battle-settings .arena-pill {
+  border-radius: 9999px;
+  background: rgba(245, 60, 60, .16);
+  border: 1px solid rgba(245, 64, 64, .4);
+  padding: .45rem .85rem;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  color: #ffd9d9;
+  box-shadow: 0 6px 18px -10px rgba(245, 60, 60, .5);
+}
+
+/* Výberové karty zostavy. */
+.party-battle-settings .arena-card {
+  border-color: rgba(255, 255, 255, .1) !important;
+  background: linear-gradient(150deg, rgba(26, 30, 50, .72), rgba(10, 13, 24, .94)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 18px 45px -30px rgba(0, 0, 0, .9) !important;
+}
+
+.party-battle-settings .arena-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: .8rem;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .09);
+  color: #cfd8ff;
+  margin-bottom: .7rem;
+}
+
+.party-battle-settings .arena-card-own.is-selected {
+  border-color: rgba(255, 96, 110, .85) !important;
+  background: linear-gradient(150deg, rgba(92, 34, 60, .62), rgba(12, 14, 26, .94)) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 96, 110, .45),
+    0 0 28px rgba(255, 70, 90, .35),
+    inset 0 1px 0 rgba(255, 255, 255, .08) !important;
+}
+
+.party-battle-settings .arena-card-own.is-selected .arena-card-icon {
+  color: #ffd0d0;
+  border-color: rgba(255, 120, 130, .35);
+  background: rgba(255, 70, 90, .12);
+}
+
+.party-battle-settings .arena-card-random {
+  border-color: rgba(88, 224, 176, .28) !important;
+  background: linear-gradient(150deg, rgba(22, 60, 52, .6), rgba(9, 15, 23, .92)) !important;
+}
+
+.party-battle-settings .arena-card-random .arena-card-icon {
+  color: #a7f3d0;
+  border-color: rgba(88, 224, 176, .22);
+  background: rgba(52, 211, 153, .1);
+}
+
+.party-battle-settings .arena-card-random.is-selected {
+  border-color: rgba(88, 224, 176, .85) !important;
+  background: linear-gradient(150deg, rgba(22, 66, 58, .68), rgba(9, 15, 23, .92)) !important;
+  box-shadow:
+    0 0 0 1px rgba(88, 224, 176, .45),
+    0 0 28px rgba(52, 211, 153, .35),
+    inset 0 1px 0 rgba(255, 255, 255, .08) !important;
+}
+
+.party-battle-settings .arena-check {
+  position: absolute;
+  top: .85rem;
+  right: .85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 9999px;
+  background: #22d3ee;
+  color: #071017;
+  font-size: .9rem;
+  font-weight: 900;
+  box-shadow: 0 4px 14px rgba(34, 211, 238, .45);
+}
+
+/* Hlavné červené CTA — prebíja štandardný fialový gradient. */
+.party-battle-settings.mobile-party-settings button.party-shine.arena-cta,
+.party-battle-settings.mobile-party-settings button[class*="bg-gradient"].arena-cta {
+  min-height: 3.5rem;
+  border: 1px solid rgba(255, 120, 120, .4) !important;
+  background: linear-gradient(135deg, #ff4d5e 0%, #e11d48 55%, #be123c 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 18px 50px -24px rgba(225, 29, 72, .7) !important;
+  border-radius: 1.15rem !important;
+}
+
+.party-battle-settings button[class*="bg-gradient"].arena-cta { text-transform: uppercase !important; }
+
+/* --------------------------------------------------------------------------
    Party mode 2026 — calm mobile surfaces and purposeful motion.
    -------------------------------------------------------------------------- */
 @keyframes partyModernEnter {
