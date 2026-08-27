@@ -6,6 +6,7 @@ import { Icons } from "../../components/icons";
 import { maxImpostorsFor } from "../../utils/gameLogic";
 import PlayerNamesField from "../../components/PlayerNamesField";
 import GameSettingsPage from "../../components/GameSettingsPage";
+import CategoryPickerSearch, { matchesSearch } from "../../components/CategoryPickerSearch";
 import {
   defaultPlayerName,
   localizeGeneratedParticipantName,
@@ -43,8 +44,16 @@ export default function Setup({
     initial.hideCategoryFromImpostor,
   );
   const [timerSeconds, setTimerSeconds] = useState(initial.timerSeconds);
+  // Vyhľadávač v zozname kategórií — skryje kategórie, ktoré nevyhovujú
+  // dotazu, aby sa v dlhom zozname dalo rýchlo nájsť téma.
+  const [categoryQuery, setCategoryQuery] = useState("");
 
   const maxImpostors = maxImpostorsFor(players.length);
+
+  const visibleCategories = useMemo(
+    () => CATEGORIES.filter((category) => matchesSearch(category.name, categoryQuery)),
+    [categoryQuery],
+  );
 
   function toggleCategory(id: string) {
     setCategoryIds((prev) => {
@@ -54,6 +63,18 @@ export default function Setup({
       }
       return [...prev, id];
     });
+  }
+
+  // Tlačidlá pracujú s kategóriami viditeľnými v zozname — pri prázdnom
+  // vyhľadávaní je to celý zoznam, teda pôvodné správanie.
+  function selectAllCategories() {
+    const target = visibleCategories.length > 0 ? visibleCategories : CATEGORIES;
+    setCategoryIds(target.map((category) => category.id));
+  }
+
+  function resetCategorySelection() {
+    if (visibleCategories.length === 0) return;
+    setCategoryIds([visibleCategories[0].id]);
   }
 
   function handleStart() {
@@ -95,6 +116,7 @@ export default function Setup({
     return (
       <Shell className="mobile-settings mobile-settings-impostor guess-who-setup guess-who-category-picker impostor-theme">
         <TopBar title="Kategórie slov" onBack={() => setView("main")} />
+        <CategoryPickerSearch value={categoryQuery} onChange={setCategoryQuery} />
         <div className="guess-who-category-list scroll-panel">
           <div className="guess-who-picker-heading">
             <span>Viacero kategórií</span>
@@ -102,45 +124,49 @@ export default function Setup({
           </div>
 
           <div className="guess-who-picker-actions">
-            <button
-              type="button"
-              onClick={() => setCategoryIds(CATEGORIES.map((c) => c.id))}
-            >
+            <button type="button" onClick={selectAllCategories}>
               Vybrať všetky
             </button>
-            <button
-              type="button"
-              onClick={() => setCategoryIds([CATEGORIES[0].id])}
-            >
+            <button type="button" onClick={resetCategorySelection}>
               Zrušiť výber
             </button>
           </div>
 
           <section aria-label="Kategórie slov">
-            <p className="guess-who-section-label">Kategórie · {categoryIds.length} vybraných</p>
-            <div className="guess-who-picker-options">
-              {CATEGORIES.map((cat) => {
-                const active = categoryIds.includes(cat.id);
-                return (
-                  <button
-                    key={cat.id}
-                    type="button"
-                    aria-pressed={active}
-                    onClick={() => toggleCategory(cat.id)}
-                    className={active ? "is-active" : ""}
-                  >
-                    <span className="guess-who-picker-icon">{cat.icon}</span>
-                    <span className="guess-who-picker-copy">
-                      <strong>{cat.name}</strong>
-                      <small>{cat.wordPairs.length} slov</small>
-                    </span>
-                    <span className="guess-who-picker-check" aria-hidden="true">
-                      {active ? <Icons.circleCheck size={17} /> : <Icons.circlePlus size={17} />}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+            <p className="guess-who-section-label">
+              {categoryQuery.trim()
+                ? `Nájdené · ${visibleCategories.length}`
+                : `Kategórie · ${categoryIds.length} vybraných`}
+            </p>
+            {visibleCategories.length === 0 ? (
+              <p className="guess-who-picker-empty">
+                Žiadna kategória nevyhovuje „{categoryQuery.trim()}“. Skús iný nápis.
+              </p>
+            ) : (
+              <div className="guess-who-picker-options">
+                {visibleCategories.map((cat) => {
+                  const active = categoryIds.includes(cat.id);
+                  return (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      aria-pressed={active}
+                      onClick={() => toggleCategory(cat.id)}
+                      className={active ? "is-active" : ""}
+                    >
+                      <span className="guess-who-picker-icon">{cat.icon}</span>
+                      <span className="guess-who-picker-copy">
+                        <strong>{cat.name}</strong>
+                        <small>{cat.wordPairs.length} slov</small>
+                      </span>
+                      <span className="guess-who-picker-check" aria-hidden="true">
+                        {active ? <Icons.circleCheck size={17} /> : <Icons.circlePlus size={17} />}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </section>
         </div>
         <Button

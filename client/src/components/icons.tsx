@@ -38,6 +38,7 @@ export const ChevronUp = createIcon([["M18 15l-6-6-6 6"]]);
 export const ChevronDown = createIcon([["M6 9l6 6 6-6"]]);
 
 export const X = createIcon([["M18 6L6 18", "M6 6l12 12"]]);
+export const Search = createIcon([["M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z", "M21 21l-4.35-4.35"]]);
 export const XCircle = createIcon([["M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z", "m15 9-6 6", "m9 9 6 6"]]);
 
 export const Home = createIcon([["M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z", "M9 22V12h6v10"]]);
@@ -305,6 +306,7 @@ export const Icons = {
   chevronDown: ChevronDown,
   x: X,
   xCircle: XCircle,
+  search: Search,
   home: Home,
   settings: Settings,
   refresh: Refresh,
