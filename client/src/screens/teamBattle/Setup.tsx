@@ -151,22 +151,6 @@ export default function TeamBattleSetup({
           />
 
           <section className="party-selection-block mt-5">
-            <div className="mb-3 flex items-end justify-between">
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">
-                  Zostava hier
-                </p>
-                <p className="mt-1 text-sm font-bold text-white/70">
-                  Vyberte hry alebo ich nechajte na náhodu
-                </p>
-              </div>
-              <span className="arena-pill">
-                {roundCount === null
-                  ? "vlastná"
-                  : `${roundCount} ${roundCount === 1 ? "kolo" : roundCount < 5 ? "kolá" : "kôl"}`}
-              </span>
-            </div>
-
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => setSelectionType("ordered")}
@@ -253,12 +237,6 @@ export default function TeamBattleSetup({
             </section>
           ) : null}
 
-          {customControls && (
-            <div className="mt-4">
-              <CustomContentSelector controls={customControls} compact />
-            </div>
-          )}
-
           {/* Nastavenia hry — tempo kôl a náročnosť kvízu majú vlastnú
               stránku, aby setup obrazovka zostala krátka. */}
           <GameSettingsPage
@@ -266,7 +244,7 @@ export default function TeamBattleSetup({
             accent="#f97316"
             icon="timer"
             title="Pravidlá kôl"
-            summary={`${quickRounds} rýchle výzvy · ${timeSeconds}s · kvíz: ${quizDifficulty === "lahke" ? "ľahší" : "ťažší"}`}
+            summary={`${quickRounds} rýchle výzvy · ${timeSeconds}s · kvíz: ${quizDifficulty === "lahke" ? "ľahší" : "ťažší"}${customControls && customControls.selection.enabled ? " · vlastné kartičky" : ""}`}
             description="Tempo celej bitky a náročnosť kvízu"
           >
             <section className="party-glass party-setup-panel rounded-[1.75rem] p-5">
@@ -320,6 +298,13 @@ export default function TeamBattleSetup({
 
               {/* Náročnosť kvízu platí v oboch režimoch — aj keď si hry vyberiete sami. */}
               {quizDifficultyControls}
+
+              {/* Vlastné kartičky — pôvodne bola samostatná sekcia, teraz súčasť pravidiel kôl. */}
+              {customControls && (
+                <div className="mt-5 border-t border-white/10 pt-4">
+                  <CustomContentSelector controls={customControls} compact />
+                </div>
+              )}
             </section>
           </GameSettingsPage>
 

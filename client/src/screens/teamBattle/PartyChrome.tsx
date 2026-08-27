@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import { Icons } from "../../components/icons";
+import { appBackground } from "../../media";
 
 export function PartyBackdrop({
   children,
@@ -12,6 +13,13 @@ export function PartyBackdrop({
     <div
       className={`party-backdrop fixed inset-0 isolate overflow-hidden bg-[#050711] ${className}`}
     >
+      {/* Pozadie rovnaké ako na hlavnej stránke, ale s fialovým/kozmickým nádychom */}
+      <img
+        src={appBackground}
+        alt=""
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#0a0520]/60 via-[#050711]/80 to-[#050711]/95" />
       <div className="party-orb party-orb-one" />
       <div className="party-orb party-orb-two" />
       <div className="party-orb party-orb-three" />
