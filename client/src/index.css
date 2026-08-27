@@ -4847,3 +4847,135 @@ html[data-theme="light"] .ui-pre-caption h1 { color: #fff; }
     opacity: 0.7;
   }
 }
+
+/* ── Impostor + Drawing: category picker theme overrides ────────────────
+   Zdieľajú layout z .guess-who-*, len farby sú oranžové / fialové. */
+.impostor-theme.guess-who-setup {
+  background:
+    radial-gradient(circle at 90% 2%, rgba(249, 115, 22, .13), transparent 16rem),
+    radial-gradient(circle at 4% 96%, rgba(239, 68, 68, .08), transparent 18rem),
+    #0f0a08 !important;
+}
+.impostor-theme .guess-who-field {
+  border-color: rgba(249, 115, 22, .26);
+  background: linear-gradient(120deg, rgba(249, 115, 22, .13), rgba(22, 15, 10, .96) 58%);
+}
+.impostor-theme .guess-who-field-icon {
+  border-color: rgba(251, 146, 60, .22);
+  background: rgba(249, 115, 22, .12);
+}
+.impostor-theme .guess-who-field-meta { color: #fb923c; }
+.impostor-theme .guess-who-hero-stats span:first-child {
+  border-color: rgba(251, 146, 60, .32);
+  color: #fed7aa;
+}
+.impostor-theme .guess-who-time-grid button.is-active {
+  border-color: rgba(251, 146, 60, .48);
+  background: #f97316;
+  color: #1a0a00;
+  box-shadow: 0 8px 20px -13px rgba(249, 115, 22, .9);
+}
+.impostor-theme.guess-who-category-picker {
+  background: radial-gradient(circle at 88% 3%, rgba(249, 115, 22, .14), transparent 16rem), #0f0a08 !important;
+}
+.impostor-theme .guess-who-picker-heading {
+  border-color: rgba(249, 115, 22, .22);
+  background: rgba(249, 115, 22, .08);
+}
+.impostor-theme .guess-who-picker-heading span { color: #fed7aa; }
+.impostor-theme .guess-who-picker-options button.is-active {
+  border-color: rgba(249, 115, 22, .5);
+  background: rgba(249, 115, 22, .11);
+}
+.impostor-theme .guess-who-picker-options button.is-active .guess-who-picker-check {
+  background: #f97316;
+  color: #1a0a00;
+}
+.impostor-theme .guess-who-start-button,
+.mobile-settings .impostor-theme.guess-who-start-button,
+.impostor-theme .mobile-settings .guess-who-start-button {
+  background: linear-gradient(110deg, #f97316, #fb923c) !important;
+  color: #1a0a00 !important;
+  box-shadow: 0 14px 28px -18px rgba(249, 115, 22, .85) !important;
+}
+.impostor-theme .guess-who-picker-actions {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: .6rem;
+}
+.impostor-theme .guess-who-picker-actions button {
+  flex: 1;
+  min-height: 2.4rem;
+  border: 1px solid rgba(249, 115, 22, .22);
+  border-radius: .7rem;
+  background: rgba(249, 115, 22, .08);
+  color: #fed7aa;
+  font-size: .7rem;
+  font-weight: 800;
+  transition: .15s ease;
+}
+.impostor-theme .guess-who-picker-actions button:active { transform: scale(.97); }
+
+.drawing-theme.guess-who-setup {
+  background:
+    radial-gradient(circle at 90% 2%, rgba(139, 92, 246, .14), transparent 16rem),
+    radial-gradient(circle at 4% 96%, rgba(6, 182, 212, .09), transparent 18rem),
+    #0c0a14 !important;
+}
+.drawing-theme .guess-who-field {
+  border-color: rgba(139, 92, 246, .26);
+  background: linear-gradient(120deg, rgba(139, 92, 246, .13), rgba(18, 14, 28, .96) 58%);
+}
+.drawing-theme .guess-who-field-icon {
+  border-color: rgba(167, 139, 250, .22);
+  background: rgba(139, 92, 246, .12);
+}
+.drawing-theme .guess-who-field-meta { color: #a78bfa; }
+.drawing-theme .guess-who-hero-stats span:first-child {
+  border-color: rgba(167, 139, 250, .32);
+  color: #ddd6fe;
+}
+.drawing-theme .guess-who-time-grid button.is-active {
+  border-color: rgba(167, 139, 250, .48);
+  background: #8b5cf6;
+  color: #0f0a1e;
+  box-shadow: 0 8px 20px -13px rgba(139, 92, 246, .9);
+}
+.drawing-theme.guess-who-category-picker {
+  background: radial-gradient(circle at 88% 3%, rgba(139, 92, 246, .14), transparent 16rem), #0c0a14 !important;
+}
+.drawing-theme .guess-who-picker-heading {
+  border-color: rgba(139, 92, 246, .22);
+  background: rgba(139, 92, 246, .08);
+}
+.drawing-theme .guess-who-picker-heading span { color: #ddd6fe; }
+.drawing-theme .guess-who-picker-options button.is-active {
+  border-color: rgba(139, 92, 246, .5);
+  background: rgba(139, 92, 246, .11);
+}
+.drawing-theme .guess-who-picker-options button.is-active .guess-who-picker-check {
+  background: #8b5cf6;
+  color: #0f0a1e;
+}
+.drawing-theme .guess-who-start-button {
+  background: linear-gradient(110deg, #8b5cf6, #a78bfa) !important;
+  color: #0f0a1e !important;
+  box-shadow: 0 14px 28px -18px rgba(139, 92, 246, .85) !important;
+}
+.drawing-theme .guess-who-picker-actions {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: .6rem;
+}
+.drawing-theme .guess-who-picker-actions button {
+  flex: 1;
+  min-height: 2.4rem;
+  border: 1px solid rgba(139, 92, 246, .22);
+  border-radius: .7rem;
+  background: rgba(139, 92, 246, .08);
+  color: #ddd6fe;
+  font-size: .7rem;
+  font-weight: 800;
+  transition: .15s ease;
+}
+.drawing-theme .guess-who-picker-actions button:active { transform: scale(.97); }
