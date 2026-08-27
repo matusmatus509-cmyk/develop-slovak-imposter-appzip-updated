@@ -4,6 +4,7 @@ import { Button, Shell, TopBar } from "../../components/ui";
 import type { CustomContentControls } from "../../components/CustomContentSelector";
 import PlayerNamesField from "../../components/PlayerNamesField";
 import GameSettingsPage from "../../components/GameSettingsPage";
+import CategoryPickerSearch, { matchesSearch } from "../../components/CategoryPickerSearch";
 import type { WordGuessRecordInput, WorkshopEntry } from "../../types";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { Icons } from "../../components/icons";
@@ -108,6 +109,17 @@ function SetupScreen({
     categoryId: fallbackCategory?.id ?? "",
   }));
   const [timer, setTimer] = useState(60);
+  // Vyhľadávač v zozname kategórií — skryje kategórie, ktoré nevyhovujú
+  // dotazu, aby sa v dlhom zozname dalo rýchlo nájsť téma.
+  const [categoryQuery, setCategoryQuery] = useState("");
+  const visibleBuiltinCategories = useMemo(
+    () => builtinCategories.filter((category) => matchesSearch(category.name, categoryQuery)),
+    [builtinCategories, categoryQuery],
+  );
+  const visibleCustomCategories = useMemo(
+    () => customCategories.filter((category) => matchesSearch(category.name, categoryQuery)),
+    [customCategories, categoryQuery],
+  );
 
   const selectedCategory = useMemo(() => {
     if (source.kind === "custom") {
@@ -146,6 +158,7 @@ function SetupScreen({
     return (
       <Shell className="mobile-settings mobile-settings-guess-who guess-who-category-picker">
         <TopBar title="Vyber kategóriu" onBack={() => setView("main")} />
+        <CategoryPickerSearch value={categoryQuery} onChange={setCategoryQuery} />
         {/* scroll-panel: zoznam kategórií sa dá skrolovať a pozerať, klik iba
             oznaří výber; tlačidlo Hotovo zostáva pod ním pevné. */}
         <div className="guess-who-category-list scroll-panel">
@@ -153,63 +166,79 @@ function SetupScreen({
             <span>Jedna kategória</span>
             <p>Karty sa nebudú miešať s inou témou.</p>
           </div>
-          <section aria-label="Základné kategórie">
-            <p className="guess-who-section-label">Kategórie</p>
-            <div className="guess-who-picker-options">
-              {builtinCategories.map((category) => {
-                const active = source.kind === "builtin" && source.categoryId === category.id;
-                return (
-                  <button
-                    key={category.id}
-                    type="button"
-                    aria-pressed={active}
-                    onClick={() => chooseSource({ kind: "builtin", categoryId: category.id })}
-                    className={active ? "is-active" : ""}
-                  >
-                    <span className="guess-who-picker-icon">{category.icon}</span>
-                    <span className="guess-who-picker-copy">
-                      <strong>{category.name}</strong>
-                      <small>{category.characters.length} kariet</small>
-                    </span>
-                    <span className="guess-who-picker-check" aria-hidden="true">
-                      {active ? <Icons.circleCheck size={17} /> : <Icons.chevronRight size={17} />}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </section>
-          {customCategories.length > 0 && (
-            <section aria-label="Vlastné kategórie">
-              <p className="guess-who-section-label">Moje kategórie</p>
-              <div className="guess-who-picker-options">
-                {customCategories.map((category) => {
-                  const active = source.kind === "custom" && source.collectionId === category.id;
-                  return (
-                    <button
-                      key={category.id}
-                      type="button"
-                      aria-pressed={active}
-                      onClick={() => chooseSource({
-                        kind: "custom",
-                        collectionId: category.id,
-                        collectionName: category.name,
-                      })}
-                      className={active ? "is-active" : ""}
-                    >
-                      <span className="guess-who-picker-icon">{category.icon}</span>
-                      <span className="guess-who-picker-copy">
-                        <strong>{category.name}</strong>
-                        <small>{category.count} vlastných kariet</small>
-                      </span>
-                      <span className="guess-who-picker-check" aria-hidden="true">
-                        {active ? <Icons.circleCheck size={17} /> : <Icons.chevronRight size={17} />}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </section>
+          {visibleBuiltinCategories.length === 0 && visibleCustomCategories.length === 0 ? (
+            <p className="guess-who-picker-empty">
+              Žiadna kategória nevyhovuje „{categoryQuery.trim()}“. Skús iný nápis.
+            </p>
+          ) : (
+            <>
+              {visibleBuiltinCategories.length > 0 && (
+                <section aria-label="Základné kategórie">
+                  <p className="guess-who-section-label">
+                    {categoryQuery.trim()
+                      ? `Nájdené · ${visibleBuiltinCategories.length}`
+                      : "Kategórie"}
+                  </p>
+                  <div className="guess-who-picker-options">
+                    {visibleBuiltinCategories.map((category) => {
+                      const active = source.kind === "builtin" && source.categoryId === category.id;
+                      return (
+                        <button
+                          key={category.id}
+                          type="button"
+                          aria-pressed={active}
+                          onClick={() => chooseSource({ kind: "builtin", categoryId: category.id })}
+                          className={active ? "is-active" : ""}
+                        >
+                          <span className="guess-who-picker-icon">{category.icon}</span>
+                          <span className="guess-who-picker-copy">
+                            <strong>{category.name}</strong>
+                            <small>{category.characters.length} kariet</small>
+                          </span>
+                          <span className="guess-who-picker-check" aria-hidden="true">
+                            {active ? <Icons.circleCheck size={17} /> : <Icons.chevronRight size={17} />}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </section>
+              )}
+              {visibleCustomCategories.length > 0 && (
+                <section aria-label="Vlastné kategórie">
+                  <p className="guess-who-section-label">
+                    {categoryQuery.trim() ? "Nájdené" : "Moje kategórie"}
+                  </p>
+                  <div className="guess-who-picker-options">
+                    {visibleCustomCategories.map((category) => {
+                      const active = source.kind === "custom" && source.collectionId === category.id;
+                      return (
+                        <button
+                          key={category.id}
+                          type="button"
+                          aria-pressed={active}
+                          onClick={() => chooseSource({
+                            kind: "custom",
+                            collectionId: category.id,
+                            collectionName: category.name,
+                          })}
+                          className={active ? "is-active" : ""}
+                        >
+                          <span className="guess-who-picker-icon">{category.icon}</span>
+                          <span className="guess-who-picker-copy">
+                            <strong>{category.name}</strong>
+                            <small>{category.count} vlastných kariet</small>
+                          </span>
+                          <span className="guess-who-picker-check" aria-hidden="true">
+                            {active ? <Icons.circleCheck size={17} /> : <Icons.chevronRight size={17} />}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </section>
+              )}
+            </>
           )}
         </div>
         <Button fullWidth onClick={() => setView("main")} className="guess-who-start-button guess-who-picker-confirm">
