@@ -12,7 +12,7 @@ import {
 import PlayerNamesField from "../../components/PlayerNamesField";
 import GameSettingsPage from "../../components/GameSettingsPage";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
-/** Dizajn: Nočný herný salón — vlastný výber minihier sa otvorí až po stlačení Začať party hru, nie priamo v nastaveniach. */
+/** Dizajn: Nočná herná aréna — kozmické pozadie, žiarivý mesiac a červený akcent. */
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 
 type BattleSelection = "ordered" | "random";
@@ -111,20 +111,24 @@ export default function TeamBattleSetup({
             <div className="exit-slot-spacer" />
           </header>
 
-          <section className="party-battle-hero pb-7 pt-8 text-center">
-            <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-[1.7rem] border border-white/15 bg-gradient-to-br from-violet-500/40 to-fuchsia-500/15 shadow-[0_20px_55px_rgba(168,85,247,.3)]">
-              <Icons.sword size={39} className="text-white" />
+          {/* Kozmická aréna: mesiac + hviezdy za emblémom, potom nadpis. */}
+          <section className="party-battle-hero party-battle-hero-cosmic pb-7 pt-6 text-center">
+            <div className="party-cosmic" aria-hidden="true" />
+            <div className="relative z-10">
+              <div className="party-arena-badge mx-auto flex items-center justify-center">
+                <Icons.sword size={34} className="text-white" />
+              </div>
+              <p className="mt-6 text-[10px] font-black uppercase tracking-[0.28em] text-white/45">
+                Nastavenie arény
+              </p>
+              <h1 className="mt-2 text-3xl font-black tracking-tight text-white">
+                Pripravte tímovú bitku
+              </h1>
+              <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-white/40">
+                Pomenujte tímy a vyberte hry v želanom poradí alebo nechajte
+                zostavu na náhodu.
+              </p>
             </div>
-            <p className="mt-6 text-[10px] font-black uppercase tracking-[0.28em] text-fuchsia-300/70">
-              Nastavenie arény
-            </p>
-            <h1 className="mt-2 text-3xl font-black tracking-tight text-white">
-              Pripravte tímovú bitku
-            </h1>
-            <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-white/40">
-              Pomenujte tímy a vyberte hry v želanom poradí alebo nechajte
-              zostavu na náhodu.
-            </p>
           </section>
 
           <PlayerNamesField
@@ -143,6 +147,7 @@ export default function TeamBattleSetup({
             placeholderFor={index =>
               defaultTeamName(language, index === 0 ? "A" : "B")
             }
+            className="arena-row-card"
           />
 
           <section className="party-selection-block mt-5">
@@ -155,7 +160,7 @@ export default function TeamBattleSetup({
                   Vyberte hry alebo ich nechajte na náhodu
                 </p>
               </div>
-              <span className="rounded-xl bg-fuchsia-500/15 px-3 py-2 text-xs font-black text-fuchsia-300">
+              <span className="arena-pill">
                 {roundCount === null
                   ? "vlastná"
                   : `${roundCount} ${roundCount === 1 ? "kolo" : roundCount < 5 ? "kolá" : "kôl"}`}
@@ -165,17 +170,18 @@ export default function TeamBattleSetup({
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => setSelectionType("ordered")}
-                className={`party-selection-card relative overflow-hidden rounded-[1.6rem] border p-5 text-left transition active:scale-[.97] ${
-                  selectionType === "ordered"
-                    ? "border-cyan-300/65 bg-cyan-500/15 shadow-[0_15px_45px_rgba(34,211,238,.2)]"
-                    : "border-white/10 bg-white/[0.045]"
+                className={`party-selection-card arena-card arena-card-own relative overflow-hidden rounded-[1.6rem] border p-5 text-left transition active:scale-[.97] ${
+                  selectionType === "ordered" ? "is-selected" : ""
                 }`}
               >
                 {selectionType === "ordered" && (
-                  <span className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-cyan-400 text-xs font-black text-[#071318]">
+                  <span className="arena-check" aria-hidden="true">
                     ✓
                   </span>
                 )}
+                <span className="arena-card-icon" aria-hidden="true">
+                  <Icons.layoutDashboard size={20} />
+                </span>
                 <span className="block text-base font-black text-white">
                   Vlastný výber
                 </span>
@@ -186,17 +192,18 @@ export default function TeamBattleSetup({
 
               <button
                 onClick={() => setSelectionType("random")}
-                className={`party-selection-card relative overflow-hidden rounded-[1.6rem] border p-5 text-left transition active:scale-[.97] ${
-                  selectionType === "random"
-                    ? "border-fuchsia-300/65 bg-fuchsia-500/20 shadow-[0_15px_45px_rgba(168,85,247,.25)]"
-                    : "border-white/10 bg-white/[0.045]"
+                className={`party-selection-card arena-card arena-card-random relative overflow-hidden rounded-[1.6rem] border p-5 text-left transition active:scale-[.97] ${
+                  selectionType === "random" ? "is-selected" : ""
                 }`}
               >
                 {selectionType === "random" && (
-                  <span className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-fuchsia-400 text-xs font-black text-white">
+                  <span className="arena-check" aria-hidden="true">
                     ✓
                   </span>
                 )}
+                <span className="arena-card-icon" aria-hidden="true">
+                  <Icons.dice size={20} />
+                </span>
                 <span className="mt-3 block text-base font-black text-white">
                   Náhodne
                 </span>
@@ -255,8 +262,8 @@ export default function TeamBattleSetup({
           {/* Nastavenia hry — tempo kôl a náročnosť kvízu majú vlastnú
               stránku, aby setup obrazovka zostala krátka. */}
           <GameSettingsPage
-            className="mt-4"
-            accent="#34d399"
+            className="mt-4 arena-row-card"
+            accent="#f97316"
             icon="timer"
             title="Pravidlá kôl"
             summary={`${quickRounds} rýchle výzvy · ${timeSeconds}s · kvíz: ${quizDifficulty === "lahke" ? "ľahší" : "ťažší"}`}
@@ -324,7 +331,7 @@ export default function TeamBattleSetup({
               else onStartManualSelection(names, options);
             }}
             disabled={!canStart}
-            className="party-setup-start party-shine mt-6 w-full overflow-hidden rounded-2xl bg-gradient-to-r from-violet-600 via-fuchsia-500 to-pink-500 px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white shadow-[0_18px_50px_rgba(168,85,247,.35)] transition active:scale-[.97] disabled:opacity-40"
+            className="party-setup-start party-shine arena-cta mt-6 w-full overflow-hidden rounded-2xl px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white transition active:scale-[.97] disabled:opacity-40"
           >
             Hrať party hru
           </button>
