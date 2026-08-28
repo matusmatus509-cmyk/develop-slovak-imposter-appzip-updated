@@ -14,6 +14,7 @@ import GameSettingsPage from "../../components/GameSettingsPage";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 /** Dizajn: Nočná herná aréna — kozmické pozadie, žiarivý mesiac a červený akcent. */
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
+import { partyModeArtV2 } from "../../media";
 
 type BattleSelection = "ordered" | "random";
 export interface TeamBattleOptions {
@@ -115,8 +116,16 @@ export default function TeamBattleSetup({
           <section className="party-battle-hero party-battle-hero-cosmic pb-7 pt-6 text-center">
             <div className="party-cosmic" aria-hidden="true" />
             <div className="relative z-10">
-              <div className="party-arena-badge mx-auto flex items-center justify-center">
-                <Icons.sword size={34} className="text-white" />
+              <div className="party-arena-badge mx-auto flex items-center justify-center overflow-hidden">
+                <img
+                  src={partyModeArtV2}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{ objectPosition: "50% 30%" }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/50 to-fuchsia-500/30" />
+                <Icons.sword size={34} className="relative text-white drop-shadow-[0_2px_6px_rgba(0,0,0,.6)]" />
               </div>
               <p className="mt-6 text-[10px] font-black uppercase tracking-[0.28em] text-white/45">
                 Nastavenie arény
