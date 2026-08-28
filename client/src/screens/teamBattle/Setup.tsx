@@ -152,7 +152,7 @@ export default function TeamBattleSetup({
             placeholderFor={index =>
               defaultTeamName(language, index === 0 ? "A" : "B")
             }
-            className="arena-row-card"
+            className="arena-row-card mt-4"
           />
 
           <section className="party-selection-block mt-5">
