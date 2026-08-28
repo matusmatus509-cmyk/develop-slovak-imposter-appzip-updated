@@ -2477,33 +2477,52 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 }
 
 /* ── Výber dĺžky náhodnej bitky (RoundCountPicker) ──────────────────────────
-   Vlastná obrazovka po stlačení „Hrať party hru“. Karty zdieľajú jazyk
-   arény, akcent si každá voľba nesie v `--round-accent`. */
+   Vlastná obrazovka po stlačení „Hrať party hru“. Karta nie je voľba, ale
+   priamo štart bitky — akcent z `--round-accent` preto svieti stále a ikona
+   prehrávania to potvrdzuje. */
 .round-pick {
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: .9rem;
   width: 100%;
   padding: 1rem;
   text-align: left;
-  border: 1px solid rgba(255, 255, 255, .1);
+  border: 1px solid color-mix(in srgb, var(--round-accent) 32%, transparent);
   border-radius: 1.3rem;
-  background: linear-gradient(150deg, rgba(26, 30, 50, .72), rgba(10, 13, 24, .94));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 18px 45px -30px rgba(0, 0, 0, .9);
+  background:
+    linear-gradient(150deg, color-mix(in srgb, var(--round-accent) 13%, rgba(20, 24, 42, .9)), rgba(10, 13, 24, .95));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .06),
+    0 18px 45px -32px color-mix(in srgb, var(--round-accent) 60%, transparent);
   transition: border-color .18s ease, box-shadow .22s ease, transform .18s ease;
 }
 
-.round-pick:active { transform: scale(.98); }
-
-.round-pick.is-selected {
-  border-color: color-mix(in srgb, var(--round-accent) 75%, transparent);
-  background:
-    linear-gradient(150deg, color-mix(in srgb, var(--round-accent) 20%, rgba(16, 19, 34, .94)), rgba(10, 13, 24, .96));
+.round-pick:active {
+  transform: scale(.98);
+  border-color: color-mix(in srgb, var(--round-accent) 70%, transparent);
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--round-accent) 45%, transparent),
-    0 0 30px -6px color-mix(in srgb, var(--round-accent) 35%, transparent),
-    inset 0 1px 0 rgba(255, 255, 255, .08);
+    0 0 26px -8px color-mix(in srgb, var(--round-accent) 45%, transparent);
+}
+
+@media (hover: hover) {
+  .round-pick:hover {
+    border-color: color-mix(in srgb, var(--round-accent) 60%, transparent);
+  }
+}
+
+/* Kruh s ikonou prehrávania — hovorí, že klepnutím sa hra spustí. */
+.round-pick-play {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  border-radius: 9999px;
+  background: var(--round-accent);
+  color: #08111a;
+  box-shadow: 0 10px 26px -10px var(--round-accent);
 }
 
 .round-pick-number {
@@ -2522,10 +2541,9 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   transition: border-color .18s ease, background .18s ease, box-shadow .22s ease;
 }
 
-.round-pick.is-selected .round-pick-number {
-  border-color: color-mix(in srgb, var(--round-accent) 60%, transparent);
-  background: color-mix(in srgb, var(--round-accent) 26%, transparent);
-  box-shadow: 0 0 22px -8px var(--round-accent);
+.round-pick .round-pick-number {
+  border-color: color-mix(in srgb, var(--round-accent) 45%, transparent);
+  background: color-mix(in srgb, var(--round-accent) 20%, transparent);
 }
 
 .round-pick-chip {
@@ -2543,24 +2561,35 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   color: rgba(255, 255, 255, .55);
 }
 
-.round-pick-check {
-  display: grid;
-  place-items: center;
-  width: 1.6rem;
-  height: 1.6rem;
-  flex: none;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, .16);
-  color: transparent;
-  font-size: .72rem;
-  font-weight: 900;
-  transition: border-color .18s ease, background .18s ease, color .18s ease;
+/* ── Celá obrazovka na jeden displej ────────────────────────────────────────
+   Bez potvrdzovacieho tlačidla a bez pätičkového textu sa zmestí bez
+   skrolovania: hero sa škáluje podľa výšky displeja a karty si rozdelia
+   zvyšok. `scroll-panel` na `main` zostáva ako záchranná sieť pre extrémne
+   nízke displeje — nič sa tak neoreže. */
+.party-round-picker .game-setup-hero {
+  height: clamp(5.5rem, 17dvh, 9.5rem);
+  margin-top: 1rem;
 }
 
-.round-pick.is-selected .round-pick-check {
-  border-color: transparent;
-  background: var(--round-accent);
-  color: #08111a;
+.party-round-picker .round-hero-title {
+  font-size: clamp(1.35rem, 4.6dvh, 2rem);
+}
+
+/* Karty rastú do zvyšnej výšky, ale na vysokých displejoch a tabletoch sa
+   nenaťahujú do prázdna — strop ich udrží v proporcii a `justify-center` na
+   zozname rozdelí prebytok nad a pod. */
+.party-round-picker .round-pick {
+  flex: 1 1 0;
+  min-height: 4.5rem;
+  max-height: 8.5rem;
+}
+
+/* Na nízkych displejoch ustúpi popis ako prvé — čísla, akcent a štítky so
+   špeciálnymi kolami sú dôležitejšie než veta pod názvom. */
+@media (max-height: 700px) {
+  .party-round-picker .round-pick { padding: .8rem; }
+  .party-round-picker .round-pick-note { display: none; }
+  .party-round-picker .round-hero-badge { display: none; }
 }
 
 /* Červený „pill" vedľa nadpisu Zostava hier. */

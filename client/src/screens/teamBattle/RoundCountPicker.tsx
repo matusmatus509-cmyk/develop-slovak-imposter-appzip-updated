@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from "react";
+import type { CSSProperties } from "react";
 import { Icon, Icons, type IconsType } from "../../components/icons";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { partyModeArtV2 } from "../../media";
@@ -6,12 +6,12 @@ import { partyModeArtV2 } from "../../media";
 /**
  * ── Dĺžka náhodnej bitky na vlastnej obrazovke ──────────────────────────────
  *
- * Predtým sa voľba počtu kôl rozbaľovala priamo v setupe pod kartou
- * „Náhodne“, čím setup narastal a voľba sa strácala medzi ostatnými
- * nastaveniami. Teraz má vlastnú obrazovku — otvorí sa až po stlačení
- * „Hrať party hru“, presne ako výber hier pri vlastnej zostave.
+ * Otvorí sa po stlačení „Hrať party hru“, keď je zvolená náhodná zostava.
  *
- * Dizajn nadväzuje na nočnú arénu: rovnaké hero, sklenené karty a CTA.
+ * Obrazovka je zámerne bez potvrdzovacieho tlačidla: každá karta je priamo
+ * štart, takže výber dĺžky je jedno klepnutie namiesto dvoch. Zmestí sa na
+ * jednu obrazovku — hero sa škáluje podľa výšky displeja a karty si rozdelia
+ * zvyšok, takže sa nikde neskroluje a nič sa neorezáva.
  */
 
 interface RoundOption {
@@ -37,7 +37,7 @@ const OPTIONS: RoundOption[] = [
     duration: "≈ 10 min",
     accent: "#22d3ee",
     icon: "zap",
-    highlights: ["Dvojnásobok", "Kvízové finále"],
+    highlights: ["Dvojnásobok", "Finále"],
   },
   {
     rounds: 5,
@@ -46,7 +46,7 @@ const OPTIONS: RoundOption[] = [
     duration: "≈ 18 min",
     accent: "#a78bfa",
     icon: "dice",
-    highlights: ["Blesková výzva", "Dvojnásobok", "Kvízové finále"],
+    highlights: ["Blesková výzva", "Dvojnásobok", "Finále"],
   },
   {
     rounds: 7,
@@ -55,7 +55,7 @@ const OPTIONS: RoundOption[] = [
     duration: "≈ 25 min",
     accent: "#f43f5e",
     icon: "crown",
-    highlights: ["Blesková výzva", "Dvojnásobok", "Kvízové finále"],
+    highlights: ["Blesková výzva", "Dvojnásobok", "Finále"],
   },
 ];
 
@@ -65,23 +65,18 @@ function roundWord(count: number) {
 }
 
 export default function TeamBattleRoundCountPicker({
-  initialRounds,
   onBack,
-  onConfirm,
+  onStart,
 }: {
-  initialRounds: number;
   onBack: () => void;
-  onConfirm: (rounds: number) => void;
+  /** Klepnutie na kartu spúšťa bitku priamo — bez ďalšieho potvrdenia. */
+  onStart: (rounds: number) => void;
 }) {
-  const [rounds, setRounds] = useState(initialRounds);
-  const selected =
-    OPTIONS.find(option => option.rounds === rounds) ?? OPTIONS[1];
-
   return (
     <PartyBackdrop>
-      <main className="mobile-settings mobile-party-settings party-battle-settings scroll-panel h-full overflow-y-auto px-5 pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]">
-        <div className="mx-auto w-full max-w-md">
-          <header className="flex items-center justify-between">
+      <main className="mobile-settings mobile-party-settings party-battle-settings party-round-picker scroll-panel h-full overflow-y-auto px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-[max(1.25rem,env(safe-area-inset-top))]">
+        <div className="mx-auto flex min-h-full w-full max-w-md flex-col">
+          <header className="flex shrink-0 items-center justify-between">
             <button
               onClick={onBack}
               aria-label="Späť na nastavenie arény"
@@ -93,108 +88,78 @@ export default function TeamBattleRoundCountPicker({
             <div className="exit-slot-spacer" />
           </header>
 
-          <div
-            className="game-setup-hero relative mt-5 h-48 overflow-hidden rounded-[2rem] border border-white/15 shadow-2xl"
-            style={{ "--setup-accent": selected.accent } as CSSProperties}
-          >
+          <div className="game-setup-hero relative shrink-0 overflow-hidden rounded-[2rem] border border-white/15 shadow-2xl">
             <img
               src={partyModeArtV2}
               alt=""
-              className="h-full w-full object-cover transition-transform duration-700"
+              className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#080b13]/95 via-[#080b13]/35 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#080b13]/85 via-transparent to-black/10" />
             <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/20 blur-3xl" />
-            <div className="absolute inset-x-5 bottom-5">
-              <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/35 px-3 py-1.5 text-[8px] font-black uppercase tracking-[.2em] text-white/80 backdrop-blur">
-                <Icons.dice size={12} /> Dĺžka bitky
+            <div className="absolute inset-x-5 bottom-4">
+              <span className="round-hero-badge mb-2 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/35 px-3 py-1.5 text-[8px] font-black uppercase tracking-[.2em] text-white/80 backdrop-blur">
+                <Icons.dice size={12} /> Vyber a hraj
               </span>
-              <h1 className="max-w-[18rem] text-[2rem] font-black leading-[.98] tracking-[-.04em] text-white">
+              <h1 className="round-hero-title max-w-[18rem] font-black leading-[.98] tracking-[-.04em] text-white">
                 Koľko kôl si dáte?
               </h1>
             </div>
           </div>
 
-          <div className="mt-4 flex flex-col gap-3">
-            {OPTIONS.map(option => {
-              const isSelected = option.rounds === rounds;
-              return (
-                <button
-                  key={option.rounds}
-                  type="button"
-                  onClick={() => setRounds(option.rounds)}
-                  aria-pressed={isSelected}
-                  className={`round-pick ${isSelected ? "is-selected" : ""}`}
-                  style={{ "--round-accent": option.accent } as CSSProperties}
-                >
-                  <span className="round-pick-number">
-                    <strong className="text-2xl font-black tabular-nums">
-                      {option.rounds}
-                    </strong>
-                    <small className="mt-0.5 text-[7px] font-black uppercase tracking-[.16em] opacity-60">
-                      {roundWord(option.rounds)}
-                    </small>
-                  </span>
-
-                  <span className="min-w-0 flex-1">
-                    <span className="flex items-center gap-2">
-                      <Icon
-                        name={option.icon}
-                        size={14}
-                        style={{ color: option.accent }}
-                      />
-                      <strong className="text-[.95rem] font-black text-white">
-                        {option.label}
-                      </strong>
-                    </span>
-                    <small className="mt-1 block text-[11px] font-medium leading-snug text-white/45">
-                      {option.note}
-                    </small>
-                    <span className="mt-2.5 flex flex-wrap gap-1.5">
-                      <span className="round-pick-chip">
-                        <Icons.clock size={9} /> {option.duration}
-                      </span>
-                      {option.highlights.map(highlight => (
-                        <span key={highlight} className="round-pick-chip">
-                          {highlight}
-                        </span>
-                      ))}
-                    </span>
-                  </span>
-
-                  <span className="round-pick-check" aria-hidden="true">
-                    ✓
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          <section className="party-glass party-setup-panel mt-4 rounded-[1.75rem] p-5">
-            <div className="flex items-start gap-3">
-              <span
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl"
-                style={{
-                  background: `${selected.accent}26`,
-                  color: selected.accent,
-                }}
+          {/* Karty si rozdelia zvyšnú výšku — obrazovka tak sedí na jeden displej. */}
+          <div className="round-pick-list mt-3 flex min-h-0 flex-1 flex-col justify-center gap-2.5">
+            {OPTIONS.map(option => (
+              <button
+                key={option.rounds}
+                type="button"
+                onClick={() => onStart(option.rounds)}
+                aria-label={`Hrať ${option.rounds} ${roundWord(option.rounds)} — ${option.label}`}
+                className="round-pick"
+                style={{ "--round-accent": option.accent } as CSSProperties}
               >
-                <Icons.sparkles size={17} />
-              </span>
-              <p className="text-[11px] font-medium leading-relaxed text-white/50">
-                Hry aj ich poradie vyberie aplikácia náhodne. Posledné kolo je
-                vždy kvízové finále za trojnásobok bodov, takže bitka sa dá
-                otočiť až na konci.
-              </p>
-            </div>
-          </section>
+                <span className="round-pick-number">
+                  <strong className="text-2xl font-black tabular-nums">
+                    {option.rounds}
+                  </strong>
+                  <small className="mt-0.5 text-[7px] font-black uppercase tracking-[.16em] opacity-60">
+                    {roundWord(option.rounds)}
+                  </small>
+                </span>
 
-          <button
-            onClick={() => onConfirm(rounds)}
-            className="party-setup-start party-shine arena-cta mt-6 w-full overflow-hidden rounded-2xl px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white transition active:scale-[.97]"
-          >
-            Spustiť bitku · {rounds} {roundWord(rounds)}
-          </button>
+                <span className="min-w-0 flex-1">
+                  <span className="flex items-center gap-2">
+                    <Icon
+                      name={option.icon}
+                      size={14}
+                      style={{ color: option.accent }}
+                    />
+                    <strong className="text-[.95rem] font-black text-white">
+                      {option.label}
+                    </strong>
+                  </span>
+                  <small className="round-pick-note mt-1 block text-[11px] font-medium leading-snug text-white/45">
+                    {option.note}
+                  </small>
+                  <span className="mt-2 flex flex-wrap gap-1.5">
+                    <span className="round-pick-chip">
+                      <Icons.clock size={9} /> {option.duration}
+                    </span>
+                    {option.highlights.map(highlight => (
+                      <span key={highlight} className="round-pick-chip">
+                        {highlight}
+                      </span>
+                    ))}
+                  </span>
+                </span>
+
+                {/* Karta je štart, nie voľba — ikona prehrávania to hovorí naplno. */}
+                <span className="round-pick-play" aria-hidden="true">
+                  <Icons.play size={15} />
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
       </main>
     </PartyBackdrop>
