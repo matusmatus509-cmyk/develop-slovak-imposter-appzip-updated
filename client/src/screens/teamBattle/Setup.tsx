@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { Icons } from "../../components/icons";
 import CustomContentSelector, {
   type CustomContentControls,
@@ -112,33 +112,33 @@ export default function TeamBattleSetup({
             <div className="exit-slot-spacer" />
           </header>
 
-          {/* Kozmická aréna: mesiac + hviezdy za emblémom, potom nadpis. */}
-          <section className="party-battle-hero party-battle-hero-cosmic pb-7 pt-6 text-center">
-            <div className="party-cosmic" aria-hidden="true" />
-            <div className="relative z-10">
-              <div className="party-arena-badge mx-auto flex items-center justify-center overflow-hidden">
-                <img
-                  src={partyModeArtV2}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 h-full w-full object-cover"
-                  style={{ objectPosition: "50% 30%" }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/50 to-fuchsia-500/30" />
-                <Icons.sword size={34} className="relative text-white drop-shadow-[0_2px_6px_rgba(0,0,0,.6)]" />
-              </div>
-              <p className="mt-6 text-[10px] font-black uppercase tracking-[0.28em] text-white/45">
-                Nastavenie arény
-              </p>
-              <h1 className="mt-2 text-3xl font-black tracking-tight text-white">
+          {/* Obrázkové hero — rovnaký vzor ako pri rýchlych hrách (napr.
+              Zahmkaj pesničku): fotka arény, tmavý prechod a nadpis dole. */}
+          <div
+            className="game-setup-hero relative mt-5 h-48 overflow-hidden rounded-[2rem] border border-white/15 shadow-2xl"
+            style={{ "--setup-accent": "#a78bfa" } as CSSProperties}
+          >
+            <img
+              src={partyModeArtV2}
+              alt=""
+              className="h-full w-full object-cover transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#080b13]/95 via-[#080b13]/35 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#080b13]/85 via-transparent to-black/10" />
+            <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/20 blur-3xl" />
+            <div className="absolute inset-x-5 bottom-5">
+              <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/35 px-3 py-1.5 text-[8px] font-black uppercase tracking-[.2em] text-white/80 backdrop-blur">
+                <Icons.sword size={12} /> Nastavenie arény
+              </span>
+              <h1 className="max-w-[18rem] text-[2rem] font-black leading-[.98] tracking-[-.04em] text-white">
                 Pripravte tímovú bitku
               </h1>
-              <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-white/40">
-                Pomenujte tímy a vyberte hry v želanom poradí alebo nechajte
-                zostavu na náhodu.
-              </p>
             </div>
-          </section>
+          </div>
+          <p className="mx-auto mt-3 max-w-xs text-center text-sm leading-relaxed text-white/40">
+            Pomenujte tímy a vyberte hry v želanom poradí alebo nechajte
+            zostavu na náhodu.
+          </p>
 
           <PlayerNamesField
             names={names}
