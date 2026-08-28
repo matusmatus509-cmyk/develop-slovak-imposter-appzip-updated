@@ -54,6 +54,8 @@ import {
 import type { CustomContentControls } from "./components/CustomContentSelector";
 import { usePartyMusic } from "./hooks/usePartyMusic";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+/** Hry sa často hrajú bez dotyku obrazovky — displej nesmie medzitým zhasnúť. */
+import { useWakeLock } from "./hooks/useWakeLock";
 
 import Home from "./screens/Home";
 import GameMenu, { type MenuGame } from "./screens/GameMenu";
@@ -577,6 +579,10 @@ export default function App() {
   useEffect(() => {
     if (NON_GAME_SCREENS.includes(screen)) gameSessionActiveRef.current = false;
   }, [screen]);
+
+  // V menu a nastaveniach nechávame telefón zhasnúť normálne, počas hry nie —
+  // veľa hier sa ovláda naklonením, počúvaním alebo len pozeraním.
+  useWakeLock(!NON_GAME_SCREENS.includes(screen));
 
   useEffect(() => {
     setStatistics(current => normalizeStatistics(current));

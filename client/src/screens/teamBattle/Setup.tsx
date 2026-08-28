@@ -11,40 +11,59 @@ import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 import { partyModeArtV2 } from "../../media";
 
-type BattleSelection = "ordered" | "random";
+export type BattleSelection = "ordered" | "random";
 export interface TeamBattleOptions {
   quickRounds: number;
   timeSeconds: number;
   quizDifficulty: QuizDifficulty;
 }
+
+/**
+ * Celé rozpracované nastavenie arény. Setup sa pri prechode na výber kôl či
+ * hier odmontuje, takže hodnoty si drží rodič a pri návrate ich vráti späť —
+ * inak by si partia po stlačení Späť prepisovala mená tímov odznova.
+ */
+export interface TeamBattleSetupDraft {
+  teamNames: [string, string];
+  selectionType: BattleSelection;
+  options: TeamBattleOptions;
+}
+
 export default function TeamBattleSetup({
+  initialDraft,
   onBack,
   onStartRandomSelection,
   onStartManualSelection,
   customControls,
 }: {
+  /** Nastavenie z predchádzajúcej návštevy — po stlačení Späť sa obnoví. */
+  initialDraft?: TeamBattleSetupDraft | null;
   onBack: () => void;
   /** Počet kôl sa vyberá na vlastnej obrazovke, preto tu ešte nie je známy. */
-  onStartRandomSelection: (
-    teamNames: [string, string],
-    options: TeamBattleOptions
-  ) => void;
-  onStartManualSelection: (
-    teamNames: [string, string],
-    options: TeamBattleOptions
-  ) => void;
+  onStartRandomSelection: (draft: TeamBattleSetupDraft) => void;
+  onStartManualSelection: (draft: TeamBattleSetupDraft) => void;
   customControls?: CustomContentControls;
 }) {
   const { language } = useLanguage();
-  const [names, setNames] = useState<[string, string]>([
-    defaultTeamName(language, "A"),
-    defaultTeamName(language, "B"),
-  ]);
-  const [selectionType, setSelectionType] =
-    useState<BattleSelection>("ordered");
-  const [quickRounds, setQuickRounds] = useState(2);
-  const [timeSeconds, setTimeSeconds] = useState(60);
-  const [quizDifficulty, setQuizDifficulty] = useState<QuizDifficulty>("lahke");
+  const [names, setNames] = useState<[string, string]>(
+    () =>
+      initialDraft?.teamNames ?? [
+        defaultTeamName(language, "A"),
+        defaultTeamName(language, "B"),
+      ]
+  );
+  const [selectionType, setSelectionType] = useState<BattleSelection>(
+    initialDraft?.selectionType ?? "ordered"
+  );
+  const [quickRounds, setQuickRounds] = useState(
+    initialDraft?.options.quickRounds ?? 2
+  );
+  const [timeSeconds, setTimeSeconds] = useState(
+    initialDraft?.options.timeSeconds ?? 60
+  );
+  const [quizDifficulty, setQuizDifficulty] = useState<QuizDifficulty>(
+    initialDraft?.options.quizDifficulty ?? "lahke"
+  );
   const [blue, red] = TEAM_COLORS;
 
   const canStart = Boolean(names[0].trim() && names[1].trim());
@@ -270,11 +289,15 @@ export default function TeamBattleSetup({
           <button
             onClick={() => {
               // Obe cesty pokračujú na vlastnú obrazovku — náhodná na výber
-              // dĺžky bitky, vlastná na výber hier.
-              const options = { quickRounds, timeSeconds, quizDifficulty };
-              if (selectionType === "random")
-                onStartRandomSelection(names, options);
-              else onStartManualSelection(names, options);
+              // dĺžky bitky, vlastná na výber hier. Rodič si draft odloží, aby
+              // sa dal po stlačení Späť obnoviť.
+              const draft: TeamBattleSetupDraft = {
+                teamNames: names,
+                selectionType,
+                options: { quickRounds, timeSeconds, quizDifficulty },
+              };
+              if (selectionType === "random") onStartRandomSelection(draft);
+              else onStartManualSelection(draft);
             }}
             disabled={!canStart}
             className="party-setup-start party-shine arena-cta mt-6 w-full overflow-hidden rounded-2xl px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white transition active:scale-[.97] disabled:opacity-40"
