@@ -4,6 +4,26 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const CORE_FILE = path.join(ROOT, "client/src/data/categories.ts");
+const CORE_EXPANSION_MODULES = [
+  {
+    file: "impostorCoreExpansionEveryday",
+    symbol: "EVERYDAY_IMPOSTOR_EXPANSIONS",
+  },
+  { file: "impostorCoreExpansionLife", symbol: "LIFE_IMPOSTOR_EXPANSIONS" },
+  {
+    file: "impostorCoreExpansionActivities",
+    symbol: "ACTIVITIES_IMPOSTOR_EXPANSIONS",
+  },
+  { file: "impostorCoreExpansionHuman", symbol: "HUMAN_IMPOSTOR_EXPANSIONS" },
+  { file: "impostorCoreExpansionWorld", symbol: "WORLD_IMPOSTOR_EXPANSIONS" },
+];
+const CORE_EXPANSION_FILES = CORE_EXPANSION_MODULES.map(({ file }) =>
+  path.join(ROOT, "client/src/data", `${file}.ts`)
+);
+const CORE_EXPANSIONS_FILE = path.join(
+  ROOT,
+  "client/src/data/impostorCoreExpansions.ts"
+);
 const THEMED_FILE = path.join(
   ROOT,
   "client/src/data/impostorThemedCategories.ts"
@@ -17,6 +37,29 @@ const EXPECTED_THEMED_IDS = [
   "marvel",
   "pokemon",
 ];
+const EXPECTED_CORE_COUNTS = new Map([
+  ["skola", 100],
+  ["domacnost", 250],
+  ["jedlo", 100],
+  ["zvierata", 100],
+  ["priroda", 100],
+  ["sport", 100],
+  ["technologie", 100],
+  ["doprava", 100],
+  ["povolania", 100],
+  ["telo", 100],
+  ["filmy", 100],
+  ["hudba", 100],
+  ["oblecenie", 100],
+  ["mesta", 100],
+  ["veci", 100],
+  ["abstraktne", 100],
+  ["veda", 100],
+  ["historia", 100],
+  ["internet", 100],
+  ["nahodne", 250],
+]);
+const EXPECTED_TOTAL_PAIRS = 2600;
 
 function fail(message) {
   throw new Error(`Imposter categories: ${message}`);
@@ -82,10 +125,7 @@ function literalProperty(source, name, context) {
   return JSON.parse(match[1]).trim();
 }
 
-function parseCategory(source, context) {
-  const id = literalProperty(source, "id", context);
-  const name = literalProperty(source, "name", context);
-  const icon = literalProperty(source, "icon", context);
+function parseWordPairs(source, context) {
   const wordPairsMarker = source.indexOf("wordPairs");
   const arrayStart = source.indexOf("[", wordPairsMarker);
   if (wordPairsMarker < 0 || arrayStart < 0)
@@ -94,10 +134,17 @@ function parseCategory(source, context) {
   const pairsSource = source.slice(arrayStart + 1, arrayEnd);
   const pairPattern =
     /\{\s*word:\s*("(?:\\.|[^"\\])*")\s*,\s*hint:\s*("(?:\\.|[^"\\])*")\s*,?\s*\}/g;
-  const wordPairs = [...pairsSource.matchAll(pairPattern)].map(match => ({
+  return [...pairsSource.matchAll(pairPattern)].map(match => ({
     word: JSON.parse(match[1]).trim(),
     hint: JSON.parse(match[2]).trim(),
   }));
+}
+
+function parseCategory(source, context) {
+  const id = literalProperty(source, "id", context);
+  const name = literalProperty(source, "name", context);
+  const icon = literalProperty(source, "icon", context);
+  const wordPairs = parseWordPairs(source, context);
 
   return { id, name, icon, wordPairs };
 }
@@ -125,6 +172,34 @@ function coreCategories() {
     index = objectEnd;
   }
   return categories;
+}
+
+function coreExpansions() {
+  const expansions = [];
+  for (const file of CORE_EXPANSION_FILES) {
+    const source = fs.readFileSync(file, "utf8");
+    const marker = source.indexOf("export const");
+    const assignment = source.indexOf("=", marker);
+    const arrayStart = source.indexOf("[", assignment);
+    if (marker < 0 || assignment < 0 || arrayStart < 0)
+      fail(`could not find expansion array in ${path.basename(file)}.`);
+    const arrayEnd = matchingBracket(source, arrayStart, "[", "]");
+    const arraySource = source.slice(arrayStart + 1, arrayEnd);
+
+    for (let index = 0; index < arraySource.length; index += 1) {
+      if (arraySource[index] !== "{") continue;
+      const objectEnd = matchingBracket(arraySource, index, "{", "}");
+      const objectSource = arraySource.slice(index, objectEnd + 1);
+      const context = `${path.basename(file)} expansion ${expansions.length + 1}`;
+      expansions.push({
+        categoryId: literalProperty(objectSource, "categoryId", context),
+        wordPairs: parseWordPairs(objectSource, context),
+        file: path.basename(file),
+      });
+      index = objectEnd;
+    }
+  }
+  return expansions;
 }
 
 function themedCategories() {
@@ -162,9 +237,45 @@ function themedCategories() {
 }
 
 const core = coreCategories();
+const expansions = coreExpansions();
 const themed = themedCategories();
-const categories = [...core, ...themed];
 const errors = [];
+
+const coreIds = core.map(category => category.id);
+const unexpectedCoreIds = coreIds.filter(id => !EXPECTED_CORE_COUNTS.has(id));
+if (
+  coreIds.length !== EXPECTED_CORE_COUNTS.size ||
+  unexpectedCoreIds.length > 0
+) {
+  errors.push(
+    `core category IDs must exactly match expected set; got ${coreIds.join(", ")}`
+  );
+}
+
+const expansionIds = expansions.map(expansion => expansion.categoryId);
+for (const expansion of expansions) {
+  const category = core.find(
+    candidate => candidate.id === expansion.categoryId
+  );
+  if (!category) {
+    errors.push(
+      `${expansion.file} expands unknown core category ${expansion.categoryId}`
+    );
+    continue;
+  }
+  if (
+    expansionIds.filter(candidate => candidate === expansion.categoryId)
+      .length > 1
+  )
+    errors.push(`duplicate core expansion for ${expansion.categoryId}`);
+  category.wordPairs.push(...expansion.wordPairs);
+}
+for (const id of EXPECTED_CORE_COUNTS.keys()) {
+  if (!expansionIds.includes(id))
+    errors.push(`missing core expansion for ${id}`);
+}
+
+const categories = [...core, ...themed];
 
 const ids = categories.map(category => category.id);
 for (const id of new Set(ids)) {
@@ -187,9 +298,10 @@ if (
 }
 
 for (const category of categories) {
-  if (category.wordPairs.length !== 50)
+  const expectedCount = EXPECTED_CORE_COUNTS.get(category.id) ?? 50;
+  if (category.wordPairs.length !== expectedCount)
     errors.push(
-      `${category.id} has ${category.wordPairs.length} pairs, expected 50`
+      `${category.id} has ${category.wordPairs.length} pairs, expected ${expectedCount}`
     );
   if (!category.name || !category.icon)
     errors.push(`${category.id} has an empty name or icon`);
@@ -212,23 +324,41 @@ for (const category of categories) {
   });
 }
 
+for (const expansion of expansions) {
+  const hintCounts = new Map();
+  for (const pair of expansion.wordPairs) {
+    const hintWordCount = pair.hint.trim().split(/\s+/).length;
+    if (hintWordCount < 1 || hintWordCount > 2)
+      errors.push(
+        `${expansion.categoryId}/${pair.word} expansion hint must have 1-2 words`
+      );
+    const normalizedHint = pair.hint.toLocaleLowerCase("sk");
+    hintCounts.set(normalizedHint, (hintCounts.get(normalizedHint) ?? 0) + 1);
+  }
+  for (const [hint, count] of hintCounts) {
+    if (count > 2)
+      errors.push(
+        `${expansion.categoryId} expansion reuses hint ${hint} ${count} times; expected at most 2`
+      );
+  }
+}
+
 const themedWordOwners = new Map();
 const themedHintOwners = new Map();
 for (const category of themed) {
   for (const pair of category.wordPairs) {
     const normalizedHint = pair.hint.trim().toLocaleLowerCase("sk");
-    const previousHintOwner = themedHintOwners.get(normalizedHint);
-    if (previousHintOwner)
+    const hintOwners = themedHintOwners.get(normalizedHint) ?? [];
+    hintOwners.push(`${category.id}/${pair.word}`);
+    themedHintOwners.set(normalizedHint, hintOwners);
+    if (hintOwners.length > 2)
       errors.push(
-        `themed hint ${pair.hint} is reused by ${previousHintOwner} and ${category.id}/${pair.word}`
+        `themed hint ${pair.hint} is reused more than twice: ${hintOwners.join(", ")}`
       );
-    else themedHintOwners.set(normalizedHint, `${category.id}/${pair.word}`);
 
     const hintWordCount = pair.hint.trim().split(/\s+/).length;
-    if (hintWordCount < 2 || hintWordCount > 6)
-      errors.push(
-        `${category.id}/${pair.word} hint must be an original phrase of 2-6 words`
-      );
+    if (hintWordCount < 1 || hintWordCount > 2)
+      errors.push(`${category.id}/${pair.word} hint must have 1-2 words`);
 
     const normalizedWord = pair.word.toLocaleLowerCase("sk");
     const previousCategory = themedWordOwners.get(normalizedWord);
@@ -240,7 +370,52 @@ for (const category of themed) {
   }
 }
 
+const coreExpansionsSource = fs.readFileSync(CORE_EXPANSIONS_FILE, "utf8");
+const expectedExpansionSymbols = CORE_EXPANSION_MODULES.map(
+  ({ symbol }) => symbol
+);
+const registeredExpansionSymbols = [
+  ...coreExpansionsSource.matchAll(/\.\.\.([A-Z][A-Z0-9_]*)/g),
+].map(match => match[1]);
+if (
+  JSON.stringify(registeredExpansionSymbols) !==
+  JSON.stringify(expectedExpansionSymbols)
+) {
+  errors.push(
+    `impostorCoreExpansions.ts must register exactly ${expectedExpansionSymbols.join(", ")}`
+  );
+}
+for (const { file, symbol } of CORE_EXPANSION_MODULES) {
+  if (!coreExpansionsSource.includes(`import { ${symbol} } from "./${file}"`)) {
+    errors.push(`impostorCoreExpansions.ts must import ${symbol} from ${file}`);
+  }
+}
+
 const categoriesSource = fs.readFileSync(CORE_FILE, "utf8");
+const coreExpansionImportIndex = categoriesSource.indexOf(
+  'import { CORE_IMPOSTOR_EXPANSIONS } from "./impostorCoreExpansions"'
+);
+const coreExpansionLoopIndex = categoriesSource.indexOf(
+  "for (const expansion of CORE_IMPOSTOR_EXPANSIONS)"
+);
+const coreExpansionPushIndex = categoriesSource.indexOf(
+  "category.wordPairs.push(...expansion.wordPairs)"
+);
+const coreCategoryIdsIndex = categoriesSource.indexOf(
+  "export const CORE_IMPOSTOR_CATEGORY_IDS"
+);
+
+if (!(
+  coreExpansionImportIndex >= 0 &&
+  coreExpansionImportIndex < coreExpansionLoopIndex &&
+  coreExpansionLoopIndex < coreExpansionPushIndex &&
+  coreExpansionPushIndex < coreCategoryIdsIndex
+)) {
+  errors.push(
+    "categories.ts must import and apply CORE_IMPOSTOR_EXPANSIONS before snapshotting CORE_IMPOSTOR_CATEGORY_IDS"
+  );
+}
+
 const expandedSource = fs.readFileSync(EXPANDED_FILE, "utf8");
 for (const removedSymbol of [
   "GENERATED_IMPOSTOR_PAIRS",
@@ -258,14 +433,19 @@ if (
 )
   errors.push("categories.ts does not register the themed category export");
 
+const totalPairs = categories.reduce(
+  (sum, category) => sum + category.wordPairs.length,
+  0
+);
+if (totalPairs !== EXPECTED_TOTAL_PAIRS)
+  errors.push(
+    `all categories contain ${totalPairs} pairs, expected ${EXPECTED_TOTAL_PAIRS}`
+  );
+
 if (errors.length > 0) {
   console.error(errors.map(error => `✗ ${error}`).join("\n"));
   process.exitCode = 1;
 } else {
-  const totalPairs = categories.reduce(
-    (sum, category) => sum + category.wordPairs.length,
-    0
-  );
   console.log(
     `✓ Imposter: ${core.length} core + ${themed.length} themed categories, ${totalPairs} curated pairs`
   );
