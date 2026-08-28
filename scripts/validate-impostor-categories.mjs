@@ -214,6 +214,22 @@ for (const category of categories) {
 
 const themedWordOwners = new Map();
 for (const category of themed) {
+  const hintCounts = new Map();
+  for (const pair of category.wordPairs) {
+    const normalizedHint = pair.hint.toLocaleLowerCase("sk");
+    hintCounts.set(normalizedHint, (hintCounts.get(normalizedHint) ?? 0) + 1);
+  }
+  if (hintCounts.size > 10)
+    errors.push(
+      `${category.id} uses ${hintCounts.size} distinct hints; expected at most 10 broad associations`
+    );
+  for (const [hint, count] of hintCounts) {
+    if (count < 3)
+      errors.push(
+        `${category.id} hint ${hint} applies to only ${count} words; expected at least 3`
+      );
+  }
+
   for (const pair of category.wordPairs) {
     const normalizedWord = pair.word.toLocaleLowerCase("sk");
     const previousCategory = themedWordOwners.get(normalizedWord);
