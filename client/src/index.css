@@ -2444,6 +2444,7 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 
 /* Emblém — kruhová „moon base" s perom/mečom. */
 .party-battle-settings .party-arena-badge {
+  position: relative;
   width: 5.4rem;
   height: 5.4rem;
   border-radius: 9999px !important;
