@@ -135,10 +135,6 @@ export default function TeamBattleSetup({
               </h1>
             </div>
           </div>
-          <p className="mx-auto mt-3 max-w-xs text-center text-sm leading-relaxed text-white/40">
-            Pomenujte tímy a vyberte hry v želanom poradí alebo nechajte
-            zostavu na náhodu.
-          </p>
 
           <PlayerNamesField
             names={names}
