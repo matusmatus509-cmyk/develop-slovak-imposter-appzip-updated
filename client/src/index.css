@@ -2292,6 +2292,15 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 /* Party battle setup follows the same mobile-first settings language. */
 .party-battle-settings { --settings-accent: #a78bfa; }
 .party-battle-settings > div { max-width: 31rem; }
+/* Hero je vyšší než pri rýchlych hrách (10.5rem) — nahrádza priestor po
+   zrušenom popisnom odstavci, takže zvyšok obrazovky zostáva na svojom
+   mieste a nič sa nepresúva nahor. */
+.party-battle-settings .game-setup-hero { height: 13rem; }
+/* Na nízkych displejoch platí rovnaký limit ako pre ostatné setupy — tam
+   sa popis nezobrazoval ani predtým, takže nie je čo nahrádzať. */
+@media (max-height: 720px) {
+  .party-battle-settings .game-setup-hero { height: 8.5rem; }
+}
 .party-battle-settings .party-battle-hero {
   padding-top: 1.5rem;
   padding-bottom: 1.35rem;
