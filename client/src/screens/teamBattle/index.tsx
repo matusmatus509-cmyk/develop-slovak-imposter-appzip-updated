@@ -16,7 +16,10 @@ import {
   type TeamIndex,
 } from "./quizDuelRound";
 
-import TeamBattleSetup, { type TeamBattleOptions } from "./Setup";
+import TeamBattleSetup, {
+  type TeamBattleOptions,
+  type TeamBattleSetupDraft,
+} from "./Setup";
 /** Dizajn: Párty výber sa otvára až po štarte vlastnej zostavy; aktuálne hero karty potvrdia poradie a potom sa hra začne priamo. */
 import TeamBattleGamePicker from "./GamePicker";
 /** Dĺžka náhodnej bitky sa vyberá až po štarte, na vlastnej obrazovke. */
@@ -91,15 +94,12 @@ export default function TeamBattle({
     defaultTeamName(language, "B"),
   ]);
   const [selectedGames, setSelectedGames] = useState<GameType[]>([]);
-  const [pendingManualSetup, setPendingManualSetup] = useState<{
-    teamNames: [string, string];
-    options: TeamBattleOptions;
-  } | null>(null);
-  /** Setup pre náhodnú zostavu čaká, kým sa na vlastnej obrazovke zvolí dĺžka. */
-  const [pendingRandomSetup, setPendingRandomSetup] = useState<{
-    teamNames: [string, string];
-    options: TeamBattleOptions;
-  } | null>(null);
+  /**
+   * Rozpracované nastavenie arény. Drží sa tu, nie v `TeamBattleSetup` — ten sa
+   * pri prechode na výber kôl/hier odmontuje a mená tímov by sa stratili.
+   * Zároveň slúži ako payload, z ktorého sa hra nakoniec spustí.
+   */
+  const [setupDraft, setSetupDraft] = useState<TeamBattleSetupDraft | null>(null);
   /** Naposledy zvolená dĺžka bitky — obrazovka sa otvorí s ňou predvybranou. */
   const [randomRounds, setRandomRounds] = useState(5);
   const [rounds, setRounds] = useState<BattleRound[]>([]);
@@ -140,13 +140,13 @@ export default function TeamBattle({
     setPhase("intro");
   }
 
-  function handleManualSelectionStart(names: [string, string], options: TeamBattleOptions) {
-    setPendingManualSetup({ teamNames: names, options });
+  function handleManualSelectionStart(draft: TeamBattleSetupDraft) {
+    setSetupDraft(draft);
     setPhase("game-picker");
   }
 
-  function handleRandomSelectionStart(names: [string, string], options: TeamBattleOptions) {
-    setPendingRandomSetup({ teamNames: names, options });
+  function handleRandomSelectionStart(draft: TeamBattleSetupDraft) {
+    setSetupDraft(draft);
     setPhase("round-picker");
   }
 
@@ -212,21 +212,21 @@ export default function TeamBattle({
   // ── Render ────────────────────────────────────────────────────────────────
 
   if (phase === "setup") {
-    return <div className="party-phase-shell" key="setup"><TeamBattleSetup onBack={onHome} onStartRandomSelection={handleRandomSelectionStart} onStartManualSelection={handleManualSelectionStart} customControls={customControls} /></div>;
+    return <div className="party-phase-shell" key="setup"><TeamBattleSetup initialDraft={setupDraft} onBack={onHome} onStartRandomSelection={handleRandomSelectionStart} onStartManualSelection={handleManualSelectionStart} customControls={customControls} /></div>;
   }
 
+  // Späť z oboch výberov draft zámerne nemaže — setup sa vráti tak, ako ho
+  // partia nechala.
   if (phase === "round-picker") {
     return (
       <div className="party-phase-shell" key="round-picker">
         <TeamBattleRoundCountPicker
           initialRounds={randomRounds}
-          onBack={() => { setPendingRandomSetup(null); setPhase("setup"); }}
+          onBack={() => setPhase("setup")}
           onConfirm={(count) => {
             setRandomRounds(count);
-            if (!pendingRandomSetup) { setPhase("setup"); return; }
-            const { teamNames: names, options } = pendingRandomSetup;
-            setPendingRandomSetup(null);
-            handleSetupStart(names, count, options);
+            if (!setupDraft) { setPhase("setup"); return; }
+            handleSetupStart(setupDraft.teamNames, count, setupDraft.options);
           }}
         />
       </div>
@@ -238,13 +238,11 @@ export default function TeamBattle({
       <div className="party-phase-shell" key="game-picker">
         <TeamBattleGamePicker
           initialSelectedGames={selectedGames}
-          onBack={() => { setPendingManualSetup(null); setPhase("setup"); }}
+          onBack={() => setPhase("setup")}
           onConfirm={(games) => {
             setSelectedGames(games);
-            if (!pendingManualSetup) { setPhase("setup"); return; }
-            const { teamNames: names, options } = pendingManualSetup;
-            setPendingManualSetup(null);
-            handleSetupStart(names, games, options);
+            if (!setupDraft) { setPhase("setup"); return; }
+            handleSetupStart(setupDraft.teamNames, games, setupDraft.options);
           }}
         />
       </div>
