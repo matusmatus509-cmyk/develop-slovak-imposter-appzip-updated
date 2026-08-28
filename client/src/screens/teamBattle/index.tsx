@@ -100,8 +100,6 @@ export default function TeamBattle({
    * Zároveň slúži ako payload, z ktorého sa hra nakoniec spustí.
    */
   const [setupDraft, setSetupDraft] = useState<TeamBattleSetupDraft | null>(null);
-  /** Naposledy zvolená dĺžka bitky — obrazovka sa otvorí s ňou predvybranou. */
-  const [randomRounds, setRandomRounds] = useState(5);
   const [rounds, setRounds] = useState<BattleRound[]>([]);
   const [currentRoundIdx, setCurrentRoundIdx] = useState(0);
   const [totalScores, setTotalScores] = useState<[number, number]>([0, 0]);
@@ -221,10 +219,8 @@ export default function TeamBattle({
     return (
       <div className="party-phase-shell" key="round-picker">
         <TeamBattleRoundCountPicker
-          initialRounds={randomRounds}
           onBack={() => setPhase("setup")}
-          onConfirm={(count) => {
-            setRandomRounds(count);
+          onStart={(count) => {
             if (!setupDraft) { setPhase("setup"); return; }
             handleSetupStart(setupDraft.teamNames, count, setupDraft.options);
           }}
