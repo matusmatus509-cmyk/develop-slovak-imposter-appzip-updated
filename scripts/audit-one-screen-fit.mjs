@@ -178,6 +178,11 @@ const REACHABLE_MUST_SCROLL = [
     needsPanel: true,
   },
   {
+    screen: "teambattle",
+    file: `${ROOT}/screens/teamBattle/RoundCountPicker.tsx`,
+    needsPanel: true,
+  },
+  {
     screen: "tic-tac-toe",
     file: `${ROOT}/screens/minigames/TicTacToe.tsx`,
     needsPanel: true,

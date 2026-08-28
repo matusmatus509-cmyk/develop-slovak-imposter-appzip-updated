@@ -3,12 +3,7 @@ import { Icons } from "../../components/icons";
 import CustomContentSelector, {
   type CustomContentControls,
 } from "../../components/CustomContentSelector";
-import {
-  GAME_LABELS,
-  TEAM_COLORS,
-  type GameType,
-  type QuizDifficulty,
-} from "../../data/teamBattle";
+import { TEAM_COLORS, type QuizDifficulty } from "../../data/teamBattle";
 import PlayerNamesField from "../../components/PlayerNamesField";
 import GameSettingsPage from "../../components/GameSettingsPage";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
@@ -24,14 +19,14 @@ export interface TeamBattleOptions {
 }
 export default function TeamBattleSetup({
   onBack,
-  onStart,
+  onStartRandomSelection,
   onStartManualSelection,
   customControls,
 }: {
   onBack: () => void;
-  onStart: (
+  /** Počet kôl sa vyberá na vlastnej obrazovke, preto tu ešte nie je známy. */
+  onStartRandomSelection: (
     teamNames: [string, string],
-    selection: number | GameType[],
     options: TeamBattleOptions
   ) => void;
   onStartManualSelection: (
@@ -47,13 +42,11 @@ export default function TeamBattleSetup({
   ]);
   const [selectionType, setSelectionType] =
     useState<BattleSelection>("ordered");
-  const [randomRounds, setRandomRounds] = useState(5);
   const [quickRounds, setQuickRounds] = useState(2);
   const [timeSeconds, setTimeSeconds] = useState(60);
   const [quizDifficulty, setQuizDifficulty] = useState<QuizDifficulty>("lahke");
   const [blue, red] = TEAM_COLORS;
 
-  const roundCount = selectionType === "random" ? randomRounds : null;
   const canStart = Boolean(names[0].trim() && names[1].trim());
   const quizDifficultyControls = (
     <div className="mt-5 border-t border-white/10 pt-4">
@@ -203,45 +196,6 @@ export default function TeamBattleSetup({
             </div>
           </section>
 
-          {selectionType === "random" ? (
-            <section className="party-glass party-setup-panel mt-4 rounded-[1.75rem] p-5">
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-fuchsia-300/65">
-                  Náhodný výber
-                </p>
-                <p className="mt-1 text-sm font-bold text-white/70">
-                  Vyberte počet kôl
-                </p>
-              </div>
-              <div className="mt-4 grid grid-cols-3 gap-2">
-                {[3, 5, 7].map(value => (
-                  <button
-                    key={value}
-                    onClick={() => setRandomRounds(value)}
-                    className={`rounded-2xl border py-3.5 transition active:scale-95 ${
-                      randomRounds === value
-                        ? "border-fuchsia-400/70 bg-gradient-to-b from-fuchsia-500/30 to-violet-600/20 text-white shadow-[0_10px_28px_rgba(168,85,247,.2)]"
-                        : "border-white/10 bg-white/[0.035] text-white/40"
-                    }`}
-                  >
-                    <span className="block text-2xl font-black">{value}</span>
-                    <span className="mt-1 block text-[8px] font-black uppercase tracking-[0.14em]">
-                      {value === 3
-                        ? "Rýchla"
-                        : value === 5
-                          ? "Stredná"
-                          : "Veľká"}
-                    </span>
-                  </button>
-                ))}
-              </div>
-              <p className="mt-4 text-center text-[10px] leading-relaxed text-white/30">
-                Hry a poradie vyberie aplikácia náhodne. Posledné kolo bude
-                kvízové finále.
-              </p>
-            </section>
-          ) : null}
-
           {/* Nastavenia hry — tempo kôl a náročnosť kvízu majú vlastnú
               stránku, aby setup obrazovka zostala krátka. */}
           <GameSettingsPage
@@ -315,9 +269,11 @@ export default function TeamBattleSetup({
 
           <button
             onClick={() => {
+              // Obe cesty pokračujú na vlastnú obrazovku — náhodná na výber
+              // dĺžky bitky, vlastná na výber hier.
               const options = { quickRounds, timeSeconds, quizDifficulty };
               if (selectionType === "random")
-                onStart(names, randomRounds, options);
+                onStartRandomSelection(names, options);
               else onStartManualSelection(names, options);
             }}
             disabled={!canStart}

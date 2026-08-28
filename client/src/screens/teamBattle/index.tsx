@@ -19,6 +19,8 @@ import {
 import TeamBattleSetup, { type TeamBattleOptions } from "./Setup";
 /** Dizajn: Párty výber sa otvára až po štarte vlastnej zostavy; aktuálne hero karty potvrdia poradie a potom sa hra začne priamo. */
 import TeamBattleGamePicker from "./GamePicker";
+/** Dĺžka náhodnej bitky sa vyberá až po štarte, na vlastnej obrazovke. */
+import TeamBattleRoundCountPicker from "./RoundCountPicker";
 import TeamBattleIntro from "./Intro";
 import RoundIntro from "./RoundIntro";
 import TimedWords from "./TimedWords";
@@ -39,6 +41,7 @@ import type { CustomContentControls } from "../../components/CustomContentSelect
 
 type Phase =
   | "setup"
+  | "round-picker"
   | "game-picker"
   | "intro"
   | "finale"
@@ -92,6 +95,13 @@ export default function TeamBattle({
     teamNames: [string, string];
     options: TeamBattleOptions;
   } | null>(null);
+  /** Setup pre náhodnú zostavu čaká, kým sa na vlastnej obrazovke zvolí dĺžka. */
+  const [pendingRandomSetup, setPendingRandomSetup] = useState<{
+    teamNames: [string, string];
+    options: TeamBattleOptions;
+  } | null>(null);
+  /** Naposledy zvolená dĺžka bitky — obrazovka sa otvorí s ňou predvybranou. */
+  const [randomRounds, setRandomRounds] = useState(5);
   const [rounds, setRounds] = useState<BattleRound[]>([]);
   const [currentRoundIdx, setCurrentRoundIdx] = useState(0);
   const [totalScores, setTotalScores] = useState<[number, number]>([0, 0]);
@@ -133,6 +143,11 @@ export default function TeamBattle({
   function handleManualSelectionStart(names: [string, string], options: TeamBattleOptions) {
     setPendingManualSetup({ teamNames: names, options });
     setPhase("game-picker");
+  }
+
+  function handleRandomSelectionStart(names: [string, string], options: TeamBattleOptions) {
+    setPendingRandomSetup({ teamNames: names, options });
+    setPhase("round-picker");
   }
 
   function handleIntroEnd() {
@@ -197,7 +212,25 @@ export default function TeamBattle({
   // ── Render ────────────────────────────────────────────────────────────────
 
   if (phase === "setup") {
-    return <div className="party-phase-shell" key="setup"><TeamBattleSetup onBack={onHome} onStart={handleSetupStart} onStartManualSelection={handleManualSelectionStart} customControls={customControls} /></div>;
+    return <div className="party-phase-shell" key="setup"><TeamBattleSetup onBack={onHome} onStartRandomSelection={handleRandomSelectionStart} onStartManualSelection={handleManualSelectionStart} customControls={customControls} /></div>;
+  }
+
+  if (phase === "round-picker") {
+    return (
+      <div className="party-phase-shell" key="round-picker">
+        <TeamBattleRoundCountPicker
+          initialRounds={randomRounds}
+          onBack={() => { setPendingRandomSetup(null); setPhase("setup"); }}
+          onConfirm={(count) => {
+            setRandomRounds(count);
+            if (!pendingRandomSetup) { setPhase("setup"); return; }
+            const { teamNames: names, options } = pendingRandomSetup;
+            setPendingRandomSetup(null);
+            handleSetupStart(names, count, options);
+          }}
+        />
+      </div>
+    );
   }
 
   if (phase === "game-picker") {
