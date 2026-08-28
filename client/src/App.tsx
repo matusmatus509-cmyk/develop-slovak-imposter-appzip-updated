@@ -15,7 +15,11 @@ import type {
   WorkshopSelections,
   WordGuessRecordInput,
 } from "./types";
-import { CATEGORIES } from "./data/categories";
+import {
+  CATEGORIES,
+  CORE_IMPOSTOR_CATEGORY_IDS,
+  LEGACY_IMPOSTOR_CATEGORY_ID,
+} from "./data/categories";
 import { DRAWING_CATEGORIES } from "./data/drawingCategories";
 import { generateRound } from "./utils/gameLogic";
 import { generateBuzzAssignment } from "./utils/buzzLogic";
@@ -388,6 +392,47 @@ const DEFAULT_BUZZ_SETTINGS: BuzzSettings = {
   blindTiming: true,
 };
 
+const ALL_IMPOSTOR_CATEGORY_IDS = CATEGORIES.map(category => category.id);
+const ALL_IMPOSTOR_CATEGORY_ID_SET = new Set(ALL_IMPOSTOR_CATEGORY_IDS);
+
+/**
+ * Prechod zo starej databázy:
+ * - odstráni neexistujúcu šablónovú kategóriu `situacie`,
+ * - zachová hráčovi jeho vlastný čiastočný výber,
+ * - ak mal pred aktualizáciou vybrané všetky pôvodné zásoby vrátane
+ *   `situacie`, automaticky mu zapne aj nové tematické zásoby,
+ * - ak mu nezostala žiadna platná kategória, bezpečne zapne všetky.
+ */
+function migrateImpostorCategoryIds(categoryIds: unknown): string[] {
+  const stored = Array.isArray(categoryIds)
+    ? categoryIds.filter((id): id is string => typeof id === "string")
+    : [];
+  const selected = new Set(stored);
+  const hadLegacyCategory = selected.has(LEGACY_IMPOSTOR_CATEGORY_ID);
+  const hadAllCoreCategories = CORE_IMPOSTOR_CATEGORY_IDS.every(id =>
+    selected.has(id)
+  );
+
+  if (hadLegacyCategory && hadAllCoreCategories)
+    return ALL_IMPOSTOR_CATEGORY_IDS;
+
+  const validIds = stored.filter(
+    (id, index) =>
+      id !== LEGACY_IMPOSTOR_CATEGORY_ID &&
+      ALL_IMPOSTOR_CATEGORY_ID_SET.has(id) &&
+      stored.indexOf(id) === index
+  );
+  return validIds.length > 0 ? validIds : ALL_IMPOSTOR_CATEGORY_IDS;
+}
+
+function sameStringArray(left: unknown, right: string[]) {
+  return (
+    Array.isArray(left) &&
+    left.length === right.length &&
+    left.every((value, index) => value === right[index])
+  );
+}
+
 export default function App() {
   const [screen, setScreen] = useState<Screen>("home");
   const [welcomeScreen, setWelcomeScreen] = useState<Screen | null>(null);
@@ -473,6 +518,33 @@ export default function App() {
   const [recentlyPlayedScreens, setRecentlyPlayedScreens] = useLocalStorage<
     string[]
   >("podvodnik-recently-played-screens-v1", []);
+
+  // Uložené nastavenia môžu stále obsahovať odstránené `situacie` a nemusia
+  // poznať nové zásoby. Migrácia je idempotentná a nemení vlastný čiastočný
+  // výber hráča. Staré použité slová odstránime iba pre zrušenú kategóriu —
+  // ostatné kľúče zdieľa aj kresliaci Imposter.
+  useEffect(() => {
+    setSettings(current => {
+      const candidate =
+        current && typeof current === "object" && !Array.isArray(current)
+          ? (current as Partial<GameSettings>)
+          : {};
+      const categoryIds = migrateImpostorCategoryIds(candidate.categoryIds);
+      return sameStringArray(candidate.categoryIds, categoryIds) &&
+        current === candidate
+        ? current
+        : { ...DEFAULT_SETTINGS, ...candidate, categoryIds };
+    });
+    setUsedWords(current => {
+      if (!current || typeof current !== "object" || Array.isArray(current))
+        return {};
+      if (!(LEGACY_IMPOSTOR_CATEGORY_ID in current)) return current;
+      const next = { ...current };
+      delete next[LEGACY_IMPOSTOR_CATEGORY_ID];
+      return next;
+    });
+  }, [setSettings, setUsedWords]);
+
   const sortedMinigames = useMemo(() => {
     const validRecentlyPlayed = Array.isArray(recentlyPlayedScreens)
       ? recentlyPlayedScreens

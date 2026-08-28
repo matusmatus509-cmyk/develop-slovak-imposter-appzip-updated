@@ -1,5 +1,5 @@
 import type { CategoryDef } from "../types";
-import { GENERATED_IMPOSTOR_PAIRS } from "./expandedContent";
+import { THEMED_IMPOSTOR_CATEGORIES } from "./impostorThemedCategories";
 
 export const CATEGORIES: CategoryDef[] = [
   {
@@ -851,7 +851,7 @@ export const CATEGORIES: CategoryDef[] = [
       { word: "Poštová známka", hint: "Odoslanie" },
       { word: "Pohľadnica", hint: "Odkaz" },
       { word: "Vrecúško na desiatu", hint: "Obed" },
-      { word: "Zápalky", hint: "Tma" },
+      { word: "Lepiaca páska", hint: "Oprava" },
       { word: "Šnúrka", hint: "Viazanie" },
       { word: "Gombík", hint: "Zapínanie" },
       { word: "Vrecko", hint: "Uloženie" },
@@ -1144,9 +1144,13 @@ export const CATEGORIES: CategoryDef[] = [
   },
 ];
 
-CATEGORIES.push({
-  id: "situacie",
-  name: "Situácie",
-  icon: "🎬",
-  wordPairs: GENERATED_IMPOSTOR_PAIRS.slice(0, 2042),
-});
+// IDs pôvodných ručne písaných zásob. Migrácia uložených nastavení ich
+// používa na rozpoznanie hráčov, ktorí mali pred aktualizáciou vybrané všetko.
+export const CORE_IMPOSTOR_CATEGORY_IDS = CATEGORIES.map(
+  category => category.id
+);
+export const LEGACY_IMPOSTOR_CATEGORY_ID = "situacie";
+
+// Tematické zásoby (Minecraft, Brawl Stars, Marvel…) žijú vo vlastnom súbore,
+// aby tento zostal čitateľný. Pridávajú sa na koniec zoznamu.
+CATEGORIES.push(...THEMED_IMPOSTOR_CATEGORIES);
