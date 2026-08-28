@@ -93,7 +93,7 @@ function parseCategory(source, context) {
   const arrayEnd = matchingBracket(source, arrayStart, "[", "]");
   const pairsSource = source.slice(arrayStart + 1, arrayEnd);
   const pairPattern =
-    /\{\s*word:\s*("(?:\\.|[^"\\])*")\s*,\s*hint:\s*("(?:\\.|[^"\\])*")\s*\}/g;
+    /\{\s*word:\s*("(?:\\.|[^"\\])*")\s*,\s*hint:\s*("(?:\\.|[^"\\])*")\s*,?\s*\}/g;
   const wordPairs = [...pairsSource.matchAll(pairPattern)].map(match => ({
     word: JSON.parse(match[1]).trim(),
     hint: JSON.parse(match[2]).trim(),
@@ -213,24 +213,23 @@ for (const category of categories) {
 }
 
 const themedWordOwners = new Map();
+const themedHintOwners = new Map();
 for (const category of themed) {
-  const hintCounts = new Map();
   for (const pair of category.wordPairs) {
-    const normalizedHint = pair.hint.toLocaleLowerCase("sk");
-    hintCounts.set(normalizedHint, (hintCounts.get(normalizedHint) ?? 0) + 1);
-  }
-  if (hintCounts.size > 10)
-    errors.push(
-      `${category.id} uses ${hintCounts.size} distinct hints; expected at most 10 broad associations`
-    );
-  for (const [hint, count] of hintCounts) {
-    if (count < 3)
+    const normalizedHint = pair.hint.trim().toLocaleLowerCase("sk");
+    const previousHintOwner = themedHintOwners.get(normalizedHint);
+    if (previousHintOwner)
       errors.push(
-        `${category.id} hint ${hint} applies to only ${count} words; expected at least 3`
+        `themed hint ${pair.hint} is reused by ${previousHintOwner} and ${category.id}/${pair.word}`
       );
-  }
+    else themedHintOwners.set(normalizedHint, `${category.id}/${pair.word}`);
 
-  for (const pair of category.wordPairs) {
+    const hintWordCount = pair.hint.trim().split(/\s+/).length;
+    if (hintWordCount < 2 || hintWordCount > 6)
+      errors.push(
+        `${category.id}/${pair.word} hint must be an original phrase of 2-6 words`
+      );
+
     const normalizedWord = pair.word.toLocaleLowerCase("sk");
     const previousCategory = themedWordOwners.get(normalizedWord);
     if (previousCategory)
