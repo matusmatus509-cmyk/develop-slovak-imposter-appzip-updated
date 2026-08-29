@@ -33,7 +33,7 @@ Nemo|Dory|Marlin
 
 /** SpongeBob. */
 const SPONGEBOB = toon(`
-SpongeBob|Patrik Hviezdica|Squidward|Pán Krab|Sandy|Plankton
+SpongeBob|Patrik Hviezdica|Squidward|Pán Krab|Sandy Cheeks|Plankton
 `);
 
 /** Shrek. */
@@ -83,7 +83,7 @@ Lightning McQueen|Mater
 
 /** Ďalšie Pixar hity. */
 const MORE_PIXAR = toon(`
-Ratatouille Remy|WALL-E|EVE|Carl Fredricksen|Russell|Radosť z V hlave|Smútok z V hlave|Mike Wazowski|Sully|Pán Úžasný|
+Ratatouille Remy|WALL-E|EVE (WALL-E)|Carl Fredricksen|Russell|Radosť z V hlave|Smútok z V hlave|Mike Wazowski|Sully|Pán Úžasný|
 Elastigirl|Jack-Jack
 `);
 
@@ -100,7 +100,7 @@ Mauglí|Balú
 
 /** Disney princezné a hrdinovia. */
 const DISNEY_HEROES = toon(`
-Ariel|Sebastián|Aladin|Džin|Jasmína|Belle|Zviera|Rapunzel|Vaiana|Mauí|
+Ariel|Sebastián|Aladin|Džin|Jasmína|Belle (Disney)|Zviera|Rapunzel|Vaiana|Mauí|
 Mulan|Mushu|Tarzan|Herkules|Stitch|Lilo|Judy Hopps|Nick Wilde
 `);
 

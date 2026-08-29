@@ -46,7 +46,7 @@ const CHARACTERS: CharacterNames[] = [
   // ── Teória veľkého tresku ─────────────────────────────────────────────────
   same("Sheldon Cooper"),
   same("Leonard Hofstadter"),
-  same("Penny"),
+  same("Penny (The Big Bang Theory)"),
   same("Howard Wolowitz"),
   same("Raj Koothrappali"),
 

@@ -9,6 +9,16 @@ import { SERIES_CHARACTERS_BY_LANGUAGE } from "./seriesCharacters";
 import { WORLD_YOUTUBERS_BY_LANGUAGE } from "./worldYoutubers";
 import { WORLD_ATHLETES } from "./worldAthletes";
 import { FOOTBALL_STARS, WORLD_SINGERS } from "./guessWhoMusicAndSports";
+import {
+  WORLD_ACTORS,
+  WORLD_BANDS,
+  WORLD_PERSONALITIES_EXPANSION,
+} from "./guessWhoFamousPeopleExpansion";
+import {
+  ANIMATED_CHARACTER_EXPANSION,
+  ANIME_CHARACTERS,
+  SERIES_CHARACTER_EXPANSION,
+} from "./guessWhoEntertainmentExpansion";
 import { BRAWL_STARS_CARDS, MINECRAFT_CARDS } from "./guessWhoGameWorlds";
 import { HARRY_POTTER_CARDS, POKEMON_CARDS } from "./guessWhoFandoms";
 import {
@@ -45,6 +55,9 @@ const CATEGORY_LABELS: Record<string, CategoryLabels> = {
   "heroes-villains": { sk: "Hrdinovia a zloduchovia", en: "Heroes and villains", de: "Helden und Schurken", es: "Héroes y villanos", fr: "Héros et méchants", pt: "Heróis e vilões" },
   marvel: { sk: "Marvel postavy", en: "Marvel characters", de: "Marvel-Figuren", es: "Personajes de Marvel", fr: "Personnages Marvel", pt: "Personagens da Marvel" },
   "world-singers": { sk: "Svetoví speváci", en: "World singers", de: "Weltbekannte Sänger", es: "Cantantes del mundo", fr: "Chanteurs du monde", pt: "Cantores do mundo" },
+  "world-actors": { sk: "Svetoví herci a herečky", en: "World actors", de: "Weltbekannte Schauspieler", es: "Actores del mundo", fr: "Acteurs du monde", pt: "Atores do mundo" },
+  "world-bands": { sk: "Svetové kapely", en: "World bands", de: "Weltbekannte Bands", es: "Bandas del mundo", fr: "Groupes du monde", pt: "Bandas do mundo" },
+  "anime-characters": { sk: "Anime postavy", en: "Anime characters", de: "Anime-Figuren", es: "Personajes de anime", fr: "Personnages d’anime", pt: "Personagens de anime" },
   "football-stars": { sk: "Futbalové hviezdy", en: "Football stars", de: "Fußballstars", es: "Estrellas del fútbol", fr: "Stars du football", pt: "Estrelas do futebol" },
   "brawl-stars": { sk: "Brawl Stars", en: "Brawl Stars", de: "Brawl Stars", es: "Brawl Stars", fr: "Brawl Stars", pt: "Brawl Stars" },
   minecraft: { sk: "Minecraft", en: "Minecraft", de: "Minecraft", es: "Minecraft", fr: "Minecraft", pt: "Minecraft" },
@@ -380,10 +393,19 @@ const LANGUAGE_DECKS: Record<string, Record<AppLanguage, string[]>> = {
   "world-youtubers": WORLD_YOUTUBERS_BY_LANGUAGE,
 };
 
+const SHARED_CATEGORY_EXPANSIONS: Record<string, string[]> = {
+  "animated-characters": ANIMATED_CHARACTER_EXPANSION,
+  "series-characters": SERIES_CHARACTER_EXPANSION,
+};
+
 function localizedCategory(category: CharacterCategory, language: AppLanguage): CharacterCategory {
   const languageDeck = LANGUAGE_DECKS[category.id]?.[language];
   const languageOnlyCards = LANGUAGE_ONLY_CARDS[category.id]?.[language];
-  const characters = languageDeck ?? category.characters;
+  const sharedExpansion = SHARED_CATEGORY_EXPANSIONS[category.id] ?? [];
+  const characters = uniqueCards([
+    ...(languageDeck ?? category.characters),
+    ...sharedExpansion,
+  ]);
   return {
     ...category,
     name: CATEGORY_LABELS[category.id]?.[language] ?? category.name,
@@ -410,7 +432,7 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     id: "world-personalities",
     name: "Svetove osobnosti",
     icon: "🌍",
-    characters: uniqueCards([...cards("world-personalities"), ...cards("world-actors"), ...cards("world-musicians"), ...cards("history-science")]),
+    characters: uniqueCards([...cards("world-personalities"), ...cards("world-actors"), ...cards("world-musicians"), ...cards("history-science"), ...WORLD_PERSONALITIES_EXPANSION]),
   },
   {
     id: "world-athletes",
@@ -496,6 +518,18 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     characters: uniqueCards(WORLD_SINGERS),
   },
   {
+    id: "world-actors",
+    name: "Svetoví herci a herečky",
+    icon: "🎬",
+    characters: uniqueCards(WORLD_ACTORS),
+  },
+  {
+    id: "world-bands",
+    name: "Svetové kapely",
+    icon: "🎸",
+    characters: uniqueCards(WORLD_BANDS),
+  },
+  {
     id: "football-stars",
     name: "Futbalové hviezdy",
     icon: "⚽",
@@ -518,6 +552,12 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     name: "Pokémon",
     icon: "⚡",
     characters: uniqueCards(POKEMON_CARDS),
+  },
+  {
+    id: "anime-characters",
+    name: "Anime postavy",
+    icon: "🌸",
+    characters: uniqueCards(ANIME_CHARACTERS),
   },
   {
     id: "harry-potter",

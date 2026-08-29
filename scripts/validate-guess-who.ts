@@ -5,19 +5,54 @@ import { getCharacterCategories } from "../client/src/data/characters";
 
 const LANGUAGES: AppLanguage[] = ["sk", "en", "de", "es", "fr", "pt"];
 const MINIMUM_CARDS = 60;
-const EXPECTED_NEW_CATEGORY_COUNTS: Record<string, number> = {
-  "world-singers": 100,
+const EXPECTED_CATEGORY_COUNTS: Record<
+  string,
+  number | Record<AppLanguage, number>
+> = {
+  "world-personalities": 180,
+  "animated-characters": {
+    sk: 185,
+    en: 180,
+    de: 180,
+    es: 180,
+    fr: 180,
+    pt: 180,
+  },
+  "series-characters": 160,
+  "world-singers": 160,
+  "world-actors": 140,
+  "world-bands": 100,
+  "anime-characters": 120,
   "football-stars": 100,
   "brawl-stars": 80,
   minecraft: 80,
   pokemon: 100,
   "harry-potter": 80,
 };
+const REQUIRED_DISAMBIGUATED_CARDS: Record<string, string[]> = {
+  "animated-characters": [
+    "Sandy Cheeks",
+    "Belle (Disney)",
+    "EVE (WALL-E)",
+    "Finn (Adventure Time)",
+  ],
+  "series-characters": ["Penny (The Big Bang Theory)"],
+  pokemon: ["Brock (Pokémon)", "Jessie (Pokémon)"],
+  "anime-characters": [
+    "Brock (Pokémon)",
+    "Jessie (Pokémon)",
+    "Scar (Fullmetal Alchemist)",
+    "Power (Chainsaw Man)",
+  ],
+};
+
 const CURATED_DATA_FILES = [
   "client/src/data/guessWhoMusicAndSports.ts",
   "client/src/data/guessWhoGameWorlds.ts",
   "client/src/data/guessWhoFandoms.ts",
   "client/src/data/guessWhoEverydayExpansions.ts",
+  "client/src/data/guessWhoFamousPeopleExpansion.ts",
+  "client/src/data/guessWhoEntertainmentExpansion.ts",
 ];
 
 const failures: string[] = [];
@@ -78,15 +113,27 @@ for (const language of LANGUAGES) {
     });
   }
 
-  for (const [id, expectedCount] of Object.entries(
-    EXPECTED_NEW_CATEGORY_COUNTS
-  )) {
+  for (const [id, expected] of Object.entries(EXPECTED_CATEGORY_COUNTS)) {
+    const expectedCount =
+      typeof expected === "number" ? expected : expected[language];
     const category = categories.find(item => item.id === id);
-    check(Boolean(category), `${language}: missing new category ${id}`);
+    check(Boolean(category), `${language}: missing expected category ${id}`);
     check(
       category?.characters.length === expectedCount,
       `${language}/${id}: expected exactly ${expectedCount} cards, got ${category?.characters.length ?? 0}`
     );
+  }
+
+  for (const [id, requiredCards] of Object.entries(
+    REQUIRED_DISAMBIGUATED_CARDS
+  )) {
+    const category = categories.find(item => item.id === id);
+    for (const card of requiredCards) {
+      check(
+        category?.characters.includes(card),
+        `${language}/${id}: missing disambiguated card ${card}`
+      );
+    }
   }
 }
 
