@@ -1,4 +1,5 @@
 import type { CategoryDef } from "../types";
+import { CORE_IMPOSTOR_EXPANSIONS } from "./impostorCoreExpansions";
 import { THEMED_IMPOSTOR_CATEGORIES } from "./impostorThemedCategories";
 
 export const CATEGORIES: CategoryDef[] = [
@@ -1143,6 +1144,18 @@ export const CATEGORIES: CategoryDef[] = [
     ],
   },
 ];
+
+// Veľké ručne písané rozšírenia zostávajú v samostatných súboroch, no za
+// behu patria k pôvodným kategóriám. Stabilné ID zachovávajú nastavenia aj
+// históriu použitých slov.
+for (const expansion of CORE_IMPOSTOR_EXPANSIONS) {
+  const category = CATEGORIES.find(item => item.id === expansion.categoryId);
+  if (!category)
+    throw new Error(
+      `Unknown Imposter category expansion: ${expansion.categoryId}`
+    );
+  category.wordPairs.push(...expansion.wordPairs);
+}
 
 // IDs pôvodných ručne písaných zásob. Migrácia uložených nastavení ich
 // používa na rozpoznanie hráčov, ktorí mali pred aktualizáciou vybrané všetko.
