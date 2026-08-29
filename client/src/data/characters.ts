@@ -1,6 +1,5 @@
 import type { AppLanguage } from "../i18n/LanguageProvider";
 import { LOCAL_PERSONALITY_CATEGORIES } from "./localizedPersonalities";
-import { GENERATED_CHARACTER_CARDS } from "./expandedContent";
 import { MARVEL_CHARACTERS } from "./marvelCharacters";
 import { ANIMATED_CHARACTERS as ANIMATED_CHARACTERS_DECK, ANIMATED_CHARACTERS_SK_ONLY } from "./animatedCharacters";
 import { ANIMATED_MOVIES_BY_LANGUAGE } from "./animatedMovies";
@@ -9,6 +8,15 @@ import { MOVIE_CHARACTERS_BY_LANGUAGE } from "./movieCharacters";
 import { SERIES_CHARACTERS_BY_LANGUAGE } from "./seriesCharacters";
 import { WORLD_YOUTUBERS_BY_LANGUAGE } from "./worldYoutubers";
 import { WORLD_ATHLETES } from "./worldAthletes";
+import { FOOTBALL_STARS, WORLD_SINGERS } from "./guessWhoMusicAndSports";
+import { BRAWL_STARS_CARDS, MINECRAFT_CARDS } from "./guessWhoGameWorlds";
+import { HARRY_POTTER_CARDS, POKEMON_CARDS } from "./guessWhoFandoms";
+import {
+  FOOD_EXPANSIONS_BY_LANGUAGE,
+  MYTHICAL_CREATURE_EXPANSIONS_BY_LANGUAGE,
+  OBJECT_EXPANSIONS_BY_LANGUAGE,
+  PLACES_EXPANSIONS_BY_LANGUAGE,
+} from "./guessWhoEverydayExpansions";
 
 export interface CharacterCategory {
   id: string;
@@ -36,7 +44,12 @@ const CATEGORY_LABELS: Record<string, CategoryLabels> = {
   "animated-movies": { sk: "Animované filmy", en: "Animated movies", de: "Animationsfilme", es: "Películas de animación", fr: "Films d’animation", pt: "Filmes de animação" },
   "heroes-villains": { sk: "Hrdinovia a zloduchovia", en: "Heroes and villains", de: "Helden und Schurken", es: "Héroes y villanos", fr: "Héros et méchants", pt: "Heróis e vilões" },
   marvel: { sk: "Marvel postavy", en: "Marvel characters", de: "Marvel-Figuren", es: "Personajes de Marvel", fr: "Personnages Marvel", pt: "Personagens da Marvel" },
-  "character-archetypes": { sk: "Postavy a archetypy", en: "Roles and archetypes", de: "Rollen und Archetypen", es: "Roles y arquetipos", fr: "Rôles et archétypes", pt: "Papéis e arquétipos" },
+  "world-singers": { sk: "Svetoví speváci", en: "World singers", de: "Weltbekannte Sänger", es: "Cantantes del mundo", fr: "Chanteurs du monde", pt: "Cantores do mundo" },
+  "football-stars": { sk: "Futbalové hviezdy", en: "Football stars", de: "Fußballstars", es: "Estrellas del fútbol", fr: "Stars du football", pt: "Estrelas do futebol" },
+  "brawl-stars": { sk: "Brawl Stars", en: "Brawl Stars", de: "Brawl Stars", es: "Brawl Stars", fr: "Brawl Stars", pt: "Brawl Stars" },
+  minecraft: { sk: "Minecraft", en: "Minecraft", de: "Minecraft", es: "Minecraft", fr: "Minecraft", pt: "Minecraft" },
+  pokemon: { sk: "Pokémon", en: "Pokémon", de: "Pokémon", es: "Pokémon", fr: "Pokémon", pt: "Pokémon" },
+  "harry-potter": { sk: "Harry Potter", en: "Harry Potter", de: "Harry Potter", es: "Harry Potter", fr: "Harry Potter", pt: "Harry Potter" },
   professions: { sk: "Povolania", en: "Professions", de: "Berufe", es: "Profesiones", fr: "Métiers", pt: "Profissões" },
   food: { sk: "Jedlo a nápoje", en: "Food and drinks", de: "Essen und Getränke", es: "Comida y bebidas", fr: "Nourriture et boissons", pt: "Comida e bebidas" },
   objects: { sk: "Predmety", en: "Objects", de: "Gegenstände", es: "Objetos", fr: "Objets", pt: "Objetos" },
@@ -108,6 +121,13 @@ const LOCALIZED_ADDITIONAL_CATEGORIES: LocalizedDeck[] = [
     },
   },
 ];
+
+const LOCALIZED_CATEGORY_EXPANSIONS: Record<string, Record<AppLanguage, string[]>> = {
+  food: FOOD_EXPANSIONS_BY_LANGUAGE,
+  objects: OBJECT_EXPANSIONS_BY_LANGUAGE,
+  "places-landmarks": PLACES_EXPANSIONS_BY_LANGUAGE,
+  "mythical-creatures": MYTHICAL_CREATURE_EXPANSIONS_BY_LANGUAGE,
+};
 
 // Karty su rozdelene podla typu, aby si hraci mohli vybrat tematicky balik.
 const CHARACTER_CATEGORIES_BASE: CharacterCategory[] = [
@@ -378,7 +398,10 @@ function additionalCategories(language: AppLanguage): CharacterCategory[] {
     id: category.id,
     name: category.labels[language],
     icon: category.icon,
-    characters: category.characters[language],
+    characters: uniqueCards([
+      ...category.characters[language],
+      ...(LOCALIZED_CATEGORY_EXPANSIONS[category.id]?.[language] ?? []),
+    ]),
   }));
 }
 
@@ -467,10 +490,40 @@ export const CHARACTER_CATEGORIES: CharacterCategory[] = [
     characters: uniqueCards(MARVEL_CHARACTERS),
   },
   {
-    id: "character-archetypes",
-    name: "Postavy a archetypy",
-    icon: "🎭",
-    characters: GENERATED_CHARACTER_CARDS.slice(0, 1436),
+    id: "world-singers",
+    name: "Svetoví speváci",
+    icon: "🎤",
+    characters: uniqueCards(WORLD_SINGERS),
+  },
+  {
+    id: "football-stars",
+    name: "Futbalové hviezdy",
+    icon: "⚽",
+    characters: uniqueCards(FOOTBALL_STARS),
+  },
+  {
+    id: "brawl-stars",
+    name: "Brawl Stars",
+    icon: "💥",
+    characters: uniqueCards(BRAWL_STARS_CARDS),
+  },
+  {
+    id: "minecraft",
+    name: "Minecraft",
+    icon: "⛏️",
+    characters: uniqueCards(MINECRAFT_CARDS),
+  },
+  {
+    id: "pokemon",
+    name: "Pokémon",
+    icon: "⚡",
+    characters: uniqueCards(POKEMON_CARDS),
+  },
+  {
+    id: "harry-potter",
+    name: "Harry Potter",
+    icon: "🪄",
+    characters: uniqueCards(HARRY_POTTER_CARDS),
   },
 ];
 
