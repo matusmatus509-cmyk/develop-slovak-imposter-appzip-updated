@@ -26,7 +26,8 @@ MrBeast|PewDiePie|Markiplier|Jacksepticeye|KSI|Logan Paul|Jake Paul|IShowSpeed|K
 DanTDM|Ninja|Khaby Lame|Zach King|Marques Brownlee|Mrwhosetheboss|Linus Tech Tips|Unbox Therapy|Mark Rober|Veritasium|
 Kurzgesagt|Vsauce|Dude Perfect|Sidemen|Ryan Trahan|Emma Chamberlain|Charli D'Amelio|Addison Rae|LazarBeam|Technoblade|
 TommyInnit|GeorgeNotFound|Pokimane|Valkyrae|SypherPK|CoryxKenshin|TheOdd1sOut|Jaiden Animations|MatPat|Good Mythical Morning|
-Gordon Ramsay|David Dobrik|Miniminter|W2S
+Gordon Ramsay|David Dobrik|Miniminter|W2S|Smosh|Jenna Marbles|Liza Koshy|How Ridiculous|
+Yes Theory|5-Minute Crafts|Alan Chikin Chow|Nas Daily
 `);
 
 /** Slovak and Czech creators. The app already treats SK and CZ as one scene. */
