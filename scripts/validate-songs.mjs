@@ -11,7 +11,29 @@
  */
 import { readFileSync } from "node:fs";
 
-const SOURCE = "client/src/data/localizedSongs.ts";
+const SOURCE_FILES = [
+  "client/src/data/localizedSongs.ts",
+  "client/src/data/songExpansions/worldAndEnglish.ts",
+  "client/src/data/songExpansions/slovakAndCzech.ts",
+  "client/src/data/songExpansions/germanAndFrench.ts",
+  "client/src/data/songExpansions/spanishAndPortuguese.ts",
+];
+
+const EXPANSION_LABELS = {
+  WORLD_SONG_EXPANSION: "world_expansion",
+  ENGLISH_SONG_EXPANSION: "en_expansion",
+  SLOVAK_SONG_EXPANSION: "sk_expansion",
+  CZECH_SONG_EXPANSION: "cs_expansion",
+  GERMAN_SONG_EXPANSION: "de_expansion",
+  FRENCH_SONG_EXPANSION: "fr_expansion",
+  SPANISH_SONG_EXPANSION: "es_expansion",
+  PORTUGUESE_SONG_EXPANSION: "pt_expansion",
+};
+
+const sources = SOURCE_FILES.map(path => ({
+  path,
+  raw: readFileSync(path, "utf8"),
+}));
 
 /**
  * Dva rôzne skutočné hity s rovnakým názvom. Nie je to chyba — každý záznam
@@ -34,55 +56,104 @@ const ALLOWED_VERSION_WORDS_IN_TITLE = new Set([
   "live is life",
 ]);
 
-const raw = readFileSync(SOURCE, "utf8");
-
 /**
  * Povolené hodnoty voliteľných stĺpcov. Musia zostať zhodné s `parseSongs`
  * v localizedSongs.ts — inak by skript prehlásil platné dáta za chybné.
  */
 const GENRES = new Set([
-  "pop", "rock", "rap", "rnb", "soul", "dance", "indie", "disco", "funk",
-  "metal", "punk", "soundtrack", "folk", "country", "oldies",
-  "schlager", "chanson", "latin", "reggae", "jazz",
+  "pop",
+  "rock",
+  "rap",
+  "rnb",
+  "soul",
+  "dance",
+  "indie",
+  "disco",
+  "funk",
+  "metal",
+  "punk",
+  "soundtrack",
+  "folk",
+  "country",
+  "oldies",
+  "schlager",
+  "chanson",
+  "latin",
+  "reggae",
+  "jazz",
 ]);
 const TIERS = new Set(["easy", "medium", "hard"]);
 const SONG_LANGUAGES = new Set([
-  "en", "sk", "cs", "de", "es", "fr", "pt",
-  "it", "sv", "pl", "hu", "nl", "instrumental", "other",
+  "en",
+  "sk",
+  "cs",
+  "de",
+  "es",
+  "fr",
+  "pt",
+  "it",
+  "sv",
+  "pl",
+  "hu",
+  "nl",
+  "instrumental",
+  "other",
 ]);
+
+function extractSongs(raw, body, label, matchIndex, path) {
+  const startLine = raw.slice(0, matchIndex).split("\n").length;
+  return body
+    .replace(/\\n/g, "\n")
+    .split("\n")
+    .map((line, offset) => {
+      const text = line.trim();
+      const parts = text.split("|");
+      return {
+        title: (parts[0] ?? "").trim(),
+        artist: (parts[1] ?? "").trim(),
+        year: (parts[2] ?? "").trim(),
+        genre: (parts[3] ?? "").trim(),
+        tier: (parts[4] ?? "").trim(),
+        flags: (parts[5] ?? "").trim(),
+        fieldCount: parts.length,
+        raw: text,
+        section: label,
+        path,
+        line: startLine + offset,
+      };
+    })
+    .filter(entry => entry.raw.length > 0);
+}
 
 function extractSections() {
   const sections = [];
-  // Sekcia je `const WORLD_HITS[_EXTENDED] = parseSongs(`…`, { … })` alebo
-  // `xx: parseSongs(`…`, { … })`. Za backtickom je vždy čiarka a objekt s
-  // predvolenými metadátami sekcie.
-  const re = /(?:const (WORLD_HITS(?:_EXTENDED)?) =|(\w\w):)\s*parseSongs\(`([\s\S]*?)`\s*,\s*\{/g;
-  let match;
-  while ((match = re.exec(raw)) !== null) {
-    const label = match[1] ? match[1].toLowerCase() : match[2];
-    const startLine = raw.slice(0, match.index).split("\n").length;
-    const songs = match[3]
-      .replace(/\\n/g, "\n")
-      .split("\n")
-      .map((line, offset) => {
-        const text = line.trim();
-        const parts = text.split("|");
-        return {
-          title: (parts[0] ?? "").trim(),
-          artist: (parts[1] ?? "").trim(),
-          year: (parts[2] ?? "").trim(),
-          genre: (parts[3] ?? "").trim(),
-          tier: (parts[4] ?? "").trim(),
-          flags: (parts[5] ?? "").trim(),
-          fieldCount: parts.length,
-          raw: text,
-          section: label,
-          line: startLine + offset,
-        };
-      })
-      .filter(entry => entry.raw.length > 0);
-    sections.push({ label, songs });
+
+  for (const { path, raw } of sources) {
+    // Pôvodné inline sekcie v localizedSongs.ts.
+    const inlineRe =
+      /(?:const (WORLD_HITS(?:_EXTENDED)?) =|(\w\w):)\s*parseSongs\(`([\s\S]*?)`\s*,\s*\{/g;
+    let match;
+    while ((match = inlineRe.exec(raw)) !== null) {
+      const label = match[1] ? match[1].toLowerCase() : match[2];
+      sections.push({
+        label,
+        songs: extractSongs(raw, match[3], label, match.index, path),
+      });
+    }
+
+    // Samostatné ručne kurátorované expanzné moduly.
+    const expansionRe =
+      /export const (\w+_SONG_EXPANSION)\s*=\s*(?:String\.raw)?`([\s\S]*?)`/g;
+    while ((match = expansionRe.exec(raw)) !== null) {
+      const label = EXPANSION_LABELS[match[1]];
+      if (!label) continue;
+      sections.push({
+        label,
+        songs: extractSongs(raw, match[2], label, match.index, path),
+      });
+    }
   }
+
   return sections;
 }
 
@@ -102,12 +173,29 @@ function songKey(song) {
 const sections = extractSections();
 const all = sections.flatMap(section => section.songs);
 const errors = [];
-const at = song => `${song.section} L${song.line}`;
+const EXPECTED_EXPANSIONS = new Set(Object.values(EXPANSION_LABELS));
+const foundExpansions = new Set(
+  sections
+    .filter(section => EXPECTED_EXPANSIONS.has(section.label))
+    .map(section => section.label)
+);
+for (const label of EXPECTED_EXPANSIONS) {
+  if (!foundExpansions.has(label)) {
+    errors.push(`validátor nenašiel povinnú expanznú sekciu „${label}"`);
+  }
+}
+
+const at = song => `${song.section} (${song.path}) L${song.line}`;
 
 // ── Formát ──────────────────────────────────────────────────────────────────
 // Riadok je `Názov|Interpret` a voliteľne `|Rok|Žáner|Náročnosť|Príznaky`.
 for (const song of all) {
-  if (song.fieldCount < 2 || song.fieldCount > 6 || !song.title || !song.artist) {
+  if (
+    song.fieldCount < 2 ||
+    song.fieldCount > 6 ||
+    !song.title ||
+    !song.artist
+  ) {
     errors.push(`malformovaný záznam — ${at(song)}: „${song.raw}"`);
     continue;
   }
@@ -118,7 +206,9 @@ for (const song of all) {
     errors.push(`neznámy žáner „${song.genre}" — ${at(song)}: „${song.title}"`);
   }
   if (song.tier && !TIERS.has(song.tier)) {
-    errors.push(`neznáma náročnosť „${song.tier}" — ${at(song)}: „${song.title}"`);
+    errors.push(
+      `neznáma náročnosť „${song.tier}" — ${at(song)}: „${song.title}"`
+    );
   }
   for (const flag of song.flags.split(/\s+/).filter(Boolean)) {
     if (flag === "hum" || flag === "nohum") continue;
@@ -135,7 +225,8 @@ for (const song of all) {
 
 // ── Iba originálne nahrávky ─────────────────────────────────────────────────
 for (const song of all) {
-  if (ALLOWED_VERSION_WORDS_IN_TITLE.has(song.title.toLocaleLowerCase())) continue;
+  if (ALLOWED_VERSION_WORDS_IN_TITLE.has(song.title.toLocaleLowerCase()))
+    continue;
   if (
     NON_ORIGINAL_IN_DATA.test(song.title) ||
     NON_ORIGINAL_IN_DATA.test(song.artist)
@@ -191,7 +282,11 @@ for (const variants of byArtist.values()) {
 // uniqueSongs() ich za behu zahodí, ale v zdroji maskujú preklepy a nafukujú
 // katalóg. Svetové hity sa pridávajú ku každému jazyku, takže ich jazyková
 // sekcia nesmie zopakovať.
-const WORLD_SECTIONS = new Set(["world_hits", "world_hits_extended"]);
+const WORLD_SECTIONS = new Set([
+  "world_hits",
+  "world_hits_extended",
+  "world_expansion",
+]);
 const worldKeys = new Set(
   sections
     .filter(section => WORLD_SECTIONS.has(section.label))

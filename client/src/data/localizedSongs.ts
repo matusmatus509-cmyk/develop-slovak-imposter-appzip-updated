@@ -1,4 +1,21 @@
 import type { AppLanguage } from "../i18n/LanguageProvider";
+import {
+  FRENCH_SONG_EXPANSION,
+  GERMAN_SONG_EXPANSION,
+} from "./songExpansions/germanAndFrench";
+import {
+  CZECH_SONG_EXPANSION,
+  SLOVAK_SONG_EXPANSION,
+} from "./songExpansions/slovakAndCzech";
+import {
+  PORTUGUESE_SONG_EXPANSION,
+  SPANISH_SONG_EXPANSION,
+} from "./songExpansions/spanishAndPortuguese";
+import {
+  ENGLISH_SONG_EXPANSION,
+  WORLD_SONG_ARTIST_LANGUAGES,
+  WORLD_SONG_EXPANSION,
+} from "./songExpansions/worldAndEnglish";
 import type { SongCard } from "./teamBattleExtras";
 
 /**
@@ -54,6 +71,8 @@ interface SectionDefaults {
   language: SongLanguage;
   scope: "global" | "local";
   region?: string;
+  /** Voliteľné explicitné prepisy jazyka podľa normalizovaného interpreta. */
+  artistLanguages?: Readonly<Record<string, SongLanguage>>;
 }
 
 const GENRES = new Set<string>([
@@ -182,7 +201,7 @@ function parseSongs(library: string, defaults: SectionDefaults): Song[] {
     // rozumného filtra, ale ani sa nevydáva za svetoznámy hit.
     const tier = (rawTier || profile?.tier || "medium") as SongTier;
 
-    let language = defaults.language;
+    let language = defaults.artistLanguages?.[artistKey] ?? defaults.language;
     let region = defaults.region;
     // Melódiu vieme zahmkať vždy, kým to žáner alebo príznak nevylúči.
     let hummable = !(genre && LYRIC_DRIVEN_GENRES.has(genre));
@@ -870,62 +889,7 @@ Kristínka iba spí|Peter Nagy
 Profesor Indigo|Peter Nagy
 So mnou nikdy nezostarneš|Peter Nagy
 Korálky od Natálky|Peter Nagy
-Báječný chlap|Michal Tučný
-Jožin z bažin|Ivan Mládek
-Lady Carneval|Karel Gott
-Být stále mlád|Karel Gott
-Trezor|Karel Gott
-Když muž se ženou snídá|Karel Gott
-Včelka Mája|Karel Gott
-Zvonky štěstí|Karel Gott & Darina Rolincová
-Holubí dům|Jiří Schelinger
-Jasná zpráva|Olympic
-Slza z tváře padá|Olympic
-Dej mi víc své lásky|Olympic
-Snad jsem to zavinil já|Olympic
-Sladké mámení|Helena Vondráčková
-Dlouhá noc|Helena Vondráčková
-Lásko má, já stůňu|Helena Vondráčková
-Nonstop|Michal David
-Pár přátel|Michal David
-Decibely lásky|Michal David
-Láska je láska|Lucie Bílá
-Esemes|Lucie Bílá
-Amerika|Lucie
-Medvídek|Lucie
-Černí andělé|Lucie
-Chci zas v tobě spát|Lucie
-Šrouby do hlavy|Lucie
-Malování|Divokej Bill
-Plakala|Divokej Bill
-Pohoda|Kabát
-Burlaci|Kabát
-Dole v dole|Kabát
-V pekle sudy válej|Kabát
-Colorado|Kabát
-Malá dáma|Kabát
-Tabáček|Chinaski
-Víno|Chinaski
-Klára|Chinaski
-1. signální|Chinaski
-Každý ráno|Chinaski
-Cesta|Kryštof
-Atentát|Kryštof
-Rubikon|Kryštof
-Anděl|Mirai
-Když nemůžeš, tak přidej|Mirai
-Boky jako skříň|Ewa Farna
-Nafrněná|Barbora Poláková
-Cesta z města|Support Lesbiens
-Šrouby a matice|Mandrage
-Hledá se žena|Mandrage
-František|Buty
-Nad stádem koní|Buty
 Láska je tu s vami|Peter Nagy
-Tam u nebeských bran|Michal Tučný
-Želva|Olympic
-Sen|Lucie
-Zlatíčko|Chinaski
 Zlodej slnečníc|Elán
 Smrtka na pražskom orloji|Elán
 Malá nočná búrka|Team
@@ -946,21 +910,6 @@ Logická hádanka|Horkýže Slíže
 Nazdar|Horkýže Slíže
 Banda tupých hláv|Horkýže Slíže
 Matura|Smola a Hrušky
-Kávu si osladím|Karel Gott
-Zůstanu svůj|Karel Gott
-Poupata|Michal David
-Pátá|Helena Vondráčková
-Žal se odkládá|Jiří Korn
-Daniela|Lucie
-Panic|Lucie
-Oheň|Lucie
-Šaman|Kabát
-Bára|Kabát
-Drobná paralela|Chinaski
-Vrchlabí|Chinaski
-Obchodník s deštěm|Kryštof
-Srdce|Kryštof
-Brouk Pytlík|Karel Gott
 Kde si|Pavol Habera
 Láska necestuj tým vlakom|Pavol Habera
 Boli sme raz milovaní|Pavol Habera
@@ -1010,27 +959,99 @@ Keď sme sami|Hex
 Život|Hex
 Ja som to vedel|Polemic
 Fajčiť treba|Smola a Hrušky
-Štěstí je krásná věc|Richard Müller
-Rozeznávám|Richard Müller
 Šaty|Marika Gombitová
 Nároční|Team
+`, { language: "sk", scope: "local" }),
+  cs: parseSongs(`
+Báječný chlap|Michal Tučný
+Jožin z bažin|Ivan Mládek
+Lady Carneval|Karel Gott
+Být stále mlád|Karel Gott
+Trezor|Karel Gott
+Když muž se ženou snídá|Karel Gott
+Včelka Mája|Karel Gott
+Zvonky štěstí|Karel Gott & Darina Rolincová
+Holubí dům|Jiří Schelinger
+Jasná zpráva|Olympic
+Slza z tváře padá|Olympic
+Dej mi víc své lásky|Olympic
+Snad jsem to zavinil já|Olympic
+Sladké mámení|Helena Vondráčková
+Dlouhá noc|Helena Vondráčková
+Lásko má, já stůňu|Helena Vondráčková
+Nonstop|Michal David
+Pár přátel|Michal David
+Decibely lásky|Michal David
+Láska je láska|Lucie Bílá
+Esemes|Lucie Bílá
+Amerika|Lucie
+Medvídek|Lucie
+Černí andělé|Lucie
+Chci zas v tobě spát|Lucie
+Šrouby do hlavy|Lucie
+Malování|Divokej Bill
+Plakala|Divokej Bill
+Pohoda|Kabát
+Burlaci|Kabát
+Dole v dole|Kabát
+V pekle sudy válej|Kabát
+Colorado|Kabát
+Malá dáma|Kabát
+Tabáček|Chinaski
+Víno|Chinaski
+Klára|Chinaski
+1. signální|Chinaski
+Každý ráno|Chinaski
+Cesta|Kryštof
+Atentát|Kryštof
+Rubikon|Kryštof
+Anděl|Mirai
+Když nemůžeš, tak přidej|Mirai
+Mám boky jako skříň|Ewa Farna
+Nafrněná|Barbora Poláková
+Cesta z města|Support Lesbiens
+Šrouby a matice|Mandrage
+Hledá se žena|Mandrage
+František|Buty
+Nad stádem koní|Buty
+Tam u nebeských bran|Michal Tučný
+Želva|Olympic
+Sen|Lucie
+Zlatíčko|Chinaski
+Kávu si osladím|Karel Gott
+Zůstanu svůj|Karel Gott
+Poupata|Michal David
+Pátá|Helena Vondráčková
+Žal se odkládá|Jiří Korn
+Daniela|Lucie
+Panic|Lucie
+Oheň|Lucie
+Šaman|Kabát
+Bára|Kabát
+Drobná paralela|Chinaski
+Vrchlabí|Chinaski
+Obchodník s deštěm|Kryštof
+Srdce|Kryštof
+Brouk Pytlík|Karel Gott
+Štěstí je krásná věc|Richard Müller
+Rozeznávám|Richard Müller
 Céčka, sbírá céčka|Michal David
 Nenapovídej|Michal David
 S Láskou|Michal David
-Daj mi víc své lásky|Olympic
+Krásná neznámá|Olympic
 Klobouk ve křoví|Lucie
 Dotknu se ohně|Lucie
 Na sever|Kabát
 Kdoví jestli|Kabát
 Stará Lou|Kabát
-Zamilovaný/Nešťastná|Rybičky 48
+Zamilovaný / Nešťastná|Rybičky 48 & Bára Zemanová
 Sliby se maj plnit o Vánocích|Janek Ledecký
 Proklínám|Janek Ledecký
 Měls mě vůbec rád|Ewa Farna
-Boží mlejny melou|Amor
+Boží mlejny|Ewa Farna
 Dám dělovou ránu|Karel Gott
 Když milenky pláčou|Karel Gott
-`, { language: "sk", scope: "local" }),
+`, { language: "cs", scope: "local", region: "CZ" }),
   en: parseSongs(`
 Hotel California|Eagles
 Yesterday|The Beatles
@@ -3145,15 +3166,69 @@ Cavalos de Corrida|UHF
 `, { language: "pt", scope: "local" }),
 };
 
+const WORLD_SONG_EXPANSIONS = parseSongs(WORLD_SONG_EXPANSION, {
+  language: "en",
+  scope: "global",
+  artistLanguages: Object.fromEntries(
+    Object.entries(WORLD_SONG_ARTIST_LANGUAGES).map(([artist, language]) => [
+      normalizeArtistKey(artist),
+      language,
+    ]),
+  ) as Record<string, SongLanguage>,
+});
+
+const LOCAL_SONG_EXPANSIONS: Partial<Record<SongLanguage, Song[]>> = {
+  sk: parseSongs(SLOVAK_SONG_EXPANSION, {
+    language: "sk",
+    scope: "local",
+    region: "SK",
+  }),
+  cs: parseSongs(CZECH_SONG_EXPANSION, {
+    language: "cs",
+    scope: "local",
+    region: "CZ",
+  }),
+  en: parseSongs(ENGLISH_SONG_EXPANSION, {
+    language: "en",
+    scope: "local",
+  }),
+  de: parseSongs(GERMAN_SONG_EXPANSION, {
+    language: "de",
+    scope: "local",
+    region: "DE",
+  }),
+  es: parseSongs(SPANISH_SONG_EXPANSION, {
+    language: "es",
+    scope: "local",
+  }),
+  fr: parseSongs(FRENCH_SONG_EXPANSION, {
+    language: "fr",
+    scope: "local",
+    region: "FR",
+  }),
+  pt: parseSongs(PORTUGUESE_SONG_EXPANSION, {
+    language: "pt",
+    scope: "local",
+  }),
+};
+
 function uniqueSongs(songs: readonly Song[]): Song[] {
   return Array.from(new Map(songs.map((song) => [song.id, song])).values());
 }
 
 /** Svetový pool — mieša sa do každého jazyka hry. */
-export const GLOBAL_SONGS: Song[] = uniqueSongs([...WORLD_HITS, ...WORLD_HITS_EXTENDED]);
+export const GLOBAL_SONGS: Song[] = uniqueSongs([
+  ...WORLD_HITS,
+  ...WORLD_HITS_EXTENDED,
+  ...WORLD_SONG_EXPANSIONS,
+]);
 
 const LOCAL_LANGUAGE_KEYS = [
-  ...new Set([...Object.keys(LOCAL_HITS), ...Object.keys(LOCAL_HITS_EXTENDED)]),
+  ...new Set([
+    ...Object.keys(LOCAL_HITS),
+    ...Object.keys(LOCAL_HITS_EXTENDED),
+    ...Object.keys(LOCAL_SONG_EXPANSIONS),
+  ]),
 ] as SongLanguage[];
 
 /** Lokálne pooly podľa spievaného jazyka. Kľúč je `SongLanguage`, nie jazyk UI,
@@ -3162,7 +3237,11 @@ export const LOCAL_SONGS_BY_LANGUAGE: Partial<Record<SongLanguage, Song[]>> =
   Object.fromEntries(
     LOCAL_LANGUAGE_KEYS.map((language) => [
       language,
-      uniqueSongs([...(LOCAL_HITS[language] ?? []), ...(LOCAL_HITS_EXTENDED[language] ?? [])]),
+      uniqueSongs([
+        ...(LOCAL_HITS[language] ?? []),
+        ...(LOCAL_HITS_EXTENDED[language] ?? []),
+        ...(LOCAL_SONG_EXPANSIONS[language] ?? []),
+      ]),
     ]),
   ) as Partial<Record<SongLanguage, Song[]>>;
 
