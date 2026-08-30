@@ -12073,9 +12073,9 @@
   },
   {
     "id": "charades_sk_2013",
-    "text": "Cvičenie delfína",
+    "text": "Výcvik slepeckého psa",
     "difficulty": "hard",
-    "category": "actions"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2014",
@@ -12103,7 +12103,7 @@
   },
   {
     "id": "charades_sk_2018",
-    "text": "Dedko Mráz",
+    "text": "Hľadanie začiatku lepiacej pásky",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -12151,15 +12151,15 @@
   },
   {
     "id": "charades_sk_2026",
-    "text": "Hádzanie nožom",
+    "text": "Prenášanie stohu kníh",
     "difficulty": "hard",
     "category": "actions"
   },
   {
     "id": "charades_sk_2027",
-    "text": "Hádzanie sekerou",
+    "text": "Vyklopenie koláča z formy",
     "difficulty": "hard",
-    "category": "actions"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2028",
@@ -12193,7 +12193,7 @@
   },
   {
     "id": "charades_sk_2033",
-    "text": "Chôdza po skle",
+    "text": "Vyžmýkanie špongie",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -12205,7 +12205,7 @@
   },
   {
     "id": "charades_sk_2035",
-    "text": "Chôdza po uhlíkoch",
+    "text": "Chytanie klzkého mydla",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -12229,7 +12229,7 @@
   },
   {
     "id": "charades_sk_2039",
-    "text": "Káblová televízia",
+    "text": "Chytanie odfúknutého dáždnika",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -12289,7 +12289,7 @@
   },
   {
     "id": "charades_sk_2049",
-    "text": "Krídla motýľa",
+    "text": "Prilepenie odlepenej podrážky",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -12355,9 +12355,9 @@
   },
   {
     "id": "charades_sk_2060",
-    "text": "Leštenie strieborného pohára",
+    "text": "Vyrovnávanie kývajúceho sa stola",
     "difficulty": "hard",
-    "category": "actions"
+    "category": "household"
   },
   {
     "id": "charades_sk_2061",
@@ -12373,9 +12373,9 @@
   },
   {
     "id": "charades_sk_2063",
-    "text": "Lezenie bez lana",
+    "text": "Oddeľovanie zamotaných vešiakov",
     "difficulty": "hard",
-    "category": "actions"
+    "category": "household"
   },
   {
     "id": "charades_sk_2064",
@@ -12385,7 +12385,7 @@
   },
   {
     "id": "charades_sk_2065",
-    "text": "Ležanie na klincoch",
+    "text": "Hľadanie pod vankúšmi na gauči",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -12481,7 +12481,7 @@
   },
   {
     "id": "charades_sk_2081",
-    "text": "Nápoveda v búdke",
+    "text": "Odlepovanie nálepky",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -12553,7 +12553,7 @@
   },
   {
     "id": "charades_sk_2093",
-    "text": "Nosidlá na ihrisku",
+    "text": "Utieranie okuliarov",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -12619,7 +12619,7 @@
   },
   {
     "id": "charades_sk_2104",
-    "text": "Olympijský oheň",
+    "text": "Fúkanie do horúcej polievky",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -12631,7 +12631,7 @@
   },
   {
     "id": "charades_sk_2106",
-    "text": "Oprava lodného sťažňa",
+    "text": "Kývanie uvoľneným zubom",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -12907,7 +12907,7 @@
   },
   {
     "id": "charades_sk_2152",
-    "text": "Sanitka prvej pomoci",
+    "text": "Vkladanie listu do obálky",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -12931,9 +12931,9 @@
   },
   {
     "id": "charades_sk_2156",
-    "text": "Skákanie do gumy",
+    "text": "Ozdobné skladanie obrúskov",
     "difficulty": "hard",
-    "category": "actions"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2157",
@@ -12949,9 +12949,9 @@
   },
   {
     "id": "charades_sk_2159",
-    "text": "Skok z mosta",
+    "text": "Ukladanie hrncov do seba",
     "difficulty": "hard",
-    "category": "actions"
+    "category": "household"
   },
   {
     "id": "charades_sk_2160",
@@ -12973,9 +12973,9 @@
   },
   {
     "id": "charades_sk_2163",
-    "text": "Slon na pódiu",
+    "text": "Vyťahovanie zásuvky z komody",
     "difficulty": "hard",
-    "category": "actions"
+    "category": "household"
   },
   {
     "id": "charades_sk_2164",
@@ -12985,9 +12985,9 @@
   },
   {
     "id": "charades_sk_2165",
-    "text": "Sochanie z kameňa",
+    "text": "Čistenie zablatených topánok",
     "difficulty": "hard",
-    "category": "actions"
+    "category": "household"
   },
   {
     "id": "charades_sk_2166",
@@ -13123,7 +13123,7 @@
   },
   {
     "id": "charades_sk_2188",
-    "text": "Švihadlo okolo nôh",
+    "text": "Chytanie pukancov ústami",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -13201,13 +13201,13 @@
   },
   {
     "id": "charades_sk_2201",
-    "text": "Veľké pirátske oko",
+    "text": "Nácvik javiskového súboja",
     "difficulty": "hard",
-    "category": "actions"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2202",
-    "text": "Veľké strašidlo",
+    "text": "Pridržanie dverí pre druhého",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -13243,7 +13243,7 @@
   },
   {
     "id": "charades_sk_2208",
-    "text": "Vlajka na Mesiaci",
+    "text": "Vkladanie fotografie do rámu",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -13327,7 +13327,7 @@
   },
   {
     "id": "charades_sk_2222",
-    "text": "Výstup na Everest",
+    "text": "Vyberanie hračky z vane",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -13441,7 +13441,7 @@
   },
   {
     "id": "charades_sk_2241",
-    "text": "Zdolanie vodopádu",
+    "text": "Vytriasanie snehu z kapucne",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -13465,7 +13465,7 @@
   },
   {
     "id": "charades_sk_2245",
-    "text": "Živá socha",
+    "text": "Zastavovanie taxíka",
     "difficulty": "hard",
     "category": "actions"
   },
@@ -13567,15 +13567,15 @@
   },
   {
     "id": "charades_sk_2262",
-    "text": "Jazda na koni",
+    "text": "Veverica ukrýva zásoby",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2263",
-    "text": "Karneval v Riu",
+    "text": "Vtáčie pytačky",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2264",
@@ -13591,21 +13591,21 @@
   },
   {
     "id": "charades_sk_2266",
-    "text": "Kúpanie v jazere",
+    "text": "Žaba loví muchu jazykom",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2267",
-    "text": "Lezenie na stene",
+    "text": "Pes striasa vodu zo srsti",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2268",
-    "text": "Maľovanie na tvár",
+    "text": "Vydra rozbíja mušľu kameňom",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2269",
@@ -13621,9 +13621,9 @@
   },
   {
     "id": "charades_sk_2271",
-    "text": "Modelovanie z hliny",
+    "text": "Liahnutie kuriatka",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2272",
@@ -13633,21 +13633,21 @@
   },
   {
     "id": "charades_sk_2273",
-    "text": "Ohňostroj nad mestom",
+    "text": "Prežúvanie potravy",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2274",
-    "text": "Olympijská pochodeň",
+    "text": "Zvliekanie kože",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2275",
-    "text": "Opaľovanie na pláži",
+    "text": "Kukučka kladie vajce do hniezda",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2276",
@@ -13663,15 +13663,15 @@
   },
   {
     "id": "charades_sk_2278",
-    "text": "Písanie do piesku",
+    "text": "Lov zo zálohy",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2279",
-    "text": "Písanie na tabuli",
+    "text": "Korytnačka sa ukrýva v pancieri",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2280",
@@ -13687,27 +13687,27 @@
   },
   {
     "id": "charades_sk_2282",
-    "text": "Pozorovanie ďalekohľadom",
+    "text": "Slon sa ovieva ušami",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2283",
-    "text": "Pozorovanie hviezd",
+    "text": "Včelí tanec",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2284",
-    "text": "Pozorovanie vtákov",
+    "text": "Hrabanie nory",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2285",
-    "text": "Pozorovanie zvierat",
+    "text": "Čistenie peria",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2286",
@@ -13735,15 +13735,15 @@
   },
   {
     "id": "charades_sk_2290",
-    "text": "Skákanie do kaluže",
+    "text": "Sušenie krídel",
     "difficulty": "hard",
-    "category": "actions"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2291",
-    "text": "Skákanie vo vreci",
+    "text": "Hovnivál kotúľa guľu trusu",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2292",
@@ -13753,9 +13753,9 @@
   },
   {
     "id": "charades_sk_2293",
-    "text": "Skoky do vody",
+    "text": "Líška skáče do hlbokého snehu",
     "difficulty": "hard",
-    "category": "actions"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2294",
@@ -13795,9 +13795,9 @@
   },
   {
     "id": "charades_sk_2300",
-    "text": "Škótske gajdy",
+    "text": "Sova otáča hlavu",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2301",
@@ -13813,9 +13813,9 @@
   },
   {
     "id": "charades_sk_2303",
-    "text": "Zaspávanie na gauči",
+    "text": "Vlky obkľučujú korisť",
     "difficulty": "hard",
-    "category": "activities"
+    "category": "animals"
   },
   {
     "id": "charades_sk_2304",
@@ -13837,25 +13837,25 @@
   },
   {
     "id": "charades_sk_2307",
-    "text": "Ďateľ na strome",
+    "text": "Vták kŕmi mláďatá zobákom",
     "difficulty": "hard",
     "category": "animals"
   },
   {
     "id": "charades_sk_2308",
-    "text": "Delfín vo vlne",
+    "text": "Losos vyskakuje v perejách",
     "difficulty": "hard",
     "category": "animals"
   },
   {
     "id": "charades_sk_2309",
-    "text": "Húsenica na liste",
+    "text": "Tučniak zohrieva vajce na nohách",
     "difficulty": "hard",
     "category": "animals"
   },
   {
     "id": "charades_sk_2310",
-    "text": "Hviezdica na dne",
+    "text": "Jašterica zhadzuje chvost",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -13873,7 +13873,7 @@
   },
   {
     "id": "charades_sk_2313",
-    "text": "Kengura s mláďaťom",
+    "text": "Klokan nosí mláďa vo vaku",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -13885,13 +13885,13 @@
   },
   {
     "id": "charades_sk_2315",
-    "text": "Kôň s rohom",
+    "text": "Obrana stáda",
     "difficulty": "hard",
     "category": "animals"
   },
   {
     "id": "charades_sk_2316",
-    "text": "Krab s klepetami",
+    "text": "Krab uniká bokom",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -13909,7 +13909,7 @@
   },
   {
     "id": "charades_sk_2319",
-    "text": "Labuť na jazere",
+    "text": "Labuť bráni hniezdo",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -13933,19 +13933,19 @@
   },
   {
     "id": "charades_sk_2323",
-    "text": "Lietajúci vták",
+    "text": "Husi letia v útvare",
     "difficulty": "hard",
     "category": "animals"
   },
   {
     "id": "charades_sk_2324",
-    "text": "Mačka na konári",
+    "text": "Mačka sa pretíska škárou",
     "difficulty": "hard",
     "category": "animals"
   },
   {
     "id": "charades_sk_2325",
-    "text": "Medúza vo vode",
+    "text": "Medúza pulzuje vo vode",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -13963,7 +13963,7 @@
   },
   {
     "id": "charades_sk_2328",
-    "text": "Netopier v jaskyni",
+    "text": "Netopier visí hlavou nadol",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -13987,7 +13987,7 @@
   },
   {
     "id": "charades_sk_2332",
-    "text": "Orol za letu",
+    "text": "Orol krúži nad korisťou",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -14005,7 +14005,7 @@
   },
   {
     "id": "charades_sk_2335",
-    "text": "Pavúk na pavučine",
+    "text": "Pavúk tká pavučinu",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -14023,7 +14023,7 @@
   },
   {
     "id": "charades_sk_2338",
-    "text": "Ryba pod vodou",
+    "text": "Ryby plávajú v húfe",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -14041,7 +14041,7 @@
   },
   {
     "id": "charades_sk_2341",
-    "text": "Slimák s domčekom",
+    "text": "Slimák zaťahuje tykadlá",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -14053,7 +14053,7 @@
   },
   {
     "id": "charades_sk_2343",
-    "text": "Sova na konári",
+    "text": "Plameniak stojí na jednej nohe",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -14065,7 +14065,7 @@
   },
   {
     "id": "charades_sk_2345",
-    "text": "Ťava s hrbmi",
+    "text": "Ťava si kľaká pred nakladaním",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -14077,7 +14077,7 @@
   },
   {
     "id": "charades_sk_2347",
-    "text": "Tuleň s loptou",
+    "text": "Tuleň tlieska prednými plutvami",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -14101,7 +14101,7 @@
   },
   {
     "id": "charades_sk_2351",
-    "text": "Vták na strome",
+    "text": "Kôň švihá chvostom",
     "difficulty": "hard",
     "category": "animals"
   },
@@ -14131,1017 +14131,1017 @@
   },
   {
     "id": "charades_sk_2356",
-    "text": "Aang",
+    "text": "Vietor prevracia dáždnik naruby",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "weather"
   },
   {
     "id": "charades_sk_2357",
-    "text": "Aladdin",
+    "text": "Mráz kreslí vzory na okne",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "weather"
   },
   {
     "id": "charades_sk_2358",
-    "text": "Alex lev",
+    "text": "Dážď zamŕza pri dopade",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "weather"
   },
   {
     "id": "charades_sk_2359",
-    "text": "Ash Ketchum",
+    "text": "Krúpy preliačia strechu auta",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "weather"
   },
   {
     "id": "charades_sk_2360",
-    "text": "Bambi",
+    "text": "Udržiavanie pierka vo vzduchu fúkaním",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2361",
-    "text": "Bart Simpson",
+    "text": "Guľový blesk",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "weather"
   },
   {
     "id": "charades_sk_2362",
-    "text": "Kráska a zviera",
+    "text": "Tornádo strháva strechu",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "weather"
   },
   {
     "id": "charades_sk_2363",
-    "text": "Veľká šestka",
+    "text": "Krúpy odskakujú zo strechy",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "weather"
   },
   {
     "id": "charades_sk_2364",
-    "text": "Bing Bunny",
+    "text": "Prekračovanie horského potoka",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2365",
-    "text": "Bingo z Bluey",
+    "text": "Tápanie v hustej hmle",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "weather"
   },
   {
     "id": "charades_sk_2366",
-    "text": "Bluey",
+    "text": "Strom sa ohýba vo víchrici",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "weather"
   },
   {
     "id": "charades_sk_2367",
-    "text": "Bob",
+    "text": "Mraky sa zbiehajú pred búrkou",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "weather"
   },
   {
     "id": "charades_sk_2368",
-    "text": "Bobek",
+    "text": "Potok sa vylieva z brehov",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2369",
-    "text": "Bolek",
+    "text": "Podzemný prameň",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2370",
-    "text": "Bolt",
+    "text": "Kvapľová jaskyňa",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2371",
-    "text": "Brave",
+    "text": "Korene stromu obopínajú balvan",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2372",
-    "text": "Bugs Bunny",
+    "text": "Uvoľňovanie čižmy z blata",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2373",
-    "text": "Calimero",
+    "text": "Lávové pole",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2374",
-    "text": "Autá",
+    "text": "Skalný previs",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2375",
-    "text": "Cinderella",
+    "text": "Zapadanie do pohyblivého piesku",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2376",
-    "text": "Daffy Duck",
+    "text": "Rieka obteká malý ostrov",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2377",
-    "text": "Dumbo",
+    "text": "Príliv zmýva stopy v piesku",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2378",
-    "text": "Dumbo s pierkom",
+    "text": "Slnečnica sa otáča za slnkom",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2379",
-    "text": "Encanto",
+    "text": "Vlna prevracia malý čln",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2380",
-    "text": "Hľadá sa Dory",
+    "text": "Ľadová kryha sa unáša",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2381",
-    "text": "Obr Dobr",
+    "text": "Sneh sa zosúva zo strechy",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2382",
-    "text": "Fiona",
+    "text": "Kamenné more",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2383",
-    "text": "Fred Flintstone",
+    "text": "Suché lístie víri vo vetre",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2384",
-    "text": "Frozen",
+    "text": "Strom padá cez lesný chodník",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2385",
-    "text": "Gargamel",
+    "text": "Prechod cez rozkývaný most",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2386",
-    "text": "George z Peppy Pig",
+    "text": "Dva potoky sa spájajú",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2387",
-    "text": "Gloria hrošica",
+    "text": "Lesný podrast",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2388",
-    "text": "Goofy",
+    "text": "Korene dvíhajú chodník",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2389",
-    "text": "Hercules",
+    "text": "Rastlina prerastá cez prasklinu",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2390",
-    "text": "Ijáčik",
+    "text": "Machový koberec",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2391",
-    "text": "V hlave",
+    "text": "Popadané ihličie",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2392",
-    "text": "Jerry",
+    "text": "Tlejúci peň",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2393",
-    "text": "Kačer Donald",
+    "text": "Praskanie vyschnutého dna jazera",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2394",
-    "text": "Kocúr Garfield",
+    "text": "Kus ľadovca sa odlamuje",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2395",
-    "text": "Kocúr Sylvester",
+    "text": "Vietor presýpa piesok",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2396",
-    "text": "Korra",
+    "text": "Narovnávanie skrúteného kábla",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2397",
-    "text": "Kráľ Julien",
+    "text": "Skladací meter",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2398",
-    "text": "Krtko v nohaviciach",
+    "text": "Páková vývrtka",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2399",
-    "text": "Kubko",
+    "text": "Naťahovanie kovovej pružiny",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2400",
-    "text": "Stitch",
+    "text": "Nožná pumpa",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2401",
-    "text": "Lisa Simpsonová",
+    "text": "Zdvíhanie auta hydraulickým zdvihákom",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2402",
-    "text": "Lolek",
+    "text": "Prestrihovanie drôtu štikacími kliešťami",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2403",
-    "text": "Lord Farquaad",
+    "text": "Valček na chlpy",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2404",
-    "text": "Macko Uško",
+    "text": "Dierovanie stohu papiera",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2405",
-    "text": "Maggie Simpsonová",
+    "text": "Uťahovanie skrutky šesťhranným kľúčom",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2406",
-    "text": "Marge Simpsonová",
+    "text": "Odpadkový kôš s pedálom",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2407",
-    "text": "Marshall z Labkovej patroly",
+    "text": "Odlepovanie starej tapety",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2408",
-    "text": "Marty zo ZOO",
+    "text": "Zarovnávanie dosky hoblíkom",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2409",
-    "text": "Máša",
+    "text": "Zváranie v ochrannej maske",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2410",
-    "text": "Máša na kolobežke",
+    "text": "Ochranný tvárový štít",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2411",
-    "text": "Maťko",
+    "text": "Nasadenie ochrannej masky",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2412",
-    "text": "Medveď Yogi",
+    "text": "Protipožiarna deka",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2413",
-    "text": "Medveď z Máše",
+    "text": "Ručný lis na plechovky",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2414",
-    "text": "Melman žirafa",
+    "text": "Otočný stojan na korenie",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2415",
-    "text": "Meowth",
+    "text": "Meteorologický balón",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2416",
-    "text": "Minnie Mouse",
+    "text": "Klieštiky na cukor",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2417",
-    "text": "Misty",
+    "text": "Kempingový varič",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2418",
-    "text": "Moana",
+    "text": "Šliapanie hrozna bosými nohami",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2419",
-    "text": "Univerzita pre príšerky",
+    "text": "Skladací rybársky podberák",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2420",
-    "text": "Príšerky s.r.o.",
+    "text": "Hustilka s tlakomerom",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2421",
-    "text": "Mulan",
+    "text": "Upevnenie fotoaparátu na statív",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2422",
-    "text": "Oliverovi priatelia",
+    "text": "Odstredivka na šalát",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2423",
-    "text": "Oslík",
+    "text": "Krájač na vajcia",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2424",
-    "text": "Ovečka Shaun",
+    "text": "Cukrárske zdobiace vrecko",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2425",
-    "text": "Pán Krab",
+    "text": "Vyvetranie čerstvo vymaľovanej izby",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "household"
   },
   {
     "id": "charades_sk_2426",
-    "text": "Pán Úžasný",
+    "text": "Odsávanie žĺtka plastovou fľašou",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "household"
   },
   {
     "id": "charades_sk_2427",
-    "text": "Patrik",
+    "text": "Dvíhanie pokrievky kuchynskou chňapkou",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "household"
   },
   {
     "id": "charades_sk_2428",
-    "text": "Pepek námorník",
+    "text": "Kuchynský robot",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "household"
   },
   {
     "id": "charades_sk_2429",
-    "text": "Peppa Pig",
+    "text": "Umývanie úzkej fľaše kefou",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "household"
   },
   {
     "id": "charades_sk_2430",
-    "text": "Pluto",
+    "text": "Vákuová balička",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "household"
   },
   {
     "id": "charades_sk_2431",
-    "text": "Pocahontas",
+    "text": "Parný čistič",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "household"
   },
   {
     "id": "charades_sk_2432",
-    "text": "Pocoyo",
+    "text": "Odvlhčovač vzduchu",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "household"
   },
   {
     "id": "charades_sk_2433",
-    "text": "Požiarnik Sam",
+    "text": "Detektor dymu",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "household"
   },
   {
     "id": "charades_sk_2434",
-    "text": "Ralph búra internet",
+    "text": "Rozvodná skriňa",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "household"
   },
   {
     "id": "charades_sk_2435",
-    "text": "Kapitán Barnacles",
+    "text": "Termostatická hlavica",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "household"
   },
   {
     "id": "charades_sk_2436",
-    "text": "Ryder z Labkovej patroly",
+    "text": "Barman pretrepáva šejker",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2437",
-    "text": "Sandy",
+    "text": "Kriminalistický technik",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2438",
-    "text": "Scooby-Doo",
+    "text": "Paleontológ skladá kostru dinosaura",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2439",
-    "text": "Shaggy",
+    "text": "Knihovník pečiatkuje vrátenú knihu",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2440",
-    "text": "Simpson Homer",
+    "text": "Geodet",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2441",
-    "text": "Skye z Labkovej patroly",
+    "text": "Kvetinár aranžuje slávnostnú kyticu",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2442",
-    "text": "Zvonár u Matky Božej",
+    "text": "Meteorológ",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2443",
-    "text": "SpongeBob",
+    "text": "Seizmológ",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2444",
-    "text": "Squidward",
+    "text": "Vulkanológ",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2445",
-    "text": "Staviteľ Bob",
+    "text": "Entomológ",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2446",
-    "text": "Sylvester",
+    "text": "Ornitológ",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2447",
-    "text": "Šmolko",
+    "text": "Krajinný architekt",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2448",
-    "text": "Tangled",
+    "text": "Optik narovnáva rám okuliarov",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2449",
-    "text": "Tasmánsky čert",
+    "text": "Stavebný inšpektor",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2450",
-    "text": "Aristomačky",
+    "text": "Ošetrovateľ dravcov",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2451",
-    "text": "Cisárov nový šmrnc",
+    "text": "Čistenie solárnych panelov",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2452",
-    "text": "Dobrý dinosaurus",
+    "text": "Potápačský inštruktor",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2453",
-    "text": "Úžasňákovci",
+    "text": "Horský sprievodca",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2454",
-    "text": "Kniha džunglí",
+    "text": "Kartograf kreslí vrstevnice",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2455",
-    "text": "Planéta pokladov",
+    "text": "Klenotník skúma prsteň",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2456",
-    "text": "Malá morská víla",
+    "text": "Arborista",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2457",
-    "text": "Tom",
+    "text": "Včelár",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2458",
-    "text": "Treasure Planet",
+    "text": "Preparátor zvierat",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2459",
-    "text": "Tweety",
+    "text": "Sedlár",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2460",
-    "text": "Hore",
+    "text": "Výrobca vitráží",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2461",
-    "text": "Včielka Maja",
+    "text": "Čalúnnik napína látku na kreslo",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2462",
-    "text": "Vilko",
+    "text": "Obuvník meria chodidlo zákazníka",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2463",
-    "text": "Vilma Flintstoneová",
+    "text": "Knihár",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2464",
-    "text": "WALL-E",
+    "text": "Nožiar",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2465",
-    "text": "Wish",
+    "text": "Lodný tesár utesňuje kýl",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2466",
-    "text": "Ralph ničiteľ",
+    "text": "Kamenár",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2467",
-    "text": "Zootopia",
+    "text": "Štukatér",
     "difficulty": "hard",
-    "category": "cartoons"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2468",
-    "text": "Alenka v krajine zázrakov",
+    "text": "Klampiar",
     "difficulty": "hard",
-    "category": "fairy_tales"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2469",
-    "text": "Kocúr v čižmách",
+    "text": "Pekár zapletá vrkoč z cesta",
     "difficulty": "hard",
-    "category": "fairy_tales"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2470",
-    "text": "Macko Puf",
+    "text": "Barista kreslí obrazec do peny",
     "difficulty": "hard",
-    "category": "fairy_tales"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2471",
-    "text": "Rytier bez bázne",
+    "text": "Zvárač potrubí",
     "difficulty": "hard",
-    "category": "fairy_tales"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2472",
-    "text": "Soľ nad zlato",
+    "text": "Opravár domácich spotrebičov",
     "difficulty": "hard",
-    "category": "fairy_tales"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2473",
-    "text": "Tinker Bell",
+    "text": "Ochutnávač potravín",
     "difficulty": "hard",
-    "category": "fairy_tales"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2474",
-    "text": "Ace Ventura",
+    "text": "Rušňovodič skúša brzdy vlaku",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2475",
-    "text": "Angelina Jolie",
+    "text": "Letecký mechanik",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "professions"
   },
   {
     "id": "charades_sk_2476",
-    "text": "Anne Hathaway",
+    "text": "Vyvažovanie lyžice na nose",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2477",
-    "text": "Beetlejuice",
+    "text": "Otvorenie konzervy pomocou lyžice",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2478",
-    "text": "Brad Pitt",
+    "text": "Výmena pílového listu",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2479",
-    "text": "Buzz Rakeťák",
+    "text": "Rozbaľovanie ťažkého koberca",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2480",
-    "text": "Captain America",
+    "text": "Odvzdušnenie radiátora",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "household"
   },
   {
     "id": "charades_sk_2481",
-    "text": "Daniel Radcliffe",
+    "text": "Vyberanie zlomenej korkovej zátky",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "household"
   },
   {
     "id": "charades_sk_2482",
-    "text": "Donkey",
+    "text": "Čistenie zaneseného filtra práčky",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "household"
   },
   {
     "id": "charades_sk_2483",
-    "text": "Dwayne Johnson",
+    "text": "Výmena elektrickej zásuvky",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "household"
   },
   {
     "id": "charades_sk_2484",
-    "text": "E.T.",
+    "text": "Zapojenie stropného svietidla",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "household"
   },
   {
     "id": "charades_sk_2485",
-    "text": "Elsa",
+    "text": "Nastavenie práčky do roviny",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "household"
   },
   {
     "id": "charades_sk_2486",
-    "text": "Emma Stone",
+    "text": "Odstránenie vodného kameňa",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "household"
   },
   {
     "id": "charades_sk_2487",
-    "text": "Forrest Gump",
+    "text": "Škárovanie obkladu",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2488",
-    "text": "Frodo Bublík",
+    "text": "Rezanie skla",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2489",
-    "text": "Herkules",
+    "text": "Spájkovanie medeného potrubia",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2490",
-    "text": "Hermiona Grangerová",
+    "text": "Nitovanie plechu",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2491",
-    "text": "Chris Hemsworth",
+    "text": "Ohýbanie kovovej rúrky",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2492",
-    "text": "Jack Sparrow",
+    "text": "Miešanie malty",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2493",
-    "text": "Jason Momoa",
+    "text": "Osadenie zárubne",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2494",
-    "text": "Jennifer Aniston",
+    "text": "Vyrovnanie podlahy",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2495",
-    "text": "John Wick",
+    "text": "Napínanie drôteného pletiva",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2496",
-    "text": "Johnny Depp",
+    "text": "Štepenie ovocného stromu",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2497",
-    "text": "Joker",
+    "text": "Prevzdušňovanie trávnika",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2498",
-    "text": "Julia Roberts",
+    "text": "Kompostovanie záhradného odpadu",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2499",
-    "text": "Keanu Reeves",
+    "text": "Kandizovanie citrusovej kôry",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2500",
-    "text": "Legolas",
+    "text": "Fermentovanie zeleniny",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2501",
-    "text": "Leonardo DiCaprio",
+    "text": "Strúhanie ceruzky",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2502",
-    "text": "Lord Voldemort",
+    "text": "Vyberanie triesky z prsta",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2503",
-    "text": "Luke Skywalker",
+    "text": "Vyťahovanie platobnej karty",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2504",
-    "text": "Margot Robbie",
+    "text": "Striedanie hráčov",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2505",
-    "text": "Mary Poppins",
+    "text": "Gól v predĺžení",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2506",
-    "text": "Meryl Streep",
+    "text": "Predčasný štart",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2507",
-    "text": "Morgan Freeman",
+    "text": "Bránenie v oslabení",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2508",
-    "text": "Nožnicovoruký Edward",
+    "text": "Čestné kolo",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2509",
-    "text": "Pedro Pascal",
+    "text": "Zavesenie kabáta na háčik",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2510",
-    "text": "Robert Downey Jr.",
+    "text": "Ošetrenie zraneného hráča",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2511",
-    "text": "Ron Weasley",
+    "text": "Kontrola športovej výstroje",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2512",
-    "text": "Ryan Reynolds",
+    "text": "Rozhodcovské gesto",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2513",
-    "text": "Sandra Bullock",
+    "text": "Brankár vyráža loptu",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2514",
-    "text": "Scarlett Johansson",
+    "text": "Podanie z výskoku",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2515",
-    "text": "Shrek",
+    "text": "Oslava víťazného gólu",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2516",
-    "text": "Simba",
+    "text": "Pretáčanie matraca",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "household"
   },
   {
     "id": "charades_sk_2517",
-    "text": "Thor",
+    "text": "Striasanie vody z rúk",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2518",
-    "text": "Tom Hanks",
+    "text": "Kľučkovanie medzi súpermi",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2519",
-    "text": "Tom Holland",
+    "text": "Vybehnutie brankára",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2520",
-    "text": "Will Smith",
+    "text": "Nasadenie plaveckých okuliarov",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2521",
-    "text": "Willy Wonka",
+    "text": "Vyťahovanie krabice z police",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2522",
-    "text": "Wonder Woman",
+    "text": "Splavovanie rieky na kajaku",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "sports"
   },
   {
     "id": "charades_sk_2523",
-    "text": "Woody",
+    "text": "Navliekanie obliečky na vankúš",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "household"
   },
   {
     "id": "charades_sk_2524",
-    "text": "Zendaya",
+    "text": "Ukladanie príboru do zásuvky",
     "difficulty": "hard",
-    "category": "famous_characters"
+    "category": "household"
   },
   {
     "id": "charades_sk_2525",
@@ -15169,9 +15169,9 @@
   },
   {
     "id": "charades_sk_2529",
-    "text": "Plavba Kolumba",
+    "text": "Ukladanie kufra na strechu",
     "difficulty": "hard",
-    "category": "history"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2530",
@@ -15205,723 +15205,723 @@
   },
   {
     "id": "charades_sk_2535",
-    "text": "Akropola v Aténach",
+    "text": "Kontrola cestovného pasu",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2536",
-    "text": "Atomium",
+    "text": "Balenie príručnej batožiny",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2537",
-    "text": "Bazilika svätého Petra",
+    "text": "Hľadanie nástupišťa",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2538",
-    "text": "Brandenburská brána",
+    "text": "Zmeškaný prestup",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2539",
-    "text": "Burj Khalifa",
+    "text": "Vyzdvihnutie batožiny",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2540",
-    "text": "Dóžov palác",
+    "text": "Bezpečnostná kontrola batožiny",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2541",
-    "text": "Edinburghský hrad",
+    "text": "Nastupovanie do trajektu",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2542",
-    "text": "Eiffelova veža",
+    "text": "Kupovanie spiatočného lístka",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2543",
-    "text": "Empire State Building",
+    "text": "Čakanie pri odletovej bráne",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2544",
-    "text": "Fontána di Trevi",
+    "text": "Skladanie stanu",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2545",
-    "text": "Golden Gate Bridge",
+    "text": "Čítanie cestovného poriadku",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2546",
-    "text": "Grand Canyon",
+    "text": "Hľadanie voľného sedadla",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2547",
-    "text": "Hora Fudži",
+    "text": "Rezervácia nocľahu",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2548",
-    "text": "Hora Kilimandžáro",
+    "text": "Váženie kufra",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2549",
-    "text": "Chrám Angkor Wat",
+    "text": "Kontrola tlaku pneumatík",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2550",
-    "text": "Chrám Hagia Sofia",
+    "text": "Tankovanie auta",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2551",
-    "text": "Chrám Parthenón",
+    "text": "Kontrola auta pred jazdou",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2552",
-    "text": "Chrám svätého Bazila",
+    "text": "Cestovanie nočným vlakom",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2553",
-    "text": "Jazero Loch Ness",
+    "text": "Plavba v silnom vetre",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2554",
-    "text": "Katedrála Notre-Dame",
+    "text": "Prechod cez colnicu",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2555",
-    "text": "Kristus Spasiteľ",
+    "text": "Upevnenie batožiny",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2556",
-    "text": "Machu Picchu",
+    "text": "Rozkladanie cestovnej mapy",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2557",
-    "text": "Most Brooklyn Bridge",
+    "text": "Zadávanie cieľa do navigácie",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2558",
-    "text": "Most Rialto",
+    "text": "Hľadanie správneho východu",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2559",
-    "text": "Most Tower Bridge",
+    "text": "Vyťahovanie žuvačky z vlasov",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2560",
-    "text": "Mount Rushmore",
+    "text": "Pozorovanie zatmenia",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2561",
-    "text": "Mrakodrap Taipei 101",
+    "text": "Podkladanie vedra pod kvapkajúci strop",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2562",
-    "text": "Múzeum Louvre",
+    "text": "Fúkanie obrovskej bubliny",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2563",
-    "text": "Niagarské vodopády",
+    "text": "Sadenie stromčeka",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2564",
-    "text": "Opera v Sydney",
+    "text": "Pestovanie kryštálov",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2565",
-    "text": "Palác Versailles",
+    "text": "Pozorovanie buniek mikroskopom",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2566",
-    "text": "Petra v Jordánsku",
+    "text": "Váženie balíka",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2567",
-    "text": "Pražský orloj",
+    "text": "Písanie na zahmlené zrkadlo",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2568",
-    "text": "Pyramídy v Gíze",
+    "text": "Stavanie domčeka z kariet",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2569",
-    "text": "Sagrada Família",
+    "text": "Dvíhanie klincov magnetom",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2570",
-    "text": "Skala Uluru",
+    "text": "Navliekanie kľúča na krúžok",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2571",
-    "text": "Stonehenge",
+    "text": "Vyrábanie tieňových zvierat",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2572",
-    "text": "Tádž Mahal",
+    "text": "Rozpoznávanie jedla podľa chuti",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2573",
-    "text": "Terasy Pamukkale",
+    "text": "Čistenie hrebeňa",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "household"
   },
   {
     "id": "charades_sk_2574",
-    "text": "Veľkonočný ostrov",
+    "text": "Umývanie štetcov",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2575",
-    "text": "Veľký čínsky múr",
+    "text": "Skladanie uterákov",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "household"
   },
   {
     "id": "charades_sk_2576",
-    "text": "Veža CN Tower",
+    "text": "Útek pred padajúcim stromom",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2577",
-    "text": "Veža Space Needle",
+    "text": "Lúpanie vareného vajíčka",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2578",
-    "text": "Veže Petronas",
+    "text": "Odhaľovanie odtlačkov prstov",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2579",
-    "text": "Víťazný oblúk",
+    "text": "Naháňanie klobúka vo vetre",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "weather"
   },
   {
     "id": "charades_sk_2580",
-    "text": "Zámok Neuschwanstein",
+    "text": "Predpoveď búrky",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "weather"
   },
   {
     "id": "charades_sk_2581",
-    "text": "Zámok Windsor",
+    "text": "Skúmanie fosílie",
     "difficulty": "hard",
-    "category": "landmarks"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2582",
-    "text": "Apollo 13",
+    "text": "Naberanie vody z prameňa",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2583",
-    "text": "Prvý kontakt",
+    "text": "Zapchávanie uší pred hlukom",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2584",
-    "text": "Barbie",
+    "text": "Počítanie letokruhov",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2585",
-    "text": "Blade Runner",
+    "text": "Simulácia beztiaže",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2586",
-    "text": "Statočné srdce",
+    "text": "Motýľ vylieza z kukly",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2587",
-    "text": "Čarodejník z krajiny Oz",
+    "text": "Sledovanie stôp zvierat",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "nature"
   },
   {
     "id": "charades_sk_2588",
-    "text": "Kráľ Artuš",
+    "text": "Meranie výšky pri stene",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2589",
-    "text": "Dunkirk",
+    "text": "Pokus so statickou elektrinou",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2590",
-    "text": "Fantastic Beasts",
+    "text": "Rozbaľovanie nového telefónu",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2591",
-    "text": "Gladiátor",
+    "text": "Striasanie obrusa",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "household"
   },
   {
     "id": "charades_sk_2592",
-    "text": "Gravity",
+    "text": "Utieranie mokrého telefónu",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2593",
-    "text": "Inception",
+    "text": "Párovanie bezdrôtových slúchadiel",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2594",
-    "text": "Vesmírna odysea",
+    "text": "Nabíjanie externej batérie",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2595",
-    "text": "Jumanji",
+    "text": "Fotografovanie samospúšťou",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2596",
-    "text": "Karate Kid",
+    "text": "Vyťahovanie ponožky spod postele",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2597",
-    "text": "Kráľovstvo nebeské",
+    "text": "Odomykanie telefónu odtlačkom prsta",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2598",
-    "text": "Krotitelia duchov",
+    "text": "Čistenie klávesnice",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2599",
-    "text": "Marťan",
+    "text": "Výmena atramentovej kazety",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2600",
-    "text": "Cesta do stredu Zeme",
+    "text": "Pripojenie k videohovoru",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2601",
-    "text": "Memento",
+    "text": "Ukazovanie fotiek na telefóne",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2602",
-    "text": "Návrat do budúcnosti",
+    "text": "Nastavenie časovača",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2603",
-    "text": "Noc v múzeu",
+    "text": "Tlač obojstranného dokumentu",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2604",
-    "text": "Oppenheimer",
+    "text": "Reštartovanie zamrznutého počítača",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2605",
-    "text": "Deti z Bullerbynu",
+    "text": "Zakrývanie webkamery",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2606",
-    "text": "Denník princeznej",
+    "text": "Nastavenie inteligentných hodiniek",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2607",
-    "text": "Rocky",
+    "text": "Skenovanie čiarového kódu",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2608",
-    "text": "Rogue One",
+    "text": "Ovládanie robotického vysávača",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2609",
-    "text": "Sám doma",
+    "text": "Pripojenie externého disku",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2610",
-    "text": "Cesta okolo sveta",
+    "text": "Písanie správy hlasom",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2611",
-    "text": "Koralína",
+    "text": "Schovávanie telefónu pred dieťaťom",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2612",
-    "text": "Temný rytier",
+    "text": "Hľadanie nabíjačky",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2613",
-    "text": "Pravá blondínka",
+    "text": "Používanie telefónu v rukaviciach",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2614",
-    "text": "Hobit",
+    "text": "Výmena prasknutého displeja",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2615",
-    "text": "Cesta na Mesiac",
+    "text": "Zostavenie malého robota",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2616",
-    "text": "Pianista",
+    "text": "Ovládanie dronu",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2617",
-    "text": "Dokonalý trik",
+    "text": "Podpisovanie prevzatia balíka",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2618",
-    "text": "Dve veže",
+    "text": "Písanie neviditeľným atramentom",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2619",
-    "text": "Veľký Gatsby",
+    "text": "Testovanie herného ovládača",
     "difficulty": "hard",
-    "category": "movies"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2620",
-    "text": "Ariana Grande",
+    "text": "Nácvik resuscitácie na figuríne",
     "difficulty": "hard",
-    "category": "music"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2621",
-    "text": "Beyoncé",
+    "text": "Zastavenie krvácania",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2622",
-    "text": "Billie Eilish",
+    "text": "Obviazanie poraneného členka",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2623",
-    "text": "Bob Marley",
+    "text": "Privolanie horskej služby",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2624",
-    "text": "Bruno Mars",
+    "text": "Hľadanie nezvestného turistu",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2625",
-    "text": "Dua Lipa",
+    "text": "Vyslobodenie človeka z výťahu",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2626",
-    "text": "Ed Sheeran",
+    "text": "Pomoc človeku na nohy",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2627",
-    "text": "Elvis Presley",
+    "text": "Zatváranie plynového ventilu",
     "difficulty": "hard",
-    "category": "music"
+    "category": "household"
   },
   {
     "id": "charades_sk_2628",
-    "text": "Freddie Mercury",
+    "text": "Vynášanie dymiaceho hrnca",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2629",
-    "text": "Harry Styles",
+    "text": "Použitie defibrilátora",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2630",
-    "text": "John Lennon",
+    "text": "Nasadenie kyslíkovej masky",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2631",
-    "text": "Justin Bieber",
+    "text": "Stabilizovaná poloha",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2632",
-    "text": "Katy Perry",
+    "text": "Záchrana človeka z lavíny",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2633",
-    "text": "Lady Gaga",
+    "text": "Spúšťanie záchranného člna žeriavom",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2634",
-    "text": "Madonna",
+    "text": "Uvoľňovanie zaseknutého nákupného vozíka",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2635",
-    "text": "Michael Jackson",
+    "text": "Označenie nebezpečného miesta",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2636",
-    "text": "Miley Cyrus",
+    "text": "Signalizovanie zrkadlom",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2637",
-    "text": "Rihanna",
+    "text": "Prenášanie zraneného",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2638",
-    "text": "Taylor Swift",
+    "text": "Kontrola životných funkcií",
     "difficulty": "hard",
-    "category": "music"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2639",
-    "text": "The Weeknd",
+    "text": "Vytváranie snehového anjela",
     "difficulty": "hard",
-    "category": "music"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2640",
-    "text": "Bazilisk",
+    "text": "Určovanie svetových strán",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2641",
-    "text": "Cerberus",
+    "text": "Čítanie kompasu",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2642",
-    "text": "Cyklop",
+    "text": "Rolovanie spacieho vaku",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2643",
-    "text": "Fénix",
+    "text": "Orientácia podľa machu",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2644",
-    "text": "Gryf",
+    "text": "Sledovanie turistických značiek",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2645",
-    "text": "Hydra",
+    "text": "Návrat po vlastných stopách",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2646",
-    "text": "Kentaur",
+    "text": "Meranie vzdialenosti krokmi",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2647",
-    "text": "Kraken",
+    "text": "Hľadanie východu z bludiska",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2648",
-    "text": "Lietajúci Holanďan",
+    "text": "Zakresľovanie trasy do mapy",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2649",
-    "text": "Lochnesská príšera",
+    "text": "Chránenie mapy pred dažďom",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2650",
-    "text": "Manticora",
+    "text": "Prenášanie bicykla po schodoch",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2651",
-    "text": "Medúza Gorgona",
+    "text": "Signalizácia baterkou",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2652",
-    "text": "Minotaurus",
+    "text": "Stavanie kamennej mohyly",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2653",
-    "text": "Pegas",
+    "text": "Zostup zo strmého svahu",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2654",
-    "text": "Sfinga",
+    "text": "Hľadanie úkrytu pred búrkou",
     "difficulty": "hard",
-    "category": "mythical_creatures"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2655",
@@ -15931,9 +15931,9 @@
   },
   {
     "id": "charades_sk_2656",
-    "text": "Kaktus na púšti",
+    "text": "Navliekanie nite do ihly",
     "difficulty": "hard",
-    "category": "nature"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2657",
@@ -15943,9 +15943,9 @@
   },
   {
     "id": "charades_sk_2658",
-    "text": "Kvitnúci kaktus",
+    "text": "Zašívanie roztrhnutého rukáva",
     "difficulty": "hard",
-    "category": "nature"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2659",
@@ -15955,9 +15955,9 @@
   },
   {
     "id": "charades_sk_2660",
-    "text": "Mliečna cesta",
+    "text": "Skladanie napínacej plachty",
     "difficulty": "hard",
-    "category": "nature"
+    "category": "household"
   },
   {
     "id": "charades_sk_2661",
@@ -15973,15 +15973,15 @@
   },
   {
     "id": "charades_sk_2663",
-    "text": "Palma na ostrove",
+    "text": "Čistenie upchatého odtoku",
     "difficulty": "hard",
-    "category": "nature"
+    "category": "household"
   },
   {
     "id": "charades_sk_2664",
-    "text": "Planéta Saturn",
+    "text": "Odstraňovanie škvrny z koberca",
     "difficulty": "hard",
-    "category": "nature"
+    "category": "household"
   },
   {
     "id": "charades_sk_2665",
@@ -15991,21 +15991,21 @@
   },
   {
     "id": "charades_sk_2666",
-    "text": "Prstence Saturna",
+    "text": "Vyrovnávanie zaveseného obrazu",
     "difficulty": "hard",
-    "category": "nature"
+    "category": "household"
   },
   {
     "id": "charades_sk_2667",
-    "text": "Sopka s lávou",
+    "text": "Skladanie kartónovej škatule",
     "difficulty": "hard",
-    "category": "nature"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2668",
-    "text": "Vodopád v lese",
+    "text": "Otváranie zaváraniny",
     "difficulty": "hard",
-    "category": "nature"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2669",
@@ -16015,9 +16015,9 @@
   },
   {
     "id": "charades_sk_2670",
-    "text": "Blok na kreslenie",
+    "text": "Prenášanie plného podnosu",
     "difficulty": "hard",
-    "category": "objects"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2671",
@@ -16081,9 +16081,9 @@
   },
   {
     "id": "charades_sk_2681",
-    "text": "Fľaška s elixírom",
+    "text": "Rozmotávanie zauzlených šnúrok",
     "difficulty": "hard",
-    "category": "objects"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2682",
@@ -16117,9 +16117,9 @@
   },
   {
     "id": "charades_sk_2687",
-    "text": "Hokejová hokejka",
+    "text": "Čistenie mastného plechu",
     "difficulty": "hard",
-    "category": "objects"
+    "category": "household"
   },
   {
     "id": "charades_sk_2688",
@@ -16141,21 +16141,21 @@
   },
   {
     "id": "charades_sk_2691",
-    "text": "Hula hop kruh",
+    "text": "Utieranie žalúzií",
     "difficulty": "hard",
-    "category": "objects"
+    "category": "household"
   },
   {
     "id": "charades_sk_2692",
-    "text": "Ikarove krídla",
+    "text": "Odmrazovanie mrazničky",
     "difficulty": "hard",
-    "category": "objects"
+    "category": "household"
   },
   {
     "id": "charades_sk_2693",
-    "text": "Indiánsky stan",
+    "text": "Balenie krehkého balíka",
     "difficulty": "hard",
-    "category": "objects"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2694",
@@ -16237,9 +16237,9 @@
   },
   {
     "id": "charades_sk_2707",
-    "text": "Lupa na stole",
+    "text": "Brúsenie kuchynského noža",
     "difficulty": "hard",
-    "category": "objects"
+    "category": "household"
   },
   {
     "id": "charades_sk_2708",
@@ -16291,9 +16291,9 @@
   },
   {
     "id": "charades_sk_2716",
-    "text": "Neptúnov trojzubec",
+    "text": "Oprava kvapkajúceho kohútika",
     "difficulty": "hard",
-    "category": "objects"
+    "category": "household"
   },
   {
     "id": "charades_sk_2717",
@@ -16555,15 +16555,15 @@
   },
   {
     "id": "charades_sk_2760",
-    "text": "Slaná pláň",
+    "text": "Dupanie od hnevu",
     "difficulty": "hard",
-    "category": "places"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2761",
-    "text": "Snežná pláň",
+    "text": "Skrývanie začervenanej tváre",
     "difficulty": "hard",
-    "category": "places"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2762",
@@ -16579,9 +16579,9 @@
   },
   {
     "id": "charades_sk_2764",
-    "text": "Vyhliadka nad údolím",
+    "text": "Poklepkávanie ceruzkou",
     "difficulty": "hard",
-    "category": "places"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2765",
@@ -16609,15 +16609,15 @@
   },
   {
     "id": "charades_sk_2769",
-    "text": "Hasič v dyme",
+    "text": "Vyhýbanie sa pohľadu",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2770",
-    "text": "Hľadač fosílií",
+    "text": "Sklopenie hlavy po prehre",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2771",
@@ -16633,9 +16633,9 @@
   },
   {
     "id": "charades_sk_2773",
-    "text": "Hrnčiar pri kruhu",
+    "text": "Zadržiavaný smiech",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "emotions"
   },
   {
     "id": "charades_sk_2774",
@@ -16645,15 +16645,15 @@
   },
   {
     "id": "charades_sk_2775",
-    "text": "Jaskynný bádateľ",
+    "text": "Uvoľnenie príliš tesného goliera",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2776",
-    "text": "Jaskynný potápač",
+    "text": "Pohrávanie sa s prsteňom",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2777",
@@ -16663,21 +16663,21 @@
   },
   {
     "id": "charades_sk_2778",
-    "text": "Kaskadér na motorke",
+    "text": "Prikývnutie po premýšľaní",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2779",
-    "text": "Kováč pri nákove",
+    "text": "Očuchávanie neznámeho nápoja",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2780",
-    "text": "Krotiteľ býkov",
+    "text": "Úľavné vydýchnutie",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "emotions"
   },
   {
     "id": "charades_sk_2781",
@@ -16687,39 +16687,39 @@
   },
   {
     "id": "charades_sk_2782",
-    "text": "Lanový záchranár",
+    "text": "Roztrhnutie prehratého tiketu",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2783",
-    "text": "Mlynár v mlyne",
+    "text": "Hľadanie vypínača v tme",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2784",
-    "text": "Pastier so stádom",
+    "text": "Rozväzovanie zauzleného šálu",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2785",
-    "text": "Rezbár s dlátom",
+    "text": "Narovnávanie pokrčeného klobúka",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2786",
-    "text": "Rybár na oceáne",
+    "text": "Odchytávanie hada do vreca",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2787",
-    "text": "Silák so závažím",
+    "text": "Preosievanie múky sitkom",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2788",
@@ -16729,9 +16729,9 @@
   },
   {
     "id": "charades_sk_2789",
-    "text": "Sklár pri peci",
+    "text": "Zakrytie škvrny vankúšom",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2790",
@@ -16741,9 +16741,9 @@
   },
   {
     "id": "charades_sk_2791",
-    "text": "Tkáč pri stave",
+    "text": "Strata trpezlivosti",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "emotions"
   },
   {
     "id": "charades_sk_2792",
@@ -16753,15 +16753,15 @@
   },
   {
     "id": "charades_sk_2793",
-    "text": "Vinár pri lise",
+    "text": "Trasenie kolien",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "emotions"
   },
   {
     "id": "charades_sk_2794",
-    "text": "Zvonár vo veži",
+    "text": "Vytrepávanie piesku z uteráka",
     "difficulty": "hard",
-    "category": "professions"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2795",
@@ -16777,15 +16777,15 @@
   },
   {
     "id": "charades_sk_2797",
-    "text": "Conor McGregor",
+    "text": "Skrývanie tváre za knihou",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2798",
-    "text": "Cristiano Ronaldo",
+    "text": "Podozrievavé prižmúrenie očí",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2799",
@@ -16795,9 +16795,9 @@
   },
   {
     "id": "charades_sk_2800",
-    "text": "Erling Haaland",
+    "text": "Výbuch radosti",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "emotions"
   },
   {
     "id": "charades_sk_2801",
@@ -16813,9 +16813,9 @@
   },
   {
     "id": "charades_sk_2803",
-    "text": "Katie Ledecky",
+    "text": "Chytanie sa hlavy",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "emotions"
   },
   {
     "id": "charades_sk_2804",
@@ -16825,33 +16825,33 @@
   },
   {
     "id": "charades_sk_2805",
-    "text": "Kobe Bryant",
+    "text": "Nakláňanie hlavy nabok",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2806",
-    "text": "Kylian Mbappé",
+    "text": "Myknutie oboma plecami",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2807",
-    "text": "LeBron James",
+    "text": "Obzeranie sa cez plece",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2808",
-    "text": "Lewis Hamilton",
+    "text": "Skúšanie teploty vody lakťom",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2809",
-    "text": "Lionel Messi",
+    "text": "Hlasné odkašľanie",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2810",
@@ -16861,39 +16861,39 @@
   },
   {
     "id": "charades_sk_2811",
-    "text": "Max Verstappen",
+    "text": "Kontrolovanie hodiniek pri čakaní",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2812",
-    "text": "Michael Jordan",
+    "text": "Zamračené lúštenie hlavolamu",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2813",
-    "text": "Michael Phelps",
+    "text": "Zdvíhanie oboch pästí",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2814",
-    "text": "Mike Tyson",
+    "text": "Prekvapené stuhnutie",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2815",
-    "text": "Muhammad Ali",
+    "text": "Naťahovanie gumičky medzi prstami",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2816",
-    "text": "Novak Djokovic",
+    "text": "Prešľapovanie pri čakaní",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2817",
@@ -16903,9 +16903,9 @@
   },
   {
     "id": "charades_sk_2818",
-    "text": "Rafael Nadal",
+    "text": "Kývnutie prstom k sebe",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2819",
@@ -16915,27 +16915,27 @@
   },
   {
     "id": "charades_sk_2820",
-    "text": "Roger Federer",
+    "text": "Karhanie so zdvihnutým ukazovákom",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2821",
-    "text": "Serena Williams",
+    "text": "Vytláčanie zubnej pasty",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2822",
-    "text": "Shaquille O'Neal",
+    "text": "Zovretie vankúša od strachu",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "emotions"
   },
   {
     "id": "charades_sk_2823",
-    "text": "Simone Biles",
+    "text": "Urazené odvrátenie sa",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2824",
@@ -16951,9 +16951,9 @@
   },
   {
     "id": "charades_sk_2826",
-    "text": "Stephen Curry",
+    "text": "Kreslenie počas rozhovoru",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2827",
@@ -16969,9 +16969,9 @@
   },
   {
     "id": "charades_sk_2829",
-    "text": "Tiger Woods",
+    "text": "Úsmev cez slzy",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "emotions"
   },
   {
     "id": "charades_sk_2830",
@@ -16981,15 +16981,15 @@
   },
   {
     "id": "charades_sk_2831",
-    "text": "Usain Bolt",
+    "text": "Šúchanie spotených dlaní",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2832",
-    "text": "Valentino Rossi",
+    "text": "Otáčanie mapy dolu hlavou",
     "difficulty": "hard",
-    "category": "sports"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2833",
@@ -16999,495 +16999,495 @@
   },
   {
     "id": "charades_sk_2834",
-    "text": "Ant-Man",
+    "text": "Odfrknutie s prevrátením očí",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2835",
-    "text": "Aquaman",
+    "text": "Zakrytie úst od strachu",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "emotions"
   },
   {
     "id": "charades_sk_2836",
-    "text": "Batgirl",
+    "text": "Hladenie brady pri premýšľaní",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2837",
-    "text": "Black Panther",
+    "text": "Pridŕžanie rebríka druhému",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2838",
-    "text": "Black Widow",
+    "text": "Ospravedlnenie na kolenách",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2839",
-    "text": "Blade",
+    "text": "Zrážka dvoch chodcov",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2840",
-    "text": "Captain Marvel",
+    "text": "Vyťahovanie stoličky spod stola",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2841",
-    "text": "Robin",
+    "text": "Hádka cez plot",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2842",
-    "text": "Cyborg",
+    "text": "Rodinná porada",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2843",
-    "text": "Cyclops",
+    "text": "Vyhadzovanie hosťa z domu",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2844",
-    "text": "Daredevil",
+    "text": "Lepenie náplasti na koleno",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2845",
-    "text": "Deadpool",
+    "text": "Odmietnuté podanie ruky",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2846",
-    "text": "Doctor Octopus",
+    "text": "Otláčanie pečiatky na papier",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2847",
-    "text": "Doctor Strange",
+    "text": "Schovávanie darčeka za chrbtom",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2848",
-    "text": "Drax",
+    "text": "Ukazovanie opačných smerov",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2849",
-    "text": "Falcon",
+    "text": "Hádzanie lasa",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2850",
-    "text": "Fantastic Four",
+    "text": "Prosenie so zopnutými rukami",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2851",
-    "text": "Gamora",
+    "text": "Vyberanie omrvinky zo zubov",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2852",
-    "text": "Ghost Rider",
+    "text": "Odhalenie schovaného predmetu",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2853",
-    "text": "Green Goblin",
+    "text": "Rozhovor cez sklenenú stenu",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2854",
-    "text": "Green Lantern",
+    "text": "Vešanie kľúčov na háčik",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2855",
-    "text": "Groot",
+    "text": "Prenášanie stola vo dvojici",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2856",
-    "text": "Hawkeye",
+    "text": "Podávanie papúč hosťovi",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2857",
-    "text": "Hela",
+    "text": "Odkladanie telefónu počas rozhovoru",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2858",
-    "text": "Jean Grey",
+    "text": "Sľub so skríženými prstami",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2859",
-    "text": "Killmonger",
+    "text": "Podpisovanie papiera na kolene",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2860",
-    "text": "Loki",
+    "text": "Odmietnutie ponúkaného taniera",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2861",
-    "text": "Magneto",
+    "text": "Upratanie rozbitého pohára",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2862",
-    "text": "Moon Knight",
+    "text": "Obviňovanie ukázaním prstom",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2863",
-    "text": "Ms. Marvel",
+    "text": "Rozdeľovanie ľudí počas hádky",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2864",
-    "text": "Mystique",
+    "text": "Zamykanie listu do zásuvky",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2865",
-    "text": "Nick Fury",
+    "text": "Rozkladanie skladacieho vejára",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2866",
-    "text": "Professor X",
+    "text": "Pýtanie sa zdvihnutou rukou",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2867",
-    "text": "Punisher",
+    "text": "Vymieňanie miest pri stole",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2868",
-    "text": "Red Skull",
+    "text": "Posúvanie odkazu popod dvere",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2869",
-    "text": "Rocket Raccoon",
+    "text": "Podávanie obálky s pozvánkou",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2870",
-    "text": "Scarlet Witch",
+    "text": "Navliekanie opaska do pútok",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "clothing"
   },
   {
     "id": "charades_sk_2871",
-    "text": "Shang-Chi",
+    "text": "Šepkanie slova do ucha",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2872",
-    "text": "Shazam",
+    "text": "Mlčanie pri spoločnom stole",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2873",
-    "text": "She-Hulk",
+    "text": "Zapínanie dvoch praciek",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2874",
-    "text": "Silver Surfer",
+    "text": "Podávanie rozkvitnutej vetvičky",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2875",
-    "text": "Star-Lord",
+    "text": "Skákanie do reči",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2876",
-    "text": "Storm",
+    "text": "Hojdanie chodidla pod stolom",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2877",
-    "text": "Supergirl",
+    "text": "Schovávanie v skrini",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2878",
-    "text": "Thanos",
+    "text": "Zakrytie človeka dekou",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2879",
-    "text": "The Flash",
+    "text": "Zdvíhanie spadnutej stoličky",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2880",
-    "text": "Ultron",
+    "text": "Krytie človeka dáždnikom",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2881",
-    "text": "Venom",
+    "text": "Hranie kameň papier nožnice",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2882",
-    "text": "Vision",
+    "text": "Praskanie bublinkovej fólie",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2883",
-    "text": "Wasp",
+    "text": "Krájanie jablka na polovicu",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2884",
-    "text": "Winter Soldier",
+    "text": "Odmietavé potrasenie hlavou",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2885",
-    "text": "Wolverine",
+    "text": "Oddeľovanie žĺtka od bielka",
     "difficulty": "hard",
-    "category": "superheroes"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2886",
-    "text": "Nastupovanie do lanovky",
+    "text": "Rozpaženie rúk",
     "difficulty": "hard",
-    "category": "travel"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2887",
-    "text": "Vystupovanie z kajaka",
+    "text": "Zmotávanie špagátu do klbka",
     "difficulty": "hard",
-    "category": "travel"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2888",
-    "text": "Andy Bernard",
+    "text": "Chytanie padajúcej vázy",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2889",
-    "text": "Barney Stinson",
+    "text": "Výber medzi dvoma dverami",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2890",
-    "text": "Bridgerton",
+    "text": "Nafukovanie plávacích rukávnikov",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2891",
-    "text": "Dwight Schrute",
+    "text": "Podávanie kľúča cez okno",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2892",
-    "text": "Hank Schrader",
+    "text": "Sušenie papiera mávaním",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2893",
-    "text": "Howard Wolowitz",
+    "text": "Navliekanie krúžkov na tyčku",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2894",
-    "text": "Hra o tróny",
+    "text": "Spájanie roztrhnutej mapy",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2895",
-    "text": "Chandler Bing",
+    "text": "Porovnávanie dvoch máp",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2896",
-    "text": "Jim Halpert",
+    "text": "Kotúľanie mince po stole",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2897",
-    "text": "Joey Tribbiani",
+    "text": "Odrážanie lopty od steny",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2898",
-    "text": "Leonard Hofstadter",
+    "text": "Stláčanie tlačidla lakťom",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2899",
-    "text": "Lily Aldrinová",
+    "text": "Obkresľovanie predmetu na papier",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2900",
-    "text": "Marshall Eriksen",
+    "text": "Vylievanie vody z čižmy",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "household"
   },
   {
     "id": "charades_sk_2901",
-    "text": "Michael Scott",
+    "text": "Vyberanie náhradného kolesa",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2902",
-    "text": "Monica Gellerová",
+    "text": "Otáčanie v slepej uličke",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2903",
-    "text": "Pam Beeslyová",
+    "text": "Lámanie palice cez koleno",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2904",
-    "text": "Penny",
+    "text": "Lúskanie orecha",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2905",
-    "text": "Phoebe Buffayová",
+    "text": "Odmeriavanie múky na váhe",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2906",
-    "text": "Priatelia",
+    "text": "Zotieranie kriedy z tabule",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2907",
-    "text": "Rachel Greenová",
+    "text": "Podávanie tlačiva cez priehradku",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2908",
-    "text": "Robin Scherbatská",
+    "text": "Prevzatie zásielky od doručovateľa",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2909",
-    "text": "Ross Geller",
+    "text": "Driemanie nad pracovnými papiermi",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2910",
-    "text": "Sheldon Cooper",
+    "text": "Točenie na kancelárskej stoličke",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2911",
-    "text": "Simpsonovci",
+    "text": "Opravovanie chyby v správe",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2912",
-    "text": "Stranger Things",
+    "text": "Hľadanie dokumentu v zásuvkách",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2913",
-    "text": "Ted Mosby",
+    "text": "Vyberanie papiera z tlačiarne",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2914",
-    "text": "The Office",
+    "text": "Odpájanie internetového kábla",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2915",
-    "text": "Wednesday",
+    "text": "Kreslenie odomykacieho vzoru",
     "difficulty": "hard",
-    "category": "tv_series"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2916",
@@ -17497,15 +17497,15 @@
   },
   {
     "id": "charades_sk_2917",
-    "text": "Jazda na slonovi",
+    "text": "Sušenie mokrého dáždnika",
     "difficulty": "hard",
-    "category": "vehicles"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2918",
-    "text": "Jazda na traktore",
+    "text": "Vysýpanie mincí z peňaženky",
     "difficulty": "hard",
-    "category": "vehicles"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2919",
@@ -17521,9 +17521,9 @@
   },
   {
     "id": "charades_sk_2921",
-    "text": "Plť na rieke",
+    "text": "Lúštenie nečitateľného rukopisu",
     "difficulty": "hard",
-    "category": "vehicles"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2922",
@@ -17557,285 +17557,285 @@
   },
   {
     "id": "charades_sk_2927",
-    "text": "Alex z Minecraftu",
+    "text": "Viazanie uzla na vreckovke",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2928",
-    "text": "Aloy",
+    "text": "Zoraďovanie kníh podľa veľkosti",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2929",
-    "text": "Atreus",
+    "text": "Strhávanie oznamu z nástenky",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2930",
-    "text": "Bowser",
+    "text": "Lisovanie kvetov v knihe",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2931",
-    "text": "Ciri",
+    "text": "Prešmyknutie cez zatvárajúce sa dvere",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2932",
-    "text": "Claire Redfieldová",
+    "text": "Schovávanie mince pod pohár",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2933",
-    "text": "Coco Bandicoot",
+    "text": "Podávanie krúžku s kľúčmi",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2934",
-    "text": "Cortana",
+    "text": "Utieranie atramentu zo stola",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "household"
   },
   {
     "id": "charades_sk_2935",
-    "text": "Crash Bandicoot",
+    "text": "Nasadzovanie gumičky na zápästie",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2936",
-    "text": "Creeper",
+    "text": "Rozotieranie krému na ruky",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2937",
-    "text": "Donkey Kong",
+    "text": "Prijatie hovoru zo zvoniaceho telefónu",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2938",
-    "text": "Dr. Eggman",
+    "text": "Lepenie zlomenej rukoväti",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2939",
-    "text": "Enderman",
+    "text": "Strihanie látky tupými nožnicami",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2940",
-    "text": "Ganondorf",
+    "text": "Sledovanie textu prstom",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2941",
-    "text": "Geralt z Rivie",
+    "text": "Odpovedanie zdvihnutím palca",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2942",
-    "text": "Charizard",
+    "text": "Zošívanie papierov",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2943",
-    "text": "Chris Redfield",
+    "text": "Prezeranie knihy od poslednej strany",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2944",
-    "text": "Jill Valentineová",
+    "text": "Čítanie s lupou",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2945",
-    "text": "Princ z Perzie",
+    "text": "Opisovanie tvaru rukami",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2946",
-    "text": "Kirby",
+    "text": "Zapichovanie sviečok do torty",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2947",
-    "text": "Knuckles",
+    "text": "Odvíjanie lepiacej pásky",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2948",
-    "text": "Kratos",
+    "text": "Kontrolovanie prázdnej schránky",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2949",
-    "text": "Lara Croft",
+    "text": "Nabíjanie telefónu",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2950",
-    "text": "Leon Kennedy",
+    "text": "Čistenie reproduktora telefónu",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2951",
-    "text": "Link",
+    "text": "Vyberanie fotografie z albumu",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2952",
-    "text": "Luigi",
+    "text": "Čistenie zahmleného zrkadla",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "household"
   },
   {
     "id": "charades_sk_2953",
-    "text": "Master Chief",
+    "text": "Zamykanie bicykla",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2954",
-    "text": "Mega Man",
+    "text": "Skúšanie kľúčov po jednom",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2955",
-    "text": "Mewtwo",
+    "text": "Ukladanie batožiny do autobusu",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2956",
-    "text": "Michael De Santa",
+    "text": "Hľadanie čísla domu",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2957",
-    "text": "Nathan Drake",
+    "text": "Obaľovanie kufra fóliou",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "travel"
   },
   {
     "id": "charades_sk_2958",
-    "text": "Nemesis",
+    "text": "Vykladanie nákupu na pás",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2959",
-    "text": "Pac-Man",
+    "text": "Vyberanie vrátenej mince zo stroja",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2960",
-    "text": "Princezná Peach",
+    "text": "Platenie bezkontaktnou kartou",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2961",
-    "text": "Princezná Zelda",
+    "text": "Hľadanie občianskeho preukazu",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "activities"
   },
   {
     "id": "charades_sk_2962",
-    "text": "Rayman",
+    "text": "Vracanie neotvorenej objednávky",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2963",
-    "text": "Sackboy",
+    "text": "Utieranie rozliateho nápoja",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "household"
   },
   {
     "id": "charades_sk_2964",
-    "text": "Samus Aranová",
+    "text": "Odstraňovanie pripálených častí jedla",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "food"
   },
   {
     "id": "charades_sk_2965",
-    "text": "Solid Snake",
+    "text": "Vyberanie omrviniek z hriankovača",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "household"
   },
   {
     "id": "charades_sk_2966",
-    "text": "Spyro",
+    "text": "Utieranie tienidla lampy",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "household"
   },
   {
     "id": "charades_sk_2967",
-    "text": "Steve z Minecraftu",
+    "text": "Preliezanie cez mačacie dvierka",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2968",
-    "text": "Tails",
+    "text": "Zapínanie gombíkov v rukaviciach",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2969",
-    "text": "Toad",
+    "text": "Vyťahovanie šnúrky z mikiny",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "clothing"
   },
   {
     "id": "charades_sk_2970",
-    "text": "Yennefer",
+    "text": "Rolovanie ponožiek do páru",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "clothing"
   },
   {
     "id": "charades_sk_2971",
-    "text": "Yoshi",
+    "text": "Označenie kľúča lepiacou farebnou páskou",
     "difficulty": "hard",
-    "category": "video_games"
+    "category": "objects"
   },
   {
     "id": "charades_sk_2972",
-    "text": "Blesk do stromu",
+    "text": "Zatváranie zošita gumičkou",
     "difficulty": "hard",
-    "category": "weather"
+    "category": "actions"
   },
   {
     "id": "charades_sk_2973",
-    "text": "Blesk na oblohe",
+    "text": "Odťahovanie sporáka od steny",
     "difficulty": "hard",
-    "category": "weather"
+    "category": "household"
   },
   {
     "id": "charades_sk_2974",
@@ -17998,5 +17998,1205 @@
     "text": "Zosuv skál",
     "difficulty": "hard",
     "category": "weather"
+  },
+  {
+    "id": "charades_sk_3001",
+    "text": "Obúvanie snežníc",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3002",
+    "text": "Zaťahovanie závesov",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3003",
+    "text": "Kontrola vreciek pred praním",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3004",
+    "text": "Vrátenie nákupného vozíka",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3005",
+    "text": "Ukladanie stoličiek na seba",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3006",
+    "text": "Stláčanie spacieho vaku",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3007",
+    "text": "Navliekanie obliečky na paplón",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3008",
+    "text": "Vešanie sprchového závesu",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3009",
+    "text": "Vyprázdnenie vysávača",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3010",
+    "text": "Utieranie stropného ventilátora",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3011",
+    "text": "Skákanie na skákacej tyči",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3012",
+    "text": "Plnenie formy na ľad",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3013",
+    "text": "Drvenie cesnaku",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3014",
+    "text": "Strúhanie citrónovej kôry",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3015",
+    "text": "Triedenie príboru",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3016",
+    "text": "Otváranie kokosového orecha",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3017",
+    "text": "Vyberanie kosti z ryby",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3018",
+    "text": "Odpeckovanie čerešní",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3019",
+    "text": "Lúskanie hrachu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3020",
+    "text": "Čistenie kukuričného klasu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3021",
+    "text": "Vykrajovanie jadrovníka z jablka",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3022",
+    "text": "Navíjanie cestovín na vidličku",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3023",
+    "text": "Zatváranie papierového vrecka",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3024",
+    "text": "Používanie krájača na pizzu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3025",
+    "text": "Vyberanie kôstky z avokáda",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3026",
+    "text": "Odtrhávanie alobalu z rolky",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3027",
+    "text": "Vyberanie pizze z krabice",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3028",
+    "text": "Vodenie divadelnej bábky",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3029",
+    "text": "Nastavovanie spätného zrkadla",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3030",
+    "text": "Pripútanie dieťaťa v autosedačke",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3031",
+    "text": "Skladanie detského kočíka",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3032",
+    "text": "Otváranie skladacieho dáždnika",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3033",
+    "text": "Rozbíjanie piñaty",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3034",
+    "text": "Prechádzanie otočnými dverami",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3035",
+    "text": "Prechádzanie cez turniket",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3036",
+    "text": "Predvádzanie spomaleného pohybu",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3037",
+    "text": "Používanie samoobslužnej pokladne",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3038",
+    "text": "Otáčanie presýpacích hodín",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3039",
+    "text": "Balenie nákupu do tašky",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3040",
+    "text": "Rozopínanie remienka na prilbe",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3041",
+    "text": "Odovzdávanie vratných fliaš",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3042",
+    "text": "Otváranie číselného zámku",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3043",
+    "text": "Prenášanie akvária bez rozliatia vody",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3044",
+    "text": "Hustenie bicyklovej pneumatiky",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3045",
+    "text": "Nastavovanie sklonu ležadla",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3046",
+    "text": "Nanášanie opaľovacieho krému",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3047",
+    "text": "Škrabanie ľadu z čelného skla",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3048",
+    "text": "Potknutie o obrubník",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3049",
+    "text": "Nasadzovanie štupľov do uší",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3050",
+    "text": "Zaväzovanie kuchynskej zástery",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3051",
+    "text": "Skladanie mapy v silnom vetre",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3052",
+    "text": "Chytanie komára v izbe",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3053",
+    "text": "Oddeľovanie zakliesnených pohárov",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3054",
+    "text": "Obúvanie príliš malej topánky",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3055",
+    "text": "Predieranie sa hustým krovím",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3056",
+    "text": "Tancovanie limba",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3057",
+    "text": "Nastavenie ďalekohľadu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3058",
+    "text": "Zaostrovanie mikroskopu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3059",
+    "text": "Označovanie sadeníc menovkami",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3060",
+    "text": "Privolávanie vtákov píšťalkou",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3061",
+    "text": "Čítanie času zo slnečných hodín",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3062",
+    "text": "Prekonávanie laserového labyrintu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3063",
+    "text": "Chôdza so zaviazanými očami",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3064",
+    "text": "Vedenie denníka oblakov",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3065",
+    "text": "Sušenie topánok pri ohnisku",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3066",
+    "text": "Jazda na mechanickom býkovi",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3067",
+    "text": "Zachytávanie dažďovej vody",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3068",
+    "text": "Vyhadzovanie cesta na pizzu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3069",
+    "text": "Rozuzľovanie zamotaného lana",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3070",
+    "text": "Zakrývanie tváre pred dymom",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3071",
+    "text": "Privolávanie pomoci píšťalkou",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3072",
+    "text": "Používanie predajného automatu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3073",
+    "text": "Kotúľanie suda dolu rampou",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3074",
+    "text": "Prenášanie skrine dolu schodmi",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3075",
+    "text": "Jazda terénnym autom cez blato",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3076",
+    "text": "Čakanie na meškajúci vlak",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3077",
+    "text": "Rozkladanie výstražného trojuholníka",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3078",
+    "text": "Parkovanie s prívesom",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3079",
+    "text": "Ťahanie kufra po dlažbe",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3080",
+    "text": "Používanie sušiča rúk",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3081",
+    "text": "Obracanie palacinky vo vzduchu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3082",
+    "text": "Lepenie duše",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3083",
+    "text": "Mazanie reťaze",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3084",
+    "text": "Šmýkanie po zábradlí",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3085",
+    "text": "Voskovanie bežiek",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3086",
+    "text": "Odháňanie holubov",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3087",
+    "text": "Šúpanie pomaranča",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3088",
+    "text": "Priväzovanie háčika k vlascu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3089",
+    "text": "Brankár chytá loptu rybičkou",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_3090",
+    "text": "Ostrenie záhradných nožníc",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3091",
+    "text": "Natieranie kmeňa vápnom",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3092",
+    "text": "Orezávanie ovocného stromu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3093",
+    "text": "Stavanie veže z vankúšov",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3094",
+    "text": "Miešanie zeminy pre kvetináče",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3095",
+    "text": "Presádzanie pichľavého kaktusu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3096",
+    "text": "Skladanie žehliacej dosky",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3097",
+    "text": "Utesňovanie okenného rámu",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3098",
+    "text": "Nosenie človeka na pleciach",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3099",
+    "text": "Čistenie digestora",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3100",
+    "text": "Oprava poškodenej omietky",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3101",
+    "text": "Chytanie pokutového kopu",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_3102",
+    "text": "Blokovanie smeču",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_3103",
+    "text": "Obrana protiútoku",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_3104",
+    "text": "Zachytenie padajúceho štafetového kolíka",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_3105",
+    "text": "Oprava pretrhnutej siete",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_3106",
+    "text": "Kontrola horolezeckého uzla",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_3107",
+    "text": "Výstup z prevráteného kajaka",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_3108",
+    "text": "Predstieranie faulu",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_3109",
+    "text": "Meranie času bežcovi",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_3110",
+    "text": "Ošetrenie odreniny",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3111",
+    "text": "Rozloženie núdzového prístrešku",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3112",
+    "text": "Filtrovanie kalnej vody",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3113",
+    "text": "Delenie poslednej porcie",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3114",
+    "text": "Prechod po napnutom lane",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3115",
+    "text": "Vyťahovanie človeka z ľadovej vody",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3116",
+    "text": "Hľadanie mobilného signálu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3117",
+    "text": "Zapaľovanie núdzovej svetlice",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3118",
+    "text": "Útek pred krupobitím",
+    "difficulty": "hard",
+    "category": "weather"
+  },
+  {
+    "id": "charades_sk_3119",
+    "text": "Určenie smeru vetra",
+    "difficulty": "hard",
+    "category": "weather"
+  },
+  {
+    "id": "charades_sk_3120",
+    "text": "Obchádzanie spadnutého stromu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3121",
+    "text": "Kontrola vlakového spojenia",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3122",
+    "text": "Vypĺňanie batožinového štítku",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3123",
+    "text": "Výber sedadla pri uličke",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3124",
+    "text": "Zatváranie preplneného kufra",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3125",
+    "text": "Hľadanie požičovne áut",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3126",
+    "text": "Nastavenie budíka",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3127",
+    "text": "Kontrola palubného lístka",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3128",
+    "text": "Výmena meny",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3129",
+    "text": "Balenie lekárničky",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3130",
+    "text": "Sledovanie odchodovej tabule",
+    "difficulty": "hard",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_3131",
+    "text": "Pozorovanie meteorického roja",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_3132",
+    "text": "Cedenie cestovín cez sitko",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3133",
+    "text": "Rozsvietenie baterky v tme",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3134",
+    "text": "Zostavenie modelu sopky",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3135",
+    "text": "Hľadanie kovu detektorom",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3136",
+    "text": "Vyhýbanie sa kalužiam",
+    "difficulty": "hard",
+    "category": "weather"
+  },
+  {
+    "id": "charades_sk_3137",
+    "text": "Klíčenie semena",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_3138",
+    "text": "Skladanie papierového veterníka",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3139",
+    "text": "Roztáčanie vrtule fúkaním",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3140",
+    "text": "Nahrávanie hlasovej správy",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3141",
+    "text": "Požičiavanie telefónu kamarátovi",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3142",
+    "text": "Čistenie objektívu fotoaparátu",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3143",
+    "text": "Výmena bateriek v ovládači",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3144",
+    "text": "Vypnutie zvonenia telefónu",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3145",
+    "text": "Triedenie elektronického odpadu",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3146",
+    "text": "Pripájanie uvoľneného kábla",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3147",
+    "text": "Skenovanie starých fotografií",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3148",
+    "text": "Naháňanie splašenej sliepky",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3149",
+    "text": "Uvoľňovanie zaseknutého papiera",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3150",
+    "text": "Skladanie bicykla",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3151",
+    "text": "Napodobňovanie pohybov partnera",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3152",
+    "text": "Udržiavanie nehybnej tváre",
+    "difficulty": "hard",
+    "category": "emotions"
+  },
+  {
+    "id": "charades_sk_3153",
+    "text": "Zapaľovanie olejového lampáša",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3154",
+    "text": "Otváranie termosky",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3155",
+    "text": "Vyklepávanie rohožky",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3156",
+    "text": "Prikladanie viečok k nádobám",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3157",
+    "text": "Chodenie dookola",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3158",
+    "text": "Otváranie zalepenej obálky",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3159",
+    "text": "Rozlúštenie odkazu pomocou zrkadla",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3160",
+    "text": "Obrátenie mince na opačnú stranu",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3161",
+    "text": "Vstupovanie do tmavej miestnosti",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3162",
+    "text": "Žmýkanie handry nad vedrom",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3163",
+    "text": "Pribíjanie dosiek cez okná",
+    "difficulty": "hard",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_3164",
+    "text": "Nasadzovanie pokrievky na hrniec",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3165",
+    "text": "Omotávanie rukoväti páskou",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3166",
+    "text": "Vytváranie harmoniky skladaním papiera",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3167",
+    "text": "Masírovanie spánkov",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3168",
+    "text": "Pozeranie z okna na oblohu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3169",
+    "text": "Hľadanie ihly v kope sena",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3170",
+    "text": "Pretáčanie rukávov naruby",
+    "difficulty": "hard",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_3171",
+    "text": "Podávanie vreckovky plačúcemu",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3172",
+    "text": "Oplachovanie tváre studenou vodou",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3173",
+    "text": "Fúkanie lístia fúkačom",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3174",
+    "text": "Vyťahovanie auta z priekopy navijakom",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3175",
+    "text": "Kontrola obsahu vreca",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3176",
+    "text": "Prikladanie polena do ohňa",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3177",
+    "text": "Ťahanie najkratšej slamky",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3178",
+    "text": "Tlačenie sa do plného výťahu",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3179",
+    "text": "Zatínanie zubov",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3180",
+    "text": "Dvíhanie obočia",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3181",
+    "text": "Krčenie nosa",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3182",
+    "text": "Lomenie rukami",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3183",
+    "text": "Hryzenie si pery",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3184",
+    "text": "Počítanie na prstoch do desať",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3185",
+    "text": "Hlboké nadýchnutie",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3186",
+    "text": "Čakanie so založenými rukami",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3187",
+    "text": "Naťahovanie hodín",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3188",
+    "text": "Priloženie prsta na pery",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3189",
+    "text": "Zakrytie očí pred svetlom",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3190",
+    "text": "Otváranie ustrice",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3191",
+    "text": "Ustúpenie o krok",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3192",
+    "text": "Namáhavé otváranie zaseknutej brány",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3193",
+    "text": "Odlupovanie vosku zo sviečky",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3194",
+    "text": "Hodenie rukavice na zem",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3195",
+    "text": "Privretie záložky do knihy",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3196",
+    "text": "Spájanie polovíc obrázka",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_3197",
+    "text": "Vykročenie cez štartovaciu čiaru",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3198",
+    "text": "Podliezanie nízkeho konára",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3199",
+    "text": "Vyberanie lístka zo štrbiny",
+    "difficulty": "hard",
+    "category": "actions"
+  },
+  {
+    "id": "charades_sk_3200",
+    "text": "Odstraňovanie semienok z melóna",
+    "difficulty": "hard",
+    "category": "actions"
   }
 ]

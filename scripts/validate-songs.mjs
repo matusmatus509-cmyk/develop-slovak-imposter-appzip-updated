@@ -125,10 +125,18 @@ function extractSongs(raw, body, label, matchIndex, path) {
     .filter(entry => entry.raw.length > 0);
 }
 
+const ACTIVE_ARCHIVE_MARKER = "const WORLD_HITS_EXTENDED";
+
 function extractSections() {
   const sections = [];
 
   for (const { path, raw } of sources) {
+    // V localizedSongs.ts je všetko pred markerom ručne kurátorované aktívne
+    // jadro. Extended bloky a samostatné expansion moduly sú už iba archív.
+    const archiveStart = path.endsWith("localizedSongs.ts")
+      ? raw.indexOf(ACTIVE_ARCHIVE_MARKER)
+      : -1;
+
     // Pôvodné inline sekcie v localizedSongs.ts.
     const inlineRe =
       /(?:const (WORLD_HITS(?:_EXTENDED)?) =|(\w\w):)\s*parseSongs\(`([\s\S]*?)`\s*,\s*\{/g;
@@ -137,6 +145,7 @@ function extractSections() {
       const label = match[1] ? match[1].toLowerCase() : match[2];
       sections.push({
         label,
+        active: archiveStart >= 0 && match.index < archiveStart,
         songs: extractSongs(raw, match[3], label, match.index, path),
       });
     }
@@ -149,6 +158,7 @@ function extractSections() {
       if (!label) continue;
       sections.push({
         label,
+        active: false,
         songs: extractSongs(raw, match[2], label, match.index, path),
       });
     }
@@ -186,6 +196,132 @@ for (const label of EXPECTED_EXPANSIONS) {
 }
 
 const at = song => `${song.section} (${song.path}) L${song.line}`;
+
+// ── Aktívny kurátorovaný katalóg ───────────────────────────────────────────
+// Runtime používa iba WORLD_HITS bez hard položiek a základné LOCAL_HITS.
+// Všetko za ACTIVE_ARCHIVE_MARKER ostáva zdrojovým archívom, nie zásobou hry.
+const activeSourceSongs = sections
+  .filter(section => section.active)
+  .flatMap(section => section.songs);
+const activeWorld = activeSourceSongs.filter(
+  song => song.section === "world_hits" && song.tier !== "hard"
+);
+const activeLocal = activeSourceSongs.filter(
+  song => song.section !== "world_hits"
+);
+const activeAll = [...activeWorld, ...activeLocal];
+
+const ACTIVE_LOCAL_RANGES = {
+  sk: [150, 230],
+  cs: [70, 120],
+  en: [60, 110],
+  de: [80, 130],
+  es: [80, 130],
+  fr: [80, 140],
+  pt: [80, 130],
+};
+
+if (activeWorld.length < 450 || activeWorld.length > 550) {
+  errors.push(
+    `aktívny world pool má ${activeWorld.length} skladieb; očakáva sa 450–550`
+  );
+}
+if (activeAll.length < 1100 || activeAll.length > 1500) {
+  errors.push(
+    `aktívny katalóg má ${activeAll.length} skladieb; očakáva sa 1100–1500`
+  );
+}
+for (const [language, [minimum, maximum]] of Object.entries(
+  ACTIVE_LOCAL_RANGES
+)) {
+  const count = activeLocal.filter(song => song.section === language).length;
+  if (count < minimum || count > maximum) {
+    errors.push(
+      `aktívny ${language} pool má ${count} skladieb; očakáva sa ${minimum}–${maximum}`
+    );
+  }
+}
+
+const languageFlag = song =>
+  song.flags
+    .split(/\s+/)
+    .find(flag => flag.startsWith("lang="))
+    ?.slice(5) ?? "en";
+const worldEnglishShare =
+  activeWorld.filter(song => languageFlag(song) === "en").length /
+  Math.max(1, activeWorld.length);
+if (worldEnglishShare < 0.95) {
+  errors.push(
+    `world pool je iba ${(worldEnglishShare * 100).toFixed(1)} % anglický; minimum je 95 %`
+  );
+}
+
+const ALLOWED_NON_ENGLISH_WORLD = new Map([
+  ["Gangnam Style", "other"],
+  ["Despacito", "es"],
+  ["Dragostea Din Tei", "other"],
+  ["Macarena", "es"],
+  ["Gasolina", "es"],
+  ["Danza Kuduro", "es"],
+  ["The Ketchup Song (Aserejé)", "es"],
+  ["Bailando", "es"],
+  ["Sofia", "es"],
+  ["El Mismo Sol", "es"],
+  ["How You Like That", "other"],
+  ["Kill This Love", "other"],
+  ["Sarà perché ti amo", "it"],
+]);
+for (const song of activeWorld) {
+  const language = languageFlag(song);
+  if (song.raw.includes("\\u")) {
+    errors.push(
+      `doslovný Unicode escape v aktívnom poole — ${at(song)}: „${song.raw}"`
+    );
+  }
+  if (language !== "en") {
+    const expected = ALLOWED_NON_ENGLISH_WORLD.get(song.title);
+    if (expected !== language) {
+      errors.push(
+        `nepovolená alebo zle označená neanglická world skladba — ${at(song)}: ` +
+          `„${song.title}" (${language})`
+      );
+    }
+    if (!song.year || !song.genre || !song.tier) {
+      errors.push(
+        `neanglický world hit nemá úplné metadáta — ${at(song)}: „${song.title}"`
+      );
+    }
+  }
+}
+for (const [title, expectedLanguage] of ALLOWED_NON_ENGLISH_WORLD) {
+  const song = activeWorld.find(candidate => candidate.title === title);
+  if (!song)
+    errors.push(
+      `v aktívnom world poole chýba povolený globálny hit „${title}"`
+    );
+  else if (languageFlag(song) !== expectedLanguage) {
+    errors.push(
+      `globálny hit „${title}" má jazyk ${languageFlag(song)}, očakáva sa ${expectedLanguage}`
+    );
+  }
+}
+if (activeWorld.some(song => song.tier === "hard")) {
+  errors.push("aktívny world pool obsahuje hard skladbu");
+}
+
+const REQUIRED_ATTRIBUTIONS = new Map([
+  ["Take My Breath Away", "Berlin"],
+  ["Hollaback Girl", "Gwen Stefani"],
+  ["Super Bass", "Nicki Minaj"],
+]);
+for (const [title, expectedArtist] of REQUIRED_ATTRIBUTIONS) {
+  const matches = activeWorld.filter(song => song.title === title);
+  if (matches.length !== 1 || matches[0].artist !== expectedArtist) {
+    errors.push(
+      `nesprávna atribúcia „${title}"; očakáva sa presne „${expectedArtist}"`
+    );
+  }
+}
 
 // ── Formát ──────────────────────────────────────────────────────────────────
 // Riadok je `Názov|Interpret` a voliteľne `|Rok|Žáner|Náročnosť|Príznaky`.
@@ -314,10 +450,28 @@ for (const song of all) {
 }
 
 // ── Výstup ──────────────────────────────────────────────────────────────────
-console.log(`Hudobný katalóg: ${all.length} skladieb`);
+console.log(`Zdrojový hudobný archív: ${all.length} skladieb`);
 for (const section of sections) {
-  console.log(`  ${section.label.padEnd(6)} ${section.songs.length}`);
+  console.log(
+    `  ${(section.active ? "aktívne" : "archív").padEnd(7)} ${section.label.padEnd(20)} ${section.songs.length}`
+  );
 }
+const activeByPool = Object.fromEntries(
+  ["world_hits", ...Object.keys(ACTIVE_LOCAL_RANGES)].map(label => [
+    label === "world_hits" ? "world" : label,
+    label === "world_hits"
+      ? activeWorld.length
+      : activeLocal.filter(song => song.section === label).length,
+  ])
+);
+console.log(`\nAktívny katalóg: ${activeAll.length} skladieb`);
+console.log(
+  "  " +
+    Object.entries(activeByPool)
+      .map(([pool, count]) => `${pool} ${count}`)
+      .join(" · ")
+);
+console.log(`  world anglicky: ${(worldEnglishShare * 100).toFixed(1)} %`);
 
 if (errors.length > 0) {
   console.error(`\n✗ ${errors.length} chýb v katalógu:\n`);

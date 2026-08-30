@@ -99,9 +99,9 @@ check(
   ["DE", "AT", "CH"]
 );
 check(
-  "neznámy jazyk skončí vo veľkých obchodoch",
+  "inštrumentálka skúsi aj veľký nemecký obchod",
   lookup.itunesStoresFor({ title: "a", artist: "b", language: "instrumental" }),
-  ["US", "GB"]
+  ["US", "GB", "DE"]
 );
 
 // ── Poradie pokusov ─────────────────────────────────────────────────────────

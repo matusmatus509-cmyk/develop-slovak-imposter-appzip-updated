@@ -284,6 +284,10 @@ const ITUNES_STORES: Record<string, string[]> = {
   sv: ["SE", "GB"],
   nl: ["NL", "BE"],
   en: ["US", "GB"],
+  // „other" je najmä svetový/K-pop repertoár; tretí pokus cieli aj na Kóreu.
+  other: ["US", "GB", "KR"],
+  // Inštrumentálky bývajú najlepšie pokryté vo veľkých US/UK/DE katalógoch.
+  instrumental: ["US", "GB", "DE"],
 };
 
 /** Svetový repertoár aj neznámy jazyk hľadáme v najväčších obchodoch. */
@@ -295,7 +299,16 @@ const RESULT_LIMIT = 25;
 /** Koľko čakáme na jeden pokus, kým ho vzdáme. */
 const ATTEMPT_TIMEOUT_MS = 4500;
 
-/** Ako dlho vynechávame poskytovateľa, ktorý sa vôbec neozval. */
+/** Ako dlho čakáme, kým sa audio reálne pripraví a začne prehrávať. */
+const AUDIO_LOAD_TIMEOUT_MS = 8_000;
+
+/** Ako dlho tolerujeme prechodný stalled/abort, kým URL označíme za chybnú. */
+const AUDIO_STALL_TIMEOUT_MS = 4_000;
+
+/** Koľko po sebe idúcich infra chýb otvorí circuit breaker. */
+const PROVIDER_FAILURE_THRESHOLD = 2;
+
+/** Ako dlho vynechávame poskytovateľa po opakovaných infra chybách. */
 const PROVIDER_COOLDOWN_MS = 60_000;
 
 /** Ako dlho si držíme nájdenú ukážku. */
@@ -304,14 +317,36 @@ const PREVIEW_TTL_MS = 30 * 60_000;
 /** Ako dlho si držíme informáciu, že ukážka neexistuje. */
 const MISSING_TTL_MS = 5 * 60_000;
 
-const providerCooldown = new Map<PreviewProvider, number>();
-
-function providerAvailable(provider: PreviewProvider) {
-  return (providerCooldown.get(provider) ?? 0) <= Date.now();
+interface ProviderHealth {
+  failureStreak: number;
+  cooldownUntil: number;
 }
 
-function suspendProvider(provider: PreviewProvider) {
-  providerCooldown.set(provider, Date.now() + PROVIDER_COOLDOWN_MS);
+const providerHealth = new Map<PreviewProvider, ProviderHealth>();
+
+function healthFor(provider: PreviewProvider) {
+  return providerHealth.get(provider) ?? { failureStreak: 0, cooldownUntil: 0 };
+}
+
+function providerAvailable(provider: PreviewProvider) {
+  return healthFor(provider).cooldownUntil <= Date.now();
+}
+
+/** Každá platná JSONP odpoveď dokazuje, že infra providera znovu funguje. */
+function recordProviderResponse(provider: PreviewProvider) {
+  providerHealth.set(provider, { failureStreak: 0, cooldownUntil: 0 });
+}
+
+function recordProviderFailure(provider: PreviewProvider) {
+  const previous = healthFor(provider);
+  const failureStreak = previous.failureStreak + 1;
+  providerHealth.set(provider, {
+    failureStreak,
+    cooldownUntil:
+      failureStreak >= PROVIDER_FAILURE_THRESHOLD
+        ? Date.now() + PROVIDER_COOLDOWN_MS
+        : previous.cooldownUntil,
+  });
 }
 
 interface CacheEntry {
@@ -328,8 +363,40 @@ interface CacheEntry {
  */
 const previewCache = new Map<string, CacheEntry>();
 
+interface RejectedPreviewEntry {
+  urls: Set<string>;
+  expires: number;
+}
+
+/** Chybné CDN URL sa pre tú istú skladbu počas TTL nesmú vybrať znova. */
+const rejectedPreviews = new Map<string, RejectedPreviewEntry>();
+
 function cacheKeyFor(song: PreviewSong) {
   return `${normalize(song.title)}|${normalizeArtist(song.artist)}`;
+}
+
+function rejectedUrlsFor(song: PreviewSong) {
+  const key = cacheKeyFor(song);
+  const entry = rejectedPreviews.get(key);
+  if (!entry) return new Set<string>();
+  if (entry.expires <= Date.now()) {
+    rejectedPreviews.delete(key);
+    return new Set<string>();
+  }
+  return entry.urls;
+}
+
+function rejectPreview(song: PreviewSong, url: string) {
+  const key = cacheKeyFor(song);
+  const cached = previewCache.get(key);
+  if (cached?.preview?.url === url) previewCache.delete(key);
+
+  const rejected = rejectedUrlsFor(song);
+  rejected.add(url);
+  rejectedPreviews.set(key, {
+    urls: rejected,
+    expires: Date.now() + PREVIEW_TTL_MS,
+  });
 }
 
 /** `undefined` = ešte sme nehľadali, `null` = hľadali sme a nič nie je. */
@@ -400,6 +467,7 @@ function buildAttempts(song: PreviewSong): LookupAttempt[] {
 }
 
 interface DeezerPayload {
+  error?: unknown;
   data?: Array<{
     preview?: string;
     link?: string;
@@ -410,6 +478,8 @@ interface DeezerPayload {
 }
 
 interface ItunesPayload {
+  errorMessage?: string;
+  errorCode?: number | string;
   results?: Array<{
     previewUrl?: string;
     trackViewUrl?: string;
@@ -417,6 +487,48 @@ interface ItunesPayload {
     artistName?: string;
     artworkUrl100?: string;
   }>;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function isOptionalString(value: unknown) {
+  return value === undefined || value === null || typeof value === "string";
+}
+
+function isValidDeezerItem(value: unknown) {
+  if (!isRecord(value)) return false;
+  if (
+    !isOptionalString(value.preview) ||
+    !isOptionalString(value.link) ||
+    !isOptionalString(value.title)
+  )
+    return false;
+  if (value.artist !== undefined && value.artist !== null) {
+    if (!isRecord(value.artist) || !isOptionalString(value.artist.name))
+      return false;
+  }
+  if (value.album !== undefined && value.album !== null) {
+    if (
+      !isRecord(value.album) ||
+      !isOptionalString(value.album.cover_big) ||
+      !isOptionalString(value.album.cover_medium)
+    )
+      return false;
+  }
+  return true;
+}
+
+function isValidItunesItem(value: unknown) {
+  return (
+    isRecord(value) &&
+    isOptionalString(value.previewUrl) &&
+    isOptionalString(value.trackViewUrl) &&
+    isOptionalString(value.trackName) &&
+    isOptionalString(value.artistName) &&
+    isOptionalString(value.artworkUrl100)
+  );
 }
 
 function parseDeezer(payload: DeezerPayload): ProviderCandidate[] {
@@ -456,21 +568,27 @@ function parseItunes(payload: ItunesPayload): ProviderCandidate[] {
   );
 }
 
-/** Najlepší kandidát z odpovede, alebo `null`, keď ani jeden nie je istý. */
-function pickCandidate(song: PreviewSong, candidates: ProviderCandidate[]) {
-  // Neoriginálne verzie sa vyhadzujú ešte pred zoradením. Keby sa filtrovali
-  // až po ňom, „(Live)" s rovnakým skóre by mohol vyhrať nad použiteľným
-  // originálom a zamietnutie by zahodilo obe.
-  const match = candidates
-    .filter(item => isOriginalRecording(song, item.title, item.artist))
-    .sort(
-      (a, b) =>
-        matchParts(song, b.title, b.artist).total -
-        matchParts(song, a.title, a.artist).total
-    )[0];
-  return match && isConfidentMatch(song, match.title, match.artist)
-    ? match
-    : null;
+/** Najlepší confident kandidát z odpovede, alebo `null`. */
+function pickCandidate(
+  song: PreviewSong,
+  candidates: ProviderCandidate[],
+  rejectedUrls: ReadonlySet<string> = new Set()
+) {
+  // Najprv sa musia odfiltrovať všetky neisté a predtým pokazené výsledky.
+  // Inak môže vysoko skórujúci, ale neconfident kandidát zakryť správny nižší.
+  return (
+    candidates
+      .filter(
+        item =>
+          !rejectedUrls.has(item.preview) &&
+          isConfidentMatch(song, item.title, item.artist)
+      )
+      .sort(
+        (a, b) =>
+          matchParts(song, b.title, b.artist).total -
+          matchParts(song, a.title, a.artist).total
+      )[0] ?? null
+  );
 }
 
 function attemptUrl(attempt: LookupAttempt, callbackName: string) {
@@ -485,7 +603,7 @@ interface AttemptHandlers {
   onMatch: (candidate: ProviderCandidate) => void;
   /** Poskytovateľ odpovedal, ale nič dosť isté v odpovedi nebolo. */
   onNoMatch: () => void;
-  /** Poskytovateľ sa vôbec neozval — blokovaný, offline alebo zaseknutý. */
+  /** Poskytovateľ zlyhal — timeout, blokovaný skript alebo neplatná API odpoveď. */
   onProviderFailure: () => void;
 }
 
@@ -526,12 +644,47 @@ function runAttempt(
     ATTEMPT_TIMEOUT_MS
   );
 
-  jsonpWindow[callbackName] = (payload: DeezerPayload & ItunesPayload) => {
-    const candidates =
+  jsonpWindow[callbackName] = (rawPayload: unknown) => {
+    // API/rate-limit error payload ani malformovaný zoznam nie sú odpoveď
+    // „nič sa nenašlo". Provider health sa resetuje až po úspešnom parsovaní.
+    if (typeof rawPayload !== "object" || rawPayload === null) {
+      settle(handlers.onProviderFailure);
+      return;
+    }
+    const payload = rawPayload as DeezerPayload & ItunesPayload;
+    const items =
+      attempt.provider === "deezer" ? payload.data : payload.results;
+    const hasProviderError =
       attempt.provider === "deezer"
-        ? parseDeezer(payload)
-        : parseItunes(payload);
-    const match = pickCandidate(song, candidates);
+        ? payload.error !== undefined
+        : payload.errorMessage !== undefined || payload.errorCode !== undefined;
+    const validPayload =
+      !hasProviderError &&
+      Array.isArray(items) &&
+      items.every(item =>
+        attempt.provider === "deezer"
+          ? isValidDeezerItem(item)
+          : isValidItunesItem(item)
+      );
+    if (!validPayload) {
+      settle(handlers.onProviderFailure);
+      return;
+    }
+
+    let match: ProviderCandidate | null;
+    try {
+      const candidates =
+        attempt.provider === "deezer"
+          ? parseDeezer(payload)
+          : parseItunes(payload);
+      match = pickCandidate(song, candidates, rejectedUrlsFor(song));
+    } catch {
+      settle(handlers.onProviderFailure);
+      return;
+    }
+
+    // Až kompletné parsovanie a matching potvrdia zdravú odpoveď providera.
+    recordProviderResponse(attempt.provider);
     settle(() => (match ? handlers.onMatch(match) : handlers.onNoMatch()));
   };
   script.src = attemptUrl(attempt, callbackName);
@@ -549,7 +702,9 @@ export function useSongPreview(
 ) {
   const [source, setSource] = useState<PreviewSource | null>(null);
   const [status, setStatus] = useState<SongPreviewStatus>("idle");
+  const [lookupRevision, setLookupRevision] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioCleanupRef = useRef<(() => void) | null>(null);
   const stopTimerRef = useRef<number | null>(null);
   const playbackAttemptRef = useRef(0);
 
@@ -558,10 +713,15 @@ export function useSongPreview(
     if (stopTimerRef.current !== null)
       window.clearTimeout(stopTimerRef.current);
     stopTimerRef.current = null;
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-      audioRef.current = null;
+
+    const audio = audioRef.current;
+    audioRef.current = null;
+    const cleanup = audioCleanupRef.current;
+    audioCleanupRef.current = null;
+    cleanup?.();
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
     }
     setStatus(current =>
       current === "missing" || current === "error" ? current : nextStatus
@@ -588,7 +748,8 @@ export function useSongPreview(
     const attempts = buildAttempts(song);
     let cancelAttempt: (() => void) | null = null;
     let nextAttempt = 0;
-    let providerAnswered = false;
+    let noMatchResponses = 0;
+    let inconclusive = false;
     let active = true;
     setStatus("loading");
 
@@ -597,15 +758,22 @@ export function useSongPreview(
       while (
         nextAttempt < attempts.length &&
         !providerAvailable(attempts[nextAttempt].provider)
-      )
+      ) {
+        // Preskočený cooldown nie je odpoveď „nič sa nenašlo".
+        inconclusive = true;
         nextAttempt++;
+      }
 
       if (nextAttempt >= attempts.length) {
-        // Že ukážka neexistuje, si pamätáme len keď poskytovateľ naozaj
-        // odpovedal. Pri vypadnutej sieti by sa inak celá zásoba označila za
-        // nedostupnú a ukážky by nefungovali ani po obnovení pripojenia.
-        if (providerAnswered) rememberPreview(song, null);
-        setStatus("missing");
+        // Negatívna cache je bezpečná iba po odpovedi no-match na každom
+        // naplánovanom pokuse. Jediný timeout, script error alebo cooldown robí
+        // celý výsledok inconclusive a UI dostane error, nie auto-skip missing.
+        if (!inconclusive && noMatchResponses === attempts.length) {
+          rememberPreview(song, null);
+          setStatus("missing");
+        } else {
+          setStatus("error");
+        }
         return;
       }
 
@@ -623,11 +791,12 @@ export function useSongPreview(
           setStatus("ready");
         },
         onNoMatch: () => {
-          providerAnswered = true;
+          noMatchResponses += 1;
           runNext();
         },
         onProviderFailure: () => {
-          suspendProvider(attempt.provider);
+          inconclusive = true;
+          recordProviderFailure(attempt.provider);
           runNext();
         },
       });
@@ -639,7 +808,7 @@ export function useSongPreview(
       active = false;
       cancelAttempt?.();
     };
-  }, [enabled, song, stop]);
+  }, [enabled, lookupRevision, song, stop]);
 
   useEffect(
     () => () => {
@@ -647,56 +816,172 @@ export function useSongPreview(
       if (stopTimerRef.current !== null)
         window.clearTimeout(stopTimerRef.current);
       stopTimerRef.current = null;
-      audioRef.current?.pause();
+      const audio = audioRef.current;
       audioRef.current = null;
+      audioCleanupRef.current?.();
+      audioCleanupRef.current = null;
+      audio?.pause();
     },
     []
   );
 
   const play = useCallback(async () => {
-    if (!enabled || !source || status === "loading") return false;
+    if (!enabled || !song || !source || status === "loading") return false;
     stop("ready");
     const attempt = playbackAttemptRef.current;
-    const audio = new Audio(source.url);
+    const playingSong = song;
+    const playingSource = source;
+    const audio = new Audio(playingSource.url);
     audio.preload = "auto";
     audio.volume = 0.8;
     audioRef.current = audio;
-    audio.addEventListener(
-      "ended",
-      () => {
-        if (
-          audioRef.current !== audio ||
-          playbackAttemptRef.current !== attempt
-        )
-          return;
-        audioRef.current = null;
-        setStatus("ready");
-      },
-      { once: true }
-    );
-    try {
-      await audio.play();
-      if (
-        audioRef.current !== audio ||
-        playbackAttemptRef.current !== attempt
-      ) {
-        audio.pause();
-        return false;
-      }
-      setStatus("playing");
-      stopTimerRef.current = window.setTimeout(
-        () => stop("ready"),
-        Math.max(3, maxSeconds) * 1000
-      );
-      return true;
-    } catch {
-      if (audioRef.current !== audio || playbackAttemptRef.current !== attempt)
-        return false;
+
+    let failed = false;
+    let loadTimer: number | null = null;
+    let interruptionTimer: number | null = null;
+    let resolveInterrupted: (started: false) => void = () => undefined;
+    const interrupted = new Promise<false>(resolve => {
+      resolveInterrupted = resolve;
+    });
+    const isCurrent = () =>
+      audioRef.current === audio && playbackAttemptRef.current === attempt;
+    const clearLoadTimer = () => {
+      if (loadTimer !== null) window.clearTimeout(loadTimer);
+      loadTimer = null;
+    };
+    const clearInterruptionTimer = () => {
+      if (interruptionTimer !== null) window.clearTimeout(interruptionTimer);
+      interruptionTimer = null;
+    };
+
+    const cleanup = () => {
+      clearLoadTimer();
+      clearInterruptionTimer();
+      audio.removeEventListener("ended", onEnded);
+      audio.removeEventListener("error", onMediaError);
+      audio.removeEventListener("abort", onTransientInterruption);
+      audio.removeEventListener("stalled", onTransientInterruption);
+      audio.removeEventListener("canplay", onMediaRecovered);
+      audio.removeEventListener("playing", onMediaRecovered);
+      resolveInterrupted(false);
+    };
+
+    const releaseAudio = () => {
       audioRef.current = null;
-      setStatus("error");
+      if (audioCleanupRef.current === cleanup) audioCleanupRef.current = null;
+      cleanup();
+      audio.pause();
+    };
+
+    const invalidate = () => {
+      if (failed || !isCurrent()) return;
+      failed = true;
+      releaseAudio();
+      rejectPreview(playingSong, playingSource.url);
+      setSource(current =>
+        current?.url === playingSource.url ? null : current
+      );
+      // Nový lookup uvidí rejected URL a skúsi ďalšieho kandidáta/pokus.
+      setStatus("loading");
+      setLookupRevision(value => value + 1);
+    };
+
+    const restoreReady = () => {
+      if (failed || !isCurrent()) return;
+      failed = true;
+      releaseAudio();
+      // NotAllowedError/AbortError ani krátky stalled nedokazujú chybnú URL.
+      // Zdroj preto ostáva v cache a používateľ ho môže spustiť ďalším tapom.
+      setStatus("ready");
+    };
+
+    function onMediaError() {
+      // MEDIA_ERR_ABORTED (1) je prerušenie, nie dôkaz zlej CDN URL. Network,
+      // decode a unsupported source (2–4) už spoľahlivo znamenajú inú ukážku.
+      if (audio.error && audio.error.code > 1) invalidate();
+      else onTransientInterruption();
+    }
+
+    function onTransientInterruption() {
+      if (!isCurrent() || interruptionTimer !== null) return;
+      interruptionTimer = window.setTimeout(invalidate, AUDIO_STALL_TIMEOUT_MS);
+    }
+
+    function onMediaRecovered() {
+      clearInterruptionTimer();
+    }
+
+    function onEnded() {
+      if (!isCurrent()) return;
+      if (stopTimerRef.current !== null)
+        window.clearTimeout(stopTimerRef.current);
+      stopTimerRef.current = null;
+      audioRef.current = null;
+      if (audioCleanupRef.current === cleanup) audioCleanupRef.current = null;
+      cleanup();
+      setStatus("ready");
+    }
+
+    audio.addEventListener("ended", onEnded);
+    audio.addEventListener("error", onMediaError);
+    audio.addEventListener("abort", onTransientInterruption);
+    audio.addEventListener("stalled", onTransientInterruption);
+    audio.addEventListener("canplay", onMediaRecovered);
+    audio.addEventListener("playing", onMediaRecovered);
+    audioCleanupRef.current = cleanup;
+    loadTimer = window.setTimeout(invalidate, AUDIO_LOAD_TIMEOUT_MS);
+
+    const rejectionName = (error: unknown) =>
+      typeof error === "object" && error !== null && "name" in error
+        ? String((error as { name: unknown }).name)
+        : "";
+    const confirmsBadSource = (error: unknown) =>
+      Boolean(audio.error && audio.error.code > 1) ||
+      rejectionName(error) === "NotSupportedError";
+
+    let playPromise: Promise<void>;
+    try {
+      // Volá sa priamo z používateľovho tapu; lookup už prehrávanie nespúšťa.
+      playPromise = audio.play();
+    } catch (error) {
+      if (confirmsBadSource(error)) invalidate();
+      else restoreReady();
       return false;
     }
-  }, [enabled, maxSeconds, source, status, stop]);
+
+    let playError: unknown;
+    const started = await Promise.race([
+      playPromise.then(
+        () => true as const,
+        error => {
+          playError = error;
+          return false as const;
+        }
+      ),
+      interrupted,
+    ]);
+    if (!started) {
+      // Stop/unmount je stale. Policy/gesture odmietnutie ponechá platnú URL
+      // pripravenú na ďalší tap; iba potvrdená source chyba spustí nový lookup.
+      if (isCurrent()) {
+        if (confirmsBadSource(playError)) invalidate();
+        else restoreReady();
+      }
+      return false;
+    }
+    if (!isCurrent()) {
+      audio.pause();
+      return false;
+    }
+
+    clearLoadTimer();
+    setStatus("playing");
+    stopTimerRef.current = window.setTimeout(
+      () => stop("ready"),
+      Math.max(3, maxSeconds) * 1000
+    );
+    return true;
+  }, [enabled, maxSeconds, song, source, status, stop]);
 
   return { status, source, play, stop };
 }
