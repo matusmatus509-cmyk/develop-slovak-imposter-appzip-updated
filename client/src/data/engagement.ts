@@ -42,7 +42,7 @@ export const PARTY_THEMES: Array<{ id: PartyTheme; title: string; swatch: string
 ];
 
 export const PACKS = [
-  { id: "movies", title: "Movies", icon: "🎬", status: "available", detail: "Hádaj emoji · existujúca kategória Filmy a seriály", screen: "hadajemoji" as Screen },
+  { id: "movies", title: "Movies", icon: "🎬", status: "available", detail: "Hádaj emoji · existujúca kategória Filmy", screen: "hadajemoji" as Screen },
   { id: "marvel", title: "Marvel", icon: "🦸", status: "soon", detail: "Pripravujeme samostatný balík" },
   { id: "harry-potter", title: "Harry Potter", icon: "🪄", status: "soon", detail: "Pripravujeme samostatný balík" },
   { id: "anime", title: "Anime", icon: "🌸", status: "soon", detail: "Pripravujeme samostatný balík" },

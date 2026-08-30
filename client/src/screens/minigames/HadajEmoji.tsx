@@ -118,13 +118,13 @@ export default function HadajEmoji({
           <p className="mb-3 text-xs font-bold uppercase tracking-widest text-white/40">
             Vyber kategóriu
           </p>
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex gap-2 overflow-x-auto pb-2">
             {categories.map(item => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => selectCategory(item)}
-                className={`rounded-2xl border px-3 py-2 text-sm font-bold transition active:scale-95 ${
+                className={`shrink-0 rounded-2xl border px-3 py-2 text-sm font-bold transition active:scale-95 ${
                   item.id === categoryId
                     ? "border-amber-300/70 bg-amber-400/20 text-amber-100 shadow-[0_0_20px_rgba(250,204,21,.12)]"
                     : "border-white/10 bg-white/5 text-white/55 hover:bg-white/10"
