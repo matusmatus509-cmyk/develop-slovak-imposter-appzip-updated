@@ -668,7 +668,7 @@ export default function SlovnaRosada({
         player={current}
         deck={deck}
         priorityCards={[]}
-        deckKey={`solo-charades:${difficulty}`}
+        deckKey={`solo-charades-v2:${difficulty}`}
         timerSecs={timerSecs}
         maxSkips={maxSkips}
         teamMode={teamMode}

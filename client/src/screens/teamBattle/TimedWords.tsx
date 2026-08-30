@@ -112,7 +112,7 @@ export default function TimedWords({
   function takeNextSharedWord() {
     if (isSarady && difficulty) {
       return takePersistentItem(
-        `solo-charades:${difficulty}`,
+        `solo-charades-v2:${difficulty}`,
         saradyWords,
         word => word.trim().toLocaleLowerCase("sk")
       );

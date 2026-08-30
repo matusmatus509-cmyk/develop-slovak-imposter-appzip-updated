@@ -162,7 +162,7 @@ export function getWorkshopEntryValidationError(
   if (sourceAnswer.length > 160) return "Odpoveď môže mať najviac 160 znakov.";
   if (!text) return "Doplňte text kartičky.";
   if (COLON_PATTERN.test(text) || COLON_PATTERN.test(answer)) return "Kartička ani odpoveď nesmú obsahovať dvojbodku.";
-  if (normalizedKind === "charade") return isValidCharadeText(text) ? null : "Šaráda musí mať 1 až 3 bežné slová bez dvojbodky.";
+  if (normalizedKind === "charade") return isValidCharadeText(text) ? null : "Šaráda musí mať 1 až 2 bežné slová bez dvojbodky.";
   if (normalizedKind === "truth") return text.endsWith("?") ? null : "Otázka pravdy má byť úplná otázka zakončená otáznikom.";
   if (normalizedKind === "dare") return /[.!]$/.test(text) ? null : "Výzvu napíšte ako úplnú vetu zakončenú bodkou alebo výkričníkom.";
   if (normalizedKind === "never") {
@@ -229,7 +229,7 @@ export function normalizeWorkshopEntries(value: unknown, collectionsValue?: unkn
     if (!text || !rawKind || !VALID_KINDS.has(rawKind)) continue;
     // Existing local cards stay visible after an app update. New edits and
     // imported PP1 cards use the strict player-facing validator before they
-    // reach this normalizer. A legacy charade that fails the new 1–3-word rule
+    // reach this normalizer. A legacy charade that fails the new 1–2-word rule
     // is preserved for repair but disabled, so it cannot appear in a game.
     const legacyInvalidCharade = rawKind === "charade" && (text.length > 80 || !isValidCharadeText(text));
     const createdAt = Number.isFinite(candidate.createdAt) ? Math.max(0, Number(candidate.createdAt)) : 0;
