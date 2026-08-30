@@ -399,10 +399,14 @@ function artistKey(value) {
     .toLocaleLowerCase()
     .replace(/[^a-z0-9]+/g, "");
 }
+// Niektoré úplne odlišné kapely sa po odstránení diakritiky zlejú do
+// rovnakého kľúča. Portugalská „Táxi" a švajčiarska „Taxi" sú dve rôzne
+// skupiny, preto si obe ponechávajú svoje kanonické meno.
+const ALLOWED_ARTIST_KEY_COLLISIONS = new Set(["taxi"]);
 const byArtist = new Map();
 for (const song of all) {
   const key = artistKey(song.artist);
-  if (!key) continue;
+  if (!key || ALLOWED_ARTIST_KEY_COLLISIONS.has(key)) continue;
   if (!byArtist.has(key)) byArtist.set(key, new Set());
   byArtist.get(key).add(song.artist);
 }
