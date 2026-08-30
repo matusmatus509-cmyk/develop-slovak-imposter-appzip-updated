@@ -18,7 +18,7 @@ const KIND_GUIDANCE: Record<Exclude<WorkshopEntryKind, "word">, string> = {
   emoji: "Použite emoji ako nápovedu a do odpovede napíšte jednoznačné riešenie.",
   quiz: "Napíšte otázku zakončenú otáznikom a jej správnu odpoveď.",
   person: "Použite stručný názov osoby alebo postavy, nie celú vetu.",
-  charade: "Použite 1 až 3 bežné slová bez dvojbodky, napríklad „Umývanie riadu“.",
+  charade: "Použite 1 až 2 bežné slová bez dvojbodky, napríklad „Umývanie riadu“.",
 };
 const COLORS = ["#34d399", "#22d3ee", "#a78bfa", "#fb7185", "#fbbf24", "#60a5fa"];
 
