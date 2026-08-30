@@ -75,7 +75,6 @@ export default function MusicBuzzer({
   const [phase, setPhase] = useState<Phase>({ type: "question" });
   const [played, setPlayed] = useState(false);
   const [autoSkips, setAutoSkips] = useState(0);
-  const autoStartedFor = useRef<number | null>(null);
   const autoSkippedFor = useRef<number | null>(null);
   const song = deck[deckIndex] ?? null;
   const { status, source, play, stop } = useSongPreview(
@@ -113,18 +112,18 @@ export default function MusicBuzzer({
     if (await play()) setPlayed(true);
   }
 
+  // Lookup už nikdy nespúšťa audio automaticky: mobilné prehliadače vyžadujú
+  // používateľov tap. Nájdená ukážka iba vynuluje sériu skutočných no-matchov.
   useEffect(() => {
-    if (
-      !soundAllowed ||
-      status !== "ready" ||
-      autoStartedFor.current === deckIndex
-    )
-      return;
-    autoStartedFor.current = deckIndex;
-    // Ukážka sa našla, takže séria preskočení sa počíta od nuly.
-    setAutoSkips(0);
-    void playPreview();
-  }, [deckIndex, soundAllowed, status]);
+    if (status === "ready" || status === "playing") setAutoSkips(0);
+  }, [status]);
+
+  // Keď sa rozbehnutá URL pokazí a hook hľadá náhradu, bzučiaky sa znova
+  // zamknú. Odomknú sa až po úspešnom explicitnom prehratí náhradnej ukážky.
+  useEffect(() => {
+    if (status === "loading" || status === "missing" || status === "error")
+      setPlayed(false);
+  }, [status]);
 
   // ── Nedostupná ukážka ─────────────────────────────────────────────────────
   // Skladba bez ukážky nemá pre hráčov obsah — nie je čo bzučať. Deck je práve
@@ -224,9 +223,11 @@ export default function MusicBuzzer({
           ? autoSkips >= AUTO_SKIP_LIMIT
             ? "Ukážka sa nenašla"
             : "Beriem ďalšiu pesničku…"
-          : played
-            ? "Kto pozná túto pesničku?"
-            : "Spúšťam ukážku…"
+          : status === "error"
+            ? "Ukážku sa nepodarilo načítať"
+            : played
+              ? "Kto pozná túto pesničku?"
+              : "Ťukni na disk a spusti ukážku"
       : phase.type === "buzzed"
         ? `${participantNames[phase.participant]} odpovedá`
         : (song?.title ?? "Hudobný kvíz");
@@ -235,14 +236,16 @@ export default function MusicBuzzer({
     ? "Zvuky sú vypnuté — zapni ich v nastaveniach"
     : status === "missing"
       ? autoSkips >= AUTO_SKIP_LIMIT
-        ? "Ukážky sa nedajú načítať — skontroluj pripojenie"
+        ? "Pre tieto skladby sa ukážka nenašla"
         : "Ukážka nie je dostupná — beriem ďalšiu pesničku"
       : status === "error"
-        ? "Prehrávanie sa nepodarilo — ťukni na obal a skús znova"
+        ? "Provider neodpovedá — skús ďalšiu pesničku"
         : phase.type === "question"
           ? played
             ? "Bzuč, keď poznáš názov aj interpreta"
-            : ""
+            : status === "ready"
+              ? "Bzučiaky sa odomknú, keď sa prehrávanie spustí"
+              : ""
           : phase.type === "buzzed"
             ? `${participantWord} povie názov aj interpreta`
             : "";
@@ -459,7 +462,7 @@ export default function MusicBuzzer({
             type="button"
             onClick={playing ? () => stop("ready") : playPreview}
             disabled={
-              !soundAllowed || status === "loading" || status === "missing"
+              !soundAllowed || !source || (status !== "ready" && !playing)
             }
             aria-label={playing ? "Zastaviť pesničku" : "Prehrať pesničku"}
             className={`music-quiz-disc party-shine relative shrink-0 overflow-hidden rounded-full border-2 border-violet-300/35 shadow-[0_0_46px_rgba(217,70,239,.34)] transition active:scale-95 disabled:opacity-55 ${playing ? "is-playing" : ""}`}

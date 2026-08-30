@@ -348,7 +348,7 @@ Waka Waka (This Time for Africa)|Shakira
 Whenever, Wherever|Shakira
 Livin' la Vida Loca|Ricky Martin
 Hero|Enrique Iglesias
-Bailando|Enrique Iglesias
+Bailando|Enrique Iglesias|2014|latin|easy|lang=es
 On the Floor|Jennifer Lopez
 Let's Get Loud|Jennifer Lopez
 Crazy in Love|Beyoncé
@@ -413,10 +413,10 @@ Happy|Pharrell Williams
 Chandelier|Sia
 Cheap Thrills|Sia
 Party Rock Anthem|LMFAO
-Gangnam Style|PSY
+Gangnam Style|PSY|2012|pop|easy|lang=other
 Somebody That I Used to Know|Gotye
 Dance Monkey|Tones and I
-Despacito|Luis Fonsi
+Despacito|Luis Fonsi|2017|latin|easy|lang=es
 Havana|Camila Cabello
 drivers license|Olivia Rodrigo
 good 4 u|Olivia Rodrigo
@@ -433,10 +433,10 @@ Let It Go|Idina Menzel
 Ghostbusters|Ray Parker Jr.
 Footloose|Kenny Loggins
 What Is Love|Haddaway
-Dragostea Din Tei|O-Zone
+Dragostea Din Tei|O-Zone|2003|pop|easy|lang=other
 Freed from Desire|Gala
 Blue (Da Ba Dee)|Eiffel 65
-Macarena|Los del Río
+Macarena|Los del Río|1993|latin|easy|lang=es
 Barbie Girl|Aqua
 All Star|Smash Mouth
 Seven Nation Army|The White Stripes
@@ -448,7 +448,7 @@ No Scrubs|TLC
 Shape of My Heart|Sting
 I Have Nothing|Whitney Houston
 The Show Must Go On|Queen
-Take My Breath Away|Queen
+Take My Breath Away|Berlin|1986|soundtrack|easy
 Every Breath You Take|The Police
 Message in a Bottle|The Police
 Englishman In New York|Sting
@@ -465,11 +465,11 @@ Isn't She Lovely|Stevie Wonder
 Brown Eyed Girl|Van Morrison
 Sweet Home Alabama|Lynyrd Skynyrd
 Memories|David Guetta
-Gasolina|Daddy Yankee
-Danza Kuduro|Don Omar
+Gasolina|Daddy Yankee|2004|latin|easy|lang=es
+Danza Kuduro|Don Omar|2010|latin|easy|lang=es
 Señorita|Shawn Mendes
 Die With A Smile|Lady Gaga
-The Ketchup Song (Aserejé)|Las Ketchup
+The Ketchup Song (Aserejé)|Las Ketchup|2002|latin|easy|lang=es
 Cotton Eye Joe|Rednex
 I'm a Believer|Smash Mouth
 Let's Get It Started|Black Eyed Peas
@@ -512,10 +512,10 @@ Take It Easy|Eagles
 Hold the Line|Toto
 Everybody Wants to Rule the World|Tears for Fears
 Wake Me Up When September Ends|Green Day
-Hollaback Girl|Snoop Dogg
+Hollaback Girl|Gwen Stefani|2004|pop|easy
 Gold Digger|Kanye West
 Stronger|Kanye West
-Super Bass|Gwen Stefani
+Super Bass|Nicki Minaj|2010|pop|easy
 Pump It|Black Eyed Peas
 Promiscuous|Nelly Furtado
 Maneater|Nelly Furtado
@@ -728,12 +728,12 @@ Attention|Charlie Puth|2017|pop|easy
 One Call Away|Charlie Puth|2015|pop|medium
 Last Friday Night|Katy Perry|2010|pop|easy
 The One That Got Away|Katy Perry|2011|pop|medium
-Sofia|Álvaro Soler|2016|latin|medium
-El Mismo Sol|Álvaro Soler|2015|latin|medium
+Sofia|Álvaro Soler|2016|latin|easy|lang=es
+El Mismo Sol|Álvaro Soler|2015|latin|easy|lang=es
 Dynamite|BTS|2020|pop|easy
 Butter|BTS|2021|pop|medium
-How You Like That|BLACKPINK|2020|pop|medium
-Kill This Love|BLACKPINK|2019|pop|medium
+How You Like That|BLACKPINK|2020|pop|medium|lang=other
+Kill This Love|BLACKPINK|2019|pop|medium|lang=other
 Sucker|Jonas Brothers|2019|pop|medium
 Alone|Alan Walker|2016|dance|medium
 The Spectre|Alan Walker|2017|dance|medium
@@ -3216,20 +3216,22 @@ function uniqueSongs(songs: readonly Song[]): Song[] {
   return Array.from(new Map(songs.map((song) => [song.id, song])).values());
 }
 
-/** Svetový pool — mieša sa do každého jazyka hry. */
-export const GLOBAL_SONGS: Song[] = uniqueSongs([
-  ...WORLD_HITS,
-  ...WORLD_HITS_EXTENDED,
-  ...WORLD_SONG_EXPANSIONS,
-]);
+/**
+ * Aktívny svetový pool je úmyselne menší než historický archív nižšie.
+ *
+ * Masovo dopĺňané extended/expansion zoznamy obsahovali veľa regionálnych,
+ * neznámych a nesprávne označených skladieb. Hudobný kvíz preto čerpá iba z
+ * ručne kurátorovaného jadra. `hard` položka môže zostať v zdroji na ďalšiu
+ * revíziu, do bežnej hry sa však nedostane.
+ */
+export const GLOBAL_SONGS: Song[] = uniqueSongs(
+  WORLD_HITS.filter((song) => song.tier !== "hard"),
+);
 
-const LOCAL_LANGUAGE_KEYS = [
-  ...new Set([
-    ...Object.keys(LOCAL_HITS),
-    ...Object.keys(LOCAL_HITS_EXTENDED),
-    ...Object.keys(LOCAL_SONG_EXPANSIONS),
-  ]),
-] as SongLanguage[];
+/** Autoritatívne lokálne pooly sú rovnako iba ručne kurátorované základné
+ * zoznamy. Rozšírenia ostávajú v súbore ako archív pre budúcu individuálnu
+ * revíziu, ale hra ich automaticky neaktivuje. */
+const LOCAL_LANGUAGE_KEYS = Object.keys(LOCAL_HITS) as SongLanguage[];
 
 /** Lokálne pooly podľa spievaného jazyka. Kľúč je `SongLanguage`, nie jazyk UI,
  *  takže sa dá pridať čeština či poľština bez zmeny jazykov aplikácie. */
@@ -3237,11 +3239,7 @@ export const LOCAL_SONGS_BY_LANGUAGE: Partial<Record<SongLanguage, Song[]>> =
   Object.fromEntries(
     LOCAL_LANGUAGE_KEYS.map((language) => [
       language,
-      uniqueSongs([
-        ...(LOCAL_HITS[language] ?? []),
-        ...(LOCAL_HITS_EXTENDED[language] ?? []),
-        ...(LOCAL_SONG_EXPANSIONS[language] ?? []),
-      ]),
+      uniqueSongs(LOCAL_HITS[language] ?? []),
     ]),
   ) as Partial<Record<SongLanguage, Song[]>>;
 
