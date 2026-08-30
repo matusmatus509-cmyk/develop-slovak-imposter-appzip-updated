@@ -14,6 +14,8 @@ import {
 } from "../../i18n/LanguageProvider";
 import { imposterGameHero } from "../../media";
 
+const NO_HINT_RECOMMENDED_CATEGORY_IDS = new Set(["minecraft", "brawlstars"]);
+
 const TIMER_OPTIONS = [
   { label: "30 s", value: 30 },
   { label: "60 s", value: 60 },
@@ -95,6 +97,16 @@ export default function Setup({
     () => CATEGORIES.filter((c) => categoryIds.includes(c.id)),
     [categoryIds],
   );
+
+  const noHintRecommendedCategories = selectedCategories.filter((category) =>
+    NO_HINT_RECOMMENDED_CATEGORY_IDS.has(category.id),
+  );
+  const hintDescription =
+    noHintRecommendedCategories.length === 0
+      ? "Podvodník dostane nápovedu zo svojej kategórie, ktorú použije v prvom kole"
+      : `${noHintRecommendedCategories.map((category) => category.name).join(" a ")} ${
+          noHintRecommendedCategories.length === 1 ? "sa hrá" : "sa hrajú"
+        } lepšie bez nápovedy.`;
 
   const totalWords = useMemo(
     () => selectedCategories.reduce((sum, c) => sum + c.wordPairs.length, 0),
@@ -265,7 +277,7 @@ export default function Setup({
               checked={hintsEnabled}
               onChange={setHintsEnabled}
               label="Nápoveda pre podvodníka"
-              description="Podvodník dostane nápovedu zo svojej kategórie, ktorú použije v prvom kole"
+              description={hintDescription}
             />
             <Toggle
               checked={noRepeatWords}
