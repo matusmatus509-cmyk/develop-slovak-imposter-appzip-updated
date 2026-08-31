@@ -42,6 +42,7 @@ const sources = SOURCE_FILES.map(path => ({
  */
 const ALLOWED_SHARED_TITLES = new Set([
   "hero",
+  "maria maria", // Santana (1999) / Milton Nascimento (1978)
   "suavemente", // Elvis Crespo (1998) / Soolking (2022)
   "tata", // Buty (1994) / Slow J (2023)
   "wunder", // Nina Chuba (2022) / AYLIVA & Apache 207 (2024)
@@ -220,14 +221,14 @@ const activeLocal = activeSourceSongs.filter(
 const activeAll = [...activeWorld, ...activeLocal];
 
 const EXPECTED_ACTIVE_COUNTS = {
-  world: 575,
-  sk: 241,
-  cs: 135,
-  en: 123,
-  de: 148,
-  es: 147,
-  fr: 151,
-  pt: 145,
+  world: 800,
+  sk: 300,
+  cs: 300,
+  en: 300,
+  de: 300,
+  es: 300,
+  fr: 300,
+  pt: 300,
 };
 const EXPECTED_ACTIVE_TOTAL = Object.values(EXPECTED_ACTIVE_COUNTS).reduce(
   (total, count) => total + count,
@@ -387,9 +388,18 @@ for (const song of all) {
 }
 
 // ── Rovnaký názov s iným interpretom ────────────────────────────────────────
+function sharedTitleKey(value) {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLocaleLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
 const byTitle = new Map();
 for (const song of all) {
-  const key = song.title.toLocaleLowerCase();
+  const key = sharedTitleKey(song.title);
   if (!byTitle.has(key)) byTitle.set(key, []);
   byTitle.get(key).push(song);
 }

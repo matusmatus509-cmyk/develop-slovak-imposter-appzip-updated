@@ -178,7 +178,6 @@ Rise Like a Phoenix|Conchita Wurst|2014|pop|easy|hum
 Toy|Netta|2018|pop|medium|hum
 Cha Cha Cha|Käärijä|2023|rap|easy|nohum
 Europapa|Joost Klein|2024|dance|medium|hum
-Voilà|Barbara Pravi|2021|chanson|medium|hum
 Think About Things|Daði Freyr|2020|pop|medium|hum
 Shum|Go_A|2021|folk|medium|hum
 Stefania|Kalush Orchestra|2022|rap|medium|nohum
@@ -299,117 +298,37 @@ Pata Pata|Miriam Makeba|1967|oldies|easy|hum
 `;
 
 export const ENGLISH_SONG_EXPANSION = String.raw`
-Johnny B. Goode|Chuck Berry|1958|oldies|easy|hum
-Great Balls of Fire|Jerry Lee Lewis|1957|oldies|easy|hum
 Chantilly Lace|The Big Bopper|1958|oldies|easy|hum
-Peggy Sue|Buddy Holly|1957|oldies|easy|hum
-Wake Up Little Susie|The Everly Brothers|1957|oldies|easy|hum
 That'll Be the Day|Buddy Holly|1957|oldies|easy|hum
 Earth Angel|The Penguins|1954|oldies|medium|hum
 Tequila|The Champs|1958|oldies|easy|hum
 Only You (And You Alone)|The Platters|1955|oldies|easy|hum
 At the Hop|Danny & the Juniors|1957|oldies|medium|hum
-Runaround Sue|Dion|1961|oldies|easy|hum
-The Wanderer|Dion|1961|oldies|easy|hum
-It's Your Thing|The Isley Brothers|1969|oldies|easy|hum
-Do You Love Me|The Contours|1962|oldies|easy|hum
-Walking in the Rain|The Ronettes|1964|oldies|medium|hum
-Da Doo Ron Ron|The Crystals|1963|oldies|medium|hum
-Baby Love|The Supremes|1964|oldies|easy|hum
-Where Did Our Love Go|The Supremes|1964|oldies|easy|hum
-Stop! In the Name of Love|The Supremes|1965|oldies|easy|hum
-Reach Out I'll Be There|Four Tops|1966|oldies|easy|hum
-Dancing in the Street|Martha and the Vandellas|1964|oldies|easy|hum
-My Guy|Mary Wells|1964|oldies|medium|hum
-Sugar, Sugar|The Archies|1969|oldies|easy|hum
-Build Me Up Buttercup|The Foundations|1968|oldies|easy|hum
-Daydream Believer|The Monkees|1967|oldies|easy|hum
-Happy Together|The Turtles|1967|oldies|easy|hum
-These Boots Are Made for Walkin'|Nancy Sinatra|1966|oldies|easy|hum
-Oh, Pretty Woman|Roy Orbison|1964|oldies|easy|hum
-Son of a Preacher Man|Dusty Springfield|1968|oldies|easy|hum
-River Deep – Mountain High|Ike & Tina Turner|1966|oldies|medium|hum
-You Really Got Me|The Kinks|1964|rock|easy|hum
-All Day and All of the Night|The Kinks|1964|rock|medium|hum
-Pinball Wizard|The Who|1969|rock|easy|hum
-Won't Get Fooled Again|The Who|1971|rock|medium|hum
 Substitute|The Who|1966|rock|medium|hum
-Sunshine of Your Love|Cream|1967|rock|easy|hum
-White Room|Cream|1968|rock|medium|hum
-Green River|Creedence Clearwater Revival|1969|rock|medium|hum
-Up Around the Bend|Creedence Clearwater Revival|1970|rock|medium|hum
 Born on the Bayou|Creedence Clearwater Revival|1969|rock|medium|hum
-White Rabbit|Jefferson Airplane|1967|rock|easy|hum
-Crimson and Clover|Tommy James & the Shondells|1968|rock|medium|hum
-Mony Mony|Tommy James & the Shondells|1968|rock|easy|hum
-Gimme Some Lovin'|The Spencer Davis Group|1966|rock|easy|hum
 I'm a Man|The Spencer Davis Group|1967|rock|medium|hum
-A Whiter Shade of Pale|Procol Harum|1967|rock|easy|hum
-Nights in White Satin|The Moody Blues|1967|rock|easy|hum
 Tuesday Afternoon|The Moody Blues|1967|rock|medium|hum
 Go All the Way|Raspberries|1972|rock|medium|hum
-All Right Now|Free|1970|rock|easy|hum
-Radar Love|Golden Earring|1973|rock|easy|hum
-The Ballroom Blitz|Sweet|1973|rock|easy|hum
 Fox on the Run|Sweet|1975|rock|medium|hum
-Starman|David Bowie|1972|rock|easy|hum
-Rebel Rebel|David Bowie|1974|rock|medium|hum
 Golden Years|David Bowie|1975|rock|medium|hum
-Rhiannon|Fleetwood Mac|1975|rock|easy|hum
-Everywhere|Fleetwood Mac|1987|pop|easy|hum
-Little Lies|Fleetwood Mac|1987|pop|easy|hum
-Don't Stop|Fleetwood Mac|1977|rock|easy|hum
-Landslide|Fleetwood Mac|1975|rock|medium|hum
 You Make Loving Fun|Fleetwood Mac|1977|rock|medium|hum
-Life in the Fast Lane|Eagles|1976|rock|easy|hum
-New Kid in Town|Eagles|1976|rock|medium|hum
-Take It to the Limit|Eagles|1975|rock|medium|hum
-Long Train Runnin'|The Doobie Brothers|1973|rock|easy|hum
-Listen to the Music|The Doobie Brothers|1972|rock|easy|hum
 China Grove|The Doobie Brothers|1973|rock|medium|hum
-Reelin' in the Years|Steely Dan|1972|rock|medium|hum
 Do It Again|Steely Dan|1972|rock|medium|hum
-Rich Girl|Daryl Hall & John Oates|1976|pop|easy|hum
-You Make My Dreams|Daryl Hall & John Oates|1980|pop|easy|hum
 Kiss on My List|Daryl Hall & John Oates|1980|pop|medium|hum
-Private Eyes|Daryl Hall & John Oates|1981|pop|easy|hum
 Sara Smile|Daryl Hall & John Oates|1975|soul|medium|hum
-December, 1963 (Oh, What a Night)|The Four Seasons|1975|pop|easy|hum
-American Pie|Don McLean|1971|folk|easy|hum
-You're So Vain|Carly Simon|1972|pop|easy|hum
-I Can See Clearly Now|Johnny Nash|1972|pop|easy|hum
-Brandy (You're a Fine Girl)|Looking Glass|1972|pop|medium|hum
 Dream Weaver|Gary Wright|1975|pop|medium|hum
-Stuck in the Middle with You|Stealers Wheel|1972|rock|easy|hum
-Spirit in the Sky|Norman Greenbaum|1969|rock|easy|hum
-A Horse with No Name|America|1971|folk|easy|hum
 Ventura Highway|America|1972|folk|medium|hum
 Sister Golden Hair|America|1975|folk|medium|hum
 Renegade|Styx|1978|rock|medium|hum
-Come Sail Away|Styx|1977|rock|easy|hum
-Dust in the Wind|Kansas|1977|rock|easy|hum
-The Boys Are Back in Town|Thin Lizzy|1976|rock|easy|hum
-Don't Bring Me Down|Electric Light Orchestra|1979|rock|easy|hum
-Evil Woman|Electric Light Orchestra|1975|rock|medium|hum
 Telephone Line|Electric Light Orchestra|1976|rock|medium|hum
-Video Killed the Radio Star|The Buggles|1979|pop|easy|hum
 Pop Muzik|M|1979|pop|medium|hum
 Born to Be Alive|Patrick Hernandez|1978|disco|easy|hum
 Car Wash|Rose Royce|1976|funk|easy|hum
-We Are Family|Sister Sledge|1979|disco|easy|hum
 He's the Greatest Dancer|Sister Sledge|1979|disco|medium|hum
 Boogie Oogie Oogie|A Taste of Honey|1978|disco|medium|hum
-Ring My Bell|Anita Ward|1979|disco|easy|hum
 I Love the Nightlife|Alicia Bridges|1978|disco|medium|hum
 Ain't No Stoppin' Us Now|McFadden & Whitehead|1979|disco|medium|hum
 Rock the Boat|The Hues Corporation|1974|disco|medium|hum
-You Should Be Dancing|Bee Gees|1976|disco|easy|hum
-Disco Inferno|The Trammps|1976|disco|easy|hum
-Upside Down|Diana Ross|1980|disco|easy|hum
-I'm Coming Out|Diana Ross|1980|disco|easy|hum
-Escape (The Piña Colada Song)|Rupert Holmes|1979|pop|easy|hum
-Copacabana (At the Copa)|Barry Manilow|1978|pop|easy|hum
-You're the First, the Last, My Everything|Barry White|1974|soul|easy|hum
 Can't Get Enough of Your Love, Babe|Barry White|1974|soul|easy|hum
 Kung Fu Fighting|Carl Douglas|1974|disco|easy|hum
 Rock Your Baby|George McCrae|1974|disco|medium|hum
@@ -422,8 +341,6 @@ Super Freak|Rick James|1981|funk|easy|hum
 Give It to Me Baby|Rick James|1981|funk|medium|hum
 Word Up!|Cameo|1986|funk|easy|hum
 Let's Hear It for the Boy|Deniece Williams|1984|pop|easy|hum
-Never Too Much|Luther Vandross|1981|rnb|easy|hum
-Let's Stay Together|Al Green|1971|soul|easy|hum
 Tired of Being Alone|Al Green|1971|soul|medium|hum
 Sexual Healing|Marvin Gaye|1982|soul|easy|hum
 Got to Give It Up|Marvin Gaye|1977|funk|medium|hum
