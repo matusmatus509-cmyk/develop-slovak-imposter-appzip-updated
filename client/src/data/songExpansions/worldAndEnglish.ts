@@ -114,11 +114,8 @@ export const WORLD_SONG_ARTIST_LANGUAGES = {
 
 export const WORLD_SONG_EXPANSION = String.raw`
 Nel blu dipinto di blu|Domenico Modugno|1958|oldies|easy|hum
-L'italiano|Toto Cutugno|1983|pop|easy|hum
-Felicità|Al Bano & Romina Power|1982|pop|easy|hum
 Ti amo|Umberto Tozzi|1977|pop|easy|hum
 Azzurro|Adriano Celentano|1968|oldies|easy|hum
-Con te partirò|Andrea Bocelli|1995|pop|easy|hum
 Laura non c'è|Nek|1997|pop|medium|hum
 Occidentali's Karma|Francesco Gabbani|2017|pop|medium|hum
 Soldi|Mahmood|2019|pop|easy|hum
@@ -168,7 +165,6 @@ Flower|Jisoo|2023|pop|easy|hum
 Love Scenario|iKON|2018|pop|easy|hum
 Any Song|Zico|2020|rap|medium|nohum
 Gashina|Sunmi|2017|pop|medium|hum
-Euphoria|Loreen|2012|pop|easy|hum
 Arcade|Duncan Laurence|2019|pop|easy|hum
 Snap|Rosa Linn|2022|pop|easy|hum
 Fairytale|Alexander Rybak|2009|pop|easy|hum
@@ -182,7 +178,6 @@ Zaleilah|Mandinga|2012|pop|medium|hum
 SloMo|Chanel|2022|pop|medium|hum
 In corpore sano|Konstrakta|2022|pop|hard|hum
 Dancing Lasha Tumbai|Verka Serduchka|2007|pop|easy|hum
-Stereo Love|Edward Maya & Vika Jigulina|2009|dance|easy|hum
 Mr. Saxobeat|Alexandra Stan|2010|dance|easy|hum
 Skibidi|Little Big|2018|dance|medium|hum
 Pedro Navaja|Rubén Blades|1978|latin|medium|hum
@@ -274,6 +269,5 @@ Around the World (La La La La La)|ATC|2000|dance|easy|hum
 export const ENGLISH_SONG_EXPANSION = String.raw`
 Tequila|The Champs|1958|oldies|easy|hum
 Born on the Bayou|Creedence Clearwater Revival|1969|rock|medium|hum
-Papa Don't Preach|Madonna|1986|pop|easy|hum
 Lady Marmalade|Labelle|1974|funk|easy|hum
 `;
