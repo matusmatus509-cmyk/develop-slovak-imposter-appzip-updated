@@ -6,8 +6,8 @@ const localesPath = path.resolve("client/src/data/charades.locales.json");
 const languages = ["sk", "en", "de", "es", "fr", "pt"];
 const localeLanguages = languages.filter(language => language !== "sk");
 const difficulties = ["easy", "medium", "hard"];
-const expectedCardCount = 1200;
-const expectedDifficultyCounts = { easy: 400, medium: 400, hard: 400 };
+const expectedCardCount = 1650;
+const expectedDifficultyCounts = { easy: 550, medium: 550, hard: 550 };
 const allowedCategories = new Set([
   "animals",
   "food",

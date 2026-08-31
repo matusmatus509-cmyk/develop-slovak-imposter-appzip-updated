@@ -7198,5 +7198,2708 @@
     "text": "Lamantín",
     "difficulty": "hard",
     "category": "animals"
+  },
+
+  {
+    "id": "charades_sk_1201",
+    "text": "Česanie vlasov",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1202",
+    "text": "Umývanie vlasov",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1203",
+    "text": "Sušenie vlasov",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1204",
+    "text": "Fúkanie nosa",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1205",
+    "text": "Čistenie uší",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1206",
+    "text": "Strihanie nechtov",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1207",
+    "text": "Lakovanie nechtov",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1208",
+    "text": "Viazanie šnúrok",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1209",
+    "text": "Zapínanie zipsu",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1210",
+    "text": "Žehlenie košele",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1211",
+    "text": "Skladanie bielizne",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1212",
+    "text": "Vešanie bielizne",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1213",
+    "text": "Zametanie podlahy",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1214",
+    "text": "Utieranie prachu",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1215",
+    "text": "Polievanie kvetov",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1216",
+    "text": "Sadenie stromu",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1217",
+    "text": "Kosenie trávy",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1218",
+    "text": "Hrabanie lístia",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1219",
+    "text": "Odhŕňanie snehu",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1220",
+    "text": "Stavanie veže",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1221",
+    "text": "Balenie darčeka",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1222",
+    "text": "Rozbaľovanie darčeka",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1223",
+    "text": "Fotenie selfie",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1224",
+    "text": "Nabíjanie mobilu",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1225",
+    "text": "Písanie správy",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1226",
+    "text": "Čítanie mapy",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1227",
+    "text": "Otváranie dáždnika",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1228",
+    "text": "Zatváranie kufra",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1229",
+    "text": "Tlačenie kočíka",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1230",
+    "text": "Nesenie tašky",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1231",
+    "text": "Miešanie cesta",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1232",
+    "text": "Vaľkanie cesta",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1233",
+    "text": "Lúpanie zemiakov",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1234",
+    "text": "Krájanie cibule",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1235",
+    "text": "Strúhanie syra",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1236",
+    "text": "Šľahanie smotany",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1237",
+    "text": "Solenie polievky",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1238",
+    "text": "Nalievanie čaju",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1239",
+    "text": "Sfukovanie sviečok",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1240",
+    "text": "Zapaľovanie sviečky",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1241",
+    "text": "Umývanie riadu",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1242",
+    "text": "Prestieranie stola",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1243",
+    "text": "Kŕmenie bábätka",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1244",
+    "text": "Prebaľovanie bábätka",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1245",
+    "text": "Hojdanie bábätka",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1246",
+    "text": "Venčenie psa",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1247",
+    "text": "Hádzanie paličky",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1248",
+    "text": "Čistenie akvária",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1249",
+    "text": "Dojenie kravy",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1250",
+    "text": "Zbieranie vajec",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1251",
+    "text": "Chytanie ryby",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1252",
+    "text": "Farebný šarkan",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1253",
+    "text": "Kopanie jamy",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1254",
+    "text": "Zatĺkanie klinca",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1255",
+    "text": "Vŕtanie diery",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1256",
+    "text": "Maľovanie steny",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1257",
+    "text": "Lepenie tapety",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1258",
+    "text": "Výmena žiarovky",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1259",
+    "text": "Odomykanie dverí",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1260",
+    "text": "Zvonienie zvončekom",
+    "difficulty": "easy",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1261",
+    "text": "Meranie teploty",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1262",
+    "text": "Čistenie rany",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1263",
+    "text": "Lepenie náplasti",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1264",
+    "text": "Obväzovanie ruky",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1265",
+    "text": "Kvapkanie očí",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1266",
+    "text": "Čistenie zubov",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1267",
+    "text": "Kloktanie vodou",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1268",
+    "text": "Čkanie",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1269",
+    "text": "Grganie",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1270",
+    "text": "Chrápanie",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1271",
+    "text": "Žmurkanie",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1272",
+    "text": "Kontrola pulzu",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1273",
+    "text": "Potenie",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1274",
+    "text": "Krívanie",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1275",
+    "text": "Zakopnutie",
+    "difficulty": "easy",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1276",
+    "text": "Kopanie penalty",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1277",
+    "text": "Hádzanie loptou",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1278",
+    "text": "Chytanie lopty",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1279",
+    "text": "Skákajúca lopta",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1280",
+    "text": "Driblovanie loptou",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1281",
+    "text": "Podávanie lopty",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1282",
+    "text": "Chytanie frisbee",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1283",
+    "text": "Skákanie švihadlom",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1284",
+    "text": "Točenie obručou",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1285",
+    "text": "Zdvíhanie činiek",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1286",
+    "text": "Jazda skateboardom",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1287",
+    "text": "Korčuľovanie dozadu",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1288",
+    "text": "Plávanie znakom",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1289",
+    "text": "Plavecké plutvy",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1290",
+    "text": "Lezenie lanom",
+    "difficulty": "easy",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1291",
+    "text": "Praženica",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1292",
+    "text": "Ovsená kaša",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1293",
+    "text": "Kuracie nugety",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1294",
+    "text": "Cesnaková polievka",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1295",
+    "text": "Paradajková polievka",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1296",
+    "text": "Kurací vývar",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1297",
+    "text": "Zemiaková kaša",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1298",
+    "text": "Pečené kura",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1299",
+    "text": "Vyprážaný syr",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1300",
+    "text": "Ovocný šalát",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1301",
+    "text": "Cestovinový šalát",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1302",
+    "text": "Tuniaková nátierka",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1303",
+    "text": "Makový koláč",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1304",
+    "text": "Tvarohový koláč",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1305",
+    "text": "Čokoládová poleva",
+    "difficulty": "easy",
+    "category": "food"
+  },
+  {
+    "id": "charades_sk_1306",
+    "text": "Detský kočík",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1307",
+    "text": "Nákupný vozík",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1308",
+    "text": "Kľúčenka",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1309",
+    "text": "Otvárač fliaš",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1310",
+    "text": "Zemiaková škrabka",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1311",
+    "text": "Cesnakový lis",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1312",
+    "text": "Koláčová forma",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1313",
+    "text": "Krájač zeleniny",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1314",
+    "text": "Odpadkový kôš",
+    "difficulty": "easy",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1315",
+    "text": "Bielizňový kôš",
+    "difficulty": "easy",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1316",
+    "text": "Sprchová hlavica",
+    "difficulty": "easy",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1317",
+    "text": "Záchodová kefa",
+    "difficulty": "easy",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1318",
+    "text": "Toaletný papier",
+    "difficulty": "easy",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1319",
+    "text": "Papierová vreckovka",
+    "difficulty": "easy",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1320",
+    "text": "Vatová tyčinka",
+    "difficulty": "easy",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1321",
+    "text": "Lepiaca páska",
+    "difficulty": "easy",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1322",
+    "text": "Gumené čižmy",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1323",
+    "text": "Zimné rukavice",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1324",
+    "text": "Cyklistická prilba",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1325",
+    "text": "Plavecké okuliare",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1326",
+    "text": "Slnečný klobúk",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1327",
+    "text": "Športová podprsenka",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1328",
+    "text": "Detský podbradník",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1329",
+    "text": "Kuchynská zástera",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1330",
+    "text": "Nočná košeľa",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1331",
+    "text": "Reflexná vesta",
+    "difficulty": "easy",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1332",
+    "text": "Detské ihrisko",
+    "difficulty": "easy",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1333",
+    "text": "Psí park",
+    "difficulty": "easy",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1334",
+    "text": "Autobusová zastávka",
+    "difficulty": "easy",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1335",
+    "text": "Školský dvor",
+    "difficulty": "easy",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1336",
+    "text": "Parkovisko",
+    "difficulty": "easy",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1337",
+    "text": "Umývačka áut",
+    "difficulty": "easy",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1338",
+    "text": "Kadernícky salón",
+    "difficulty": "easy",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1339",
+    "text": "Zubná ambulancia",
+    "difficulty": "easy",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1340",
+    "text": "Školská jedáleň",
+    "difficulty": "easy",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1341",
+    "text": "Hasičská stanica",
+    "difficulty": "easy",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1342",
+    "text": "Sáčok semien",
+    "difficulty": "easy",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1343",
+    "text": "Záhradná hadica",
+    "difficulty": "easy",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1344",
+    "text": "Záhradný vozík",
+    "difficulty": "easy",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1345",
+    "text": "Ručné hrable",
+    "difficulty": "easy",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1346",
+    "text": "Záhradná lopatka",
+    "difficulty": "easy",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1347",
+    "text": "Záhradná hojdačka",
+    "difficulty": "easy",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1348",
+    "text": "Vtáčie kŕmidlo",
+    "difficulty": "easy",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1349",
+    "text": "Záhradný trpaslík",
+    "difficulty": "easy",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1350",
+    "text": "Kompost",
+    "difficulty": "easy",
+    "category": "garden"
+  },
+
+  {
+    "id": "charades_sk_1351",
+    "text": "Jaskynný potápač",
+    "difficulty": "medium",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1352",
+    "text": "Bábkar",
+    "difficulty": "medium",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1353",
+    "text": "Sklár",
+    "difficulty": "medium",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1354",
+    "text": "Ruchár",
+    "difficulty": "medium",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1355",
+    "text": "Someliér",
+    "difficulty": "medium",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1356",
+    "text": "Ladič",
+    "difficulty": "medium",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1357",
+    "text": "Zlatník",
+    "difficulty": "medium",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1358",
+    "text": "Reštaurátor",
+    "difficulty": "medium",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1359",
+    "text": "Dispečer",
+    "difficulty": "medium",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1360",
+    "text": "Deratizér",
+    "difficulty": "medium",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1361",
+    "text": "Vodné pólo",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1362",
+    "text": "Dračie člny",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1363",
+    "text": "Ultimate frisbee",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1364",
+    "text": "Roundnet",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1365",
+    "text": "Skialpinizmus",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1366",
+    "text": "Bouldering",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1367",
+    "text": "Canicross",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1368",
+    "text": "Trampolínová gymnastika",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1369",
+    "text": "Športová streľba",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1370",
+    "text": "Synchronizované plávanie",
+    "difficulty": "medium",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1371",
+    "text": "Fúkanie skla",
+    "difficulty": "medium",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1372",
+    "text": "Razenie mincí",
+    "difficulty": "medium",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1373",
+    "text": "Čistenie komína",
+    "difficulty": "medium",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1374",
+    "text": "Smaltovanie",
+    "difficulty": "medium",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1375",
+    "text": "Skladanie origami",
+    "difficulty": "medium",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1376",
+    "text": "Gravírovanie",
+    "difficulty": "medium",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1377",
+    "text": "Kovanie",
+    "difficulty": "medium",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1378",
+    "text": "Tkanie",
+    "difficulty": "medium",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1379",
+    "text": "Váženie",
+    "difficulty": "medium",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1380",
+    "text": "Leštenie topánok",
+    "difficulty": "medium",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1381",
+    "text": "Ručná drezina",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1382",
+    "text": "Sajdkára",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1383",
+    "text": "Snežný skúter",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1384",
+    "text": "Vodný skúter",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1385",
+    "text": "Obytná dodávka",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1386",
+    "text": "Cestný valec",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1387",
+    "text": "Sedačková lanovka",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1388",
+    "text": "Koľajový bicykel",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1389",
+    "text": "Šliapací čln",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1390",
+    "text": "Motokára",
+    "difficulty": "medium",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1391",
+    "text": "Ladička",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1392",
+    "text": "Vizitkár",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1393",
+    "text": "Laserový diaľkomer",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1394",
+    "text": "Laserová vodováha",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1395",
+    "text": "Laserové ukazovadlo",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1396",
+    "text": "Termokamera",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1397",
+    "text": "Obuvák",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1398",
+    "text": "Sponkovačka",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1399",
+    "text": "Vyberač spiniek",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1400",
+    "text": "Filmová klapka",
+    "difficulty": "medium",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1401",
+    "text": "Krájač vajec",
+    "difficulty": "medium",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1402",
+    "text": "Prachovka",
+    "difficulty": "medium",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1403",
+    "text": "Naparovač odevov",
+    "difficulty": "medium",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1404",
+    "text": "Odžmolkovač",
+    "difficulty": "medium",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1405",
+    "text": "Vákuovačka",
+    "difficulty": "medium",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1406",
+    "text": "Šľahač",
+    "difficulty": "medium",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1407",
+    "text": "Vykrajovačka",
+    "difficulty": "medium",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1408",
+    "text": "Napeňovač mlieka",
+    "difficulty": "medium",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1409",
+    "text": "Ohrievač uterákov",
+    "difficulty": "medium",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1410",
+    "text": "Odmerka",
+    "difficulty": "medium",
+    "category": "household"
+  },
+  {
+    "id": "charades_sk_1411",
+    "text": "Podväzky",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1412",
+    "text": "Ušné klapky",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1413",
+    "text": "Espadrilky",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1414",
+    "text": "Cargo nohavice",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1415",
+    "text": "Štucne",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1416",
+    "text": "Chrániče kolien",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1417",
+    "text": "Šilt",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1418",
+    "text": "Zimný nákrčník",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1419",
+    "text": "Vetrovka",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1420",
+    "text": "Horolezecký úväz",
+    "difficulty": "medium",
+    "category": "clothing"
+  },
+  {
+    "id": "charades_sk_1421",
+    "text": "Tekutý piesok",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1422",
+    "text": "Krasový závrt",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1423",
+    "text": "Koralový útes",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1424",
+    "text": "Južná žiara",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1425",
+    "text": "Bludný balvan",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1426",
+    "text": "Príliv",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1427",
+    "text": "Odliv",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1428",
+    "text": "Vodný vír",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1429",
+    "text": "Termálny prameň",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1430",
+    "text": "Čadičové stĺpy",
+    "difficulty": "medium",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1431",
+    "text": "Úniková izba",
+    "difficulty": "medium",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1432",
+    "text": "Oceliareň",
+    "difficulty": "medium",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1433",
+    "text": "Píla",
+    "difficulty": "medium",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1434",
+    "text": "Včelnica",
+    "difficulty": "medium",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1435",
+    "text": "Mramorový lom",
+    "difficulty": "medium",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1436",
+    "text": "Lodenica",
+    "difficulty": "medium",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1437",
+    "text": "Nahrávacie štúdio",
+    "difficulty": "medium",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1438",
+    "text": "Psí salón",
+    "difficulty": "medium",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1439",
+    "text": "Zberný dvor",
+    "difficulty": "medium",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1440",
+    "text": "Soľná jaskyňa",
+    "difficulty": "medium",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1441",
+    "text": "Rádiová hvezdáreň",
+    "difficulty": "medium",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1442",
+    "text": "Hangár",
+    "difficulty": "medium",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1443",
+    "text": "Krematórium",
+    "difficulty": "medium",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1444",
+    "text": "Tropický skleník",
+    "difficulty": "medium",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1445",
+    "text": "Mestská tržnica",
+    "difficulty": "medium",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1446",
+    "text": "Elektrická rozvodňa",
+    "difficulty": "medium",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1447",
+    "text": "Mauzóleum",
+    "difficulty": "medium",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1448",
+    "text": "Zvonica",
+    "difficulty": "medium",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1449",
+    "text": "Mestské kúpele",
+    "difficulty": "medium",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1450",
+    "text": "Veľvyslanectvo",
+    "difficulty": "medium",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1451",
+    "text": "Colná kontrola",
+    "difficulty": "medium",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_1452",
+    "text": "Časový posun",
+    "difficulty": "medium",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_1453",
+    "text": "Colný formulár",
+    "difficulty": "medium",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_1454",
+    "text": "Krčný vankúš",
+    "difficulty": "medium",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_1455",
+    "text": "Úschovňa batožiny",
+    "difficulty": "medium",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_1456",
+    "text": "Letiskový transfer",
+    "difficulty": "medium",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_1457",
+    "text": "Hraničný priechod",
+    "difficulty": "medium",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_1458",
+    "text": "Sprievodca mestom",
+    "difficulty": "medium",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_1459",
+    "text": "Nástupné mólo",
+    "difficulty": "medium",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_1460",
+    "text": "Turistický odznak",
+    "difficulty": "medium",
+    "category": "travel"
+  },
+  {
+    "id": "charades_sk_1461",
+    "text": "Otamatone",
+    "difficulty": "medium",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1462",
+    "text": "Surdo",
+    "difficulty": "medium",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1463",
+    "text": "Zvonkohra",
+    "difficulty": "medium",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1464",
+    "text": "Hudobná píla",
+    "difficulty": "medium",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1465",
+    "text": "Agogô",
+    "difficulty": "medium",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1466",
+    "text": "Kabasa",
+    "difficulty": "medium",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1467",
+    "text": "Handpan",
+    "difficulty": "medium",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1468",
+    "text": "Melodika",
+    "difficulty": "medium",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1469",
+    "text": "Oceľový bubon",
+    "difficulty": "medium",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1470",
+    "text": "Marimba",
+    "difficulty": "medium",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1471",
+    "text": "Načúvací prístroj",
+    "difficulty": "medium",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1472",
+    "text": "Zubný strojček",
+    "difficulty": "medium",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1473",
+    "text": "Chirurgická svorka",
+    "difficulty": "medium",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1474",
+    "text": "Očný test",
+    "difficulty": "medium",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1475",
+    "text": "Sadrový obväz",
+    "difficulty": "medium",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1476",
+    "text": "Krčný golier",
+    "difficulty": "medium",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1477",
+    "text": "Očná náplasť",
+    "difficulty": "medium",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1478",
+    "text": "Chladiaci obklad",
+    "difficulty": "medium",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1479",
+    "text": "Zubná niť",
+    "difficulty": "medium",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1480",
+    "text": "Resuscitačná figurína",
+    "difficulty": "medium",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1481",
+    "text": "Cornhole",
+    "difficulty": "medium",
+    "category": "games"
+  },
+  {
+    "id": "charades_sk_1482",
+    "text": "Carrom",
+    "difficulty": "medium",
+    "category": "games"
+  },
+  {
+    "id": "charades_sk_1483",
+    "text": "Kroket",
+    "difficulty": "medium",
+    "category": "games"
+  },
+  {
+    "id": "charades_sk_1484",
+    "text": "Vzdušný hokej",
+    "difficulty": "medium",
+    "category": "games"
+  },
+  {
+    "id": "charades_sk_1485",
+    "text": "Stolný futbal",
+    "difficulty": "medium",
+    "category": "games"
+  },
+  {
+    "id": "charades_sk_1486",
+    "text": "Kuželky",
+    "difficulty": "medium",
+    "category": "games"
+  },
+  {
+    "id": "charades_sk_1487",
+    "text": "Reversi",
+    "difficulty": "medium",
+    "category": "games"
+  },
+  {
+    "id": "charades_sk_1488",
+    "text": "Scrabble",
+    "difficulty": "medium",
+    "category": "games"
+  },
+  {
+    "id": "charades_sk_1489",
+    "text": "Hudobné bingo",
+    "difficulty": "medium",
+    "category": "games"
+  },
+  {
+    "id": "charades_sk_1490",
+    "text": "Shogi",
+    "difficulty": "medium",
+    "category": "games"
+  },
+  {
+    "id": "charades_sk_1491",
+    "text": "Pergola",
+    "difficulty": "medium",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1492",
+    "text": "Kultivátor",
+    "difficulty": "medium",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1493",
+    "text": "Pletivo",
+    "difficulty": "medium",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1494",
+    "text": "Drvič konárov",
+    "difficulty": "medium",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1495",
+    "text": "Koreňový bal",
+    "difficulty": "medium",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1496",
+    "text": "Vyvýšený záhon",
+    "difficulty": "medium",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1497",
+    "text": "Rýľ",
+    "difficulty": "medium",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1498",
+    "text": "Opora rastlín",
+    "difficulty": "medium",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1499",
+    "text": "Sadbovač",
+    "difficulty": "medium",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1500",
+    "text": "Postrekovač",
+    "difficulty": "medium",
+    "category": "garden"
+  },
+
+  {
+    "id": "charades_sk_1501",
+    "text": "Magnetická levitácia",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1502",
+    "text": "Dopplerov jav",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1503",
+    "text": "Kvantový počítač",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1504",
+    "text": "Temná hmota",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1505",
+    "text": "Gravitačná šošovka",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1506",
+    "text": "Slnečný vietor",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1507",
+    "text": "Kontinentálny drift",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1508",
+    "text": "Aerogél",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1509",
+    "text": "Bioluminiscencia",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1510",
+    "text": "Elektromagnet",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1511",
+    "text": "Optické vlákno",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1512",
+    "text": "Nanotechnológia",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1513",
+    "text": "Brownov pohyb",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1514",
+    "text": "Kozmické žiarenie",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1515",
+    "text": "Jadrová fúzia",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1516",
+    "text": "Časová dilatácia",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1517",
+    "text": "Genetická mutácia",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1518",
+    "text": "Umelá inteligencia",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1519",
+    "text": "Sonoluminiscencia",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1520",
+    "text": "Supervodivosť",
+    "difficulty": "hard",
+    "category": "science"
+  },
+  {
+    "id": "charades_sk_1521",
+    "text": "Magna Carta",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1522",
+    "text": "Waterloo",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1523",
+    "text": "Apollo 11",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1524",
+    "text": "Rímsky senát",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1525",
+    "text": "Vikinský pohreb",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1526",
+    "text": "Morová maska",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1527",
+    "text": "Feudalizmus",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1528",
+    "text": "Samurajský súboj",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1529",
+    "text": "Olympijský oheň",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1530",
+    "text": "Renesancia",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1531",
+    "text": "Industrializácia",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1532",
+    "text": "Korunovácia",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1533",
+    "text": "Prohibícia",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1534",
+    "text": "Kolonializmus",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1535",
+    "text": "Tajná polícia",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1536",
+    "text": "Apartheid",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1537",
+    "text": "Námorná blokáda",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1538",
+    "text": "Sufražetka",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1539",
+    "text": "Spartakus",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1540",
+    "text": "Exil",
+    "difficulty": "hard",
+    "category": "history"
+  },
+  {
+    "id": "charades_sk_1541",
+    "text": "Leviatan",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1542",
+    "text": "Banshee",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1543",
+    "text": "Valkýra",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1544",
+    "text": "Satyr",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1545",
+    "text": "Nymfa",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1546",
+    "text": "Dryáda",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1547",
+    "text": "Selkie",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1548",
+    "text": "Wendigo",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1549",
+    "text": "Kitsune",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1550",
+    "text": "Garuda",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1551",
+    "text": "Cerberus",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1552",
+    "text": "Sleipnir",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1553",
+    "text": "Quetzalcoatl",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1554",
+    "text": "Anubis",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1555",
+    "text": "Kelpie",
+    "difficulty": "hard",
+    "category": "mythical_creatures"
+  },
+  {
+    "id": "charades_sk_1556",
+    "text": "Orchestrálne dirigovanie",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1557",
+    "text": "Balzamovanie",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1558",
+    "text": "Dešifrovanie",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1559",
+    "text": "Pyrografia",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1560",
+    "text": "Taxidermia",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1561",
+    "text": "Reštaurovanie fresky",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1562",
+    "text": "Leptanie",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1563",
+    "text": "Intubácia",
+    "difficulty": "hard",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1564",
+    "text": "Čítanie pier",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1565",
+    "text": "Beatboxing",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1566",
+    "text": "Canyoning",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1567",
+    "text": "Mikromágia",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1568",
+    "text": "Sokoliarstvo",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1569",
+    "text": "Geocaching",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1570",
+    "text": "Šifrovanie",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1571",
+    "text": "Prútikárstvo",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1572",
+    "text": "Hviezdna navigácia",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1573",
+    "text": "Vyvolávanie filmu",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1574",
+    "text": "Kintsugi",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1575",
+    "text": "Kartomantia",
+    "difficulty": "hard",
+    "category": "activities"
+  },
+  {
+    "id": "charades_sk_1576",
+    "text": "Zoetrop",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1577",
+    "text": "Stroboskop",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1578",
+    "text": "Elektroskop",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1579",
+    "text": "Lentikulárny obraz",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1580",
+    "text": "Camera obscura",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1581",
+    "text": "Morseov kľúč",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1582",
+    "text": "Thaumatrop",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1583",
+    "text": "Geigerov počítač",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1584",
+    "text": "Dewarova nádoba",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1585",
+    "text": "Nekonečné zrkadlo",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1586",
+    "text": "Lunárny glóbus",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1587",
+    "text": "Stroj Enigma",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1588",
+    "text": "Posmrtná maska",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1589",
+    "text": "Armilárna sféra",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1590",
+    "text": "Šifrovací kotúč",
+    "difficulty": "hard",
+    "category": "objects"
+  },
+  {
+    "id": "charades_sk_1591",
+    "text": "Kryptograf",
+    "difficulty": "hard",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1592",
+    "text": "Forenzný analytik",
+    "difficulty": "hard",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1593",
+    "text": "Arteterapeut",
+    "difficulty": "hard",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1594",
+    "text": "Parfumér",
+    "difficulty": "hard",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1595",
+    "text": "Sokoliar",
+    "difficulty": "hard",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1596",
+    "text": "Numizmatik",
+    "difficulty": "hard",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1597",
+    "text": "Paleontológ",
+    "difficulty": "hard",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1598",
+    "text": "Speleológ",
+    "difficulty": "hard",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1599",
+    "text": "Pyrotechnik",
+    "difficulty": "hard",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1600",
+    "text": "Gemológ",
+    "difficulty": "hard",
+    "category": "professions"
+  },
+  {
+    "id": "charades_sk_1601",
+    "text": "Guľový blesk",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1602",
+    "text": "Geotermálne pole",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1603",
+    "text": "Ľadovcový mlyn",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1604",
+    "text": "Tektonický zlom",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1605",
+    "text": "Drumlin",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1606",
+    "text": "Termálne jazero",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1607",
+    "text": "Podmorský vulkán",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1608",
+    "text": "Koralový atol",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1609",
+    "text": "Permafrost",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1610",
+    "text": "Modrá diera",
+    "difficulty": "hard",
+    "category": "nature"
+  },
+  {
+    "id": "charades_sk_1611",
+    "text": "Lunárny rover",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1612",
+    "text": "Solárne lietadlo",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1613",
+    "text": "Ekranoplán",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1614",
+    "text": "Obrnený vlak",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1615",
+    "text": "Plávajúci žeriav",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1616",
+    "text": "Kontajnerová loď",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1617",
+    "text": "Výskumná ponorka",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1618",
+    "text": "Krídlový čln",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1619",
+    "text": "Ornitoptéra",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1620",
+    "text": "Riečny trajekt",
+    "difficulty": "hard",
+    "category": "vehicles"
+  },
+  {
+    "id": "charades_sk_1621",
+    "text": "Biodóm",
+    "difficulty": "hard",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1622",
+    "text": "Akropola",
+    "difficulty": "hard",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1623",
+    "text": "Plávajúci trh",
+    "difficulty": "hard",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1624",
+    "text": "Podzemný bunker",
+    "difficulty": "hard",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1625",
+    "text": "Veterný tunel",
+    "difficulty": "hard",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1626",
+    "text": "Bezodrazová komora",
+    "difficulty": "hard",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1627",
+    "text": "Otáčavé javisko",
+    "difficulty": "hard",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1628",
+    "text": "Visutá záhrada",
+    "difficulty": "hard",
+    "category": "garden"
+  },
+  {
+    "id": "charades_sk_1629",
+    "text": "Nekropola",
+    "difficulty": "hard",
+    "category": "places"
+  },
+  {
+    "id": "charades_sk_1630",
+    "text": "Trezorová miestnosť",
+    "difficulty": "hard",
+    "category": "buildings"
+  },
+  {
+    "id": "charades_sk_1631",
+    "text": "Fantómová končatina",
+    "difficulty": "hard",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1632",
+    "text": "Narkolepsia",
+    "difficulty": "hard",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1633",
+    "text": "Farbosleposť",
+    "difficulty": "hard",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1634",
+    "text": "Placebo efekt",
+    "difficulty": "hard",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1635",
+    "text": "Alergický šok",
+    "difficulty": "hard",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1636",
+    "text": "Spirometer",
+    "difficulty": "hard",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1637",
+    "text": "Akupunktúra",
+    "difficulty": "hard",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1638",
+    "text": "Krvná transfúzia",
+    "difficulty": "hard",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1639",
+    "text": "Kardiostimulátor",
+    "difficulty": "hard",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1640",
+    "text": "Otras mozgu",
+    "difficulty": "hard",
+    "category": "health"
+  },
+  {
+    "id": "charades_sk_1641",
+    "text": "Ondes Martenot",
+    "difficulty": "hard",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1642",
+    "text": "Waterphone",
+    "difficulty": "hard",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1643",
+    "text": "Kontrabasový saxofón",
+    "difficulty": "hard",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1644",
+    "text": "Spievajúca misa",
+    "difficulty": "hard",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1645",
+    "text": "Hydraulofón",
+    "difficulty": "hard",
+    "category": "instruments"
+  },
+  {
+    "id": "charades_sk_1646",
+    "text": "Footgolf",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1647",
+    "text": "Kendo",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1648",
+    "text": "Korfbal",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1649",
+    "text": "Skijöring",
+    "difficulty": "hard",
+    "category": "sports"
+  },
+  {
+    "id": "charades_sk_1650",
+    "text": "Wakesurfing",
+    "difficulty": "hard",
+    "category": "sports"
   }
 ]
