@@ -44,7 +44,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     eyebrow: "Kto to už zažil?",
     title: "Nikdy som nikdy",
     description: "Rýchla hra, v ktorej sa aj starí kamaráti dozvedia niečo nové.",
-    rule: "Zdvihni prst, ak si to urobil",
+    rule: "Kto to zažil, prizná sa partii",
     players: "2+ hráči",
     duration: "Bez limitu",
     accent: "#34d399",

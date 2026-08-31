@@ -98,10 +98,7 @@ export default function NeverHaveIEver({
       <TopBar title="Nikdy som nikdy" onBack={onBack} />
 
       <main className="never-game-stage">
-        <p className="never-game-rule">
-          <span className="never-game-rule-dot" aria-hidden="true" />
-          Ak si to urobil, napi sa alebo zdvihni prst
-        </p>
+        <p className="never-game-rule never-game-rule-big">Nikdy som nikdy</p>
 
         <article className="never-game-card" aria-live="polite">
           <p data-no-translate>{statement}</p>
