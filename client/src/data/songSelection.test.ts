@@ -64,9 +64,19 @@ describe("integrita hudobného katalógu", () => {
     }
   });
 
-  it("zásoba je po rozšírení výrazne väčšia a pôvodné skladby zostali", () => {
-    // Pred rozšírením mal katalóg 1132 unikátnych skladieb.
-    expect(ALL_SONGS.length).toBeGreaterThan(1500);
+  it("aktívna zásoba zodpovedá kurátorovanému snapshotu a pôvodné skladby zostali", () => {
+    const stats = songCatalogueStats();
+    expect(stats.total).toBe(1665);
+    expect(stats.global).toBe(575);
+    expect(stats.byLanguage).toMatchObject({
+      sk: 241,
+      cs: 135,
+      en: 123,
+      de: 148,
+      es: 147,
+      fr: 151,
+      pt: 145,
+    });
     const present = (title: string, artist: string) =>
       ALL_SONGS.some(song => song.id === songIdFor(title, artist));
     // Vzorka z pôvodnej zásoby — rozšírenie ju nesmie vyhodiť.
@@ -74,6 +84,8 @@ describe("integrita hudobného katalógu", () => {
     expect(present("V dolinách", "Karol Duchoň")).toBe(true);
     expect(present("Atemlos durch die Nacht", "Helene Fischer")).toBe(true);
     expect(present("La Bamba", "Ritchie Valens")).toBe(true);
+    // Známy záznam z extended archívu nesmie preniknúť do aktívnej zásoby.
+    expect(present("Twist and Shout", "The Beatles")).toBe(false);
   });
 
   it("rap sa nedá zahmkať, ostatné žánre áno", () => {

@@ -42,7 +42,6 @@ Wenn sie diesen Tango hört|PUR|1988|pop|medium|hum
 Funkelperlenaugen|PUR|1988|pop|medium|hum
 Du musst ein Schwein sein|Die Prinzen|1995|pop|easy|hum
 Mann im Mond|Die Prinzen|1991|pop|medium|hum
-Zu spät|Die Ärzte|1984|punk|easy|hum
 Lasse redn|Die Ärzte|2007|punk|easy|hum
 Unrockbar|Die Ärzte|2003|punk|easy|hum
 Deine Schuld|Die Ärzte|2004|punk|medium|hum
@@ -72,7 +71,6 @@ Aurelie|Wir sind Helden|2003|indie|medium|hum
 Müssen nur wollen|Wir sind Helden|2003|indie|medium|hum
 Gekommen um zu bleiben|Wir sind Helden|2005|indie|easy|hum
 Dickes B|Seeed feat. Black Kappa|2001|reggae|easy|hum
-Zukunft Pink|Peter Fox feat. Inéz|2022|rap|easy|hum
 Stadtaffe|Peter Fox|2008|rap|medium|nohum
 Songs für Liam|Kraftklub|2012|indie|medium|hum
 Schüsse in die Luft|Kraftklub|2014|indie|medium|hum
@@ -89,7 +87,6 @@ Im Ascheregen|Casper|2013|rap|medium|hum
 Hinterland|Casper|2013|rap|medium|hum
 Welt der Wunder|Marteria|2014|rap|medium|hum
 Muttersprache|Sarah Connor|2015|pop|easy|hum
-Wenn sie tanzt|Max Giesinger|2016|pop|easy|hum
 Flash mich|Mark Forster|2014|pop|easy|hum
 Leiser|LEA|2017|pop|easy|hum
 Immer wenn wir uns sehn|LEA & Cyril|2018|pop|easy|hum
@@ -106,7 +103,6 @@ Zwickt's mi|Wolfgang Ambros|1975|rock|easy|hum region=AT
 Die Blume aus dem Gemeindebau|Wolfgang Ambros|1977|rock|medium|hum region=AT
 Soits leben|Seiler und Speer|2015|pop|medium|hum region=AT
 Jö schau|Georg Danzer|1975|folk|easy|hum region=AT
-Cordula Grün|Josh.|2018|pop|easy|hum region=AT
 Überdosis G'fühl|STS|1984|rock|medium|hum region=AT
 Irgendwann bleib i dann dort|STS|1985|rock|easy|hum region=AT
 Kalt und kälter|STS|1985|rock|medium|hum region=AT
@@ -141,8 +137,7 @@ Adam + Eva|Hecht|2018|pop|medium|hum region=CH
 Müeh mit de Chüeh|Trauffer|2014|folk|medium|hum region=CH
 Alles Gute|Faber|2016|indie|medium|hum region=CH`;
 
-export const FRENCH_SONG_EXPANSION = String.raw`L'enfer|Stromae|2022|pop|easy|hum
-Fils de joie|Stromae|2022|pop|medium|hum
+export const FRENCH_SONG_EXPANSION = String.raw`Fils de joie|Stromae|2022|pop|medium|hum
 Carmen|Stromae|2013|pop|medium|hum
 Ave Cesaria|Stromae|2013|dance|hard|hum
 Quand c'est ?|Stromae|2013|pop|medium|hum
@@ -200,7 +195,6 @@ Nuit|Fredericks Goldman Jones|1990|pop|medium|hum
 Dans les yeux d'Émilie|Joe Dassin|1977|chanson|easy|hum
 Le jardin du Luxembourg|Joe Dassin|1976|chanson|medium|hum
 La fleur aux dents|Joe Dassin|1970|chanson|medium|hum
-La grenade|Clara Luciani|2017|pop|easy|hum
 Respire encore|Clara Luciani|2021|dance|medium|hum
 Le reste|Clara Luciani|2021|pop|medium|hum
 Être une femme|Michel Sardou|1981|chanson|easy|hum
@@ -271,7 +265,6 @@ Dieu que c'est beau|Daniel Balavoine|1984|pop|medium|hum
 Aimer est plus fort que d'être aimé|Daniel Balavoine|1985|pop|medium|hum
 Mourir sur scène|Dalida|1983|chanson|easy|hum
 Il venait d'avoir 18 ans|Dalida|1973|chanson|easy|hum
-Le dernier jour du disco|Juliette Armanet|2021|disco|easy|hum
 L'amour en solitaire|Juliette Armanet|2017|pop|medium|hum
 Qu'importe|Juliette Armanet|2021|pop|medium|hum
 Le lundi au soleil|Claude François|1972|pop|easy|hum
@@ -279,7 +272,6 @@ Magnolias for Ever|Claude François|1977|pop|easy|hum
 Toi et moi contre le monde entier|Claude François|1975|pop|medium|hum
 Chanson populaire|Claude François|1973|pop|easy|hum
 Le mal-aimé|Claude François|1974|pop|medium|hum
-Ceux qu'on était|Pierre Garnier|2024|pop|easy|hum
 Initials B.B.|Serge Gainsbourg|1968|chanson|medium|hum
 La chanson de Prévert|Serge Gainsbourg|1961|chanson|medium|hum
 Couleur café|Serge Gainsbourg|1964|chanson|easy|hum

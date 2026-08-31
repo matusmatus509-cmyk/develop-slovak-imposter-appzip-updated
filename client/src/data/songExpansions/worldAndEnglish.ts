@@ -182,7 +182,6 @@ Voilà|Barbara Pravi|2021|chanson|medium|hum
 Think About Things|Daði Freyr|2020|pop|medium|hum
 Shum|Go_A|2021|folk|medium|hum
 Stefania|Kalush Orchestra|2022|rap|medium|nohum
-Amar pelos dois|Salvador Sobral|2017|pop|medium|hum
 Molitva|Marija Šerifović|2007|pop|medium|hum
 Wild Dances|Ruslana|2004|pop|easy|hum
 Dum Tek Tek|Hadise|2009|pop|medium|hum
@@ -217,7 +216,6 @@ Ríe y Llora|Celia Cruz|2003|latin|medium|hum
 Vivir Lo Nuestro|La India & Marc Anthony|1994|latin|medium|hum
 Tu Amor Me Hace Bien|Marc Anthony|2004|latin|easy|hum
 A Puro Dolor|Son by Four|1999|latin|easy|hum
-Obsesión|Aventura|2002|latin|easy|hum
 Mi Corazoncito|Aventura|2006|latin|medium|hum
 Dile al Amor|Aventura|2009|latin|medium|hum
 Darte un Beso|Prince Royce|2013|latin|easy|hum

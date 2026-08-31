@@ -763,6 +763,59 @@ Rude|MAGIC!|2013|reggae|medium
 Cheerleader|OMI|2014|reggae|easy
 Sunshine Reggae|Laid Back|1983|reggae|medium
 Take Five|Dave Brubeck|1959|jazz|medium
+Rock Around the Clock|Bill Haley & His Comets|1954|oldies|easy|hum
+Tutti Frutti|Little Richard|1955|oldies|easy|hum
+You've Really Got a Hold on Me|The Miracles|1962|oldies|medium|hum
+The Letter|The Box Tops|1967|oldies|easy|hum
+Daydream|The Lovin' Spoonful|1966|oldies|medium|hum
+Bus Stop|The Hollies|1966|rock|medium|hum
+Baker Street|Gerry Rafferty|1978|rock|easy|hum
+Rapper's Delight|The Sugarhill Gang|1979|rap|medium|nohum
+The Things We Do for Love|10cc|1976|pop|medium|hum
+Driver's Seat|Sniff 'n' the Tears|1978|rock|medium|hum
+Heaven Is a Place on Earth|Belinda Carlisle|1987|pop|easy|hum
+Manic Monday|The Bangles|1986|pop|easy|hum
+Love Shack|The B-52's|1989|pop|easy|hum
+The Boys of Summer|Don Henley|1984|rock|easy|hum
+The Message|Grandmaster Flash & The Furious Five|1982|rap|medium|nohum
+Save Tonight|Eagle-Eye Cherry|1997|pop|easy|hum
+Return of the Mack|Mark Morrison|1996|rnb|easy|hum
+Breakfast at Tiffany's|Deep Blue Something|1995|rock|easy|hum
+One of Us|Joan Osborne|1995|pop|easy|hum
+A Thousand Miles|Vanessa Carlton|2002|pop|easy|hum
+Wherever You Will Go|The Calling|2001|rock|easy|hum
+Hot in Herre|Nelly|2002|rap|easy|nohum
+Suddenly I See|KT Tunstall|2004|pop|medium|hum
+Geronimo|Sheppard|2014|pop|easy|hum
+Best Day of My Life|American Authors|2013|pop|easy|hum
+Renegades|X Ambassadors|2015|rock|medium|hum
+A Bar Song (Tipsy)|Shaboozey|2024|country|easy|hum
+Stargazing|Myles Smith|2024|pop|easy|hum
+Ordinary|Alex Warren|2025|pop|easy|hum
+Golden|HUNTR/X|2025|soundtrack|easy|hum
+The Fate of Ophelia|Taylor Swift|2025|pop|easy|hum
+Abracadabra|Lady Gaga|2025|pop|easy|hum
+back to friends|sombr|2024|pop|easy|hum
+luther|Kendrick Lamar & SZA|2024|rnb|easy|hum
+Taste|Sabrina Carpenter|2024|pop|easy|hum
+That's So True|Gracie Abrams|2024|pop|easy|hum
+Fortnight|Taylor Swift feat. Post Malone|2024|pop|easy|hum
+Not Like Us|Kendrick Lamar|2024|rap|easy|nohum
+Million Dollar Baby|Tommy Richman|2024|rnb|easy|hum
+I Like the Way You Kiss Me|Artemas|2024|pop|easy|hum
+Sailor Song|Gigi Perez|2024|indie|easy|hum
+The Door|Teddy Swims|2023|rnb|easy|hum
+Timeless|The Weeknd feat. Playboi Carti|2024|rnb|medium|hum
+Anxiety|Doechii|2025|rap|easy|nohum
+Manchild|Sabrina Carpenter|2025|pop|easy|hum
+Stick Season|Noah Kahan|2022|folk|easy|hum
+Lose Control|Teddy Swims|2023|rnb|easy|hum
+Greedy|Tate McRae|2023|pop|easy|hum
+Calm Down|Rema|2022|pop|easy|hum
+Heat Waves|Glass Animals|2020|indie|easy|hum
+Faded|Alan Walker|2015|dance|easy|hum
+Take Me to Church|Hozier|2013|indie|easy|hum
+Unholy|Sam Smith & Kim Petras|2022|pop|easy|hum
 `, { language: "en", scope: "global" });
 
 const LOCAL_HITS: Partial<Record<SongLanguage, Song[]>> = {
@@ -961,6 +1014,53 @@ Ja som to vedel|Polemic
 Fajčiť treba|Smola a Hrušky
 Šaty|Marika Gombitová
 Nároční|Team
+Čierna ruža|Pavol Hammel & Prúdy|1969|rock|medium|hum lang=sk region=SK
+Lampy už dávno zhasli|Marcela Laiferová|1970|pop|medium|hum lang=sk region=SK
+Plavovláska|Dušan Grúň|1971|pop|easy|hum lang=sk region=SK
+Smoliar|Eva Kostolányiová|1973|pop|medium|hum lang=sk region=SK
+Zažni|Miroslav Žbirka|1980|pop|easy|hum lang=sk region=SK
+Adresa ja, adresa ty|Marika Gombitová|1980|pop|easy|hum lang=sk region=SK
+Balíček snov|Modus|1980|pop|easy|hum lang=sk region=SK
+Ôsmy svetadiel|Elán|1981|rock|easy|hum lang=sk region=SK
+Anča, si drahá ako Volvo|Lojzo|1985|pop|easy|hum lang=sk region=SK
+Praveký manekýn|Richard Müller & Banket|1988|pop|easy|hum lang=sk region=SK
+Pieseň pre nesmelých|Team|1989|rock|easy|hum lang=sk region=SK
+Relatívny pokoj|Slobodná Európa|1991|punk|easy|hum lang=sk region=SK
+Nech sa deje čo sa má|Zuzana Smatanová|2005|pop|easy|hum lang=sk region=SK
+Čierna bača|Ibrahim Maiga|1996|reggae|easy|hum lang=sk region=SK
+Supervýlet|Hudba z Marsu|1998|pop|medium|hum lang=sk region=SK
+Láska moja, de si?|Chiki liki tu-a|1999|rock|medium|hum lang=sk region=SK
+Papierové kone|Nocadeň|2000|rock|easy|hum lang=sk region=SK
+Gangster ska|Polemic|2000|reggae|easy|hum lang=sk region=SK
+Hlava vinná, telo nevinné|Peha|2005|pop|easy|hum lang=sk region=SK
+Mesto v nás|Komajota|2007|rock|easy|hum lang=sk region=SK
+Búrka|Mária Čírová|2008|pop|easy|hum lang=sk region=SK
+Prví poslední|Para|2012|rock|medium|hum lang=sk region=SK
+Láva|Peter Bič Project|2015|pop|easy|hum lang=sk region=SK
+Milujeme leto|Miro Jaroš|2016|pop|easy|hum lang=sk region=SK
+Dva duby|Kandráčovci|2017|folk|easy|hum lang=sk region=SK
+Pancier|Separ|2017|rap|medium|nohum lang=sk region=SK
+Podľa seba|Sima|2022|rap|medium|nohum lang=sk region=SK
+Hej, sokoly!|IMT Smile feat. Ondrej Kandráč|2017|folk|easy|hum lang=sk region=SK
+Poď so mnou|IMT Smile feat. Kali|2018|pop|easy|hum lang=sk region=SK
+Chýbanie|Desmod|2017|rock|easy|hum lang=sk region=SK
+Nenahraditeľná|Sima Martausová|2018|folk|easy|hum lang=sk region=SK
+Domovina|Adam Ďurica|2019|pop|easy|hum lang=sk region=SK
+Toto leto|Sima feat. Kali|2020|pop|easy|hum lang=sk region=SK
+Do rúk|Alan Murin & Tina|2022|rnb|medium|hum lang=sk region=SK
+Maky|Peter Bič Project|2023|pop|easy|hum lang=sk region=SK
+Láska-Veda|Adam Ďurica|2015|pop|easy|hum lang=sk region=SK
+Run Run Run|Celeste Buckingham|2012|pop|easy|hum lang=en region=SK
+Tam kde sa neumiera|Zuzana Smatanová|2004|pop|easy|hum lang=sk region=SK
+Spočítaj ma|Richard Müller|2001|pop|easy|hum lang=sk region=SK
+Denisa|Miroslav Žbirka|1980|pop|easy|hum lang=sk region=SK
+Ak nie si moja|Vašo Patejdl|1986|soundtrack|easy|hum lang=sk region=SK
+Pocta Majakovskému|Robo Grigorov|1987|rock|easy|hum lang=sk region=SK
+Dievča z reklamy|Beáta Dubasová|1987|pop|easy|hum lang=sk region=SK
+Matka|Tublatanka|1990|rock|easy|hum lang=sk region=SK
+Slnko nevychádzaj|Metalinda|1992|rock|easy|hum lang=sk region=SK
+Medulienka|Pavol Hammel|1970|pop|easy|hum lang=sk region=SK
+Sľúbili sme si lásku|Ivan Hoffman|1989|folk|easy|hum lang=sk region=SK
 `, { language: "sk", scope: "local" }),
   cs: parseSongs(`
 Báječný chlap|Michal Tučný
@@ -1051,6 +1151,53 @@ Měls mě vůbec rád|Ewa Farna
 Boží mlejny|Ewa Farna
 Dám dělovou ránu|Karel Gott
 Když milenky pláčou|Karel Gott
+Pramínek vlasů|Jiří Suchý|1960|oldies|easy|hum lang=cs region=CZ
+Červená řeka|Helena Vondráčková|1964|oldies|easy|hum lang=cs region=CZ
+Slavíci z Madridu|Waldemar Matuška|1968|oldies|easy|hum lang=cs region=CZ
+Veličenstvo kat|Karel Kryl|1969|folk|medium|hum lang=cs region=CZ
+Slunečný hrob|Blue Effect|1970|rock|easy|hum lang=cs region=CZ
+Variace na renesanční téma|Vladimír Mišík|1976|rock|medium|hum lang=cs region=CZ
+Jednoho dne se vrátíš|Věra Špinarová|1978|pop|easy|hum lang=cs region=CZ
+Dělání|Jaroslav Uhlíř & Zdeněk Svěrák|1980|soundtrack|easy|hum lang=cs region=CZ
+Není nutno|Jaroslav Uhlíř & Zdeněk Svěrák|1983|soundtrack|easy|hum lang=cs region=CZ
+Kolej Yesterday|Michal Prokop|1984|rock|medium|hum lang=cs region=CZ
+Můj čas|Hana Zagorová, Stanislav Hložek & Petr Kotvald|1984|pop|easy|hum lang=cs region=CZ
+Už nejsem volná|Petra Janů|1986|pop|easy|hum lang=cs region=CZ
+Ráchel|Oceán|1990|pop|medium|hum lang=cs region=CZ
+Zelená|Tři sestry|1991|punk|easy|hum lang=cs region=CZ
+Země vzdálená|BSP|1993|rock|easy|hum lang=cs region=CZ
+Motýlek|Daniel Landa|1993|rock|medium|hum lang=cs region=CZ
+Tři oříšky|Iveta Bartošová|1998|soundtrack|easy|hum lang=cs region=CZ
+Snadné je žít|Mig 21|2001|pop|easy|hum lang=cs region=CZ
+Zejtra mám|Ready Kirken|2001|rock|easy|hum lang=cs region=CZ
+Síla starejch vín|Škwor|2005|rock|easy|hum lang=cs region=CZ
+Globální oteplování|Nightwork|2008|pop|easy|hum lang=cs region=CZ
+Hvězdář|UDG|2009|rock|easy|hum lang=cs region=CZ
+Bomby|Ben Cristovao|2014|rap|easy|nohum lang=cs region=CZ
+Toulavá|Sebastian|2015|pop|easy|hum lang=cs region=CZ
+Farmářům|David Stypka & Bandjeez|2017|pop|medium|hum lang=cs region=CZ
+Tělo|Ewa Farna|2021|pop|easy|hum lang=cs region=CZ
+Hannah Montana|Calin|2022|rap|easy|nohum lang=cs region=CZ
+Safír|Calin & Viktor Sheen|2023|rap|easy|nohum lang=cs region=CZ
+Vedle tebe usínám|Mirai|2021|pop|easy|hum lang=cs region=CZ
+Naše cesty|Marek Ztracený|2018|pop|easy|hum lang=cs region=CZ
+Dobré ráno, milá|David Stypka & Ewa Farna|2017|pop|easy|hum lang=cs region=CZ
+Ještě jednu noc|Jelen|2021|folk|easy|hum lang=cs region=CZ
+Katarze|Slza|2015|pop|easy|hum lang=cs region=CZ
+Matfyzák na discu|Pokáč|2019|pop|easy|hum lang=cs region=CZ
+Rozdělený světy|Viktor Sheen|2020|rap|medium|nohum lang=cs region=CZ
+Praha/Vídeň|Calin|2021|rap|easy|nohum lang=cs region=CZ
+Kdepak, ty ptáčku, hnízdo máš?|Karel Gott|1975|soundtrack|easy|hum lang=cs region=CZ
+Otázky|Olympic|1970|rock|easy|hum lang=cs region=CZ
+Laura|Lucie|1990|rock|easy|hum lang=cs region=CZ
+Corrida|Kabát|2006|rock|easy|hum lang=cs region=CZ
+Voda živá|Aneta Langerová|2004|pop|easy|hum lang=cs region=CZ
+Pocity|Tomáš Klus|2008|pop|easy|hum lang=cs region=CZ
+Svaz českých bohémů|Wohnout|2011|rock|easy|hum lang=cs region=CZ
+Mám jednu ruku dlouhou|Buty|1994|rock|easy|hum lang=cs region=CZ
+Půlnoční|Václav Neckář & Umakart|2011|soundtrack|easy|hum lang=cs region=CZ
+Modlitba pro Martu|Marta Kubišová|1968|pop|easy|hum lang=cs region=CZ
+Hodinový hotel|Mňága a Žďorp|1991|rock|easy|hum lang=cs region=CZ
 `, { language: "cs", scope: "local", region: "CZ" }),
   en: parseSongs(`
 Hotel California|Eagles
@@ -1129,6 +1276,53 @@ Still Into You|Paramore
 Mr. Jones|Counting Crows
 Semi-Charmed Life|Third Eye Blind
 Welcome To The Jungle|Guns N' Roses
+Beyond the Sea|Bobby Darin|1959|oldies|easy|hum
+What'd I Say|Ray Charles|1959|oldies|medium|hum
+Summertime Blues|Eddie Cochran|1958|oldies|easy|hum
+The Sound of Silence|Simon & Garfunkel|1964|folk|easy|hum
+God Only Knows|The Beach Boys|1966|oldies|easy|hum
+She's Not There|The Zombies|1964|oldies|medium|hum
+Friday on My Mind|The Easybeats|1966|rock|medium|hum
+Long Cool Woman (In a Black Dress)|The Hollies|1972|rock|medium|hum
+Couldn't Get It Right|Climax Blues Band|1976|rock|medium|hum
+Stumblin' In|Chris Norman & Suzi Quatro|1978|pop|easy|hum
+The Look of Love|ABC|1982|pop|medium|hum
+Wouldn't It Be Good|Nik Kershaw|1984|pop|medium|hum
+Together in Electric Dreams|Philip Oakey & Giorgio Moroder|1984|pop|easy|hum
+Waiting for a Star to Fall|Boy Meets Girl|1988|pop|easy|hum
+Break My Stride|Matthew Wilder|1983|pop|easy|hum
+How Bizarre|OMC|1995|pop|easy|hum
+Kiss Me|Sixpence None the Richer|1998|pop|easy|hum
+Steal My Sunshine|Len|1999|pop|easy|hum
+Two Princes|Spin Doctors|1991|rock|easy|hum
+You Get What You Give|New Radicals|1998|rock|medium|hum
+Teenage Dirtbag|Wheatus|2000|rock|easy|hum
+Absolutely (Story of a Girl)|Nine Days|2000|rock|medium|hum
+New Shoes|Paolo Nutini|2006|pop|medium|hum
+Cool Kids|Echosmith|2013|pop|easy|hum
+Ex's & Oh's|Elle King|2014|rock|easy|hum
+End of Beginning|Djo|2022|pop|easy|hum
+Messy|Lola Young|2024|pop|easy|hum
+Sweet Caroline|Neil Diamond|1969|oldies|easy|hum lang=en region=US
+Mr. Blue Sky|Electric Light Orchestra|1977|rock|easy|hum lang=en region=GB
+Rehab|Amy Winehouse|2006|rnb|easy|hum lang=en region=GB
+The A Team|Ed Sheeran|2011|pop|medium|hum lang=en region=GB
+Say You Won't Let Go|James Arthur|2016|pop|easy|hum lang=en region=GB
+Youngblood|5 Seconds of Summer|2018|pop|easy|hum lang=en region=AU
+Dancing in the Moonlight|Toploader|2000|pop|easy|hum lang=en region=GB
+Somewhere Only We Know|Keane|2004|pop|easy|hum lang=en region=GB
+Put Your Records On|Corinne Bailey Rae|2006|rnb|easy|hum lang=en region=GB
+Bleeding Love|Leona Lewis|2007|pop|easy|hum lang=en region=GB
+You're Beautiful|James Blunt|2005|pop|easy|hum lang=en region=GB
+Sex Bomb|Tom Jones|1999|pop|easy|hum lang=en region=GB
+Fast Car|Tracy Chapman|1988|folk|easy|hum lang=en region=US
+Linger|The Cranberries|1993|rock|easy|hum lang=en region=IE
+Need You Tonight|INXS|1987|rock|easy|hum lang=en region=AU
+Down Under|Men at Work|1981|rock|easy|hum lang=en region=AU
+Running Up That Hill|Kate Bush|1985|pop|easy|hum lang=en region=GB
+Murder on the Dancefloor|Sophie Ellis-Bextor|2001|pop|easy|hum lang=en region=GB
+Nice to Meet You|Myles Smith|2024|pop|medium|hum lang=en region=GB
+Austin (Boots Stop Workin')|Dasha|2023|country|easy|hum lang=en region=US
 `, { language: "en", scope: "local" }),
   de: parseSongs(`
 99 Luftballons|Nena
@@ -1232,6 +1426,53 @@ Westerland|Die Ärzte
 Männer sind Schweine|Die Ärzte
 Junge|Die Ärzte
 Erfolg ist nicht alles|Cro
+Ich will 'nen Cowboy als Mann|Gitte Hænning|1963|schlager|easy|hum lang=de region=DE
+Mendocino|Michael Holm|1969|schlager|easy|hum lang=de region=DE
+Wunder gibt es immer wieder|Katja Ebstein|1970|schlager|easy|hum lang=de region=DE
+Schöne Maid|Tony Marshall|1971|schlager|easy|hum lang=de region=DE
+Eine neue Liebe ist wie ein neues Leben|Jürgen Marcus|1972|schlager|easy|hum lang=de region=DE
+Heute hier, morgen dort|Hannes Wader|1972|folk|medium|hum lang=de region=DE
+Über den Wolken|Reinhard Mey|1974|folk|easy|hum lang=de region=DE
+Jugendliebe|Ute Freudenberg|1980|pop|easy|hum lang=de region=DE
+Der Mussolini|Deutsch Amerikanische Freundschaft|1981|dance|medium|hum lang=de region=DE
+Neue Männer braucht das Land|Ina Deter Band|1982|pop|easy|hum lang=de region=DE
+Ich will Spaß|Markus|1982|pop|easy|hum lang=de region=DE
+1000 und 1 Nacht (Zoom!)|Klaus Lage|1984|rock|easy|hum lang=de region=DE
+König von Deutschland|Rio Reiser|1986|rock|easy|hum lang=de region=DE
+Kein Schwein ruft mich an|Max Raabe & Palast Orchester|1992|jazz|easy|hum lang=de region=DE
+Du liebst mich nicht|Sabrina Setlur|1997|rap|easy|nohum lang=de region=DE
+Guildo hat euch lieb!|Guildo Horn|1998|schlager|easy|hum lang=de region=DE
+Warum|Juli|2004|rock|easy|hum lang=de region=DE
+36grad|2raumwohnung|2007|pop|easy|hum lang=de region=DE
+Übers Ende der Welt|Tokio Hotel|2007|rock|easy|hum lang=de region=DE
+Allein Allein|Polarkreis 18|2008|indie|easy|hum lang=de region=DE
+Oh Jonny|Jan Delay|2009|funk|easy|hum lang=de region=DE
+Still|Jupiter Jones|2011|rock|easy|hum lang=de region=DE
+Liebe ist meine Rebellion|Frida Gold|2013|pop|easy|hum lang=de region=DE
+Auf anderen Wegen|Andreas Bourani|2014|pop|easy|hum lang=de region=DE
+Herz über Kopf|Joris|2015|pop|easy|hum lang=de region=DE
+Hoch|Tim Bendzko|2019|pop|easy|hum lang=de region=DE
+194 Länder|Mark Forster|2019|pop|easy|hum lang=de region=DE
+Wunder|AYLIVA & Apache 207|2024|pop|easy|hum lang=de region=DE
+Bauch Beine Po|Shirin David|2024|rap|easy|nohum lang=de region=DE
+Sommergewitter|Pashanim|2021|rap|easy|nohum lang=de region=DE
+Zukunft Pink|Peter Fox feat. Inéz|2022|rap|easy|hum lang=de region=DE
+Cordula Grün|Josh.|2018|pop|easy|hum lang=de region=AT
+Wenn sie tanzt|Max Giesinger|2016|pop|easy|hum lang=de region=DE
+Musik sein|Wincent Weiss|2016|pop|easy|hum lang=de region=DE
+80 Millionen|Max Giesinger|2016|pop|easy|hum lang=de region=DE
+Wie schön du bist|Sarah Connor|2015|pop|easy|hum lang=de region=DE
+Hulapalu|Andreas Gabalier|2015|schlager|medium|hum lang=de region=AT
+Ham kummst|Seiler und Speer|2015|pop|easy|hum lang=de region=AT
+Mensch|Herbert Grönemeyer|2002|pop|easy|hum lang=de region=DE
+Perfekte Welle|Juli|2004|rock|easy|hum lang=de region=DE
+Nur ein Wort|Wir sind Helden|2005|indie|easy|hum lang=de region=DE
+Vom selben Stern|Ich + Ich|2007|pop|easy|hum lang=de region=DE
+Geboren um zu leben|Unheilig|2010|pop|easy|hum lang=de region=DE
+Leider geil|Deichkind|2012|rap|easy|nohum lang=de region=DE
+Die Da!?|Die Fantastischen Vier|1992|rap|easy|nohum lang=de region=DE
+Zu spät|Die Ärzte|1984|punk|easy|hum lang=de region=DE
+Männer|Herbert Grönemeyer|1984|rock|easy|hum lang=de region=DE
 `, { language: "de", scope: "local" }),
   es: parseSongs(`
 La Bamba|Ritchie Valens
@@ -1334,6 +1575,53 @@ La Vida Es Un Carnaval|Celia Cruz
 La Negra Tiene Tumbao|Celia Cruz
 El Cantante|Héctor Lavoe
 Llorarás|Oscar D'León
+Mi Gran Noche|Raphael|1967|oldies|easy|lang=es region=ES hum
+Porque Te Vas|Jeanette|1974|pop|easy|lang=es region=ES hum
+Vivir Así Es Morir de Amor|Camilo Sesto|1978|pop|easy|lang=es region=ES hum
+Como una Ola|Rocío Jurado|1981|pop|easy|lang=es region=ES hum
+¿Y Cómo Es Él?|José Luis Perales|1982|pop|easy|lang=es region=ES hum
+Cadillac Solitario|Loquillo y Los Trogloditas|1983|rock|medium|lang=es region=ES hum
+Lobo-Hombre en París|La Unión|1984|rock|easy|lang=es region=ES hum
+El Baile de los Que Sobran|Los Prisioneros|1986|rock|easy|lang=es region=CL hum
+Lucha de Gigantes|Nacha Pop|1987|rock|easy|lang=es region=ES hum
+Resistiré|Dúo Dinámico|1988|pop|easy|lang=es region=ES hum
+20 de Abril|Celtas Cortos|1991|folk|easy|lang=es region=ES hum
+Y Nos Dieron las Diez|Joaquín Sabina|1992|pop|easy|lang=es region=ES hum
+Mío|Paulina Rubio|1992|pop|easy|lang=es region=MX hum
+El Sitio de Mi Recreo|Antonio Vega|1994|pop|medium|lang=es region=ES hum
+Piel Morena|Thalía|1995|latin|easy|lang=es region=MX hum
+Flaca|Andrés Calamaro|1997|rock|easy|lang=es region=AR hum
+Cómo Hablar|Amaral|2000|pop|easy|lang=es region=ES hum
+Antes Muerta Que Sencilla|María Isabel|2004|pop|easy|lang=es region=ES hum
+Atrévete-Te-Te|Calle 13|2005|rap|medium|lang=es region=PR nohum
+Todos Me Miran|Gloria Trevi|2006|pop|easy|lang=es region=MX hum
+No Puedo Vivir Sin Ti|Los Ronaldos|2007|rock|easy|lang=es region=ES hum
+Tenía Tanto Que Darte|Nena Daconte|2008|pop|easy|lang=es region=ES hum
+Hasta la Raíz|Natalia Lafourcade|2015|pop|easy|lang=es region=MX hum
+Tu Falta de Querer|Mon Laferte|2015|pop|easy|lang=es region=CL hum
+Me Rehúso|Danny Ocean|2016|latin|easy|lang=es region=VE hum
+Lo Malo|Aitana & Ana Guerra|2018|pop|easy|lang=es region=ES hum
+Ay Mamá|Rigoberta Bandini|2021|pop|easy|lang=es region=ES hum
+Si Antes Te Hubiera Conocido|Karol G|2024|latin|easy|hum lang=es region=CO
+BAILE INoLVIDABLE|Bad Bunny|2025|latin|easy|hum lang=es region=PR
+DtMF|Bad Bunny|2025|latin|easy|hum lang=es region=PR
+Gata Only|FloyyMenor & Cris MJ|2024|latin|easy|hum lang=es region=CL
+Ohnana|Kapo|2024|latin|easy|hum lang=es region=CO
+Ella Baila Sola|Eslabon Armado & Peso Pluma|2023|latin|easy|hum lang=es region=US
+un x100to|Grupo Frontera & Bad Bunny|2023|latin|easy|hum lang=es region=US
+Shakira: Bzrp Music Sessions, Vol. 53|Bizarrap & Shakira|2023|dance|easy|hum lang=es region=CO
+Quevedo: Bzrp Music Sessions, Vol. 52|Bizarrap & Quevedo|2022|dance|easy|hum lang=es region=ES
+LALA|Myke Towers|2023|latin|easy|hum lang=es region=PR
+Yandel 150|Yandel & Feid|2022|latin|easy|hum lang=es region=PR
+Perro Negro|Bad Bunny & Feid|2023|latin|easy|hum lang=es region=PR
+Te Felicito|Shakira & Rauw Alejandro|2022|latin|easy|hum lang=es region=CO
+Yo Perreo Sola|Bad Bunny|2020|latin|easy|hum lang=es region=PR
+Dura|Daddy Yankee|2018|latin|easy|hum lang=es region=PR
+Como la Flor|Selena|1992|latin|easy|hum lang=es region=US
+Obsesión|Aventura|2002|latin|easy|hum lang=es region=US
+Rosas|La Oreja de Van Gogh|2003|pop|easy|hum lang=es region=ES
+Hijo de la luna|Mecano|1986|pop|easy|hum lang=es region=ES
+Entre dos tierras|Héroes del Silencio|1990|rock|easy|hum lang=es region=ES
 `, { language: "es", scope: "local" }),
   fr: parseSongs(`
 Alors on danse|Stromae
@@ -1440,6 +1728,53 @@ Ma philosophie|Amel Bent
 Le temps qui court|Alain Chamfort
 Tombé pour la France|Étienne Daho
 Fever|Dua Lipa
+Bambino|Dalida|1956|chanson|easy|hum lang=fr region=FR
+Le temps de l'amour|Françoise Hardy|1962|chanson|easy|hum lang=fr region=FR
+L'école est finie|Sheila|1963|pop|easy|hum lang=fr region=FR
+La plus belle pour aller danser|Sylvie Vartan|1964|pop|easy|hum lang=fr region=FR
+Mirza|Nino Ferrer|1965|pop|easy|hum lang=fr region=FR
+La Poupée qui fait non|Michel Polnareff|1966|pop|easy|hum lang=fr region=FR
+Et moi, et moi, et moi|Jacques Dutronc|1966|rock|easy|hum lang=fr region=FR
+Siffler sur la colline|Joe Dassin|1968|chanson|easy|hum lang=fr region=FR
+San Francisco|Maxime Le Forestier|1972|folk|easy|hum lang=fr region=FR
+La Ballade des gens heureux|Gérard Lenorman|1975|chanson|easy|hum lang=fr region=FR
+Gabrielle|Johnny Hallyday|1976|rock|easy|hum lang=fr region=FR
+La Bombe humaine|Téléphone|1979|rock|easy|hum lang=fr region=FR
+Capitaine abandonné|Gold|1985|rock|easy|hum lang=fr region=FR
+Macumba|Jean-Pierre Mader|1985|pop|easy|hum lang=fr region=FR
+Aux sombres héros de l'amer|Noir Désir|1989|rock|medium|hum lang=fr region=FR
+Alors regarde|Patrick Bruel|1989|pop|easy|hum lang=fr region=FR
+Zen|Zazie|1995|pop|easy|hum lang=fr region=FR
+Le Temps des cathédrales|Bruno Pelletier|1998|soundtrack|easy|hum lang=fr region=FR
+Fan|Pascal Obispo|2003|pop|easy|hum lang=fr region=FR
+Je cours|Kyo|2003|rock|medium|hum lang=fr region=FR
+La Femme chocolat|Olivia Ruiz|2005|pop|easy|hum lang=fr region=FR
+Le Festin|Camille|2007|soundtrack|easy|hum lang=fr region=FR
+Elle me dit|Mika|2011|pop|easy|hum lang=fr region=FR
+Un homme debout|Claudio Capéo|2016|pop|easy|hum lang=fr region=FR
+Avant toi|Vitaa & Slimane|2019|pop|easy|hum lang=fr region=FR
+Popcorn salé|Santa|2022|pop|easy|hum lang=fr region=FR
+La symphonie des éclairs|Zaho de Sagazan|2023|pop|easy|hum lang=fr region=FR
+Ceux qu'on était|Pierre Garnier|2024|pop|easy|hum lang=fr region=FR
+SPIDER|Gims & Dystinct|2024|pop|easy|hum lang=fr region=FR
+Mon amour|Slimane|2024|pop|easy|hum lang=fr region=FR
+Mami Wata|Gazo & Tiakola|2023|rap|easy|nohum lang=fr region=FR
+Bolide allemand|SDM|2022|rap|easy|nohum lang=fr region=FR
+Suavemente|Soolking|2022|pop|easy|hum lang=fr region=FR
+L'enfer|Stromae|2022|pop|easy|hum lang=fr region=BE
+La kiffance|Naps|2021|rap|easy|hum lang=fr region=FR
+PARO|NEJ'|2021|rnb|easy|hum lang=fr region=FR
+Basique|Orelsan|2017|rap|easy|nohum lang=fr region=FR
+Reine|Dadju|2017|rnb|easy|hum lang=fr region=FR
+Dommage|Bigflo & Oli|2017|rap|easy|hum lang=fr region=FR
+La grenade|Clara Luciani|2017|pop|easy|hum lang=fr region=FR
+J'ai cherché|Amir|2016|pop|easy|hum lang=fr region=FR
+Ramenez la coupe à la maison|Vegedream|2018|rap|easy|hum lang=fr region=FR
+Bruxelles je t'aime|Angèle|2021|pop|easy|hum lang=fr region=BE
+Le dernier jour du disco|Juliette Armanet|2021|disco|easy|hum lang=fr region=FR
+Résiste|France Gall|1981|pop|easy|hum lang=fr region=FR
+Les Démons de minuit|Images|1986|pop|easy|hum lang=fr region=FR
+Nuit de folie|Début de Soirée|1988|dance|easy|hum lang=fr region=FR
 `, { language: "fr", scope: "local" }),
   pt: parseSongs(`
 Ai Se Eu Te Pego|Michel Teló
@@ -1540,6 +1875,53 @@ Robocop Gay|Mamonas Assassinas
 O Canto da Cidade|Daniela Mercury
 Avisa Lá|Olodum
 Tempo de Alegria|Ivete Sangalo
+Barco Negro|Amália Rodrigues|1955|folk|easy|lang=pt region=PT hum
+Pedra Filosofal|Manuel Freire|1970|folk|medium|lang=pt region=PT hum
+O Primeiro Dia|Sérgio Godinho|1978|folk|medium|lang=pt region=PT hum
+20 Anos|José Cid|1980|pop|easy|lang=pt region=PT hum
+Rua do Carmo|UHF|1981|rock|easy|lang=pt region=PT hum
+Chiclete|Táxi|1981|rock|easy|lang=pt region=PT hum
+Frágil|Jorge Palma|1982|pop|medium|lang=pt region=PT hum
+Perdidamente|Trovante|1987|rock|easy|lang=pt region=PT hum
+Baía de Cascais|Delfins|1987|pop|easy|lang=pt region=PT hum
+Parva Que Sou|Deolinda|2011|folk|easy|lang=pt region=PT hum
+Os Maridos das Outras|Miguel Araújo|2012|pop|easy|lang=pt region=PT hum
+Pica do 7|António Zambujo|2015|folk|medium|lang=pt region=PT hum
+Antes Dela Dizer Que Sim|Bárbara Tinoco|2019|pop|easy|lang=pt region=PT hum
+Preço Certo|Pedro Mafama|2023|pop|easy|lang=pt region=PT hum
+Azul da Cor do Mar|Tim Maia|1970|soul|easy|lang=pt region=BR hum
+Metamorfose Ambulante|Raul Seixas|1973|rock|easy|lang=pt region=BR hum
+Não Deixe o Samba Morrer|Alcione|1975|pop|easy|lang=pt region=BR hum
+Como Nossos Pais|Elis Regina|1976|pop|medium|lang=pt region=BR hum
+Tempos Modernos|Lulu Santos|1982|pop|easy|lang=pt region=BR hum
+Anunciação|Alceu Valença|1983|folk|easy|lang=pt region=BR hum
+Meu Erro|Os Paralamas do Sucesso|1984|rock|easy|lang=pt region=BR hum
+Pense em Mim|Leandro & Leonardo|1990|country|easy|lang=pt region=BR hum
+Malandragem|Cássia Eller|1994|rock|easy|lang=pt region=BR hum
+Depois do Prazer|Só Pra Contrariar|1997|pop|easy|lang=pt region=BR hum
+Quem de Nós Dois|Ana Carolina|2001|pop|medium|lang=pt region=BR hum
+Medo Bobo|Maiara & Maraisa|2016|country|easy|lang=pt region=BR hum
+Idiota|Jão|2021|pop|easy|lang=pt region=BR hum
+Deslocado|NAPA|2025|pop|easy|hum lang=pt region=PT
+saudade, saudade|MARO|2022|pop|easy|hum lang=pt region=PT
+Grito|iolanda|2024|pop|medium|hum lang=pt region=PT
+TATA|Slow J|2023|rap|easy|nohum lang=pt region=PT
+Como Tu|Bárbara Bandeira feat. Ivandro|2022|pop|easy|hum lang=pt region=PT
+Amar pelos dois|Salvador Sobral|2017|pop|easy|hum lang=pt region=PT
+Canção de Engate|António Variações|1984|pop|easy|hum lang=pt region=PT
+Porto Covo|Rui Veloso|1987|rock|easy|hum lang=pt region=PT
+Nosso Quadro|Ana Castela|2023|country|easy|hum lang=pt region=BR
+Erro Gostoso (Ao Vivo)|Simone Mendes|2023|country|easy|hum lang=pt region=BR
+Batom de Cereja (Ao Vivo)|Israel & Rodolffo|2021|country|easy|hum lang=pt region=BR
+Tá OK|DENNIS & Kevin O Chris|2023|funk|easy|hum lang=pt region=BR
+Coração Cachorro|Avine Vinny & Matheus Fernandes|2021|pop|easy|hum lang=pt region=BR
+Jenifer|Gabriel Diniz|2018|pop|easy|hum lang=pt region=BR
+Olha a Explosão|MC Kevinho|2016|funk|easy|hum lang=pt region=BR
+Deu Onda|MC G15|2016|funk|easy|hum lang=pt region=BR
+Vai Malandra|Anitta|2017|funk|easy|hum lang=pt region=BR
+Bum Bum Tam Tam|MC Fioti|2017|funk|easy|hum lang=pt region=BR
+Chega de Saudade|João Gilberto|1958|jazz|medium|hum lang=pt region=BR
+Pais e Filhos|Legião Urbana|1989|rock|easy|hum lang=pt region=BR
 `, { language: "pt", scope: "local" }),
 };
 
@@ -1650,7 +2032,6 @@ Sexy and I Know It|LMFAO|2011|dance|medium
 Animals|Martin Garrix|2013|dance|medium
 Lean On|Major Lazer|2015|dance|easy
 Don't You Worry Child|Swedish House Mafia|2012|dance|medium
-Faded|Alan Walker|2015|dance|easy
 Rather Be|Clean Bandit|2014|dance|medium
 Rockabye|Clean Bandit|2016|dance|medium
 Get Lucky|Daft Punk|2013|dance|easy
@@ -1658,29 +2039,23 @@ One More Time|Daft Punk|2000|dance|easy
 Around the World|Daft Punk|1997|dance|medium
 All of Me|John Legend|2013|rnb|easy
 Stay with Me|Sam Smith|2014|pop|easy
-Take Me to Church|Hozier|2013|indie|easy
 Ho Hey|The Lumineers|2012|indie|medium
 Little Talks|Of Monsters and Men|2011|indie|medium
 Riptide|Vance Joy|2013|indie|medium
 Budapest|George Ezra|2013|indie|medium
 Ocean Eyes|Billie Eilish|2016|pop|medium
 Lovely|Billie Eilish|2018|pop|medium
-Heat Waves|Glass Animals|2020|indie|easy
 Believer of Nothing|Nothing But Thieves|2017|rock|hard
 Unstoppable|Sia|2016|pop|medium
 Cruel|Sabrina Carpenter|2024|pop|hard
 Paint the Town Red|Doja Cat|2023|rap|medium|hum
 Say So|Doja Cat|2019|pop|easy
 Golden Hour|JVKE|2022|pop|medium
-Lose Control|Teddy Swims|2023|rnb|easy
 Sunroof|Nicky Youre|2021|pop|medium
 泡沫|G.E.M.|2012|pop|hard|lang=other
 Zitti e buoni|Måneskin|2021|rock|medium|lang=it
 Beggin'|Måneskin|2017|rock|easy
-Unholy|Sam Smith|2022|pop|easy
 Kill Bill|SZA|2022|rnb|easy
-Calm Down|Rema|2022|pop|easy
-Greedy|Tate McRae|2023|pop|easy
 Rain On Me|Lady Gaga|2020|dance|medium
 Pompeii|Bastille|2013|indie|easy
 Sweet Dreams|Eurythmics|1983|pop|easy
@@ -1806,7 +2181,6 @@ Michelle|The Beatles
 Satisfaction|The Rolling Stones
 Wild Horses|The Rolling Stones
 Woman|John Lennon
-Sound of Silence|Simon & Garfunkel
 Bridge over Troubled Water|Simon & Garfunkel
 Mrs. Robinson|Simon & Garfunkel
 The Boxer|Simon & Garfunkel
@@ -2070,7 +2444,6 @@ Traja|Billy Barman|2015|indie|hard
 Láska je tu s nami|Peter Nagy|1987|pop|easy
 Poďme sa zachrániť|Peter Nagy|1989|pop|medium
 Len pomaly|Peter Nagy|1988|pop|medium
-Tam kde sa neumiera|Zuzana Smatanová|2004|pop|medium
 V dobrom aj v zlom|Zuzana Smatanová|2006|pop|medium
 Horou|Zuzana Smatanová|2008|pop|hard
 Chlapci spod Tatier|Kollárovci|2010|folk|medium
@@ -2128,9 +2501,6 @@ Keď jazdíme my|Ego|2011|rap|medium|hum
 Čo bolo, bolo|No Name|2001|pop|medium
 Len tak stáť|Hex|1996|pop|medium
 Exotica|IMT Smile|2008|pop|medium
-Sľúbili sme si lásku|Ivan Hoffman|1989|folk|hard
-Medulienka|Pavol Hammel|1970|pop|medium
-Domovina|Adam Ďurica|2019|pop|medium
 Strážca pokladov|Jana Kirschner|2001|pop|medium
 Smej sa|Mária Čírová|2012|pop|medium
 S tebou ma baví svet|Peter Cmorik|2010|pop|medium
@@ -2157,7 +2527,6 @@ Mesto|Polemic|2005|reggae|hard
 Kašovité jedlá|Iné Kafe|2005|punk|hard
 S tebou alebo bez teba|Tomáš Bezdeda|2007|pop|medium
 Len ty|Tomáš Bezdeda|2009|pop|hard
-Run Run Run|Celeste Buckingham|2012|pop|medium
 Crushin' My Fairytale|Celeste Buckingham|2013|pop|hard
 Čisté tvary|Miro Jaroš|2014|pop|hard
 Kto vie|Miro Jaroš|2016|pop|hard
@@ -2427,7 +2796,6 @@ Nikdy nebudeme dospělí|Rybičky 48
   de: parseSongs(`
 Hey|Andreas Bourani|2011|pop|medium
 Schüttel deinen Speck|Peter Fox|2008|rap|medium|hum
-Nur ein Wort|Wir sind Helden|2005|indie|medium
 Denkmal|Wir sind Helden|2003|indie|medium
 Von hier an blind|Wir sind Helden|2005|indie|hard
 Bonnie und Clyde|Die Toten Hosen|1996|punk|hard
@@ -2446,7 +2814,6 @@ Nur wir zwei|Glasperlenspiel|2011|pop|hard
 Nordisch by Nature|Fettes Brot|1995|rap|hard|hum
 Bring die Nacht|BONEZ MC|2018|rap|hard|hum
 Ich und meine Maske|Alligatoah|2013|rap|hard|hum
-Hulapalu|Andreas Gabalier|2015|schlager|medium|region=AT
 I sing a Liad für di|Andreas Gabalier|2011|schlager|medium|region=AT
 Amoi seg' ma uns wieder|Andreas Gabalier|2011|schlager|hard|region=AT
 Fürstenfeld|STS|1984|rock|hard|region=AT
@@ -2460,17 +2827,14 @@ Ein Schwein namens Männer|Die Ärzte
 Manchmal haben Frauen|Die Ärzte
 Leuchtturm|Nena
 Vienna Calling|Falco||||region=AT
-Männer|Herbert Grönemeyer
 Bochum|Herbert Grönemeyer
 Halt mich|Herbert Grönemeyer
-Mensch|Herbert Grönemeyer
 Flugzeuge im Bauch|Herbert Grönemeyer
 Hinterm Horizont geht's weiter|Udo Lindenberg
 Verdammt lang her|BAP
 Frag nicht nach Sonnenschein|Peter Maffay
 Über sieben Brücken musst du gehen|Peter Maffay
 Ja|Silbermond
-Perfekte Welle|Juli
 Elektrisches Gefühl|Juli
 Dieses Leben|Juli
 Geile Zeit|Juli
@@ -2481,9 +2845,7 @@ Bad Chick|Cro
 Wie ich bin|Mark Forster
 Ozean|AnnenMayKantereit
 Feuerwerk|Wincent Weiss
-Musik sein|Wincent Weiss
 An Wunder|Wincent Weiss
-80 Millionen|Max Giesinger
 Legenden|Max Giesinger
 Nicht so schnell|Max Giesinger
 Bad Boys Cry|Apache 207
@@ -2519,7 +2881,6 @@ Alt wie ein Baum|Karat
 Über sieben Brücken|Karat
 Am Fenster|City
 Sonne, Mond und Sterne|Ich + Ich
-Vom selben Stern|Ich + Ich
 Stark|Ich + Ich
 So soll es bleiben|Ich + Ich
 Guten Tag|Wir sind Helden
@@ -2543,11 +2904,9 @@ Kein Liebeslied|Kraftklub
 Ich will nicht nach Berlin|Kraftklub
 Hurra, die Welt geht unter|Kraftklub
 Hier kommt die Sonne|Beatsteaks
-Leider geil|Deichkind
 Bück dich hoch|Deichkind
 MfG|Die Fantastischen Vier
 Troy|Die Fantastischen Vier
-Geboren um zu leben|Unheilig
 Hilf mir fliegen|Unheilig
 Hyper Hyper|Scooter
 How Much Is the Fish?|Scooter
@@ -2571,23 +2930,18 @@ Lieder|Adel Tawil
 Ist da jemand|Adel Tawil
 Wovon sollen wir träumen|Frida Gold
 An guten Tagen|Johannes Oerding
-Wie schön du bist|Sarah Connor
 Vincent|Sarah Connor
-Ham kummst|Seiler und Speer
 Jenseits von Eden|Nino de Angelo
 Santa Maria|Roland Kaiser
 Hello again|Howard Carpendale
 Hurra, hurra, die Schule brennt|Extrabreit
 Blaue Augen|Ideal
 Remmidemmi|Deichkind
-Die Da!?|Die Fantastischen Vier||rap
 Delmenhorst|Element of Crime
 `, { language: "de", scope: "local", region: "DE" }),
 
   en: parseSongs(`
-Sweet Caroline|Neil Diamond|1969|oldies|easy
 Livin' Thing|Electric Light Orchestra|1976|rock|medium
-Mr. Blue Sky|Electric Light Orchestra|1977|rock|medium
 Ain't No Mountain High Enough|Marvin Gaye|1967|soul|easy
 Let's Get It On|Marvin Gaye|1973|soul|medium
 Lovely Day|Bill Withers|1977|soul|easy
@@ -2595,11 +2949,9 @@ Ain't No Sunshine|Bill Withers|1971|soul|easy
 Wonderful World|Louis Armstrong|1967|jazz|easy
 Feeling Good|Nina Simone|1965|jazz|medium
 Valerie|Amy Winehouse|2007|rnb|easy
-Rehab|Amy Winehouse|2006|rnb|medium
 Back to Black|Amy Winehouse|2006|rnb|medium
 Mad World|Gary Jules|2001|indie|medium
 Skinny Love|Bon Iver|2007|indie|hard
-The A Team|Ed Sheeran|2011|pop|medium
 Chasing Pavements|Adele|2008|pop|medium
 Video Games|Lana Del Rey|2011|indie|medium
 Summertime Sadness|Lana Del Rey|2012|indie|medium
@@ -2634,7 +2986,6 @@ Dakota|Stereophonics
 Have a Nice Day|Stereophonics
 You Give Me Something|James Morrison
 Broken Strings|James Morrison
-Say You Won't Let Go|James Arthur
 Impossible|James Arthur
 Castle on the Hill|Ed Sheeran
 I Don't Care|Ed Sheeran
@@ -2651,7 +3002,6 @@ Ophelia|The Lumineers
 Cleopatra|The Lumineers
 Rivers and Roads|The Head and the Heart
 Sweet Disposition|The Temper Trap
-Youngblood|5 Seconds of Summer
 She Looks So Perfect|5 Seconds of Summer
 Centuries|Fall Out Boy
 Helena|My Chemical Romance
@@ -2671,8 +3021,6 @@ Grown Woman|Beyoncé
 Everytime|Britney Spears
 Sometimes|Britney Spears
 You Know I'm No Good|Amy Winehouse
-Dancing in the Moonlight|Toploader
-Somewhere Only We Know|Keane
 Everybody's Changing|Keane
 The Drugs Don't Work|The Verve
 Fake Plastic Trees|Radiohead
@@ -2680,37 +3028,28 @@ High and Dry|Radiohead
 Rockferry|Duffy
 Mercy|Duffy
 Warwick Avenue|Duffy
-Put Your Records On|Corinne Bailey Rae
-Bleeding Love|Leona Lewis
 Run|Leona Lewis
-You're Beautiful|James Blunt
 Goodbye My Lover|James Blunt
 1973|James Blunt
 The Blower's Daughter|Damien Rice
 Cannonball|Damien Rice
 Set the Fire to the Third Bar|Snow Patrol
-Sex Bomb|Tom Jones
 It's Not Unusual|Tom Jones
 Delilah|Tom Jones
 Baby Can I Hold You|Tracy Chapman
-Fast Car|Tracy Chapman
 Talkin' Bout a Revolution|Tracy Chapman
-Linger|The Cranberries
 Ode to My Family|The Cranberries
 Truly Madly Deeply|Savage Garden
 I Knew I Loved You|Savage Garden
 To the Moon and Back|Savage Garden
 Never Tear Us Apart|INXS
-Need You Tonight|INXS
 Beds Are Burning|Midnight Oil
-Down Under|Men at Work
 Are You Gonna Be My Girl|Jet
 Look What You've Done|Jet
 `, { language: "en", scope: "local" }),
 
   es: parseSongs(`
 Corazón Partido|Alejandro Sanz|1997|latin|medium
-Rosas|La Oreja de Van Gogh|2003|pop|medium
 Puedes Contar Conmigo|La Oreja de Van Gogh|2003|pop|hard
 Clandestino|Manu Chao|1998|latin|medium
 Me Gustas Tu|Manu Chao|2001|latin|easy
@@ -2737,7 +3076,6 @@ Como Camarón|Estopa
 La Raja de Tu Falda|Estopa
 Malditos Callejones|Estopa
 Ahora Quién|Marc Anthony
-Dura|Daddy Yankee
 Rompe|Daddy Yankee
 Ella y Yo|Don Omar
 Rakata|Wisin & Yandel
@@ -2750,13 +3088,11 @@ Se Preparó|Ozuna
 Baila Baila Baila|Ozuna
 Criminal|Ozuna
 Ay, DiOs Mío!|Karol G
-Yo Perreo Sola|Bad Bunny
 Moscow Mule|Bad Bunny
 Tattoo|Rauw Alejandro
 Tú|Shakira
 Ojos Así|Shakira
 Antología|Shakira
-Te Felicito|Shakira
 Tacones Rojos|Sebastián Yatra
 Tutu|Camilo
 Vida de Rico|Camilo
@@ -2803,14 +3139,12 @@ Yo Te Esperaré|Sin Bandera
 Entra en Mi Vida|Sin Bandera
 Corre|Jesse & Joy
 Espacio Sideral|Jesse & Joy
-Hijo de la luna|Mecano
 Me cuesta tanto olvidarte|Mecano
 Mujer contra mujer|Mecano
 Maquillaje|Mecano
 Cruz de navajas|Mecano
 Un año más|Mecano
 La fuerza del destino|Mecano
-Entre dos tierras|Héroes del Silencio
 Maldito duende|Héroes del Silencio
 La chispa adecuada|Héroes del Silencio
 Eres|Café Tacvba
@@ -2852,7 +3186,6 @@ Comme d'habitude|Claude François|1967|chanson|medium
 Alexandrie Alexandra|Claude François|1978|pop|medium
 Je t'aime... moi non plus|Serge Gainsbourg|1969|chanson|medium
 La Javanaise|Serge Gainsbourg|1963|chanson|hard
-Bruxelles je t'aime|Angèle|2021|pop|hard
 Les Champs-Élysées|Joe Dassin|1969|pop|easy
 La Thune|Angèle
 Doudou|Aya Nakamura
@@ -2868,7 +3201,6 @@ Le Lac|Julien Doré
 Paris-Seychelles|Julien Doré
 Nos Absences|Julien Doré
 On dirait|Amir
-J'ai cherché|Amir
 Longtemps|Amir
 Clique|Slimane
 À fleur de toi|Slimane
@@ -2896,10 +3228,8 @@ Je sais pas|Céline Dion
 En amour|Calogero
 Si seulement je pouvais lui manquer|Calogero
 Face à la mer|Calogero
-Basique|Orelsan
 La Terre est ronde|Orelsan
 Défaite de famille|Orelsan
-Dommage|Bigflo & Oli
 Papa|Bigflo & Oli
 Sur le Fil|Bigflo & Oli
 Mon Précieux|Soprano
@@ -2909,7 +3239,6 @@ Réalité augmentée|Nekfeu
 Divinidylle|Vanessa Paradis
 Be My Baby|Vanessa Paradis
 Ella Elle L'a|France Gall
-Résiste|France Gall
 Poupée de Cire, Poupée de Son|France Gall
 Il Jouait du Piano Debout|France Gall
 Laissez-Moi Danser|Dalida
@@ -2959,8 +3288,6 @@ Marcia Baila|Les Rita Mitsouko
 C'est comme ça|Les Rita Mitsouko
 Un peu plus près des étoiles|Gold
 Ville de lumière|Gold
-Les Démons de minuit|Images
-Nuit de folie|Début de Soirée
 Tomber la chemise|Zebda
 Je danse le Mia|IAM||rap
 Nés sous la même étoile|IAM||rap
@@ -2983,13 +3310,11 @@ Femmes, je vous aime|Julien Clerc
 `, { language: "fr", scope: "local" }),
 
   pt: parseSongs(`
-Chega de Saudade|João Gilberto|1958|jazz|medium
 Trem Bala|Ana Vilela|2017|pop|medium
 Amor de Índio|Beto Guedes|1978|pop|hard
 Sozinho|Caetano Veloso|1998|pop|medium
 Sampa|Caetano Veloso|1978|pop|hard
 Cálice|Chico Buarque|1978|pop|hard
-Pais e Filhos|Legião Urbana|1989|rock|medium
 Tempo Perdido|Legião Urbana|1986|rock|medium
 Faroeste Caboclo|Legião Urbana|1987|rock|hard
 Do Seu Lado|Jota Quest|1999|rock|medium
@@ -3020,7 +3345,6 @@ Ar Condicionado no 15|Wesley Safadão
 Ainda Gosto de Você|Wesley Safadão
 Céu da Boca|Ivete Sangalo
 Não Precisa Mudar|Ivete Sangalo
-Vai Malandra|Anitta
 Girl from Rio|Anitta
 Cheguei|Ludmilla
 Onde É Que Eu Errei|Ludmilla
@@ -3051,9 +3375,9 @@ Só Os Loucos Sabem|Charlie Brown Jr.
 Sonífera Ilha|Titãs
 Comida|Titãs
 Epitáfio|Titãs
-Alagados|Paralamas do Sucesso
-Lanterna dos Afogados|Paralamas do Sucesso
-Vital e Sua Moto|Paralamas do Sucesso
+Alagados|Os Paralamas do Sucesso
+Lanterna dos Afogados|Os Paralamas do Sucesso
+Vital e Sua Moto|Os Paralamas do Sucesso
 Bete Balanço|Barão Vermelho
 Pro Dia Nascer Feliz|Barão Vermelho
 Independência|Capital Inicial
@@ -3066,7 +3390,6 @@ Chuva de Arroz|Luan Santana
 Chá de Sumiço|Léo Santana
 Zona de Perigo|Léo Santana
 Amor de Verdade|MC Kekel
-Bum Bum Tam Tam|MC Fioti
 Vai Dar PT|Zé Neto e Cristiano
 Largado às Traças|Zé Neto e Cristiano
 Barquinho|Zé Neto e Cristiano
@@ -3146,7 +3469,7 @@ Na Sua Estante|Pitty
 Flores|Titãs
 Vou Deixar|Skank
 Uma Partida de Futebol|Skank
-Óculos|Paralamas do Sucesso
+Óculos|Os Paralamas do Sucesso
 Todo Carnaval Tem Seu Fim|Los Hermanos
 Camila Camila|Nenhum de Nós
 Inútil|Ultraje a Rigor

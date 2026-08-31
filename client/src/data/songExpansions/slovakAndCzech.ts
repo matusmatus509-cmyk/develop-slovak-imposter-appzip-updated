@@ -7,7 +7,6 @@ Van Goghovo ucho|Elán||rock|hard|hum
 Jedenáste prikázanie|Elán||rock|medium|hum
 Zaľúbení|Elán||rock|medium|hum
 Anča|Elán||rock|medium|hum
-Denisa|Miroslav Žbirka||pop|easy|hum
 Katka|Miroslav Žbirka||pop|easy|hum
 Jesenná láska|Miroslav Žbirka||pop|medium|hum
 Zlomky poznania|Miroslav Žbirka||pop|hard|hum
@@ -15,7 +14,6 @@ Dr. Jekyll a Mr. Hyde|Miroslav Žbirka||pop|medium|hum
 Náhodou|Miroslav Žbirka||pop|medium|hum
 Do člna|Miroslav Žbirka||pop|medium|hum
 S tebou|Miroslav Žbirka||pop|medium|hum
-Spočítaj ma|Richard Müller||pop|easy|hum
 Nočná optika|Richard Müller||pop|medium|hum
 Už asi nie si|Richard Müller||pop|medium|hum
 125|Richard Müller||pop|hard|hum
@@ -58,20 +56,17 @@ Myslíš na to, na čo ja?|Peter Nagy||pop|medium|hum
 Výlet do neba|Peter Nagy||pop|medium|hum
 Aj tak je to fajn|Peter Nagy||pop|medium|hum
 S nohami na stole|Peter Nagy||pop|medium|hum
-Ak nie si moja|Vašo Patejdl||pop|easy|hum
 Voňavky dievčat|Vašo Patejdl||pop|medium|hum
 Kamarátka nádej|Vašo Patejdl||pop|medium|hum
 Nepriznaná|Vašo Patejdl||pop|medium|hum
 Umenie žiť|Vašo Patejdl||pop|medium|hum
 Tri štvrte na jeseň|Vašo Patejdl||pop|hard|hum
-Pocta Majakovskému|Robo Grigorov||rock|easy|hum
 Modlitba lásky|Robo Grigorov||pop|medium|hum
 Bol raz jeden žiak|Robo Grigorov||pop|easy|hum
 Láska, pivo, anjel, smútok|Robo Grigorov||rock|medium|hum
 Ona je Madona|Robo Grigorov||pop|medium|hum
 Chlapci z mesta|Robo Grigorov||rock|medium|hum
 Účesy|Beáta Dubasová||pop|easy|hum
-Dievča z reklamy|Beáta Dubasová||pop|easy|hum
 Vráť mi pár dní|Beáta Dubasová||pop|medium|hum
 Za dverami mojej izby|Beáta Dubasová||pop|medium|hum
 Sme také aké sme|Beáta Dubasová||pop|medium|hum
@@ -87,13 +82,11 @@ Balada o štyroch koňoch|Peter Lipa||jazz|medium|hum
 Neúprosné ráno|Peter Lipa||jazz|medium|hum
 Podobnosť čisto náhodná|Peter Lipa||jazz|hard|hum
 Prosím ťa, neodchádzaj|Peter Lipa||jazz|medium|hum
-Matka|Tublatanka||rock|easy|hum
 Priateľ|Tublatanka||rock|medium|hum
 Môj starý dobrý kabát|Tublatanka||rock|medium|hum
 Ja sa vrátim!|Tublatanka||rock|medium|hum
 Schody do seba|Tublatanka||rock|hard|hum
 Démon pomsty|Tublatanka||rock|hard|hum
-Slnko nevychádzaj|Metalinda||rock|easy|hum
 Ján Amos džínový|Metalinda||rock|medium|hum
 Víťaz|Metalinda||rock|medium|hum
 Kovový kráľ|Metalinda||rock|hard|hum
@@ -111,7 +104,6 @@ Duša a ja|No Name||pop|medium|hum
 Ak nejde o všetko|No Name||pop|medium|hum
 Čierna alebo biela|No Name||pop|medium|hum
 O šťastí|No Name||pop|hard|hum
-Chýbanie|Desmod||rock|easy|hum
 Posledná|Desmod||rock|medium|hum
 Zober ma domov|Desmod||rock|medium|hum
 Kto ti dá viac|Desmod||rock|medium|hum
@@ -127,12 +119,10 @@ Dvere|Zuzana Smatanová||pop|medium|hum
 Mám čo som chcela|Zuzana Smatanová||pop|medium|hum
 Čiernobiela|Zuzana Smatanová||pop|medium|hum
 Jednoduchá|Zuzana Smatanová||pop|hard|hum
-Láska-Veda|Adam Ďurica||pop|easy|hum
 Naše hriechy|Adam Ďurica||pop|medium|hum
 Holubička|Adam Ďurica||pop|medium|hum
 Fúkame|Adam Ďurica||pop|medium|hum
 Dovtedy|Adam Ďurica||pop|medium|hum
-Nenahraditeľná|Sima Martausová||folk|easy|hum
 Dobrý deň, to som ja|Sima Martausová||folk|medium|hum
 Svätojánske mušky|Sima Martausová||folk|medium|hum
 Buď mi doktorom|Sima Martausová||folk|medium|hum
@@ -146,7 +136,6 @@ export const CZECH_SONG_EXPANSION = `
 Dítě robotí|Mirai||pop|medium|hum
 Chci tančit|Mirai||pop|easy|hum
 Pojď, zapomenem|Mirai||pop|medium|hum
-Vedle tebe usínám|Mirai||pop|easy|hum
 I přes to všechno|Mirai||pop|medium|hum
 Yahoda|Mirai||pop|medium|hum
 Narozeniny|Mirai||pop|medium|hum
@@ -154,7 +143,6 @@ Ztrácíš|Marek Ztracený||pop|easy|hum
 Léto 95|Marek Ztracený||pop|easy|hum
 To se mi líbí|Marek Ztracený||pop|medium|hum
 Tak se nezlob|Marek Ztracený||pop|medium|hum
-Naše cesty|Marek Ztracený||pop|easy|hum
 Moje milá|Marek Ztracený||pop|medium|hum
 Originál|Marek Ztracený||pop|medium|hum
 Pomalu|Marek Ztracený||pop|medium|hum
@@ -163,9 +151,7 @@ Leporelo|Ewa Farna||pop|easy|hum
 Toužím|Ewa Farna||pop|medium|hum
 Na ostří nože|Ewa Farna||pop|medium|hum
 Všechno nebo nic|Ewa Farna||pop|easy|hum
-Dobré ráno, milá|David Stypka & Ewa Farna||pop|medium|hum
 No Ne|Ewa Farna||pop|medium|hum
-Kdepak, ty ptáčku, hnízdo máš?|Karel Gott||pop|easy|hum
 Jdi za štěstím|Karel Gott||pop|easy|hum
 Čau, lásko|Karel Gott & Marcela Holanová||pop|medium|hum
 Stokrát chválím čas|Karel Gott||pop|medium|hum
@@ -173,20 +159,17 @@ Má první láska se dnes vdává|Karel Gott||pop|medium|hum
 Když jsem já byl tenkrát kluk|Karel Gott||pop|medium|hum
 Hej, páni konšelé|Karel Gott||pop|hard|hum
 Jestli já tě budu mít rád|Karel Gott||pop|medium|hum
-Otázky|Olympic||rock|easy|hum
 Bon soir, mademoiselle Paris|Olympic||rock|medium|hum
 Dynamit|Olympic||rock|medium|hum
 Kanagom|Olympic||rock|medium|hum
 Únos|Olympic||rock|hard|hum
 Pták Rosomák|Olympic||rock|medium|hum
-Laura|Lucie||rock|easy|hum
 Vona říká jo|Lucie||rock|medium|hum
 Troubit na trumpety by se nám líbilo|Lucie||rock|medium|hum
 Pohyby|Lucie||rock|medium|hum
 Nejlepší, kterou znám|Lucie||rock|medium|hum
 Kengi|Lucie||rock|hard|hum
 Šťastnej chlap|Lucie||rock|medium|hum
-Corrida|Kabát||rock|easy|hum
 Houby magický|Kabát||rock|medium|hum
 Moderní děvče|Kabát||rock|medium|hum
 Bruce Willis|Kabát||rock|medium|hum
@@ -226,13 +209,11 @@ Hvězdy jako hvězdy|Lucie Bílá||pop|easy|hum
 Desatero|Lucie Bílá||pop|medium|hum
 Jampadampa|Lucie Bílá||pop|medium|hum
 Zpíváš mi requiem|Lucie Bílá||pop|hard|hum
-Voda živá|Aneta Langerová||pop|easy|hum
 Hříšná těla, křídla motýlí|Aneta Langerová||pop|easy|hum
 Tráva|Aneta Langerová||pop|medium|hum
 Malá mořská víla|Aneta Langerová||pop|medium|hum
 Svatá Kordula|Aneta Langerová||pop|hard|hum
 V bezvětří|Aneta Langerová||pop|medium|hum
-Pocity|Tomáš Klus||pop|easy|hum
 Nina|Tomáš Klus||pop|easy|hum
 Napojen|Tomáš Klus||pop|medium|hum
 Chybíš mi|Tomáš Klus||pop|medium|hum
@@ -240,13 +221,11 @@ Do nebe|Tomáš Klus||pop|medium|hum
 Dobré ráno|Tomáš Klus||pop|medium|hum
 VeSmíru|Tomáš Klus||pop|hard|hum
 Co bylo dál?|Jelen feat. Jana Kirschner||folk|easy|hum
-Ještě jednu noc|Jelen||folk|medium|hum
 Vlčí srdce|Jelen||folk|easy|hum
 Jediný co chci|Jelen||folk|medium|hum
 Touha a pláč|Jelen||folk|medium|hum
 Někde kolem|Jelen||folk|medium|hum
 Slunovrat|Jelen||folk|medium|hum
-Katarze|Slza||pop|easy|hum
 Fáze pád|Slza||pop|medium|hum
 Celibát|Slza||pop|medium|hum
 Ani vody proud|Slza||pop|easy|hum
@@ -262,7 +241,6 @@ Slibuju, že nebudu pít|Rybičky 48||punk|medium|hum
 My ještě nejsme starý|Rybičky 48||punk|medium|hum
 Američan z Poličan|Rybičky 48||punk|medium|hum
 Emily|Rybičky 48||punk|medium|hum
-Svaz českých bohémů|Wohnout||rock|easy|hum
 Rayda|Wohnout||rock|medium|hum
 Banány|Wohnout||rock|medium|hum
 Ganga|Wohnout||rock|medium|hum
@@ -277,7 +255,6 @@ Ostravo|Jaromír Nohavica||folk|medium|hum
 Jednou ráno|Buty||rock|easy|hum
 Demáček|Buty||rock|medium|hum
 Tata|Buty||rock|medium|hum
-Mám jednu ruku dlouhou|Buty||rock|easy|hum
 Kráva|Buty||rock|medium|hum
 Medvědi nevědí|Ivan Mládek||folk|easy|hum
 Prachovské skály|Ivan Mládek||folk|easy|hum
@@ -295,11 +272,9 @@ Já budu chodit po špičkách|Petr Novák||rock|medium|hum
 Hvězdičko blýskavá|Petr Novák||rock|medium|hum
 Klaunova zpověď|Petr Novák||rock|medium|hum
 Stín katedrál|Václav Neckář & Helena Vondráčková||pop|easy|hum
-Půlnoční|Václav Neckář & Umakart||pop|easy|hum
 Tu kytaru jsem koupil kvůli tobě|Václav Neckář||pop|medium|hum
 Lékořice|Václav Neckář||pop|medium|hum
 Svátek|Václav Neckář||pop|medium|hum
-Modlitba pro Martu|Marta Kubišová||pop|easy|hum
 Depeše|Marta Kubišová||pop|medium|hum
 Ring-o-ding|Marta Kubišová||pop|medium|hum
 Nechte zvony znít|Marta Kubišová||pop|easy|hum
@@ -328,7 +303,6 @@ Sbírka zvadlejch růží|Wanastowi Vjecy||rock|easy|hum
 Tak mi to teda nandey|Wanastowi Vjecy||rock|medium|hum
 V princeznách|Wanastowi Vjecy||rock|medium|hum
 Otevři oči|Wanastowi Vjecy||rock|medium|hum
-Hodinový hotel|Mňága a Žďorp||rock|easy|hum
 Nejlíp jim bylo|Mňága a Žďorp||rock|medium|hum
 I cesta může být cíl|Mňága a Žďorp||rock|easy|hum
 Made in Valmez|Mňága a Žďorp||rock|medium|hum
@@ -338,7 +312,6 @@ Láska v housce|Xindl X & Olga Lounová||pop|medium|hum
 Dysgrafik|Xindl X||pop|medium|hum
 Chemie|Xindl X||pop|medium|hum
 Na vodě|Xindl X||pop|medium|hum
-Matfyzák na discu|Pokáč||pop|easy|hum
 Mám doma kočku|Pokáč||pop|easy|hum
 Vymlácený entry|Pokáč||pop|medium|hum
 Co z tebe bude|Pokáč||pop|medium|hum
@@ -348,5 +321,4 @@ Repertoár|PSH||rap|medium|nohum
 Policijééé|Chaozz||rap|easy|nohum
 Planeta opic|Chaozz||rap|medium|nohum
 Prachy|Prago Union||rap|medium|nohum
-Rozdělený světy|Viktor Sheen||rap|medium|nohum
 `;

@@ -40,20 +40,28 @@ const sources = SOURCE_FILES.map(path => ({
  * si u poskytovateľa nájde vlastnú nahrávku, takže hráč slyší tú skladbu,
  * ktorej interpret sa mu potom zobrazí.
  */
-const ALLOWED_SHARED_TITLES = new Set(["hero"]);
+const ALLOWED_SHARED_TITLES = new Set([
+  "hero",
+  "suavemente", // Elvis Crespo (1998) / Soolking (2022)
+  "tata", // Buty (1994) / Slow J (2023)
+  "wunder", // Nina Chuba (2022) / AYLIVA & Apache 207 (2024)
+]);
 
 /** Značky verzií, ktoré v katalógu nemajú byť — kvíz má hrať originál. */
 const NON_ORIGINAL_IN_DATA =
-  /\b(?:live|remix|cover|karaoke|tribute|instrumental|acoustic|unplugged|re-?recorded|taylor'?s version|medley|nightcore|mashup|sped ?up|slowed)\b/i;
+  /\b(?:ao vivo|live|remix|cover|karaoke|tribute|instrumental|acoustic|unplugged|re-?recorded|taylor'?s version|medley|nightcore|mashup|sped ?up|slowed)\b/i;
 
 /**
- * Názvy, v ktorých je takéto slovo prirodzenou súčasťou originálneho titulu.
- * Nie sú to teda alternatívne verzie nahrávky.
+ * Názvy, v ktorých je značka verzie súčasťou kanonického titulu vydania,
+ * ktoré má kvíz zámerne prehrávať, alebo je dané slovo prirodzenou súčasťou
+ * originálneho názvu.
  */
 const ALLOWED_VERSION_WORDS_IN_TITLE = new Set([
   "who wants to live forever",
   "live and let die",
   "live is life",
+  "erro gostoso (ao vivo)",
+  "batom de cereja (ao vivo)",
 ]);
 
 /**
@@ -211,33 +219,38 @@ const activeLocal = activeSourceSongs.filter(
 );
 const activeAll = [...activeWorld, ...activeLocal];
 
-const ACTIVE_LOCAL_RANGES = {
-  sk: [150, 230],
-  cs: [70, 120],
-  en: [60, 110],
-  de: [80, 130],
-  es: [80, 130],
-  fr: [80, 140],
-  pt: [80, 130],
+const EXPECTED_ACTIVE_COUNTS = {
+  world: 575,
+  sk: 241,
+  cs: 135,
+  en: 123,
+  de: 148,
+  es: 147,
+  fr: 151,
+  pt: 145,
 };
+const EXPECTED_ACTIVE_TOTAL = Object.values(EXPECTED_ACTIVE_COUNTS).reduce(
+  (total, count) => total + count,
+  0
+);
 
-if (activeWorld.length < 450 || activeWorld.length > 550) {
+if (activeWorld.length !== EXPECTED_ACTIVE_COUNTS.world) {
   errors.push(
-    `aktívny world pool má ${activeWorld.length} skladieb; očakáva sa 450–550`
+    `aktívny world pool má ${activeWorld.length} skladieb; očakáva sa presne ${EXPECTED_ACTIVE_COUNTS.world}`
   );
 }
-if (activeAll.length < 1100 || activeAll.length > 1500) {
+if (activeAll.length !== EXPECTED_ACTIVE_TOTAL) {
   errors.push(
-    `aktívny katalóg má ${activeAll.length} skladieb; očakáva sa 1100–1500`
+    `aktívny katalóg má ${activeAll.length} skladieb; očakáva sa presne ${EXPECTED_ACTIVE_TOTAL}`
   );
 }
-for (const [language, [minimum, maximum]] of Object.entries(
-  ACTIVE_LOCAL_RANGES
-)) {
+for (const [language, expected] of Object.entries(
+  EXPECTED_ACTIVE_COUNTS
+).filter(([language]) => language !== "world")) {
   const count = activeLocal.filter(song => song.section === language).length;
-  if (count < minimum || count > maximum) {
+  if (count !== expected) {
     errors.push(
-      `aktívny ${language} pool má ${count} skladieb; očakáva sa ${minimum}–${maximum}`
+      `aktívny ${language} pool má ${count} skladieb; očakáva sa presne ${expected}`
     );
   }
 }
@@ -399,10 +412,14 @@ function artistKey(value) {
     .toLocaleLowerCase()
     .replace(/[^a-z0-9]+/g, "");
 }
+// Niektoré úplne odlišné kapely sa po odstránení diakritiky zlejú do
+// rovnakého kľúča. Portugalská „Táxi" a švajčiarska „Taxi" sú dve rôzne
+// skupiny, preto si obe ponechávajú svoje kanonické meno.
+const ALLOWED_ARTIST_KEY_COLLISIONS = new Set(["taxi"]);
 const byArtist = new Map();
 for (const song of all) {
   const key = artistKey(song.artist);
-  if (!key) continue;
+  if (!key || ALLOWED_ARTIST_KEY_COLLISIONS.has(key)) continue;
   if (!byArtist.has(key)) byArtist.set(key, new Set());
   byArtist.get(key).add(song.artist);
 }
@@ -457,7 +474,7 @@ for (const section of sections) {
   );
 }
 const activeByPool = Object.fromEntries(
-  ["world_hits", ...Object.keys(ACTIVE_LOCAL_RANGES)].map(label => [
+  ["world_hits", ...Object.keys(EXPECTED_ACTIVE_COUNTS).filter(key => key !== "world")].map(label => [
     label === "world_hits" ? "world" : label,
     label === "world_hits"
       ? activeWorld.length
