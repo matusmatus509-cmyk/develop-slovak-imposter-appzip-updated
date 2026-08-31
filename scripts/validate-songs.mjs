@@ -221,14 +221,14 @@ const activeLocal = activeSourceSongs.filter(
 const activeAll = [...activeWorld, ...activeLocal];
 
 const EXPECTED_ACTIVE_COUNTS = {
-  world: 800,
-  sk: 300,
-  cs: 300,
-  en: 300,
-  de: 300,
-  es: 300,
-  fr: 300,
-  pt: 300,
+  world: 982,
+  sk: 302,
+  cs: 302,
+  en: 369,
+  de: 357,
+  es: 404,
+  fr: 391,
+  pt: 385,
 };
 const EXPECTED_ACTIVE_TOTAL = Object.values(EXPECTED_ACTIVE_COUNTS).reduce(
   (total, count) => total + count,

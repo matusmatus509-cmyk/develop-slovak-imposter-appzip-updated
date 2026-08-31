@@ -99,21 +99,18 @@ Mám čo som chcela|Zuzana Smatanová||pop|medium|hum
 Čiernobiela|Zuzana Smatanová||pop|medium|hum
 Jednoduchá|Zuzana Smatanová||pop|hard|hum
 Naše hriechy|Adam Ďurica||pop|medium|hum
-Holubička|Adam Ďurica||pop|medium|hum
 Fúkame|Adam Ďurica||pop|medium|hum
 Dovtedy|Adam Ďurica||pop|medium|hum
 Dobrý deň, to som ja|Sima Martausová||folk|medium|hum
 Svätojánske mušky|Sima Martausová||folk|medium|hum
 Buď mi doktorom|Sima Martausová||folk|medium|hum
 Čokoláda|Sima Martausová||folk|medium|hum
-Dáva mi|Kontrafakt||rap|easy|nohum
 Cigánsky sen|Rytmus||rap|medium|nohum
 Feel Alright|Majk Spirit||rap|medium|nohum
 `;
 
 export const CZECH_SONG_EXPANSION = `
 Dítě robotí|Mirai||pop|medium|hum
-Chci tančit|Mirai||pop|easy|hum
 Pojď, zapomenem|Mirai||pop|medium|hum
 I přes to všechno|Mirai||pop|medium|hum
 Yahoda|Mirai||pop|medium|hum
@@ -153,7 +150,6 @@ Ptají se lidé|Jiří Schelinger||rock|hard|hum
 Svátek|Václav Neckář||pop|medium|hum
 Depeše|Marta Kubišová||pop|medium|hum
 Ring-o-ding|Marta Kubišová||pop|medium|hum
-Maluj zase obrázky|Hana Zagorová||pop|medium|hum
 Spěchám|Hana Zagorová||pop|medium|hum
 Já nemám strach|Hana Zagorová||pop|medium|hum
 Markétka|Marie Rottrová||pop|medium|hum

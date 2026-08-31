@@ -172,40 +172,19 @@ Euphoria|Loreen|2012|pop|easy|hum
 Arcade|Duncan Laurence|2019|pop|easy|hum
 Snap|Rosa Linn|2022|pop|easy|hum
 Fairytale|Alexander Rybak|2009|pop|easy|hum
-Only Teardrops|Emmelie de Forest|2013|pop|medium|hum
-Satellite|Lena|2010|pop|easy|hum
 Rise Like a Phoenix|Conchita Wurst|2014|pop|easy|hum
-Toy|Netta|2018|pop|medium|hum
 Cha Cha Cha|Käärijä|2023|rap|easy|nohum
 Europapa|Joost Klein|2024|dance|medium|hum
-Think About Things|Daði Freyr|2020|pop|medium|hum
 Shum|Go_A|2021|folk|medium|hum
 Stefania|Kalush Orchestra|2022|rap|medium|nohum
 Molitva|Marija Šerifović|2007|pop|medium|hum
-Wild Dances|Ruslana|2004|pop|easy|hum
-Dum Tek Tek|Hadise|2009|pop|medium|hum
-My Number One|Helena Paparizou|2005|pop|medium|hum
-Hard Rock Hallelujah|Lordi|2006|metal|easy|hum
 Zaleilah|Mandinga|2012|pop|medium|hum
-Playing with Fire|Paula Seling & Ovi|2010|pop|medium|hum
-Fuego|Eleni Foureira|2018|pop|easy|hum
 SloMo|Chanel|2022|pop|medium|hum
-Queen of Kings|Alessandra|2023|pop|medium|hum
-Rim Tim Tagi Dim|Baby Lasagna|2024|rock|medium|hum
 In corpore sano|Konstrakta|2022|pop|hard|hum
 Dancing Lasha Tumbai|Verka Serduchka|2007|pop|easy|hum
-Fairytale Gone Bad|Sunrise Avenue|2006|rock|medium|hum
-In the Shadows|The Rasmus|2003|rock|easy|hum
-Freestyler|Bomfunk MC's|1999|rap|easy|nohum
 Stereo Love|Edward Maya & Vika Jigulina|2009|dance|easy|hum
 Mr. Saxobeat|Alexandra Stan|2010|dance|easy|hum
-Hot|INNA|2008|dance|easy|hum
-Sun Is Up|INNA|2010|dance|medium|hum
-All the Things She Said|t.A.T.u.|2002|pop|easy|hum
-Not Gonna Get Us|t.A.T.u.|2002|pop|medium|hum
 Skibidi|Little Big|2018|dance|medium|hum
-Around the World (La La La La La)|ATC|2000|dance|easy|hum
-The Magic Key|One-T + Cool-T|2003|pop|medium|hum
 Pedro Navaja|Rubén Blades|1978|latin|medium|hum
 Plástico|Rubén Blades|1978|latin|hard|hum
 El Gran Varón|Willie Colón|1989|latin|medium|hum
@@ -280,16 +259,8 @@ Bling-Bang-Bang-Born|Creepy Nuts|2024|rap|medium|nohum
 STAY TUNE|Suchmos|2016|funk|hard|hum
 Marigold|Aimyon|2018|pop|medium|hum
 Dry Flower|Yuuri|2020|pop|medium|hum
-Dancing on My Own|Robyn|2010|pop|easy|hum
-Call Your Girlfriend|Robyn|2011|pop|medium|hum
-With Every Heartbeat|Robyn|2007|pop|medium|hum
-Habits (Stay High)|Tove Lo|2013|pop|easy|hum
-Talking Body|Tove Lo|2014|pop|medium|hum
 It Takes a Fool to Remain Sane|The Ark|2000|rock|hard|hum
-Young Folks|Peter Bjorn and John|2006|indie|easy|hum
 If I Were Sorry|Frans|2016|pop|medium|hum
-Release Me|Agnes|2008|dance|medium|hum
-Cry for You|September|2006|dance|easy|hum
 Tunak Tunak Tun|Daler Mehndi|1998|pop|easy|hum
 Jai Ho|A.R. Rahman feat. Sukhwinder Singh, Tanvi Shah, Mahalakshmi Iyer & Vijay Prakash|2008|soundtrack|easy|hum
 Mundian to Bach Ke|Panjabi MC|1998|dance|easy|hum
@@ -298,75 +269,7 @@ Pata Pata|Miriam Makeba|1967|oldies|easy|hum
 `;
 
 export const ENGLISH_SONG_EXPANSION = String.raw`
-Chantilly Lace|The Big Bopper|1958|oldies|easy|hum
-That'll Be the Day|Buddy Holly|1957|oldies|easy|hum
-Earth Angel|The Penguins|1954|oldies|medium|hum
 Tequila|The Champs|1958|oldies|easy|hum
-Only You (And You Alone)|The Platters|1955|oldies|easy|hum
-At the Hop|Danny & the Juniors|1957|oldies|medium|hum
-Substitute|The Who|1966|rock|medium|hum
 Born on the Bayou|Creedence Clearwater Revival|1969|rock|medium|hum
-I'm a Man|The Spencer Davis Group|1967|rock|medium|hum
-Tuesday Afternoon|The Moody Blues|1967|rock|medium|hum
-Go All the Way|Raspberries|1972|rock|medium|hum
-Fox on the Run|Sweet|1975|rock|medium|hum
-Golden Years|David Bowie|1975|rock|medium|hum
-You Make Loving Fun|Fleetwood Mac|1977|rock|medium|hum
-China Grove|The Doobie Brothers|1973|rock|medium|hum
-Do It Again|Steely Dan|1972|rock|medium|hum
-Kiss on My List|Daryl Hall & John Oates|1980|pop|medium|hum
-Sara Smile|Daryl Hall & John Oates|1975|soul|medium|hum
-Dream Weaver|Gary Wright|1975|pop|medium|hum
-Ventura Highway|America|1972|folk|medium|hum
-Sister Golden Hair|America|1975|folk|medium|hum
-Renegade|Styx|1978|rock|medium|hum
-Telephone Line|Electric Light Orchestra|1976|rock|medium|hum
-Pop Muzik|M|1979|pop|medium|hum
-Born to Be Alive|Patrick Hernandez|1978|disco|easy|hum
-Car Wash|Rose Royce|1976|funk|easy|hum
-He's the Greatest Dancer|Sister Sledge|1979|disco|medium|hum
-Boogie Oogie Oogie|A Taste of Honey|1978|disco|medium|hum
-I Love the Nightlife|Alicia Bridges|1978|disco|medium|hum
-Ain't No Stoppin' Us Now|McFadden & Whitehead|1979|disco|medium|hum
-Rock the Boat|The Hues Corporation|1974|disco|medium|hum
-Can't Get Enough of Your Love, Babe|Barry White|1974|soul|easy|hum
-Kung Fu Fighting|Carl Douglas|1974|disco|easy|hum
-Rock Your Baby|George McCrae|1974|disco|medium|hum
-Love Train|The O'Jays|1972|soul|easy|hum
-Lady Marmalade|Labelle|1974|funk|easy|hum
-Play That Funky Music|Wild Cherry|1976|funk|easy|hum
-Give Up the Funk|Parliament|1975|funk|medium|hum
-Atomic Dog|George Clinton|1982|funk|medium|hum
-Super Freak|Rick James|1981|funk|easy|hum
-Give It to Me Baby|Rick James|1981|funk|medium|hum
-Word Up!|Cameo|1986|funk|easy|hum
-Let's Hear It for the Boy|Deniece Williams|1984|pop|easy|hum
-Tired of Being Alone|Al Green|1971|soul|medium|hum
-Sexual Healing|Marvin Gaye|1982|soul|easy|hum
-Got to Give It Up|Marvin Gaye|1977|funk|medium|hum
-I'll Be Around|The Spinners|1972|soul|medium|hum
-Could It Be I'm Falling in Love|The Spinners|1972|soul|medium|hum
-Love Rollercoaster|Ohio Players|1975|funk|medium|hum
-Fire|Ohio Players|1974|funk|medium|hum
-Brick House|Commodores|1977|funk|easy|hum
-Three Times a Lady|Commodores|1978|soul|easy|hum
-Nightshift|Commodores|1985|soul|medium|hum
-Give Me the Night|George Benson|1980|funk|easy|hum
-Turn Your Love Around|George Benson|1981|soul|medium|hum
-Just the Two of Us|Grover Washington Jr. feat. Bill Withers|1981|soul|easy|hum
-Forget Me Nots|Patrice Rushen|1982|funk|medium|hum
-Outstanding|The Gap Band|1982|funk|medium|hum
-You Dropped a Bomb on Me|The Gap Band|1982|funk|medium|hum
-And the Beat Goes On|The Whispers|1979|disco|medium|hum
-Let's Go Crazy|Prince|1984|rock|easy|hum
-1999|Prince|1982|pop|easy|hum
-Little Red Corvette|Prince|1983|pop|easy|hum
-Raspberry Beret|Prince|1985|pop|medium|hum
-Sign o' the Times|Prince|1987|pop|medium|hum
-Cream|Prince|1991|pop|medium|hum
-Into the Groove|Madonna|1985|pop|easy|hum
-Borderline|Madonna|1983|pop|easy|hum
 Papa Don't Preach|Madonna|1986|pop|easy|hum
-Express Yourself|Madonna|1989|pop|easy|hum
-Open Your Heart|Madonna|1986|pop|medium|hum
 `;

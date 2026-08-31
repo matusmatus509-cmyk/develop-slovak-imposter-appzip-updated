@@ -66,16 +66,16 @@ describe("integrita hudobného katalógu", () => {
 
   it("aktívna zásoba zodpovedá kurátorovanému snapshotu a pôvodné skladby zostali", () => {
     const stats = songCatalogueStats();
-    expect(stats.total).toBe(2900);
-    expect(stats.global).toBe(800);
+    expect(stats.total).toBe(3492);
+    expect(stats.global).toBe(982);
     expect(stats.byLanguage).toMatchObject({
-      sk: 300,
-      cs: 300,
-      en: 300,
-      de: 300,
-      es: 300,
-      fr: 300,
-      pt: 300,
+      sk: 302,
+      cs: 302,
+      en: 369,
+      de: 357,
+      es: 404,
+      fr: 391,
+      pt: 385,
     });
     const present = (title: string, artist: string) =>
       ALL_SONGS.some(song => song.id === songIdFor(title, artist));
