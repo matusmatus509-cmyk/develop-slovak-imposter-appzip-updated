@@ -1212,6 +1212,16 @@ Talking Body|Tove Lo|2014|pop|medium|hum lang=en region=SE
 Young Folks|Peter Bjorn and John|2006|indie|easy|hum lang=en region=SE
 Release Me|Agnes|2008|dance|medium|hum lang=en region=SE
 Cry for You|September|2006|dance|easy|hum lang=en region=SE
+Voyage Voyage|Desireless|1986|pop|medium|hum lang=fr region=FR
+Zitti e buoni|Måneskin|2021|rock|medium|hum lang=it region=IT
+Sandstorm|Darude|1999|dance|easy|hum lang=instrumental region=FI
+Love the Way You Lie|Eminem feat. Rihanna|2010|rap|easy|nohum lang=en region=US
+Hall of Fame|The Script feat. will.i.am|2012|pop|easy|hum lang=en region=IE
+L'italiano|Toto Cutugno|1983|pop|easy|hum lang=it region=IT
+Felicità|Al Bano & Romina Power|1982|pop|easy|hum lang=it region=IT
+Con te partirò|Andrea Bocelli|1995|pop|easy|hum lang=it region=IT
+Euphoria|Loreen|2012|pop|easy|hum lang=en region=SE
+Stereo Love|Edward Maya & Vika Jigulina|2009|dance|easy|hum lang=en region=RO
 `, { language: "en", scope: "global" });
 
 const LOCAL_HITS: Partial<Record<SongLanguage, Song[]>> = {
@@ -2192,6 +2202,7 @@ Into the Groove|Madonna|1985|pop|easy|hum lang=en region=US
 Borderline|Madonna|1983|pop|easy|hum lang=en region=US
 Express Yourself|Madonna|1989|pop|easy|hum lang=en region=US
 Open Your Heart|Madonna|1986|pop|easy|hum lang=en region=US
+Papa Don't Preach|Madonna|1986|pop|easy|hum lang=en region=US
 `, { language: "en", scope: "local" }),
   de: parseSongs(`
 99 Luftballons|Nena
@@ -2957,6 +2968,7 @@ El Costo de la Vida|Juan Luis Guerra 4.40|1992|latin|medium|hum lang=es region=D
 Visa para un Sueño|Juan Luis Guerra 4.40|1989|latin|medium|hum lang=es region=DO
 Frío Frío|Juan Luis Guerra 4.40|1992|latin|medium|hum lang=es region=DO
 Las Avispas|Juan Luis Guerra 4.40|2004|latin|medium|hum lang=es region=DO
+Tacones Rojos|Sebastián Yatra|2021|pop|easy|hum lang=es region=CO
 `, { language: "es", scope: "local" }),
   fr: parseSongs(`
 Alors on danse|Stromae
@@ -3757,7 +3769,6 @@ Unchained Melody|The Righteous Brothers|1965|oldies|easy
 House of the Rising Sun|The Animals|1964|rock|easy
 Simply the Best|Tina Turner|1989|pop|easy
 Tainted Love|Soft Cell|1981|pop|medium
-Voyage Voyage|Desireless|1986|pop|medium|lang=fr
 Walking on Sunshine|Katrina and the Waves|1983|pop|easy
 Torn|Natalie Imbruglia|1997|pop|medium
 Bodies|Drowning Pool|2001|metal|hard
@@ -3767,10 +3778,8 @@ Animals|Martin Garrix|2013|dance|medium
 Believer of Nothing|Nothing But Thieves|2017|rock|hard
 Cruel|Sabrina Carpenter|2024|pop|hard
 泡沫|G.E.M.|2012|pop|hard|lang=other
-Zitti e buoni|Måneskin|2021|rock|medium|lang=it
 Beggin'|Måneskin|2017|rock|easy
 Sweet Dreams|Eurythmics|1983|pop|easy
-Sandstorm|Darude|1999|dance|easy
 Everything I Do|Bryan Adams
 I Love Rock 'n' Roll|Joan Jett
 I Say a Little Prayer|Aretha Franklin
@@ -3808,7 +3817,6 @@ When Love Takes Over|David Guetta
 Turn Me On|David Guetta
 Fireball|Pitbull
 Not Afraid|Eminem
-Love the Way You Lie|Eminem
 Mockingbird|Eminem
 Longview|Green Day
 Some Might Say|Oasis
@@ -3847,7 +3855,6 @@ Disco 2000|Pulp
 Parklife|Blur
 Coffee & TV|Blur
 Breakeven|The Script
-Hall of Fame|The Script
 Ruby|Kaiser Chiefs
 I Predict a Riot|Kaiser Chiefs
 What You Know|Two Door Cinema Club
@@ -4231,7 +4238,6 @@ Algo Me Gusta de Ti|Wisin & Yandel
 X|Nicky Jam
 Taki Taki|Ozuna
 Criminal|Ozuna
-Tacones Rojos|Sebastián Yatra
 Tutu|Camilo
 Guantanamera|Compay Segundo
 Chan Chan|Compay Segundo

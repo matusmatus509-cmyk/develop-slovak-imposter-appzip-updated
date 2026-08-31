@@ -265,12 +265,12 @@ for (const song of activeAll) {
 }
 
 const EXPECTED_ACTIVE_COUNTS = {
-  world: 971,
+  world: 981,
   sk: 302,
   cs: 302,
-  en: 368,
+  en: 369,
   de: 357,
-  es: 404,
+  es: 405,
   fr: 389,
   pt: 385,
 };
@@ -328,6 +328,12 @@ const ALLOWED_NON_ENGLISH_WORLD = new Map([
   ["How You Like That", "other"],
   ["Kill This Love", "other"],
   ["Sarà perché ti amo", "it"],
+  ["Voyage Voyage", "fr"],
+  ["Zitti e buoni", "it"],
+  ["Sandstorm", "instrumental"],
+  ["L'italiano", "it"],
+  ["Felicità", "it"],
+  ["Con te partirò", "it"],
 ]);
 for (const song of activeWorld) {
   const language = languageFlag(song);
