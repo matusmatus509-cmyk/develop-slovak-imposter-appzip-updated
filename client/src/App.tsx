@@ -55,7 +55,9 @@ import {
   parsePartyPackLink,
   PartyPackError,
 } from "./data/partyPackSharing";
-import type { CustomContentControls } from "./components/CustomContentSelector";
+import CustomContentSelector, {
+  type CustomContentControls,
+} from "./components/CustomContentSelector";
 import { usePartyMusic } from "./hooks/usePartyMusic";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 /** Hry sa často hrajú bez dotyku obrazovky — displej nesmie medzitým zhasnúť. */
@@ -1037,6 +1039,14 @@ export default function App() {
           <GameWelcome
             config={activeTheme}
             onBack={() => backFromWelcome(screen)}
+            settings={
+              screen === "never-have-i-ever" ? (
+                <CustomContentSelector
+                  controls={customControls("never-have-i-ever")}
+                  compact
+                />
+              ) : undefined
+            }
             onStart={() => {
               startGameSession(screen);
               setWelcomeScreen(null);
@@ -1228,7 +1238,6 @@ export default function App() {
           <NeverHaveIEver
             onBack={() => returnFromActiveGame("minigames-menu")}
             customEntries={customEntries("never-have-i-ever")}
-            customControls={customControls("never-have-i-ever")}
           />
         );
 

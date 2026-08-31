@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import type { Screen } from "../types";
 /** Dizajnové pravidlo: pôvodný GitHub vzhľad — hero vizuály majú mierny presah cez atlasové okraje. */
 import { battleshipGameHero, bombGameHero, charadesGameHero, emojiGameHero, fiveTenGameHeroV3, forbiddenWordGameHero, gameArt, letterGameHeroV3, minigameArtAtlas, musicQuizGameHero, musicQuizGameHeroWide, partyMinigameAtlas, partyModeArtV2, pingPongGameHero, songGameHeroV3, soundGameHero, ticTacToeGameHero, buzzImposterGameHero, hadajKtoSomGameHero, imposterGameHero, imposterKreslenieGameHero } from "../media";
@@ -22,6 +22,7 @@ export interface GameWelcomeConfig {
   artAtlas?: boolean;
   artSize?: string;
   variant?: "default" | "song";
+  startLabel?: string;
 }
 
 export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
@@ -52,6 +53,7 @@ export const GAME_WELCOMES: Partial<Record<Screen, GameWelcomeConfig>> = {
     artPosition: "50% 0%",
     art: minigameArtAtlas,
     artAtlas: true,
+    startLabel: "Spustiť hru",
   },
   "would-you-rather": {
     eyebrow: "Dve cesty. Jedna voľba.",
@@ -367,10 +369,12 @@ export default function GameWelcome({
   config,
   onBack,
   onStart,
+  settings,
 }: {
   config: GameWelcomeConfig;
   onBack: () => void;
   onStart: () => void;
+  settings?: ReactNode;
 }) {
   const style = {
     "--welcome-accent": config.accent,
@@ -381,7 +385,7 @@ export default function GameWelcome({
 
   return (
     <main
-      className={`game-welcome relative h-[100dvh] overflow-hidden text-white ${config.variant === "song" ? "game-welcome-song" : ""}`}
+      className={`game-welcome relative h-[100dvh] overflow-hidden text-white ${settings ? "game-welcome--with-settings" : ""} ${config.variant === "song" ? "game-welcome-song" : ""}`}
       style={{ ...style, background: `linear-gradient(180deg, ${config.deep}, #080b10 68%)` }}
     >
       <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_50%_5%,var(--welcome-soft),transparent_38%)]" />
@@ -462,13 +466,17 @@ export default function GameWelcome({
             <p className="text-xs font-bold leading-snug text-white/68">{config.rule}</p>
           </div>
 
+          {settings && (
+            <div className="game-welcome-settings">{settings}</div>
+          )}
+
           <button
             type="button"
             onClick={onStart}
             className="flex min-h-14 w-full items-center justify-between rounded-xl border border-white/10 px-5 text-left font-extrabold text-white shadow-xl transition hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 active:scale-[.98]"
             style={{ background: `linear-gradient(135deg, ${config.accent}, color-mix(in srgb, ${config.accent} 70%, #202a38))`, boxShadow: `0 18px 34px -24px ${config.accent}` }}
           >
-            <span>{config.variant === "song" ? "Pripraviť hudobné kolo" : "Pripraviť hru"}</span>
+            <span>{config.startLabel ?? (config.variant === "song" ? "Pripraviť hudobné kolo" : "Pripraviť hru")}</span>
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/18"><Icons.chevronRight size={20} /></span>
           </button>
         </section>
