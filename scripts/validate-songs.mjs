@@ -85,6 +85,7 @@ const REJECTED_ACTIVE_RECORDINGS = new Set(
     ["Self Control", "Laura Branigan"],
     ["Nothing Compares 2 U", "Sinéad O'Connor"],
     ["Killing Me Softly with His Song", "Fugees"],
+    ["Killing Me Softly", "Fugees"],
     ["When You Say Nothing at All", "Ronan Keating"],
     ["Gloria", "Laura Branigan"],
     ["Here I Go Again", "Whitesnake"],
