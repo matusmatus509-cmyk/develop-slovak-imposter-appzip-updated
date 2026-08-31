@@ -66,6 +66,41 @@ const ALLOWED_VERSION_WORDS_IN_TITLE = new Set([
 ]);
 
 /**
+ * Sémantické covery a neskoršie prepisy, ktoré názov sám neodhalí. Môžu
+ * zostať v archíve, ale nesmú sa znovu presunúť do aktívnej zásoby.
+ */
+function recordingKey(title, artist) {
+  const normalize = value =>
+    value
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLocaleLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+  return `${normalize(title)}|${normalize(artist)}`;
+}
+
+const REJECTED_ACTIVE_RECORDINGS = new Set(
+  [
+    ["Self Control", "Laura Branigan"],
+    ["Nothing Compares 2 U", "Sinéad O'Connor"],
+    ["Killing Me Softly with His Song", "Fugees"],
+    ["When You Say Nothing at All", "Ronan Keating"],
+    ["Gloria", "Laura Branigan"],
+    ["Here I Go Again", "Whitesnake"],
+    ["Go West", "Pet Shop Boys"],
+    ["Love Is All Around", "Wet Wet Wet"],
+    ["All the Things She Said", "t.A.T.u."],
+    ["Not Gonna Get Us", "t.A.T.u."],
+    ["Around the World (La La La La La)", "ATC"],
+    ["Lady Marmalade", "Labelle"],
+    ["Paroles, Paroles", "Dalida"],
+    ["Paroles, paroles", "Dalida & Alain Delon"],
+    ["Sous le Ciel de Paris", "Yves Montand"],
+  ].map(([title, artist]) => recordingKey(title, artist))
+);
+
+/**
  * Povolené hodnoty voliteľných stĺpcov. Musia zostať zhodné s `parseSongs`
  * v localizedSongs.ts — inak by skript prehlásil platné dáta za chybné.
  */
@@ -220,14 +255,22 @@ const activeLocal = activeSourceSongs.filter(
 );
 const activeAll = [...activeWorld, ...activeLocal];
 
+for (const song of activeAll) {
+  if (REJECTED_ACTIVE_RECORDINGS.has(recordingKey(song.title, song.artist))) {
+    errors.push(
+      `neoriginálna nahrávka v aktívnej zásobe — ${at(song)}: „${song.title} | ${song.artist}"`
+    );
+  }
+}
+
 const EXPECTED_ACTIVE_COUNTS = {
-  world: 982,
+  world: 971,
   sk: 302,
   cs: 302,
-  en: 369,
+  en: 368,
   de: 357,
   es: 404,
-  fr: 391,
+  fr: 389,
   pt: 385,
 };
 const EXPECTED_ACTIVE_TOTAL = Object.values(EXPECTED_ACTIVE_COUNTS).reduce(

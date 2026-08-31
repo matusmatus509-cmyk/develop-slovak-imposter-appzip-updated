@@ -266,10 +266,14 @@ Jai Ho|A.R. Rahman feat. Sukhwinder Singh, Tanvi Shah, Mahalakshmi Iyer & Vijay 
 Mundian to Bach Ke|Panjabi MC|1998|dance|easy|hum
 Şımarık|Tarkan|1997|pop|easy|hum
 Pata Pata|Miriam Makeba|1967|oldies|easy|hum
+All the Things She Said|t.A.T.u.|2002|pop|easy|hum
+Not Gonna Get Us|t.A.T.u.|2002|pop|medium|hum
+Around the World (La La La La La)|ATC|2000|dance|easy|hum
 `;
 
 export const ENGLISH_SONG_EXPANSION = String.raw`
 Tequila|The Champs|1958|oldies|easy|hum
 Born on the Bayou|Creedence Clearwater Revival|1969|rock|medium|hum
 Papa Don't Preach|Madonna|1986|pop|easy|hum
+Lady Marmalade|Labelle|1974|funk|easy|hum
 `;

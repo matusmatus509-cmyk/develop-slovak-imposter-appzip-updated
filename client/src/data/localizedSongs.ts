@@ -1045,16 +1045,11 @@ Livin' in America|James Brown|1985|funk|medium|hum lang=en region=US
 I Got You (I Feel Good)|James Brown|1965|funk|easy|hum lang=en region=US
 Love Will Tear Us Apart|Joy Division|1980|indie|medium|hum lang=en region=GB
 Bizarre Love Triangle|New Order|1986|pop|medium|hum lang=en region=GB
-Self Control|Laura Branigan|1984|pop|easy|hum lang=en region=US
-Nothing Compares 2 U|Sinéad O'Connor|1990|pop|easy|hum lang=en region=IE
 Waiting in Vain|Bob Marley & The Wailers|1977|reggae|medium|hum lang=en region=JM
-Killing Me Softly with His Song|Fugees|1996|rnb|easy|hum lang=en region=US
 MMMBop|Hanson|1997|pop|easy|hum lang=en region=US
 Family Portrait|P!nk|2002|pop|medium|hum lang=en region=US
 Swear It Again|Westlife|1999|pop|medium|hum lang=en region=IE
 No Matter What|Boyzone|1998|pop|easy|hum lang=en region=IE
-When You Say Nothing at All|Ronan Keating|1999|pop|easy|hum lang=en region=IE
-Gloria|Laura Branigan|1982|pop|easy|hum lang=en region=US
 Live Is Life|Opus|1985|rock|easy|hum lang=en region=AT
 Woman|John Lennon|1980|pop|easy|hum lang=en region=GB
 Mrs. Robinson|Simon & Garfunkel|1968|folk|easy|hum lang=en region=US
@@ -1067,7 +1062,6 @@ Mama, I'm Coming Home|Ozzy Osbourne|1991|metal|easy|hum lang=en region=GB
 Send Me an Angel|Scorpions|1990|rock|easy|hum lang=en region=DE
 Carrie|Europe|1987|rock|medium|hum lang=en region=SE
 Is This Love|Whitesnake|1987|rock|easy|hum lang=en region=GB
-Here I Go Again|Whitesnake|1987|rock|easy|hum lang=en region=GB
 Separate Ways (Worlds Apart)|Journey|1983|rock|easy|hum lang=en region=US
 Faithfully|Journey|1983|rock|easy|hum lang=en region=US
 Rosanna|Toto|1982|rock|easy|hum lang=en region=US
@@ -1152,7 +1146,6 @@ Stole the Show|Kygo feat. Parson James|2015|dance|easy|hum lang=en region=NO
 Silence|Marshmello feat. Khalid|2017|dance|easy|hum lang=en region=US
 Perfect Strangers|Jonas Blue feat. JP Cooper|2016|dance|easy|hum lang=en region=GB
 Mama|Jonas Blue feat. William Singe|2017|dance|easy|hum lang=en region=GB
-Go West|Pet Shop Boys|1993|pop|easy|hum lang=en region=GB
 Hungry Like the Wolf|Duran Duran|1982|pop|easy|hum lang=en region=GB
 Ordinary World|Duran Duran|1992|pop|easy|hum lang=en region=GB
 One Way or Another|Blondie|1978|rock|easy|hum lang=en region=US
@@ -1185,7 +1178,6 @@ Common People|Pulp|1995|rock|easy|hum lang=en region=GB
 Girls & Boys|Blur|1994|pop|easy|hum lang=en region=GB
 Why Does It Always Rain on Me?|Travis|1999|rock|easy|hum lang=en region=GB
 The Man Who Can't Be Moved|The Script|2008|pop|easy|hum lang=en region=IE
-Love Is All Around|Wet Wet Wet|1994|pop|easy|hum lang=en region=GB
 Hard to Say I'm Sorry|Chicago|1982|pop|easy|hum lang=en region=US
 Can't Fight This Feeling|REO Speedwagon|1984|rock|easy|hum lang=en region=US
 (I Just) Died in Your Arms|Cutting Crew|1986|pop|easy|hum lang=en region=GB
@@ -1211,9 +1203,6 @@ In the Shadows|The Rasmus|2003|rock|easy|hum lang=en region=FI
 Freestyler|Bomfunk MC's|1999|rap|easy|nohum lang=en region=FI
 Hot|INNA|2008|dance|easy|hum lang=en region=RO
 Sun Is Up|INNA|2010|dance|medium|hum lang=en region=RO
-All the Things She Said|t.A.T.u.|2002|pop|easy|hum lang=en region=RU
-Not Gonna Get Us|t.A.T.u.|2002|pop|easy|hum lang=en region=RU
-Around the World (La La La La La)|ATC|2000|dance|easy|hum lang=en region=DE
 The Magic Key|One-T + Cool-T|2003|pop|medium|hum lang=en region=FR
 Dancing on My Own|Robyn|2010|pop|easy|hum lang=en region=SE
 Call Your Girlfriend|Robyn|2011|pop|medium|hum lang=en region=SE
@@ -2169,7 +2158,6 @@ Can't Get Enough of Your Love, Babe|Barry White|1974|soul|easy|hum lang=en regio
 Kung Fu Fighting|Carl Douglas|1974|disco|easy|hum lang=en region=JM
 Rock Your Baby|George McCrae|1974|disco|easy|hum lang=en region=US
 Love Train|The O'Jays|1972|soul|easy|hum lang=en region=US
-Lady Marmalade|Labelle|1974|funk|easy|hum lang=en region=US
 Play That Funky Music|Wild Cherry|1976|funk|easy|hum lang=en region=US
 Give Up the Funk (Tear the Roof off the Sucker)|Parliament|1975|funk|medium|hum lang=en region=US
 Atomic Dog|George Clinton|1982|funk|medium|hum lang=en region=US
@@ -2867,8 +2855,8 @@ Lady Madrid|Pereza|2009|rock|medium|hum lang=es region=ES
 Copenhague|Vetusta Morla|2008|indie|medium|hum lang=es region=ES
 Clandestino|Manu Chao|1998|latin|medium|hum lang=es region=FR
 Me Gustas Tú|Manu Chao|2001|latin|easy|hum lang=es region=FR
-Cuando Me Enamoro|Enrique Iglesias|2010|latin|easy|hum lang=es region=ES
-La Mordidita|Ricky Martin|2015|latin|easy|hum lang=es region=PR
+Cuando Me Enamoro|Enrique Iglesias feat. Juan Luis Guerra|2010|latin|easy|hum lang=es region=ES
+La Mordidita|Ricky Martin feat. Yotuel|2015|latin|easy|hum lang=es region=PR
 Vivir Sin Aire|Maná|1993|rock|easy|hum lang=es region=MX
 Crimen|Gustavo Cerati|2006|rock|easy|hum lang=es region=AR
 Y, ¿Si Fuera Ella?|Alejandro Sanz|1997|pop|medium|hum lang=es region=ES
@@ -3298,10 +3286,8 @@ Cosmo|Soprano|2014|pop|easy|hum lang=fr region=FR
 Divinidylle|Vanessa Paradis|2007|pop|medium|hum lang=fr region=FR
 Il jouait du piano debout|France Gall|1980|pop|easy|hum lang=fr region=FR
 Gigi l'amoroso|Dalida|1974|chanson|easy|hum lang=fr region=FR
-Paroles, paroles|Dalida & Alain Delon|1973|chanson|easy|hum lang=fr region=FR
 Ma gueule|Johnny Hallyday|1979|rock|easy|hum lang=fr region=FR
 Les Feuilles mortes|Yves Montand|1949|chanson|easy|hum lang=fr region=FR
-Sous le ciel de Paris|Yves Montand|1951|chanson|easy|hum lang=fr region=FR
 Que reste-t-il de nos amours ?|Charles Trenet|1942|chanson|easy|hum lang=fr region=FR
 La Mer|Charles Trenet|1946|chanson|easy|hum lang=fr region=FR
 Douce France|Charles Trenet|1943|chanson|easy|hum lang=fr region=FR
@@ -3758,6 +3744,14 @@ Cavalos de Corrida|UHF|1980|rock|easy|hum lang=pt region=PT
  * Neanglicky spievané svetové hity nesú príznak `lang=`.
  */
 const WORLD_HITS_EXTENDED = parseSongs(`
+Self Control|Laura Branigan|1984|pop|medium
+Nothing Compares 2 U|Sinéad O'Connor|1990|pop|medium
+Killing Me Softly with His Song|Fugees|1996|rnb|medium
+When You Say Nothing at All|Ronan Keating
+Gloria|Laura Branigan
+Here I Go Again|Whitesnake
+Go West|Pet Shop Boys
+Love Is All Around|Wet Wet Wet
 Twist and Shout|The Beatles|1963|oldies|easy
 Unchained Melody|The Righteous Brothers|1965|oldies|easy
 House of the Rising Sun|The Animals|1964|rock|easy
@@ -4256,6 +4250,8 @@ Bombón asesino|Vilma Palma e Vampiros
 `, { language: "es", scope: "local" }),
 
   fr: parseSongs(`
+Paroles, Paroles|Dalida
+Sous le Ciel de Paris|Yves Montand
 La Javanaise|Serge Gainsbourg|1963|chanson|hard
 Les Champs-Élysées|Joe Dassin|1969|pop|easy
 Doudou|Aya Nakamura
