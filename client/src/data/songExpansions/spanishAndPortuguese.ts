@@ -41,14 +41,12 @@ Ojitos Lindos|Bad Bunny & Bomba Estéreo|2022|latin|easy|hum
 Efecto|Bad Bunny|2022|latin|easy|hum
 Un Verano Sin Ti|Bad Bunny|2022|latin|medium|hum
 Monaco|Bad Bunny|2023|rap|medium|nohum
-Perro Negro|Bad Bunny & Feid|2023|latin|easy|hum
 Mi Cama|Karol G|2018|latin|easy|hum
 El Makinon|Karol G & Mariah Angeliq|2021|latin|medium|hum
 Mamiii|Becky G & Karol G|2022|latin|easy|hum
 Mientras Me Curo del Cora|Karol G|2023|latin|medium|hum
 Amargura|Karol G|2023|latin|medium|hum
 Qlona|Karol G & Peso Pluma|2023|latin|medium|hum
-Si Antes Te Hubiera Conocido|Karol G|2024|latin|easy|hum
 Cairo|Karol G & Ovy on the Drums|2022|latin|medium|hum
 6 AM|J Balvin feat. Farruko|2013|latin|easy|hum
 Sigo Extrañándote|J Balvin|2016|latin|medium|hum
@@ -89,7 +87,6 @@ Entrégate|Luis Miguel|1990|latin|medium|hum
 No Sé Tú|Luis Miguel|1991|latin|easy|hum
 Por Debajo de la Mesa|Luis Miguel|1997|latin|medium|hum
 O Tú o Ninguna|Luis Miguel|1999|latin|medium|hum
-Como la Flor|Selena|1992|latin|easy|hum
 Amor Prohibido|Selena|1994|latin|easy|hum
 Bidi Bidi Bom Bom|Selena|1994|latin|easy|hum
 No Me Queda Más|Selena|1994|latin|easy|hum
@@ -172,7 +169,6 @@ O Jardim|Cláudia Pascoal|2018|pop|medium|hum
 Encosta-te a Mim|Jorge Palma|2007|pop|easy|hum
 Ai Coração|Mimicat|2023|pop|easy|hum
 Primeiro Beijo|Cabeças No Ar|2002|rock|easy|hum
-Porto Covo|Rui Veloso|1987|rock|easy|hum
 Não Há Estrelas no Céu|Rui Veloso|1990|rock|easy|hum
 Jura|Rui Veloso|1998|rock|medium|hum
 Anel de Rubi|Rui Veloso|1986|rock|medium|hum
@@ -187,7 +183,6 @@ Vídeo Maria|GNR|1988|rock|medium|hum
 Ana Lee|GNR|1996|rock|medium|hum
 O Corpo É Que Paga|António Variações|1983|pop|easy|hum
 Estou Além|António Variações|1983|pop|easy|hum
-Canção de Engate|António Variações|1984|pop|easy|hum
 É P'ra Amanhã|António Variações|1983|pop|medium|hum
 Não Me Consumas|Blind Zero|1995|rock|medium|hum
 Paixão|Pedro Abrunhosa|1994|pop|easy|hum
