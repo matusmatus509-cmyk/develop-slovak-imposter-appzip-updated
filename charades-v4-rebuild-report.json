@@ -1,0 +1,27 @@
+{
+  "oldTotal": 1650,
+  "keptFromOld": 542,
+  "removedDifficultyMeanHard": 1100,
+  "droppedQuality": 8,
+  "newAdded": 959,
+  "finalTotal": 1501,
+  "byCategory": {
+    "animals": 155,
+    "food": 195,
+    "professions": 94,
+    "sports": 75,
+    "activities": 161,
+    "vehicles": 56,
+    "objects": 91,
+    "school": 35,
+    "household": 118,
+    "clothing": 64,
+    "nature": 88,
+    "places": 84,
+    "instruments": 28,
+    "health": 63,
+    "games": 41,
+    "people": 123,
+    "technology": 30
+  }
+}

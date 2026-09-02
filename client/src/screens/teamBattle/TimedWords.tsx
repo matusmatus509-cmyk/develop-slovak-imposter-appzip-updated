@@ -5,10 +5,8 @@ import {
   PANTOMIMA_WORDS_BY_DIFFICULTY,
   PANTOMIMA_DIFFICULTY_POINTS,
   PANTOMIMA_DIFFICULTY_LABELS,
-  SARADY_DIFFICULTY_POINTS,
-  SARADY_DIFFICULTY_LABELS,
 } from "../../data/teamBattle";
-import { getCharadesWordsByDifficulty } from "../../data/charades";
+import { getCharadesWordsForLanguage } from "../../data/charades";
 import { useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
 import {
@@ -59,7 +57,7 @@ export default function TimedWords({
   const isPantomima = mode === "pantomima";
   const isSarady = mode === "sarady";
   const isHadajKtoSom = mode === "hadajktosom";
-  const hasDifficulty = isPantomima || isSarady;
+  const hasDifficulty = isPantomima;
 
   const [teamIdx, setTeamIdx] = useState<0 | 1>(0);
   const [subPhase, setSubPhase] = useState<SubPhase>(
@@ -110,10 +108,12 @@ export default function TimedWords({
   const pendingPantomimaScore = Math.max(0, pointsPerWord - skipPenalty);
 
   function takeNextSharedWord() {
-    if (isSarady && difficulty) {
+    if (isSarady) {
       return takePersistentItem(
-        `solo-charades-v2:${difficulty}`,
-        saradyWords,
+        "solo-charades-v3:all",
+        saradyWords.length > 0
+          ? saradyWords
+          : getCharadesWordsForLanguage(language),
         word => word.trim().toLocaleLowerCase("sk")
       );
     }
@@ -135,11 +135,7 @@ export default function TimedWords({
 
   function handlePickDifficulty(d: PantomimaDifficulty) {
     setDifficulty(d);
-    if (isSarady) {
-      setSaradyWords(getCharadesWordsByDifficulty(language)[d]);
-    } else {
-      setPantomimaWords([takeNextPantomimeWord(d)]);
-    }
+    setPantomimaWords([takeNextPantomimeWord(d)]);
     setSubPhase("ready");
   }
 
@@ -328,11 +324,6 @@ export default function TimedWords({
           <p className="text-xs text-white/30">
             Iba jedna voľba na ťah — nedá sa zmeniť
           </p>
-          {isSarady && (
-            <p className="text-xs text-white/40 mt-2">
-              Ľahké = jednoduché slová, Ťažké = frázy
-            </p>
-          )}
         </div>
 
         <div className="flex w-full max-w-xs flex-col gap-3">
@@ -346,15 +337,9 @@ export default function TimedWords({
                 animation: `scaleIn 0.4s ease-out ${0.3 + i * 0.1}s both`,
               }}
             >
-              <span>
-                {isSarady
-                  ? SARADY_DIFFICULTY_LABELS[d]
-                  : PANTOMIMA_DIFFICULTY_LABELS[d]}
-              </span>
+              <span>{PANTOMIMA_DIFFICULTY_LABELS[d]}</span>
               <span className="text-sm font-bold opacity-90">
-                {isSarady
-                  ? `${SARADY_DIFFICULTY_POINTS[d]} b / slovo`
-                  : `${PANTOMIMA_DIFFICULTY_POINTS[d]} b / slovo`}
+                {`${PANTOMIMA_DIFFICULTY_POINTS[d]} b / slovo`}
               </span>
             </button>
           ))}
@@ -409,9 +394,7 @@ export default function TimedWords({
               boxShadow: `0 4px 16px ${DIFFICULTY_COLORS[difficulty]}55`,
             }}
           >
-            {isSarady
-              ? `${SARADY_DIFFICULTY_LABELS[difficulty]} • ${SARADY_DIFFICULTY_POINTS[difficulty]} b / slovo`
-              : `${PANTOMIMA_DIFFICULTY_LABELS[difficulty]} • ${PANTOMIMA_DIFFICULTY_POINTS[difficulty]} b / slovo`}
+            {`${PANTOMIMA_DIFFICULTY_LABELS[difficulty]} • ${PANTOMIMA_DIFFICULTY_POINTS[difficulty]} b / slovo`}
           </div>
         )}
 
@@ -541,10 +524,7 @@ export default function TimedWords({
           ) : (
             <p className="text-xs font-bold uppercase tracking-widest text-white/30">
               {isSarady ? (
-                <>
-                  {SARADY_DIFFICULTY_LABELS[difficulty ?? "lahke"]} • ďalšie
-                  slovo
-                </>
+                <>Ďalšie slovo</>
               ) : (
                 <>
                   Slovo {wordIdx + 1} / {teamWords.length}
@@ -643,11 +623,9 @@ export default function TimedWords({
         <p className="text-sm text-white/40 mt-2 uppercase tracking-widest">
           {isPantomima ? "bodov" : "uhádnutých slov"}
         </p>
-        {(isPantomima || isSarady) && difficulty && (
+        {isPantomima && difficulty && (
           <p className="text-xs text-white/30 mt-1">
-            {isSarady
-              ? `${SARADY_DIFFICULTY_LABELS[difficulty]} (${SARADY_DIFFICULTY_POINTS[difficulty]} b)`
-              : `${PANTOMIMA_DIFFICULTY_LABELS[difficulty]} (${PANTOMIMA_DIFFICULTY_POINTS[difficulty]} b)`}
+            {`${PANTOMIMA_DIFFICULTY_LABELS[difficulty]} (${PANTOMIMA_DIFFICULTY_POINTS[difficulty]} b)`}
             {skipCount > 0 &&
               ` − preskočenia: ${skipCount}× (−${skipPenalty} b)`}
           </p>

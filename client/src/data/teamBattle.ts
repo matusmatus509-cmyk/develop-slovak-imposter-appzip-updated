@@ -1,7 +1,4 @@
-import {
-  ALL_TEAM_CHARADES_WORDS,
-  TEAM_CHARADES_WORDS,
-} from "./charades";
+import { ALL_TEAM_CHARADES_WORDS } from "./charades";
 import { getCharacterCategories } from "./characters";
 import type { AppLanguage } from "../i18n/LanguageProvider";
 import { GENERATED_PANTOMIME_BY_DIFFICULTY } from "./expandedContent";
@@ -393,24 +390,8 @@ export const PANTOMIMA_WORDS_BY_DIFFICULTY: Record<PantomimaDifficulty, string[]
 // ── Šarády words (describe it verbally, no derivatives) ──────────────────────
 // Now using the same difficulty-based word database from categories.ts
 
-export const SARADY_DIFFICULTY_POINTS: Record<string, number> = {
-  lahke: 1,
-  stredne: 1,
-  tazke: 1,
-};
-
-export const SARADY_DIFFICULTY_LABELS: Record<string, string> = {
-  lahke: "Ľahké",
-  stredne: "Stredné",
-  tazke: "Ťažké",
-};
-
-export const SARADY_WORDS_BY_DIFFICULTY: Record<string, string[]> = {
-  lahke: [...TEAM_CHARADES_WORDS.lahke],
-  stredne: [...TEAM_CHARADES_WORDS.stredne],
-  tazke: [...TEAM_CHARADES_WORDS.tazke],
-};
-
+// Šarády už nepoznajú obtiažnosť — tímy hrajú z jedného spoločného balíka,
+// každé uhádnuté slovo = 1 bod.
 export const SARADY_WORDS: string[] = [...ALL_TEAM_CHARADES_WORDS];
 
 // ── Hádaj kto som words (characters for team mode) ───────────────────────────

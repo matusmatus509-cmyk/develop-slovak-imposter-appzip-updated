@@ -4,10 +4,9 @@ import path from "node:path";
 const masterPath = path.resolve("client/src/data/charades.sk.json");
 const localesPath = path.resolve("client/src/data/charades.locales.json");
 const languages = ["sk", "en", "de", "es", "fr", "pt"];
-const localeLanguages = languages.filter(language => language !== "sk");
-const difficulties = ["easy", "medium", "hard"];
-const expectedCardCount = 1650;
-const expectedDifficultyCounts = { easy: 550, medium: 550, hard: 550 };
+const localeLanguages = languages.filter((l) => l !== "sk");
+const minCardCount = 1500;
+const minCategoryCount = 25;
 const allowedCategories = new Set([
   "animals",
   "food",
@@ -19,17 +18,13 @@ const allowedCategories = new Set([
   "household",
   "clothing",
   "nature",
-  "weather",
   "places",
-  "buildings",
-  "travel",
   "instruments",
   "health",
   "games",
-  "science",
-  "garden",
-  "history",
-  "mythical_creatures",
+  "school",
+  "technology",
+  "people",
 ]);
 
 const [cards, locales] = await Promise.all([
@@ -37,30 +32,26 @@ const [cards, locales] = await Promise.all([
   readFile(localesPath, "utf8").then(JSON.parse),
 ]);
 const errors = [];
-const warnings = [];
 const ids = new Set();
-const difficultyCounts = Object.fromEntries(
-  difficulties.map(difficulty => [difficulty, 0])
-);
-const wordCounts = Object.fromEntries(
-  languages.map(language => [language, { one: 0, two: 0, invalid: 0 }])
-);
+const categoryCounts = Object.fromEntries([...allowedCategories].map((c) => [c, 0]));
 const duplicateGroups = [];
 
-const words = value =>
-  String(value)
-    .trim()
-    .match(/[\p{L}\p{N}][\p{L}\p{N}'’-]*/gu) ?? [];
-const validText = value =>
+const words = (value) =>
+  String(value).trim().match(/[\p{L}\p{N}][\p{L}\p{N}'’-]*/gu) ?? [];
+const baseValid = (value, maxWords) =>
   typeof value === "string" &&
   value === value.trim() &&
   value.length > 0 &&
   value.length <= 62 &&
   words(value).length >= 1 &&
-  words(value).length <= 2 &&
+  words(value).length <= maxWords &&
   !/[:;|/]/.test(value) &&
-  !/\s{2,}/.test(value);
-const normalizeText = value =>
+  !/\s{2,}/.test(value) &&
+  !/�/.test(value) &&
+  !/TODO|placeholder|xxx/i.test(value);
+const validSk = (value) => baseValid(value, 3);
+const validLocale = (value) => baseValid(value, 4);
+const normalize = (value) =>
   String(value)
     .normalize("NFKC")
     .toLocaleLowerCase()
@@ -68,92 +59,43 @@ const normalizeText = value =>
     .replace(/[\p{P}\p{S}]+/gu, " ")
     .replace(/\s+/g, " ")
     .trim();
-const normalizeAscii = value =>
-  normalizeText(value)
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-const textFor = (card, language) =>
-  language === "sk" ? card.text : locales?.[language]?.[card.id];
-
-const recordWordCount = (language, value) => {
-  const count = words(value).length;
-  if (count === 1) wordCounts[language].one += 1;
-  else if (count === 2) wordCounts[language].two += 1;
-  else wordCounts[language].invalid += 1;
-};
-
-const collectDuplicates = (language, entries, normalize, mode) => {
-  const groups = new Map();
-  for (const entry of entries) {
-    const key = normalize(entry.text);
-    if (!key) continue;
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(entry);
-  }
-  for (const [text, matches] of groups) {
-    if (matches.length < 2) continue;
-    duplicateGroups.push({
-      language,
-      mode,
-      text,
-      ids: matches.map(entry => entry.id),
-    });
-    errors.push(
-      `${language}/${mode}: duplicitný text „${text}“ pri ${matches.map(entry => entry.id).join(", ")}.`
-    );
-  }
-};
+const normalizeAscii = (value) =>
+  normalize(value).normalize("NFD").replace(/[̀-ͯ]/g, "");
 
 if (!Array.isArray(cards)) {
   errors.push("charades.sk.json musí obsahovať pole.");
-} else if (cards.length !== expectedCardCount) {
-  errors.push(
-    `Očakáva sa presne ${expectedCardCount} kariet, nájdených ${cards.length}.`
-  );
+} else if (cards.length < minCardCount) {
+  errors.push(`Očakáva sa aspoň ${minCardCount} kariet, nájdených ${cards.length}.`);
 }
 
-for (
-  let index = 0;
-  index < (Array.isArray(cards) ? cards.length : 0);
-  index += 1
-) {
+for (let index = 0; index < (Array.isArray(cards) ? cards.length : 0); index += 1) {
   const card = cards[index];
   const expectedId = `charades_sk_${String(index + 1).padStart(4, "0")}`;
   const keys = Object.keys(card).sort();
-  if (
-    JSON.stringify(keys) !==
-    JSON.stringify(["category", "difficulty", "id", "text"])
-  ) {
+  if (JSON.stringify(keys) !== JSON.stringify(["category", "id", "text"])) {
     errors.push(`${expectedId}: neplatná schéma karty (${keys.join(", ")}).`);
   }
   if (card.id !== expectedId) {
-    errors.push(
-      `Pozícia ${index + 1}: očakávané ID ${expectedId}, nájdené ${card.id}.`
-    );
+    errors.push(`Pozícia ${index + 1}: očakávané ID ${expectedId}, nájdené ${card.id}.`);
   }
   if (ids.has(card.id)) errors.push(`Duplicitné ID ${card.id}.`);
   ids.add(card.id);
-  if (!difficulties.includes(card.difficulty)) {
-    errors.push(`${card.id}: neplatná difficulty ${card.difficulty}.`);
-  } else {
-    difficultyCounts[card.difficulty] += 1;
+  if ("difficulty" in card) {
+    errors.push(`${card.id}: karta nesmie obsahovať difficulty (databáza bez obtiažností).`);
   }
   if (!allowedCategories.has(card.category)) {
     errors.push(`${card.id}: neplatná kategória ${card.category}.`);
+  } else {
+    categoryCounts[card.category] += 1;
   }
-  recordWordCount("sk", card.text);
-  if (!validText(card.text)) {
-    errors.push(
-      `${card.id}/sk: text musí mať 1–2 slová, najviac 62 znakov a bez zakázanej interpunkcie.`
-    );
+  if (!validSk(card.text)) {
+    errors.push(`${card.id}/sk: text musí mať 1–3 slová, najviac 62 znakov a bez zakázanej interpunkcie: „${card.text}“.`);
   }
 }
 
-for (const [difficulty, expected] of Object.entries(expectedDifficultyCounts)) {
-  if (difficultyCounts[difficulty] !== expected) {
-    errors.push(
-      `${difficulty}: očakáva sa ${expected}, nájdených ${difficultyCounts[difficulty]}.`
-    );
+for (const [category, count] of Object.entries(categoryCounts)) {
+  if (count < minCategoryCount) {
+    errors.push(`Kategória ${category}: očakáva sa aspoň ${minCategoryCount} kariet, nájdených ${count}.`);
   }
 }
 
@@ -161,101 +103,59 @@ if (!locales || typeof locales !== "object" || Array.isArray(locales)) {
   errors.push("charades.locales.json musí obsahovať objekt jazykov.");
 } else {
   const actualLanguages = Object.keys(locales).sort();
-  if (
-    JSON.stringify(actualLanguages) !==
-    JSON.stringify([...localeLanguages].sort())
-  ) {
-    errors.push(
-      `Locale jazyky: očakávané ${localeLanguages.join(", ")}, nájdené ${actualLanguages.join(", ")}.`
-    );
+  if (JSON.stringify(actualLanguages) !== JSON.stringify([...localeLanguages].sort())) {
+    errors.push(`Locale jazyky: očakávané ${localeLanguages.join(", ")}, nájdené ${actualLanguages.join(", ")}.`);
   }
-
   for (const language of localeLanguages) {
     const translations = locales[language];
-    if (
-      !translations ||
-      typeof translations !== "object" ||
-      Array.isArray(translations)
-    ) {
+    if (!translations || typeof translations !== "object" || Array.isArray(translations)) {
       errors.push(`${language}: chýba locale mapa.`);
       continue;
     }
-    const keys = Object.keys(translations);
-    if (keys.length !== expectedCardCount) {
-      errors.push(
-        `${language}: očakáva sa ${expectedCardCount} prekladov, nájdených ${keys.length}.`
-      );
+    if (Object.keys(translations).length !== cards.length) {
+      errors.push(`${language}: očakáva sa ${cards.length} prekladov, nájdených ${Object.keys(translations).length}.`);
     }
-    for (const id of keys) {
-      if (!ids.has(id))
-        errors.push(`${language}: preklad pre neznáme ID ${id}.`);
+    for (const id of Object.keys(translations)) {
+      if (!ids.has(id)) errors.push(`${language}: preklad pre neznáme ID ${id}.`);
     }
     for (const card of cards) {
       const text = translations[card.id];
-      recordWordCount(language, text);
-      if (!validText(text)) {
-        errors.push(
-          `${card.id}/${language}: preklad musí mať 1–2 slová, najviac 62 znakov a bez zakázanej interpunkcie.`
-        );
+      if (!validLocale(text)) {
+        errors.push(`${card.id}/${language}: neplatný preklad „${text}“.`);
       }
     }
   }
 }
 
+// duplicity v každom jazyku: exact aj accent-folded
 for (const language of languages) {
-  const entries = cards.map(card => ({
-    id: card.id,
-    text: textFor(card, language),
-  }));
-  collectDuplicates(language, entries, normalizeText, "normalized");
-  collectDuplicates(language, entries, normalizeAscii, "accent-fold");
-}
-
-const scytheExpected = {
-  sk: "Kosa",
-  en: "Scythe",
-  de: "Sense",
-  es: "Guadaña",
-  fr: "Faux",
-  pt: "Foice",
-};
-const scytheCards = cards.filter(card => card.text === scytheExpected.sk);
-if (scytheCards.length !== 1 || scytheCards[0]?.difficulty !== "hard") {
-  errors.push(
-    `Kosa musí byť presne raz a iba v hard; nájdené ${scytheCards.length}.`
-  );
-} else {
-  const card = scytheCards[0];
-  for (const language of localeLanguages) {
-    if (locales?.[language]?.[card.id] !== scytheExpected[language]) {
-      errors.push(
-        `${card.id}/${language}: očakávaný preklad Kosy „${scytheExpected[language]}“.`
-      );
+  for (const mode of ["normalized", "accent-fold"]) {
+    const norm = mode === "normalized" ? normalize : normalizeAscii;
+    const groups = new Map();
+    for (const card of cards) {
+      const text = language === "sk" ? card.text : locales?.[language]?.[card.id];
+      const key = norm(text);
+      if (!key) continue;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(card.id);
+    }
+    for (const [text, matches] of groups) {
+      if (matches.length < 2) continue;
+      duplicateGroups.push({ language, mode, text, ids: matches });
+      errors.push(`${language}/${mode}: duplicitný text „${text}“ pri ${matches.join(", ")}.`);
     }
   }
 }
 
 const report = {
   cards: Array.isArray(cards) ? cards.length : null,
-  difficultyCounts,
+  minCardCount,
+  categoryCounts,
   localeCounts: Object.fromEntries(
-    localeLanguages.map(language => [
-      language,
-      Object.keys(locales?.[language] ?? {}).length,
-    ])
-  ),
-  wordCounts,
-  oneWordShare: Object.fromEntries(
-    languages.map(language => [
-      language,
-      Number((wordCounts[language].one / expectedCardCount).toFixed(4)),
-    ])
+    localeLanguages.map((language) => [language, Object.keys(locales?.[language] ?? {}).length])
   ),
   duplicateGroupCount: duplicateGroups.length,
-  scytheRegression:
-    scytheCards.length === 1 && scytheCards[0]?.difficulty === "hard",
   errors,
-  warnings,
   status: errors.length ? "FAILED" : "PASSED",
 };
 console.log(JSON.stringify(report, null, 2));

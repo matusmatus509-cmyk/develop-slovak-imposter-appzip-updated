@@ -2,10 +2,9 @@ import { useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import {
   ALL_SOLO_CHARADES_WORDS,
-  getCharadesCardsByDifficulty,
-  SOLO_CHARADES_WORDS,
+  getCharadesCardsForLanguage,
+  CHARADES_CATEGORY_LABELS,
   isValidCharadeText,
-  type CharadesDifficulty,
 } from "../../data/charades";
 import { Button, Shell, TopBar } from "../../components/ui";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
@@ -36,23 +35,12 @@ interface Card {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function buildDeck(difficulty: string, extraCards: Array<{ id: string; word: string }> = [], language: AppLanguage = "sk"): Card[] {
-  const labels: Record<CharadesDifficulty, { name: string }> = {
-    lahke: { name: "Ľahké" },
-    stredne: { name: "Stredné" },
-    tazke: { name: "Ťažké" },
-  };
-  const levels: CharadesDifficulty[] = difficulty === "all"
-    ? ["lahke", "stredne", "tazke"]
-    : [difficulty as CharadesDifficulty];
-  const cardsByDifficulty = getCharadesCardsByDifficulty(language);
-  const cards = levels.flatMap((level) =>
-    (cardsByDifficulty[level] ?? []).map((card) => ({
-      id: card.id,
-      word: card.text,
-      category: labels[level]?.name ?? "Šarády",
-    })),
-  );
+function buildDeck(extraCards: Array<{ id: string; word: string }> = [], language: AppLanguage = "sk"): Card[] {
+  const cards = getCharadesCardsForLanguage(language).map((card) => ({
+    id: card.id,
+    word: card.text,
+    category: CHARADES_CATEGORY_LABELS[card.category] ?? "Šarády",
+  }));
   const seen = new Set<string>();
   const uniqueCards = cards.filter((card) => {
     const key = card.word.trim().toLocaleLowerCase("sk");
@@ -84,7 +72,7 @@ function SetupScreen({
   customControls,
 }: {
   onBack: () => void;
-  onStart: (names: string[], timerSecs: number, maxSkips: number, teamMode: boolean, difficulty: string) => void;
+  onStart: (names: string[], timerSecs: number, maxSkips: number, teamMode: boolean) => void;
   customControls?: CustomContentControls;
 }) {
   const { language } = useLanguage();
@@ -94,7 +82,6 @@ function SetupScreen({
   const [timerSecs, setTimerSecs] = useState(60);
   const [maxSkips, setMaxSkips] = useState(3);
   const [teamMode, setTeamMode] = useState(false);
-  const [difficulty, setDifficulty] = useState("all");
   const [rulesOpen, setRulesOpen] = useState(false);
 
   return (
@@ -149,35 +136,15 @@ function SetupScreen({
         </button>
       </div>
 
-      {/* Difficulty */}
+      {/* Rozsah balíčka */}
       <div
         className="glass mb-4 rounded-3xl p-4"
         style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}
       >
-        <p className="mb-3 text-sm font-bold text-white/60 uppercase tracking-widest">
-          Obtiažnosť
+        <p className="text-xs text-white/40">
+          Balík obsahuje <strong className="text-white/80">{ALL_SOLO_CHARADES_WORDS.length}</strong>{" "}
+          slov rozdelených do kategórií — od zvierat cez jedlo až po povolania.
         </p>
-        <div className="flex gap-2">
-          {[
-            { key: "all", label: "Všetky", tone: "bg-purple-300", count: ALL_SOLO_CHARADES_WORDS.length },
-            { key: "lahke", label: "Ľahké", tone: "bg-emerald-300", count: SOLO_CHARADES_WORDS.lahke.length },
-            { key: "stredne", label: "Stredné", tone: "bg-amber-300", count: SOLO_CHARADES_WORDS.stredne.length },
-            { key: "tazke", label: "Ťažké", tone: "bg-rose-300", count: SOLO_CHARADES_WORDS.tazke.length },
-          ].map((d) => (
-            <button
-              key={d.key}
-              onClick={() => setDifficulty(d.key)}
-              className={`flex flex-1 flex-col items-center gap-1 rounded-2xl border py-3 text-xs font-bold transition active:scale-95 hover:scale-[1.02] ${
-                difficulty === d.key
-                  ? "border-purple-400/60 bg-purple-500/30 text-purple-300"
-                  : "border-white/10 bg-white/5 text-white/50"
-              }`}
-            >
-              <span className="inline-flex items-center gap-1.5"><i className={`h-2 w-2 rounded-full ${d.tone}`} />{d.label}</span>
-              <span className="text-[10px] font-semibold opacity-55">{d.count} kariet</span>
-            </button>
-          ))}
-        </div>
       </div>
 
       {customControls && <div className="mb-4"><CustomContentSelector controls={customControls} compact /></div>}
@@ -297,8 +264,7 @@ function SetupScreen({
             names.map((n, i) => n.trim() || defaultPlayerName(language, i + 1)),
             timerSecs,
             maxSkips,
-            teamMode,
-            difficulty
+            teamMode
           )
         }
       >
@@ -548,18 +514,16 @@ export default function SlovnaRosada({
   const [timerSecs, setTimerSecs] = useState(partyConfig?.timerSecs ?? 60);
   const [maxSkips, setMaxSkips] = useState(3);
   const [teamMode, setTeamMode] = useState(Boolean(partyConfig));
-  const [difficulty, setDifficulty] = useState("all");
-  const [deck, setDeck] = useState<Card[]>(() => partyConfig ? buildDeck("all", extraCards, language) : []);
+  const [deck, setDeck] = useState<Card[]>(() => partyConfig ? buildDeck(extraCards, language) : []);
   const [roundCorrect, setRoundCorrect] = useState(0);
   const [roundSkips, setRoundSkips] = useState(0);
   const [roundAnswers, setRoundAnswers] = useState<TurnAnswer[]>([]);
 
-  function startGame(names: string[], timer: number, skips: number, teams: boolean, diff: string) {
+  function startGame(names: string[], timer: number, skips: number, teams: boolean) {
     setTimerSecs(timer);
     setMaxSkips(skips);
     setTeamMode(teams);
-    setDifficulty(diff);
-    setDeck(buildDeck(diff, extraCards, language));
+    setDeck(buildDeck(extraCards, language));
     setPlayers(
       names.map((name, i) => ({
         name,
@@ -590,7 +554,7 @@ export default function SlovnaRosada({
       setPhase("final-result");
     } else {
       setCurrentIdx(next);
-      setDeck(buildDeck(difficulty, extraCards, language)); // fresh shuffled deck for each player
+      setDeck(buildDeck(extraCards, language)); // fresh shuffled deck for each player
       setPhase("who-starts");
     }
   }
@@ -668,7 +632,7 @@ export default function SlovnaRosada({
         player={current}
         deck={deck}
         priorityCards={[]}
-        deckKey={`solo-charades-v2:${difficulty}`}
+        deckKey="solo-charades-v3"
         timerSecs={timerSecs}
         maxSkips={maxSkips}
         teamMode={teamMode}
@@ -839,7 +803,7 @@ export default function SlovnaRosada({
             ) : (
               <>
                 <div className="flex gap-3">
-                  <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty, extraCards, language)); setPhase("who-starts"); }}>
+                  <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(extraCards, language)); setPhase("who-starts"); }}>
                     <span className="inline-flex items-center gap-2"><Icons.refresh size={17} /> Znova</span>
                   </Button>
                   <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
@@ -893,7 +857,7 @@ export default function SlovnaRosada({
           </div>
 
           <div className="flex gap-3">
-            <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(difficulty, extraCards, language)); setPhase("who-starts"); }}>
+            <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(extraCards, language)); setPhase("who-starts"); }}>
               <span className="inline-flex items-center gap-2"><Icons.refresh size={17} /> Znova</span>
             </Button>
             <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
