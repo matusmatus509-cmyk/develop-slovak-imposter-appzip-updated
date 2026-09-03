@@ -41,6 +41,30 @@ export const CHARADES_CATEGORY_LABELS: Record<CharadesCategory, string> = {
   people: "Ľudia a postavy",
 };
 
+export const CHARADES_CATEGORY_ICONS: Record<CharadesCategory, string> = {
+  animals: "🐾",
+  food: "🍕",
+  professions: "🧑‍🔧",
+  sports: "⚽",
+  activities: "🎯",
+  vehicles: "🚗",
+  objects: "🔧",
+  household: "🏠",
+  clothing: "👕",
+  nature: "🌳",
+  places: "📍",
+  instruments: "🎸",
+  health: "🧬",
+  games: "🎲",
+  school: "🏫",
+  technology: "💻",
+  people: "🧍",
+};
+
+export const CHARADES_CATEGORY_IDS = Object.keys(
+  CHARADES_CATEGORY_LABELS,
+) as CharadesCategory[];
+
 export interface CharadesCard {
   id: string;
   text: string;
@@ -69,6 +93,16 @@ export function getCharadesCardsForLanguage(language: AppLanguage): CharadesCard
 export function getCharadesWordsForLanguage(language: AppLanguage): string[] {
   return getCharadesCardsForLanguage(language).map((card) => card.text);
 }
+
+// Počty kariet v jednotlivých kategóriách (rovnaké pre všetky jazyky).
+export const CHARADES_CATEGORY_COUNTS: Record<CharadesCategory, number> =
+  CHARADES_CARDS.reduce(
+    (acc, card) => {
+      acc[card.category] = (acc[card.category] ?? 0) + 1;
+      return acc;
+    },
+    {} as Record<CharadesCategory, number>,
+  );
 
 /** Vlastná karta: jeden konkrétny pojem alebo krátke spojenie, nie veta. */
 export function isValidCharadeText(value: string) {
