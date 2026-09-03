@@ -1,12 +1,17 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { createPortal } from "react-dom";
 import {
   ALL_SOLO_CHARADES_WORDS,
   getCharadesCardsForLanguage,
   CHARADES_CATEGORY_LABELS,
+  CHARADES_CATEGORY_IDS,
+  CHARADES_CATEGORY_ICONS,
+  CHARADES_CATEGORY_COUNTS,
   isValidCharadeText,
+  type CharadesCategory,
 } from "../../data/charades";
 import { Button, Shell, TopBar } from "../../components/ui";
+import CategoryPickerSearch, { matchesSearch } from "../../components/CategoryPickerSearch";
 import CustomContentSelector, { type CustomContentControls } from "../../components/CustomContentSelector";
 import PlayerNamesField from "../../components/PlayerNamesField";
 import type { WordGuessRecordInput, WorkshopEntry } from "../../types";
@@ -35,8 +40,11 @@ interface Card {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function buildDeck(extraCards: Array<{ id: string; word: string }> = [], language: AppLanguage = "sk"): Card[] {
-  const cards = getCharadesCardsForLanguage(language).map((card) => ({
+function buildDeck(extraCards: Array<{ id: string; word: string }> = [], language: AppLanguage = "sk", categories: CharadesCategory[] = [...CHARADES_CATEGORY_IDS]): Card[] {
+  const categoryFilter = new Set(categories);
+  const cards = getCharadesCardsForLanguage(language)
+    .filter((card) => categoryFilter.size === 0 || categoryFilter.has(card.category))
+    .map((card) => ({
     id: card.id,
     word: card.text,
     category: CHARADES_CATEGORY_LABELS[card.category] ?? "Šarády",
@@ -72,7 +80,7 @@ function SetupScreen({
   customControls,
 }: {
   onBack: () => void;
-  onStart: (names: string[], timerSecs: number, maxSkips: number, teamMode: boolean) => void;
+  onStart: (names: string[], timerSecs: number, maxSkips: number, teamMode: boolean, categories: CharadesCategory[]) => void;
   customControls?: CustomContentControls;
 }) {
   const { language } = useLanguage();
@@ -83,6 +91,101 @@ function SetupScreen({
   const [maxSkips, setMaxSkips] = useState(3);
   const [teamMode, setTeamMode] = useState(false);
   const [rulesOpen, setRulesOpen] = useState(false);
+  const [view, setView] = useState<"main" | "category">("main");
+  const [categoryIds, setCategoryIds] = useState<CharadesCategory[]>([...CHARADES_CATEGORY_IDS]);
+  const [categoryQuery, setCategoryQuery] = useState("");
+
+  const visibleCategories = useMemo(
+    () =>
+      CHARADES_CATEGORY_IDS.filter((id) =>
+        matchesSearch(CHARADES_CATEGORY_LABELS[id], categoryQuery),
+      ),
+    [categoryQuery],
+  );
+
+  function toggleCategory(id: CharadesCategory) {
+    setCategoryIds((prev) =>
+      prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id],
+    );
+  }
+
+  const categorySummary = useMemo(() => {
+    if (categoryIds.length === CHARADES_CATEGORY_IDS.length)
+      return `Všetky kategórie (${CHARADES_CATEGORY_IDS.length})`;
+    if (categoryIds.length === 0) return "Vyber kategórie";
+    if (categoryIds.length <= 2)
+      return categoryIds.map((id) => CHARADES_CATEGORY_LABELS[id]).join(", ");
+    return `${CHARADES_CATEGORY_LABELS[categoryIds[0]]} +${categoryIds.length - 1}`;
+  }, [categoryIds]);
+
+  if (view === "category") {
+    return (
+      <Shell className="mobile-settings mobile-settings-charades guess-who-setup guess-who-category-picker">
+        <TopBar title="Kategórie slov" onBack={() => setView("main")} />
+        <CategoryPickerSearch value={categoryQuery} onChange={setCategoryQuery} />
+        <div className="guess-who-category-list scroll-panel">
+          <div className="guess-who-picker-heading">
+            <span>Viacero kategórií</span>
+            <p>Označ témy, z ktorých sa majú slová losovať. {ALL_SOLO_CHARADES_WORDS.length} slov celkom.</p>
+          </div>
+
+          <div className="guess-who-picker-actions">
+            <button type="button" onClick={() => setCategoryIds(visibleCategories)}>
+              Vybrať všetky
+            </button>
+            <button type="button" onClick={() => setCategoryIds([])}>
+              Zrušiť výber
+            </button>
+          </div>
+
+          <section aria-label="Kategórie slov">
+            <p className="guess-who-section-label">
+              {categoryQuery.trim()
+                ? `Nájdené · ${visibleCategories.length}`
+                : `Kategórie · ${categoryIds.length} vybraných`}
+            </p>
+            {visibleCategories.length === 0 ? (
+              <p className="guess-who-picker-empty">
+                Žiadna kategória nevyhovuje „{categoryQuery.trim()}“. Skús iný nápis.
+              </p>
+            ) : (
+              <div className="guess-who-picker-options">
+                {visibleCategories.map((id) => {
+                  const active = categoryIds.includes(id);
+                  return (
+                    <button
+                      key={id}
+                      type="button"
+                      aria-pressed={active}
+                      onClick={() => toggleCategory(id)}
+                      className={active ? "is-active" : ""}
+                    >
+                      <span className="guess-who-picker-icon">{CHARADES_CATEGORY_ICONS[id]}</span>
+                      <span className="guess-who-picker-copy">
+                        <strong>{CHARADES_CATEGORY_LABELS[id]}</strong>
+                        <small>{CHARADES_CATEGORY_COUNTS[id]} slov</small>
+                      </span>
+                      <span className="guess-who-picker-check" aria-hidden="true">
+                        {active ? <Icons.circleCheck size={17} /> : <Icons.circlePlus size={17} />}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </section>
+        </div>
+        <Button
+          fullWidth
+          disabled={categoryIds.length === 0}
+          onClick={() => setView("main")}
+          className="guess-who-start-button guess-who-picker-confirm"
+        >
+          <span className="inline-flex items-center gap-2"><Icons.circleCheck size={18} /> Hotovo · {categoryIds.length}</span>
+        </Button>
+      </Shell>
+    );
+  }
 
   return (
     <Shell className="mobile-settings mobile-settings-charades scroll-panel">
@@ -136,16 +239,26 @@ function SetupScreen({
         </button>
       </div>
 
-      {/* Rozsah balíčka */}
-      <div
-        className="glass mb-4 rounded-3xl p-4"
+      {/* Kategórie */}
+      <button
+        type="button"
+        onClick={() => setView("category")}
+        className="glass mb-4 flex w-full items-center gap-3 rounded-3xl p-4 text-left transition active:scale-[.99]"
         style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}
       >
-        <p className="text-xs text-white/40">
-          Balík obsahuje <strong className="text-white/80">{ALL_SOLO_CHARADES_WORDS.length}</strong>{" "}
-          slov rozdelených do kategórií — od zvierat cez jedlo až po povolania.
-        </p>
-      </div>
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-purple-500/20 text-lg">
+          🗂️
+        </span>
+        <span className="min-w-0 flex-1">
+          <strong className="block text-sm font-black text-white">Kategórie slov</strong>
+          <small className="mt-0.5 block truncate text-[11px] font-medium text-white/45">
+            {categorySummary}
+          </small>
+        </span>
+        <span className="flex shrink-0 items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-purple-300">
+          Upraviť <Icons.chevronRight size={16} />
+        </span>
+      </button>
 
       {customControls && <div className="mb-4"><CustomContentSelector controls={customControls} compact /></div>}
 
@@ -264,7 +377,8 @@ function SetupScreen({
             names.map((n, i) => n.trim() || defaultPlayerName(language, i + 1)),
             timerSecs,
             maxSkips,
-            teamMode
+            teamMode,
+            categoryIds
           )
         }
       >
@@ -514,16 +628,18 @@ export default function SlovnaRosada({
   const [timerSecs, setTimerSecs] = useState(partyConfig?.timerSecs ?? 60);
   const [maxSkips, setMaxSkips] = useState(3);
   const [teamMode, setTeamMode] = useState(Boolean(partyConfig));
-  const [deck, setDeck] = useState<Card[]>(() => partyConfig ? buildDeck(extraCards, language) : []);
+  const [selectedCategories, setSelectedCategories] = useState<CharadesCategory[]>([...CHARADES_CATEGORY_IDS]);
+  const [deck, setDeck] = useState<Card[]>(() => partyConfig ? buildDeck(extraCards, language, selectedCategories) : []);
   const [roundCorrect, setRoundCorrect] = useState(0);
   const [roundSkips, setRoundSkips] = useState(0);
   const [roundAnswers, setRoundAnswers] = useState<TurnAnswer[]>([]);
 
-  function startGame(names: string[], timer: number, skips: number, teams: boolean) {
+  function startGame(names: string[], timer: number, skips: number, teams: boolean, categories: CharadesCategory[]) {
     setTimerSecs(timer);
     setMaxSkips(skips);
     setTeamMode(teams);
-    setDeck(buildDeck(extraCards, language));
+    setSelectedCategories(categories);
+    setDeck(buildDeck(extraCards, language, categories));
     setPlayers(
       names.map((name, i) => ({
         name,
@@ -554,7 +670,7 @@ export default function SlovnaRosada({
       setPhase("final-result");
     } else {
       setCurrentIdx(next);
-      setDeck(buildDeck(extraCards, language)); // fresh shuffled deck for each player
+      setDeck(buildDeck(extraCards, language, selectedCategories)); // fresh shuffled deck for each player
       setPhase("who-starts");
     }
   }
@@ -632,7 +748,7 @@ export default function SlovnaRosada({
         player={current}
         deck={deck}
         priorityCards={[]}
-        deckKey="solo-charades-v3"
+        deckKey={`solo-charades-v3:${[...selectedCategories].sort().join(".")}`}
         timerSecs={timerSecs}
         maxSkips={maxSkips}
         teamMode={teamMode}
@@ -803,7 +919,7 @@ export default function SlovnaRosada({
             ) : (
               <>
                 <div className="flex gap-3">
-                  <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(extraCards, language)); setPhase("who-starts"); }}>
+                  <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(extraCards, language, selectedCategories)); setPhase("who-starts"); }}>
                     <span className="inline-flex items-center gap-2"><Icons.refresh size={17} /> Znova</span>
                   </Button>
                   <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
@@ -857,7 +973,7 @@ export default function SlovnaRosada({
           </div>
 
           <div className="flex gap-3">
-            <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(extraCards, language)); setPhase("who-starts"); }}>
+            <Button fullWidth onClick={() => { setCurrentIdx(0); setDeck(buildDeck(extraCards, language, selectedCategories)); setPhase("who-starts"); }}>
               <span className="inline-flex items-center gap-2"><Icons.refresh size={17} /> Znova</span>
             </Button>
             <Button fullWidth variant="secondary" onClick={() => setPhase("setup")}>
