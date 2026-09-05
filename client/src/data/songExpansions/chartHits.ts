@@ -85,7 +85,6 @@ Fortnight|Taylor Swift & Post Malone|2024|pop|medium|hum
 I Can Do It With a Broken Heart|Taylor Swift|2024|pop|medium|hum
 greedy|Tate McRae|2023|pop|easy|hum
 Exes|Tate McRae|2023|pop|medium|hum
-Espresso already covered above|?|0|pop|easy|hum
 Taste|Sabrina Carpenter|2024|pop|easy|hum
 Please Please Please|Sabrina Carpenter|2024|pop|easy|hum
 Nonsense|Sabrina Carpenter|2022|pop|medium|hum
@@ -134,8 +133,6 @@ God's Plan|Drake|2018|rap|easy|nohum
 One Dance|Drake|2016|dance|easy|hum
 Hotline Bling|Drake|2015|pop|easy|hum
 In My Feelings|Drake|2018|rap|medium|nohum
-Middle of the Ocean? skip|?|0|rap|hard|nohum
-Blinding Lights covered above|?|0|pop|easy|hum
 Save Your Tears|The Weeknd|2020|pop|easy|hum
 Starboy|The Weeknd & Daft Punk|2016|dance|easy|hum
 Can't Feel My Face|The Weeknd|2015|funk|easy|hum
@@ -144,7 +141,6 @@ Timeless|The Weeknd & Playboi Carti|2024|rap|medium|nohum
 Dance Monkey|Tones and I|2019|pop|easy|hum
 Somebody That I Used to Know|Gotye & Kimbra|2011|pop|easy|hum
 Counting Stars|OneRepublic|2013|pop|easy|hum
-Counting Stars (Live) skip|?|0|pop|hard|hum
 Apologize|OneRepublic|2007|pop|easy|hum
 Demons|Imagine Dragons|2012|rock|easy|hum
 Radioactive|Imagine Dragons|2012|rock|easy|hum
@@ -159,7 +155,6 @@ Clocks|Coldplay|2002|rock|easy|hum
 Paradise|Coldplay|2011|pop|easy|hum
 Something Just Like This|The Chainsmokers & Coldplay|2017|dance|easy|hum
 Hymn for the Weekend|Coldplay|2015|pop|easy|hum
-Feels Like We Only Go Backwards skip|?|0|rock|hard|hum
 Mr. Brightside|The Killers|2004|rock|easy|hum
 Somebody Told Me|The Killers|2004|rock|medium|hum
 Human|The Killers|2008|rock|medium|hum
@@ -177,7 +172,6 @@ I Still Haven't Found What I'm Looking For|U2|1987|rock|easy|hum
 Beautiful Day|U2|2000|rock|easy|hum
 Smells Like Teen Spirit|Nirvana|1991|rock|easy|hum
 Come as You Are|Nirvana|1991|rock|easy|hum
-Seven Nation Army (Live) skip|?|0|rock|hard|hum
 Livin' on a Prayer|Bon Jovi|1986|rock|easy|hum
 It's My Life|Bon Jovi|2000|rock|easy|hum
 Sweet Child O' Mine|Guns N' Roses|1987|rock|easy|hum
@@ -192,7 +186,6 @@ Numb|Linkin Park|2003|rock|easy|hum
 In the End|Linkin Park|2000|rock|easy|hum
 Faint|Linkin Park|2003|rock|medium|hum
 Pumped Up Kicks|Foster the People|2010|indie|easy|hum
-Take a Walk skip|?|0|indie|hard|hum
 Little Talks|Of Monsters and Men|2011|indie|easy|hum
 Ho Hey|The Lumineers|2012|indie|easy|hum
 Riptide|Vance Joy|2013|indie|easy|hum
@@ -205,10 +198,8 @@ The Nights|Avicii|2014|dance|medium|hum
 Faded|Alan Walker|2015|dance|easy|hum
 Alone|Alan Walker|2016|dance|medium|hum
 Closer|The Chainsmokers & Halsey|2016|dance|easy|hum
-Something Just Like This covered|?|0|dance|easy|hum
 Don't Let Me Down|The Chainsmokers & Daya|2016|dance|easy|hum
 Happier|Marshmello & Bastille|2018|dance|easy|hum
-Alone (Marshmello) skip|?|0|dance|medium|hum
 Animals|Maroon 5|2014|pop|easy|hum
 Sugar|Maroon 5|2014|pop|easy|hum
 Payphone|Maroon 5 & Wiz Khalifa|2012|pop|easy|hum
@@ -226,14 +217,12 @@ SexyBack|Justin Timberlake|2006|funk|easy|hum
 Cry Me a River|Justin Timberlake|2002|pop|medium|hum
 Suit & Tie|Justin Timberlake & Jay-Z|2013|funk|medium|hum
 Party Rock Anthem|LMFAO|2011|dance|easy|hum
-Sorry for Party Rocking skip|?|0|dance|medium|hum
 Thrift Shop|Macklemore & Ryan Lewis|2012|rap|easy|nohum
 Can't Hold Us|Macklemore & Ryan Lewis|2013|rap|easy|nohum
 See You Again|Wiz Khalifa & Charlie Puth|2015|soundtrack|easy|hum
 We Don't Talk Anymore|Charlie Puth & Selena Gomez|2016|pop|easy|hum
 Attention|Charlie Puth|2017|pop|easy|hum
 How Long|Charlie Puth|2017|pop|medium|hum
-Stay With Me skip|?|0|pop|hard|hum
 Despacito|Luis Fonsi & Daddy Yankee|2017|latin|easy|hum
 Bailando|Enrique Iglesias|2014|latin|easy|hum
 Hero|Enrique Iglesias|2001|latin|easy|hum
@@ -326,7 +315,6 @@ Don't You (Forget About Me)|Simple Minds|1985|pop|easy|hum
 Wake Me Up Before You Go-Go|Wham!|1984|pop|easy|hum
 Last Christmas|Wham!|1984|pop|easy|hum
 I'm Still Standing|Elton John|1983|pop|easy|hum
-I'm Gonna Love Me Again skip|?|0|pop|hard|hum
 Africa|Toto|1982|rock|easy|hum
 Rosanna|Toto|1982|rock|medium|hum
 Every Breath You Take|The Police|1983|rock|easy|hum
@@ -339,12 +327,10 @@ Jolene|Dolly Parton|1973|country|easy|hum
 9 to 5|Dolly Parton|1980|country|easy|hum
 Islands in the Stream|Kenny Rogers & Dolly Parton|1983|country|easy|hum
 Ring of Fire|Johnny Cash|1963|country|easy|hum
-Walk the Line skip|?|0|country|hard|hum
 Hey Jude|The Beatles|1968|rock|easy|hum
 Let It Be|The Beatles|1970|rock|easy|hum
 Yesterday|The Beatles|1965|pop|easy|hum
 Here Comes the Sun|The Beatles|1969|pop|easy|hum
-Twist and Shout covered above|?|0|rock|easy|hum
 I Want to Hold Your Hand|The Beatles|1963|rock|easy|hum
 Can't Buy Me Love|The Beatles|1964|rock|easy|hum
 Satisfaction|The Rolling Stones|1965|rock|easy|hum
@@ -352,7 +338,6 @@ Paint It Black|The Rolling Stones|1966|rock|easy|hum
 Angie|The Rolling Stones|1973|rock|medium|hum
 Start Me Up|The Rolling Stones|1981|rock|easy|hum
 Dancing in the Moonlight|Toploader|2000|pop|easy|hum
-5:00 covered above|?|0|pop|easy|hum
 I'm a Believer|The Monkees|1966|pop|easy|hum
 Daydream Believer|The Monkees|1967|pop|easy|hum
 Build Me Up Buttercup|The Foundations|1968|soul|easy|hum
@@ -384,18 +369,14 @@ Lights Off|We Are Domi|2022|dance|easy|hum
 Síň slávy|Tina & Rytmus|2007|pop|easy|hum
 Podvod|Ben Cristovao|2021|pop|medium|hum
 Pedestal|Aiko|2024|pop|medium|hum
-Zhudbom? skip|?|0|pop|hard|hum
-Maria (I Like It Loud) skip|?|0|dance|hard|hum
 Sandstorm|Darude|1999|dance|easy|hum
 Pump It|The Black Eyed Peas|2006|dance|easy|hum
 I Gotta Feeling|The Black Eyed Peas|2009|dance|easy|hum
 Boom Boom Pow|The Black Eyed Peas|2009|dance|easy|hum
 Where Is the Love?|The Black Eyed Peas|2003|pop|easy|hum
 Meet Me Halfway|The Black Eyed Peas|2009|pop|easy|hum
-Pump It covered above|?|0|dance|easy|hum
 Stereo Love|Edward Maya & Vika Jigulina|2009|dance|easy|hum
 Mr. Saxobeat|Alexandra Stan|2011|dance|easy|hum
-Judas skip|?|0|pop|hard|hum
 Bad Romance|Lady Gaga|2009|dance|easy|hum
 Poker Face|Lady Gaga|2008|dance|easy|hum
 Just Dance|Lady Gaga|2008|dance|easy|hum
@@ -420,21 +401,16 @@ Run the World (Girls)|Beyoncé|2011|dance|easy|hum
 If I Ain't Got You|Alicia Keys|2003|soul|easy|hum
 Empire State of Mind|Jay-Z & Alicia Keys|2009|rap|easy|hum
 Fallin'|Alicia Keys|2001|soul|easy|hum
-Rolling in the Deep (Live) skip|?|0|pop|hard|hum
 Piano Man|Billy Joel|1973|oldies|easy|hum
 Uptown Girl|Billy Joel|1983|pop|easy|hum
 We Didn't Start the Fire|Billy Joel|1989|pop|medium|hum
 Sweet Caroline|Neil Diamond|1969|oldies|easy|hum
-Brown Sugar|The Rolling Stones covered above|?|0|rock|easy|hum
 Dancing in the Dark|Bruce Springsteen|1984|rock|easy|hum
 Born to Run|Bruce Springsteen|1975|rock|medium|hum
 I'm on Fire|Bruce Springsteen|1984|rock|medium|hum
 Hungry Heart|Bruce Springsteen|1980|rock|easy|hum
 I Love Rock 'n' Roll|Joan Jett & the Blackhearts|1982|rock|easy|hum
-You Shook Me All Night Long|AC/DC covered above|?|0|rock|easy|hum
 Eye of the Tiger|Survivor|1982|rock|easy|hum
-We Are the Champions|Queen covered above|?|0|rock|easy|hum
-Livin' la Vida Loca covered above|?|0|latin|easy|hum
 Hips Don't Lie|Shakira & Wyclef Jean|2006|latin|easy|hum
 Whenever, Wherever|Shakira|2001|latin|easy|hum
 La Tortura|Shakira & Alejandro Sanz|2005|latin|easy|hum
@@ -457,22 +433,99 @@ Dákiti|Bad Bunny & Jhay Cortez|2020|latin|easy|hum
 La Canción|J Balvin & Bad Bunny|2019|latin|medium|hum
 In Da Getto|J Balvin & Skrillex|2021|dance|medium|hum
 Pepas|Farruko|2021|latin|easy|hum
-Un Verano Sin Ti? skip|?|0|latin|hard|hum
-Levitating covered above|?|0|dance|easy|hum
-One Kiss covered above|?|0|dance|easy|hum
 Cold Heart|Elton John & Dua Lipa|2021|dance|easy|hum
-I'm Still Standing covered above|?|0|pop|easy|hum
 Your Song|Elton John|1970|pop|easy|hum
 Rocket Man|Elton John|1972|rock|easy|hum
 Tiny Dancer|Elton John|1971|rock|easy|hum
 Crocodile Rock|Elton John|1972|pop|easy|hum
 Bennie and the Jets|Elton John|1973|rock|medium|hum
 Sacrifice|Elton John|1989|pop|medium|hum
-Perfect covered above|?|0|pop|easy|hum
-Stayin' Alive covered above|?|0|disco|easy|hum
+Treat You Better|Shawn Mendes|2016|pop|easy|hum
+Stitches|Shawn Mendes|2015|pop|easy|hum
+There's Nothing Holdin' Me Back|Shawn Mendes|2017|pop|medium|hum
+Ghost|Justin Bieber|2021|pop|medium|hum
+Runaway (U & I)|Galantis|2014|dance|easy|hum
+No Money|Galantis|2016|dance|easy|hum
+Lush Life|Zara Larsson|2015|pop|easy|hum
+Never Forget You|Zara Larsson & MNEK|2015|pop|medium|hum
+Rockabye|Clean Bandit & Sean Paul|2016|dance|easy|hum
+Rather Be|Clean Bandit & Jess Glynne|2014|dance|easy|hum
+Youngblood|5 Seconds of Summer|2018|rock|easy|hum
+She Looks So Perfect|5 Seconds of Summer|2014|rock|easy|hum
+Hey There Delilah|Plain White T's|2006|pop|easy|hum
+The Man Who Can't Be Moved|The Script|2008|rock|easy|hum
+Hall of Fame|The Script & will.i.am|2012|pop|easy|hum
+Pompeii|Bastille|2013|rock|easy|hum
+Am I Wrong|Nico & Vinz|2014|pop|easy|hum
+Fireflies|Owl City|2009|pop|easy|hum
+Stressed Out|Twenty One Pilots|2015|rock|easy|hum
+Ride|Twenty One Pilots|2015|rock|medium|hum
+Heathens|Twenty One Pilots|2016|rock|easy|hum
+Paris|The Chainsmokers|2017|dance|easy|hum
+All We Know|The Chainsmokers & Phoebe Ryan|2016|dance|medium|hum
+Silence|Marshmello & Khalid|2017|dance|medium|hum
+Friends|Marshmello & Anne-Marie|2018|dance|easy|hum
+More Than You Know|Axwell & Ingrosso|2017|dance|easy|hum
+Harder, Better, Faster, Stronger|Daft Punk|2001|dance|medium|hum
+One More Time|Daft Punk|2000|dance|easy|hum
+Around the World|Daft Punk|2001|dance|medium|hum
+In the Name of Love|Martin Garrix & Bebe Rexha|2016|dance|easy|hum
+Love Me Like You Do|Ellie Goulding|2015|pop|easy|hum
+Stereo Hearts|Gym Class Heroes & Adam Levine|2011|pop|easy|hum
+Turn Down for What|DJ Snake & Lil Jon|2013|dance|easy|hum
+Lean On|Major Lazer & DJ Snake|2015|dance|easy|hum
+Let Me Love You|DJ Snake & Justin Bieber|2016|dance|easy|hum
+Story of My Life|One Direction|2013|pop|easy|hum
+What Makes You Beautiful|One Direction|2011|pop|easy|hum
+Best Song Ever|One Direction|2013|pop|easy|hum
+Drag Me Down|One Direction|2015|pop|easy|hum
+Worth It|Fifth Harmony|2015|dance|easy|hum
+Work from Home|Fifth Harmony|2016|dance|easy|hum
+I Like It|Cardi B & Bad Bunny|2018|latin|easy|hum
+Savage Love|Jason Derulo & Jawsh 685|2020|dance|easy|hum
+Want to Want Me|Jason Derulo|2015|dance|easy|hum
+Talk Dirty|Jason Derulo|2013|dance|medium|hum
+Wildflower|Billie Eilish|2024|pop|medium|hum
+Somewhere Only We Know|Keane|2004|rock|easy|hum
+Always Remember Us This Way|Lady Gaga|2018|soundtrack|easy|hum
+I Remember Everything|Zach Bryan & Kacey Musgraves|2023|country|medium|hum
+Something in the Orange|Zach Bryan|2022|country|medium|hum
+Gata Only|FloyyMenor & Cris MJ|2024|latin|easy|hum
+Ella Baila Sola|Eslabon Armado & Peso Pluma|2023|latin|easy|hum
+Si Antes Te Hubiera Conocido|Karol G|2024|latin|easy|hum
+Mi Ex Tenía Razón|Karol G|2023|latin|medium|hum
+Luna|Feid & ATL Jacob|2023|latin|medium|hum
+Waiting for Tonight|Jennifer Lopez|1999|dance|medium|hum
+Black Magic Woman|Santana|1970|rock|medium|hum
+Smooth|Santana & Rob Thomas|1999|rock|easy|hum
+Maria Maria|Santana & The Product G&B|1999|latin|easy|hum
+Make You Feel My Love|Adele|2008|pop|easy|hum
+Send My Love|Adele|2016|pop|easy|hum
+When We Were Young|Adele|2016|pop|easy|hum
+Say You Won't Let Go|James Arthur|2016|pop|easy|hum
+Work Song|Hozier|2014|rock|medium|hum
+80 Millionen|Max Giesinger|2017|pop|easy|hum
+Wenn sie tanzt|Max Giesinger|2016|pop|medium|hum
+Auf anderen Wegen|Andreas Bourani|2014|pop|medium|hum
+Bochum|Herbert Grönemeyer|1984|rock|medium|hum
+Sympathique|Pink Martini|1997|chanson|easy|hum
+L'enfer|Stromae|2021|pop|medium|hum
+Ma Meilleure Ennemie|Stromae & Pomme|2024|pop|medium|hum
+Time to Say Goodbye|Andrea Bocelli & Sarah Brightman|1996|pop|easy|hum
+Il Mondo|Jimmy Fontana|1965|oldies|medium|hum
+Sharazan|Al Bano & Romina Power|1981|oldies|medium|hum
+Grande grande grande|Mina|1972|oldies|medium|hum
+Se telefonando|Mina|1966|oldies|hard|hum
+Sin Miedo al Dolor|TINI|2022|latin|medium|hum
+Un Beso|Aventura|2006|latin|medium|hum
+Obsesión|Aventura|2002|latin|easy|hum
+Dile al Amor|Aventura|2009|latin|medium|hum
+Propuesta Indecente|Romeo Santos|2014|latin|easy|hum
+Bailando Por Ahí|Farruko|2012|latin|medium|hum
+Vivir lo Nuestro|Marc Anthony & La India|1994|latin|medium|hum
+Aguanile|Héctor Lavoe|1978|latin|hard|hum
 `
   .split("\n")
-  .filter((row) => row.trim() && !row.includes("?|0|"))
   .join("\n");
 /**
  * Interpreti, ktorí nespievajú po anglicky — provider store routing.
@@ -547,4 +600,29 @@ export const CHART_HITS_ARTIST_LANGUAGES = {
   "J Balvin & Bad Bunny": "es",
   "J Balvin & Skrillex": "es",
   Farruko: "es",
+  "Max Giesinger": "de",
+  "Revolverheld": "de",
+  "Andreas Bourani": "de",
+  "Tokio Hotel": "de",
+  "Herbert Grönemeyer": "de",
+  "Die Toten Hosen": "de",
+  "Die Ärzte": "de",
+  "Peter Schilling": "de",
+  "Rammstein": "de",
+  "Pink Martini": "fr",
+  "Kids United": "fr",
+  "Renaud": "fr",
+  "Stromae & Pomme": "fr",
+  "Jimmy Fontana": "it",
+  "Al Bano & Romina Power": "it",
+  "Mina": "it",
+  "Andrea Bocelli & Sarah Brightman": "it",
+  "TINI": "es",
+  "Aventura": "es",
+  "Romeo Santos": "es",
+  "Marc Anthony & La India": "es",
+  "Eslabon Armado & Peso Pluma": "es",
+  "FloyyMenor & Cris MJ": "es",
+  "Feid & ATL Jacob": "es",
+  "Cardi B & Bad Bunny": "es",
 } as const;

@@ -109,8 +109,10 @@ console.log(`deezer: ${charts.length} spolu`);
 const seen = new Set();
 const fresh = [];
 for (const entry of charts) {
-  const title = entry.title.replace(/\s*[-–(]\s*(feat|with|radio edit|single version|remix).*$/i, "").trim();
-  const artist = entry.artist.trim();
+  const clean = (value) =>
+    String(value).replace(/\|/g, " ").replace(/\s+/g, " ").trim();
+  const title = clean(entry.title).replace(/\s*[-–(]\s*(feat|with|radio edit|single version|remix).*$/i, "");
+  const artist = clean(entry.artist);
   if (!title || !artist) continue;
   if (/(feat\.|featuring|remix|edit|version|live|mix)/i.test(title)) continue;
   const key = normalizeAscii(`${artist}|${title}`);
