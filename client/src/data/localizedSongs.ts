@@ -16,6 +16,11 @@ import {
   WORLD_SONG_ARTIST_LANGUAGES,
   WORLD_SONG_EXPANSION,
 } from "./songExpansions/worldAndEnglish";
+import {
+  CHART_HITS_ARTIST_LANGUAGES,
+  CHART_HITS_SONG_EXPANSION,
+} from "./songExpansions/chartHits";
+import { CHART_AUTO_SONG_EXPANSION } from "./songExpansions/chartAuto";
 import type { SongCard } from "./teamBattleExtras";
 
 /**
@@ -4357,6 +4362,22 @@ const WORLD_SONG_EXPANSIONS = parseSongs(WORLD_SONG_EXPANSION, {
   ) as Record<string, SongLanguage>,
 });
 
+const CHART_HITS = parseSongs(CHART_HITS_SONG_EXPANSION, {
+  language: "en",
+  scope: "global",
+  artistLanguages: Object.fromEntries(
+    Object.entries(CHART_HITS_ARTIST_LANGUAGES).map(([artist, language]) => [
+      normalizeArtistKey(artist),
+      language,
+    ]),
+  ) as Record<string, SongLanguage>,
+});
+
+const CHART_AUTO = parseSongs(CHART_AUTO_SONG_EXPANSION, {
+  language: "en",
+  scope: "global",
+});
+
 const LOCAL_SONG_EXPANSIONS: Partial<Record<SongLanguage, Song[]>> = {
   sk: parseSongs(SLOVAK_SONG_EXPANSION, {
     language: "sk",
@@ -4405,7 +4426,11 @@ function uniqueSongs(songs: readonly Song[]): Song[] {
  * revíziu, do bežnej hry sa však nedostane.
  */
 export const GLOBAL_SONGS: Song[] = uniqueSongs(
-  WORLD_HITS.filter((song) => song.tier !== "hard"),
+  [
+    ...WORLD_HITS,
+    ...CHART_HITS,
+    ...CHART_AUTO,
+  ].filter((song) => song.tier !== "hard"),
 );
 
 /** Autoritatívne lokálne pooly sú rovnako iba ručne kurátorované základné

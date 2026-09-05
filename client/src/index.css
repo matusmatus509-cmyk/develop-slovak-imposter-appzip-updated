@@ -5503,3 +5503,8 @@ html[data-theme="light"] .ui-pre-caption h1 { color: #fff; }
   transition: .15s ease;
 }
 .drawing-theme .guess-who-picker-actions button:active { transform: scale(.97); }
+
+/* ── Hudobný kvíz — rok a žáner pri odhalení ─────────────────────────────── */
+.music-quiz-meta {
+  animation: popIn 0.35s ease-out both;
+}

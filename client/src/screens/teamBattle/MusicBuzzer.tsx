@@ -288,6 +288,20 @@ export default function MusicBuzzer({
           </p>
         )}
 
+        {revealed && song && (song.year || song.genre) && (
+          <p className="music-quiz-meta flex shrink-0 items-center justify-center gap-2">
+            {song.year ? (
+              <span className="rounded-full border border-white/15 bg-white/[0.07] px-3 py-1 text-[9px] font-black uppercase tracking-[0.14em] text-white/70">
+                {song.year}
+              </span>
+            ) : null}
+            {song.genre ? (
+              <span className="rounded-full border border-fuchsia-300/20 bg-fuchsia-500/10 px-3 py-1 text-[9px] font-black uppercase tracking-[0.14em] text-fuchsia-200/80">
+                {song.genre}
+              </span>
+            ) : null}
+          </p>
+        )}
         {hint && (
           <p className="music-quiz-hint min-w-0 max-w-full shrink-0 break-words text-[11px] font-bold leading-snug text-white/50">
             {hint}
