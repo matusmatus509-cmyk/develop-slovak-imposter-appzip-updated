@@ -143,6 +143,21 @@ export default function MusicBuzzer({
     return () => window.clearTimeout(timer);
   }, [autoSkips, deckIndex, phase.type, soundAllowed, status]);
 
+  // ── Automatické spustenie ukážky ──────────────────────────────────────────
+  // Keď hráči raz interagovali s appkou (štart hry, prvý tap na disk),
+  // prehliadač púšťa zvuk aj bez ďalšieho tapnutia. Novú skladbu preto
+  // skúsime spustiť sami raz za otázku; ak autoplay zamietne, status ostane
+  // „ready" a disk funguje ručne ako doteraz.
+  const autoPlayedFor = useRef<number | null>(null);
+  useEffect(() => {
+    if (phase.type !== "question" || status !== "ready") return;
+    if (!soundAllowed || played) return;
+    if (autoPlayedFor.current === deckIndex) return;
+    autoPlayedFor.current = deckIndex;
+    const timer = window.setTimeout(() => { void playPreview(); }, 350);
+    return () => window.clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- playPreview sa mení s každým renderom
+  }, [deckIndex, phase.type, played, soundAllowed, status]);
   function resetQuestion() {
     setPhase({ type: "question" });
     setPlayed(false);
