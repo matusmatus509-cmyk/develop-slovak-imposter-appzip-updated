@@ -15,7 +15,8 @@
     "validate:impostor": "node scripts/validate-impostor-categories.mjs",
     "validate:guess-who": "tsx scripts/validate-guess-who.ts",
     "format": "prettier --write .",
-    "validate:fit": "node scripts/audit-one-screen-fit.mjs"
+    "validate:fit": "node scripts/audit-one-screen-fit.mjs",
+    "update:songs": "node scripts/update-song-charts.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

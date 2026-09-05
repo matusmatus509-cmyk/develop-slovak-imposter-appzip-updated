@@ -29,6 +29,7 @@ import {
   defaultSongPools,
   SONG_POOLS,
   type SongPoolKey,
+  getSongsForPools,
 } from "../../data/localizedSongs";
 import { countAvailableSongs } from "../../data/songSelection";
 import PlayerNamesField from "../../components/PlayerNamesField";
@@ -239,6 +240,13 @@ export default function TeamQuickGame({
           .join(" · ");
 
   /** Aspoň jedna kategória musí zostať, inak by hra nemala z čoho ťahať. */
+  const POOL_FLAGS: Record<SongPoolKey, string> = {
+    world: "🌍", sk: "🇸🇰", cs: "🇨🇿", en: "🇬🇧", de: "🇩🇪", es: "🇪🇸", fr: "🇫🇷", pt: "🇵🇹",
+  };
+  const poolCounts = useMemo(
+    () => Object.fromEntries(SONG_POOLS.map(pool => [pool.key, getSongsForPools([pool.key]).length])) as Record<SongPoolKey, number>,
+    [language]
+  );
   function togglePool(key: SongPoolKey) {
     setSongPools(current => {
       if (current.includes(key)) {
@@ -557,12 +565,12 @@ export default function TeamQuickGame({
                                 {active ? "✓" : ""}
                               </span>
                               <strong className="truncate text-[13px] font-black">
-                                {pool.label}
+                                {POOL_FLAGS[pool.key]} {pool.label}
                               </strong>
                             </span>
-                            <small className="mt-1 block text-[10px] font-semibold text-white/40">
-                              {pool.hint}
-                            </small>
+                            <small className="mt-1 block truncate text-[10px] font-semibold text-white/40">
+                                {pool.hint} · {poolCounts[pool.key]} skladieb
+                              </small>
                           </button>
                         );
                       })}
