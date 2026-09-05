@@ -524,6 +524,99 @@ Propuesta Indecente|Romeo Santos|2014|latin|easy|hum
 Bailando Por Ahí|Farruko|2012|latin|medium|hum
 Vivir lo Nuestro|Marc Anthony & La India|1994|latin|medium|hum
 Aguanile|Héctor Lavoe|1978|latin|hard|hum
+We Are Family|Sister Sledge|1979|disco|easy|hum
+I Want Your Love|Chic|1978|disco|easy|hum
+I Am What I Am|Gloria Gaynor|1983|disco|medium|hum
+One Way Ticket|Eruption|1978|disco|easy|hum
+Funkytown|Lipps Inc.|1980|disco|easy|hum
+Car Wash|Rose Royce|1976|funk|easy|hum
+I'm So Excited|The Pointer Sisters|1982|pop|easy|hum
+Flashdance... What a Feeling|Irene Cara|1983|pop|easy|hum
+Fame|Irene Cara|1980|pop|easy|hum
+SOS|ABBA|1975|pop|easy|hum
+Enjoy the Silence|Depeche Mode|1990|pop|easy|hum
+Just Can't Get Enough|Depeche Mode|1981|pop|easy|hum
+Personal Jesus|Depeche Mode|1990|rock|easy|hum
+Blue Monday|New Order|1983|dance|medium|hum
+Brother Louie|Modern Talking|1986|pop|easy|hum
+Mr. Vain|Culture Beat|1993|dance|easy|hum
+No Limit|2 Unlimited|1993|dance|easy|hum
+Rhythm Is a Dancer|Snap!|1992|dance|easy|hum
+The Power|Snap!|1990|dance|easy|hum
+The Rhythm of the Night|Corona|1993|dance|easy|hum
+Be My Lover|La Bouche|1995|dance|easy|hum
+Another Night|Real McCoy|1994|dance|medium|hum
+Sing Hallelujah|Dr. Alban|1992|dance|easy|hum
+Boom, Boom, Boom, Boom!!|Vengaboys|1998|dance|easy|hum
+We Like to Party!|Vengaboys|1998|dance|easy|hum
+Doctor Jones|Aqua|1997|dance|medium|hum
+Encore Une Fois|Sash!|1997|dance|easy|hum
+Ecuador|Sash!|1997|dance|medium|hum
+Coco Jamboo|Mr. President|1996|dance|easy|hum
+I'm Too Sexy|Right Said Fred|1991|dance|easy|hum
+Tearin' Up My Heart|*NSYNC|1997|pop|easy|hum
+Closing Time|Semisonic|1998|rock|easy|hum
+Gangsta's Paradise|Coolio|1995|rap|easy|nohum
+Believe|Cher|1998|dance|easy|hum
+Ironic|Alanis Morissette|1995|rock|easy|hum
+Man! I Feel Like a Woman!|Shania Twain|1997|country|easy|hum
+I'm Like a Bird|Nelly Furtado|2000|pop|easy|hum
+Say My Name|Destiny's Child|1999|rnb|easy|hum
+Rehab|Amy Winehouse|2006|soul|easy|hum
+Back to Black|Amy Winehouse|2006|soul|medium|hum
+Valerie|Mark Ronson & Amy Winehouse|2007|pop|easy|hum
+Mercy|Duffy|2008|soul|easy|hum
+Grace Kelly|Mika|2007|pop|easy|hum
+Sk8er Boi|Avril Lavigne|2002|rock|easy|hum
+Get the Party Started|Pink|2001|dance|easy|hum
+You're Beautiful|James Blunt|2005|pop|easy|hum
+Bad Day|Daniel Powter|2005|pop|easy|hum
+Everlong|Foo Fighters|1997|rock|easy|hum
+Learn to Fly|Foo Fighters|1999|rock|medium|hum
+How You Remind Me|Nickelback|2001|rock|easy|hum
+Kryptonite|3 Doors Down|2000|rock|easy|hum
+Naive|The Kooks|2006|indie|easy|hum
+Last Nite|The Strokes|2001|rock|medium|hum
+Hungry Like the Wolf|Duran Duran|1982|pop|easy|hum
+White Wedding|Billy Idol|1982|rock|easy|hum
+Eyes Without a Face|Billy Idol|1984|pop|medium|hum
+Shout|Tears for Fears|1984|pop|easy|hum
+You Make My Dreams|Hall & Oates|1980|pop|easy|hum
+Kids in America|Kim Wilde|1981|pop|easy|hum
+Tarzan Boy|Baltimora|1985|dance|medium|hum
+Forever Young|Alphaville|1984|pop|easy|hum
+Big in Japan|Alphaville|1984|pop|easy|hum
+Maria Magdalena|Sandra|1985|pop|easy|hum
+Baby Love|The Supremes|1964|soul|easy|hum
+Stop! In the Name of Love|The Supremes|1965|soul|easy|hum
+I'm Coming Out|Diana Ross|1980|disco|easy|hum
+Upside Down|Diana Ross|1980|disco|easy|hum
+All Night Long (All Night)|Lionel Richie|1983|funk|easy|hum
+Endless Love|Diana Ross & Lionel Richie|1981|pop|easy|hum
+Give Me the Night|George Benson|1980|funk|easy|hum
+Rock With You|Michael Jackson|1979|funk|easy|hum
+Together Again|Janet Jackson|1997|pop|easy|hum
+You Really Got Me|The Kinks|1964|rock|easy|hum
+Cecilia|Simon & Garfunkel|1970|pop|easy|hum
+California Dreamin'|The Mamas & The Papas|1965|folk|easy|hum
+Bad Moon Rising|Creedence Clearwater Revival|1969|rock|easy|hum
+Fortunate Son|Creedence Clearwater Revival|1969|rock|easy|hum
+Down on the Corner|Creedence Clearwater Revival|1969|rock|easy|hum
+Light My Fire|The Doors|1967|rock|easy|hum
+Another Brick in the Wall|Pink Floyd|1979|rock|easy|hum
+Wish You Were Here|Pink Floyd|1975|rock|easy|hum
+I Was Made for Lovin' You|Kiss|1979|rock|easy|hum
+Paranoid|Black Sabbath|1970|metal|easy|hum
+Love Hurts|Nazareth|1974|rock|easy|hum
+Ballroom Blitz|Sweet|1973|rock|easy|hum
+20th Century Boy|T. Rex|1973|rock|easy|hum
+Vanesa|Elán|1986|pop|easy|hum
+Úsmevy|Modus|1984|pop|easy|hum
+Milovanie|Richard Müller|1988|pop|easy|hum
+Lhůta záruční|Slza|2016|pop|easy|hum
+Láskonoha|Vypsaná fixa|2004|rock|easy|hum
+Kdoví jestli jsem|Karel Gott|1981|schlager|easy|hum
+Solamente Tú|Pablo Alborán|2010|latin|easy|hum
 `
   .split("\n")
   .join("\n");
@@ -625,4 +718,10 @@ export const CHART_HITS_ARTIST_LANGUAGES = {
   "FloyyMenor & Cris MJ": "es",
   "Feid & ATL Jacob": "es",
   "Cardi B & Bad Bunny": "es",
+  "Modus": "sk",
+  "Richard Müller": "sk",
+  "Vypsaná fixa": "sk",
+  "Slza": "cs",
+  "Karel Gott": "cs",
+  "Pablo Alborán": "es",
 } as const;
