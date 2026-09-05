@@ -66,8 +66,8 @@ describe("integrita hudobného katalógu", () => {
 
   it("aktívna zásoba zodpovedá kurátorovanému snapshotu a pôvodné skladby zostali", () => {
     const stats = songCatalogueStats();
-    expect(stats.total).toBe(3768);
-    expect(stats.global).toBe(1326);
+    expect(stats.total).toBe(3824);
+    expect(stats.global).toBe(1395);
     expect(stats.byLanguage).toMatchObject({
       sk: 302,
       cs: 302,
