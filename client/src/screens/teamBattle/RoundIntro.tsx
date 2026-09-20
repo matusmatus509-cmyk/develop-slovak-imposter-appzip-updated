@@ -35,9 +35,12 @@ const SPECIAL_LABELS: Record<
   string,
   { label: string; icon: keyof IconsType; color: string }
 > = {
-  double: { label: "Dvojité body", icon: "star", color: "#f59e0b" },
-  lightning: { label: "Bleskové kolo", icon: "zap", color: "#22d3ee" },
-  final: { label: "Finálové kolo", icon: "crown", color: "#e879f9" },
+  // Tri odtiene zlatej identity Party modu — rozdiel nesie ikona (hviezda,
+  // blesk, korunka), nie samostatná farba. Predtým tu bola jantárová,
+  // tyrkysová a fuchsiová, teda tri nesúvisiace rodiny na jednom mieste.
+  double: { label: "Dvojité body", icon: "star", color: "#ffc247" },
+  lightning: { label: "Bleskové kolo", icon: "zap", color: "#ffd98a" },
+  final: { label: "Finálové kolo", icon: "crown", color: "#ff9f1c" },
 };
 
 const ROUND_ICONS: Record<string, keyof IconsType> = {

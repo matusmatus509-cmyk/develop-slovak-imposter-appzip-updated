@@ -4,16 +4,25 @@ import CustomContentSelector, {
   type CustomContentControls,
 } from "../../components/CustomContentSelector";
 import { type QuizDifficulty } from "../../data/teamBattle";
-import PlayerNamesField from "../../components/PlayerNamesField";
-import GameSettingsPage from "../../components/GameSettingsPage";
-import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
-import {
-  PARTY_TEAM_COLORS,
-  partyTeamIdentity,
-} from "./teamIdentity";
-/** Dizajn: Nočná herná aréna — kozmické pozadie, žiarivý mesiac a červený akcent. */
+import { PARTY_TEAM_IDENTITIES } from "./teamIdentity";
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
-import { partyModeArtV2 } from "../../media";
+
+/**
+ * ── Nastavenie Party modu ───────────────────────────────────────────────────
+ *
+ * Dizajn stojí na `.ui` systéme (rovnakom ako výber minihier): neutrálny
+ * chróm, hierarchia z typografie, jedna škála zaoblenia. Farbu má na obrazovke
+ * len to, čo ju nesie ako informáciu — akcent Party modu na aktívnych voľbách
+ * a tímová modrá/červená na značkách A/B.
+ *
+ * Predchádzajúca verzia mala na jednej obrazovke oranžové „UPRAVIŤ",
+ * smaragdové tempo, jantárový nadpis náročnosti, smaragdovo-ružovú obtiažnosť,
+ * tyrkysovú kartu „Náhodne" a červené CTA — šesť nesúvisiacich odtieňov.
+ *
+ * Mená tímov sa zadávajú priamo tu. Sú vždy dve, takže podstránka „Upraviť"
+ * (`PlayerNamesField`) pridávala klepnutie navyše a skrývala to, čo je na tejto
+ * obrazovke najdôležitejšie.
+ */
 
 export type BattleSelection = "ordered" | "random";
 export interface TeamBattleOptions {
@@ -32,6 +41,9 @@ export interface TeamBattleSetupDraft {
   selectionType: BattleSelection;
   options: TeamBattleOptions;
 }
+
+const QUICK_ROUND_OPTIONS = [1, 2, 3, 4] as const;
+const TIME_OPTIONS = [30, 45, 60, 90] as const;
 
 export default function TeamBattleSetup({
   initialDraft,
@@ -68,248 +80,247 @@ export default function TeamBattleSetup({
   const [quizDifficulty, setQuizDifficulty] = useState<QuizDifficulty>(
     initialDraft?.options.quizDifficulty ?? "lahke"
   );
-  const [blue, red] = PARTY_TEAM_COLORS;
 
   const canStart = Boolean(names[0].trim() && names[1].trim());
-  const quizDifficultyControls = (
-    <div className="mt-5 border-t border-white/10 pt-4">
-      <p className="text-[10px] font-black uppercase tracking-[0.24em] text-amber-300/70">
-        Náročnosť Kvízového súboja
-      </p>
-      <p className="mt-1 text-sm font-bold text-white/70">
-        Platí pre tipovanie čísel aj klasické otázky
-      </p>
-      <div className="mt-3 grid grid-cols-2 gap-2">
-        {(
-          [
-            { value: "lahke", label: "Ľahšie", note: "Základné a známe fakty" },
-            {
-              value: "tazke",
-              label: "Ťažšie",
-              note: "Náročnejšie vedomostné výzvy",
-            },
-          ] as const
-        ).map(({ value, label, note }) => (
-          <button
-            key={value}
-            onClick={() => setQuizDifficulty(value)}
-            aria-pressed={quizDifficulty === value}
-            className={`rounded-2xl border p-3 text-left transition active:scale-95 ${
-              quizDifficulty === value
-                ? value === "lahke"
-                  ? "border-emerald-300/70 bg-emerald-400/15 text-white"
-                  : "border-rose-300/70 bg-rose-400/15 text-white"
-                : "border-white/10 bg-white/[0.035] text-white/45"
-            }`}
-          >
-            <span className="block text-sm font-black">{label}</span>
-            <span className="mt-1 block text-[9px] leading-relaxed opacity-65">
-              {note}
-            </span>
-          </button>
-        ))}
-      </div>
-    </div>
-  );
+
+  function setName(index: 0 | 1, value: string) {
+    setNames(current =>
+      index === 0 ? [value, current[1]] : [current[0], value]
+    );
+  }
+
+  function start() {
+    // Obe cesty pokračujú na vlastnú obrazovku — náhodná na výber dĺžky bitky,
+    // vlastná na výber hier. Rodič si draft odloží, aby sa dal po stlačení
+    // Späť obnoviť.
+    const draft: TeamBattleSetupDraft = {
+      teamNames: names,
+      selectionType,
+      options: { quickRounds, timeSeconds, quizDifficulty },
+    };
+    if (selectionType === "random") onStartRandomSelection(draft);
+    else onStartManualSelection(draft);
+  }
 
   return (
-    <PartyBackdrop>
-      <main className="mobile-settings mobile-party-settings party-battle-settings scroll-panel h-full overflow-y-auto px-5 pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]">
-        <div className="mx-auto w-full max-w-md">
-          <header className="flex items-center justify-between">
-            <button
-              onClick={onBack}
-              aria-label="Späť"
-              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-white/70 backdrop-blur-xl transition active:scale-90"
-            >
-              <Icons.arrowLeft size={20} />
-            </button>
-            <PartyEyebrow>Party mode</PartyEyebrow>
-            <div className="exit-slot-spacer" />
-          </header>
-
-          {/* Obrázkové hero — rovnaký vzor ako pri rýchlych hrách (napr.
-              Zahmkaj pesničku): fotka arény, tmavý prechod a nadpis dole. */}
-          <div
-            className="game-setup-hero relative mt-5 h-48 overflow-hidden rounded-[2rem] border border-white/15 shadow-2xl"
-            style={{ "--setup-accent": "#a78bfa" } as CSSProperties}
+    <main className="ui ui-party ui-screen scroll-panel">
+      <div className="ui-wrap">
+        <div className="ui-bar">
+          <button
+            type="button"
+            onClick={onBack}
+            aria-label="Späť"
+            className="ui-back"
           >
-            <img
-              src={partyModeArtV2}
-              alt=""
-              className="h-full w-full object-cover transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#080b13]/95 via-[#080b13]/35 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#080b13]/85 via-transparent to-black/10" />
-            <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/20 blur-3xl" />
-            <div className="absolute inset-x-5 bottom-5">
-              <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/35 px-3 py-1.5 text-[8px] font-black uppercase tracking-[.2em] text-white/80 backdrop-blur">
-                <Icons.sword size={12} /> Nastavenie arény
+            <Icons.arrowLeft size={19} />
+          </button>
+          <span className="ui-bar-title">Party mode</span>
+        </div>
+
+        <header className="ui-head">
+          <h1 className="ui-title">Tímová bitka</h1>
+          <p className="ui-lead">
+            Dva tímy, séria minihier a finále za trojnásobné body. Telefón leží
+            na stole medzi tímami a strany sa počas hry nemenia.
+          </p>
+        </header>
+
+        {/* ── Tímy ─────────────────────────────────────────────────────────
+            Mená sú prvé, pretože sú jediné, čo partia musí zadať. Značka
+            nesie tímovú farbu a stranu, pri ktorej tím sedí celú hru. */}
+        <section
+          className="flex flex-col gap-[0.65rem]"
+          aria-label="Názvy tímov"
+        >
+          {PARTY_TEAM_IDENTITIES.map(team => (
+            <label
+              key={team.letter}
+              className="ui-field"
+              style={{ "--ui-field-accent": team.color } as CSSProperties}
+            >
+              <span
+                className="ui-field-mark"
+                style={{ background: team.color }}
+                aria-hidden="true"
+              >
+                {team.letter}
               </span>
-              <h1 className="max-w-[18rem] text-[2rem] font-black leading-[.98] tracking-[-.04em] text-white">
-                Pripravte tímovú bitku
-              </h1>
+              <span className="ui-field-body">
+                {/* Popis nesie stranu, nie „Tím A" — to už hovorí značka aj
+                    samotné meno v políčku. */}
+                <span className="ui-field-label">
+                  Tím {team.letter} · {team.sideArrow} {team.sideLabel.toLocaleLowerCase("sk")}
+                </span>
+                <input
+                  value={names[team.index]}
+                  onChange={event => setName(team.index, event.target.value)}
+                  placeholder={defaultTeamName(language, team.letter)}
+                  maxLength={20}
+                  aria-label={`Názov tímu ${team.letter}`}
+                />
+              </span>
+            </label>
+          ))}
+        </section>
+
+        {/* ── Zostava hier ────────────────────────────────────────────────── */}
+        <section className="ui-panel" style={{ marginTop: "0.65rem" }}>
+          <div className="ui-panel-head">
+            <h2 className="ui-panel-title">Zostava hier</h2>
+            <p className="ui-panel-sub">
+              Kto rozhodne, ktoré minihry sa budú hrať
+            </p>
+          </div>
+          <div className="ui-panel-body">
+            <div className="grid grid-cols-2 gap-[0.5rem]">
+              <button
+                type="button"
+                onClick={() => setSelectionType("ordered")}
+                aria-pressed={selectionType === "ordered"}
+                className="ui-choice"
+              >
+                <span className="ui-choice-name">Vyberieme si</span>
+                <span className="ui-choice-note">
+                  Hry aj ich poradie určíte vy
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setSelectionType("random")}
+                aria-pressed={selectionType === "random"}
+                className="ui-choice"
+              >
+                <span className="ui-choice-name">Náhodne</span>
+                <span className="ui-choice-note">
+                  Zostavu vyžrebuje aplikácia
+                </span>
+              </button>
             </div>
           </div>
+        </section>
 
-          <PlayerNamesField
-            names={names}
-            // Počet tímov je fixný na dva, takže dĺžka poľa sa nikdy nezmení.
-            onChange={next => setNames([next[0], next[1]])}
-            accent={blue}
-            entity="teams"
-            min={2}
-            max={2}
-            summary="Modrý a Červený tím"
-            badgeFor={index => ({
-              text: partyTeamIdentity(index).letter,
-              color: partyTeamIdentity(index).color,
-            })}
-            placeholderFor={index =>
-              defaultTeamName(language, partyTeamIdentity(index).letter)
-            }
-            className="arena-row-card mt-4"
-          />
+        {/* ── Tempo bitky ─────────────────────────────────────────────────── */}
+        <section className="ui-panel">
+          <div className="ui-panel-head">
+            <h2 className="ui-panel-title">Tempo bitky</h2>
+            <p className="ui-panel-sub">
+              Koľko sa hrá a aké ťažké sú otázky
+            </p>
+          </div>
+          <div className="ui-panel-body">
+            <div className="ui-setting">
+              <div className="ui-setting-head">
+                <span className="ui-setting-name">Rýchle výzvy na tím</span>
+                <span className="ui-setting-value">{quickRounds}×</span>
+              </div>
+              <div className="ui-seg ui-seg-4" role="group">
+                {QUICK_ROUND_OPTIONS.map(value => (
+                  <button
+                    key={value}
+                    type="button"
+                    className="ui-seg-opt"
+                    aria-pressed={quickRounds === value}
+                    onClick={() => setQuickRounds(value)}
+                  >
+                    {value}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-          <section className="party-selection-block mt-5">
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                onClick={() => setSelectionType("ordered")}
-                className={`party-selection-card arena-card arena-card-own relative overflow-hidden rounded-[1.6rem] border p-5 text-left transition active:scale-[.97] ${
-                  selectionType === "ordered" ? "is-selected" : ""
-                }`}
-              >
-                {selectionType === "ordered" && (
-                  <span className="arena-check" aria-hidden="true">
-                    ✓
-                  </span>
-                )}
-                <span className="arena-card-icon" aria-hidden="true">
-                  <Icons.layoutDashboard size={20} />
-                </span>
-                <span className="block text-base font-black text-white">
-                  Vlastný výber
-                </span>
-                <span className="mt-1 block text-[10px] leading-relaxed text-white/40">
-                  Hry vyberiete po stlačení Hrať
-                </span>
-              </button>
+            <div className="ui-setting">
+              <div className="ui-setting-head">
+                <span className="ui-setting-name">Čas časovaných hier</span>
+                <span className="ui-setting-value">{timeSeconds} s</span>
+              </div>
+              <div className="ui-seg ui-seg-4" role="group">
+                {TIME_OPTIONS.map(value => (
+                  <button
+                    key={value}
+                    type="button"
+                    className="ui-seg-opt"
+                    aria-pressed={timeSeconds === value}
+                    onClick={() => setTimeSeconds(value)}
+                  >
+                    {value}s
+                  </button>
+                ))}
+              </div>
+              <p className="ui-setting-note">
+                Platí pre pantomímu, šarády, zakázané slovo a pesničky. Krátke
+                výzvy majú vlastný rýchly limit.
+              </p>
+            </div>
 
-              <button
-                onClick={() => setSelectionType("random")}
-                className={`party-selection-card arena-card arena-card-random relative overflow-hidden rounded-[1.6rem] border p-5 text-left transition active:scale-[.97] ${
-                  selectionType === "random" ? "is-selected" : ""
-                }`}
-              >
-                {selectionType === "random" && (
-                  <span className="arena-check" aria-hidden="true">
-                    ✓
-                  </span>
-                )}
-                <span className="arena-card-icon" aria-hidden="true">
-                  <Icons.dice size={20} />
+            <div className="ui-setting">
+              <div className="ui-setting-head">
+                <span className="ui-setting-name">Náročnosť kvízu</span>
+                <span className="ui-setting-value">
+                  {quizDifficulty === "lahke" ? "Ľahšia" : "Ťažšia"}
                 </span>
-                <span className="mt-3 block text-base font-black text-white">
-                  Náhodne
-                </span>
-                <span className="mt-1 block text-[10px] leading-relaxed text-white/40">
-                  Aplikácia vyberie zostavu
-                </span>
-              </button>
+              </div>
+              <div className="ui-seg ui-seg-2" role="group">
+                {(
+                  [
+                    { value: "lahke", label: "Ľahšia", note: "Známe fakty" },
+                    { value: "tazke", label: "Ťažšia", note: "Pre znalcov" },
+                  ] as const
+                ).map(({ value, label, note }) => (
+                  <button
+                    key={value}
+                    type="button"
+                    className="ui-seg-opt"
+                    aria-pressed={quizDifficulty === value}
+                    onClick={() => setQuizDifficulty(value)}
+                  >
+                    {label}
+                    <small>{note}</small>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Vlastné kartičky ────────────────────────────────────────────── */}
+        {customControls && (
+          <section className="ui-panel">
+            <div className="ui-panel-body" style={{ paddingTop: "0.95rem" }}>
+              {/* Akcent Party modu — panel je jediné miesto, kde by sa inak
+                  objavila smaragdová farba z iných hier. */}
+              <CustomContentSelector
+                controls={customControls}
+                compact
+                accent="#ffc247"
+              />
             </div>
           </section>
+        )}
 
-          {/* Nastavenia hry — tempo kôl a náročnosť kvízu majú vlastnú
-              stránku, aby setup obrazovka zostala krátka. */}
-          <GameSettingsPage
-            className="mt-4 arena-row-card"
-            accent="#f97316"
-            icon="timer"
-            title="Pravidlá kôl"
-            summary={`${quickRounds} rýchle výzvy · ${timeSeconds}s · kvíz: ${quizDifficulty === "lahke" ? "ľahší" : "ťažší"}${customControls && customControls.selection.enabled ? " · vlastné kartičky" : ""}`}
-            description="Tempo celej bitky a náročnosť kvízu"
-          >
-            <section className="party-glass party-setup-panel rounded-[1.75rem] p-5">
-              <div className="mt-0">
-                <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">
-                    Rýchle výzvy na tím
-                  </p>
-                  <span className="text-xs font-black text-emerald-300">
-                    {quickRounds}
-                  </span>
-                </div>
-                <div className="mt-2 grid grid-cols-4 gap-2">
-                  {[1, 2, 3, 4].map(value => (
-                    <button
-                      key={value}
-                      onClick={() => setQuickRounds(value)}
-                      className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${quickRounds === value ? "border-emerald-300/65 bg-emerald-400/20 text-white" : "border-white/10 bg-white/[0.035] text-white/35"}`}
-                    >
-                      {value}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-5">
-                <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/40">
-                    Čas časovaných hier
-                  </p>
-                  <span className="text-xs font-black text-emerald-300">
-                    {timeSeconds} s
-                  </span>
-                </div>
-                <div className="mt-2 grid grid-cols-4 gap-2">
-                  {[30, 45, 60, 90].map(value => (
-                    <button
-                      key={value}
-                      onClick={() => setTimeSeconds(value)}
-                      className={`rounded-xl border py-3 text-sm font-black transition active:scale-95 ${timeSeconds === value ? "border-emerald-300/65 bg-emerald-400/20 text-white" : "border-white/10 bg-white/[0.035] text-white/35"}`}
-                    >
-                      {value}s
-                    </button>
-                  ))}
-                </div>
-                <p className="mt-3 text-[10px] leading-relaxed text-white/30">
-                  Platí pre pantomímu, šarády, zakázané slovo a pesničky. Krátke
-                  výzvy majú vlastný rýchly limit.
-                </p>
-              </div>
-
-              {/* Náročnosť kvízu platí v oboch režimoch — aj keď si hry vyberiete sami. */}
-              {quizDifficultyControls}
-
-              {/* Vlastné kartičky — pôvodne bola samostatná sekcia, teraz súčasť pravidiel kôl. */}
-              {customControls && (
-                <div className="mt-5 border-t border-white/10 pt-4">
-                  <CustomContentSelector controls={customControls} compact />
-                </div>
-              )}
-            </section>
-          </GameSettingsPage>
-
+        <div style={{ marginTop: "1.1rem" }}>
           <button
-            onClick={() => {
-              // Obe cesty pokračujú na vlastnú obrazovku — náhodná na výber
-              // dĺžky bitky, vlastná na výber hier. Rodič si draft odloží, aby
-              // sa dal po stlačení Späť obnoviť.
-              const draft: TeamBattleSetupDraft = {
-                teamNames: names,
-                selectionType,
-                options: { quickRounds, timeSeconds, quizDifficulty },
-              };
-              if (selectionType === "random") onStartRandomSelection(draft);
-              else onStartManualSelection(draft);
-            }}
+            type="button"
+            onClick={start}
             disabled={!canStart}
-            className="party-setup-start party-shine arena-cta mt-6 w-full overflow-hidden rounded-2xl px-6 py-5 text-base font-black uppercase tracking-[0.08em] text-white transition active:scale-[.97] disabled:opacity-40"
+            className="ui-cta"
           >
-            Hrať party hru
+            <span>
+              {selectionType === "random"
+                ? "Vybrať dĺžku bitky"
+                : "Vybrať minihry"}
+            </span>
+            <span className="ui-cta-arrow" aria-hidden="true">
+              <Icons.chevronRight size={17} />
+            </span>
           </button>
+          {!canStart && (
+            <p className="ui-setting-note" style={{ textAlign: "center" }}>
+              Oba tímy potrebujú názov.
+            </p>
+          )}
         </div>
-      </main>
-    </PartyBackdrop>
+      </div>
+    </main>
   );
 }

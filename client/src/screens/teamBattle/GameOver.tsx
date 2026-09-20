@@ -14,7 +14,9 @@ function Confetti() {
         id: index,
         left: `${Math.random() * 100}%`,
         delay: `${Math.random() * 1.2}s`,
-        color: ["#e879f9", "#60a5fa", "#f87171", "#fbbf24", "#34d399"][
+        // Zlatá identita Party modu, jej tmavší odtieň a obe tímové farby —
+        // nič, čo by na obrazovke nemalo význam.
+        color: ["#ffc247", "#ff9f1c", "#f4f7fb", "#3b82f6", "#ef4444"][
           index % 5
         ],
         size: `${5 + Math.random() * 8}px`,

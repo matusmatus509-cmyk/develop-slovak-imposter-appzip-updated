@@ -2309,406 +2309,11 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   }
 }
 
-/* Party battle setup follows the same mobile-first settings language. */
-.party-battle-settings { --settings-accent: #a78bfa; }
-.party-battle-settings > div { max-width: 31rem; }
-/* Hero je vyšší než pri rýchlych hrách (10.5rem) — nahrádza priestor po
-   zrušenom popisnom odstavci, takže zvyšok obrazovky zostáva na svojom
-   mieste a nič sa nepresúva nahor. */
-.party-battle-settings .game-setup-hero { height: 13rem; }
-/* Na nízkych displejoch platí rovnaký limit ako pre ostatné setupy — tam
-   sa popis nezobrazoval ani predtým, takže nie je čo nahrádzať. */
-@media (max-height: 720px) {
-  .party-battle-settings .game-setup-hero { height: 8.5rem; }
-}
-.party-battle-settings .party-battle-hero {
-  padding-top: 1.5rem;
-  padding-bottom: 1.35rem;
-}
-.party-battle-settings .party-battle-hero > div {
-  width: 4.5rem;
-  height: 4.5rem;
-  border-radius: 1rem;
-  border-color: var(--settings-line);
-  background: #151d27;
-  box-shadow: none;
-}
-.party-battle-settings .party-battle-hero > div svg { width: 2rem; height: 2rem; }
-.party-battle-settings .party-battle-hero > p:first-of-type {
-  margin-top: 1rem;
-  color: rgba(255, 255, 255, .45) !important;
-}
-.party-battle-settings .party-battle-hero h1 {
-  margin-top: .35rem;
-  font-size: 1.75rem;
-  line-height: 1.05;
-  letter-spacing: -.025em;
-}
-.party-battle-settings .party-battle-hero h1 + p {
-  margin-top: .55rem;
-  font-size: .75rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, .48);
-}
-.party-battle-settings .party-selection-block { margin-top: 1rem; }
-.party-battle-settings .party-selection-card {
-  min-height: 7.5rem;
-  padding: .85rem;
-  border-radius: 1rem !important;
-  border-color: var(--settings-line) !important;
-  background: #111820 !important;
-}
-.party-battle-settings .party-selection-card[class*="border-cyan"],
-.party-battle-settings .party-selection-card[class*="border-fuchsia"] {
-  border-color: var(--settings-accent) !important;
-  background: color-mix(in srgb, var(--settings-accent) 14%, #111820) !important;
-}
-.party-battle-settings .party-selection-card > span[class*="h-11"] {
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: .65rem;
-}
-.party-battle-settings .party-selection-card > span[class*="text-base"] {
-  margin-top: .7rem;
-  font-size: .85rem;
-}
-.party-battle-settings .party-setup-panel { padding: 1rem; }
-.party-battle-settings .party-game-picker {
-  min-height: 9.5rem;
-  border-radius: .95rem !important;
-  border-color: var(--settings-line) !important;
-  background: #0d131a !important;
-  box-shadow: none !important;
-}
-.party-battle-settings .party-game-picker::after { display: none; }
-.party-battle-settings .party-game-picker > span:first-child {
-  opacity: .75;
-  filter: saturate(.72) contrast(1.05);
-}
-.party-battle-settings .party-game-picker.is-selected {
-  border-color: var(--picker-accent) !important;
-  background: #141c25 !important;
-  box-shadow: inset 0 -3px 0 var(--picker-accent) !important;
-}
-.party-battle-settings .party-game-picker.is-selected > span:nth-of-type(3) {
-  border-radius: .5rem;
-  box-shadow: none;
-}
-.party-battle-settings .party-setup-panel button[class*="rounded-xl"] {
-  min-height: 2.9rem;
-  border-radius: .75rem !important;
-}
-.party-battle-settings .party-setup-start {
-  min-height: 3.5rem;
-  margin-top: 1rem;
-  font-size: .82rem;
-  letter-spacing: .06em;
-}
-
-@media (max-width: 370px) {
-  .party-battle-settings { padding-inline: .85rem; }
-  .party-battle-settings .party-game-picker { min-height: 9rem; padding: .65rem; }
-  .party-battle-settings .party-game-picker span[class*="text-[13px]"] { font-size: .72rem; }
-}
-
-@media (max-height: 700px) {
-  .party-battle-settings .party-battle-hero { padding-top: .85rem; padding-bottom: 1rem; }
-  .party-battle-settings .party-battle-hero > div { width: 3.75rem; height: 3.75rem; }
-  .party-battle-settings .party-battle-hero h1 { font-size: 1.5rem; }
-  .party-battle-settings .party-battle-hero h1 + p { display: none; }
-}
-
-/* --------------------------------------------------------------------------
-   Party battle setup — „nočná kozmická aréna" (inšpirované referenčným dizajnom).
-   Tmavé sklenené karty, oranžové „UPRAVIŤ", vybraná karta s červeným glow +
-   tyrkysovým ✓, teal karta „Náhodne" s kockou a výrazné červené CTA.
-   -------------------------------------------------------------------------- */
-
-/* Mesiac + hviezdy v pozadí hero sekcie. */
-.party-battle-settings .party-battle-hero-cosmic { position: relative; overflow: visible; }
-
-.party-cosmic {
-  position: absolute;
-  top: -4.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 24rem;
-  height: 24rem;
-  max-width: 110vw;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    radial-gradient(46% 46% at 50% 34%, rgba(190, 205, 255, .30), rgba(96, 118, 218, .16) 38%, transparent 62%),
-    radial-gradient(1.4px 1.4px at 20% 26%, rgba(255, 255, 255, .95), transparent),
-    radial-gradient(1px 1px at 37% 60%, rgba(255, 255, 255, .7), transparent),
-    radial-gradient(1.5px 1.5px at 58% 18%, rgba(214, 228, 255, .95), transparent),
-    radial-gradient(1px 1px at 74% 44%, rgba(255, 255, 255, .8), transparent),
-    radial-gradient(1.3px 1.3px at 84% 68%, rgba(255, 255, 255, .7), transparent),
-    radial-gradient(1px 1px at 14% 78%, rgba(255, 255, 255, .65), transparent),
-    radial-gradient(1.2px 1.2px at 46% 88%, rgba(255, 255, 255, .7), transparent),
-    radial-gradient(1.4px 1.4px at 90% 28%, rgba(255, 255, 255, .8), transparent);
-  filter: drop-shadow(0 0 36px rgba(140, 160, 255, .4));
-  opacity: .9;
-}
-
-/* Nová štruktúra hero — zruší staré obmedzenie `.party-battle-hero > div`
-   (4.5rem), aby sa kozmická vrstva aj nadpis roztiahli. */
-.party-battle-settings .party-battle-hero > .party-cosmic {
-  width: 24rem;
-  height: 24rem;
-  border-radius: 9999px;
-  border: 0;
-  background: none;
-  box-shadow: none;
-}
-
-.party-battle-settings .party-battle-hero > div.relative {
-  width: auto;
-  height: auto;
-  border: 0;
-  border-radius: 0;
-  background: none;
-  box-shadow: none;
-}
-
-/* Emblém — kruhová „moon base" s perom/mečom. */
-.party-battle-settings .party-arena-badge {
-  position: relative;
-  width: 5.4rem;
-  height: 5.4rem;
-  border-radius: 9999px !important;
-  border: 1px solid rgba(168, 184, 255, .35) !important;
-  background:
-    radial-gradient(circle at 50% 32%, #1b2442, #0b0f1d 70%) !important;
-  box-shadow:
-    inset 0 0 26px rgba(120, 140, 220, .4),
-    0 0 0 6px rgba(120, 140, 220, .06),
-    0 22px 55px -20px rgba(80, 100, 200, .6) !important;
-}
-
-.party-arena-badge svg { width: 2.1rem; height: 2.1rem; color: #e4eaff; }
-
-/* Súhrnné riadky (Tímy, Pravidlá kôl) — veľká tmavá karta s oranžovým UPRAVIŤ. */
-.party-battle-settings .arena-row-card {
-  border: 1px solid rgba(255, 255, 255, .09) !important;
-  background: linear-gradient(150deg, rgba(34, 36, 58, .55), rgba(11, 14, 25, .94)) !important;
-  border-radius: 1.3rem !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 18px 45px -30px rgba(0, 0, 0, .9) !important;
-}
-
-/* ── Výber dĺžky náhodnej bitky (RoundCountPicker) ──────────────────────────
-   Vlastná obrazovka po stlačení „Hrať party hru“. Karta nie je voľba, ale
-   priamo štart bitky — akcent z `--round-accent` preto svieti stále a ikona
-   prehrávania to potvrdzuje. */
-.round-pick {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: .9rem;
-  width: 100%;
-  padding: 1rem;
-  text-align: left;
-  border: 1px solid color-mix(in srgb, var(--round-accent) 32%, transparent);
-  border-radius: 1.3rem;
-  background:
-    linear-gradient(150deg, color-mix(in srgb, var(--round-accent) 13%, rgba(20, 24, 42, .9)), rgba(10, 13, 24, .95));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .06),
-    0 18px 45px -32px color-mix(in srgb, var(--round-accent) 60%, transparent);
-  transition: border-color .18s ease, box-shadow .22s ease, transform .18s ease;
-}
-
-.round-pick:active {
-  transform: scale(.98);
-  border-color: color-mix(in srgb, var(--round-accent) 70%, transparent);
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--round-accent) 45%, transparent),
-    0 0 26px -8px color-mix(in srgb, var(--round-accent) 45%, transparent);
-}
-
-@media (hover: hover) {
-  .round-pick:hover {
-    border-color: color-mix(in srgb, var(--round-accent) 60%, transparent);
-  }
-}
-
-/* Kruh s ikonou prehrávania — hovorí, že klepnutím sa hra spustí. */
-.round-pick-play {
-  display: grid;
-  place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  flex: none;
-  border-radius: 9999px;
-  background: var(--round-accent);
-  color: #08111a;
-  box-shadow: 0 10px 26px -10px var(--round-accent);
-}
-
-.round-pick-number {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 3.4rem;
-  height: 3.4rem;
-  flex: none;
-  border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, .1);
-  background: rgba(255, 255, 255, .05);
-  color: #fff;
-  line-height: 1;
-  transition: border-color .18s ease, background .18s ease, box-shadow .22s ease;
-}
-
-.round-pick .round-pick-number {
-  border-color: color-mix(in srgb, var(--round-accent) 45%, transparent);
-  background: color-mix(in srgb, var(--round-accent) 20%, transparent);
-}
-
-.round-pick-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: .3rem;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, .09);
-  background: rgba(255, 255, 255, .04);
-  padding: .25rem .55rem;
-  font-size: .58rem;
-  font-weight: 900;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, .55);
-}
-
-/* ── Celá obrazovka na jeden displej ────────────────────────────────────────
-   Bez potvrdzovacieho tlačidla a bez pätičkového textu sa zmestí bez
-   skrolovania: hero sa škáluje podľa výšky displeja a karty si rozdelia
-   zvyšok. `scroll-panel` na `main` zostáva ako záchranná sieť pre extrémne
-   nízke displeje — nič sa tak neoreže. */
-.party-round-picker .game-setup-hero {
-  height: clamp(5.5rem, 17dvh, 9.5rem);
-  margin-top: 1rem;
-}
-
-.party-round-picker .round-hero-title {
-  font-size: clamp(1.35rem, 4.6dvh, 2rem);
-}
-
-/* Karty rastú do zvyšnej výšky, ale na vysokých displejoch a tabletoch sa
-   nenaťahujú do prázdna — strop ich udrží v proporcii a `justify-center` na
-   zozname rozdelí prebytok nad a pod. */
-.party-round-picker .round-pick {
-  flex: 1 1 0;
-  min-height: 4.5rem;
-  max-height: 8.5rem;
-}
-
-/* Na nízkych displejoch ustúpi popis ako prvé — čísla, akcent a štítky so
-   špeciálnymi kolami sú dôležitejšie než veta pod názvom. */
-@media (max-height: 700px) {
-  .party-round-picker .round-pick { padding: .8rem; }
-  .party-round-picker .round-pick-note { display: none; }
-  .party-round-picker .round-hero-badge { display: none; }
-}
-
-/* Červený „pill" vedľa nadpisu Zostava hier. */
-.party-battle-settings .arena-pill {
-  border-radius: 9999px;
-  background: rgba(245, 60, 60, .16);
-  border: 1px solid rgba(245, 64, 64, .4);
-  padding: .45rem .85rem;
-  font-size: .72rem;
-  font-weight: 900;
-  letter-spacing: .04em;
-  color: #ffd9d9;
-  box-shadow: 0 6px 18px -10px rgba(245, 60, 60, .5);
-}
-
-/* Výberové karty zostavy. */
-.party-battle-settings .arena-card {
-  border-color: rgba(255, 255, 255, .1) !important;
-  background: linear-gradient(150deg, rgba(26, 30, 50, .72), rgba(10, 13, 24, .94)) !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 18px 45px -30px rgba(0, 0, 0, .9) !important;
-}
-
-.party-battle-settings .arena-card-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.6rem;
-  height: 2.6rem;
-  border-radius: .8rem;
-  background: rgba(255, 255, 255, .05);
-  border: 1px solid rgba(255, 255, 255, .09);
-  color: #cfd8ff;
-  margin-bottom: .7rem;
-}
-
-.party-battle-settings .arena-card-own.is-selected {
-  border-color: rgba(255, 96, 110, .85) !important;
-  background: linear-gradient(150deg, rgba(92, 34, 60, .62), rgba(12, 14, 26, .94)) !important;
-  box-shadow:
-    0 0 0 1px rgba(255, 96, 110, .45),
-    0 0 28px rgba(255, 70, 90, .35),
-    inset 0 1px 0 rgba(255, 255, 255, .08) !important;
-}
-
-.party-battle-settings .arena-card-own.is-selected .arena-card-icon {
-  color: #ffd0d0;
-  border-color: rgba(255, 120, 130, .35);
-  background: rgba(255, 70, 90, .12);
-}
-
-.party-battle-settings .arena-card-random {
-  border-color: rgba(88, 224, 176, .28) !important;
-  background: linear-gradient(150deg, rgba(22, 60, 52, .6), rgba(9, 15, 23, .92)) !important;
-}
-
-.party-battle-settings .arena-card-random .arena-card-icon {
-  color: #a7f3d0;
-  border-color: rgba(88, 224, 176, .22);
-  background: rgba(52, 211, 153, .1);
-}
-
-.party-battle-settings .arena-card-random.is-selected {
-  border-color: rgba(88, 224, 176, .85) !important;
-  background: linear-gradient(150deg, rgba(22, 66, 58, .68), rgba(9, 15, 23, .92)) !important;
-  box-shadow:
-    0 0 0 1px rgba(88, 224, 176, .45),
-    0 0 28px rgba(52, 211, 153, .35),
-    inset 0 1px 0 rgba(255, 255, 255, .08) !important;
-}
-
-.party-battle-settings .arena-check {
-  position: absolute;
-  top: .85rem;
-  right: .85rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.6rem;
-  height: 1.6rem;
-  border-radius: 9999px;
-  background: #22d3ee;
-  color: #071017;
-  font-size: .9rem;
-  font-weight: 900;
-  box-shadow: 0 4px 14px rgba(34, 211, 238, .45);
-}
-
-/* Hlavné červené CTA — prebíja štandardný fialový gradient. */
-.party-battle-settings.mobile-party-settings button.party-shine.arena-cta,
-.party-battle-settings.mobile-party-settings button[class*="bg-gradient"].arena-cta {
-  min-height: 3.5rem;
-  border: 1px solid rgba(255, 120, 120, .4) !important;
-  background: linear-gradient(135deg, #ff4d5e 0%, #e11d48 55%, #be123c 100%) !important;
-  color: #fff !important;
-  box-shadow: 0 18px 50px -24px rgba(225, 29, 72, .7) !important;
-  border-radius: 1.15rem !important;
-}
-
-.party-battle-settings button[class*="bg-gradient"].arena-cta { text-transform: uppercase !important; }
+/* Staré nastavenie Party modu (`.party-battle-settings`, `.arena-*`,
+   `.round-pick*`, `.party-cosmic`) tu malo ~400 riadkov prepisov cez
+   `!important` a šesť nesúvisiacich akcentov. Obrazovky nastavenia, výberu
+   minihier aj dĺžky bitky teraz bežia na `.ui` systéme — pozri sekciu
+   „Party mode — jeden akcent pre celý režim" na konci súboru. */
 
 /* --------------------------------------------------------------------------
    Party mode 2026 — calm mobile surfaces and purposeful motion.
@@ -3083,8 +2688,7 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 /* ── Nastavenia party hry ───────────────────────────────────────────────────
    Vrstva .mobile-party-settings tieto panely predtým sploštila na sivé boxy
    s vypnutými tieňmi. Tu ich vraciame do rovnakého jazyka ako zvyšok módu. */
-.party-mode-experience .mobile-party-settings,
-.party-mode-experience .party-battle-settings {
+.party-mode-experience .mobile-party-settings {
   --settings-accent: var(--pm-gold);
   --settings-line: var(--pm-hairline);
   background: transparent;
@@ -3118,40 +2722,9 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 }
 .party-mode-experience .mobile-settings button:active { transform: scale(0.975) !important; }
 /* Polia s menami tímov nesú farbu tímu, takže sivý rámček z nastavení tu neplatí. */
-/* ── Výber minihier v party móde ────────────────────────────────────────────
-   Vybraná hra sa označí zlatou linkou a poradovým číslom; potvrdenie je zlaté. */
-.party-game-picker-screen .minigame-tile {
-  transition:
-    transform 0.24s cubic-bezier(0.22, 1, 0.32, 1),
-    border-color 0.24s ease,
-    box-shadow 0.24s ease;
-}
-.party-game-picker-screen .minigame-tile.is-party-selected {
-  border-color: color-mix(in srgb, #ffc247 70%, white 10%) !important;
-  box-shadow:
-    0 0 0 1px rgba(255, 194, 71, 0.55),
-    0 20px 40px -26px rgba(255, 194, 71, 0.75) !important;
-}
-.party-game-picker-screen .party-picker-order {
-  background: linear-gradient(135deg, #ffc247, #ff9f1c);
-  color: #1b1305;
-  box-shadow: 0 8px 18px -8px rgba(255, 194, 71, 0.9);
-}
-.party-game-picker-screen .party-picker-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.09);
-  background: linear-gradient(to top, #070b12 62%, rgba(7, 11, 18, 0.86));
-  backdrop-filter: blur(14px);
-}
-.party-game-picker-screen .party-picker-footer button {
-  background: linear-gradient(135deg, #ffc247, #ff9f1c);
-  color: #1b1305;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 14px 28px -16px rgba(255, 194, 71, 0.8);
-}
-.party-game-picker-screen .party-picker-footer button:disabled {
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.35);
-  box-shadow: none;
-}
+/* Starý výber minihier (`.party-game-picker-screen`, `.party-picker-*`) tu
+   mal vlastnú vrstvu. Obrazovka dnes beží na `.ui` systéme — pozri sekciu
+   „Party mode — jeden akcent pre celý režim" na konci súboru. */
 
 /* ── Nastavenia aplikácie ───────────────────────────────────────────────────
    Obrazovka bola mimo dizajnového jazyka (ploché #111820 boxy bez hierarchie). */
@@ -5507,4 +5080,332 @@ html[data-theme="light"] .ui-pre-caption h1 { color: #fff; }
 /* ── Hudobný kvíz — rok a žáner pri odhalení ─────────────────────────────── */
 .music-quiz-meta {
   animation: popIn 0.35s ease-out both;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Party mode — jeden akcent pre celý režim
+   ═══════════════════════════════════════════════════════════════════════
+
+   Nastavenia Party modu predtým bežali na starej vrstve `.mobile-settings`
+   + `.party-battle-settings` + `.arena-*`, kde si každý blok priniesol
+   vlastnú farbu: oranžové „UPRAVIŤ", smaragdové prepínače tempa, jantárový
+   nadpis náročnosti, smaragdovo-ružové karty obtiažnosti, tyrkysová
+   „Náhodne" a červené CTA. Na jednej obrazovke sa tak bilo šesť odtieňov,
+   ktoré medzi sebou nemali žiadny vzťah — a ani jeden z nich nepatril
+   Party modu.
+
+   Odteraz platí pravidlo `.ui` systému: chróm je neutrálny, farbu nesie
+   obsah. Party mode má JEDEN akcent (fialová), tímy majú svoju modrú a
+   červenú a nič iné na obrazovke farbu nemá. Semantické farby (zlatá pre
+   víťaza, zelená/červená pre správne/nesprávne) zostávajú len tam, kde
+   nesú význam.
+   ─────────────────────────────────────────────────────────────────── */
+
+/* Na herných obrazovkách kreslí rám appky vpravo nahore tlačidlo „Odísť z hry".
+   Pás hlavičky mu preto rezervuje miesto — inak doň zasahoval jeho obsah
+   (v Party mode presne to robil počet vybraných minihier). */
+/* Obrazovka, ktorá má obsah rozložiť na celú výšku (výber dĺžky bitky) —
+   inak zostane pod poslednou možnosťou veľká prázdna plocha. */
+.ui-fill {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+}
+/* Zoznam začína hneď pod titulkom a prebytok výšky zostane pod ním —
+   vycentrovanie by ho odtlačilo do stredu a pod nadpisom by zostala diera. */
+.ui-fill-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  padding-bottom: 1rem;
+}
+
+/* Plochy `.ui` obrazoviek preberajú inkovú modrú Party modu, takže nastavenia,
+   výber minihier aj dĺžka bitky sedia na tom istom pozadí ako samotná hra —
+   predtým to bola neutrálna šedá z `.ui` systému. */
+.party-mode-experience .ui-party {
+  --ui-bg: var(--pm-bg, #080c16);
+  --ui-surface: var(--pm-panel-2, #101827);
+  --ui-surface-2: var(--pm-panel, #141d2c);
+  --ui-surface-3: #1b2637;
+  --ui-line: var(--pm-hairline, rgba(255, 255, 255, 0.085));
+  --ui-line-strong: var(--pm-hairline-strong, rgba(255, 255, 255, 0.17));
+  --ui-ink: var(--pm-text, #f4f7fb);
+  --ui-ink-2: var(--pm-muted, rgba(226, 235, 247, 0.5));
+  --ui-ink-3: var(--pm-muted-soft, rgba(226, 235, 247, 0.3));
+}
+/* Rovnaké tri tiché svetelné zdroje ako na herných obrazovkách módu. */
+.party-mode-experience .ui-party.ui-screen {
+  background:
+    radial-gradient(118% 60% at 50% -12%, rgba(255, 194, 71, 0.08), transparent 62%),
+    radial-gradient(76% 44% at 108% 12%, rgba(59, 130, 246, 0.12), transparent 66%),
+    radial-gradient(76% 44% at -10% 88%, rgba(239, 68, 68, 0.1), transparent 66%),
+    linear-gradient(178deg, var(--pm-bg) 0%, var(--pm-bg-2) 54%, #070a12 100%);
+}
+.party-mode-experience .ui-party.ui-screen::before {
+  display: none;
+}
+
+.ui-party .ui-bar {
+  padding-right: var(--exit-slot, 3.4rem);
+}
+
+.ui-party {
+  /* Zlatá, nie fialová: identitu Party modu drží `.party-mode-experience`
+     („hlboká inková modrá + zlatý akcent") a nastavenia musia vyzerať ako
+     hra, do ktorej vedú. Zlatá je zároveň predvolený akcent `.ui` systému. */
+  --ui-accent: var(--pm-gold, #ffc247);
+  --ui-cta-bg: linear-gradient(135deg, var(--pm-gold, #ffc247) 0%, var(--pm-gold-deep, #ff9f1c) 100%);
+  --ui-cta-ink: #1b1305;
+  /* Dlaždice minihier dedia ten istý akcent — pozri `.ui-party .ui-pick`. */
+  --tile-accent: var(--pm-gold, #ffc247);
+}
+
+/* ── Pole s menom tímu ───────────────────────────────────────────────
+   Dva tímy sú pevný počet, takže sa mená zadávajú priamo na obrazovke —
+   žiadna podstránka „Upraviť". Značka A/B drží tímovú farbu, zvyšok poľa
+   je neutrálny. */
+.ui-field-body {
+  min-width: 0;
+  flex: 1;
+}
+.ui-field-side {
+  display: block;
+  margin-top: 0.12rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--ui-ink-3);
+}
+
+/* ── Riadok nastavenia ───────────────────────────────────────────────
+   Názov vľavo, aktuálna hodnota vpravo v akcente, pod tým prepínač.
+   Nahrádza mriežky žiariacich piluliek s vlastnou farbou na každý blok. */
+.ui-setting + .ui-setting {
+  margin-top: 0.95rem;
+  border-top: 1px solid var(--ui-line);
+  padding-top: 0.95rem;
+}
+.ui-setting-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.45rem;
+}
+.ui-setting-name {
+  font-size: 0.82rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--ui-ink);
+}
+.ui-setting-value {
+  flex: 0 0 auto;
+  font-size: 0.76rem;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  color: var(--ui-accent);
+}
+.ui-setting-note {
+  margin: 0.5rem 0 0;
+  font-size: 0.71rem;
+  font-weight: 450;
+  line-height: 1.45;
+  color: var(--ui-ink-3);
+}
+
+/* ── Neutrálny čip ───────────────────────────────────────────────────
+   Vlastnosti kola (čas, špeciálne kolá). Bez farby — informáciu nesie
+   text, nie odtieň. */
+.ui-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  border: 1px solid var(--ui-line);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.24rem 0.5rem;
+  color: var(--ui-ink-3);
+  font-size: 0.66rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* ── Riadok, ktorý je zároveň štart ──────────────────────────────────
+   Výber dĺžky náhodnej bitky: klepnutie na riadok bitku priamo spúšťa,
+   preto má kruh s ikonou prehrávania v akcente. Predtým mala každá z
+   troch možností vlastnú farbu (tyrkysová, fialová, ružová), čo
+   naznačovalo významový rozdiel, ktorý neexistuje — líšia sa len počtom
+   kôl. */
+.ui-pickrow {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.85rem;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-r-lg);
+  background: var(--ui-surface);
+  padding: 0.85rem;
+  text-align: left;
+  transition: border-color 0.16s ease, background 0.16s ease, transform 0.16s ease;
+}
+.ui-pickrow:hover {
+  border-color: var(--ui-line-strong);
+  background: var(--ui-surface-2);
+}
+.ui-pickrow:active {
+  transform: scale(0.99);
+}
+.ui-pickrow-num {
+  display: flex;
+  width: 3.05rem;
+  height: 3.05rem;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-r);
+  background: var(--ui-surface-3);
+}
+.ui-pickrow-num strong {
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ui-ink);
+}
+.ui-pickrow-num small {
+  margin-top: 0.12rem;
+  font-size: 0.6rem;
+  font-weight: 650;
+  color: var(--ui-ink-3);
+}
+.ui-pickrow-name {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 750;
+  letter-spacing: -0.015em;
+  color: var(--ui-ink);
+}
+.ui-pickrow-note {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.74rem;
+  font-weight: 450;
+  line-height: 1.35;
+  color: var(--ui-ink-3);
+}
+.ui-pickrow-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.45rem;
+}
+.ui-pickrow-go {
+  display: grid;
+  width: 2.3rem;
+  height: 2.3rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--ui-accent);
+  color: var(--ui-cta-ink);
+}
+
+/* ── Výber minihier: farbu nesie obrázok, nie rám ────────────────────
+   Jedenásť hier malo jedenásť akcentov (jantárová, fialová, ružová,
+   fuchsiová, purpurová, tyrkysová, oranžová, zelená, nebeská, zlatá,
+   smaragdová) — mriežka pôsobila ako paleta, nie ako zoznam. Chróm je
+   teraz neutrálny a jediná farba na obrazovke označuje VYBRANÚ hru. */
+.ui-party .ui-pick {
+  border-color: var(--ui-line);
+}
+.ui-party .ui-pick::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.24),
+    transparent
+  );
+  box-shadow: none;
+}
+.ui-party .ui-pick .ui-tile-veil {
+  background: linear-gradient(
+    180deg,
+    rgba(16, 17, 22, 0.04) 0%,
+    rgba(16, 17, 22, 0.14) 42%,
+    rgba(16, 17, 22, 0.9) 100%
+  );
+}
+.ui-party .ui-pick:hover {
+  border-color: var(--ui-line-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.ui-party .ui-pick.is-picked {
+  border-color: var(--ui-accent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px color-mix(in srgb, var(--ui-accent) 45%, transparent);
+}
+.ui-party .ui-pick.is-picked::before {
+  background: linear-gradient(
+    90deg,
+    transparent 4%,
+    var(--ui-accent) 45%,
+    color-mix(in srgb, var(--ui-accent) 25%, transparent) 92%
+  );
+  box-shadow: 0 0 12px color-mix(in srgb, var(--ui-accent) 70%, transparent);
+}
+.ui-party .ui-pick.is-picked .ui-tile-veil {
+  background: linear-gradient(
+    180deg,
+    rgba(16, 17, 22, 0.04) 0%,
+    rgba(16, 17, 22, 0.16) 42%,
+    rgba(16, 17, 22, 0.9) 100%
+  ),
+  linear-gradient(
+    0deg,
+    color-mix(in srgb, var(--ui-accent) 26%, transparent) 0%,
+    transparent 58%
+  );
+}
+.ui-party .ui-pick-order {
+  background: var(--ui-accent);
+  color: var(--ui-cta-ink);
+}
+/* Posledná vybraná hra je finále za trojnásobné body — kachlička to
+   povie priamo, aby to partia nemusela dedukovať z poradia. */
+.ui-pick-final {
+  position: absolute;
+  z-index: 4;
+  top: 0.6rem;
+  right: 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--ui-accent) 45%, transparent);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 0.2rem 0.45rem;
+  color: color-mix(in srgb, var(--ui-accent) 85%, #fff);
+  font-size: 0.6rem;
+  font-weight: 750;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(6px);
+}
+
+/* ── Vlastné kartičky v Party nastaveniach ───────────────────────────
+   Komponent `CustomContentSelector` má vlastný smaragdový rám, ktorý v
+   tejto kaskáde nemá čo robiť — panel okolo neho už rám má. Farba
+   prepínača zostáva (nesie stav zapnuté/vypnuté), okolie sa stíši. */
+.ui .custom-content-panel {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-pickrow {
+    transition: none;
+  }
 }
