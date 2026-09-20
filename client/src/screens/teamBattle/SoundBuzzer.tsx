@@ -2,12 +2,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { soundArt } from "../../media";
 import { takePersistentItems } from "../../utils/persistentDeck";
 import { SOUND_CLUES } from "../../data/teamBattleExtras";
-import { PartyBackdrop } from "./PartyChrome";
+import { PartyBackdrop, TeamSideTag } from "./PartyChrome";
 import {
   makeEmptyScores,
-  PARTY_PLAYER_COLORS,
   type QuickParticipantsProps,
 } from "./quickGameShared";
+import {
+  participantBadgesFor,
+  participantColorsFor,
+} from "./teamIdentity";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { soundsEnabled } from "../../utils/deviceFeedback";
 import { Icons } from "../../components/icons";
@@ -193,11 +196,23 @@ export default function SoundBuzzer({
   const revealed = phase.type === "revealed";
   const playing = audioStatus === "playing";
 
-  // Hráči sa delia na dve strany stola: prvá polovica bližšie, zvyšok naproti.
+  /**
+   * Rozsadenie: prvá polovica (v Party mode tím A) pri HORNEJ hrane, druhá
+   * (tím B) pri dolnej — zhodne s kvízom, hudobným kvízom aj ping-pongom.
+   */
   const half = Math.ceil(participantNames.length / 2);
   const seating = participantNames.map((name, index) => ({ name, index }));
-  const nearSeats = seating.slice(0, half);
-  const farSeats = seating.slice(half);
+  const farSeats = seating.slice(0, half);
+  const nearSeats = seating.slice(half);
+  const participantColors = participantColorsFor(
+    gameMode,
+    participantNames.length
+  );
+  const participantBadges = participantBadgesFor(
+    gameMode,
+    participantNames.length
+  );
+  const isTeamDuel = gameMode === "teams" && participantNames.length === 2;
 
   const headline =
     phase.type === "question"
@@ -227,9 +242,26 @@ export default function SoundBuzzer({
    * rendere vytvoril nový typ, React by podstrom odmontoval a animácie
    * ekvalizéra by sa restartovali.
    */
-  function renderReadout() {
+  function renderReadout(seats: typeof nearSeats) {
     return (
       <div className="music-quiz-readout sound-quiz-readout flex min-h-0 flex-col items-center justify-start gap-2 overflow-hidden px-4 text-center">
+        {/* Štítok tímu zostáva na svojej strane aj počas bodovania. */}
+        {isTeamDuel && (
+          <span className="flex shrink-0 items-center gap-1.5">
+            {seats.map(({ name, index }) => (
+              <TeamSideTag
+                key={`${name}-${index}`}
+                teamIndex={index === 0 ? 0 : 1}
+                name={name}
+                score={scores[index] ?? 0}
+                active={
+                  phase.type !== "question" && phase.participant === index
+                }
+              />
+            ))}
+          </span>
+        )}
+
         <p className="music-quiz-eyebrow sound-quiz-eyebrow shrink-0 rounded-full border px-3 py-1 text-[9px] font-black uppercase tracking-[0.2em]">
           Zvuk {Math.min(questionIndex + 1, deck.length)} / {deck.length}
         </p>
@@ -312,7 +344,8 @@ export default function SoundBuzzer({
     return (
       <div className="music-quiz-deck flex items-stretch justify-center gap-2 px-2">
         {seats.map(({ name, index }) => {
-          const color = PARTY_PLAYER_COLORS[index % PARTY_PLAYER_COLORS.length];
+          const color = participantColors[index % participantColors.length];
+          const badge = participantBadges[index] ?? null;
           return (
             <button
               key={`${name}-${index}`}
@@ -328,6 +361,14 @@ export default function SoundBuzzer({
                 background: `linear-gradient(150deg, ${color}, ${color}b8)`,
               }}
             >
+              {badge && (
+                <span
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-black/25 text-[11px] font-black leading-none"
+                  aria-hidden="true"
+                >
+                  {badge}
+                </span>
+              )}
               <span className="min-w-0 text-left">
                 <span className="music-quiz-seat-name block truncate font-black leading-tight">
                   {name}
@@ -380,7 +421,7 @@ export default function SoundBuzzer({
       <main className="music-quiz-stage sound-quiz-stage two-sided-table grid h-full grid-rows-[auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto] overflow-hidden">
         <div className="rotate-180">{renderActionDeck(farSeats)}</div>
 
-        <div className="rotate-180 min-h-0">{renderReadout()}</div>
+        <div className="rotate-180 min-h-0">{renderReadout(farSeats)}</div>
 
         <div className="music-quiz-center relative flex items-center justify-center gap-3">
           {renderEqualizer("left")}
@@ -431,7 +472,7 @@ export default function SoundBuzzer({
           {renderEqualizer("right")}
         </div>
 
-        <div className="min-h-0">{renderReadout()}</div>
+        <div className="min-h-0">{renderReadout(nearSeats)}</div>
 
         <div>{renderActionDeck(nearSeats)}</div>
       </main>

@@ -1,6 +1,11 @@
 import type { CSSProperties, ReactNode } from "react";
 import { Icons } from "../../components/icons";
 import { appBackground } from "../../media";
+import {
+  PARTY_TEAM_COLORS,
+  PARTY_TEAM_IDENTITIES,
+  partyTeamIdentity,
+} from "./teamIdentity";
 
 export function PartyBackdrop({
   children,
@@ -78,33 +83,38 @@ export function PartyAutoAdvance({
 export function TeamBadge({
   name,
   score,
+  teamIndex,
   color,
-  side,
   active = false,
+  showSide = true,
 }: {
   name: string;
   score: number;
-  color: string;
-  side: "A" | "B";
+  teamIndex: 0 | 1;
+  /** Farba sa dá prebiť len výnimočne — inak platí tímová. */
+  color?: string;
   active?: boolean;
+  showSide?: boolean;
 }) {
+  const team = partyTeamIdentity(teamIndex);
+  const tone = color ?? team.color;
   return (
     <div
       className={`party-team-badge relative min-w-0 flex-1 overflow-hidden rounded-2xl border px-4 py-3 ${active ? "is-active" : ""}`}
       style={{
-        borderColor: `${color}${active ? "bb" : "45"}`,
-        background: `linear-gradient(145deg, ${color}${active ? "32" : "18"}, rgba(255,255,255,.035))`,
+        borderColor: `${tone}${active ? "bb" : "45"}`,
+        background: `linear-gradient(145deg, ${tone}${active ? "32" : "18"}, rgba(255,255,255,.035))`,
         boxShadow: active
-          ? `0 16px 42px -22px ${color}, inset 0 1px 0 rgba(255,255,255,.1)`
+          ? `0 16px 42px -22px ${tone}, inset 0 1px 0 rgba(255,255,255,.1)`
           : "inset 0 1px 0 rgba(255,255,255,.05)",
       }}
     >
       <div className="flex items-center gap-3">
         <span
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-sm font-black text-white"
-          style={{ background: color, boxShadow: `0 0 20px ${color}55` }}
+          style={{ background: tone, boxShadow: `0 0 20px ${tone}55` }}
         >
-          {side}
+          {team.letter}
         </span>
         <span className="min-w-0 flex-1 text-left">
           <span className="block truncate text-[9px] font-black uppercase tracking-[0.14em] text-white/45">
@@ -115,24 +125,146 @@ export function TeamBadge({
           </span>
         </span>
       </div>
+      {showSide && (
+        <span className="mt-1.5 block text-[8px] font-black uppercase tracking-[0.16em] text-white/35">
+          {team.sideArrow} {team.sideLabel}
+        </span>
+      )}
     </div>
+  );
+}
+
+/**
+ * Pevný štítok tímu pri hrane obrazovky.
+ *
+ * Toto je odpoveď na „neviem, na ktorej strane je ktorý tím": štítok drží
+ * písmeno, farbu aj meno tímu a je vždy na tej hrane, pri ktorej tím sedí.
+ * Nezávisí od skóre ani od toho, kto je na rade — mení sa len zvýraznenie.
+ */
+export function TeamSideTag({
+  teamIndex,
+  name,
+  score,
+  active = false,
+  className = "",
+}: {
+  teamIndex: 0 | 1;
+  name: string;
+  score?: number;
+  active?: boolean;
+  className?: string;
+}) {
+  const team = partyTeamIdentity(teamIndex);
+  return (
+    <span
+      className={`inline-flex max-w-full items-center gap-1.5 rounded-full border px-2 py-1 ${className}`}
+      style={{
+        borderColor: `${team.color}${active ? "cc" : "4d"}`,
+        background: `${team.color}${active ? "2e" : "16"}`,
+        boxShadow: active ? `0 0 18px ${team.color}44` : undefined,
+      }}
+      aria-label={`Tím ${team.letter} — ${name}, ${team.sideLabel.toLocaleLowerCase("sk")}`}
+    >
+      <span
+        className="flex h-4 w-4 shrink-0 items-center justify-center rounded-md text-[9px] font-black leading-none text-white"
+        style={{ background: team.color }}
+      >
+        {team.letter}
+      </span>
+      <span className="min-w-0 truncate text-[9px] font-black uppercase tracking-[0.12em] text-white/75">
+        {name}
+      </span>
+      {score !== undefined && (
+        <span className="shrink-0 text-[11px] font-black tabular-nums text-white">
+          {score}
+        </span>
+      )}
+    </span>
+  );
+}
+
+/**
+ * Legenda strán — kto sedí kde. Poradie je vždy A (hore), potom B (dole),
+ * takže sa dá čítať ako mapa stola bez ohľadu na stav hry.
+ */
+export function TeamSideLegend({
+  teamNames,
+  scores,
+  activeIndex,
+  eyebrow = "Strany tímov — platia celú hru",
+}: {
+  teamNames: [string, string];
+  scores?: [number, number];
+  activeIndex?: number;
+  eyebrow?: string;
+}) {
+  return (
+    <section
+      className="party-glass overflow-hidden rounded-[1.5rem] px-4 py-3 text-left"
+      aria-label={eyebrow}
+    >
+      <p className="text-[9px] font-black uppercase tracking-[0.22em] text-white/35">
+        {eyebrow}
+      </p>
+      <div className="mt-2.5 flex flex-col gap-2">
+        {PARTY_TEAM_IDENTITIES.map(team => {
+          const active = activeIndex === team.index;
+          return (
+            <div
+              key={team.letter}
+              className="flex items-center gap-2.5 rounded-xl border px-3 py-2"
+              style={{
+                borderColor: `${team.color}${active ? "aa" : "33"}`,
+                background: `${team.color}${active ? "26" : "12"}`,
+              }}
+            >
+              <span
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[11px] font-black text-white"
+                style={{
+                  background: team.color,
+                  boxShadow: `0 0 16px ${team.color}55`,
+                }}
+              >
+                {team.letter}
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block truncate text-xs font-black text-white">
+                  {teamNames[team.index]}
+                </span>
+                <span className="block text-[9px] font-black uppercase tracking-[0.16em] text-white/40">
+                  {team.sideArrow} {team.sideLabel} telefónu
+                </span>
+              </span>
+              {scores && (
+                <span className="shrink-0 text-xl font-black tabular-nums text-white">
+                  {scores[team.index]}
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
 export function PartyScoreboard({
   teamNames,
   scores,
-  colors,
+  colors = PARTY_TEAM_COLORS,
   eyebrow = "Aktuálne skóre",
   detail = "Body počas celej Party hry",
   highlightLeader = true,
+  showSides = true,
 }: {
   teamNames: [string, string];
   scores: [number, number];
-  colors: [string, string];
+  /** Farby sú tímové — parameter zostáva len pre výnimky. */
+  colors?: [string, string];
   eyebrow?: string;
   detail?: string;
   highlightLeader?: boolean;
+  showSides?: boolean;
 }) {
   const total = Math.max(scores[0] + scores[1], 1);
   const firstShare = (scores[0] / total) * 100;
@@ -153,14 +285,19 @@ export function PartyScoreboard({
           </p>
         </div>
         <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[8px] font-black uppercase tracking-wider text-white/42">
-          {leader === null ? "Remíza" : `Vedie ${leader === 0 ? "A" : "B"}`}
+          {leader === null
+            ? "Remíza"
+            : `Vedie ${partyTeamIdentity(leader).letter}`}
         </span>
       </div>
 
       <div className="mt-5 grid grid-cols-[1fr_auto_1fr] items-end gap-3">
         {([0, 1] as const).map(index => {
           const leading = highlightLeader && leader === index;
+          const team = partyTeamIdentity(index);
           return (
+            // Poradie je pevné: tím A vľavo, tím B vpravo. Aj keď vedie druhý
+            // tím, karty sa nepresúvajú — vedenie označuje len koruna.
             <div
               key={index}
               className={index === 1 ? "text-right" : ""}
@@ -176,7 +313,7 @@ export function PartyScoreboard({
                     boxShadow: `0 0 18px ${colors[index]}66`,
                   }}
                 >
-                  {index === 0 ? "A" : "B"}
+                  {team.letter}
                 </span>
                 {leading && (
                   <span
@@ -193,6 +330,11 @@ export function PartyScoreboard({
               >
                 {teamNames[index]}
               </p>
+              {showSides && (
+                <p className="text-[8px] font-black uppercase tracking-[0.16em] text-white/30">
+                  {team.sideArrow} {team.sideLabel}
+                </p>
+              )}
               <p className="party-sb-score mt-1 text-4xl font-black tabular-nums text-white">
                 {scores[index]}
               </p>
@@ -233,11 +375,17 @@ export function ParticipantScoreStrip({
   scores,
   colors,
   activeIndex,
+  badges,
+  sideHints,
 }: {
   names: string[];
   scores: number[];
   colors: string[];
   activeIndex?: number;
+  /** Písmeno tímu (A/B) v tímovom móde — v sólo móde `null`. */
+  badges?: (string | null)[];
+  /** Pevná strana tímu („↑ hore"), aby bolo jasné, komu odznak patrí. */
+  sideHints?: (string | null)[];
 }) {
   return (
     // Pás je vždy najvyšší prvok hernej obrazovky, takže si rezervuje miesto
@@ -245,9 +393,13 @@ export function ParticipantScoreStrip({
     // a blokovalo vodorovné posúvanie pásu. Použitý je margin, nie padding —
     // pás skroluje a padding by viditeľnú časť nezúžil.
     <div className="exit-slot-inset flex gap-2 overflow-x-auto pb-1">
+      {/* Poradie je vždy poradie účastníkov, nikdy nie podľa skóre — odznak
+          tímu tak zostáva celú hru na tom istom mieste pásu. */}
       {names.map((name, index) => {
         const color = colors[index % colors.length];
         const active = activeIndex === index;
+        const badge = badges?.[index] ?? null;
+        const sideHint = sideHints?.[index] ?? null;
         return (
           <div
             key={`${name}-${index}`}
@@ -258,12 +410,27 @@ export function ParticipantScoreStrip({
               boxShadow: active ? `0 10px 28px ${color}22` : undefined,
             }}
           >
-            <p className="truncate text-[9px] font-black uppercase tracking-wider text-white/50">
-              {name}
+            <p className="flex items-center gap-1.5">
+              {badge && (
+                <span
+                  className="flex h-4 w-4 shrink-0 items-center justify-center rounded-md text-[9px] font-black leading-none text-white"
+                  style={{ background: color }}
+                >
+                  {badge}
+                </span>
+              )}
+              <span className="truncate text-[9px] font-black uppercase tracking-wider text-white/50">
+                {name}
+              </span>
             </p>
             <p className="mt-0.5 text-2xl font-black tabular-nums text-white">
               {scores[index] ?? 0}
             </p>
+            {sideHint && (
+              <p className="text-[8px] font-black uppercase tracking-[0.14em] text-white/30">
+                {sideHint}
+              </p>
+            )}
           </div>
         );
       })}

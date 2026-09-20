@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { Icons } from "../../components/icons";
-import { TEAM_COLORS } from "../../data/teamBattle";
+import {
+  PARTY_TEAM_COLORS,
+  partyTeamIdentity,
+} from "./teamIdentity";
 import { useAutoAdvance } from "../../hooks/useAutoAdvance";
 import { PartyAutoAdvance, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 
@@ -14,7 +17,7 @@ export default function TeamBattleIntro({
 }) {
   const [phase, setPhase] = useState<"countdown" | "reveal">("countdown");
   const [count, setCount] = useState(3);
-  const [blue, red] = TEAM_COLORS;
+  const [blue, red] = PARTY_TEAM_COLORS;
 
   // Predstavenie tímov si partia prečíta a obrazovka ide ďalej sama.
   const auto = useAutoAdvance(4, onDone, phase === "reveal");
@@ -144,13 +147,15 @@ export default function TeamBattleIntro({
                         boxShadow: `0 0 25px ${color}70`,
                       }}
                     >
-                      {index === 0 ? "A" : "B"}
+                      {partyTeamIdentity(index).letter}
                     </span>
                     <span className="mt-4 w-full truncate text-base font-black text-white">
                       {name}
                     </span>
+                    {/* Strana tímu sa počas celej Party hry nemení. */}
                     <span className="mt-1 text-[9px] font-bold uppercase tracking-[0.2em] text-white/30">
-                      pripravený
+                      {partyTeamIdentity(index).sideArrow}{" "}
+                      {partyTeamIdentity(index).sideLabel}
                     </span>
                   </div>
                 );

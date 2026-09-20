@@ -12,9 +12,13 @@ import {
 } from "../../components/TurnAnswerRecap";
 import {
   makeEmptyScores,
-  PARTY_PLAYER_COLORS,
   type QuickParticipantsProps,
 } from "./quickGameShared";
+import {
+  participantBadgesFor,
+  participantColorsFor,
+  partyTeamIdentity,
+} from "./teamIdentity";
 import { soundsEnabled, vibrate } from "../../utils/deviceFeedback";
 import { useSongPreview } from "../../hooks/useSongPreview";
 import SongGameArtwork from "../../components/SongGameArtwork";
@@ -94,8 +98,22 @@ function PassAndPlay({
   const participant = turn % participantNames.length;
   const totalTurns = participantNames.length * rounds;
   const nextParticipant = (turn + 1) % participantNames.length;
+  const participantColors = participantColorsFor(
+    gameMode,
+    participantNames.length
+  );
   const participantColor =
-    PARTY_PLAYER_COLORS[participant % PARTY_PLAYER_COLORS.length];
+    participantColors[participant % participantColors.length];
+  /** Písmeno tímu — v tímovom móde je pri mene vždy, aj keď sa hrá po jednom. */
+  const participantBadges = participantBadgesFor(
+    gameMode,
+    participantNames.length
+  );
+  const participantBadge = participantBadges[participant] ?? null;
+  const participantSide =
+    gameMode === "teams" && participantNames.length === 2
+      ? partyTeamIdentity(participant).sideLabel
+      : null;
   const participantLabel = gameMode === "teams" ? "tím" : "hráč";
   const forbiddenCard =
     mode === "zakazane" ? (card as ForbiddenCard | null) : null;
@@ -306,11 +324,24 @@ function PassAndPlay({
             {Math.floor(turn / participantNames.length) + 1}/{rounds}
           </p>
           <h2
-            className="mt-2 text-4xl font-black"
+            className="mt-2 flex items-center justify-center gap-2.5 text-4xl font-black"
             style={{ color: participantColor }}
           >
+            {participantBadge && (
+              <span
+                className="flex h-9 w-9 items-center justify-center rounded-xl text-base font-black text-white"
+                style={{ background: participantColor }}
+              >
+                {participantBadge}
+              </span>
+            )}
             {participantNames[participant]}
           </h2>
+          {participantSide && (
+            <p className="mt-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
+              {participantSide} — platí celú hru
+            </p>
+          )}
           <section
             className={`party-glass mt-5 w-full max-w-sm rounded-[1.8rem] p-5 ${mode === "pesnicka" ? "song-instruction-card" : ""}`}
           >
@@ -380,9 +411,17 @@ function PassAndPlay({
             Výsledok tímu
           </p>
           <h1
-            className="mt-2 text-3xl font-black"
+            className="mt-2 flex items-center justify-center gap-2.5 text-3xl font-black"
             style={{ color: participantColor }}
           >
+            {participantBadge && (
+              <span
+                className="flex h-8 w-8 items-center justify-center rounded-xl text-sm font-black text-white"
+                style={{ background: participantColor }}
+              >
+                {participantBadge}
+              </span>
+            )}
             {participantNames[participant]}
           </h1>
           <div
@@ -426,10 +465,18 @@ function PassAndPlay({
             Hrá {participantLabel}
           </p>
           <p
-            className="truncate text-base font-black"
+            className="flex min-w-0 items-center gap-1.5 text-base font-black"
             style={{ color: participantColor }}
           >
-            {participantNames[participant]}
+            {participantBadge && (
+              <span
+                className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md text-[10px] font-black text-white"
+                style={{ background: participantColor }}
+              >
+                {participantBadge}
+              </span>
+            )}
+            <span className="truncate">{participantNames[participant]}</span>
           </p>
         </div>
         <CircularTimer

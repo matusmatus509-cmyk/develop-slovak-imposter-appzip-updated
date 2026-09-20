@@ -38,6 +38,7 @@ import { ForbiddenWordGame, GuessSongGame } from "./PassAndPlay";
 import SoundBuzzer from "./SoundBuzzer";
 import MusicBuzzer from "./MusicBuzzer";
 import { FiveInTenGame, LetterChallengeGame } from "./QuickChallenges";
+import { PARTY_TEAM_IDENTITIES } from "./teamIdentity";
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 import type { WordGuessRecordInput } from "../../types";
 import type { CustomContentControls } from "../../components/CustomContentSelector";
@@ -327,6 +328,22 @@ export default function TeamBattle({
           name1={teamNames[0]}
           name2={teamNames[1]}
           secsToEdge={4}
+          // Polovice dostávajú tímové farby a písmená, nie vlastnú paletu hry —
+          // inak by tím A bol tu ružový a v ostatných minihrách modrý.
+          sides={[
+            {
+              color: PARTY_TEAM_IDENTITIES[0].color,
+              colorDark: PARTY_TEAM_IDENTITIES[0].colorDark,
+              badge: PARTY_TEAM_IDENTITIES[0].letter,
+              sideNote: PARTY_TEAM_IDENTITIES[0].sideLabel,
+            },
+            {
+              color: PARTY_TEAM_IDENTITIES[1].color,
+              colorDark: PARTY_TEAM_IDENTITIES[1].colorDark,
+              badge: PARTY_TEAM_IDENTITIES[1].letter,
+              sideNote: PARTY_TEAM_IDENTITIES[1].sideLabel,
+            },
+          ]}
           onBack={() => handleRoundDone([0, 0])}
           onWinner={(winner) => handleRoundDone(winner === 0 ? [1, 0] : [0, 1])}
         />

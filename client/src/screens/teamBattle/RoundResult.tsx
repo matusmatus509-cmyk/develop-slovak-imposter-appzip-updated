@@ -1,6 +1,6 @@
 import type { BattleRound } from "../../data/teamBattle";
 import { Icons } from "../../components/icons";
-import { GAME_ICONS, GAME_LABELS, TEAM_COLORS } from "../../data/teamBattle";
+import { GAME_ICONS, GAME_LABELS } from "../../data/teamBattle";
 import { useAutoAdvance } from "../../hooks/useAutoAdvance";
 import {
   PartyAutoAdvance,
@@ -8,6 +8,7 @@ import {
   PartyEyebrow,
   PartyScoreboard,
 } from "./PartyChrome";
+import { PARTY_TEAM_COLORS, PARTY_TEAM_IDENTITIES } from "./teamIdentity";
 
 export default function RoundResult({
   round,
@@ -24,8 +25,7 @@ export default function RoundResult({
   teamNames: [string, string];
   onNext: () => void;
 }) {
-  const [blue, red] = TEAM_COLORS;
-  const colors = [blue, red];
+  const colors = PARTY_TEAM_COLORS;
   const isLastRound = round.index === totalRounds - 1;
   const earned: [number, number] = [
     roundScores[0] * round.pointMultiplier,
@@ -64,8 +64,10 @@ export default function RoundResult({
             )}
           </header>
 
+          {/* Kachličky sú vždy v poradí A, B — víťaz kola dostane len pruh a
+              rámik, nepresúva sa na prvé miesto. */}
           <section className="grid grid-cols-2 gap-3">
-            {([0, 1] as const).map(index => (
+            {PARTY_TEAM_IDENTITIES.map(({ index, letter, sideArrow, sideLabel }) => (
               <div
                 key={index}
                 className="party-fit-tile party-glass relative overflow-hidden rounded-[1.75rem] p-5"
@@ -87,13 +89,16 @@ export default function RoundResult({
                   className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl text-sm font-black text-white"
                   style={{ background: colors[index] }}
                 >
-                  {index === 0 ? "A" : "B"}
+                  {letter}
                 </span>
                 <p
                   className="mt-3 truncate text-xs font-black uppercase tracking-wider"
                   style={{ color: colors[index] }}
                 >
                   {teamNames[index]}
+                </p>
+                <p className="text-[8px] font-black uppercase tracking-[0.16em] text-white/30">
+                  {sideArrow} {sideLabel}
                 </p>
                 <p className="mt-2 text-4xl font-black tabular-nums text-white">
                   +{earned[index]}
@@ -108,7 +113,6 @@ export default function RoundResult({
           <PartyScoreboard
             teamNames={teamNames}
             scores={totalScores}
-            colors={[blue, red]}
             eyebrow={isLastRound ? "Konečné skóre" : "Celkové skóre"}
             detail={
               isLastRound

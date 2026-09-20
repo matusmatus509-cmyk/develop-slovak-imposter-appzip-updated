@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { Icons } from "../../components/icons";
-import { TEAM_COLORS } from "../../data/teamBattle";
+import {
+  PARTY_TEAM_COLORS,
+  PARTY_TEAM_IDENTITIES,
+} from "./teamIdentity";
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 
@@ -88,8 +91,7 @@ export default function GameOver({
   const [revealed, setRevealed] = useState(false);
   const [celebrating, setCelebrating] = useState(false);
   const displayScores = useAnimatedScores(totalScores, revealed);
-  const [blue, red] = TEAM_COLORS;
-  const colors: [string, string] = [blue, red];
+  const colors: [string, string] = PARTY_TEAM_COLORS;
   const isDraw = totalScores[0] === totalScores[1];
   const winner: 0 | 1 = totalScores[0] >= totalScores[1] ? 0 : 1;
   const difference = Math.abs(totalScores[0] - totalScores[1]);
@@ -160,7 +162,8 @@ export default function GameOver({
             className="mt-4 grid w-full shrink-0 grid-cols-2 items-end gap-3"
             aria-label="Konečná tabuľka skóre"
           >
-            {([0, 1] as const).map(index => {
+            {/* Pódium drží poradie A, B — korunu dostane víťaz, miesto nie. */}
+            {PARTY_TEAM_IDENTITIES.map(({ index, letter, sideArrow, sideLabel }) => {
               const won = !isDraw && winner === index;
               return (
                 <div
@@ -186,13 +189,16 @@ export default function GameOver({
                       boxShadow: `0 0 25px ${colors[index]}66`,
                     }}
                   >
-                    {index === 0 ? "A" : "B"}
+                    {letter}
                   </span>
                   <p
                     className="mt-4 truncate text-xs font-black uppercase tracking-wider"
                     style={{ color: colors[index] }}
                   >
                     {teamNames[index]}
+                  </p>
+                  <p className="text-[8px] font-black uppercase tracking-[0.16em] text-white/30">
+                    {sideArrow} {sideLabel}
                   </p>
                   <p className="mt-2 text-5xl font-black tabular-nums text-white">
                     {displayScores[index]}
