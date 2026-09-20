@@ -368,9 +368,9 @@ function PassAndPlay({
           <button
             onClick={startTurn}
             className="party-shine mt-5 w-full max-w-sm overflow-hidden rounded-2xl px-6 py-5 text-base font-black uppercase tracking-wider text-white shadow-xl transition active:scale-[.97]"
-            style={{
-              background: `linear-gradient(135deg, ${participantColor}, ${copy.accent})`,
-            }}
+            // Gradient predtým mieša farbu tímu s akcentom hry, takže tlačidlo
+            // patrilo obom a ani jednému. Tlačidlo je akcia tímu na rade.
+            style={{ background: participantColor }}
           >
             Spustiť {timeSeconds} sekúnd
           </button>

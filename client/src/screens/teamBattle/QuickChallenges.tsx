@@ -297,7 +297,7 @@ export function LetterChallengeGame({
                 onClick={start}
                 className="party-shine flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95"
                 style={{
-                  background: `linear-gradient(135deg, ${activeColor}, #f59e0b)`,
+                  background: activeColor,
                 }}
               >
                 <Icons.play size={18} /> Odhaliť zadanie a spustiť
@@ -512,7 +512,7 @@ export function FiveInTenGame({
                 onClick={start}
                 className="party-shine flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl py-5 text-base font-black text-white shadow-xl transition active:scale-95"
                 style={{
-                  background: `linear-gradient(135deg, ${activeColor}, #10b981)`,
+                  background: activeColor,
                 }}
               >
                 <Icons.play size={18} /> Odhaliť výzvu a spustiť

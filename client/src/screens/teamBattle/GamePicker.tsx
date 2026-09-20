@@ -2,6 +2,12 @@
  * Dizajn: rovnaká mriežka ako menu Minihry, aby výber v Party mode nepôsobil
  * ako iná aplikácia. Poradie hier je viditeľné priamo na kartách a potvrdenie
  * je ukotvené v spodnom páse, takže je dosiahnuteľné palcom.
+ *
+ * Farbu nesie obrázok hry, nie rám. Predtým mala každá z jedenástich hier
+ * vlastný akcent (jantárová, fialová, ružová, fuchsiová, tyrkysová, oranžová,
+ * zelená, nebeská…), takže mriežka pôsobila ako paleta a nedalo sa v nej
+ * rozoznať, čo je vybrané. Teraz je chróm neutrálny a jediná farba na
+ * obrazovke — akcent Party modu — označuje vybranú hru.
  */
 import { useState, type CSSProperties } from "react";
 import { Icons } from "../../components/icons";
@@ -33,20 +39,6 @@ const ALL_GAMES: GameType[] = [
   "quiz",
   "pingpong",
 ];
-
-const GAME_META: Record<GameType, { accent: string }> = {
-  pantomima: { accent: "#f59e0b" },
-  sarady: { accent: "#8b5cf6" },
-  zakazane: { accent: "#f43f5e" },
-  pesnicka: { accent: "#d946ef" },
-  "hudobny-kviz": { accent: "#c084fc" },
-  zvuk: { accent: "#06b6d4" },
-  pismeno: { accent: "#fb923c" },
-  patzadesat: { accent: "#22c55e" },
-  hadajktosom: { accent: "#38bdf8" },
-  quiz: { accent: "#fbbf24" },
-  pingpong: { accent: "#34d399" },
-};
 
 const GAME_ART: Record<
   GameType,
@@ -96,14 +88,15 @@ export default function TeamBattleGamePicker({
   const count = selectedGames.length;
 
   return (
-    <main className="ui ui-screen scroll-panel">
+    <main className="ui ui-party ui-screen scroll-panel">
       <div className="ui-wrap ui-wrap-dock-gap">
         <div className="ui-bar">
           <button type="button" onClick={onBack} aria-label="Späť" className="ui-back">
             <Icons.arrowLeft size={19} />
           </button>
+          {/* Počet vybraných nesie spodný pás — v hlavičke by sa bil s
+              tlačidlom „Odísť z hry", ktoré tam kreslí rám aplikácie. */}
           <span className="ui-bar-title">Party mode</span>
-          <span className="ui-bar-note">{count} vybraných</span>
         </div>
 
         <header className="ui-head">
@@ -125,7 +118,6 @@ export default function TeamBattleGamePicker({
                 className={`ui-tile ui-pick ${selected ? "is-picked" : ""}`}
                 style={
                   {
-                    "--tile-accent": GAME_META[game].accent,
                     animation: `slideUp .3s ease-out ${Math.min(index * 28, 280)}ms both`,
                   } as CSSProperties
                 }
@@ -149,6 +141,10 @@ export default function TeamBattleGamePicker({
                 <span aria-hidden="true" className="ui-tile-veil" />
                 {/* Poradie je jediný ukazovateľ výberu — číslo nesie informáciu. */}
                 {selected && <span className="ui-pick-order">{order + 1}</span>}
+                {/* Posledná vybraná hra je finále za trojnásobné body. */}
+                {selected && order === count - 1 && count > 1 && (
+                  <span className="ui-pick-final">FINÁLE ×3</span>
+                )}
                 <div className="ui-tile-copy">
                   <h2>{GAME_LABELS[game]}</h2>
                 </div>
@@ -160,11 +156,19 @@ export default function TeamBattleGamePicker({
 
       <div className="ui-dock">
         <div className="ui-dock-inner">
-          <span className="ui-dock-note">
-            {count === 0
-              ? "Vyber aspoň jednu hru"
-              : `${count} ${count === 1 ? "minihra" : count < 5 ? "minihry" : "minihier"}`}
-          </span>
+          {count === 0 ? (
+            <span className="ui-dock-note">Vyber aspoň jednu hru</span>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setSelectedGames([])}
+              className="ui-dock-note"
+              style={{ textAlign: "left", textDecoration: "underline", textDecorationColor: "rgba(255,255,255,.25)", textUnderlineOffset: "3px" }}
+            >
+              {count} {count === 1 ? "minihra" : count < 5 ? "minihry" : "minihier"}
+              <span style={{ opacity: 0.55 }}> · zrušiť výber</span>
+            </button>
+          )}
           <button
             type="button"
             disabled={count === 0}
