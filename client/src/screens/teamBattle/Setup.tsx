@@ -46,7 +46,9 @@ export interface TeamBattleSetupDraft {
   options: TeamBattleOptions;
 }
 
-const PARTY_ACCENT = "#d946ef";
+/** Akcent akcií Party modu (modrá) a jeho protipól (červená) — pozri CSS
+ * `.party-mode-experience` premenné `--pm-accent` / `--pm-rival`. */
+const PARTY_ACCENT = "#4f9bff";
 const QUICK_ROUND_OPTIONS = [1, 2, 3, 4] as const;
 const TIME_OPTIONS = [30, 45, 60, 90] as const;
 
@@ -212,7 +214,7 @@ export default function TeamBattleSetup({
               aria-label="Späť"
               className="party-setup-back flex items-center justify-center rounded-2xl text-white/70 transition active:scale-90"
             >
-              <Icons.arrowLeft size={19} />
+              <Icons.arrowLeft size={21} />
             </button>
             <PartyEyebrow>Party mode</PartyEyebrow>
             <div className="exit-slot-spacer" />
@@ -226,7 +228,7 @@ export default function TeamBattleSetup({
             <span className="party-setup-hero-veil" aria-hidden="true" />
             <div className="party-setup-hero-copy">
               <span className="party-setup-kicker">
-                <Icons.users size={11} /> Dva tímy · séria minihier
+                <Icons.users size={13} /> Dva tímy · séria minihier
               </span>
               <h1 className="party-setup-title">Pripravte tímovú bitku</h1>
             </div>
@@ -274,7 +276,7 @@ export default function TeamBattleSetup({
                   className="party-setup-choice"
                 >
                   <span className="party-setup-choice-icon" aria-hidden="true">
-                    <Icons.layoutDashboard size={17} />
+                    <Icons.layoutDashboard size={22} />
                   </span>
                   <strong>Vyberieme si</strong>
                   <small>Hry aj poradie určíte vy</small>
@@ -284,10 +286,10 @@ export default function TeamBattleSetup({
                   type="button"
                   onClick={() => setSelectionType("random")}
                   aria-pressed={selectionType === "random"}
-                  className="party-setup-choice"
+                  className="party-setup-choice party-setup-choice-rival"
                 >
                   <span className="party-setup-choice-icon" aria-hidden="true">
-                    <Icons.dice size={17} />
+                    <Icons.dice size={22} />
                   </span>
                   <strong>Náhodne</strong>
                   <small>Zostavu vyžrebuje appka</small>
