@@ -3,11 +3,14 @@
  * ako iná aplikácia. Poradie hier je viditeľné priamo na kartách a potvrdenie
  * je ukotvené v spodnom páse, takže je dosiahnuteľné palcom.
  *
- * Farbu nesie obrázok hry, nie rám. Predtým mala každá z jedenástich hier
- * vlastný akcent (jantárová, fialová, ružová, fuchsiová, tyrkysová, oranžová,
- * zelená, nebeská…), takže mriežka pôsobila ako paleta a nedalo sa v nej
- * rozoznať, čo je vybrané. Teraz je chróm neutrálny a jediná farba na
- * obrazovke — akcent Party modu — označuje vybranú hru.
+ * Farby dlaždíc chodia z krátkej kurátorovanej palety (purpurová, fialová,
+ * indigová, nebeská, tyrkysová). Pôvodne mala každá z jedenástich hier vlastný
+ * akcent vrátane jantárovej, oranžovej a zelenej — tie s ostatnými nemali
+ * žiadny vzťah a mriežka pôsobila ako vzorkovník. Päť odtieňov jednej chladnej
+ * rodiny drží mriežku pestrú, ale usadenú.
+ *
+ * Vybraná hra sa nepozná podľa farby (tú má každá dlaždica), ale podľa plného
+ * rámu, stlmeného obrázka a poradového čísla.
  */
 import { useState, type CSSProperties } from "react";
 import { Icons } from "../../components/icons";
@@ -39,6 +42,22 @@ const ALL_GAMES: GameType[] = [
   "quiz",
   "pingpong",
 ];
+
+/**
+ * Kurátorovaná paleta. Poradie je zvolené tak, aby dve susedné dlaždice v
+ * dvojstĺpcovej mriežke nikdy nemali ten istý odtieň.
+ */
+const TILE_PALETTE = [
+  "#d946ef", // purpurová — akcent Party modu
+  "#38bdf8", // nebeská
+  "#a855f7", // fialová
+  "#2dd4bf", // tyrkysová
+  "#818cf8", // indigová
+] as const;
+
+function tileAccent(game: GameType) {
+  return TILE_PALETTE[ALL_GAMES.indexOf(game) % TILE_PALETTE.length];
+}
 
 const GAME_ART: Record<
   GameType,
@@ -118,6 +137,7 @@ export default function TeamBattleGamePicker({
                 className={`ui-tile ui-pick ${selected ? "is-picked" : ""}`}
                 style={
                   {
+                    "--tile-accent": tileAccent(game),
                     animation: `slideUp .3s ease-out ${Math.min(index * 28, 280)}ms both`,
                   } as CSSProperties
                 }
