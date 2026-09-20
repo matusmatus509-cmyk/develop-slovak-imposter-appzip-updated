@@ -6,7 +6,12 @@ import {
   partyTeamIdentity,
 } from "./teamIdentity";
 import { useAutoAdvance } from "../../hooks/useAutoAdvance";
-import { PartyAutoAdvance, PartyBackdrop, PartyEyebrow } from "./PartyChrome";
+import {
+  PartyAutoAdvance,
+  PartyBackdrop,
+  PartyEyebrow,
+  TeamSideLegend,
+} from "./PartyChrome";
 
 export default function TeamBattleIntro({
   teamNames,
@@ -152,10 +157,8 @@ export default function TeamBattleIntro({
                     <span className="mt-4 w-full truncate text-base font-black text-white">
                       {name}
                     </span>
-                    {/* Strana tímu sa počas celej Party hry nemení. */}
                     <span className="mt-1 text-[9px] font-bold uppercase tracking-[0.2em] text-white/30">
-                      {partyTeamIdentity(index).sideArrow}{" "}
-                      {partyTeamIdentity(index).sideLabel}
+                      pripravený
                     </span>
                   </div>
                 );
@@ -173,6 +176,13 @@ export default function TeamBattleIntro({
                 items.push(team);
                 return items;
               }, [])}
+          </div>
+
+          {/* Vysvetlenie strán patrí presne sem — na poslednú obrazovku pred
+              prvým kolom. V nastaveniach by len rušilo zadávanie mien a
+              partia si ho aj tak nezapamätá skôr, než si sadne k stolu. */}
+          <div className="mt-6 w-full">
+            <TeamSideLegend teamNames={teamNames} />
           </div>
         </div>
 
