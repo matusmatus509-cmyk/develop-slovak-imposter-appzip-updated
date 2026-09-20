@@ -14,6 +14,7 @@ import { takePersistentItem } from "../../utils/persistentDeck";
 import { useCountdown } from "../../hooks/useCountdown";
 import { TurnAnswerRecap, type TurnAnswer } from "../../components/TurnAnswerRecap";
 import { partyMinigameAtlas } from "../../media";
+import { partyTeamIdentity } from "../teamBattle/teamIdentity";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -688,6 +689,21 @@ export default function HadajKtoSom({
           >
             {p?.name}
           </h2>
+          {/* V Party mode nesie hráč identitu svojho tímu — písmeno, farbu aj
+              stranu, ktorá sa počas celej hry nemení. */}
+          {partyConfig && (
+            <span
+              className="rounded-2xl border px-4 py-1.5 text-sm font-bold"
+              style={{
+                borderColor: `${partyTeamIdentity(currentPlayer).color}66`,
+                background: `${partyTeamIdentity(currentPlayer).color}33`,
+                color: partyTeamIdentity(currentPlayer).color,
+              }}
+            >
+              Tím {partyTeamIdentity(currentPlayer).letter} ·{" "}
+              {partyTeamIdentity(currentPlayer).sideLabel}
+            </span>
+          )}
           <div
             className="glass rounded-3xl p-4 text-sm text-white/60 max-w-xs leading-relaxed"
             style={{ animation: "slideUp 0.5s ease-out 0.25s both" }}
@@ -776,8 +792,13 @@ export default function HadajKtoSom({
 
   // ── Final result ──────────────────────────────────────────────────────────
   if (phase === "final-result") {
-    const sorted = [...players].sort((a, b) => b.correct - a.correct);
-    const winner = sorted[0];
+    /**
+     * Poradie je poradie hráčov/tímov, nie podľa skóre — v Party mode by inak
+     * tímy na konci hry vymenili miesta. Víťaza označuje pohár a rámik.
+     */
+    const bestCorrect = Math.max(0, ...players.map((player) => player.correct));
+    const winners = players.filter((player) => player.correct === bestCorrect);
+    const winner = winners.length === 1 ? winners[0] : null;
 
     return (
       <Shell>
@@ -791,35 +812,55 @@ export default function HadajKtoSom({
               <Icons.trophy size={48} className="text-yellow-300" />
             </div>
             <h2 className="text-gradient text-2xl font-black">Koniec!</h2>
-            {winner && (
+            {winner ? (
               <p className="text-white/50 text-sm mt-1">
                 Vyhráva{" "}
                 <strong className="text-white">{winner.name}</strong> s{" "}
                 {winner.correct}{" "}
-                {winner.correct === 1 ? "bodom" : winner.correct < 5 ? "bodmi" : "bodmi"}!
+                {winner.correct === 1 ? "bodom" : "bodmi"}!
+              </p>
+            ) : (
+              <p className="text-white/50 text-sm mt-1">
+                Remíza — {bestCorrect}{" "}
+                {bestCorrect === 1 ? "bod" : "bodov"} pre všetkých
               </p>
             )}
           </div>
 
           <div className="flex flex-col gap-2">
-            {sorted.map((p, rank) => (
+            {players.map((p, index) => {
+              const isWinner = winner?.name === p.name;
+              const identity = partyConfig ? partyTeamIdentity(index) : null;
+              return (
               <div
                 key={p.name}
                 className={`glass flex items-center gap-4 rounded-2xl px-4 py-3 ${
-                  rank === 0
-                    ? "border-yellow-500/40 bg-yellow-500/10"
-                    : ""
+                  isWinner ? "border-yellow-500/40 bg-yellow-500/10" : ""
                 }`}
-                style={{ animation: `slideUp 0.5s ease-out ${0.1 + rank * 0.08}s both` }}
+                style={{ animation: `slideUp 0.5s ease-out ${0.1 + index * 0.08}s both` }}
               >
-                <span className={`flex h-8 w-8 items-center justify-center rounded-xl border text-xs font-black ${rank === 0 ? "border-yellow-300/30 bg-yellow-300/10 text-yellow-200" : "border-white/10 bg-white/5 text-white/50"}`}>{rank === 0 ? <Icons.trophy size={16} /> : rank + 1}</span>
+                <span
+                  className={`flex h-8 w-8 items-center justify-center rounded-xl border text-xs font-black ${isWinner ? "border-yellow-300/30 bg-yellow-300/10 text-yellow-200" : "border-white/10 bg-white/5 text-white/50"}`}
+                  style={
+                    identity && !isWinner
+                      ? {
+                          borderColor: `${identity.color}55`,
+                          background: `${identity.color}26`,
+                          color: identity.color,
+                        }
+                      : undefined
+                  }
+                >
+                  {isWinner ? <Icons.trophy size={16} /> : (identity?.letter ?? index + 1)}
+                </span>
                 <span className="flex-1 font-bold">{p.name}</span>
                 <span className="text-green-400 font-black text-xl">{p.correct}</span>
                 <span className="text-white/30 text-sm">
                   /{p.correct + p.skipped}
                 </span>
               </div>
-            ))}
+              );
+            })}
           </div>
 
           {partyConfig ? (

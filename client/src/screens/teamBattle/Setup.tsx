@@ -3,10 +3,14 @@ import { Icons } from "../../components/icons";
 import CustomContentSelector, {
   type CustomContentControls,
 } from "../../components/CustomContentSelector";
-import { TEAM_COLORS, type QuizDifficulty } from "../../data/teamBattle";
+import { type QuizDifficulty } from "../../data/teamBattle";
 import PlayerNamesField from "../../components/PlayerNamesField";
 import GameSettingsPage from "../../components/GameSettingsPage";
-import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
+import { PartyBackdrop, PartyEyebrow, TeamSideLegend } from "./PartyChrome";
+import {
+  PARTY_TEAM_COLORS,
+  partyTeamIdentity,
+} from "./teamIdentity";
 /** Dizajn: Nočná herná aréna — kozmické pozadie, žiarivý mesiac a červený akcent. */
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 import { partyModeArtV2 } from "../../media";
@@ -64,7 +68,7 @@ export default function TeamBattleSetup({
   const [quizDifficulty, setQuizDifficulty] = useState<QuizDifficulty>(
     initialDraft?.options.quizDifficulty ?? "lahke"
   );
-  const [blue, red] = TEAM_COLORS;
+  const [blue, red] = PARTY_TEAM_COLORS;
 
   const canStart = Boolean(names[0].trim() && names[1].trim());
   const quizDifficultyControls = (
@@ -156,16 +160,28 @@ export default function TeamBattleSetup({
             entity="teams"
             min={2}
             max={2}
-            summary="Modrý a Červený tím"
+            summary="Tím A — modrý, horná strana · Tím B — červený, dolná strana"
             badgeFor={index => ({
-              text: index === 0 ? "A" : "B",
-              color: index === 0 ? blue : red,
+              text: partyTeamIdentity(index).letter,
+              color: partyTeamIdentity(index).color,
             })}
             placeholderFor={index =>
-              defaultTeamName(language, index === 0 ? "A" : "B")
+              defaultTeamName(language, partyTeamIdentity(index).letter)
             }
             className="arena-row-card mt-4"
           />
+
+          {/* Strany sa určia raz a platia pre všetky minihry — partia tak vie,
+              kde si má sadnúť, a už sa to počas hry nemení. */}
+          <div className="mt-3">
+            <TeamSideLegend
+              teamNames={[
+                names[0].trim() || defaultTeamName(language, "A"),
+                names[1].trim() || defaultTeamName(language, "B"),
+              ]}
+              eyebrow="Kde sedia tímy — platí celú hru"
+            />
+          </div>
 
           <section className="party-selection-block mt-5">
             <div className="grid grid-cols-2 gap-3">

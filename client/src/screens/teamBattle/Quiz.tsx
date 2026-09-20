@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
-import { TEAM_COLORS } from "../../data/teamBattle";
+import { TeamSideTag } from "./PartyChrome";
+import {
+  PARTY_TEAM_COLORS,
+  PARTY_TEAM_IDENTITIES,
+} from "./teamIdentity";
 import type {
   ResolvedClassicQuestion,
   ResolvedNumericQuestion,
@@ -450,12 +454,27 @@ function QuizFace({
   const info = KIND_INFO[question.kind];
   const opponent = otherTeam(team);
   const stage = state.stage;
+  /** Táto polovica patrí celý súboj jednému tímu — štítok to drží na očiach. */
+  const myTurn =
+    stage.t === "guess"
+      ? stage.team === team
+      : stage.t === "decide"
+        ? slot.firstTeam !== team
+        : false;
 
   return (
     <div
       className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-2 overflow-hidden px-3 py-2"
       style={{ transform: flipped ? "rotate(180deg)" : undefined }}
     >
+      <TeamSideTag
+        teamIndex={team}
+        name={teamName}
+        score={state.scores[team]}
+        active={myTurn}
+        className="shrink-0"
+      />
+
       {/* Pred KAŽDOU otázkou: typ kola + čo majú tímy robiť + otázka. */}
       {stage.t === "brief" && (
         <BriefCard
@@ -849,7 +868,7 @@ export default function TeamQuiz({
   );
   const [state, dispatch] = useReducer(reduce, createQuizDuelState());
   const [drafts, setDrafts] = useState<[string, string]>(["", ""]);
-  const [colorA, colorB] = TEAM_COLORS;
+  const [colorA, colorB] = PARTY_TEAM_COLORS;
   const doneRef = useRef(false);
 
   const slot = plan[state.slot];
@@ -913,21 +932,29 @@ export default function TeamQuiz({
       {/* Stredový pás: skóre a postup kolom. Bodky sa čítajú z oboch strán
           rovnako, na rozdiel od textu „3 / 5“. */}
       <div className="exit-slot-gap relative z-20 mx-3 flex shrink-0 items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.055] px-3 py-1.5 backdrop-blur-xl">
-        {([0, 1] as const).map(index => (
+        {/* Poradie skóre je pevné (A, B) a písmeno so šipkou hovoria, ktorá
+            polovica displeja komu patrí. */}
+        {PARTY_TEAM_IDENTITIES.map(team => (
           <span
-            key={index}
-            className="flex items-center gap-2 rounded-xl px-2.5 py-1"
+            key={team.letter}
+            className="flex items-center gap-1.5 rounded-xl px-2 py-1"
             style={{
-              background: `${index === 0 ? colorA : colorB}1f`,
-              border: `1px solid ${index === 0 ? colorA : colorB}3d`,
+              background: `${team.color}1f`,
+              border: `1px solid ${team.color}3d`,
             }}
+            aria-label={`Tím ${team.letter} (${team.sideLabel.toLocaleLowerCase("sk")}): ${state.scores[team.index]} bodov`}
           >
             <span
-              className="h-2.5 w-2.5 rounded-full"
-              style={{ background: index === 0 ? colorA : colorB }}
-            />
+              className="flex h-4 w-4 items-center justify-center rounded-md text-[9px] font-black leading-none text-white"
+              style={{ background: team.color }}
+            >
+              {team.letter}
+            </span>
+            <span className="text-[9px] font-black leading-none text-white/45">
+              {team.sideArrow}
+            </span>
             <span className="text-base font-black tabular-nums text-white">
-              {state.scores[index]}
+              {state.scores[team.index]}
             </span>
           </span>
         ))}

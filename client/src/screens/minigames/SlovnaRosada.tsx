@@ -20,6 +20,19 @@ import { defaultPlayerName, useLanguage, type AppLanguage } from "../../i18n/Lan
 import { takePersistentItem } from "../../utils/persistentDeck";
 import { useCountdown } from "../../hooks/useCountdown";
 import { TurnAnswerRecap, type TurnAnswer } from "../../components/TurnAnswerRecap";
+import {
+  PARTY_TEAM_IDENTITIES,
+  partyTeamIdentity,
+} from "../teamBattle/teamIdentity";
+
+/**
+ * Tímy sa označujú písmenom a farbou z Party mode (A modrý, B červený), takže
+ * tím vyzerá rovnako tu aj vo všetkých ostatných minihrách. Predtým bol tím B
+ * v šarádach oranžový a označoval sa ako „Tím 2".
+ */
+function teamLabel(team: 0 | 1) {
+  return `Tím ${partyTeamIdentity(team).letter}`;
+}
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -205,8 +218,8 @@ function SetupScreen({
         badgeFor={
           teamMode
             ? (index) => ({
-                text: `T${(index % 2) + 1}`,
-                color: index % 2 === 0 ? "#3b82f6" : "#f97316",
+                text: partyTeamIdentity(index).letter,
+                color: partyTeamIdentity(index).color,
               })
             : undefined
         }
@@ -513,13 +526,13 @@ function PlayingScreen({
       >
         {teamMode && (
           <span
-            className={`rounded-xl px-3 py-1 text-xs font-black ${
-              player.team === 0
-                ? "bg-blue-500/30 text-blue-300"
-                : "bg-orange-500/30 text-orange-300"
-            }`}
+            className="rounded-xl px-3 py-1 text-xs font-black"
+            style={{
+              background: `${partyTeamIdentity(player.team).color}4d`,
+              color: partyTeamIdentity(player.team).color,
+            }}
           >
-            Tím {player.team + 1}
+            {teamLabel(player.team)}
           </span>
         )}
         <span className="text-sm font-bold text-white/50">{player.name}</span>
@@ -685,9 +698,7 @@ export default function SlovnaRosada({
   // ── Who starts ────────────────────────────────────────────────────────────
   if (phase === "who-starts" && current) {
     const isFirst = currentIdx === 0;
-    const teamLabel = teamMode
-      ? `Tím ${current.team + 1}`
-      : null;
+    const currentTeamLabel = teamMode ? teamLabel(current.team) : null;
 
     return (
       <Shell>
@@ -711,16 +722,20 @@ export default function SlovnaRosada({
           >
             {current.name}
           </h2>
-          {teamLabel && (
+          {currentTeamLabel && (
             <span
-              className={`rounded-2xl border px-4 py-1.5 text-sm font-bold ${
-                current.team === 0
-                  ? "border-blue-500/40 bg-blue-500/20 text-blue-300"
-                  : "border-orange-500/40 bg-orange-500/20 text-orange-300"
-              }`}
-              style={{ animation: "popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both" }}
+              className="rounded-2xl border px-4 py-1.5 text-sm font-bold"
+              style={{
+                borderColor: `${partyTeamIdentity(current.team).color}66`,
+                background: `${partyTeamIdentity(current.team).color}33`,
+                color: partyTeamIdentity(current.team).color,
+                animation: "popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both",
+              }}
             >
-              {teamLabel}
+              {currentTeamLabel}
+              {partyConfig
+                ? ` · ${partyTeamIdentity(current.team).sideLabel}`
+                : ""}
             </span>
           )}
           <div
@@ -806,12 +821,15 @@ export default function SlovnaRosada({
               style={{ animation: "slideUp 0.5s ease-out 0.3s both" }}
             >
               <p className="mb-3 text-xs uppercase tracking-widest text-white/40">Skóre tímov</p>
-              {[0, 1].map((t) => {
-                const teamScore = players.filter((p) => p.team === t).reduce((s, p) => s + p.score, 0);
+              {/* Poradie je vždy A, B — nikdy podľa skóre. */}
+              {PARTY_TEAM_IDENTITIES.map((team) => {
+                const teamScore = players
+                  .filter((p) => p.team === team.index)
+                  .reduce((sum, p) => sum + p.score, 0);
                 return (
-                  <div key={t} className="flex items-center justify-between py-1.5">
-                    <span className={`font-bold text-sm ${t === 0 ? "text-blue-300" : "text-orange-300"}`}>
-                      Tím {t + 1}
+                  <div key={team.letter} className="flex items-center justify-between py-1.5">
+                    <span className="font-bold text-sm" style={{ color: team.color }}>
+                      {teamLabel(team.index)}
                     </span>
                     <span className="font-black text-lg text-white">{teamScore}</span>
                   </div>
@@ -847,13 +865,23 @@ export default function SlovnaRosada({
   // ── Final result ──────────────────────────────────────────────────────────
   if (phase === "final-result") {
     if (teamMode) {
-      const teamScores = [0, 1].map((t) => ({
-        team: t,
-        score: players.filter((p) => p.team === t).reduce((s, p) => s + p.score, 0),
-        players: players.filter((p) => p.team === t),
+      /**
+       * Poradie tímov na tabuľke je pevné (A, potom B) — víťaza označuje pohár
+       * a rámik, nie presunutie nahor. Predtým sa tu radilo podľa skóre, takže
+       * tímy si na konci hry vymenili strany.
+       */
+      const teamScores = PARTY_TEAM_IDENTITIES.map((team) => ({
+        team: team.index,
+        score: players
+          .filter((p) => p.team === team.index)
+          .reduce((sum, p) => sum + p.score, 0),
+        players: players.filter((p) => p.team === team.index),
       }));
-      teamScores.sort((a, b) => b.score - a.score);
-      const winner = teamScores[0];
+      const bestScore = Math.max(...teamScores.map((entry) => entry.score));
+      const isDraw = teamScores.every((entry) => entry.score === bestScore);
+      const winner = isDraw
+        ? null
+        : (teamScores.find((entry) => entry.score === bestScore) ?? null);
 
       return (
         <Shell>
@@ -867,30 +895,29 @@ export default function SlovnaRosada({
                 <Icons.trophy size={48} className="text-yellow-300" />
               </div>
               <h2 className="text-gradient text-2xl font-black">
-                Vyhráva Tím {winner.team + 1}!
+                {winner ? `Vyhráva ${teamLabel(winner.team as 0 | 1)}!` : "Remíza!"}
               </h2>
-              <p className="text-white/50 text-sm mt-1">{winner.score} bodov</p>
+              <p className="text-white/50 text-sm mt-1">
+                {winner ? `${winner.score} bodov` : `${bestScore} bodov pre oba tímy`}
+              </p>
             </div>
 
-            {teamScores.map(({ team, score, players: tp }, i) => (
+            {teamScores.map(({ team, score, players: tp }, i) => {
+              const identity = partyTeamIdentity(team);
+              const won = winner?.team === team;
+              return (
               <div
                 key={team}
-                className={`glass rounded-3xl border p-4 ${
-                  team === winner.team
-                    ? team === 0
-                      ? "border-blue-500/40 bg-blue-500/10"
-                      : "border-orange-500/40 bg-orange-500/10"
-                    : ""
-                }`}
-                style={{ animation: `slideUp 0.5s ease-out ${0.15 + i * 0.1}s both` }}
+                className="glass rounded-3xl border p-4"
+                style={{
+                  borderColor: won ? `${identity.color}66` : undefined,
+                  background: won ? `${identity.color}1a` : undefined,
+                  animation: `slideUp 0.5s ease-out ${0.15 + i * 0.1}s both`,
+                }}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span
-                    className={`font-black text-lg ${
-                      team === 0 ? "text-blue-300" : "text-orange-300"
-                    }`}
-                  >
-                    <span className="inline-flex items-center gap-2">{team === winner.team && <Icons.trophy size={17} />}Tím {team + 1}</span>
+                  <span className="font-black text-lg" style={{ color: identity.color }}>
+                    <span className="inline-flex items-center gap-2">{won && <Icons.trophy size={17} />}{teamLabel(team as 0 | 1)}</span>
                   </span>
                   <span className="text-2xl font-black text-white">{score}</span>
                 </div>
@@ -901,7 +928,8 @@ export default function SlovnaRosada({
                   </div>
                 ))}
               </div>
-            ))}
+              );
+            })}
 
             {partyConfig ? (
               <Button

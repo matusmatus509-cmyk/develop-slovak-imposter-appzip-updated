@@ -493,6 +493,11 @@ export interface BattleRound {
   timeSeconds: number;
 }
 
+/**
+ * Základná paleta tímov. Obrazovky ju nečítajú priamo — identitu tímu (farbu,
+ * písmeno aj pevnú stranu telefónu) drží `screens/teamBattle/teamIdentity.ts`,
+ * ktorý je jediným zdrojom pravdy pre celý Party mode.
+ */
 export const TEAM_COLORS: [string, string] = ["#3b82f6", "#ef4444"];
 export const TEAM_ICONS: [string, string] = ["🔵", "🔴"];
 

@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import type { GameType, PantomimaDifficulty } from "../../data/teamBattle";
 import {
-  TEAM_COLORS,
   PANTOMIMA_WORDS_BY_DIFFICULTY,
   PANTOMIMA_DIFFICULTY_POINTS,
   PANTOMIMA_DIFFICULTY_LABELS,
 } from "../../data/teamBattle";
+import { partyTeamIdentity } from "./teamIdentity";
 import { getCharadesWordsForLanguage } from "../../data/charades";
 import { useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
@@ -77,8 +77,9 @@ export default function TimedWords({
   const [activeSharedWord, setActiveSharedWord] = useState("");
   const [skipCount, setSkipCount] = useState(0);
 
-  const [a, b] = TEAM_COLORS;
-  const color = teamIdx === 0 ? a : b;
+  /** Identita tímu na rade — farba, písmeno aj strana sú pevné celú hru. */
+  const team = partyTeamIdentity(teamIdx);
+  const color = team.color;
 
   const doneRef = useRef(false);
   const correctRef = useRef(0);
@@ -305,7 +306,7 @@ export default function TimedWords({
             animation: "popIn 0.5s cubic-bezier(0.34,1.56,0.64,1)",
           }}
         >
-          {teamIdx === 0 ? "A" : "B"}
+          {team.letter}
         </div>
 
         <div style={{ animation: "slideUp 0.5s ease-out 0.1s both" }}>
@@ -315,6 +316,10 @@ export default function TimedWords({
           <h2 className="text-4xl font-black" style={{ color }}>
             {teamNames[teamIdx]}
           </h2>
+          {/* Strana tímu je rovnaká v každej minihre — telefón nikam neputuje. */}
+          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
+            Tím {team.letter} · {team.sideLabel}
+          </p>
         </div>
 
         <div style={{ animation: "fadeIn 0.5s ease-out 0.2s both" }}>
@@ -366,7 +371,7 @@ export default function TimedWords({
             animation: "ring 2s ease-in-out infinite",
           }}
         >
-          {teamIdx === 0 ? "A" : "B"}
+          {team.letter}
         </div>
 
         <div style={{ animation: "fadeIn 0.5s ease-out 0.1s both" }}>
@@ -376,6 +381,10 @@ export default function TimedWords({
           <h2 className="text-4xl font-black" style={{ color }}>
             {teamNames[teamIdx]}
           </h2>
+          {/* Strana tímu je rovnaká v každej minihre — telefón nikam neputuje. */}
+          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
+            Tím {team.letter} · {team.sideLabel}
+          </p>
         </div>
 
         <div
@@ -487,7 +496,13 @@ export default function TimedWords({
             <p className="text-xs font-bold uppercase tracking-widest text-white/30">
               Na rade
             </p>
-            <p className="text-lg font-black" style={{ color }}>
+            <p className="flex items-center gap-2 text-lg font-black" style={{ color }}>
+              <span
+                className="flex h-6 w-6 items-center justify-center rounded-lg text-[11px] font-black text-white"
+                style={{ background: color }}
+              >
+                {team.letter}
+              </span>
               {teamNames[teamIdx]}
             </p>
           </div>

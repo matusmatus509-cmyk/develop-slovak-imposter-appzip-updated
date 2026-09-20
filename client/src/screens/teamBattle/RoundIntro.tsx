@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { BattleRound } from "../../data/teamBattle";
-import { GAME_LABELS, TEAM_COLORS } from "../../data/teamBattle";
+import { GAME_LABELS } from "../../data/teamBattle";
 import { Icons, type IconsType } from "../../components/icons";
 import { useAutoAdvance } from "../../hooks/useAutoAdvance";
 import {
@@ -68,7 +68,6 @@ export default function RoundIntro({
 }) {
   const [starting, setStarting] = useState(false);
   const [countdown, setCountdown] = useState(3);
-  const [blue, red] = TEAM_COLORS;
 
   // Pravidlá kola sa prečítajú a odpočet sa spustí sám — bez odklikávania.
   const auto = useAutoAdvance(6, () => setStarting(true), !starting);
@@ -180,7 +179,6 @@ export default function RoundIntro({
           <PartyScoreboard
             teamNames={teamNames}
             scores={scores}
-            colors={[blue, red]}
             eyebrow={
               round.special === "final"
                 ? "Skóre pred finále"

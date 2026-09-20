@@ -1,4 +1,3 @@
-import { TEAM_COLORS } from "../../data/teamBattle";
 import { Icons } from "../../components/icons";
 import { useAutoAdvance } from "../../hooks/useAutoAdvance";
 import {
@@ -17,7 +16,6 @@ export default function FinaleIntro({
   scores: [number, number];
   onContinue: () => void;
 }) {
-  const [blue, red] = TEAM_COLORS;
   const difference = Math.abs(scores[0] - scores[1]);
   const leader = scores[0] === scores[1] ? null : scores[0] > scores[1] ? 0 : 1;
   const auto = useAutoAdvance(6, onContinue);
@@ -57,7 +55,6 @@ export default function FinaleIntro({
           <PartyScoreboard
             teamNames={teamNames}
             scores={scores}
-            colors={[blue, red]}
             eyebrow="Skóre pred finále"
             detail="Víťaz finále môže otočiť celú hru"
             highlightLeader

@@ -13,9 +13,13 @@ import {
 } from "./PartyChrome";
 import {
   makeEmptyScores,
-  PARTY_PLAYER_COLORS,
   type QuickParticipantsProps,
 } from "./quickGameShared";
+import {
+  participantBadgesFor,
+  participantColorsFor,
+  participantSideHintsFor,
+} from "./teamIdentity";
 import { vibrate } from "../../utils/deviceFeedback";
 import { Icons } from "../../components/icons";
 
@@ -55,10 +59,16 @@ function PlayerTurnCard({
   name,
   color,
   label,
+  badge = null,
+  sideNote = null,
 }: {
   name: string;
   color: string;
   label: string;
+  /** Písmeno tímu (A/B) v tímovom móde. */
+  badge?: string | null;
+  /** Pevná strana tímu, napr. „↑ hore". */
+  sideNote?: string | null;
 }) {
   return (
     <div
@@ -75,7 +85,22 @@ function PlayerTurnCard({
       <p className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40">
         {label}
       </p>
-      <h1 className="mt-3 truncate text-4xl font-black text-white">{name}</h1>
+      <h1 className="mt-3 flex items-center gap-2.5 text-4xl font-black text-white">
+        {badge && (
+          <span
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-base font-black"
+            style={{ background: color }}
+          >
+            {badge}
+          </span>
+        )}
+        <span className="min-w-0 truncate">{name}</span>
+      </h1>
+      {sideNote && (
+        <p className="mt-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
+          {sideNote}
+        </p>
+      )}
       <p className="mt-3 text-sm leading-relaxed text-white/45">
         Zadanie sa ukáže až po spustení času. Priprav sa!
       </p>
@@ -113,8 +138,22 @@ export function LetterChallengeGame({
     scorer: number | null;
   } | null>(null);
   const activeParticipant = turn % participantNames.length;
+  // Farby aj odznaky sú tímové, nie z hráčskej palety — tím si tak drží svoju
+  // farbu vo všetkých minihrách Party mode.
+  const participantColors = participantColorsFor(
+    gameMode,
+    participantNames.length
+  );
+  const participantBadges = participantBadgesFor(
+    gameMode,
+    participantNames.length
+  );
+  const participantSideHints = participantSideHintsFor(
+    gameMode,
+    participantNames.length
+  );
   const activeColor =
-    PARTY_PLAYER_COLORS[activeParticipant % PARTY_PLAYER_COLORS.length];
+    participantColors[activeParticipant % participantColors.length];
   const challenge = deck[turn];
 
   function finish(success: boolean) {
@@ -160,8 +199,10 @@ export function LetterChallengeGame({
           <ParticipantScoreStrip
             names={participantNames}
             scores={scores}
-            colors={PARTY_PLAYER_COLORS}
+            colors={participantColors}
             activeIndex={activeParticipant}
+            badges={participantBadges}
+            sideHints={participantSideHints}
           />
 
           <div className="mt-5 flex items-center justify-between gap-3">
@@ -179,6 +220,8 @@ export function LetterChallengeGame({
                 name={participantNames[activeParticipant]}
                 color={activeColor}
                 label={`Na rade • kolo ${turn + 1}`}
+                badge={participantBadges[activeParticipant] ?? null}
+                sideNote={participantSideHints[activeParticipant] ?? null}
               />
             )}
 
@@ -235,8 +278,8 @@ export function LetterChallengeGame({
                     color:
                       feedback.scorer === null
                         ? "rgba(255,255,255,.4)"
-                        : PARTY_PLAYER_COLORS[
-                            feedback.scorer % PARTY_PLAYER_COLORS.length
+                        : participantColors[
+                            feedback.scorer % participantColors.length
                           ],
                   }}
                 >
@@ -293,6 +336,7 @@ export function LetterChallengeGame({
 
 export function FiveInTenGame({
   participantNames,
+  gameMode,
   onDone,
   rounds,
   timeSeconds = 10,
@@ -312,8 +356,22 @@ export function FiveInTenGame({
   );
   const [success, setSuccess] = useState(false);
   const activeParticipant = turn % participantNames.length;
+  // Farby aj odznaky sú tímové, nie z hráčskej palety — tím si tak drží svoju
+  // farbu vo všetkých minihrách Party mode.
+  const participantColors = participantColorsFor(
+    gameMode,
+    participantNames.length
+  );
+  const participantBadges = participantBadgesFor(
+    gameMode,
+    participantNames.length
+  );
+  const participantSideHints = participantSideHintsFor(
+    gameMode,
+    participantNames.length
+  );
   const activeColor =
-    PARTY_PLAYER_COLORS[activeParticipant % PARTY_PLAYER_COLORS.length];
+    participantColors[activeParticipant % participantColors.length];
 
   function finish(completed: boolean) {
     if (phase !== "playing") return;
@@ -352,8 +410,10 @@ export function FiveInTenGame({
           <ParticipantScoreStrip
             names={participantNames}
             scores={scores}
-            colors={PARTY_PLAYER_COLORS}
+            colors={participantColors}
             activeIndex={activeParticipant}
+            badges={participantBadges}
+            sideHints={participantSideHints}
           />
 
           <div className="mt-5 flex items-center justify-between gap-3">
@@ -378,6 +438,8 @@ export function FiveInTenGame({
                 name={participantNames[activeParticipant]}
                 color={activeColor}
                 label={`Nová výzva • ${turn + 1}/${prompts.length}`}
+                badge={participantBadges[activeParticipant] ?? null}
+                sideNote={participantSideHints[activeParticipant] ?? null}
               />
             )}
 

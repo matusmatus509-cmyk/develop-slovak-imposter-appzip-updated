@@ -16,11 +16,24 @@ function takePrompt() {
   return takePersistentItem(PING_PONG_DECK_KEY, PING_PONG_PROMPTS);
 }
 
-// Colors
-const COLOR_TOP = "#e85577"; // Player 1 — red/pink
-const COLOR_TOP_DARK = "#9e2a40";
-const COLOR_BOT = "#6b70d8"; // Player 2 — blue/purple
-const COLOR_BOT_DARK = "#3a3e8a";
+/**
+ * Vzhľad jednej polovice stola. Sólo hra má vlastnú ružovo-modrú dvojicu,
+ * Party mode do nej posiela farby a písmená tímov, takže tím A je aj tu modrý
+ * a hore, tím B červený a dole — presne ako v ostatných minihrách.
+ */
+export interface PingPongSideStyle {
+  color: string;
+  colorDark: string;
+  /** Písmeno tímu (A/B). V sólo hre sa nezobrazuje. */
+  badge?: string;
+  /** Doplnkový popis strany, napr. „Horná strana". */
+  sideNote?: string;
+}
+
+const DEFAULT_SIDES: [PingPongSideStyle, PingPongSideStyle] = [
+  { color: "#e85577", colorDark: "#9e2a40" }, // hráč 1 — ružová, hore
+  { color: "#6b70d8", colorDark: "#3a3e8a" }, // hráč 2 — modrofialová, dole
+];
 
 const SPEED_OPTIONS = [
   { label: "Pomaly", val: 6 },
@@ -129,15 +142,23 @@ export function SlovnyPingPongGame({
   name1,
   name2,
   secsToEdge,
+  sides = DEFAULT_SIDES,
   onBack,
   onWinner,
 }: {
   name1: string;
   name2: string;
   secsToEdge: number;
+  /** Farby a odznaky polovíc. Index 0 je vždy horná polovica. */
+  sides?: [PingPongSideStyle, PingPongSideStyle];
   onBack: () => void;
   onWinner?: (winner: 0 | 1) => void;
 }) {
+  const [topSide, bottomSide] = sides;
+  const COLOR_TOP = topSide.color;
+  const COLOR_TOP_DARK = topSide.colorDark;
+  const COLOR_BOT = bottomSide.color;
+  const COLOR_BOT_DARK = bottomSide.colorDark;
   // ballY: 0 = top edge, 1 = bottom edge. Start in middle.
   const [ballY, setBallY] = useState(0.5);
   const [prompt, setPrompt] = useState(() => takePrompt());
@@ -296,11 +317,21 @@ export function SlovnyPingPongGame({
           style={{ transform: "rotate(180deg)", pointerEvents: "none" }}
         >
           <p
-            className="font-black text-white/90 tracking-tight leading-none"
+            className="flex items-center justify-center gap-2 font-black text-white/90 tracking-tight leading-none"
             style={{ fontSize: "clamp(1.4rem, 5vw, 2.2rem)" }}
           >
+            {topSide.badge && (
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-black/25 text-base font-black">
+                {topSide.badge}
+              </span>
+            )}
             {name1}
           </p>
+          {topSide.sideNote && (
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/55">
+              {topSide.sideNote}
+            </p>
+          )}
           {isTopActive && (
             <p className="text-white/70 font-bold text-sm animate-pulse">
               ↓ KLEPNI PO KAŽDOM SLOVE ↓
@@ -357,11 +388,21 @@ export function SlovnyPingPongGame({
           style={{ pointerEvents: "none" }}
         >
           <p
-            className="font-black text-white/90 tracking-tight leading-none"
+            className="flex items-center justify-center gap-2 font-black text-white/90 tracking-tight leading-none"
             style={{ fontSize: "clamp(1.4rem, 5vw, 2.2rem)" }}
           >
+            {bottomSide.badge && (
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-black/25 text-base font-black">
+                {bottomSide.badge}
+              </span>
+            )}
             {name2}
           </p>
+          {bottomSide.sideNote && (
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/55">
+              {bottomSide.sideNote}
+            </p>
+          )}
           {!isTopActive && (
             <p className="text-white/70 font-bold text-sm animate-pulse">
               ↑ KLEPNI PO KAŽDOM SLOVE ↑
