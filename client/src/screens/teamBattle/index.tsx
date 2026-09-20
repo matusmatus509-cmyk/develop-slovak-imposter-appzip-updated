@@ -1,28 +1,9 @@
-import { useRef, useState } from "react";
-import {
-  generateBattleRounds,
-  type BattleRound,
-  type GameType,
-  type QuizDifficulty,
-  type QuizQuestion,
-} from "../../data/teamBattle";
-import {
-  drawQuizDuelQuestions,
-  type ResolvedQuizDuelQuestion,
-} from "../../data/quizDuel";
-import {
-  buildQuizDuelKindOrder,
-  QUIZ_DUEL_QUESTIONS_PER_ROUND,
-  type TeamIndex,
-} from "./quizDuelRound";
-
-import TeamBattleSetup, {
-  type TeamBattleOptions,
-  type TeamBattleSetupDraft,
-} from "./Setup";
-/** Dizajn: Párty výber sa otvára až po štarte vlastnej zostavy; aktuálne hero karty potvrdia poradie a potom sa hra začne priamo. */
+import { useRef, useState, type ReactNode } from "react";
+import { generateBattleRounds, type BattleRound, type GameType, type QuizDifficulty, type QuizQuestion } from "../../data/teamBattle";
+import { drawQuizDuelQuestions, type ResolvedQuizDuelQuestion } from "../../data/quizDuel";
+import { buildQuizDuelKindOrder, QUIZ_DUEL_QUESTIONS_PER_ROUND, type TeamIndex } from "./quizDuelRound";
+import TeamBattleSetup, { type TeamBattleOptions, type TeamBattleSetupDraft } from "./Setup";
 import TeamBattleGamePicker from "./GamePicker";
-/** Dĺžka náhodnej bitky sa vyberá až po štarte, na vlastnej obrazovke. */
 import TeamBattleRoundCountPicker from "./RoundCountPicker";
 import TeamBattleIntro from "./Intro";
 import RoundIntro from "./RoundIntro";
@@ -38,20 +19,12 @@ import { ForbiddenWordGame, GuessSongGame } from "./PassAndPlay";
 import SoundBuzzer from "./SoundBuzzer";
 import MusicBuzzer from "./MusicBuzzer";
 import { FiveInTenGame, LetterChallengeGame } from "./QuickChallenges";
+import PartyTeamOrientation from "./PartyTeamOrientation";
 import { defaultTeamName, useLanguage } from "../../i18n/LanguageProvider";
 import type { WordGuessRecordInput } from "../../types";
 import type { CustomContentControls } from "../../components/CustomContentSelector";
 
-type Phase =
-  | "setup"
-  | "round-picker"
-  | "game-picker"
-  | "intro"
-  | "finale"
-  | "round-intro"
-  | "playing"
-  | "round-result"
-  | "game-over";
+type Phase = "setup" | "round-picker" | "game-picker" | "intro" | "finale" | "round-intro" | "playing" | "round-result" | "game-over";
 
 export interface TeamBattleSummary {
   teamNames: [string, string];
@@ -61,13 +34,7 @@ export interface TeamBattleSummary {
   winnerName?: string;
 }
 
-export default function TeamBattle({
-  onHome,
-  onGameComplete,
-  onWordGuessed,
-  customQuestions = [],
-  customControls,
-}: {
+export default function TeamBattle({ onHome, onGameComplete, onWordGuessed, customQuestions: _customQuestions = [], customControls }: {
   onHome: () => void;
   onGameComplete?: (summary: TeamBattleSummary) => void;
   onWordGuessed?: (record: WordGuessRecordInput) => void;
@@ -75,30 +42,9 @@ export default function TeamBattle({
   customControls?: CustomContentControls;
 }) {
   const { language } = useLanguage();
-  /**
-   * Kvízový súboj: najprv sa vyžrebuje zloženie kola (typy otázok) a potom sa
-   * pre každý typ vytiahne otázka z vlastného decku bez opakovania.
-   *
-   * Poznámka: vlastné otázky z Dielne (`customQuestions`) majú len text a
-   * odpoveď — nové formáty potrebujú možnosti alebo číselnú hodnotu, takže sa
-   * do kvízového kola nepridávajú. (Ani v predchádzajúcej verzii sa nepoužili,
-   * lebo im chýbala náročnosť, podľa ktorej sa filtrovalo.)
-   */
-  function chooseQuizQuestions(difficulty: QuizDifficulty) {
-    const kinds = buildQuizDuelKindOrder(QUIZ_DUEL_QUESTIONS_PER_ROUND);
-    return drawQuizDuelQuestions(language, difficulty, kinds);
-  }
   const [phase, setPhase] = useState<Phase>("setup");
-  const [teamNames, setTeamNames] = useState<[string, string]>([
-    defaultTeamName(language, "A"),
-    defaultTeamName(language, "B"),
-  ]);
+  const [teamNames, setTeamNames] = useState<[string, string]>([defaultTeamName(language, "A"), defaultTeamName(language, "B")]);
   const [selectedGames, setSelectedGames] = useState<GameType[]>([]);
-  /**
-   * Rozpracované nastavenie arény. Drží sa tu, nie v `TeamBattleSetup` — ten sa
-   * pri prechode na výber kôl/hier odmontuje a mená tímov by sa stratili.
-   * Zároveň slúži ako payload, z ktorého sa hra nakoniec spustí.
-   */
   const [setupDraft, setSetupDraft] = useState<TeamBattleSetupDraft | null>(null);
   const [rounds, setRounds] = useState<BattleRound[]>([]);
   const [currentRoundIdx, setCurrentRoundIdx] = useState(0);
@@ -107,27 +53,23 @@ export default function TeamBattle({
   const [quickRounds, setQuickRounds] = useState(2);
   const [quizDifficulty, setQuizDifficulty] = useState<QuizDifficulty>("lahke");
   const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [roundQuestions, setRoundQuestions] = useState<ResolvedQuizDuelQuestion[]>([]);
+  const [quizStartTeam, setQuizStartTeam] = useState<TeamIndex>(0);
   const completionReportedRef = useRef(false);
   const partyStartedAtRef = useRef<number | null>(null);
-
-  // Per-round questions are selected at round start.
-  const [roundQuestions, setRoundQuestions] = useState<ResolvedQuizDuelQuestion[]>([]);
-  /** Kto v kvíze začína pri sekvenčných typoch — striedanie drží kolo férové. */
-  const [quizStartTeam, setQuizStartTeam] = useState<TeamIndex>(0);
-
   const currentRound = rounds[currentRoundIdx] ?? null;
 
-  // ── Handlers ──────────────────────────────────────────────────────────────
+  function chooseQuizQuestions(difficulty: QuizDifficulty) {
+    return drawQuizDuelQuestions(language, difficulty, buildQuizDuelKindOrder(QUIZ_DUEL_QUESTIONS_PER_ROUND));
+  }
 
   function handleSetupStart(names: [string, string], selection: number | GameType[], options: TeamBattleOptions) {
     setTeamNames(names);
     setQuickRounds(options.quickRounds);
     setQuizDifficulty(options.quizDifficulty);
-    setRounds(generateBattleRounds(selection).map((round) => ({
+    setRounds(generateBattleRounds(selection).map(round => ({
       ...round,
-      timeSeconds: ["pantomima", "sarady", "zakazane", "pesnicka", "hadajktosom"].includes(round.game)
-        ? options.timeSeconds
-        : round.timeSeconds,
+      timeSeconds: ["pantomima", "sarady", "zakazane", "pesnicka", "hadajktosom"].includes(round.game) ? options.timeSeconds : round.timeSeconds,
     })));
     setCurrentRoundIdx(0);
     setTotalScores([0, 0]);
@@ -138,48 +80,20 @@ export default function TeamBattle({
     setPhase("intro");
   }
 
-  function handleManualSelectionStart(draft: TeamBattleSetupDraft) {
-    setSetupDraft(draft);
-    setPhase("game-picker");
-  }
-
-  function handleRandomSelectionStart(draft: TeamBattleSetupDraft) {
-    setSetupDraft(draft);
-    setPhase("round-picker");
-  }
-
-  function handleIntroEnd() {
-    prepareRoundData(0);
-    setPhase(rounds[0]?.special === "final" ? "finale" : "round-intro");
-  }
-
-  function prepareRoundData(idx: number) {
-    const r = rounds[idx];
-    if (!r) return;
-    if (r.game === "quiz") {
+  function prepareRoundData(index: number) {
+    if (rounds[index]?.game === "quiz") {
       setRoundQuestions(chooseQuizQuestions(quizDifficulty));
       setQuizStartTeam(Math.random() < 0.5 ? 0 : 1);
     }
   }
 
-  function handleRoundStart() {
-    setPhase("playing");
-  }
-
   function handleRoundDone(scores: [number, number]) {
     if (!currentRound) return;
-    const earned: [number, number] = [
-      scores[0] * currentRound.pointMultiplier,
-      scores[1] * currentRound.pointMultiplier,
-    ];
+    const earned: [number, number] = [scores[0] * currentRound.pointMultiplier, scores[1] * currentRound.pointMultiplier];
     setRoundScores(scores);
-    setCorrectAnswers((previous) => previous + Math.max(0, scores[0]) + Math.max(0, scores[1]));
-    setTotalScores((prev) => [prev[0] + earned[0], prev[1] + earned[1]]);
+    setCorrectAnswers(previous => previous + Math.max(0, scores[0]) + Math.max(0, scores[1]));
+    setTotalScores(previous => [previous[0] + earned[0], previous[1] + earned[1]]);
     setPhase("round-result");
-  }
-
-  function handleQuickRoundDone(scores: number[]) {
-    handleRoundDone([scores[0] ?? 0, scores[1] ?? 0]);
   }
 
   function handleNextRound() {
@@ -187,200 +101,56 @@ export default function TeamBattle({
     if (next >= rounds.length) {
       if (!completionReportedRef.current) {
         completionReportedRef.current = true;
-        const winnerName = totalScores[0] === totalScores[1]
-          ? undefined
-          : teamNames[totalScores[0] > totalScores[1] ? 0 : 1];
+        const winnerName = totalScores[0] === totalScores[1] ? undefined : teamNames[totalScores[0] > totalScores[1] ? 0 : 1];
         const durationSeconds = Math.max(1, Math.round((Date.now() - (partyStartedAtRef.current ?? Date.now())) / 1000));
         onGameComplete?.({ teamNames, totalScores, correctAnswers, durationSeconds, winnerName });
       }
       setPhase("game-over");
-    } else {
-      setCurrentRoundIdx(next);
-      prepareRoundData(next);
-      setPhase(rounds[next]?.special === "final" ? "finale" : "round-intro");
+      return;
     }
+    setCurrentRoundIdx(next);
+    prepareRoundData(next);
+    setPhase(rounds[next]?.special === "final" ? "finale" : "round-intro");
   }
 
-  function handlePlayAgain() {
-    setCorrectAnswers(0);
-    completionReportedRef.current = false;
-    setPhase("setup");
-  }
+  const oriented = (content: ReactNode) => (
+    <PartyTeamOrientation teamNames={teamNames}>{content}</PartyTeamOrientation>
+  );
 
-  // ── Render ────────────────────────────────────────────────────────────────
+  if (phase === "setup") return <div className="party-phase-shell"><TeamBattleSetup initialDraft={setupDraft} onBack={onHome} onStartRandomSelection={draft => { setSetupDraft(draft); setPhase("round-picker"); }} onStartManualSelection={draft => { setSetupDraft(draft); setPhase("game-picker"); }} customControls={customControls} /></div>;
 
-  if (phase === "setup") {
-    return <div className="party-phase-shell" key="setup"><TeamBattleSetup initialDraft={setupDraft} onBack={onHome} onStartRandomSelection={handleRandomSelectionStart} onStartManualSelection={handleManualSelectionStart} customControls={customControls} /></div>;
-  }
+  if (phase === "round-picker") return <div className="party-phase-shell"><TeamBattleRoundCountPicker onBack={() => setPhase("setup")} onStart={count => { if (!setupDraft) return setPhase("setup"); handleSetupStart(setupDraft.teamNames, count, setupDraft.options); }} /></div>;
 
-  // Späť z oboch výberov draft zámerne nemaže — setup sa vráti tak, ako ho
-  // partia nechala.
-  if (phase === "round-picker") {
-    return (
-      <div className="party-phase-shell" key="round-picker">
-        <TeamBattleRoundCountPicker
-          onBack={() => setPhase("setup")}
-          onStart={(count) => {
-            if (!setupDraft) { setPhase("setup"); return; }
-            handleSetupStart(setupDraft.teamNames, count, setupDraft.options);
-          }}
-        />
-      </div>
-    );
-  }
+  if (phase === "game-picker") return <div className="party-phase-shell"><TeamBattleGamePicker initialSelectedGames={selectedGames} onBack={() => setPhase("setup")} onConfirm={games => { setSelectedGames(games); if (!setupDraft) return setPhase("setup"); handleSetupStart(setupDraft.teamNames, games, setupDraft.options); }} /></div>;
 
-  if (phase === "game-picker") {
-    return (
-      <div className="party-phase-shell" key="game-picker">
-        <TeamBattleGamePicker
-          initialSelectedGames={selectedGames}
-          onBack={() => setPhase("setup")}
-          onConfirm={(games) => {
-            setSelectedGames(games);
-            if (!setupDraft) { setPhase("setup"); return; }
-            handleSetupStart(setupDraft.teamNames, games, setupDraft.options);
-          }}
-        />
-      </div>
-    );
-  }
+  if (phase === "intro") return <div className="party-phase-shell"><TeamBattleIntro teamNames={teamNames} onDone={() => { prepareRoundData(0); setPhase(rounds[0]?.special === "final" ? "finale" : "round-intro"); }} /></div>;
 
-  if (phase === "intro") {
-    return <div className="party-phase-shell" key="intro"><TeamBattleIntro teamNames={teamNames} onDone={handleIntroEnd} /></div>;
-  }
+  if (phase === "finale" && currentRound) return <div className="party-phase-shell"><FinaleIntro teamNames={teamNames} scores={totalScores} onContinue={() => setPhase("round-intro")} /></div>;
 
-  if (phase === "finale" && currentRound) {
-    return (
-      <div className="party-phase-shell" key="finale">
-        <FinaleIntro
-          teamNames={teamNames}
-          scores={totalScores}
-          onContinue={() => setPhase("round-intro")}
-        />
-      </div>
-    );
-  }
-
-  if (phase === "round-intro" && currentRound) {
-    return (
-      <RoundIntro
-        round={currentRound}
-        totalRounds={rounds.length}
-        scores={totalScores}
-        teamNames={teamNames}
-        onStart={handleRoundStart}
-      />
-    );
-  }
+  if (phase === "round-intro" && currentRound) return <RoundIntro round={currentRound} totalRounds={rounds.length} scores={totalScores} teamNames={teamNames} onStart={() => setPhase("playing")} />;
 
   if (phase === "playing" && currentRound) {
-    const game = currentRound.game;
-
-    if (game === "pantomima") {
-      return (
-        <TimedWords
-          teamNames={teamNames}
-          words={[]}
-          timeSeconds={currentRound.timeSeconds}
-          mode={game}
-          onDone={handleRoundDone}
-        />
-      );
+    const doneQuick = (scores: number[]) => handleRoundDone([scores[0] ?? 0, scores[1] ?? 0]);
+    let game: ReactNode = null;
+    switch (currentRound.game) {
+      case "pantomima": game = <TimedWords teamNames={teamNames} words={[]} timeSeconds={currentRound.timeSeconds} mode="pantomima" onDone={handleRoundDone} />; break;
+      case "sarady": game = <PartySlovnaRosada teamNames={teamNames} timerSecs={currentRound.timeSeconds} onWordGuessed={onWordGuessed} onDone={handleRoundDone} />; break;
+      case "hadajktosom": game = <PartyHadajKtoSom teamNames={teamNames} timerSeconds={currentRound.timeSeconds} onWordGuessed={onWordGuessed} onDone={handleRoundDone} />; break;
+      case "quiz": game = <TeamQuiz questions={roundQuestions} teamNames={teamNames} startTeam={quizStartTeam} onDone={handleRoundDone} />; break;
+      case "pingpong": game = <SlovnyPingPongGame name1={teamNames[0]} name2={teamNames[1]} secsToEdge={4} onBack={() => handleRoundDone([0, 0])} onWinner={winner => handleRoundDone(winner === 0 ? [1, 0] : [0, 1])} />; break;
+      case "zakazane": game = <ForbiddenWordGame participantNames={teamNames} gameMode="teams" rounds={quickRounds} timeSeconds={currentRound.timeSeconds} onDone={doneQuick} />; break;
+      case "pesnicka": game = <GuessSongGame participantNames={teamNames} gameMode="teams" rounds={quickRounds} timeSeconds={currentRound.timeSeconds} onDone={doneQuick} />; break;
+      case "hudobny-kviz": game = <MusicBuzzer participantNames={teamNames} gameMode="teams" rounds={quickRounds * 5} timeSeconds={10} onDone={doneQuick} />; break;
+      case "zvuk": game = <SoundBuzzer participantNames={teamNames} gameMode="teams" rounds={quickRounds * 5} onDone={doneQuick} />; break;
+      case "pismeno": game = <LetterChallengeGame participantNames={teamNames} gameMode="teams" rounds={quickRounds} onDone={doneQuick} />; break;
+      case "patzadesat": game = <FiveInTenGame participantNames={teamNames} gameMode="teams" rounds={quickRounds} onDone={doneQuick} />; break;
     }
-
-    if (game === "sarady") {
-      return (
-        <PartySlovnaRosada
-          teamNames={teamNames}
-          timerSecs={currentRound.timeSeconds}
-          onWordGuessed={onWordGuessed}
-          onDone={handleRoundDone}
-        />
-      );
-    }
-
-    if (game === "hadajktosom") {
-      return (
-        <PartyHadajKtoSom
-          teamNames={teamNames}
-          timerSeconds={currentRound.timeSeconds}
-          onWordGuessed={onWordGuessed}
-          onDone={handleRoundDone}
-        />
-      );
-    }
-
-    if (game === "quiz") {
-      return (
-        <TeamQuiz
-          questions={roundQuestions}
-          teamNames={teamNames}
-          startTeam={quizStartTeam}
-          onDone={handleRoundDone}
-        />
-      );
-    }
-
-    if (game === "pingpong") {
-      return (
-        <SlovnyPingPongGame
-          name1={teamNames[0]}
-          name2={teamNames[1]}
-          secsToEdge={4}
-          onBack={() => handleRoundDone([0, 0])}
-          onWinner={(winner) => handleRoundDone(winner === 0 ? [1, 0] : [0, 1])}
-        />
-      );
-    }
-
-    if (game === "zakazane") {
-      return <ForbiddenWordGame participantNames={teamNames} gameMode="teams" rounds={quickRounds} timeSeconds={currentRound.timeSeconds} onDone={handleQuickRoundDone} />;
-    }
-
-    if (game === "pesnicka") {
-      return <GuessSongGame participantNames={teamNames} gameMode="teams" rounds={quickRounds} timeSeconds={currentRound.timeSeconds} onDone={handleQuickRoundDone} />;
-    }
-
-    if (game === "hudobny-kviz") {
-      return <MusicBuzzer participantNames={teamNames} gameMode="teams" rounds={quickRounds * 5} timeSeconds={10} onDone={handleQuickRoundDone} />;
-    }
-
-    if (game === "zvuk") {
-      return <SoundBuzzer participantNames={teamNames} gameMode="teams" rounds={quickRounds * 5} onDone={handleQuickRoundDone} />;
-    }
-
-    if (game === "pismeno") {
-      return <LetterChallengeGame participantNames={teamNames} gameMode="teams" rounds={quickRounds} onDone={handleQuickRoundDone} />;
-    }
-
-    if (game === "patzadesat") {
-      return <FiveInTenGame participantNames={teamNames} gameMode="teams" rounds={quickRounds} onDone={handleQuickRoundDone} />;
-    }
+    return oriented(game);
   }
 
-  if (phase === "round-result" && currentRound) {
-    return (
-      <RoundResult
-        round={currentRound}
-        totalRounds={rounds.length}
-        roundScores={roundScores}
-        totalScores={totalScores}
-        teamNames={teamNames}
-        onNext={handleNextRound}
-      />
-    );
-  }
+  if (phase === "round-result" && currentRound) return <RoundResult round={currentRound} totalRounds={rounds.length} roundScores={roundScores} totalScores={totalScores} teamNames={teamNames} onNext={handleNextRound} />;
 
-  if (phase === "game-over") {
-    return (
-      <GameOver
-        teamNames={teamNames}
-        totalScores={totalScores}
-        onPlayAgain={handlePlayAgain}
-        onHome={onHome}
-      />
-    );
-  }
+  if (phase === "game-over") return <GameOver teamNames={teamNames} totalScores={totalScores} onPlayAgain={() => { setCorrectAnswers(0); completionReportedRef.current = false; setPhase("setup"); }} onHome={onHome} />;
 
   return null;
 }
