@@ -3,15 +3,10 @@ import { TEAM_COLORS } from "../../data/teamBattle";
 import { PARTY_TEAM_IDENTITIES } from "./partyTeamIdentity";
 
 /**
- * Trvalá orientačná vrstva nad každou Party Mode mini-hrou.
- *
+ * Trvalá orientačná vrstva pre Party Mode.
  * Nezávisí od aktívneho ťahu, preto sa strany ani farby počas kola nemenia.
- * `pointer-events-none` zaručuje, že neblokuje herné ovládanie.
  */
-export default function PartyTeamOrientation({
-  teamNames,
-  children,
-}: {
+export default function PartyTeamOrientation({ teamNames, children }: {
   teamNames: [string, string];
   children: ReactNode;
 }) {
@@ -19,7 +14,7 @@ export default function PartyTeamOrientation({
     <div className="relative h-full w-full">
       {children}
       <aside
-        className="pointer-events-none fixed inset-x-0 top-[max(.35rem,env(safe-area-inset-top))] z-[240] mx-auto flex w-[calc(100%-1rem)] max-w-md items-start justify-between gap-3 px-1"
+        className="pointer-events-none fixed inset-x-0 top-[max(.35rem,env(safe-area-inset-top))] z-[240] mx-auto flex w-[calc(100%_-_1rem)] max-w-md items-start justify-between gap-3 px-1"
         aria-label="Pevné strany tímov"
       >
         {PARTY_TEAM_IDENTITIES.map(identity => {
