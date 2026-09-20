@@ -5247,88 +5247,6 @@ html[data-theme="light"] .ui-pre-caption h1 { color: #fff; }
   line-height: 1.1;
 }
 
-/* ── Riadok, ktorý je zároveň štart ──────────────────────────────────
-   Výber dĺžky náhodnej bitky: klepnutie na riadok bitku priamo spúšťa,
-   preto má kruh s ikonou prehrávania v akcente. Predtým mala každá z
-   troch možností vlastnú farbu (tyrkysová, fialová, ružová), čo
-   naznačovalo významový rozdiel, ktorý neexistuje — líšia sa len počtom
-   kôl. */
-.ui-pickrow {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  gap: 0.85rem;
-  border: 1px solid var(--ui-line);
-  border-radius: var(--ui-r-lg);
-  background: var(--ui-surface);
-  padding: 0.85rem;
-  text-align: left;
-  transition: border-color 0.16s ease, background 0.16s ease, transform 0.16s ease;
-}
-.ui-pickrow:hover {
-  border-color: var(--ui-line-strong);
-  background: var(--ui-surface-2);
-}
-.ui-pickrow:active {
-  transform: scale(0.99);
-}
-.ui-pickrow-num {
-  display: flex;
-  width: 3.05rem;
-  height: 3.05rem;
-  flex: 0 0 auto;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--ui-line);
-  border-radius: var(--ui-r);
-  background: var(--ui-surface-3);
-}
-.ui-pickrow-num strong {
-  font-size: 1.3rem;
-  font-weight: 800;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-  color: var(--ui-ink);
-}
-.ui-pickrow-num small {
-  margin-top: 0.12rem;
-  font-size: 0.6rem;
-  font-weight: 650;
-  color: var(--ui-ink-3);
-}
-.ui-pickrow-name {
-  display: block;
-  font-size: 0.92rem;
-  font-weight: 750;
-  letter-spacing: -0.015em;
-  color: var(--ui-ink);
-}
-.ui-pickrow-note {
-  display: block;
-  margin-top: 0.15rem;
-  font-size: 0.74rem;
-  font-weight: 450;
-  line-height: 1.35;
-  color: var(--ui-ink-3);
-}
-.ui-pickrow-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  margin-top: 0.45rem;
-}
-.ui-pickrow-go {
-  display: grid;
-  width: 2.3rem;
-  height: 2.3rem;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: 999px;
-  background: var(--ui-accent);
-  color: var(--ui-cta-ink);
-}
-
 /* ── Výber minihier ──────────────────────────────────────────────────
    Farba dlaždice ide z kurátorovanej palety v `GamePicker.tsx` (päť odtieňov
    jednej chladnej rodiny). Nevybraná dlaždica ju drží len v tenkej linke
@@ -5641,6 +5559,182 @@ html[data-theme="light"] .ui-pre-caption h1 { color: #fff; }
 
 @media (prefers-reduced-motion: reduce) {
   .party-setup-choice {
+    transition: none;
+  }
+}
+
+/* ── Dĺžka náhodnej bitky ─────────────────────────────────────────────────
+   Pôvodná obrazovka: hero s obrázkom arény a tri karty, z ktorých každá je
+   priamo štart. Zostala rovnaká, len prezlečená do jazyka nového nastavenia —
+   inkové panely, väčšie ikony a akcent, ktorý ide od modrej (krátka bitka)
+   k červenej (dlhý turnaj). Odtieň tak nesie dĺžku, nie dekoráciu. */
+.party-round-screen {
+  --setup-line: rgba(255, 255, 255, 0.1);
+}
+
+.party-round-hero {
+  height: clamp(5.5rem, 17dvh, 9.5rem);
+  border: 1px solid var(--setup-line);
+  border-radius: 1.5rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 22px 50px -34px rgba(0, 0, 0, 0.95);
+}
+.party-round-hero img {
+  filter: saturate(1.05) contrast(1.04);
+}
+.party-round-title {
+  margin: 0.45rem 0 0;
+  max-width: 15rem;
+  font-family: "Manrope", "Inter", system-ui, sans-serif;
+  font-size: clamp(1.3rem, 4.6dvh, 1.85rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: #fff;
+}
+
+/* Karta je zároveň štart. Rastie do zvyšnej výšky, ale strop ju na vysokých
+   displejoch udrží v proporcii. */
+.party-round-pick {
+  position: relative;
+  display: flex;
+  /* Karty si rozdelia výšku, ktorá zostane po hero — strop ich udrží v
+     proporcii na tabletoch a `justify-center` rozdelí prípadný prebytok nad a
+     pod zoznam, takže pod poslednou kartou nezostane prázdna plocha. */
+  flex: 1 1 0;
+  min-height: 4.6rem;
+  max-height: 11.5rem;
+  width: 100%;
+  align-items: center;
+  gap: 0.9rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--round-accent) 34%, transparent);
+  border-radius: 1.25rem;
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--round-accent) 16%, rgba(14, 20, 34, 0.9)),
+    rgba(10, 14, 24, 0.95)
+  );
+  padding: 0.85rem;
+  text-align: left;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 18px 45px -32px color-mix(in srgb, var(--round-accent) 60%, transparent);
+  transition: border-color 0.18s ease, box-shadow 0.22s ease, transform 0.18s ease;
+}
+.party-round-pick:active {
+  transform: scale(0.985);
+  border-color: color-mix(in srgb, var(--round-accent) 70%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--round-accent) 45%, transparent),
+    0 0 26px -8px color-mix(in srgb, var(--round-accent) 45%, transparent);
+}
+@media (hover: hover) {
+  .party-round-pick:hover {
+    border-color: color-mix(in srgb, var(--round-accent) 58%, transparent);
+  }
+}
+
+/* Číslo kôl — hlavná informácia karty, preto je najväčšia. */
+.party-round-number {
+  display: flex;
+  width: 3.5rem;
+  height: 3.5rem;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--round-accent) 45%, transparent);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--round-accent) 22%, transparent);
+  line-height: 1;
+}
+.party-round-number strong {
+  font-size: 1.55rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+}
+.party-round-number small {
+  margin-top: 0.15rem;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.party-round-name {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.95rem;
+  font-weight: 750;
+  letter-spacing: -0.015em;
+  color: #fff;
+}
+.party-round-name svg {
+  flex: none;
+  color: var(--round-accent);
+}
+.party-round-note {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.72rem;
+  font-weight: 450;
+  line-height: 1.35;
+  color: rgba(226, 235, 247, 0.45);
+}
+.party-round-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.45rem;
+}
+.party-round-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  border: 1px solid var(--setup-line);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22);
+  padding: 0.2rem 0.5rem;
+  color: rgba(226, 235, 247, 0.55);
+  font-size: 0.64rem;
+  font-weight: 650;
+  line-height: 1.1;
+}
+
+/* Kruh s ikonou prehrávania — hovorí, že klepnutím sa bitka spustí. */
+.party-round-play {
+  display: grid;
+  width: 2.7rem;
+  height: 2.7rem;
+  flex: none;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--round-accent);
+  color: #08111a;
+  box-shadow: 0 10px 26px -10px var(--round-accent);
+}
+
+/* Na nízkych displejoch ustúpi popis ako prvé — číslo, názov a štítky so
+   špeciálnymi kolami sú dôležitejšie než veta pod názvom. */
+@media (max-height: 700px) {
+  .party-round-hero {
+    height: clamp(4.5rem, 13dvh, 6.5rem);
+  }
+  .party-round-pick {
+    padding: 0.7rem;
+  }
+  .party-round-note {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .party-round-pick {
     transition: none;
   }
 }
