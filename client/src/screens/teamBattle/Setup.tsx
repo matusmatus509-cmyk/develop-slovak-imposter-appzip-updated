@@ -6,7 +6,7 @@ import CustomContentSelector, {
 import { type QuizDifficulty } from "../../data/teamBattle";
 import PlayerNamesField from "../../components/PlayerNamesField";
 import GameSettingsPage from "../../components/GameSettingsPage";
-import { PartyBackdrop, PartyEyebrow, TeamSideLegend } from "./PartyChrome";
+import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import {
   PARTY_TEAM_COLORS,
   partyTeamIdentity,
@@ -160,7 +160,7 @@ export default function TeamBattleSetup({
             entity="teams"
             min={2}
             max={2}
-            summary="Tím A — modrý, horná strana · Tím B — červený, dolná strana"
+            summary="Modrý a Červený tím"
             badgeFor={index => ({
               text: partyTeamIdentity(index).letter,
               color: partyTeamIdentity(index).color,
@@ -170,18 +170,6 @@ export default function TeamBattleSetup({
             }
             className="arena-row-card mt-4"
           />
-
-          {/* Strany sa určia raz a platia pre všetky minihry — partia tak vie,
-              kde si má sadnúť, a už sa to počas hry nemení. */}
-          <div className="mt-3">
-            <TeamSideLegend
-              teamNames={[
-                names[0].trim() || defaultTeamName(language, "A"),
-                names[1].trim() || defaultTeamName(language, "B"),
-              ]}
-              eyebrow="Kde sedia tímy — platí celú hru"
-            />
-          </div>
 
           <section className="party-selection-block mt-5">
             <div className="grid grid-cols-2 gap-3">
