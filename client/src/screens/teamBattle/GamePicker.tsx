@@ -3,11 +3,11 @@
  * ako iná aplikácia. Poradie hier je viditeľné priamo na kartách a potvrdenie
  * je ukotvené v spodnom páse, takže je dosiahnuteľné palcom.
  *
- * Farby dlaždíc chodia z krátkej kurátorovanej palety (purpurová, fialová,
- * indigová, nebeská, tyrkysová). Pôvodne mala každá z jedenástich hier vlastný
- * akcent vrátane jantárovej, oranžovej a zelenej — tie s ostatnými nemali
- * žiadny vzťah a mriežka pôsobila ako vzorkovník. Päť odtieňov jednej chladnej
- * rodiny drží mriežku pestrú, ale usadenú.
+ * Farby dlaždíc chodia z krátkej kurátorovanej palety v modro-červenej rodine
+ * Party modu — striedavo chladný a teplý odtieň, takže mriežka pripomína súboj
+ * dvoch strán. Pôvodne mala každá z jedenástich hier vlastný akcent vrátane
+ * jantárovej, oranžovej a zelenej; tie s ostatnými nemali žiadny vzťah a
+ * mriežka pôsobila ako vzorkovník.
  *
  * Vybraná hra sa nepozná podľa farby (tú má každá dlaždica), ale podľa plného
  * rámu, stlmeného obrázka a poradového čísla.
@@ -48,11 +48,11 @@ const ALL_GAMES: GameType[] = [
  * dvojstĺpcovej mriežke nikdy nemali ten istý odtieň.
  */
 const TILE_PALETTE = [
-  "#d946ef", // purpurová — akcent Party modu
+  "#4f9bff", // modrá — akcent Party modu
+  "#ff6b6b", // červená — protihráč
   "#38bdf8", // nebeská
-  "#a855f7", // fialová
-  "#2dd4bf", // tyrkysová
-  "#818cf8", // indigová
+  "#fb7185", // ružovo-červená
+  "#6366f1", // indigová
 ] as const;
 
 function tileAccent(game: GameType) {
