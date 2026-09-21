@@ -64,11 +64,20 @@ describe("integrita hudobného katalógu", () => {
     }
   });
 
-  it("aktívna zásoba zodpovedá kurátorovanému snapshotu a pôvodné skladby zostali", () => {
+  it("aktívna zásoba drží kurátorované jadro a pôvodné skladby zostali", () => {
     const stats = songCatalogueStats();
-    expect(stats.total).toBe(3866);
-    expect(stats.global).toBe(1457);
-    expect(stats.byLanguage).toMatchObject({
+    /**
+     * Dolné hranice, nie presné čísla: k jadru sa raz mesačne automaticky
+     * dopĺňajú aktuálne rebríčky (`chartAuto.ts`), takže celkový počet sa
+     * legitímne mení. Test preto stráži to, čo sa meniť NESMIE — kurátorované
+     * jadro nesmie z hry vypadnúť.
+     *
+     * Hodnoty zodpovedajú ručne kurátorovaným zoznamom: svetový pool
+     * (WORLD_HITS bez `hard` + CHART_HITS) a základné `LOCAL_HITS`.
+     */
+    expect(stats.global).toBeGreaterThanOrEqual(1400);
+    expect(stats.total).toBeGreaterThanOrEqual(3800);
+    const curatedMinimums = {
       sk: 302,
       cs: 302,
       en: 369,
@@ -76,7 +85,13 @@ describe("integrita hudobného katalógu", () => {
       es: 405,
       fr: 389,
       pt: 385,
-    });
+    } as const;
+    for (const [language, minimum] of Object.entries(curatedMinimums)) {
+      expect(
+        stats.byLanguage[language as keyof typeof stats.byLanguage],
+        `jazyk ${language}`,
+      ).toBeGreaterThanOrEqual(minimum);
+    }
     const present = (title: string, artist: string) =>
       ALL_SONGS.some(song => song.id === songIdFor(title, artist));
     // Vzorka z pôvodnej zásoby — rozšírenie ju nesmie vyhodiť.

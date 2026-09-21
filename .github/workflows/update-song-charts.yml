@@ -1,0 +1,70 @@
+# ── Automatická aktualizácia hudobného katalógu ──────────────────────────────
+#
+# Toto je to, čo robí databázu hudobného kvízu samoaktualizovateľnou. Skript
+# `scripts/update-song-charts.mjs` v repozitári existoval aj predtým, ale nič
+# ho nespúšťalo, takže sa generovaný súbor menil len vtedy, keď si na to
+# niekto spomenul.
+#
+# Beh: 1. deň každého mesiaca. Zmena sa commitne LEN vtedy, keď prejde
+# validácia katalógu, typová kontrola aj testy — pokazené dáta sa tak do hry
+# nikdy nedostanú a v repozitári zostane posledná funkčná zásoba.
+name: Aktualizácia hudobných rebríčkov
+
+on:
+  schedule:
+    # 1. deň mesiaca, 04:00 UTC
+    - cron: "0 4 1 * *"
+  # Ručné spustenie z karty Actions, keď treba rebríčky obnoviť hneď.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-song-charts
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Stiahnuť repozitár
+        uses: actions/checkout@v4
+
+      - name: Nastaviť Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # `--legacy-peer-deps`: projekt má konflikt peer závislostí okolo
+      # vite pluginov, bez tohto prepínača npm inštaláciu odmietne.
+      - name: Nainštalovať závislosti
+        run: npm install --legacy-peer-deps --no-audit --no-fund
+
+      - name: Stiahnuť aktuálne rebríčky
+        run: node scripts/update-song-charts.mjs
+
+      - name: Overiť katalóg
+        run: npm run validate:songs
+
+      - name: Typová kontrola
+        run: npx tsc --noEmit
+
+      - name: Testy
+        run: npx vitest run
+
+      - name: Commitnúť zmenu, ak nejaká je
+        run: |
+          if git diff --quiet -- client/src/data/songExpansions/chartAuto.ts; then
+            echo "Rebríčky sa nezmenili — niet čo commitnúť."
+            exit 0
+          fi
+
+          SONGS=$(grep -cE '^[^|]+\|[^|]+\|' client/src/data/songExpansions/chartAuto.ts || true)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add client/src/data/songExpansions/chartAuto.ts
+          git commit -m "chore(songs): mesačná aktualizácia rebríčkov (${SONGS} skladieb)"
+          git push

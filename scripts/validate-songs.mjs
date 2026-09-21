@@ -550,6 +550,76 @@ console.log(
 );
 console.log(`  world anglicky: ${(worldEnglishShare * 100).toFixed(1)} %`);
 
+/**
+ * ── Automaticky generovaný súbor rebríčkov ──────────────────────────────────
+ *
+ * `chartAuto.ts` prepisuje raz mesačne skript, takže obsah nikto nekontroluje
+ * očami. Kontroluje sa preto tu: zlý riadok by parser katalógu odmietol
+ * výnimkou a appka by sa vôbec nespustila.
+ *
+ * Počty sa nekontrolujú — rebríčky sa legitímne menia. Kontroluje sa tvar
+ * riadku, povolené hodnoty a to, že generované skladby needuplikujú
+ * kurátorované jadro.
+ */
+const GENERATED_FILE = "client/src/data/songExpansions/chartAuto.ts";
+const generated = readFileSync(GENERATED_FILE, "utf8");
+const curatedKeys = new Set(all.map(song => songKey(song)));
+const generatedKeys = new Set();
+let generatedCount = 0;
+
+for (const block of generated.matchAll(/String\.raw`\n([\s\S]*?)`/g)) {
+  for (const [index, line] of block[1].split("\n").entries()) {
+    const row = line.trim();
+    if (row.length === 0) continue;
+    generatedCount += 1;
+    const where = `${GENERATED_FILE}:${index + 1}`;
+    const parts = row.split("|");
+    if (parts.length !== 6) {
+      errors.push(`${where}: generovaný riadok musí mať 6 stĺpcov — „${row}"`);
+      continue;
+    }
+    const [title, artist, year, genre, tier, flags] = parts.map(part => part.trim());
+    if (!title || !artist) errors.push(`${where}: chýba názov alebo interpret — „${row}"`);
+    const parsedYear = Number.parseInt(year, 10);
+    if (!Number.isInteger(parsedYear) || parsedYear < 1900 || parsedYear > 2100) {
+      errors.push(`${where}: neplatný rok „${year}"`);
+    }
+    if (!GENRES.has(genre)) errors.push(`${where}: neznámy žáner „${genre}"`);
+    if (!TIERS.has(tier)) errors.push(`${where}: neznámy tier „${tier}"`);
+    if (tier === "hard") {
+      errors.push(`${where}: generovaný riadok nesmie byť „hard" — do hry by sa nedostal`);
+    }
+    for (const flag of flags.split(/\s+/).filter(Boolean)) {
+      if (flag === "hum" || flag === "nohum") continue;
+      if (/^lang=[a-z]{2}$/.test(flag)) continue;
+      if (/^region=[A-Z]{2}$/.test(flag)) continue;
+      errors.push(`${where}: neznámy príznak „${flag}"`);
+    }
+    if (genre === "rap" && flags.includes("hum") && !flags.includes("nohum")) {
+      errors.push(`${where}: rap musí mať „nohum" — hmkať sa nedá`);
+    }
+    if (
+      NON_ORIGINAL_IN_DATA.test(title) &&
+      !ALLOWED_VERSION_WORDS_IN_TITLE.has(title.toLocaleLowerCase())
+    ) {
+      errors.push(`${where}: neoriginálna nahrávka — „${title}"`);
+    }
+    const key = songKey({ title, artist });
+    if (curatedKeys.has(key)) {
+      errors.push(`${where}: duplikát kurátorovanej skladby — „${title}" / ${artist}`);
+    }
+    if (generatedKeys.has(key)) {
+      errors.push(`${where}: duplikát v generovanom súbore — „${title}" / ${artist}`);
+    }
+    generatedKeys.add(key);
+  }
+}
+
+console.log(
+  `\nGenerované rebríčky (${GENERATED_FILE}): ${generatedCount} skladieb` +
+    ` · aktualizované ${generated.match(/CHART_AUTO_FETCHED_AT = "([^"]+)"/)?.[1] ?? "?"}`,
+);
+
 if (errors.length > 0) {
   console.error(`\n✗ ${errors.length} chýb v katalógu:\n`);
   errors.forEach(error => console.error(`  • ${error}`));

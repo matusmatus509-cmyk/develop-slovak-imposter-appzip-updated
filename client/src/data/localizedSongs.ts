@@ -20,7 +20,10 @@ import {
   CHART_HITS_ARTIST_LANGUAGES,
   CHART_HITS_SONG_EXPANSION,
 } from "./songExpansions/chartHits";
-import { CHART_AUTO_SONG_EXPANSION } from "./songExpansions/chartAuto";
+import {
+  CHART_AUTO_LOCAL_EXPANSIONS,
+  CHART_AUTO_SONG_EXPANSION,
+} from "./songExpansions/chartAuto";
 import type { SongCard } from "./teamBattleExtras";
 
 /**
@@ -4433,10 +4436,31 @@ export const GLOBAL_SONGS: Song[] = uniqueSongs(
   ].filter((song) => song.tier !== "hard"),
 );
 
-/** Autoritatívne lokálne pooly sú rovnako iba ručne kurátorované základné
- * zoznamy. Rozšírenia ostávajú v súbore ako archív pre budúcu individuálnu
- * revíziu, ale hra ich automaticky neaktivuje. */
-const LOCAL_LANGUAGE_KEYS = Object.keys(LOCAL_HITS) as SongLanguage[];
+/**
+ * Automaticky stiahnuté domáce hity podľa jazyka. Na rozdiel od archívnych
+ * `LOCAL_SONG_EXPANSIONS` sa tieto do hry pridávajú — sú to aktuálne rebríčky
+ * s overenou ukážkou, nie hromadne dopĺňané zoznamy neznámych skladieb.
+ */
+const CHART_AUTO_LOCAL: Partial<Record<SongLanguage, Song[]>> =
+  Object.fromEntries(
+    Object.entries(CHART_AUTO_LOCAL_EXPANSIONS).map(([language, rows]) => [
+      language,
+      parseSongs(rows ?? "", {
+        language: language as SongLanguage,
+        scope: "local",
+      }),
+    ]),
+  ) as Partial<Record<SongLanguage, Song[]>>;
+
+/** Autoritatívne lokálne pooly sú ručne kurátorované základné zoznamy plus
+ * automaticky dopĺňané aktuálne rebríčky. Hromadné archívne rozšírenia
+ * ostávajú v súbore len na budúcu individuálnu revíziu. */
+const LOCAL_LANGUAGE_KEYS = Array.from(
+  new Set([
+    ...(Object.keys(LOCAL_HITS) as SongLanguage[]),
+    ...(Object.keys(CHART_AUTO_LOCAL) as SongLanguage[]),
+  ]),
+);
 
 /** Lokálne pooly podľa spievaného jazyka. Kľúč je `SongLanguage`, nie jazyk UI,
  *  takže sa dá pridať čeština či poľština bez zmeny jazykov aplikácie. */
@@ -4444,7 +4468,10 @@ export const LOCAL_SONGS_BY_LANGUAGE: Partial<Record<SongLanguage, Song[]>> =
   Object.fromEntries(
     LOCAL_LANGUAGE_KEYS.map((language) => [
       language,
-      uniqueSongs(LOCAL_HITS[language] ?? []),
+      uniqueSongs([
+        ...(LOCAL_HITS[language] ?? []),
+        ...(CHART_AUTO_LOCAL[language] ?? []),
+      ]),
     ]),
   ) as Partial<Record<SongLanguage, Song[]>>;
 
