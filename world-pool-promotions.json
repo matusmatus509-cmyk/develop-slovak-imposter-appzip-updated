@@ -1,0 +1,930 @@
+[
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Self Control|Laura Branigan|1984|pop|medium",
+  "title": "Self Control",
+  "artist": "Laura Branigan",
+  "rank": 880543,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Nothing Compares 2 U|Sinéad O'Connor|1990|pop|medium",
+  "title": "Nothing Compares 2 U",
+  "artist": "Sinéad O'Connor",
+  "rank": 734969,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Killing Me Softly with His Song|Fugees|1996|rnb|medium",
+  "title": "Killing Me Softly with His Song",
+  "artist": "Fugees",
+  "rank": 753325,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "When You Say Nothing at All|Ronan Keating",
+  "title": "When You Say Nothing at All",
+  "artist": "Ronan Keating",
+  "rank": 655443,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Gloria|Laura Branigan",
+  "title": "Gloria",
+  "artist": "Laura Branigan",
+  "rank": 693623,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Love Is All Around|Wet Wet Wet",
+  "title": "Love Is All Around",
+  "artist": "Wet Wet Wet",
+  "rank": 733948,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Twist and Shout|The Beatles|1963|oldies|easy",
+  "title": "Twist and Shout",
+  "artist": "The Beatles",
+  "rank": 788809,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Walking on Sunshine|Katrina and the Waves|1983|pop|easy",
+  "title": "Walking on Sunshine",
+  "artist": "Katrina and the Waves",
+  "rank": 800002,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Torn|Natalie Imbruglia|1997|pop|medium",
+  "title": "Torn",
+  "artist": "Natalie Imbruglia",
+  "rank": 841718,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Bodies|Drowning Pool|2001|metal|hard",
+  "title": "Bodies",
+  "artist": "Drowning Pool",
+  "rank": 834321,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Animals|Martin Garrix|2013|dance|medium",
+  "title": "Animals",
+  "artist": "Martin Garrix",
+  "rank": 796651,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Beggin'|Måneskin|2017|rock|easy",
+  "title": "Beggin'",
+  "artist": "Måneskin",
+  "rank": 946093,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Sweet Dreams|Eurythmics|1983|pop|easy",
+  "title": "Sweet Dreams",
+  "artist": "Eurythmics",
+  "rank": 774293,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "I Love Rock 'n' Roll|Joan Jett",
+  "title": "I Love Rock 'n' Roll",
+  "artist": "Joan Jett",
+  "rank": 857754,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "I Say a Little Prayer|Aretha Franklin",
+  "title": "I Say a Little Prayer",
+  "artist": "Aretha Franklin",
+  "rank": 865179,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Killing Me Softly|Fugees",
+  "title": "Killing Me Softly",
+  "artist": "Fugees",
+  "rank": 753325,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Silhouettes|Avicii",
+  "title": "Silhouettes",
+  "artist": "Avicii",
+  "rank": 622709,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Mambo No. 5|Lou Bega",
+  "title": "Mambo No. 5",
+  "artist": "Lou Bega",
+  "rank": 864575,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Rivers of Babylon|Boney M.",
+  "title": "Rivers of Babylon",
+  "artist": "Boney M.",
+  "rank": 734960,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "There Is a Light That Never Goes Out|The Smiths",
+  "title": "There Is a Light That Never Goes Out",
+  "artist": "The Smiths",
+  "rank": 825338,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Suzanne|Leonard Cohen",
+  "title": "Suzanne",
+  "artist": "Leonard Cohen",
+  "rank": 661343,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Time|Pink Floyd",
+  "title": "Time",
+  "artist": "Pink Floyd",
+  "rank": 813706,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Still Loving You|Scorpions",
+  "title": "Still Loving You",
+  "artist": "Scorpions",
+  "rank": 949727,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Don't Stop Believing|Journey",
+  "title": "Don't Stop Believing",
+  "artist": "Journey",
+  "rank": 916669,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "I Feel It Coming|The Weeknd",
+  "title": "I Feel It Coming",
+  "artist": "The Weeknd",
+  "rank": 941816,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Die For You|The Weeknd",
+  "title": "Die For You",
+  "artist": "The Weeknd",
+  "rank": 918224,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Side to Side|Ariana Grande",
+  "title": "Side to Side",
+  "artist": "Ariana Grande",
+  "rank": 869117,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Into You|Ariana Grande",
+  "title": "Into You",
+  "artist": "Ariana Grande",
+  "rank": 907086,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Therefore I Am|Billie Eilish",
+  "title": "Therefore I Am",
+  "artist": "Billie Eilish",
+  "rank": 697071,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Lucky|Britney Spears",
+  "title": "Lucky",
+  "artist": "Britney Spears",
+  "rank": 665124,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Payphone|Maroon 5",
+  "title": "Payphone",
+  "artist": "Maroon 5",
+  "rank": 605545,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Hymn for the Weekend|Coldplay",
+  "title": "Hymn for the Weekend",
+  "artist": "Coldplay",
+  "rank": 932951,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Bad Liar|Imagine Dragons",
+  "title": "Bad Liar",
+  "artist": "Imagine Dragons",
+  "rank": 934282,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Turn Me On|David Guetta",
+  "title": "Turn Me On",
+  "artist": "David Guetta",
+  "rank": 761177,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Not Afraid|Eminem",
+  "title": "Not Afraid",
+  "artist": "Eminem",
+  "rank": 863428,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Mockingbird|Eminem",
+  "title": "Mockingbird",
+  "artist": "Eminem",
+  "rank": 964816,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Dangerous Woman|Ariana Grande",
+  "title": "Dangerous Woman",
+  "artist": "Ariana Grande",
+  "rank": 890233,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "DJ Got Us Fallin' in Love|Usher",
+  "title": "DJ Got Us Fallin' in Love",
+  "artist": "Usher",
+  "rank": 874916,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Forever|Chris Brown",
+  "title": "Forever",
+  "artist": "Chris Brown",
+  "rank": 806887,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "So Sick|Ne-Yo",
+  "title": "So Sick",
+  "artist": "Ne-Yo",
+  "rank": 859744,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Lonely|Akon",
+  "title": "Lonely",
+  "artist": "Akon",
+  "rank": 909781,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Smack That|Akon",
+  "title": "Smack That",
+  "artist": "Akon",
+  "rank": 860263,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Elastic Heart|Sia",
+  "title": "Elastic Heart",
+  "artist": "Sia",
+  "rank": 706875,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "I'm Not the Only One|Sam Smith",
+  "title": "I'm Not the Only One",
+  "artist": "Sam Smith",
+  "rank": 891200,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Too Good at Goodbyes|Sam Smith",
+  "title": "Too Good at Goodbyes",
+  "artist": "Sam Smith",
+  "rank": 849492,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Before You Go|Lewis Capaldi",
+  "title": "Before You Go",
+  "artist": "Lewis Capaldi",
+  "rank": 875126,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Adore You|Harry Styles",
+  "title": "Adore You",
+  "artist": "Harry Styles",
+  "rank": 856721,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Late Night Talking|Harry Styles",
+  "title": "Late Night Talking",
+  "artist": "Harry Styles",
+  "rank": 817010,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Sorry Not Sorry|Demi Lovato",
+  "title": "Sorry Not Sorry",
+  "artist": "Demi Lovato",
+  "rank": 727990,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Heart Attack|Demi Lovato",
+  "title": "Heart Attack",
+  "artist": "Demi Lovato",
+  "rank": 817013,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Going Under|Evanescence",
+  "title": "Going Under",
+  "artist": "Evanescence",
+  "rank": 879760,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "When You Were Young|The Killers",
+  "title": "When You Were Young",
+  "artist": "The Killers",
+  "rank": 721391,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Scared to Be Lonely|Martin Garrix",
+  "title": "Scared to Be Lonely",
+  "artist": "Martin Garrix",
+  "rank": 759909,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Symphony|Clean Bandit",
+  "title": "Symphony",
+  "artist": "Clean Bandit",
+  "rank": 850631,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Solo|Clean Bandit",
+  "title": "Solo",
+  "artist": "Clean Bandit",
+  "rank": 864528,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "OK|Robin Schulz",
+  "title": "OK",
+  "artist": "Robin Schulz",
+  "rank": 700584,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "West End Girls|Pet Shop Boys",
+  "title": "West End Girls",
+  "artist": "Pet Shop Boys",
+  "rank": 737099,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "I Don't Want a Lover|Texas",
+  "title": "I Don't Want a Lover",
+  "artist": "Texas",
+  "rank": 716726,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "The Bitter End|Placebo",
+  "title": "The Bitter End",
+  "artist": "Placebo",
+  "rank": 843801,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Gold|Spandau Ballet",
+  "title": "Gold",
+  "artist": "Spandau Ballet",
+  "rank": 733672,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Parklife|Blur",
+  "title": "Parklife",
+  "artist": "Blur",
+  "rank": 616677,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "Breakeven|The Script",
+  "title": "Breakeven",
+  "artist": "The Script",
+  "rank": 676662,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_HITS_EXTENDED",
+  "row": "No Surprises|Radiohead",
+  "title": "No Surprises",
+  "artist": "Radiohead",
+  "rank": 936980,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Ti amo|Umberto Tozzi|1977|pop|easy|hum",
+  "title": "Ti amo",
+  "artist": "Umberto Tozzi",
+  "rank": 816393,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Laura non c'è|Nek|1997|pop|medium|hum",
+  "title": "Laura non c'è",
+  "artist": "Nek",
+  "rank": 666517,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Soldi|Mahmood|2019|pop|easy|hum",
+  "title": "Soldi",
+  "artist": "Mahmood",
+  "rank": 610145,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Mamma Maria|Ricchi e Poveri|1982|pop|easy|hum",
+  "title": "Mamma Maria",
+  "artist": "Ricchi e Poveri",
+  "rank": 628082,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Una storia importante|Eros Ramazzotti|1985|pop|medium|hum",
+  "title": "Una storia importante",
+  "artist": "Eros Ramazzotti",
+  "rank": 608667,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Fantastic Baby|BIGBANG|2012|pop|easy|hum",
+  "title": "Fantastic Baby",
+  "artist": "BIGBANG",
+  "rank": 708229,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Bang Bang Bang|BIGBANG|2015|pop|easy|hum",
+  "title": "Bang Bang Bang",
+  "artist": "BIGBANG",
+  "rank": 709784,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "DNA|BTS|2017|pop|easy|hum",
+  "title": "DNA",
+  "artist": "BTS",
+  "rank": 650639,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Boy With Luv|BTS feat. Halsey|2019|pop|easy|hum",
+  "title": "Boy With Luv",
+  "artist": "BTS feat. Halsey",
+  "rank": 712036,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Fake Love|BTS|2018|pop|easy|hum",
+  "title": "Fake Love",
+  "artist": "BTS",
+  "rank": 732151,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Permission to Dance|BTS|2021|pop|easy|hum",
+  "title": "Permission to Dance",
+  "artist": "BTS",
+  "rank": 651928,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Spring Day|BTS|2017|pop|medium|hum",
+  "title": "Spring Day",
+  "artist": "BTS",
+  "rank": 616974,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "MIC Drop|BTS|2017|rap|medium|nohum",
+  "title": "MIC Drop",
+  "artist": "BTS",
+  "rank": 741202,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Seven|Jung Kook feat. Latto|2023|pop|easy|hum",
+  "title": "Seven",
+  "artist": "Jung Kook feat. Latto",
+  "rank": 771507,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Standing Next to You|Jung Kook|2023|pop|medium|hum",
+  "title": "Standing Next to You",
+  "artist": "Jung Kook",
+  "rank": 747479,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Cupid|FIFTY FIFTY|2023|pop|easy|hum",
+  "title": "Cupid",
+  "artist": "FIFTY FIFTY",
+  "rank": 669037,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Super Shy|NewJeans|2023|pop|easy|hum",
+  "title": "Super Shy",
+  "artist": "NewJeans",
+  "rank": 744087,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Ditto|NewJeans|2022|pop|medium|hum",
+  "title": "Ditto",
+  "artist": "NewJeans",
+  "rank": 632783,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "OMG|NewJeans|2023|pop|easy|hum",
+  "title": "OMG",
+  "artist": "NewJeans",
+  "rank": 652311,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Pink Venom|BLACKPINK|2022|pop|easy|hum",
+  "title": "Pink Venom",
+  "artist": "BLACKPINK",
+  "rank": 754338,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "DDU-DU DDU-DU|BLACKPINK|2018|pop|easy|hum",
+  "title": "DDU-DU DDU-DU",
+  "artist": "BLACKPINK",
+  "rank": 758014,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Shut Down|BLACKPINK|2022|pop|medium|hum",
+  "title": "Shut Down",
+  "artist": "BLACKPINK",
+  "rank": 730223,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Flower|Jisoo|2023|pop|easy|hum",
+  "title": "Flower",
+  "artist": "Jisoo",
+  "rank": 674243,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Arcade|Duncan Laurence|2019|pop|easy|hum",
+  "title": "Arcade",
+  "artist": "Duncan Laurence",
+  "rank": 854448,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Snap|Rosa Linn|2022|pop|easy|hum",
+  "title": "Snap",
+  "artist": "Rosa Linn",
+  "rank": 811116,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Fairytale|Alexander Rybak|2009|pop|easy|hum",
+  "title": "Fairytale",
+  "artist": "Alexander Rybak",
+  "rank": 808045,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Europapa|Joost Klein|2024|dance|medium|hum",
+  "title": "Europapa",
+  "artist": "Joost Klein",
+  "rank": 607116,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Mr. Saxobeat|Alexandra Stan|2010|dance|easy|hum",
+  "title": "Mr. Saxobeat",
+  "artist": "Alexandra Stan",
+  "rank": 854663,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "El Gran Varón|Willie Colón|1989|latin|medium|hum",
+  "title": "El Gran Varón",
+  "artist": "Willie Colón",
+  "rank": 623429,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Idilio|Willie Colón|1993|latin|medium|hum",
+  "title": "Idilio",
+  "artist": "Willie Colón",
+  "rank": 633945,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Dile al Amor|Aventura|2009|latin|medium|hum",
+  "title": "Dile al Amor",
+  "artist": "Aventura",
+  "rank": 630918,
+  "wiki": 2
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Darte un Beso|Prince Royce|2013|latin|easy|hum",
+  "title": "Darte un Beso",
+  "artist": "Prince Royce",
+  "rank": 636988,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "La Dueña del Swing|Los Hermanos Rosario|1995|latin|medium|hum",
+  "title": "La Dueña del Swing",
+  "artist": "Los Hermanos Rosario",
+  "rank": 609459,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Pobre Diabla|Don Omar|2003|latin|easy|hum",
+  "title": "Pobre Diabla",
+  "artist": "Don Omar",
+  "rank": 688904,
+  "wiki": 4
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Pa' Que Retozen|Tego Calderón|2002|rap|medium|nohum",
+  "title": "Pa' Que Retozen",
+  "artist": "Tego Calderón",
+  "rank": 629053,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Lo Que Pasó, Pasó|Daddy Yankee|2004|rap|easy|nohum",
+  "title": "Lo Que Pasó, Pasó",
+  "artist": "Daddy Yankee",
+  "rank": 745236,
+  "wiki": 3
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Ella Me Levantó|Daddy Yankee|2007|rap|medium|nohum",
+  "title": "Ella Me Levantó",
+  "artist": "Daddy Yankee",
+  "rank": 666702,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Llamado de Emergencia|Daddy Yankee|2008|latin|easy|hum",
+  "title": "Llamado de Emergencia",
+  "artist": "Daddy Yankee",
+  "rank": 625294,
+  "wiki": 3
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Yo Voy|Zion & Lennox|2004|rap|medium|nohum",
+  "title": "Yo Voy",
+  "artist": "Zion & Lennox",
+  "rank": 818147,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Salió el Sol|Don Omar|2006|latin|medium|hum",
+  "title": "Salió el Sol",
+  "artist": "Don Omar",
+  "rank": 649598,
+  "wiki": 2
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Mayonaka no Door / Stay With Me|Miki Matsubara|1979|pop|medium|hum",
+  "title": "Mayonaka no Door / Stay With Me",
+  "artist": "Miki Matsubara",
+  "rank": 755808,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Yoru ni Kakeru|YOASOBI|2019|pop|medium|hum",
+  "title": "Yoru ni Kakeru",
+  "artist": "YOASOBI",
+  "rank": 666090,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Blue Bird|Ikimonogakari|2008|pop|medium|hum",
+  "title": "Blue Bird",
+  "artist": "Ikimonogakari",
+  "rank": 667480,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Shinunoga E-Wa|Fujii Kaze|2020|pop|medium|hum",
+  "title": "Shinunoga E-Wa",
+  "artist": "Fujii Kaze",
+  "rank": 653173,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Gurenge|LiSA|2019|rock|medium|hum",
+  "title": "Gurenge",
+  "artist": "LiSA",
+  "rank": 692192,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Zankyosanka|Aimer|2021|rock|hard|hum",
+  "title": "Zankyosanka",
+  "artist": "Aimer",
+  "rank": 633022,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "KICK BACK|Kenshi Yonezu|2022|rock|medium|hum",
+  "title": "KICK BACK",
+  "artist": "Kenshi Yonezu",
+  "rank": 679558,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Bling-Bang-Bang-Born|Creepy Nuts|2024|rap|medium|nohum",
+  "title": "Bling-Bang-Bang-Born",
+  "artist": "Creepy Nuts",
+  "rank": 732512,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Mundian to Bach Ke|Panjabi MC|1998|dance|easy|hum",
+  "title": "Mundian to Bach Ke",
+  "artist": "Panjabi MC",
+  "rank": 696869,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Şımarık|Tarkan|1997|pop|easy|hum",
+  "title": "Şımarık",
+  "artist": "Tarkan",
+  "rank": 707655,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Pata Pata|Miriam Makeba|1967|oldies|easy|hum",
+  "title": "Pata Pata",
+  "artist": "Miriam Makeba",
+  "rank": 636417,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "All the Things She Said|t.A.T.u.|2002|pop|easy|hum",
+  "title": "All the Things She Said",
+  "artist": "t.A.T.u.",
+  "rank": 914147,
+  "wiki": null
+ },
+ {
+  "source": "WORLD_SONG_EXPANSION",
+  "row": "Around the World (La La La La La)|ATC|2000|dance|easy|hum",
+  "title": "Around the World (La La La La La)",
+  "artist": "ATC",
+  "rank": 628095,
+  "wiki": null
+ }
+]

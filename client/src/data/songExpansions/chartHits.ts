@@ -234,7 +234,6 @@ Vivir Mi Vida|Marc Anthony|2013|latin|easy|hum
 Macarena|Los del Río|1996|latin|easy|hum
 Livin' la Vida Loca|Ricky Martin|1999|latin|easy|hum
 María|Ricky Martin|1995|latin|easy|hum
-Suavemente|Elvis Crespo|1998|latin|easy|hum
 Ai Se Eu Te Pego|Michel Teló|2011|latin|easy|hum
 Mas Que Nada|Jorge Ben Jor|1963|latin|easy|hum
 Garota de Ipanema|Tom Jobim & João Gilberto|1964|latin|medium|hum
@@ -250,13 +249,6 @@ J'ai demandé à la lune|Indochine|2002|rock|medium|hum
 Djadja|Aya Nakamura|2018|pop|medium|hum
 Copines|Aya Nakamura|2018|pop|medium|hum
 99 Luftballons|Nena|1983|rock|easy|hum
-Haus am See|Peter Fox|2008|pop|easy|hum
-Zukunft Pink|Peter Fox & Inéa|2023|pop|medium|hum
-Roller|Apache 207|2019|pop|easy|hum
-Wunder|Nina Chuba|2022|pop|easy|hum
-Au revoir|Mark Forster|2014|pop|easy|hum
-Chöre|Mark Forster|2023|pop|easy|hum
-Pläne|Wincent Weiss|2018|pop|medium|hum
 Gangnam Style|PSY|2012|dance|easy|hum
 Dynamite|BTS|2020|dance|easy|hum
 Butter|BTS|2021|dance|easy|hum
@@ -337,7 +329,6 @@ Satisfaction|The Rolling Stones|1965|rock|easy|hum
 Paint It Black|The Rolling Stones|1966|rock|easy|hum
 Angie|The Rolling Stones|1973|rock|medium|hum
 Start Me Up|The Rolling Stones|1981|rock|easy|hum
-Dancing in the Moonlight|Toploader|2000|pop|easy|hum
 I'm a Believer|The Monkees|1966|pop|easy|hum
 Daydream Believer|The Monkees|1967|pop|easy|hum
 Build Me Up Buttercup|The Foundations|1968|soul|easy|hum
@@ -352,23 +343,6 @@ Sloop John B|The Beach Boys|1966|rock|easy|hum
 Surfin' USA|The Beach Boys|1963|rock|easy|hum
 Wouldn't It Be Nice|The Beach Boys|1966|pop|easy|hum
 Kokomo|The Beach Boys|1988|pop|easy|hum
-Láska moja|Elán|1984|pop|easy|hum
-Nech sa vráti láska|IMT Smile|1998|pop|easy|hum
-Starosta|No Name|2000|rock|easy|hum
-Sima|Kali|2023|rap|easy|nohum
-Sľúbila|Mirai|2019|pop|easy|hum
-Vráť mi tie hviezdy|Mirai|2018|pop|medium|hum
-Bára|Kabát|2003|rock|easy|hum
-Šrouby do hlavy|Lucie|2000|rock|easy|hum
-1970|Chinaski|2007|rock|easy|hum
-Lógr|Kryštof|2012|pop|easy|hum
-Ty a já|Kryštof|2008|pop|easy|hum
-Hlava krachuje|Pokáč|2014|pop|medium|hum
-Lie to Me|Mikolas Josef|2018|pop|easy|hum
-Lights Off|We Are Domi|2022|dance|easy|hum
-Síň slávy|Tina & Rytmus|2007|pop|easy|hum
-Podvod|Ben Cristovao|2021|pop|medium|hum
-Pedestal|Aiko|2024|pop|medium|hum
 Sandstorm|Darude|1999|dance|easy|hum
 Pump It|The Black Eyed Peas|2006|dance|easy|hum
 I Gotta Feeling|The Black Eyed Peas|2009|dance|easy|hum
@@ -420,18 +394,15 @@ Bzrp Music Sessions, Vol. 53|Shakira & Bizarrap|2023|latin|easy|hum
 Monotonía|Shakira & Ozuna|2022|latin|medium|hum
 TQG|Karol G & Shakira|2023|latin|easy|hum
 Provenza|Karol G|2022|latin|medium|hum
-Mañana Será Bonito|Karol G|2023|latin|medium|hum
 Despechá|Rosalía & Cardi B|2022|latin|easy|hum
 Con Altura|Rosalía & J Balvin|2019|latin|easy|hum
 La Fama|Rosalía & The Weeknd|2021|latin|medium|hum
-Linda|Rosalía|2022|latin|medium|hum
 Mia|Bad Bunny & Drake|2018|latin|easy|hum
 Me Porto Bonito|Bad Bunny & Chencho Corleone|2022|latin|easy|hum
 Tití Me Preguntó|Bad Bunny|2022|latin|medium|hum
 Callaíta|Bad Bunny|2019|latin|medium|hum
 Dákiti|Bad Bunny & Jhay Cortez|2020|latin|easy|hum
 La Canción|J Balvin & Bad Bunny|2019|latin|medium|hum
-In Da Getto|J Balvin & Skrillex|2021|dance|medium|hum
 Pepas|Farruko|2021|latin|easy|hum
 Cold Heart|Elton John & Dua Lipa|2021|dance|easy|hum
 Your Song|Elton John|1970|pop|easy|hum
@@ -493,7 +464,6 @@ Something in the Orange|Zach Bryan|2022|country|medium|hum
 Gata Only|FloyyMenor & Cris MJ|2024|latin|easy|hum
 Ella Baila Sola|Eslabon Armado & Peso Pluma|2023|latin|easy|hum
 Si Antes Te Hubiera Conocido|Karol G|2024|latin|easy|hum
-Mi Ex Tenía Razón|Karol G|2023|latin|medium|hum
 Luna|Feid & ATL Jacob|2023|latin|medium|hum
 Waiting for Tonight|Jennifer Lopez|1999|dance|medium|hum
 Black Magic Woman|Santana|1970|rock|medium|hum
@@ -504,10 +474,6 @@ Send My Love|Adele|2016|pop|easy|hum
 When We Were Young|Adele|2016|pop|easy|hum
 Say You Won't Let Go|James Arthur|2016|pop|easy|hum
 Work Song|Hozier|2014|rock|medium|hum
-80 Millionen|Max Giesinger|2017|pop|easy|hum
-Wenn sie tanzt|Max Giesinger|2016|pop|medium|hum
-Auf anderen Wegen|Andreas Bourani|2014|pop|medium|hum
-Bochum|Herbert Grönemeyer|1984|rock|medium|hum
 Sympathique|Pink Martini|1997|chanson|easy|hum
 L'enfer|Stromae|2021|pop|medium|hum
 Ma Meilleure Ennemie|Stromae & Pomme|2024|pop|medium|hum
@@ -516,14 +482,12 @@ Il Mondo|Jimmy Fontana|1965|oldies|medium|hum
 Sharazan|Al Bano & Romina Power|1981|oldies|medium|hum
 Grande grande grande|Mina|1972|oldies|medium|hum
 Se telefonando|Mina|1966|oldies|hard|hum
-Sin Miedo al Dolor|TINI|2022|latin|medium|hum
 Un Beso|Aventura|2006|latin|medium|hum
 Obsesión|Aventura|2002|latin|easy|hum
 Dile al Amor|Aventura|2009|latin|medium|hum
 Propuesta Indecente|Romeo Santos|2014|latin|easy|hum
 Bailando Por Ahí|Farruko|2012|latin|medium|hum
 Vivir lo Nuestro|Marc Anthony & La India|1994|latin|medium|hum
-Aguanile|Héctor Lavoe|1978|latin|hard|hum
 We Are Family|Sister Sledge|1979|disco|easy|hum
 I Want Your Love|Chic|1978|disco|easy|hum
 I Am What I Am|Gloria Gaynor|1983|disco|medium|hum
@@ -610,13 +574,6 @@ Paranoid|Black Sabbath|1970|metal|easy|hum
 Love Hurts|Nazareth|1974|rock|easy|hum
 Ballroom Blitz|Sweet|1973|rock|easy|hum
 20th Century Boy|T. Rex|1973|rock|easy|hum
-Vanesa|Elán|1986|pop|easy|hum
-Úsmevy|Modus|1984|pop|easy|hum
-Milovanie|Richard Müller|1988|pop|easy|hum
-Lhůta záruční|Slza|2016|pop|easy|hum
-Láskonoha|Vypsaná fixa|2004|rock|easy|hum
-Kdoví jestli jsem|Karel Gott|1981|schlager|easy|hum
-Solamente Tú|Pablo Alborán|2010|latin|easy|hum
 `
   .split("\n")
   .join("\n");

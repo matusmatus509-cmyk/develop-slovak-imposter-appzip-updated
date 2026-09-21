@@ -246,6 +246,20 @@ function parseSongs(library: string, defaults: SectionDefaults): Song[] {
  * Svetový pool — dostupný pre každý jazyk hry. Predvolený spievaný jazyk je
  * angličtina; neanglické svetové hity to prepíšu príznakom `lang=`.
  */
+/**
+ * Svetový pool. Obsah je overený meraním, nie dojmom: každá skladba prešla
+ * auditom hranosti (Deezer rank) a svetovej slávy (počet jazykových verzií
+ * článku na Wikipédii) — `scripts/audit-world-pool.mjs`, výsledky v
+ * `world-pool-audit.json`.
+ *
+ * Z auditu vyplynulo dvoje: neznáme a lokálne skladby zo svetového poolu
+ * vypadli, a naopak slávne skladby, ktoré kedysi zapadli do archívu spolu s
+ * balíkom neznámych (Mockingbird, Still Loving You, Beggin', No Surprises,
+ * Don't Stop Believin'), sa vrátili do hry.
+ *
+ * Pozor: `parseSongs` nepozná komentáre — každý riadok nižšie musí byť
+ * skladba, inak sa aplikácia vôbec nespustí.
+ */
 const WORLD_HITS = parseSongs(`
 Dancing Queen|ABBA
 Mamma Mia|ABBA
@@ -1049,7 +1063,6 @@ Blackbird|The Beatles|1968|oldies|easy|hum lang=en region=GB
 Michelle|The Beatles|1965|oldies|easy|hum lang=en region=GB
 I Want to Know What Love Is|Foreigner|1984|rock|easy|hum lang=en region=US
 Wild Horses|The Rolling Stones|1971|rock|easy|hum lang=en region=GB
-Livin' in America|James Brown|1985|funk|medium|hum lang=en region=US
 I Got You (I Feel Good)|James Brown|1965|funk|easy|hum lang=en region=US
 Love Will Tear Us Apart|Joy Division|1980|indie|medium|hum lang=en region=GB
 Bizarre Love Triangle|New Order|1986|pop|medium|hum lang=en region=GB
@@ -1230,6 +1243,112 @@ Felicità|Al Bano & Romina Power|1982|pop|easy|hum lang=it region=IT
 Con te partirò|Andrea Bocelli|1995|pop|easy|hum lang=it region=IT
 Euphoria|Loreen|2012|pop|easy|hum lang=en region=SE
 Stereo Love|Edward Maya & Vika Jigulina|2009|dance|easy|hum lang=en region=RO
+Walking on Sunshine|Katrina and the Waves|1983|pop|easy
+Torn|Natalie Imbruglia|1997|pop|medium
+Bodies|Drowning Pool|2001|metal|hard
+Animals|Martin Garrix|2013|dance|medium
+Beggin'|Måneskin|2017|rock|easy
+Sweet Dreams|Eurythmics|1983|pop|easy
+I Love Rock 'n' Roll|Joan Jett
+I Say a Little Prayer|Aretha Franklin
+Silhouettes|Avicii
+Mambo No. 5|Lou Bega
+Rivers of Babylon|Boney M.
+There Is a Light That Never Goes Out|The Smiths
+Suzanne|Leonard Cohen
+Time|Pink Floyd
+Still Loving You|Scorpions
+Don't Stop Believing|Journey
+I Feel It Coming|The Weeknd
+Die For You|The Weeknd
+Side to Side|Ariana Grande
+Into You|Ariana Grande
+Therefore I Am|Billie Eilish
+Lucky|Britney Spears
+Payphone|Maroon 5
+Hymn for the Weekend|Coldplay
+Bad Liar|Imagine Dragons
+Turn Me On|David Guetta
+Not Afraid|Eminem
+Mockingbird|Eminem
+Dangerous Woman|Ariana Grande
+DJ Got Us Fallin' in Love|Usher
+Forever|Chris Brown
+So Sick|Ne-Yo
+Lonely|Akon
+Smack That|Akon
+Elastic Heart|Sia
+I'm Not the Only One|Sam Smith
+Too Good at Goodbyes|Sam Smith
+Before You Go|Lewis Capaldi
+Adore You|Harry Styles
+Late Night Talking|Harry Styles
+Sorry Not Sorry|Demi Lovato
+Heart Attack|Demi Lovato
+Going Under|Evanescence
+When You Were Young|The Killers
+Scared to Be Lonely|Martin Garrix
+Symphony|Clean Bandit
+Solo|Clean Bandit
+OK|Robin Schulz
+West End Girls|Pet Shop Boys
+I Don't Want a Lover|Texas
+The Bitter End|Placebo
+Gold|Spandau Ballet
+Parklife|Blur
+Breakeven|The Script
+No Surprises|Radiohead
+Ti amo|Umberto Tozzi|1977|pop|easy|hum
+Laura non c'è|Nek|1997|pop|medium|hum
+Soldi|Mahmood|2019|pop|easy|hum
+Mamma Maria|Ricchi e Poveri|1982|pop|easy|hum
+Una storia importante|Eros Ramazzotti|1985|pop|medium|hum
+Fantastic Baby|BIGBANG|2012|pop|easy|hum
+Bang Bang Bang|BIGBANG|2015|pop|easy|hum
+DNA|BTS|2017|pop|easy|hum
+Boy With Luv|BTS feat. Halsey|2019|pop|easy|hum
+Fake Love|BTS|2018|pop|easy|hum
+Permission to Dance|BTS|2021|pop|easy|hum
+Spring Day|BTS|2017|pop|medium|hum
+MIC Drop|BTS|2017|rap|medium|nohum
+Seven|Jung Kook feat. Latto|2023|pop|easy|hum
+Standing Next to You|Jung Kook|2023|pop|medium|hum
+Cupid|FIFTY FIFTY|2023|pop|easy|hum
+Super Shy|NewJeans|2023|pop|easy|hum
+Ditto|NewJeans|2022|pop|medium|hum
+OMG|NewJeans|2023|pop|easy|hum
+Pink Venom|BLACKPINK|2022|pop|easy|hum
+DDU-DU DDU-DU|BLACKPINK|2018|pop|easy|hum
+Shut Down|BLACKPINK|2022|pop|medium|hum
+Flower|Jisoo|2023|pop|easy|hum
+Arcade|Duncan Laurence|2019|pop|easy|hum
+Snap|Rosa Linn|2022|pop|easy|hum
+Fairytale|Alexander Rybak|2009|pop|easy|hum
+Europapa|Joost Klein|2024|dance|medium|hum
+Mr. Saxobeat|Alexandra Stan|2010|dance|easy|hum
+El Gran Varón|Willie Colón|1989|latin|medium|hum
+Idilio|Willie Colón|1993|latin|medium|hum
+Dile al Amor|Aventura|2009|latin|medium|hum
+Darte un Beso|Prince Royce|2013|latin|easy|hum
+La Dueña del Swing|Los Hermanos Rosario|1995|latin|medium|hum
+Pobre Diabla|Don Omar|2003|latin|easy|hum
+Pa' Que Retozen|Tego Calderón|2002|rap|medium|nohum
+Lo Que Pasó, Pasó|Daddy Yankee|2004|rap|easy|nohum
+Ella Me Levantó|Daddy Yankee|2007|rap|medium|nohum
+Llamado de Emergencia|Daddy Yankee|2008|latin|easy|hum
+Yo Voy|Zion & Lennox|2004|rap|medium|nohum
+Salió el Sol|Don Omar|2006|latin|medium|hum
+Mayonaka no Door / Stay With Me|Miki Matsubara|1979|pop|medium|hum
+Yoru ni Kakeru|YOASOBI|2019|pop|medium|hum
+Blue Bird|Ikimonogakari|2008|pop|medium|hum
+Shinunoga E-Wa|Fujii Kaze|2020|pop|medium|hum
+Gurenge|LiSA|2019|rock|medium|hum
+Zankyosanka|Aimer|2021|rock|hard|hum
+KICK BACK|Kenshi Yonezu|2022|rock|medium|hum
+Bling-Bang-Bang-Born|Creepy Nuts|2024|rap|medium|nohum
+Mundian to Bach Ke|Panjabi MC|1998|dance|easy|hum
+Şımarık|Tarkan|1997|pop|easy|hum
+Pata Pata|Miriam Makeba|1967|oldies|easy|hum
 `, { language: "en", scope: "global" });
 
 const LOCAL_HITS: Partial<Record<SongLanguage, Song[]>> = {
@@ -1536,6 +1655,7 @@ Pomaranče z Kuby|Hex|1995|pop|easy|hum lang=sk region=SK
 Ži a nechaj žiť|No Name|2003|pop|easy|hum lang=sk region=SK
 Dáva mi|Kontrafakt|2003|rap|easy|nohum lang=sk region=SK
 Holubička|Adam Ďurica|2018|pop|medium|hum lang=sk region=SK
+Vanesa|Elán|1986|pop|easy|hum
 `, { language: "sk", scope: "local" }),
   cs: parseSongs(`
 Báječný chlap|Michal Tučný
@@ -1840,6 +1960,9 @@ Malovaný džbánku|Helena Vondráčková|1975|pop|medium|hum lang=cs region=CZ
 Žízeň|Kabát|1991|rock|medium|hum lang=cs region=CZ
 Chci tančit|Mirai|2018|pop|easy|hum lang=cs region=CZ
 Maluj zase obrázky|Hana Zagorová|1976|pop|medium|hum lang=cs region=CZ
+Lie to Me|Mikolas Josef|2018|pop|easy|hum
+Lights Off|We Are Domi|2022|dance|easy|hum
+Pedestal|Aiko|2024|pop|medium|hum
 `, { language: "cs", scope: "local", region: "CZ" }),
   en: parseSongs(`
 Hotel California|Eagles
@@ -2570,6 +2693,7 @@ Brenna tuats guat|Hubert von Goisern|2011|folk|easy|hum lang=de region=AT
 Heimweh|Plüsch|2002|pop|easy|hum lang=de region=CH
 Schwan|Gölä|1998|rock|easy|hum lang=de region=CH
 Bring en hei|Baschi|2006|pop|easy|hum lang=de region=CH
+Pläne|Wincent Weiss|2018|pop|medium|hum
 `, { language: "de", scope: "local" }),
   es: parseSongs(`
 La Bamba|Ritchie Valens
@@ -3772,97 +3896,42 @@ Gloria|Laura Branigan
 Here I Go Again|Whitesnake
 Go West|Pet Shop Boys
 Love Is All Around|Wet Wet Wet
-Twist and Shout|The Beatles|1963|oldies|easy
 Unchained Melody|The Righteous Brothers|1965|oldies|easy
 House of the Rising Sun|The Animals|1964|rock|easy
 Simply the Best|Tina Turner|1989|pop|easy
 Tainted Love|Soft Cell|1981|pop|medium
-Walking on Sunshine|Katrina and the Waves|1983|pop|easy
-Torn|Natalie Imbruglia|1997|pop|medium
-Bodies|Drowning Pool|2001|metal|hard
 Since You've Been Gone|Rainbow|1979|rock|hard
 Apologize|OneRepublic|2006|pop|easy
-Animals|Martin Garrix|2013|dance|medium
 Believer of Nothing|Nothing But Thieves|2017|rock|hard
 Cruel|Sabrina Carpenter|2024|pop|hard
 泡沫|G.E.M.|2012|pop|hard|lang=other
-Beggin'|Måneskin|2017|rock|easy
-Sweet Dreams|Eurythmics|1983|pop|easy
 Everything I Do|Bryan Adams
-I Love Rock 'n' Roll|Joan Jett
-I Say a Little Prayer|Aretha Franklin
 No More Drama|Mary J. Blige
 Killing Me Softly|Fugees
-Silhouettes|Avicii
 Scary Monsters and Nice Sprites|Skrillex
-Mambo No. 5|Lou Bega
 YMCA|Village People
-Rivers of Babylon|Boney M.
 Living on My Own|Freddie Mercury
-There Is a Light That Never Goes Out|The Smiths
 Satisfaction|The Rolling Stones
-Suzanne|Leonard Cohen
-Time|Pink Floyd
 Fade to Black|Metallica
 Iron Man|Black Sabbath
 War Pigs|Black Sabbath
-Still Loving You|Scorpions
 Cherokee|Europe
-Don't Stop Believing|Journey
 Formation|Beyoncé
-I Feel It Coming|The Weeknd
-Die For You|The Weeknd
-Side to Side|Ariana Grande
-Into You|Ariana Grande
-Therefore I Am|Billie Eilish
 The Climb|Miley Cyrus
-Lucky|Britney Spears
-Payphone|Maroon 5
-Hymn for the Weekend|Coldplay
-Bad Liar|Imagine Dragons
 If I Lose Myself|OneRepublic
 When Love Takes Over|David Guetta
-Turn Me On|David Guetta
 Fireball|Pitbull
-Not Afraid|Eminem
-Mockingbird|Eminem
 Longview|Green Day
 Some Might Say|Oasis
-Dangerous Woman|Ariana Grande
-DJ Got Us Fallin' in Love|Usher
-Forever|Chris Brown
 With You|Chris Brown
-So Sick|Ne-Yo
 Miss Independent|Ne-Yo
-Lonely|Akon
-Smack That|Akon
 Tik Tok|Kesha
-Elastic Heart|Sia
 Ordinary People|John Legend
-I'm Not the Only One|Sam Smith
-Too Good at Goodbyes|Sam Smith
-Before You Go|Lewis Capaldi
-Adore You|Harry Styles
-Late Night Talking|Harry Styles
-Sorry Not Sorry|Demi Lovato
-Heart Attack|Demi Lovato
-Going Under|Evanescence
-When You Were Young|The Killers
-Scared to Be Lonely|Martin Garrix
-Symphony|Clean Bandit
-Solo|Clean Bandit
 Prayer in C|Robin Schulz
-OK|Robin Schulz
 Ain't Nobody|Felix Jaehn
-West End Girls|Pet Shop Boys
 Animal|Def Leppard
-I Don't Want a Lover|Texas
-The Bitter End|Placebo
-Gold|Spandau Ballet
 Disco 2000|Pulp
-Parklife|Blur
 Coffee & TV|Blur
-Breakeven|The Script
 Ruby|Kaiser Chiefs
 I Predict a Riot|Kaiser Chiefs
 What You Know|Two Door Cinema Club
@@ -3870,7 +3939,7 @@ Club Foot|Kasabian
 Munich|Editors
 Papillon|Editors
 A-Punk|Vampire Weekend
-No Surprises|Radiohead
+Twist and Shout|The Beatles|1963|oldies|easy
 `, { language: "en", scope: "global" });
 
 /**

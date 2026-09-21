@@ -83,6 +83,10 @@ function recordingKey(title, artist) {
 const REJECTED_ACTIVE_RECORDINGS = new Set(
   [
     ["Self Control", "Laura Branigan"],
+    // Originál je od The Isley Brothers (1962) — beatlesovská verzia je cover,
+    // takže do aktívnej zásoby nepatrí. Dosiaľ to držal iba test v
+    // songSelection.test.ts; audit svetového poolu ju chcel vrátiť do hry.
+    ["Twist and Shout", "The Beatles"],
     ["Nothing Compares 2 U", "Sinéad O'Connor"],
     ["Killing Me Softly with His Song", "Fugees"],
     ["Killing Me Softly", "Fugees"],
@@ -265,11 +269,15 @@ for (const song of activeAll) {
 }
 
 const EXPECTED_ACTIVE_COUNTS = {
-  world: 981,
-  sk: 302,
-  cs: 302,
+  // Svetový pool po audite hranosti a svetovej slávy: neznáme a lokálne
+  // skladby vypadli, slávne z archívu sa vrátili (scripts/audit-world-pool.mjs).
+  world: 1084,
+  // sk/cs/de narástli o skladby, ktoré sedeli v SVETOVOM poole, hoci sú známe
+  // len doma (Vanesa — Elán, české eurovízne príspevky, Pläne — Wincent Weiss).
+  sk: 303,
+  cs: 305,
   en: 369,
-  de: 357,
+  de: 358,
   es: 405,
   fr: 389,
   pt: 385,

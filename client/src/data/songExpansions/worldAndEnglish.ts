@@ -114,11 +114,8 @@ export const WORLD_SONG_ARTIST_LANGUAGES = {
 
 export const WORLD_SONG_EXPANSION = String.raw`
 Nel blu dipinto di blu|Domenico Modugno|1958|oldies|easy|hum
-Ti amo|Umberto Tozzi|1977|pop|easy|hum
 Azzurro|Adriano Celentano|1968|oldies|easy|hum
-Laura non c'è|Nek|1997|pop|medium|hum
 Occidentali's Karma|Francesco Gabbani|2017|pop|medium|hum
-Soldi|Mahmood|2019|pop|easy|hum
 Brividi|Mahmood & Blanco|2022|pop|medium|hum
 Due vite|Marco Mengoni|2023|pop|medium|hum
 Grande amore|Il Volo|2015|pop|easy|hum
@@ -126,8 +123,6 @@ Più bella cosa|Eros Ramazzotti|1996|pop|easy|hum
 Cose della vita|Eros Ramazzotti|1993|pop|easy|hum
 Senza una donna|Zucchero|1987|pop|easy|hum
 Baila (Sexy Thing)|Zucchero|2001|pop|medium|hum
-Mamma Maria|Ricchi e Poveri|1982|pop|easy|hum
-Una storia importante|Eros Ramazzotti|1985|pop|medium|hum
 Perdere l'amore|Massimo Ranieri|1988|pop|medium|hum
 Non ho l'età|Gigliola Cinquetti|1964|oldies|medium|hum
 Al di là|Betty Curtis|1961|oldies|medium|hum
@@ -136,41 +131,19 @@ Tintarella di luna|Mina|1959|oldies|medium|hum
 Parole parole|Mina & Alberto Lupo|1972|pop|medium|hum
 Un'estate italiana|Gianna Nannini & Edoardo Bennato|1990|pop|easy|hum
 I Am the Best|2NE1|2011|pop|easy|hum
-Fantastic Baby|BIGBANG|2012|pop|easy|hum
-Bang Bang Bang|BIGBANG|2015|pop|easy|hum
 Gee|Girls' Generation|2009|pop|easy|hum
 Nobody|Wonder Girls|2008|pop|easy|hum
 Sorry, Sorry|Super Junior|2009|pop|medium|hum
 Mister|KARA|2009|pop|medium|hum
 Bubble Pop!|HyunA|2011|pop|medium|hum
 Growl|EXO|2013|pop|medium|hum
-DNA|BTS|2017|pop|easy|hum
-Boy With Luv|BTS feat. Halsey|2019|pop|easy|hum
-Fake Love|BTS|2018|pop|easy|hum
-Permission to Dance|BTS|2021|pop|easy|hum
-Spring Day|BTS|2017|pop|medium|hum
-MIC Drop|BTS|2017|rap|medium|nohum
-Seven|Jung Kook feat. Latto|2023|pop|easy|hum
-Standing Next to You|Jung Kook|2023|pop|medium|hum
-Cupid|FIFTY FIFTY|2023|pop|easy|hum
-Super Shy|NewJeans|2023|pop|easy|hum
-Ditto|NewJeans|2022|pop|medium|hum
-OMG|NewJeans|2023|pop|easy|hum
 Hype Boy|NewJeans|2022|pop|medium|hum
-Pink Venom|BLACKPINK|2022|pop|easy|hum
-DDU-DU DDU-DU|BLACKPINK|2018|pop|easy|hum
 Lovesick Girls|BLACKPINK|2020|pop|medium|hum
-Shut Down|BLACKPINK|2022|pop|medium|hum
-Flower|Jisoo|2023|pop|easy|hum
 Love Scenario|iKON|2018|pop|easy|hum
 Any Song|Zico|2020|rap|medium|nohum
 Gashina|Sunmi|2017|pop|medium|hum
-Arcade|Duncan Laurence|2019|pop|easy|hum
-Snap|Rosa Linn|2022|pop|easy|hum
-Fairytale|Alexander Rybak|2009|pop|easy|hum
 Rise Like a Phoenix|Conchita Wurst|2014|pop|easy|hum
 Cha Cha Cha|Käärijä|2023|rap|easy|nohum
-Europapa|Joost Klein|2024|dance|medium|hum
 Shum|Go_A|2021|folk|medium|hum
 Stefania|Kalush Orchestra|2022|rap|medium|nohum
 Molitva|Marija Šerifović|2007|pop|medium|hum
@@ -178,20 +151,15 @@ Zaleilah|Mandinga|2012|pop|medium|hum
 SloMo|Chanel|2022|pop|medium|hum
 In corpore sano|Konstrakta|2022|pop|hard|hum
 Dancing Lasha Tumbai|Verka Serduchka|2007|pop|easy|hum
-Mr. Saxobeat|Alexandra Stan|2010|dance|easy|hum
 Skibidi|Little Big|2018|dance|medium|hum
 Pedro Navaja|Rubén Blades|1978|latin|medium|hum
 Plástico|Rubén Blades|1978|latin|hard|hum
-El Gran Varón|Willie Colón|1989|latin|medium|hum
-Idilio|Willie Colón|1993|latin|medium|hum
 Quimbara|Celia Cruz & Johnny Pacheco|1974|latin|easy|hum
 Ríe y Llora|Celia Cruz|2003|latin|medium|hum
 Vivir Lo Nuestro|La India & Marc Anthony|1994|latin|medium|hum
 Tu Amor Me Hace Bien|Marc Anthony|2004|latin|easy|hum
 A Puro Dolor|Son by Four|1999|latin|easy|hum
 Mi Corazoncito|Aventura|2006|latin|medium|hum
-Dile al Amor|Aventura|2009|latin|medium|hum
-Darte un Beso|Prince Royce|2013|latin|easy|hum
 Bachata Rosa|Juan Luis Guerra 4.40|1990|latin|medium|hum
 Burbujas de Amor|Juan Luis Guerra 4.40|1990|latin|easy|hum
 La Bilirrubina|Juan Luis Guerra 4.40|1990|latin|easy|hum
@@ -200,7 +168,6 @@ El Niágara en Bicicleta|Juan Luis Guerra 4.40|1998|latin|medium|hum
 Procura|Chichi Peralta|1997|latin|easy|hum
 Mayonesa|Chocolate|2001|latin|easy|hum
 El Tiburón|Proyecto Uno|1993|latin|easy|hum
-La Dueña del Swing|Los Hermanos Rosario|1995|latin|medium|hum
 Devórame Otra Vez|Lalo Rodríguez|1988|latin|easy|hum
 Rebelión|Joe Arroyo|1986|latin|easy|hum
 Cali Pachanguero|Grupo Niche|1984|latin|easy|hum
@@ -211,13 +178,7 @@ Tú Con Él|Frankie Ruiz|1985|latin|medium|hum
 Conciencia|Gilberto Santa Rosa|1990|latin|medium|hum
 Que Alguien Me Diga|Gilberto Santa Rosa|1999|latin|medium|hum
 Conteo|Don Omar|2006|rap|medium|nohum
-Pobre Diabla|Don Omar|2003|latin|easy|hum
 Mayor Que Yo|Baby Ranks, Daddy Yankee, Tonny Tun Tun, Wisin & Yandel & Héctor el Father|2005|rap|medium|nohum
-Pa' Que Retozen|Tego Calderón|2002|rap|medium|nohum
-Lo Que Pasó, Pasó|Daddy Yankee|2004|rap|easy|nohum
-Ella Me Levantó|Daddy Yankee|2007|rap|medium|nohum
-Llamado de Emergencia|Daddy Yankee|2008|latin|easy|hum
-Yo Voy|Zion & Lennox|2004|rap|medium|nohum
 Otra Noche|Luny Tunes|2005|latin|medium|hum
 Noche de Entierro (Nuestro Amor)|Daddy Yankee, Wisin & Yandel, Zion, Héctor el Father & Tonny Tun Tun|2006|rap|medium|nohum
 Down|R.K.M & Ken-Y|2006|latin|medium|hum
@@ -228,29 +189,20 @@ Sexy Movimiento|Wisin & Yandel|2007|latin|easy|hum
 Pam Pam|Wisin & Yandel|2006|rap|medium|nohum
 Noche de Sexo|Wisin & Yandel feat. Romeo Santos|2005|rap|medium|nohum
 Hasta Abajo|Don Omar|2009|rap|medium|nohum
-Salió el Sol|Don Omar|2006|latin|medium|hum
 Plastic Love|Mariya Takeuchi|1984|pop|medium|hum
-Mayonaka no Door / Stay With Me|Miki Matsubara|1979|pop|medium|hum
 Sukiyaki|Kyu Sakamoto|1961|oldies|easy|hum
 Lemon|Kenshi Yonezu|2018|pop|medium|hum
 Idol|YOASOBI|2023|pop|medium|hum
-Yoru ni Kakeru|YOASOBI|2019|pop|medium|hum
-Blue Bird|Ikimonogakari|2008|pop|medium|hum
 First Love|Hikaru Utada|1999|pop|easy|hum
 Automatic|Hikaru Utada|1998|pop|medium|hum
 PONPONPON|Kyary Pamyu Pamyu|2011|pop|medium|hum
 Heavy Rotation|AKB48|2010|pop|medium|hum
 Pretender|OFFICIAL HIGE DANDISM|2019|pop|medium|hum
-Shinunoga E-Wa|Fujii Kaze|2020|pop|medium|hum
 Matsuri|Fujii Kaze|2022|pop|hard|hum
 Koi|Gen Hoshino|2016|pop|medium|hum
 Renai Circulation|Kana Hanazawa|2010|pop|medium|hum
 A Cruel Angel's Thesis|Yoko Takahashi|1995|soundtrack|easy|hum
-Gurenge|LiSA|2019|rock|medium|hum
 Homura|LiSA|2020|pop|medium|hum
-Zankyosanka|Aimer|2021|rock|hard|hum
-KICK BACK|Kenshi Yonezu|2022|rock|medium|hum
-Bling-Bang-Bang-Born|Creepy Nuts|2024|rap|medium|nohum
 STAY TUNE|Suchmos|2016|funk|hard|hum
 Marigold|Aimyon|2018|pop|medium|hum
 Dry Flower|Yuuri|2020|pop|medium|hum
@@ -258,9 +210,6 @@ It Takes a Fool to Remain Sane|The Ark|2000|rock|hard|hum
 If I Were Sorry|Frans|2016|pop|medium|hum
 Tunak Tunak Tun|Daler Mehndi|1998|pop|easy|hum
 Jai Ho|A.R. Rahman feat. Sukhwinder Singh, Tanvi Shah, Mahalakshmi Iyer & Vijay Prakash|2008|soundtrack|easy|hum
-Mundian to Bach Ke|Panjabi MC|1998|dance|easy|hum
-Şımarık|Tarkan|1997|pop|easy|hum
-Pata Pata|Miriam Makeba|1967|oldies|easy|hum
 All the Things She Said|t.A.T.u.|2002|pop|easy|hum
 Not Gonna Get Us|t.A.T.u.|2002|pop|medium|hum
 Around the World (La La La La La)|ATC|2000|dance|easy|hum
