@@ -12,7 +12,7 @@
  * `verify-song-preview-lookup.mjs`. Na rozdiel od neho tento skript SIEŤ
  * používa, takže sa nehodí do CI; je to kontrola kvality dát na vyžiadanie:
  *
- *   node scripts/verify-chart-previews.mjs [počet skladieb na pool]
+ *   node scripts/verify-chart-previews.mjs [chartAuto|knownHits] [počet na pool]
  */
 import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
@@ -21,11 +21,20 @@ import path from "node:path";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const SOURCE = path.join(ROOT, "client/src/hooks/useSongPreview.ts");
-const GENERATED = path.join(
-  ROOT,
-  "client/src/data/songExpansions/chartAuto.ts",
+/**
+ * Oba generované zoznamy: mesačné rebríčky aj doplnený zadný katalóg známych
+ * interpretov. Prepínač na prvom mieste argumentov zúži kontrolu na jeden.
+ */
+const GENERATED_FILES = {
+  chartAuto: path.join(ROOT, "client/src/data/songExpansions/chartAuto.ts"),
+  knownHits: path.join(ROOT, "client/src/data/songExpansions/knownHits.ts"),
+};
+const WHICH = process.argv.find(arg => arg in GENERATED_FILES) ?? "chartAuto";
+const GENERATED = GENERATED_FILES[WHICH];
+const SAMPLE_PER_POOL = Number.parseInt(
+  process.argv.find(arg => /^\d+$/.test(arg)) ?? "8",
+  10,
 );
-const SAMPLE_PER_POOL = Number.parseInt(process.argv[2] ?? "8", 10);
 const TMP = path.join(tmpdir(), "chart-preview-check");
 
 /** Obchody podľa jazyka — zhodné s `ITUNES_STORES` v appke. */
@@ -80,7 +89,7 @@ function parseGenerated() {
   const text = readFileSync(GENERATED, "utf8");
   const pools = new Map();
 
-  const world = /CHART_AUTO_SONG_EXPANSION = String\.raw`\n([\s\S]*?)`;/.exec(text);
+  const world = /(?:CHART_AUTO|KNOWN_HITS)_SONG_EXPANSION = String\.raw`\n([\s\S]*?)`;/.exec(text);
   if (world) pools.set("en", rows(world[1]));
 
   const localBlock = /CHART_AUTO_LOCAL_EXPANSIONS[^{]*\{([\s\S]*?)\n\};/.exec(text);
