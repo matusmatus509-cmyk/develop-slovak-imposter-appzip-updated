@@ -24,6 +24,10 @@ import {
   CHART_AUTO_LOCAL_EXPANSIONS,
   CHART_AUTO_SONG_EXPANSION,
 } from "./songExpansions/chartAuto";
+import {
+  KNOWN_HITS_ARTIST_LANGUAGES,
+  KNOWN_HITS_SONG_EXPANSION,
+} from "./songExpansions/knownHits";
 import type { SongCard } from "./teamBattleExtras";
 
 /**
@@ -4445,6 +4449,27 @@ const CHART_HITS = parseSongs(CHART_HITS_SONG_EXPANSION, {
   ) as Record<string, SongLanguage>,
 });
 
+/**
+ * Najhranejšie skladby interpretov, ktorí v katalógu už sú — teda overene
+ * známych. Dopĺňa ich zadný katalóg: pri Coldplay boli v hre dve skladby,
+ * hoci šesť z nich pozná každý.
+ *
+ * Generuje `scripts/expand-known-hits.ts`: hranica hranosti na Deezeri,
+ * funkčná ukážka, neexplicitný text, originálna nahrávka a vek nad tri roky
+ * (novinky slávnych interpretov majú vysokú hranosť, ale nikto ich ešte
+ * nepozná — tie do hry vstupujú mesačným `chartAuto`).
+ */
+const KNOWN_HITS = parseSongs(KNOWN_HITS_SONG_EXPANSION, {
+  language: "en",
+  scope: "global",
+  artistLanguages: Object.fromEntries(
+    Object.entries(KNOWN_HITS_ARTIST_LANGUAGES).map(([artist, language]) => [
+      normalizeArtistKey(artist),
+      language,
+    ]),
+  ) as Record<string, SongLanguage>,
+});
+
 const CHART_AUTO = parseSongs(CHART_AUTO_SONG_EXPANSION, {
   language: "en",
   scope: "global",
@@ -4502,6 +4527,7 @@ export const GLOBAL_SONGS: Song[] = uniqueSongs(
     ...WORLD_HITS,
     ...CHART_HITS,
     ...CHART_AUTO,
+    ...KNOWN_HITS,
   ].filter((song) => song.tier !== "hard"),
 );
 

@@ -569,17 +569,24 @@ console.log(`  world anglicky: ${(worldEnglishShare * 100).toFixed(1)} %`);
  * riadku, povolené hodnoty a to, že generované skladby needuplikujú
  * kurátorované jadro.
  */
-const GENERATED_FILE = "client/src/data/songExpansions/chartAuto.ts";
-const generated = readFileSync(GENERATED_FILE, "utf8");
+const GENERATED_FILES = [
+  "client/src/data/songExpansions/chartAuto.ts",
+  "client/src/data/songExpansions/knownHits.ts",
+];
 const curatedKeys = new Set(all.map(song => songKey(song)));
 const generatedKeys = new Set();
+const generatedCounts = {};
 let generatedCount = 0;
 
-for (const block of generated.matchAll(/String\.raw`\n([\s\S]*?)`/g)) {
+for (const GENERATED_FILE of GENERATED_FILES) {
+ const generated = readFileSync(GENERATED_FILE, "utf8");
+ generatedCounts[GENERATED_FILE] = 0;
+ for (const block of generated.matchAll(/String\.raw`\n([\s\S]*?)`/g)) {
   for (const [index, line] of block[1].split("\n").entries()) {
     const row = line.trim();
     if (row.length === 0) continue;
     generatedCount += 1;
+    generatedCounts[GENERATED_FILE] += 1;
     const where = `${GENERATED_FILE}:${index + 1}`;
     const parts = row.split("|");
     if (parts.length !== 6) {
@@ -588,11 +595,16 @@ for (const block of generated.matchAll(/String\.raw`\n([\s\S]*?)`/g)) {
     }
     const [title, artist, year, genre, tier, flags] = parts.map(part => part.trim());
     if (!title || !artist) errors.push(`${where}: chýba názov alebo interpret — „${row}"`);
-    const parsedYear = Number.parseInt(year, 10);
-    if (!Number.isInteger(parsedYear) || parsedYear < 1900 || parsedYear > 2100) {
-      errors.push(`${where}: neplatný rok „${year}"`);
+    // Prázdny rok aj žáner sú v poriadku — `parseSongs` ich doplní z profilu
+    // interpreta. Nevymyslený rok je lepší než nesprávny (album kompilácie
+    // hlási rok reedície, nie originálu).
+    if (year) {
+      const parsedYear = Number.parseInt(year, 10);
+      if (!Number.isInteger(parsedYear) || parsedYear < 1900 || parsedYear > 2100) {
+        errors.push(`${where}: neplatný rok „${year}"`);
+      }
     }
-    if (!GENRES.has(genre)) errors.push(`${where}: neznámy žáner „${genre}"`);
+    if (genre && !GENRES.has(genre)) errors.push(`${where}: neznámy žáner „${genre}"`);
     if (!TIERS.has(tier)) errors.push(`${where}: neznámy tier „${tier}"`);
     if (tier === "hard") {
       errors.push(`${where}: generovaný riadok nesmie byť „hard" — do hry by sa nedostal`);
@@ -621,12 +633,13 @@ for (const block of generated.matchAll(/String\.raw`\n([\s\S]*?)`/g)) {
     }
     generatedKeys.add(key);
   }
+ }
 }
 
-console.log(
-  `\nGenerované rebríčky (${GENERATED_FILE}): ${generatedCount} skladieb` +
-    ` · aktualizované ${generated.match(/CHART_AUTO_FETCHED_AT = "([^"]+)"/)?.[1] ?? "?"}`,
-);
+console.log(`\nGenerované zoznamy: ${generatedCount} skladieb`);
+for (const [file, count] of Object.entries(generatedCounts)) {
+  console.log(`  ${file.replace("client/src/data/songExpansions/", "")}: ${count}`);
+}
 
 if (errors.length > 0) {
   console.error(`\n✗ ${errors.length} chýb v katalógu:\n`);
