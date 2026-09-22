@@ -1,0 +1,98 @@
+[
+ {
+  "title": "Firework",
+  "artist": "Katy Perry",
+  "language": "en",
+  "rank": 267479,
+  "row": "Firework|Katy Perry",
+  "source": "WORLD_HITS"
+ },
+ {
+  "title": "Counting Stars",
+  "artist": "OneRepublic",
+  "language": "en",
+  "rank": 433527,
+  "row": "Counting Stars|OneRepublic|2013|pop|easy|hum",
+  "source": "chartHits"
+ },
+ {
+  "title": "Secrets",
+  "artist": "OneRepublic",
+  "language": "en",
+  "rank": 243997,
+  "row": "Secrets|OneRepublic|2009|pop|medium",
+  "source": "WORLD_HITS"
+ },
+ {
+  "title": "Love Runs Out",
+  "artist": "OneRepublic",
+  "language": "en",
+  "rank": 250750,
+  "row": "Love Runs Out|OneRepublic|2014|pop|medium",
+  "source": "WORLD_HITS"
+ },
+ {
+  "title": "Cheerleader",
+  "artist": "OMI",
+  "language": "en",
+  "rank": null,
+  "row": "Cheerleader|OMI|2014|reggae|easy",
+  "source": "WORLD_HITS"
+ },
+ {
+  "title": "Good Life",
+  "artist": "OneRepublic",
+  "language": "en",
+  "rank": 250668,
+  "row": "Good Life|OneRepublic|2010|pop|easy|hum lang=en region=US",
+  "source": "WORLD_HITS"
+ },
+ {
+  "title": "Fairytale Gone Bad",
+  "artist": "Sunrise Avenue",
+  "language": "en",
+  "rank": 8789,
+  "row": "Fairytale Gone Bad|Sunrise Avenue|2006|rock|easy|hum lang=en region=FI",
+  "source": "WORLD_HITS"
+ },
+ {
+  "title": "Apologize",
+  "artist": "OneRepublic",
+  "language": "en",
+  "rank": 212074,
+  "row": "Apologize|OneRepublic|2007|pop|easy|hum",
+  "source": "chartHits"
+ },
+ {
+  "title": "Pläne",
+  "artist": "Wincent Weiss",
+  "language": "de",
+  "rank": 358967,
+  "row": "Pläne|Wincent Weiss|2018|pop|medium|hum",
+  "source": "chartHits"
+ },
+ {
+  "title": "Starosta",
+  "artist": "No Name",
+  "language": "sk",
+  "rank": 13929,
+  "row": "Starosta|No Name|2000|rock|easy|hum",
+  "source": "chartHits"
+ },
+ {
+  "title": "Bochum",
+  "artist": "Herbert Grönemeyer",
+  "language": "de",
+  "rank": 475939,
+  "row": "Bochum|Herbert Grönemeyer|1984|rock|medium|hum",
+  "source": "chartHits"
+ },
+ {
+  "title": "Vanesa",
+  "artist": "Elán",
+  "language": "sk",
+  "rank": null,
+  "row": "Vanesa|Elán|1986|pop|easy|hum",
+  "source": "chartHits"
+ }
+]

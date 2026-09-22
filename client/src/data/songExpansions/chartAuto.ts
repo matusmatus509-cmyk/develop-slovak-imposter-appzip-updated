@@ -53,11 +53,9 @@ I'm The Problem|Morgan Wallen|2025|country|easy|hum
 Nice To Each Other|Olivia Dean|2025|pop|easy|hum
 Better Me For You (Brown Eyes)|Max McNown|2026|pop|easy|hum
 Dope Girl|Rod Wave|2026|rap|easy|nohum
-Free Your Mind|Prospa & Cloonee|2026|dance|easy|hum
 Mexico Honey|Kacey Musgraves|2026|pop|easy|hum
 Babydoll|Jamie Miller|2026|pop|easy|hum
 Pink Skies|Zach Bryan|2024|country|easy|hum
-High Desert Halo|Ember Moat|2026|pop|easy|hum
 Orbiter|Noah Kahan|2026|indie|easy|hum
 Homewrecker|sombr|2026|pop|easy|hum
 DAISIES|Justin Bieber|2025|pop|easy|hum
@@ -96,7 +94,6 @@ Thinkin’ Bout Me|Morgan Wallen|2023|country|medium|hum
 Want For Nothing|Cameron Whitcomb|2026|pop|medium|hum
 Hootie Frutti|KATSEYE|2026|pop|medium|hum
 Carry On|Kenny Chesney|2026|pop|medium|hum
-Revival|Zach Bryan|2020|folk|medium|hum
 Cowgirl|Shaboozey|2026|pop|medium|hum
 Nice To Meet You (Apple Music Sessions)|Myles Smith|2026|pop|medium|hum
 Hell N Back|Bakar|2026|pop|medium|hum
@@ -114,7 +111,6 @@ Good Girls & Cowgirls|Zach Top|2026|pop|medium|hum
 Opalite|Taylor Swift|2025|pop|medium|hum
 Hate How You Look|Josh Ross|2026|pop|medium|hum
 Hold On, We're Going Home|Drake & Majid Jordan|2013|rap|medium|nohum
-Psychopath|Morgan Wade|2026|pop|medium|hum
 Dandelion|Ella Langley|2026|pop|medium|hum
 I Wanna Dance with Somebody (Who Loves Me)|Whitney Houston|2026|pop|medium|hum
 Don’t Tell On Me|Jason Aldean|2026|pop|medium|hum
@@ -134,17 +130,14 @@ Lose My Mind|Don Toliver|2025|pop|medium|hum
 Rethink Some Things|Luke Combs|2026|pop|medium|hum
 Pillow Fight|Tinashe|2026|pop|medium|hum
 honeybee|Olivia Rodrigo|2026|pop|medium|hum
-Holly!|The Band Camino|2026|pop|medium|hum
 The Kind of Love We Make|Luke Combs|2022|country|medium|hum
 Your Love|The Outfield|2026|pop|medium|hum
-White Noise For Babies|White Noise|2010|pop|medium|hum
 Love Somebody|Morgan Wallen|2026|pop|medium|hum
 I Got Better|Morgan Wallen|2025|country|medium|hum
 Scared To Start|Michael Marcagi|2026|pop|medium|hum
 Baby Steps|Olivia Dean|2025|pop|medium|hum
 Hurricane|Luke Combs|2015|country|medium|hum
 Am I Okay?|Megan Moroney|2026|pop|medium|hum
-If You Wanna Be Adored|Eva Rose|2026|pop|medium|hum
 Hitachi|ADÉLA|2026|pop|medium|hum
 Love Me To Heaven|Jonas Brothers|2026|pop|medium|hum
 Aftermath|Miley Cyrus|2026|pop|medium|hum

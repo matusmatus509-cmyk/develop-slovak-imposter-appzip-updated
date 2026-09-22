@@ -1,0 +1,362 @@
+[
+ {
+  "source": "WORLD_HITS",
+  "row": "Livin' in America|James Brown|1985|funk|medium|hum lang=en region=US",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Livin' in America",
+  "artist": "James Brown",
+  "rank": null,
+  "wiki": 1
+ },
+ {
+  "source": "chartHits",
+  "row": "Suavemente|Elvis Crespo|1998|latin|easy|hum",
+  "reason": "nie je svetovo známa",
+  "title": "Suavemente",
+  "artist": "Elvis Crespo",
+  "rank": 593773,
+  "wiki": 3
+ },
+ {
+  "source": "chartHits",
+  "row": "Zukunft Pink|Peter Fox & Inéa|2023|pop|medium|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Zukunft Pink",
+  "artist": "Peter Fox & Inéa",
+  "rank": null,
+  "wiki": 0
+ },
+ {
+  "source": "chartHits",
+  "row": "Wunder|Nina Chuba|2022|pop|easy|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Wunder",
+  "artist": "Nina Chuba",
+  "rank": null,
+  "wiki": 1
+ },
+ {
+  "source": "chartHits",
+  "row": "Au revoir|Mark Forster|2014|pop|easy|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Au revoir",
+  "artist": "Mark Forster",
+  "rank": 99900,
+  "wiki": 4
+ },
+ {
+  "source": "chartHits",
+  "row": "Dancing in the Moonlight|Toploader|2000|pop|easy|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Dancing in the Moonlight",
+  "artist": "Toploader",
+  "rank": 174497,
+  "wiki": 2
+ },
+ {
+  "source": "chartHits",
+  "row": "Láska moja|Elán|1984|pop|easy|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Láska moja",
+  "artist": "Elán",
+  "rank": 194809,
+  "wiki": 1
+ },
+ {
+  "source": "chartHits",
+  "row": "Nech sa vráti láska|IMT Smile|1998|pop|easy|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Nech sa vráti láska",
+  "artist": "IMT Smile",
+  "rank": null,
+  "wiki": 0
+ },
+ {
+  "source": "chartHits",
+  "row": "Sima|Kali|2023|rap|easy|nohum",
+  "reason": "nie je svetovo známa",
+  "title": "Sima",
+  "artist": "Kali",
+  "rank": null,
+  "wiki": 3
+ },
+ {
+  "source": "chartHits",
+  "row": "Sľúbila|Mirai|2019|pop|easy|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Sľúbila",
+  "artist": "Mirai",
+  "rank": null,
+  "wiki": 0
+ },
+ {
+  "source": "chartHits",
+  "row": "Vráť mi tie hviezdy|Mirai|2018|pop|medium|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Vráť mi tie hviezdy",
+  "artist": "Mirai",
+  "rank": null,
+  "wiki": 0
+ },
+ {
+  "source": "chartHits",
+  "row": "Bára|Kabát|2003|rock|easy|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Bára",
+  "artist": "Kabát",
+  "rank": 240585,
+  "wiki": 3
+ },
+ {
+  "source": "chartHits",
+  "row": "Šrouby do hlavy|Lucie|2000|rock|easy|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Šrouby do hlavy",
+  "artist": "Lucie",
+  "rank": 66998,
+  "wiki": 4
+ },
+ {
+  "source": "chartHits",
+  "row": "1970|Chinaski|2007|rock|easy|hum",
+  "reason": "nie je svetovo známa",
+  "title": "1970",
+  "artist": "Chinaski",
+  "rank": 145128,
+  "wiki": 6
+ },
+ {
+  "source": "chartHits",
+  "row": "Lógr|Kryštof|2012|pop|easy|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Lógr",
+  "artist": "Kryštof",
+  "rank": null,
+  "wiki": 0
+ },
+ {
+  "source": "chartHits",
+  "row": "Ty a já|Kryštof|2008|pop|easy|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Ty a já",
+  "artist": "Kryštof",
+  "rank": 218252,
+  "wiki": 2
+ },
+ {
+  "source": "chartHits",
+  "row": "Hlava krachuje|Pokáč|2014|pop|medium|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Hlava krachuje",
+  "artist": "Pokáč",
+  "rank": null,
+  "wiki": 0
+ },
+ {
+  "source": "chartHits",
+  "row": "Síň slávy|Tina & Rytmus|2007|pop|easy|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Síň slávy",
+  "artist": "Tina & Rytmus",
+  "rank": null,
+  "wiki": 0
+ },
+ {
+  "source": "chartHits",
+  "row": "Podvod|Ben Cristovao|2021|pop|medium|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Podvod",
+  "artist": "Ben Cristovao",
+  "rank": null,
+  "wiki": 3
+ },
+ {
+  "source": "chartHits",
+  "row": "Mañana Será Bonito|Karol G|2023|latin|medium|hum",
+  "reason": "nie je svetovo známa",
+  "title": "Mañana Será Bonito",
+  "artist": "Karol G",
+  "rank": 539841,
+  "wiki": 4
+ },
+ {
+  "source": "chartHits",
+  "row": "Linda|Rosalía|2022|latin|medium|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Linda",
+  "artist": "Rosalía",
+  "rank": null,
+  "wiki": 4
+ },
+ {
+  "source": "chartHits",
+  "row": "In Da Getto|J Balvin & Skrillex|2021|dance|medium|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "In Da Getto",
+  "artist": "J Balvin & Skrillex",
+  "rank": 91715,
+  "wiki": 2
+ },
+ {
+  "source": "chartHits",
+  "row": "Mi Ex Tenía Razón|Karol G|2023|latin|medium|hum",
+  "reason": "nie je svetovo známa",
+  "title": "Mi Ex Tenía Razón",
+  "artist": "Karol G",
+  "rank": 590025,
+  "wiki": 2
+ },
+ {
+  "source": "chartHits",
+  "row": "Wenn sie tanzt|Max Giesinger|2016|pop|medium|hum",
+  "reason": "nie je svetovo známa",
+  "title": "Wenn sie tanzt",
+  "artist": "Max Giesinger",
+  "rank": 557403,
+  "wiki": 2
+ },
+ {
+  "source": "chartHits",
+  "row": "Auf anderen Wegen|Andreas Bourani|2014|pop|medium|hum",
+  "reason": "nie je svetovo známa",
+  "title": "Auf anderen Wegen",
+  "artist": "Andreas Bourani",
+  "rank": 470505,
+  "wiki": 3
+ },
+ {
+  "source": "chartHits",
+  "row": "Sin Miedo al Dolor|TINI|2022|latin|medium|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Sin Miedo al Dolor",
+  "artist": "TINI",
+  "rank": null,
+  "wiki": 0
+ },
+ {
+  "source": "chartHits",
+  "row": "Aguanile|Héctor Lavoe|1978|latin|hard|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Aguanile",
+  "artist": "Héctor Lavoe",
+  "rank": 26340,
+  "wiki": 2
+ },
+ {
+  "source": "chartHits",
+  "row": "Úsmevy|Modus|1984|pop|easy|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Úsmevy",
+  "artist": "Modus",
+  "rank": 56135,
+  "wiki": 0
+ },
+ {
+  "source": "chartHits",
+  "row": "Milovanie|Richard Müller|1988|pop|easy|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Milovanie",
+  "artist": "Richard Müller",
+  "rank": 102498,
+  "wiki": 1
+ },
+ {
+  "source": "chartHits",
+  "row": "Lhůta záruční|Slza|2016|pop|easy|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Lhůta záruční",
+  "artist": "Slza",
+  "rank": 97623,
+  "wiki": 2
+ },
+ {
+  "source": "chartHits",
+  "row": "Láskonoha|Vypsaná fixa|2004|rock|easy|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Láskonoha",
+  "artist": "Vypsaná fixa",
+  "rank": null,
+  "wiki": 0
+ },
+ {
+  "source": "chartHits",
+  "row": "Kdoví jestli jsem|Karel Gott|1981|schlager|easy|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "Kdoví jestli jsem",
+  "artist": "Karel Gott",
+  "rank": null,
+  "wiki": 0
+ },
+ {
+  "source": "chartHits",
+  "row": "Solamente Tú|Pablo Alborán|2010|latin|easy|hum",
+  "reason": "nie je svetovo známa",
+  "title": "Solamente Tú",
+  "artist": "Pablo Alborán",
+  "rank": 503989,
+  "wiki": 3
+ },
+ {
+  "source": "chartAuto",
+  "row": "Free Your Mind|Prospa & Cloonee|2026|dance|easy|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Free Your Mind",
+  "artist": "Prospa & Cloonee",
+  "rank": 100000,
+  "wiki": 1
+ },
+ {
+  "source": "chartAuto",
+  "row": "High Desert Halo|Ember Moat|2026|pop|easy|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "High Desert Halo",
+  "artist": "Ember Moat",
+  "rank": 228094,
+  "wiki": 0
+ },
+ {
+  "source": "chartAuto",
+  "row": "Revival|Zach Bryan|2020|folk|medium|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Revival",
+  "artist": "Zach Bryan",
+  "rank": 222586,
+  "wiki": 1
+ },
+ {
+  "source": "chartAuto",
+  "row": "Psychopath|Morgan Wade|2026|pop|medium|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Psychopath",
+  "artist": "Morgan Wade",
+  "rank": 227982,
+  "wiki": 4
+ },
+ {
+  "source": "chartAuto",
+  "row": "Holly!|The Band Camino|2026|pop|medium|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "Holly!",
+  "artist": "The Band Camino",
+  "rank": 213076,
+  "wiki": 2
+ },
+ {
+  "source": "chartAuto",
+  "row": "White Noise For Babies|White Noise|2010|pop|medium|hum",
+  "reason": "nenájdená u poskytovateľov",
+  "title": "White Noise For Babies",
+  "artist": "White Noise",
+  "rank": null,
+  "wiki": 0
+ },
+ {
+  "source": "chartAuto",
+  "row": "If You Wanna Be Adored|Eva Rose|2026|pop|medium|hum",
+  "reason": "málo hraná a neznáma",
+  "title": "If You Wanna Be Adored",
+  "artist": "Eva Rose",
+  "rank": 181896,
+  "wiki": 0
+ }
+]
