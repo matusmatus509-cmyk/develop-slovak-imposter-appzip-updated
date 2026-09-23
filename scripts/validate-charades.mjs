@@ -5,8 +5,9 @@ const masterPath = path.resolve("client/src/data/charades.sk.json");
 const localesPath = path.resolve("client/src/data/charades.locales.json");
 const languages = ["sk", "en", "de", "es", "fr", "pt"];
 const localeLanguages = languages.filter((l) => l !== "sk");
-const minCardCount = 1500;
-const minCategoryCount = 25;
+const minCardCount = 3600;
+// Každá kategória musí uniesť samostatnú hru, nie len doplniť mix — preto 200.
+const minCategoryCount = 200;
 const allowedCategories = new Set([
   "animals",
   "food",

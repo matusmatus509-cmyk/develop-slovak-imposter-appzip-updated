@@ -1,0 +1,402 @@
+[
+  {
+    "sk": "Pelikán",
+    "en": "Pelican",
+    "de": "Pelikan",
+    "es": "Pelícano",
+    "fr": "Pélican",
+    "pt": "Pelicano"
+  },
+  {
+    "sk": "Plameniak",
+    "en": "Flamingo",
+    "de": "Flamingo",
+    "es": "Flamenco",
+    "fr": "Flamant rose",
+    "pt": "Flamingo"
+  },
+  {
+    "sk": "Tukan",
+    "en": "Toucan",
+    "de": "Tukan",
+    "es": "Tucán",
+    "fr": "Toucan",
+    "pt": "Tucano"
+  },
+  {
+    "sk": "Páv",
+    "en": "Peacock",
+    "de": "Pfau",
+    "es": "Pavo real",
+    "fr": "Paon",
+    "pt": "Pavão"
+  },
+  {
+    "sk": "Bažant",
+    "en": "Pheasant",
+    "de": "Fasan",
+    "es": "Faisán",
+    "fr": "Faisan",
+    "pt": "Faisão"
+  },
+  {
+    "sk": "Prepelica",
+    "en": "Quail",
+    "de": "Wachtel",
+    "es": "Codorniz",
+    "fr": "Caille",
+    "pt": "Codorna"
+  },
+  {
+    "sk": "Ďateľ",
+    "en": "Woodpecker",
+    "de": "Specht",
+    "es": "Pájaro carpintero",
+    "fr": "Pic",
+    "pt": "Pica-pau"
+  },
+  {
+    "sk": "Slávik",
+    "en": "Nightingale",
+    "de": "Nachtigall",
+    "es": "Ruiseñor",
+    "fr": "Rossignol",
+    "pt": "Rouxinol"
+  },
+  {
+    "sk": "Volavka",
+    "en": "Heron",
+    "de": "Reiher",
+    "es": "Garza",
+    "fr": "Héron",
+    "pt": "Garça"
+  },
+  {
+    "sk": "Emu",
+    "en": "Emu",
+    "de": "Emu",
+    "es": "Emú",
+    "fr": "Émeu",
+    "pt": "Ema"
+  },
+  {
+    "sk": "Tuleň",
+    "en": "Seal",
+    "de": "Seehund",
+    "es": "Foca",
+    "fr": "Phoque",
+    "pt": "Foca"
+  },
+  {
+    "sk": "Mrož",
+    "en": "Walrus",
+    "de": "Walross",
+    "es": "Morsa",
+    "fr": "Morse",
+    "pt": "Morsa"
+  },
+  {
+    "sk": "Vydra",
+    "en": "Otter",
+    "de": "Otter",
+    "es": "Nutria",
+    "fr": "Loutre",
+    "pt": "Lontra"
+  },
+  {
+    "sk": "Bobor",
+    "en": "Beaver",
+    "de": "Biber",
+    "es": "Castor",
+    "fr": "Castor",
+    "pt": "Castor"
+  },
+  {
+    "sk": "Netopier",
+    "en": "Bat",
+    "de": "Fledermaus",
+    "es": "Murciélago",
+    "fr": "Chauve-souris",
+    "pt": "Morcego"
+  },
+  {
+    "sk": "Lenochod",
+    "en": "Sloth",
+    "de": "Faultier",
+    "es": "Perezoso",
+    "fr": "Paresseux",
+    "pt": "Preguiça"
+  },
+  {
+    "sk": "Lemur",
+    "en": "Lemur",
+    "de": "Lemur",
+    "es": "Lémur",
+    "fr": "Lémurien",
+    "pt": "Lémure"
+  },
+  {
+    "sk": "Surikata",
+    "en": "Meerkat",
+    "de": "Erdmännchen",
+    "es": "Suricata",
+    "fr": "Suricate",
+    "pt": "Suricata"
+  },
+  {
+    "sk": "Bizón",
+    "en": "Bison",
+    "de": "Bison",
+    "es": "Bisonte",
+    "fr": "Bison",
+    "pt": "Bisão"
+  },
+  {
+    "sk": "Los",
+    "en": "Moose",
+    "de": "Elch",
+    "es": "Alce",
+    "fr": "Élan",
+    "pt": "Alce"
+  },
+  {
+    "sk": "Zubor",
+    "en": "Wisent",
+    "de": "Wisent",
+    "es": "Bisonte europeo",
+    "fr": "Bison d'Europe",
+    "pt": "Bisão europeu"
+  },
+  {
+    "sk": "Poník",
+    "en": "Pony",
+    "de": "Pony",
+    "es": "Poni",
+    "fr": "Poney",
+    "pt": "Pônei"
+  },
+  {
+    "sk": "Svišť",
+    "en": "Marmot",
+    "de": "Murmeltier",
+    "es": "Marmota",
+    "fr": "Marmotte",
+    "pt": "Marmota"
+  },
+  {
+    "sk": "Pásovec",
+    "en": "Armadillo",
+    "de": "Gürteltier",
+    "es": "Armadillo",
+    "fr": "Tatou",
+    "pt": "Tatu"
+  },
+  {
+    "sk": "Mravčiar",
+    "en": "Anteater",
+    "de": "Ameisenbär",
+    "es": "Oso hormiguero",
+    "fr": "Fourmilier",
+    "pt": "Tamanduá"
+  },
+  {
+    "sk": "Buldog",
+    "en": "Bulldog",
+    "de": "Bulldogge",
+    "es": "Bulldog",
+    "fr": "Bouledogue",
+    "pt": "Buldogue"
+  },
+  {
+    "sk": "Chameleón",
+    "en": "Chameleon",
+    "de": "Chamäleon",
+    "es": "Camaleón",
+    "fr": "Caméléon",
+    "pt": "Camaleão"
+  },
+  {
+    "sk": "Iguana",
+    "en": "Iguana",
+    "de": "Leguan",
+    "es": "Iguana",
+    "fr": "Iguane",
+    "pt": "Iguana"
+  },
+  {
+    "sk": "Pytón",
+    "en": "Python",
+    "de": "Python",
+    "es": "Pitón",
+    "fr": "Python",
+    "pt": "Píton"
+  },
+  {
+    "sk": "Mlok",
+    "en": "Newt",
+    "de": "Molch",
+    "es": "Tritón",
+    "fr": "Triton",
+    "pt": "Tritão"
+  },
+  {
+    "sk": "Salamandra",
+    "en": "Salamander",
+    "de": "Salamander",
+    "es": "Salamandra",
+    "fr": "Salamandre",
+    "pt": "Salamandra"
+  },
+  {
+    "sk": "Ropucha",
+    "en": "Toad",
+    "de": "Kröte",
+    "es": "Sapo",
+    "fr": "Crapaud",
+    "pt": "Sapo"
+  },
+  {
+    "sk": "Sumec",
+    "en": "Catfish",
+    "de": "Wels",
+    "es": "Siluro",
+    "fr": "Poisson-chat",
+    "pt": "Peixe-gato"
+  },
+  {
+    "sk": "Treska",
+    "en": "Cod",
+    "de": "Kabeljau",
+    "es": "Bacalao",
+    "fr": "Cabillaud",
+    "pt": "Bacalhau"
+  },
+  {
+    "sk": "Makrela",
+    "en": "Mackerel",
+    "de": "Makrele",
+    "es": "Caballa",
+    "fr": "Maquereau",
+    "pt": "Cavala"
+  },
+  {
+    "sk": "Sardinka",
+    "en": "Sardine",
+    "de": "Sardine",
+    "es": "Sardina",
+    "fr": "Sardine",
+    "pt": "Sardinha"
+  },
+  {
+    "sk": "Úhor",
+    "en": "Eel",
+    "de": "Aal",
+    "es": "Anguila",
+    "fr": "Anguille",
+    "pt": "Enguia"
+  },
+  {
+    "sk": "Piraňa",
+    "en": "Piranha",
+    "de": "Piranha",
+    "es": "Piraña",
+    "fr": "Piranha",
+    "pt": "Piranha"
+  },
+  {
+    "sk": "Rejnok",
+    "en": "Ray",
+    "de": "Rochen",
+    "es": "Raya",
+    "fr": "Raie",
+    "pt": "Raia"
+  },
+  {
+    "sk": "Kalmár",
+    "en": "Squid",
+    "de": "Kalmar",
+    "es": "Calamar",
+    "fr": "Calmar",
+    "pt": "Calamar"
+  },
+  {
+    "sk": "Sépia",
+    "en": "Cuttlefish",
+    "de": "Sepia",
+    "es": "Sepia",
+    "fr": "Seiche",
+    "pt": "Siba"
+  },
+  {
+    "sk": "Morská sasanka",
+    "en": "Sea anemone",
+    "de": "Seeanemone",
+    "es": "Anémona de mar",
+    "fr": "Anémone de mer",
+    "pt": "Anémona-do-mar"
+  },
+  {
+    "sk": "Kliešť",
+    "en": "Tick",
+    "de": "Zecke",
+    "es": "Garrapata",
+    "fr": "Tique",
+    "pt": "Carrapato"
+  },
+  {
+    "sk": "Svetluška",
+    "en": "Firefly",
+    "de": "Glühwürmchen",
+    "es": "Luciérnaga",
+    "fr": "Luciole",
+    "pt": "Pirilampo"
+  },
+  {
+    "sk": "Termit",
+    "en": "Termite",
+    "de": "Termite",
+    "es": "Termita",
+    "fr": "Termite",
+    "pt": "Térmita"
+  },
+  {
+    "sk": "Čmeliak",
+    "en": "Bumblebee",
+    "de": "Hummel",
+    "es": "Abejorro",
+    "fr": "Bourdon",
+    "pt": "Abelhão"
+  },
+  {
+    "sk": "Pijavica",
+    "en": "Leech",
+    "de": "Blutegel",
+    "es": "Sanguijuela",
+    "fr": "Sangsue",
+    "pt": "Sanguessuga"
+  },
+  {
+    "sk": "Stonožka",
+    "en": "Centipede",
+    "de": "Hundertfüßer",
+    "es": "Ciempiés",
+    "fr": "Mille-pattes",
+    "pt": "Centopeia"
+  },
+  {
+    "sk": "Škorpión",
+    "en": "Scorpion",
+    "de": "Skorpion",
+    "es": "Escorpión",
+    "fr": "Scorpion",
+    "pt": "Escorpião"
+  },
+  {
+    "sk": "Bernardín",
+    "en": "Saint Bernard",
+    "de": "Bernhardiner",
+    "es": "San Bernardo",
+    "fr": "Saint-Bernard",
+    "pt": "São Bernardo"
+  }
+]

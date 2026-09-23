@@ -33,7 +33,9 @@ export const CHARADES_CATEGORY_LABELS: Record<CharadesCategory, string> = {
   clothing: "Oblečenie",
   nature: "Príroda",
   places: "Miesta",
-  instruments: "Hudobné nástroje",
+  // Známych hudobných nástrojov na 200 kvalitných kariet nie je dosť, preto
+  // kategória pokrýva hudbu celkovo: nástroje, žánre, techniku aj role.
+  instruments: "Hudba a nástroje",
   health: "Telo a zdravie",
   games: "Hry a zábava",
   school: "Škola",
@@ -53,7 +55,7 @@ export const CHARADES_CATEGORY_ICONS: Record<CharadesCategory, string> = {
   clothing: "👕",
   nature: "🌳",
   places: "📍",
-  instruments: "🎸",
+  instruments: "🎵",
   health: "🧬",
   games: "🎲",
   school: "🏫",
