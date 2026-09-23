@@ -1382,6 +1382,28 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
   filter: blur(2px);
 }
 
+/* Karta so slovom — jemný papierový vzhľad namiesto plochého bieleho
+   obdĺžnika: vlasová linka, mierny horný highlight a kategória ako pilulka
+   vo fialovom akcente hry, nie sivý uppercase text. */
+.charades-card {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid rgba(15, 15, 20, .06);
+  box-shadow:
+    0 30px 60px -28px rgba(88, 28, 135, .45),
+    0 1px 0 rgba(255, 255, 255, .9) inset;
+}
+.charades-card-tag {
+  border-radius: 999px;
+  background: rgba(167, 139, 250, .14);
+  padding: .3rem .7rem;
+  color: #7c3aed;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .would-rather-shell *,
   .would-rather-shell *::before,
@@ -5092,6 +5114,75 @@ html[data-theme="light"] .ui-pre-caption h1 { color: #fff; }
   transition: .15s ease;
 }
 .drawing-theme .guess-who-picker-actions button:active { transform: scale(.97); }
+
+/* Slovné šarády zdieľajú rovnaký layout z .guess-who-*, farba je fialová
+   (#a78bfa) — rovnaký akcent ako `.mobile-settings-charades` a hero na
+   uvítacej obrazovke, takže nastavenia pôsobia ako súčasť tej istej hry. */
+.charades-theme.guess-who-setup {
+  background:
+    radial-gradient(circle at 90% 2%, rgba(167, 139, 250, .13), transparent 16rem),
+    radial-gradient(circle at 4% 96%, rgba(217, 70, 239, .07), transparent 18rem),
+    #0e0c18 !important;
+}
+.charades-theme .guess-who-field {
+  border-color: rgba(167, 139, 250, .26);
+  background: linear-gradient(120deg, rgba(167, 139, 250, .13), rgba(20, 16, 30, .96) 58%);
+}
+.charades-theme .guess-who-field-icon {
+  border-color: rgba(196, 181, 253, .22);
+  background: rgba(167, 139, 250, .12);
+}
+.charades-theme .guess-who-field-meta { color: #c4b5fd; }
+.charades-theme .guess-who-hero-stats span:first-child {
+  border-color: rgba(196, 181, 253, .32);
+  color: #ede9fe;
+}
+.charades-theme .guess-who-time-grid button.is-active {
+  border-color: rgba(196, 181, 253, .48);
+  background: #a78bfa;
+  color: #180f2e;
+  box-shadow: 0 8px 20px -13px rgba(167, 139, 250, .9);
+}
+.charades-theme.guess-who-category-picker {
+  background: radial-gradient(circle at 88% 3%, rgba(167, 139, 250, .15), transparent 16rem), #0e0c18 !important;
+}
+.charades-theme .guess-who-picker-heading {
+  border-color: rgba(167, 139, 250, .22);
+  background: rgba(167, 139, 250, .08);
+}
+.charades-theme .guess-who-picker-heading span { color: #ede9fe; }
+.charades-theme .guess-who-picker-options button.is-active {
+  border-color: rgba(167, 139, 250, .5);
+  background: rgba(167, 139, 250, .11);
+}
+.charades-theme .guess-who-picker-options button.is-active .guess-who-picker-check {
+  background: #a78bfa;
+  color: #180f2e;
+}
+.charades-theme .guess-who-start-button,
+.mobile-settings .charades-theme.guess-who-start-button,
+.charades-theme .mobile-settings .guess-who-start-button {
+  background: linear-gradient(110deg, #a78bfa, #c4b5fd) !important;
+  color: #180f2e !important;
+  box-shadow: 0 14px 28px -18px rgba(167, 139, 250, .85) !important;
+}
+.charades-theme .guess-who-picker-actions {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: .6rem;
+}
+.charades-theme .guess-who-picker-actions button {
+  flex: 1;
+  min-height: 2.4rem;
+  border: 1px solid rgba(167, 139, 250, .22);
+  border-radius: .7rem;
+  background: rgba(167, 139, 250, .08);
+  color: #ede9fe;
+  font-size: .7rem;
+  font-weight: 800;
+  transition: .15s ease;
+}
+.charades-theme .guess-who-picker-actions button:active { transform: scale(.97); }
 
 /* ── Hudobný kvíz — rok a žáner pri odhalení ─────────────────────────────── */
 .music-quiz-meta {

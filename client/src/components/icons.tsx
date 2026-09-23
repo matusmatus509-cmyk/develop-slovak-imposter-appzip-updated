@@ -306,6 +306,8 @@ export const Icons = {
   chevronDown: ChevronDown,
   x: X,
   xCircle: XCircle,
+  check: Check,
+  checkCircle: CheckCircle,
   search: Search,
   home: Home,
   settings: Settings,
