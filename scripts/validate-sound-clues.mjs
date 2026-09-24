@@ -73,10 +73,18 @@ function parseEntries(block) {
 }
 
 const coreBlock = extractArrayBlock(src, "const CORE_SOUND_CLUES");
-const expandedBlock = extractArrayBlock(src, "const EXPANDED_SOUND_CLUES_1");
-
 const coreEntries = parseEntries(coreBlock);
-const expandedEntries = parseEntries(expandedBlock);
+
+// Každá nová dávka žije vo vlastnom `EXPANDED_SOUND_CLUES_<n>` bloku (dávka 1,
+// dávka 2, ...). Namiesto pevného zoznamu čísel skenujeme zdroj a spracujeme
+// všetky bloky, ktoré nájdeme — pri pridaní ďalšej dávky nie je treba meniť
+// tento skript.
+const expandedBlockNames = Array.from(
+  src.matchAll(/const (EXPANDED_SOUND_CLUES_\d+): SoundClue\[\] = \[/g)
+).map((m) => m[1]);
+const expandedEntries = expandedBlockNames.flatMap((name) =>
+  parseEntries(extractArrayBlock(src, `const ${name}`))
+);
 
 // COMMONS_SOUND_CLUES sú generované mapovaním COMMONS_SOUND_LIBRARY (pipe-
 // delimited zoznam) v runtime kóde, nie ako literály `{ id: ... }` — spočítame
@@ -195,6 +203,7 @@ const report = {
   totalEntries: allEntries.length,
   coreEntries: coreEntries.length,
   commonsEntries: commonsEntries.length,
+  expandedBatches: expandedBlockNames,
   expandedEntries: expandedEntries.length,
   categoryCounts,
   categorizedEntries: withCategory.length,
