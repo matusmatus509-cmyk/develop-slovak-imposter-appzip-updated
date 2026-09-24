@@ -2464,6 +2464,33 @@ const EXPANDED_SOUND_CLUES_4: SoundClue[] = [
   { id: "sk5-luthierjoin", label: "Spájanie dielov huslí u huslára", emoji: "🎻", category: "Nástroje", acceptedAnswers: ["lepenie dielov huslí"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9d/WWS_Joininglutherie.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:WWS_Joininglutherie.ogg", credit: "Work With Sounds", license: "CC BY 4.0" },
 ];
 
+
+/**
+ * Dávka 5 novej databázy. Divá zver (US Fish & Wildlife Service, British
+ * Library Sound Archive — verejná doména / CC BY-SA 4.0) a pár zábavných
+ * jednotlivo overených nálezov (lunapark, hračky).
+ */
+const EXPANDED_SOUND_CLUES_5: SoundClue[] = [
+  { id: "sk6-alligator-bellow", label: "Bučanie aligátora", emoji: "🐊", category: "Zvieratá", acceptedAnswers: ["aligátor bučí"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Alligatorbellow1.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Alligatorbellow1.ogg", credit: "U.S. Fish and Wildlife Service", license: "Public domain" },
+  { id: "sk6-alligator-hiss", label: "Sykot aligátora", emoji: "🐊", category: "Zvieratá", acceptedAnswers: ["aligátor syčí"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Alligatorhiss.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Alligatorhiss.ogg", credit: "U.S. Fish and Wildlife Service", license: "Public domain" },
+  { id: "sk6-pelican-chick", label: "Pípanie mláďaťa pelikána", emoji: "🐦", category: "Zvieratá", acceptedAnswers: ["mláďa pelikána pípa"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Baby_pelican.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Baby_pelican.ogg", credit: "U.S. Fish and Wildlife Service", license: "Public domain" },
+  { id: "sk6-ducks-landing", label: "Kačice dosadajúce na vodnú hladinu", emoji: "🦆", category: "Príroda", acceptedAnswers: ["kačice pristávajú na vode"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Ducks_landing_in_water.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Ducks_landing_in_water.ogg", credit: "U.S. Fish and Wildlife Service", license: "Public domain" },
+  { id: "sk6-elk-bellow", label: "Bučanie jelenca", emoji: "🦌", category: "Zvieratá", acceptedAnswers: ["jeleň bučí v období ruja"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/9/96/Elkbellow.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Elkbellow.ogg", credit: "U.S. Fish and Wildlife Service", license: "Public domain" },
+  { id: "sk6-geese-honking", label: "Hlasné gagotanie husí", emoji: "🦢", category: "Zvieratá", acceptedAnswers: ["husi gagotajú nahlas"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Geese_Honking_%28loud%29.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Geese_Honking_(loud).ogg", credit: "U.S. Fish and Wildlife Service", license: "Public domain" },
+  { id: "sk6-rattlesnake", label: "Chrastenie chvosta zvončeka", emoji: "🐍", category: "Zvieratá", acceptedAnswers: ["hadí chvost chrasti", "zvonivý had varuje"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/2/22/Rattlesnake.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Rattlesnake.ogg", credit: "U.S. Fish and Wildlife Service", license: "Public domain" },
+  { id: "sk6-tundraswans", label: "Volanie tundrových labutí", emoji: "🦢", category: "Príroda", acceptedAnswers: ["labute volajú počas letu"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/4/48/Tundra_swans.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Tundra_swans.ogg", credit: "U.S. Fish and Wildlife Service", license: "Public domain" },
+  { id: "sk6-wolfhowls", label: "Vlčie vytie v diaľke", emoji: "🐺", category: "Príroda", acceptedAnswers: ["vlk vyje"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/8/87/Wolf_howls.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Wolf_howls.ogg", credit: "U.S. Fish and Wildlife Service", license: "Public domain" },
+  { id: "sk6-woodpecker2", label: "Búchanie ďatľa do kôry stromu", emoji: "🐦", category: "Príroda", acceptedAnswers: ["ďateľ ťuká do stromu"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/0/05/Woodpecker_tapping.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Woodpecker_tapping.ogg", credit: "U.S. Fish and Wildlife Service", license: "Public domain" },
+  { id: "sk6-loons", label: "Volanie potápok na jazere", emoji: "🦆", category: "Príroda", acceptedAnswers: ["potápka vydáva zvuk na jazere"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/1/13/Loons.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Loons.ogg", credit: "U.S. Fish and Wildlife Service", license: "Public domain" },
+  { id: "sk6-heronfish", label: "Volavka loví ryby vo vode", emoji: "🦆", category: "Príroda", acceptedAnswers: ["volavka chytá rybu"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/9/93/Littleblueheronfishes.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Littleblueheronfishes.ogg", credit: "U.S. Fish and Wildlife Service", license: "Public domain" },
+  { id: "sk6-cuckoo", label: "Kukanie kukučky v lese", emoji: "🐦", category: "Príroda", acceptedAnswers: ["kukučka kuká"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Common_Cuckoo_%28Cuculus_canorus%29_%28W1CDR0001463_BD1%29.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Common_Cuckoo_(Cuculus_canorus)_(W1CDR0001463_BD1).ogg", credit: "British Library Sound Archive / National Sound Archive Wildlife Section", license: "CC BY-SA 4.0" },
+  { id: "sk6-nightingale", label: "Spev slávika v noci", emoji: "🐦", category: "Príroda", acceptedAnswers: ["slávik spieva"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/5/59/Common_Nightingale_%28Luscinia_megarhynchos%29_%28W1CDR0001376_BD18%29.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Common_Nightingale_(Luscinia_megarhynchos)_(W1CDR0001376_BD18).ogg", credit: "British Library Sound Archive / National Sound Archive Wildlife Section", license: "CC BY-SA 4.0" },
+  { id: "sk6-bumpercars", label: "Autíčka na autodráme v zábavnom parku", emoji: "🎡", category: "Voľný čas", acceptedAnswers: ["autoscooter", "jazda na nárazových autíčkach"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Autodrom_im_Prater_25s.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Autodrom_im_Prater_25s.ogg", credit: "Wikimedia Commons contributor", license: "CC BY-SA 4.0" },
+  { id: "sk6-brassband", label: "Dychová kapela na sprievode", emoji: "🎺", category: "Voľný čas", acceptedAnswers: ["dychovka hrá v pochode", "kapela na sprievode"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/c/ce/March_brass_band_playing_parading_by.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:March_brass_band_playing_parading_by.ogg", credit: "stephan (PDSounds)", license: "Public domain" },
+  { id: "sk6-rubberduck", label: "Pískanie gumenej kačičky", emoji: "🦆", category: "Každodenné situácie", acceptedAnswers: ["gumená kačka píska", "kúpeľňová hračka kačička"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Rubber_Duck_Squeaker.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Rubber_Duck_Squeaker.ogg", credit: "Wikimedia Commons contributor", license: "CC BY-SA 4.0" },
+  { id: "sk6-musicbox", label: "Naťahovanie hracej skrinky", emoji: "🎵", category: "Voľný čas", acceptedAnswers: ["hracia skrinka sa naťahuje", "naťahovacia hudobná skrinka"], audioUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Winding_a_music_box.ogg", sourcePage: "https://commons.wikimedia.org/wiki/File:Winding_a_music_box.ogg", credit: "ezwa (PDSounds)", license: "Public domain" },
+];
+
 export interface SoundClueDraft {
   label: string;
   emoji: string;
@@ -2647,6 +2674,7 @@ export const SOUND_CLUES: SoundClue[] = [
   ...EXPANDED_SOUND_CLUES_2,
   ...EXPANDED_SOUND_CLUES_3,
   ...EXPANDED_SOUND_CLUES_4,
+  ...EXPANDED_SOUND_CLUES_5,
 ];
 
 const LETTER_CATEGORIES = [
