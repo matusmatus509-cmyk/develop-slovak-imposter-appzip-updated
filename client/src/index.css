@@ -1384,14 +1384,25 @@ html[data-theme="light"] main.party-hub-page .party-hub-hero [class*="text-cyan-
 
 /* Karta so slovom — jemný papierový vzhľad namiesto plochého bieleho
    obdĺžnika: vlasová linka, mierny horný highlight a kategória ako pilulka
-   vo fialovom akcente hry, nie sivý uppercase text. */
+   vo fialovom akcente hry, nie sivý uppercase text. Farebný prstenec za
+   kartou (::before) ju odlepí od pozadia, ktoré má rovnaký fialový odtieň —
+   bez neho karta na tmavom javisku splývala s vlastnou žiarou v pozadí. */
 .charades-card {
   position: relative;
   isolation: isolate;
   border: 1px solid rgba(15, 15, 20, .06);
   box-shadow:
-    0 30px 60px -28px rgba(88, 28, 135, .45),
+    0 30px 60px -28px rgba(88, 28, 135, .5),
     0 1px 0 rgba(255, 255, 255, .9) inset;
+}
+.charades-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -0.55rem;
+  border-radius: inherit;
+  background: linear-gradient(155deg, rgba(196, 181, 253, .55), rgba(129, 140, 248, .12) 55%, transparent 80%);
+  opacity: .8;
 }
 .charades-card-tag {
   border-radius: 999px;

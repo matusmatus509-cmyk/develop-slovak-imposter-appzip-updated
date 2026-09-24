@@ -438,59 +438,75 @@ function PlayingScreen({
   const isWarning = timeLeft <= 10;
 
   return (
-    <div
-      className="charades-play-shell fixed inset-0 flex flex-col items-center justify-between overflow-hidden"
-    >
-      {/* Top bar */}
-      <div className="flex w-full items-center justify-between px-5 pt-safe pt-6">
-        {/* Spacer */}
-        <div className="w-10" />
+    <div className="charades-play-shell fixed inset-0 flex flex-col overflow-hidden">
+      {/* Stavový pás: hráč/tím a priebežné skóre vľavo, čas vpravo.
+          `exit-slot-gap` necháva miesto pre GLOBÁLNE tlačidlo „Odísť z hry“
+          v pravom hornom rohu (celá minihra), aby sa s ním neprekrývalo
+          tlačidlo na predčasné skončenie TOHTO kola — predtým tu boli dva
+          kruhy s krížikom vedľa seba na tom istom mieste. */}
+      <div
+        className="exit-slot-gap relative z-10 mx-3 mt-[max(.7rem,env(safe-area-inset-top))] flex shrink-0 items-center gap-2.5 rounded-[1.4rem] border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur-xl"
+        style={{ animation: "fadeIn 0.4s ease-out both" }}
+      >
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2">
+            {teamMode && (
+              <span
+                className="shrink-0 rounded-lg px-2 py-0.5 text-[10px] font-black"
+                style={{
+                  background: `${partyTeamIdentity(player.team).color}30`,
+                  color: partyTeamIdentity(player.team).color,
+                }}
+              >
+                {teamLabel(player.team)}
+              </span>
+            )}
+            <p className="truncate text-sm font-bold text-white/90">{player.name}</p>
+          </div>
+          <p className="mt-0.5 flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-emerald-300">
+            <Icons.check size={11} /> {correct} uhádnuté
+          </p>
+        </div>
 
-        {/* Timer pill */}
         <div
-          className={`flex h-10 min-w-[72px] items-center justify-center rounded-full px-5 font-black text-lg transition-colors ${
-            isWarning ? "bg-red-500/80 text-white" : "glass text-white"
+          className={`flex h-10 min-w-[3.3rem] shrink-0 items-center justify-center gap-1 rounded-xl px-2.5 font-black tabular-nums transition-colors ${
+            isWarning ? "bg-red-500 text-white" : "bg-white/10 text-white"
           }`}
           style={isWarning ? { animation: "ring 1s ease-in-out infinite" } : undefined}
         >
+          <Icons.timer size={13} className="opacity-70" />
           {timeLeft}s
         </div>
-
-        {/* Exit */}
-        <button
-          onClick={finish}
-          aria-label="Skončiť kolo"
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white/70 active:scale-90 transition hover:scale-[1.05]"
-        >
-          <Icons.x size={18} />
-        </button>
       </div>
 
-      {/* Live score strip */}
-      <div
-        className="flex items-center gap-3 mt-2"
-        style={{ animation: "fadeIn 0.4s ease-out both" }}
+      {/* Predčasné skončenie kola je textový odkaz pod stavovým pásom, nie
+          ďalší kruhový ikonový button — priamo vedľa globálneho tlačidla
+          „Odísť z hry" (rovnaký kruh s krížikom v pravom hornom rohu) by dva
+          takmer identické kruhy pri sebe zvádzali na omylom stlačenie
+          nesprávneho a boli by ťažko rozlíšiteľné na prvý pohľad. */}
+      <button
+        onClick={finish}
+        className="exit-slot-gap relative z-10 mx-3 mt-1.5 shrink-0 self-start text-[11px] font-bold text-white/35 underline decoration-white/20 underline-offset-2 transition active:scale-95 hover:text-white/60"
       >
-        {teamMode && (
-          <span
-            className="rounded-xl px-3 py-1 text-xs font-black"
-            style={{
-              background: `${partyTeamIdentity(player.team).color}4d`,
-              color: partyTeamIdentity(player.team).color,
-            }}
-          >
-            {teamLabel(player.team)}
-          </span>
-        )}
-        <span className="text-sm font-bold text-white/50">{player.name}</span>
-        <span className="text-sm font-bold text-green-400">+{correct}</span>
+        Skončiť kolo predčasne
+      </button>
+
+      {/* Progres kola — rovnaká čiara, len presunutá hneď pod stavový pás,
+          aby vizuálne patrila k nemu a nie sedela osamotene nad tlačidlami. */}
+      <div className="relative z-10 mx-3 mt-2 h-1.5 shrink-0 overflow-hidden rounded-full bg-white/10">
+        <div
+          className={`h-full rounded-full transition-[width] duration-200 ease-linear ${
+            isWarning ? "bg-red-500" : "bg-purple-400"
+          }`}
+          style={{ width: `${timerPct}%` }}
+        />
       </div>
 
-      {/* Card */}
-      <div className="flex flex-1 items-center justify-center w-full px-8">
+      {/* Karta */}
+      <div className="flex flex-1 items-center justify-center w-full px-6">
         <div
           key={cardIdx}
-          className={`charades-card w-full max-w-xs rounded-[1.75rem] bg-white p-8 text-center transition-all duration-300 ${
+          className={`charades-card relative w-full max-w-xs rounded-[1.75rem] bg-white p-8 text-center transition-all duration-300 ${
             cardAnim === "correct"
               ? "translate-y-[-20px] opacity-0 scale-95"
               : cardAnim === "skip"
@@ -503,8 +519,8 @@ function PlayingScreen({
             <Icons.mask size={13} /> {card?.category}
           </span>
           <p
-            className="mt-4 font-black text-gray-900 leading-tight break-words hyphens-auto"
-            style={{ fontSize: `clamp(1.35rem, ${Math.max(4, 12 - (card?.word?.length ?? 0) / 6)}vw, 2.25rem)` }}
+            className="mt-4 font-black text-gray-900 leading-[1.12] break-words hyphens-auto"
+            style={{ fontSize: `clamp(1.15rem, ${Math.max(3.4, 12 - (card?.word?.length ?? 0) / 5)}vw, 2.25rem)` }}
             lang="sk"
           >
             {card?.word ?? ""}
@@ -512,42 +528,33 @@ function PlayingScreen({
         </div>
       </div>
 
-      {/* Bottom timer bar */}
-      <div className="w-full px-8 mb-3">
-        <div className="h-1.5 w-full rounded-full bg-white/10 overflow-hidden">
-          <div
-            className={`h-full rounded-full transition-[width] duration-200 ease-linear ${
-              isWarning ? "bg-red-500" : "bg-purple-400"
-            }`}
-            style={{ width: `${timerPct}%` }}
-          />
-        </div>
-      </div>
-
-      {/* Action buttons */}
-      <div className="flex w-full items-center justify-center gap-8 pb-safe pb-10">
-        {/* Skip */}
+      {/* Akčné tlačidlá — pomenované pilulky namiesto holých kruhov s ikonou,
+          rovnaký jazyk ako ostatné časované minihry Party modu. */}
+      <div className="relative z-10 flex shrink-0 gap-3 px-4 pb-[max(1.1rem,env(safe-area-inset-bottom))] pt-1">
         <button
           onClick={handleSkip}
           disabled={!canSkip}
           aria-label="Preskočiť slovo"
-          className={`flex h-20 w-20 flex-col items-center justify-center rounded-full transition active:scale-90 disabled:opacity-30 hover:scale-[1.05] ${
-            canSkip ? "bg-white/20" : "bg-white/10"
-          }`}
+          className="party-glass flex flex-1 items-center justify-center gap-2 rounded-2xl py-4 text-sm font-black text-white/75 transition active:scale-95 disabled:opacity-30"
         >
-          <Icons.arrowUp size={28} className="text-white" />
-          <span className="text-xs font-bold text-white/60 mt-0.5">
+          <Icons.arrowUp size={17} />
+          Preskočiť
+          <span className="text-white/35">
             {maxSkips === 99 ? "∞" : `${skipsUsed}/${maxSkips}`}
           </span>
         </button>
 
-        {/* Correct */}
         <button
           onClick={handleCorrect}
           aria-label="Uhádnuté"
-          className="flex h-20 w-20 items-center justify-center rounded-full bg-white/20 transition active:scale-90 active:bg-green-500/40 hover:scale-[1.05]"
+          className="party-shine flex flex-[1.35] items-center justify-center gap-2 overflow-hidden rounded-2xl py-4 text-sm font-black text-white transition active:scale-95"
+          style={{
+            background: "linear-gradient(120deg, #16a34a, #22c55e)",
+            boxShadow: "0 14px 28px -16px rgba(34, 197, 94, .65)",
+          }}
         >
-          <Icons.check size={34} className="text-green-400" />
+          <Icons.check size={18} />
+          Uhádnuté
         </button>
       </div>
     </div>
