@@ -1,0 +1,3953 @@
+{
+ "target": "-18 LUFS (prvých 7 s od startAt)",
+ "method": "EBU R128 (ffmpeg ebur128) + kalibrácia renderom v Chromiu cez GainNode → DynamicsCompressor",
+ "playable": [
+  {
+   "id": "sk-engine-idle",
+   "label": "Motor auta",
+   "gainDb": -1.8,
+   "startAt": 0,
+   "lufsBefore": -19.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.655
+  },
+  {
+   "id": "sk-cat-meow",
+   "label": "Mňaukanie mačky",
+   "gainDb": -3.4,
+   "startAt": 0,
+   "lufsBefore": -17.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.346
+  },
+  {
+   "id": "sk-can-open",
+   "label": "Otvorenie plechovky",
+   "gainDb": 19.6,
+   "startAt": 0,
+   "lufsBefore": -41.8,
+   "lufsAfterBrowser": -23.5,
+   "samplePeakAfter": 0.966
+  },
+  {
+   "id": "sk-dog-bark",
+   "label": "Štekot psa",
+   "gainDb": -5.5,
+   "startAt": 0,
+   "lufsBefore": -15.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.478
+  },
+  {
+   "id": "sk-rain-window",
+   "label": "Dážď na okne",
+   "gainDb": 14.5,
+   "startAt": 0,
+   "lufsBefore": -34.8,
+   "lufsAfterBrowser": -17.8,
+   "samplePeakAfter": 0.904
+  },
+  {
+   "id": "sk-doorbell",
+   "label": "Zvonček pri dverách",
+   "gainDb": 5.7,
+   "startAt": 0,
+   "lufsBefore": -24.4,
+   "lufsAfterBrowser": -20.8,
+   "samplePeakAfter": 0.967
+  },
+  {
+   "id": "sk-train-horn",
+   "label": "Húkanie vlaku",
+   "gainDb": -7.7,
+   "startAt": 0,
+   "lufsBefore": -9.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.356
+  },
+  {
+   "id": "sk-heartbeat",
+   "label": "Tlkot srdca",
+   "gainDb": 1.6,
+   "startAt": 0,
+   "lufsBefore": -22.5,
+   "lufsAfterBrowser": -17.9,
+   "samplePeakAfter": 0.765
+  },
+  {
+   "id": "sk-microwave",
+   "label": "Mikrovlnka",
+   "gainDb": 9.4,
+   "startAt": 0,
+   "lufsBefore": -27.3,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.522
+  },
+  {
+   "id": "sk-alarm-clock",
+   "label": "Budík",
+   "gainDb": 1.9,
+   "startAt": 0,
+   "lufsBefore": -19.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.402
+  },
+  {
+   "id": "sk-applause",
+   "label": "Potlesk",
+   "gainDb": 8.4,
+   "startAt": 0,
+   "lufsBefore": -26.3,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.931
+  },
+  {
+   "id": "sk-horses-gallop",
+   "label": "Cválajúce kone",
+   "gainDb": 6,
+   "startAt": 0,
+   "lufsBefore": -26.6,
+   "lufsAfterBrowser": -21.4,
+   "samplePeakAfter": 0.956
+  },
+  {
+   "id": "sk-fire-crackle",
+   "label": "Praskajúci oheň",
+   "gainDb": 5.1,
+   "startAt": 0,
+   "lufsBefore": -26.2,
+   "lufsAfterBrowser": -23.4,
+   "samplePeakAfter": 0.963
+  },
+  {
+   "id": "sk-rooster",
+   "label": "Kikiríkanie kohúta",
+   "gainDb": -8.6,
+   "startAt": 0,
+   "lufsBefore": -9.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.237
+  },
+  {
+   "id": "sk-sheep",
+   "label": "Bľačanie ovce",
+   "gainDb": -7.1,
+   "startAt": 0,
+   "lufsBefore": -10.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.397
+  },
+  {
+   "id": "sk-cow",
+   "label": "Bučanie kravy",
+   "gainDb": -5.8,
+   "startAt": 0,
+   "lufsBefore": -12.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.462
+  },
+  {
+   "id": "sk-thunder",
+   "label": "Hrom",
+   "gainDb": 3.6,
+   "startAt": 0,
+   "lufsBefore": -21.5,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.848
+  },
+  {
+   "id": "sk-church-bells",
+   "label": "Kostolné zvony",
+   "gainDb": -1.2,
+   "startAt": 0,
+   "lufsBefore": -16.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.748
+  },
+  {
+   "id": "sk-sea-waves",
+   "label": "Vlny na brehu",
+   "gainDb": 10.2,
+   "startAt": 0,
+   "lufsBefore": -31.5,
+   "lufsAfterBrowser": -21.3,
+   "samplePeakAfter": 0.824
+  },
+  {
+   "id": "sk-lion",
+   "label": "Rev leva",
+   "gainDb": -5.4,
+   "startAt": 0,
+   "lufsBefore": -12.7,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.204
+  },
+  {
+   "id": "commons-157763-felix-blume-a-donkey-is-braying-in-his-en",
+   "label": "Hýkanie osla",
+   "gainDb": 0.2,
+   "startAt": 0,
+   "lufsBefore": -18.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.743
+  },
+  {
+   "id": "commons-bee-buzzing-sound-animal-noises-opus",
+   "label": "Bzučanie včiel",
+   "gainDb": 0.8,
+   "startAt": 0,
+   "lufsBefore": -18.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.512
+  },
+  {
+   "id": "commons-frogs-croak-calling-chorus-at-night-ogg",
+   "label": "Kvákanie žiab",
+   "gainDb": 6.6,
+   "startAt": 0,
+   "lufsBefore": -24.5,
+   "lufsAfterBrowser": -20.6,
+   "samplePeakAfter": 0.959
+  },
+  {
+   "id": "commons-purr-10-sec-loopable-ogg",
+   "label": "Pradenie mačky",
+   "gainDb": 0.6,
+   "startAt": 0,
+   "lufsBefore": -21.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.783
+  },
+  {
+   "id": "commons-segregation-of-information-about-emotional-arous",
+   "label": "Erdžanie koňa",
+   "gainDb": -7.3,
+   "startAt": 0,
+   "lufsBefore": -13.7,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.388
+  },
+  {
+   "id": "commons-herd-of-goats-bleating-ogg",
+   "label": "Mečanie kôz",
+   "gainDb": -2.1,
+   "startAt": 0,
+   "lufsBefore": -15.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.707
+  },
+  {
+   "id": "commons-jem-howls-ogg",
+   "label": "Zavýjanie psa",
+   "gainDb": -3.5,
+   "startAt": 0,
+   "lufsBefore": -17.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.58
+  },
+  {
+   "id": "commons-psittacara-erythrogenys-red-masked-parakeet-wav",
+   "label": "Papagáje",
+   "gainDb": 18.2,
+   "startAt": 0,
+   "lufsBefore": -39.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.447
+  },
+  {
+   "id": "commons-boar-grwls-1-ogg",
+   "label": "Chrochtanie diviaka",
+   "gainDb": -7.2,
+   "startAt": 0,
+   "lufsBefore": -10.7,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.393
+  },
+  {
+   "id": "commons-161691-felixblume-dolphin-screaming-underwater-i",
+   "label": "Delfíny",
+   "gainDb": 9,
+   "startAt": 0,
+   "lufsBefore": -29.6,
+   "lufsAfterBrowser": -17.9,
+   "samplePeakAfter": 0.912
+  },
+  {
+   "id": "commons-long-finned-pilot-whales-orig-ogg",
+   "label": "Veľryby",
+   "gainDb": 9.8,
+   "startAt": 0,
+   "lufsBefore": -30.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.607
+  },
+  {
+   "id": "commons-rufe-nachts-im-wald-ogg",
+   "label": "Nočný les",
+   "gainDb": 7.3,
+   "startAt": 0,
+   "lufsBefore": -30.9,
+   "lufsAfterBrowser": -23.6,
+   "samplePeakAfter": 0.652
+  },
+  {
+   "id": "commons-autostarten-und-wegfahren-01-ogg",
+   "label": "Štartovanie auta",
+   "gainDb": -1.6,
+   "startAt": 0,
+   "lufsBefore": -16.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.664
+  },
+  {
+   "id": "commons-wws-volkswagenbeetle8211horn-ogg",
+   "label": "Trúbenie auta",
+   "gainDb": -5.8,
+   "startAt": 0,
+   "lufsBefore": -12.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.408
+  },
+  {
+   "id": "commons-ambient-sound-city-street-berlin-2026-05-17-oga",
+   "label": "Premávka v meste",
+   "gainDb": 4.3,
+   "startAt": 0,
+   "lufsBefore": -25.3,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.649
+  },
+  {
+   "id": "commons-autos-auf-der-bundesautobahn-23-01-ogg",
+   "label": "Diaľnica",
+   "gainDb": 1.9,
+   "startAt": 0,
+   "lufsBefore": -19.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.818
+  },
+  {
+   "id": "commons-255126-ylearkisto-henkiloauto-tulo-asfaltilla-a-",
+   "label": "Auto prichádza a zastaví",
+   "gainDb": 15,
+   "startAt": 0,
+   "lufsBefore": -37.2,
+   "lufsAfterBrowser": -22.2,
+   "samplePeakAfter": 0.299
+  },
+  {
+   "id": "commons-255122-ylearkisto-henkiloauto-lahto-asfaltilla-a",
+   "label": "Odchod autom",
+   "gainDb": 1.3,
+   "startAt": 0,
+   "lufsBefore": -19.2,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.837
+  },
+  {
+   "id": "commons-ferrari-458-italia-ogg",
+   "label": "Športové auto",
+   "gainDb": -1.5,
+   "startAt": 0,
+   "lufsBefore": -16.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.741
+  },
+  {
+   "id": "commons-avertisseur-pi-tons-renault-zoe-opus",
+   "label": "Elektromobil",
+   "gainDb": -6.8,
+   "startAt": 0,
+   "lufsBefore": -11.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.413
+  },
+  {
+   "id": "commons-open-corsa-e-model-2014-parking-sensor-sound-oga",
+   "label": "Parkovací senzor",
+   "gainDb": 8.6,
+   "startAt": 0,
+   "lufsBefore": -26.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.733
+  },
+  {
+   "id": "sk2-alarmclock-wind",
+   "label": "Naťahovanie budíka",
+   "gainDb": 13,
+   "startAt": 0,
+   "lufsBefore": -36.7,
+   "lufsAfterBrowser": -21.4,
+   "samplePeakAfter": 0.963
+  },
+  {
+   "id": "sk2-brushcutter",
+   "label": "Krovinorez",
+   "gainDb": 7.8,
+   "startAt": 0,
+   "lufsBefore": -25.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.583
+  },
+  {
+   "id": "sk2-chainsaw",
+   "label": "Motorová píla",
+   "gainDb": 9.5,
+   "startAt": 0,
+   "lufsBefore": -28.2,
+   "lufsAfterBrowser": -18.8,
+   "samplePeakAfter": 0.852
+  },
+  {
+   "id": "sk2-dentaldrill",
+   "label": "Zubárska vŕtačka",
+   "gainDb": -6.2,
+   "startAt": 0,
+   "lufsBefore": -11.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.298
+  },
+  {
+   "id": "sk2-firealarm",
+   "label": "Požiarny poplach",
+   "gainDb": -2.6,
+   "startAt": 0,
+   "lufsBefore": -15.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.348
+  },
+  {
+   "id": "sk2-firealarm-manual",
+   "label": "Požiarny zvonec",
+   "gainDb": 1.2,
+   "startAt": 0,
+   "lufsBefore": -19.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.641
+  },
+  {
+   "id": "sk2-lawnmower-old",
+   "label": "Kosačka",
+   "gainDb": 8.6,
+   "startAt": 0,
+   "lufsBefore": -26.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.834
+  },
+  {
+   "id": "sk2-meatslicer",
+   "label": "Krájač salámy",
+   "gainDb": -7.6,
+   "startAt": 0,
+   "lufsBefore": -10.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.375
+  },
+  {
+   "id": "sk2-pencilsharpener-el",
+   "label": "Elektrické strúhadlo",
+   "gainDb": 5.8,
+   "startAt": 0,
+   "lufsBefore": -25.9,
+   "lufsAfterBrowser": -17.7,
+   "samplePeakAfter": 0.964
+  },
+  {
+   "id": "sk2-typewriter",
+   "label": "Písací stroj",
+   "gainDb": 7,
+   "startAt": 0,
+   "lufsBefore": -26.8,
+   "lufsAfterBrowser": -21.2,
+   "samplePeakAfter": 0.959
+  },
+  {
+   "id": "sk2-woodchipper",
+   "label": "Drvič konárov",
+   "gainDb": 4.1,
+   "startAt": 0,
+   "lufsBefore": -22.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.689
+  },
+  {
+   "id": "sk2-tattoo",
+   "label": "Tetovanie",
+   "gainDb": 0,
+   "startAt": 0,
+   "lufsBefore": -18.0,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.829
+  },
+  {
+   "id": "sk2-creakingfloors",
+   "label": "Vŕzgajúca podlaha",
+   "gainDb": 16.6,
+   "startAt": 0,
+   "lufsBefore": -39.4,
+   "lufsAfterBrowser": -23.0,
+   "samplePeakAfter": 0.968
+  },
+  {
+   "id": "sk2-firetruck-siren",
+   "label": "Hasičské auto",
+   "gainDb": -7.7,
+   "startAt": 0,
+   "lufsBefore": -10.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.207
+  },
+  {
+   "id": "sk2-foghorn",
+   "label": "Hmlová siréna",
+   "gainDb": -6,
+   "startAt": 2.4,
+   "lufsBefore": -12.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.258
+  },
+  {
+   "id": "sk2-hacksaw",
+   "label": "Píla na kov",
+   "gainDb": 5.8,
+   "startAt": 0,
+   "lufsBefore": -23.7,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.925
+  },
+  {
+   "id": "sk2-pneumaticdrill2",
+   "label": "Zbíjačka",
+   "gainDb": 6.4,
+   "startAt": 0,
+   "lufsBefore": -25.0,
+   "lufsAfterBrowser": -18.7,
+   "samplePeakAfter": 0.422
+  },
+  {
+   "id": "sk2-policecar-siren",
+   "label": "Policajná siréna",
+   "gainDb": -6.4,
+   "startAt": 0,
+   "lufsBefore": -11.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.382
+  },
+  {
+   "id": "sk2-steamiron",
+   "label": "Naparovacia žehlička",
+   "gainDb": 5.8,
+   "startAt": 0,
+   "lufsBefore": -26.4,
+   "lufsAfterBrowser": -21.1,
+   "samplePeakAfter": 0.958
+  },
+  {
+   "id": "sk2-steamwhistle-loco",
+   "label": "Píšťala parnej lokomotívy",
+   "gainDb": -0.2,
+   "startAt": 0,
+   "lufsBefore": -17.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.362
+  },
+  {
+   "id": "sk2-tablesaw",
+   "label": "Kotúčová píla",
+   "gainDb": -10.6,
+   "startAt": 0,
+   "lufsBefore": -7.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.367
+  },
+  {
+   "id": "sk2-washboard",
+   "label": "Pranie na valche",
+   "gainDb": 9.9,
+   "startAt": 0,
+   "lufsBefore": -27.8,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.873
+  },
+  {
+   "id": "sk2-escalator",
+   "label": "Eskalátor",
+   "gainDb": 6.1,
+   "startAt": 0,
+   "lufsBefore": -24.0,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.863
+  },
+  {
+   "id": "sk2-fireworks-wws",
+   "label": "Ohňostroj",
+   "gainDb": -0.3,
+   "startAt": 0,
+   "lufsBefore": -17.7,
+   "lufsAfterBrowser": -18.4,
+   "samplePeakAfter": 0.82
+  },
+  {
+   "id": "sk2-fueldispenser",
+   "label": "Tankovanie",
+   "gainDb": 14.2,
+   "startAt": 0,
+   "lufsBefore": -32.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.752
+  },
+  {
+   "id": "sk2-ticket-vending",
+   "label": "Automat na lístky",
+   "gainDb": 4.9,
+   "startAt": 0,
+   "lufsBefore": -27.5,
+   "lufsAfterBrowser": -23.9,
+   "samplePeakAfter": 0.962
+  },
+  {
+   "id": "sk2-cardvalidation",
+   "label": "Pípnutie karty v MHD",
+   "gainDb": -0.9,
+   "startAt": 0,
+   "lufsBefore": -17.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.788
+  },
+  {
+   "id": "sk2-quartzclock-ring",
+   "label": "Odbíjanie hodín",
+   "gainDb": -6.6,
+   "startAt": 0,
+   "lufsBefore": -14.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.293
+  },
+  {
+   "id": "sk2-timeclock",
+   "label": "Píchacie hodiny",
+   "gainDb": 7.2,
+   "startAt": 0,
+   "lufsBefore": -22.9,
+   "lufsAfterBrowser": -20.7,
+   "samplePeakAfter": 0.937
+  },
+  {
+   "id": "sk2-angelchimes",
+   "label": "Anjelské zvonkohry",
+   "gainDb": 16.5,
+   "startAt": 1.2,
+   "lufsBefore": -36.8,
+   "lufsAfterBrowser": -23.3,
+   "samplePeakAfter": 0.967
+  },
+  {
+   "id": "sk2-bellfoundry-trial",
+   "label": "Úder do zvona",
+   "gainDb": 8.2,
+   "startAt": 0,
+   "lufsBefore": -26.2,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.832
+  },
+  {
+   "id": "sk2-dial-phone-old",
+   "label": "Vytáčanie na starom telefóne",
+   "gainDb": 15,
+   "startAt": 0,
+   "lufsBefore": -34.6,
+   "lufsAfterBrowser": -21.1,
+   "samplePeakAfter": 0.946
+  },
+  {
+   "id": "sk2-goldsmith-torch",
+   "label": "Plynový horák",
+   "gainDb": 6.1,
+   "startAt": 0,
+   "lufsBefore": -25.0,
+   "lufsAfterBrowser": -22.9,
+   "samplePeakAfter": 0.856
+  },
+  {
+   "id": "sk2-handcranksiren",
+   "label": "Ručná siréna",
+   "gainDb": -4.7,
+   "startAt": 0,
+   "lufsBefore": -16.3,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.339
+  },
+  {
+   "id": "sk2-frenchfries-drain",
+   "label": "Vyprážanie hranoliek",
+   "gainDb": 1.1,
+   "startAt": 0,
+   "lufsBefore": -19.0,
+   "lufsAfterBrowser": -18.2,
+   "samplePeakAfter": 0.872
+  },
+  {
+   "id": "sk2-train-arriving",
+   "label": "Príchod vlaku",
+   "gainDb": 19.9,
+   "startAt": 0,
+   "lufsBefore": -37.7,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.863
+  },
+  {
+   "id": "sk2-traindestination",
+   "label": "Preklápacia tabuľa",
+   "gainDb": 5.5,
+   "startAt": 0,
+   "lufsBefore": -21.9,
+   "lufsAfterBrowser": -18.4,
+   "samplePeakAfter": 0.923
+  },
+  {
+   "id": "sk2-automilking",
+   "label": "Dojací stroj",
+   "gainDb": 6.2,
+   "startAt": 0,
+   "lufsBefore": -23.7,
+   "lufsAfterBrowser": -18.3,
+   "samplePeakAfter": 0.962
+  },
+  {
+   "id": "sk2-firedept-bell",
+   "label": "Hasičský zvon",
+   "gainDb": 2,
+   "startAt": 0,
+   "lufsBefore": -20.0,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.552
+  },
+  {
+   "id": "sk2-handmilking",
+   "label": "Ručné dojenie",
+   "gainDb": 14.7,
+   "startAt": 0,
+   "lufsBefore": -32.5,
+   "lufsAfterBrowser": -18.8,
+   "samplePeakAfter": 0.967
+  },
+  {
+   "id": "sk2-poultry",
+   "label": "Hydina na dvore",
+   "gainDb": 7.9,
+   "startAt": 0,
+   "lufsBefore": -25.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.801
+  },
+  {
+   "id": "sk2-bbq-close",
+   "label": "Zatvorenie veka grilu",
+   "gainDb": -18.1,
+   "startAt": 0,
+   "lufsBefore": 0.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.112
+  },
+  {
+   "id": "sk2-toiletflush2",
+   "label": "Splachovanie záchoda",
+   "gainDb": -4.4,
+   "startAt": 0,
+   "lufsBefore": -13.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.539
+  },
+  {
+   "id": "sk2-watertap",
+   "label": "Pustenie vody z kohútika",
+   "gainDb": -10.4,
+   "startAt": 0,
+   "lufsBefore": -7.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.27
+  },
+  {
+   "id": "sk2-pansclatter",
+   "label": "Hrnce a panvice",
+   "gainDb": 0.2,
+   "startAt": 0,
+   "lufsBefore": -18.2,
+   "lufsAfterBrowser": -18.3,
+   "samplePeakAfter": 0.84
+  },
+  {
+   "id": "sk2-cutlery-rustle",
+   "label": "Príbory v zásuvke",
+   "gainDb": -1.6,
+   "startAt": 0,
+   "lufsBefore": -16.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.716
+  },
+  {
+   "id": "sk2-pillbottle",
+   "label": "Tabletky v liekovke",
+   "gainDb": -10.3,
+   "startAt": 0,
+   "lufsBefore": -7.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.273
+  },
+  {
+   "id": "sk2-watermelon-smack",
+   "label": "Klopkanie na melón",
+   "gainDb": -0.3,
+   "startAt": 0,
+   "lufsBefore": -17.7,
+   "lufsAfterBrowser": -18.3,
+   "samplePeakAfter": 0.819
+  },
+  {
+   "id": "sk2-stairs-squeak",
+   "label": "Vŕzgajúce schody",
+   "gainDb": 6.6,
+   "startAt": 0,
+   "lufsBefore": -23.5,
+   "lufsAfterBrowser": -18.3,
+   "samplePeakAfter": 0.931
+  },
+  {
+   "id": "sk2-walkgravel",
+   "label": "Chôdza po štrku",
+   "gainDb": 6.7,
+   "startAt": 0,
+   "lufsBefore": -27.5,
+   "lufsAfterBrowser": -17.8,
+   "samplePeakAfter": 0.893
+  },
+  {
+   "id": "sk2-drawer-open",
+   "label": "Otvorenie zásuvky",
+   "gainDb": 11.1,
+   "startAt": 0,
+   "lufsBefore": -26.0,
+   "lufsAfterBrowser": -18.8,
+   "samplePeakAfter": 0.943
+  },
+  {
+   "id": "sk2-chair-drag",
+   "label": "Posúvanie stoličky",
+   "gainDb": -4.1,
+   "startAt": 0,
+   "lufsBefore": -13.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.558
+  },
+  {
+   "id": "sk2-crunchy-eat",
+   "label": "Chrumkanie",
+   "gainDb": -18.2,
+   "startAt": 0,
+   "lufsBefore": 0.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.111
+  },
+  {
+   "id": "sk2-rainleaves",
+   "label": "Dážď v lese",
+   "gainDb": 8.8,
+   "startAt": 0,
+   "lufsBefore": -26.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.614
+  },
+  {
+   "id": "sk2-sandal-brick",
+   "label": "Kroky v šľapkách",
+   "gainDb": 4.3,
+   "startAt": 0,
+   "lufsBefore": -22.4,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.809
+  },
+  {
+   "id": "sk2-lock-squeaky",
+   "label": "Zamykanie dverí",
+   "gainDb": 11.7,
+   "startAt": 0,
+   "lufsBefore": -29.7,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.839
+  },
+  {
+   "id": "sk2-stick-metalframe",
+   "label": "Palička po zábradlí",
+   "gainDb": 4.6,
+   "startAt": 0,
+   "lufsBefore": -19.8,
+   "lufsAfterBrowser": -19.5,
+   "samplePeakAfter": 0.965
+  },
+  {
+   "id": "sk2-closet-open",
+   "label": "Otvorenie skrine",
+   "gainDb": 1.5,
+   "startAt": 0,
+   "lufsBefore": -17.9,
+   "lufsAfterBrowser": -18.3,
+   "samplePeakAfter": 0.836
+  },
+  {
+   "id": "sk2-closet-slam",
+   "label": "Buchnutie dverí skrine",
+   "gainDb": 3.3,
+   "startAt": 0,
+   "lufsBefore": -19.2,
+   "lufsAfterBrowser": -18.2,
+   "samplePeakAfter": 0.917
+  },
+  {
+   "id": "sk2-ac-hum",
+   "label": "Klimatizácia",
+   "gainDb": 2.5,
+   "startAt": 0,
+   "lufsBefore": -20.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.479
+  },
+  {
+   "id": "sk2-door-creak",
+   "label": "Vŕzganie dvierok umývačky",
+   "gainDb": 4.7,
+   "startAt": 0,
+   "lufsBefore": -25.4,
+   "lufsAfterBrowser": -17.9,
+   "samplePeakAfter": 0.888
+  },
+  {
+   "id": "sk2-spraybottle",
+   "label": "Rozprašovač",
+   "gainDb": 20,
+   "startAt": 0,
+   "lufsBefore": -37.9,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.923
+  },
+  {
+   "id": "sk2-smokealarm",
+   "label": "Detektor dymu",
+   "gainDb": -8.7,
+   "startAt": 2.6,
+   "lufsBefore": -12.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.226
+  },
+  {
+   "id": "sk2-coffeegrinder",
+   "label": "Mlynček na kávu",
+   "gainDb": 4.3,
+   "startAt": 0,
+   "lufsBefore": -24.9,
+   "lufsAfterBrowser": -18.7,
+   "samplePeakAfter": 0.957
+  },
+  {
+   "id": "sk2-kettlewhistle",
+   "label": "Pískajúca kanvica",
+   "gainDb": 15,
+   "startAt": 0,
+   "lufsBefore": -34.3,
+   "lufsAfterBrowser": -19.6,
+   "samplePeakAfter": 0.889
+  },
+  {
+   "id": "sk2-pourtea",
+   "label": "Nalievanie vody do hrnčeka",
+   "gainDb": 19,
+   "startAt": 0,
+   "lufsBefore": -39.9,
+   "lufsAfterBrowser": -17.9,
+   "samplePeakAfter": 0.839
+  },
+  {
+   "id": "sk2-sinkdrain",
+   "label": "Vypúšťanie drezu",
+   "gainDb": 10.7,
+   "startAt": 0,
+   "lufsBefore": -28.4,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.924
+  },
+  {
+   "id": "sk2-eggtimer",
+   "label": "Minútka",
+   "gainDb": 5.5,
+   "startAt": 0,
+   "lufsBefore": -24.8,
+   "lufsAfterBrowser": -17.8,
+   "samplePeakAfter": 0.958
+  },
+  {
+   "id": "sk2-bikebell",
+   "label": "Zvonček na bicykli",
+   "gainDb": 8.4,
+   "startAt": 0,
+   "lufsBefore": -24.2,
+   "lufsAfterBrowser": -18.2,
+   "samplePeakAfter": 0.85
+  },
+  {
+   "id": "sk2-motorbike-exhaust",
+   "label": "Motorka",
+   "gainDb": 1.5,
+   "startAt": 0,
+   "lufsBefore": -19.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.769
+  },
+  {
+   "id": "sk2-airplane-chime",
+   "label": "Gong v lietadle",
+   "gainDb": -1.7,
+   "startAt": 0,
+   "lufsBefore": -16.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.241
+  },
+  {
+   "id": "sk2-crossingbell",
+   "label": "Železničné priecestie",
+   "gainDb": -1.6,
+   "startAt": 0,
+   "lufsBefore": -19.1,
+   "lufsAfterBrowser": -17.8,
+   "samplePeakAfter": 0.816
+  },
+  {
+   "id": "sk2-cicadas",
+   "label": "Cikády",
+   "gainDb": 12.5,
+   "startAt": 0,
+   "lufsBefore": -30.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.398
+  },
+  {
+   "id": "sk2-hen-egg",
+   "label": "Kotkodákanie sliepky",
+   "gainDb": -7,
+   "startAt": 0,
+   "lufsBefore": -14.0,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.402
+  },
+  {
+   "id": "sk2-pedestriancrossing",
+   "label": "Semafor pre chodcov",
+   "gainDb": 8.2,
+   "startAt": 0,
+   "lufsBefore": -29.6,
+   "lufsAfterBrowser": -18.4,
+   "samplePeakAfter": 0.742
+  },
+  {
+   "id": "sk2-schoolbell",
+   "label": "Školský zvonec",
+   "gainDb": 3.8,
+   "startAt": 0,
+   "lufsBefore": -21.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.249
+  },
+  {
+   "id": "sk2-chalkboard",
+   "label": "Písanie kriedou",
+   "gainDb": 10.3,
+   "startAt": 0,
+   "lufsBefore": -33.9,
+   "lufsAfterBrowser": -21.8,
+   "samplePeakAfter": 0.962
+  },
+  {
+   "id": "sk2-pageturn",
+   "label": "Otočenie strany",
+   "gainDb": 13.3,
+   "startAt": 0,
+   "lufsBefore": -33.9,
+   "lufsAfterBrowser": -17.9,
+   "samplePeakAfter": 0.797
+  },
+  {
+   "id": "sk2-camerashutter",
+   "label": "Spúšť fotoaparátu",
+   "gainDb": 4.3,
+   "startAt": 0,
+   "lufsBefore": -20.9,
+   "lufsAfterBrowser": -18.4,
+   "samplePeakAfter": 0.963
+  },
+  {
+   "id": "sk2-refereewhistle",
+   "label": "Píšťalka rozhodcu",
+   "gainDb": -11.1,
+   "startAt": 0,
+   "lufsBefore": -9.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.153
+  },
+  {
+   "id": "sk2-stadiumcrowd",
+   "label": "Fanúšikovia na štadióne",
+   "gainDb": 5.8,
+   "startAt": 0,
+   "lufsBefore": -23.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.534
+  },
+  {
+   "id": "sk2-bathsplash",
+   "label": "Čľapkanie vo vani",
+   "gainDb": 7.5,
+   "startAt": 0,
+   "lufsBefore": -26.4,
+   "lufsAfterBrowser": -17.6,
+   "samplePeakAfter": 0.869
+  },
+  {
+   "id": "sk2-woodsaw-hand",
+   "label": "Pílenie dreva",
+   "gainDb": 10.4,
+   "startAt": 0,
+   "lufsBefore": -31.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.826
+  },
+  {
+   "id": "sk2-cordlessscrew",
+   "label": "Aku skrutkovač",
+   "gainDb": 4.2,
+   "startAt": 0,
+   "lufsBefore": -22.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.456
+  },
+  {
+   "id": "sk2-cashregister2",
+   "label": "Pokladňa",
+   "gainDb": -9.7,
+   "startAt": 0,
+   "lufsBefore": -11.3,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.295
+  },
+  {
+   "id": "sk2-coins-moneybox",
+   "label": "Mince do pokladničky",
+   "gainDb": 7.9,
+   "startAt": 0,
+   "lufsBefore": -27.3,
+   "lufsAfterBrowser": -19.2,
+   "samplePeakAfter": 0.969
+  },
+  {
+   "id": "sk2-snaredrum",
+   "label": "Údery na bubon",
+   "gainDb": 8.2,
+   "startAt": 0,
+   "lufsBefore": -23.7,
+   "lufsAfterBrowser": -18.9,
+   "samplePeakAfter": 0.948
+  },
+  {
+   "id": "sk2-harmonica",
+   "label": "Fúkacia harmonika",
+   "gainDb": -0.6,
+   "startAt": 0,
+   "lufsBefore": -20.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.581
+  },
+  {
+   "id": "sk2-electricrazor",
+   "label": "Elektrický holiaci strojček",
+   "gainDb": 1.8,
+   "startAt": 0,
+   "lufsBefore": -19.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.37
+  },
+  {
+   "id": "sk2-washingmachine-spin",
+   "label": "Odstreďovanie práčky",
+   "gainDb": 15,
+   "startAt": 0,
+   "lufsBefore": -37.1,
+   "lufsAfterBrowser": -19.1,
+   "samplePeakAfter": 0.523
+  },
+  {
+   "id": "sk2-mechkeyboard",
+   "label": "Písanie na klávesnici",
+   "gainDb": 6.1,
+   "startAt": 0,
+   "lufsBefore": -23.7,
+   "lufsAfterBrowser": -18.3,
+   "samplePeakAfter": 0.949
+  },
+  {
+   "id": "sk2-anglegrinder",
+   "label": "Rozbrusovačka",
+   "gainDb": -6.7,
+   "startAt": 0,
+   "lufsBefore": -11.3,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.416
+  },
+  {
+   "id": "sk2-owlhoot",
+   "label": "Húkanie sovy",
+   "gainDb": 20.7,
+   "startAt": 0,
+   "lufsBefore": -41.5,
+   "lufsAfterBrowser": -21.3,
+   "samplePeakAfter": 0.859
+  },
+  {
+   "id": "sk3-aircompressor",
+   "label": "Kompresor",
+   "gainDb": -2.8,
+   "startAt": 0,
+   "lufsBefore": -15.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.571
+  },
+  {
+   "id": "sk3-bonfire-ignite",
+   "label": "Zapálenie vatry",
+   "gainDb": 7.7,
+   "startAt": 0,
+   "lufsBefore": -30.8,
+   "lufsAfterBrowser": -20.1,
+   "samplePeakAfter": 0.651
+  },
+  {
+   "id": "sk3-cookerhood",
+   "label": "Digestor",
+   "gainDb": -0.5,
+   "startAt": 0,
+   "lufsBefore": -17.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.764
+  },
+  {
+   "id": "sk3-guillotine-paper",
+   "label": "Rezačka papiera",
+   "gainDb": 16.6,
+   "startAt": 0,
+   "lufsBefore": -37.6,
+   "lufsAfterBrowser": -22.7,
+   "samplePeakAfter": 0.962
+  },
+  {
+   "id": "sk3-handwelding",
+   "label": "Zváranie",
+   "gainDb": 10.7,
+   "startAt": 0,
+   "lufsBefore": -27.6,
+   "lufsAfterBrowser": -18.2,
+   "samplePeakAfter": 0.945
+  },
+  {
+   "id": "sk3-hedgetrimmer2",
+   "label": "Nožnice na živý plot",
+   "gainDb": 11.3,
+   "startAt": 0,
+   "lufsBefore": -35.2,
+   "lufsAfterBrowser": -23.9,
+   "samplePeakAfter": 0.544
+  },
+  {
+   "id": "sk3-horseshoes-street",
+   "label": "Fiaker",
+   "gainDb": 15,
+   "startAt": 0,
+   "lufsBefore": -36.4,
+   "lufsAfterBrowser": -21.4,
+   "samplePeakAfter": 0.83
+  },
+  {
+   "id": "sk3-icebreaker-bell",
+   "label": "Lodný zvon",
+   "gainDb": -4.6,
+   "startAt": 0,
+   "lufsBefore": -13.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.53
+  },
+  {
+   "id": "sk3-johndeere",
+   "label": "Traktor",
+   "gainDb": 1.8,
+   "startAt": 0,
+   "lufsBefore": -19.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.539
+  },
+  {
+   "id": "sk3-mopedengine",
+   "label": "Moped",
+   "gainDb": 7.7,
+   "startAt": 0,
+   "lufsBefore": -26.0,
+   "lufsAfterBrowser": -18.4,
+   "samplePeakAfter": 0.867
+  },
+  {
+   "id": "sk3-train-vienna",
+   "label": "Jazda vlakom",
+   "gainDb": 23,
+   "startAt": 0,
+   "lufsBefore": -40.9,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.852
+  },
+  {
+   "id": "sk3-petroltanker",
+   "label": "Kamión",
+   "gainDb": 5.8,
+   "startAt": 0,
+   "lufsBefore": -23.7,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.486
+  },
+  {
+   "id": "sk3-piledriving",
+   "label": "Baranenie pilót",
+   "gainDb": 7,
+   "startAt": 0,
+   "lufsBefore": -23.2,
+   "lufsAfterBrowser": -18.3,
+   "samplePeakAfter": 0.901
+  },
+  {
+   "id": "sk3-steamloco-p8",
+   "label": "Parná lokomotíva",
+   "gainDb": 9.9,
+   "startAt": 0,
+   "lufsBefore": -27.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.804
+  },
+  {
+   "id": "sk3-reversevending",
+   "label": "Automat na fľaše",
+   "gainDb": 10.5,
+   "startAt": 0,
+   "lufsBefore": -29.3,
+   "lufsAfterBrowser": -20.1,
+   "samplePeakAfter": 0.953
+  },
+  {
+   "id": "sk3-sandblasting",
+   "label": "Pieskovanie",
+   "gainDb": -2.4,
+   "startAt": 0,
+   "lufsBefore": -15.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.364
+  },
+  {
+   "id": "sk3-sewingmachine",
+   "label": "Šijací stroj",
+   "gainDb": -0.3,
+   "startAt": 0,
+   "lufsBefore": -17.7,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.833
+  },
+  {
+   "id": "sk3-shoebrush",
+   "label": "Kefovanie topánok",
+   "gainDb": 6.6,
+   "startAt": 0,
+   "lufsBefore": -25.0,
+   "lufsAfterBrowser": -18.4,
+   "samplePeakAfter": 0.955
+  },
+  {
+   "id": "sk3-shoenails",
+   "label": "Obuvník zatĺka klince",
+   "gainDb": 3.4,
+   "startAt": 0,
+   "lufsBefore": -24.3,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.815
+  },
+  {
+   "id": "sk3-shovelcoal",
+   "label": "Hádzanie uhlia lopatou",
+   "gainDb": -1.3,
+   "startAt": 0,
+   "lufsBefore": -16.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.775
+  },
+  {
+   "id": "sk3-signalbell",
+   "label": "Signálny zvonec",
+   "gainDb": -0.2,
+   "startAt": 1.7,
+   "lufsBefore": -17.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.75
+  },
+  {
+   "id": "sk3-smithy-forge",
+   "label": "Kováč",
+   "gainDb": 8.6,
+   "startAt": 0,
+   "lufsBefore": -29.1,
+   "lufsAfterBrowser": -17.7,
+   "samplePeakAfter": 0.865
+  },
+  {
+   "id": "sk3-lathe-turning",
+   "label": "Sústruh",
+   "gainDb": 2.8,
+   "startAt": 0,
+   "lufsBefore": -20.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.542
+  },
+  {
+   "id": "sk3-waterwheel",
+   "label": "Mlynské koleso",
+   "gainDb": 14.9,
+   "startAt": 0,
+   "lufsBefore": -32.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.57
+  },
+  {
+   "id": "sk3-wetsponge",
+   "label": "Umývanie tabule hubkou",
+   "gainDb": 7,
+   "startAt": 0,
+   "lufsBefore": -24.9,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.88
+  },
+  {
+   "id": "sk3-wheelwright-plane",
+   "label": "Hobľovanie",
+   "gainDb": 10.5,
+   "startAt": 0,
+   "lufsBefore": -31.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.775
+  },
+  {
+   "id": "sk3-windturbine",
+   "label": "Veterná elektráreň",
+   "gainDb": 6.5,
+   "startAt": 0,
+   "lufsBefore": -26.0,
+   "lufsAfterBrowser": -22.5,
+   "samplePeakAfter": 0.879
+  },
+  {
+   "id": "sk3-woodenbarrel",
+   "label": "Kotúľanie suda",
+   "gainDb": 4.6,
+   "startAt": 0,
+   "lufsBefore": -22.5,
+   "lufsAfterBrowser": -19.5,
+   "samplePeakAfter": 0.966
+  },
+  {
+   "id": "sk3-woodenwagon",
+   "label": "Drevený vozík",
+   "gainDb": 3.3,
+   "startAt": 0,
+   "lufsBefore": -21.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.896
+  },
+  {
+   "id": "sk3-millstone",
+   "label": "Žarnov",
+   "gainDb": 11.8,
+   "startAt": 0,
+   "lufsBefore": -32.7,
+   "lufsAfterBrowser": -17.9,
+   "samplePeakAfter": 0.721
+  },
+  {
+   "id": "sk3-cinemaseat",
+   "label": "Sklápacie sedadlo",
+   "gainDb": 6.6,
+   "startAt": 0,
+   "lufsBefore": -23.3,
+   "lufsAfterBrowser": -18.3,
+   "samplePeakAfter": 0.928
+  },
+  {
+   "id": "sk3-gasdetector",
+   "label": "Detektor plynu",
+   "gainDb": -10,
+   "startAt": 0,
+   "lufsBefore": -7.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.23
+  },
+  {
+   "id": "sk3-handgrinder",
+   "label": "Ručný mlynček",
+   "gainDb": 5.9,
+   "startAt": 0,
+   "lufsBefore": -26.8,
+   "lufsAfterBrowser": -17.9,
+   "samplePeakAfter": 0.705
+  },
+  {
+   "id": "sk3-recordstore",
+   "label": "Prehŕňanie platní",
+   "gainDb": 15,
+   "startAt": 0,
+   "lufsBefore": -38.8,
+   "lufsAfterBrowser": -23.7,
+   "samplePeakAfter": 0.739
+  },
+  {
+   "id": "sk3-pokermachine",
+   "label": "Výherný automat",
+   "gainDb": 14.6,
+   "startAt": 0,
+   "lufsBefore": -37.8,
+   "lufsAfterBrowser": -23.5,
+   "samplePeakAfter": 0.961
+  },
+  {
+   "id": "sk3-airvent",
+   "label": "Vetranie",
+   "gainDb": 15,
+   "startAt": 0,
+   "lufsBefore": -33.6,
+   "lufsAfterBrowser": -18.7,
+   "samplePeakAfter": 0.402
+  },
+  {
+   "id": "sk3-backyard",
+   "label": "Záhrada za domom",
+   "gainDb": 15,
+   "startAt": 0,
+   "lufsBefore": -38.0,
+   "lufsAfterBrowser": -23.1,
+   "samplePeakAfter": 0.435
+  },
+  {
+   "id": "sk3-binhits",
+   "label": "Búchanie do smetiaka",
+   "gainDb": -4.1,
+   "startAt": 0,
+   "lufsBefore": -13.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.558
+  },
+  {
+   "id": "sk3-bladegrass",
+   "label": "Pískanie na tráve",
+   "gainDb": -1.9,
+   "startAt": 0,
+   "lufsBefore": -16.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.362
+  },
+  {
+   "id": "sk3-crunchyleaves",
+   "label": "Šuchot suchého lístia",
+   "gainDb": 4.2,
+   "startAt": 0,
+   "lufsBefore": -23.5,
+   "lufsAfterBrowser": -21.4,
+   "samplePeakAfter": 0.965
+  },
+  {
+   "id": "sk3-droppingspoon",
+   "label": "Pád lyžice",
+   "gainDb": 1.7,
+   "startAt": 0,
+   "lufsBefore": -19.7,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.804
+  },
+  {
+   "id": "sk3-forestambience",
+   "label": "Les",
+   "gainDb": 14.6,
+   "startAt": 0,
+   "lufsBefore": -32.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.313
+  },
+  {
+   "id": "sk3-walkwoods",
+   "label": "Chôdza lesom",
+   "gainDb": 4.4,
+   "startAt": 0,
+   "lufsBefore": -24.6,
+   "lufsAfterBrowser": -21.4,
+   "samplePeakAfter": 0.969
+  },
+  {
+   "id": "sk3-poolballs",
+   "label": "Biliard",
+   "gainDb": 22.8,
+   "startAt": 0,
+   "lufsBefore": -38.8,
+   "lufsAfterBrowser": -19.5,
+   "samplePeakAfter": 0.911
+  },
+  {
+   "id": "sk3-parrottalk",
+   "label": "Hovoriaci papagáj",
+   "gainDb": -0.7,
+   "startAt": 0,
+   "lufsBefore": -20.2,
+   "lufsAfterBrowser": -17.9,
+   "samplePeakAfter": 0.812
+  },
+  {
+   "id": "sk3-heartmonitor",
+   "label": "Monitor srdca",
+   "gainDb": 8.6,
+   "startAt": 0,
+   "lufsBefore": -26.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.335
+  },
+  {
+   "id": "sk3-construction",
+   "label": "Stavenisko",
+   "gainDb": -14.2,
+   "startAt": 0,
+   "lufsBefore": 0.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.214
+  },
+  {
+   "id": "sk3-dialtone",
+   "label": "Oznamovací tón",
+   "gainDb": -7.5,
+   "startAt": 0,
+   "lufsBefore": -10.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.194
+  },
+  {
+   "id": "sk4-bus-door",
+   "label": "Dvere autobusu",
+   "gainDb": -2.8,
+   "startAt": 0,
+   "lufsBefore": -15.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.363
+  },
+  {
+   "id": "sk4-bus-horn",
+   "label": "Trúbenie autobusu",
+   "gainDb": -14.4,
+   "startAt": 0,
+   "lufsBefore": -3.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.191
+  },
+  {
+   "id": "sk4-projector-light",
+   "label": "Kinoprojektor",
+   "gainDb": 0.8,
+   "startAt": 0,
+   "lufsBefore": -18.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.829
+  },
+  {
+   "id": "sk4-stairwell",
+   "label": "Schodisko",
+   "gainDb": 9.8,
+   "startAt": 0,
+   "lufsBefore": -27.7,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.548
+  },
+  {
+   "id": "sk4-steamwhistle2",
+   "label": "Píšťala parníka",
+   "gainDb": -0.7,
+   "startAt": 0,
+   "lufsBefore": -17.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.199
+  },
+  {
+   "id": "sk4-tiredeflate",
+   "label": "Vypúšťanie pneumatiky",
+   "gainDb": -3.7,
+   "startAt": 0,
+   "lufsBefore": -14.3,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.588
+  },
+  {
+   "id": "sk4-teslaphone",
+   "label": "Zvonenie starého telefónu",
+   "gainDb": -4.2,
+   "startAt": 1.6,
+   "lufsBefore": -16.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.432
+  },
+  {
+   "id": "sk4-forgeblower",
+   "label": "Kováčsky mech",
+   "gainDb": 5.5,
+   "startAt": 0,
+   "lufsBefore": -23.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.838
+  },
+  {
+   "id": "sk4-forgewater",
+   "label": "Voda na rozžeravenom uhlí",
+   "gainDb": 3.9,
+   "startAt": 0,
+   "lufsBefore": -21.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.856
+  },
+  {
+   "id": "sk4-clockaccuracy",
+   "label": "Tikanie hodiniek",
+   "gainDb": 7,
+   "startAt": 0,
+   "lufsBefore": -28.2,
+   "lufsAfterBrowser": -19.5,
+   "samplePeakAfter": 0.96
+  },
+  {
+   "id": "sk4-railtrolley",
+   "label": "Ručná drezina",
+   "gainDb": 4.3,
+   "startAt": 0,
+   "lufsBefore": -22.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.461
+  },
+  {
+   "id": "sk4-handmixer",
+   "label": "Mixér",
+   "gainDb": 4,
+   "startAt": 0,
+   "lufsBefore": -21.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.489
+  },
+  {
+   "id": "sk4-towerclock",
+   "label": "Vežové hodiny",
+   "gainDb": 16.5,
+   "startAt": 0,
+   "lufsBefore": -33.9,
+   "lufsAfterBrowser": -18.4,
+   "samplePeakAfter": 0.953
+  },
+  {
+   "id": "sk4-droppingrocks",
+   "label": "Sypanie kamienkov",
+   "gainDb": -1.8,
+   "startAt": 0,
+   "lufsBefore": -16.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.732
+  },
+  {
+   "id": "sk4-fishtank",
+   "label": "Akváriový filter",
+   "gainDb": 15,
+   "startAt": 0,
+   "lufsBefore": -36.1,
+   "lufsAfterBrowser": -21.2,
+   "samplePeakAfter": 0.864
+  },
+  {
+   "id": "sk4-rabbit",
+   "label": "Králik",
+   "gainDb": 13,
+   "startAt": 0.9,
+   "lufsBefore": -38.4,
+   "lufsAfterBrowser": -22.9,
+   "samplePeakAfter": 0.878
+  },
+  {
+   "id": "sk4-cricket",
+   "label": "Cvrček",
+   "gainDb": -6,
+   "startAt": 0,
+   "lufsBefore": -14.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.419
+  },
+  {
+   "id": "sk4-dotmatrix",
+   "label": "Ihličková tlačiareň",
+   "gainDb": -6.1,
+   "startAt": 0,
+   "lufsBefore": -11.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.446
+  },
+  {
+   "id": "sk4-dialup",
+   "label": "Vytáčané pripojenie",
+   "gainDb": -6.3,
+   "startAt": 0,
+   "lufsBefore": -14.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.415
+  },
+  {
+   "id": "sk5-elephant",
+   "label": "Trúbenie slona",
+   "gainDb": 4.1,
+   "startAt": 0,
+   "lufsBefore": -21.7,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.4
+  },
+  {
+   "id": "sk5-beargrowl",
+   "label": "Medveď",
+   "gainDb": 3.1,
+   "startAt": 0,
+   "lufsBefore": -24.0,
+   "lufsAfterBrowser": -17.9,
+   "samplePeakAfter": 0.826
+  },
+  {
+   "id": "sk5-crow",
+   "label": "Krákanie vrany",
+   "gainDb": 7.8,
+   "startAt": 0,
+   "lufsBefore": -28.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.451
+  },
+  {
+   "id": "sk5-sparrows",
+   "label": "Vrabce",
+   "gainDb": 3.1,
+   "startAt": 0,
+   "lufsBefore": -21.0,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.577
+  },
+  {
+   "id": "sk5-woodpecker",
+   "label": "Ďateľ",
+   "gainDb": 5.3,
+   "startAt": 0,
+   "lufsBefore": -21.9,
+   "lufsAfterBrowser": -18.4,
+   "samplePeakAfter": 0.876
+  },
+  {
+   "id": "sk5-turkey",
+   "label": "Moriak",
+   "gainDb": 1.1,
+   "startAt": 0,
+   "lufsBefore": -20.9,
+   "lufsAfterBrowser": -17.7,
+   "samplePeakAfter": 0.852
+  },
+  {
+   "id": "sk5-peacock",
+   "label": "Páv",
+   "gainDb": -1.2,
+   "startAt": 0,
+   "lufsBefore": -16.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.562
+  },
+  {
+   "id": "sk5-stream",
+   "label": "Potok",
+   "gainDb": 7.5,
+   "startAt": 0,
+   "lufsBefore": -25.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.517
+  },
+  {
+   "id": "sk5-cymbal",
+   "label": "Činel",
+   "gainDb": 1.7,
+   "startAt": 0,
+   "lufsBefore": -19.7,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.765
+  },
+  {
+   "id": "sk5-pipeorgan",
+   "label": "Organ v kostole",
+   "gainDb": -3.2,
+   "startAt": 0,
+   "lufsBefore": -14.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.595
+  },
+  {
+   "id": "sk5-bagpipes",
+   "label": "Gajdy",
+   "gainDb": -5.3,
+   "startAt": 0,
+   "lufsBefore": -12.7,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.205
+  },
+  {
+   "id": "sk5-loom",
+   "label": "Tkáčsky stav",
+   "gainDb": 4.7,
+   "startAt": 0,
+   "lufsBefore": -22.5,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.927
+  },
+  {
+   "id": "sk5-narrowgauge",
+   "label": "Úzkokoľajka",
+   "gainDb": 9.6,
+   "startAt": 0,
+   "lufsBefore": -27.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.844
+  },
+  {
+   "id": "sk5-monorail",
+   "label": "Visutá dráha",
+   "gainDb": 1.4,
+   "startAt": 0,
+   "lufsBefore": -19.6,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.812
+  },
+  {
+   "id": "sk5-rotaryprint",
+   "label": "Tlačiarenský stroj",
+   "gainDb": 8.9,
+   "startAt": 0,
+   "lufsBefore": -27.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.425
+  },
+  {
+   "id": "sk5-teleprinter-auto",
+   "label": "Ďalekopis",
+   "gainDb": 5.1,
+   "startAt": 0,
+   "lufsBefore": -23.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.88
+  },
+  {
+   "id": "sk5-accountingmachine",
+   "label": "Mechanická kalkulačka",
+   "gainDb": 3.5,
+   "startAt": 0,
+   "lufsBefore": -21.3,
+   "lufsAfterBrowser": -19.8,
+   "samplePeakAfter": 0.954
+  },
+  {
+   "id": "sk5-tram-interior",
+   "label": "Jazda električkou",
+   "gainDb": 8.5,
+   "startAt": 0,
+   "lufsBefore": -26.3,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.893
+  },
+  {
+   "id": "sk5-tramdoors",
+   "label": "Dvere električky",
+   "gainDb": 11.4,
+   "startAt": 0,
+   "lufsBefore": -32.1,
+   "lufsAfterBrowser": -18.2,
+   "samplePeakAfter": 0.958
+  },
+  {
+   "id": "sk5-vandriving",
+   "label": "Prejazd dodávky",
+   "gainDb": 14.2,
+   "startAt": 0,
+   "lufsBefore": -32.1,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.855
+  },
+  {
+   "id": "sk5-whettingtrestle",
+   "label": "Brúska na nože",
+   "gainDb": 5.5,
+   "startAt": 0,
+   "lufsBefore": -23.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.834
+  },
+  {
+   "id": "sk6-alligator-bellow",
+   "label": "Rev aligátora",
+   "gainDb": 8.5,
+   "startAt": 0,
+   "lufsBefore": -26.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.407
+  },
+  {
+   "id": "sk6-ducks-landing",
+   "label": "Kačice pristávajú na vode",
+   "gainDb": 13.6,
+   "startAt": 0,
+   "lufsBefore": -31.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.533
+  },
+  {
+   "id": "sk6-elk-bellow",
+   "label": "Ručanie jeleňa",
+   "gainDb": 9.9,
+   "startAt": 0,
+   "lufsBefore": -27.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.355
+  },
+  {
+   "id": "sk6-geese-honking",
+   "label": "Gagotanie husí",
+   "gainDb": 7.5,
+   "startAt": 0,
+   "lufsBefore": -25.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.537
+  },
+  {
+   "id": "sk6-rattlesnake",
+   "label": "Štrkáč",
+   "gainDb": 0.6,
+   "startAt": 0,
+   "lufsBefore": -18.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.255
+  },
+  {
+   "id": "sk6-wolfhowls",
+   "label": "Vytie vlkov",
+   "gainDb": 7.1,
+   "startAt": 0,
+   "lufsBefore": -25.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.395
+  },
+  {
+   "id": "sk6-loons",
+   "label": "Potáplice",
+   "gainDb": 0.7,
+   "startAt": 0,
+   "lufsBefore": -18.7,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.257
+  },
+  {
+   "id": "sk6-cuckoo",
+   "label": "Kukučka",
+   "gainDb": 2.6,
+   "startAt": 0,
+   "lufsBefore": -23.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.602
+  },
+  {
+   "id": "sk6-nightingale",
+   "label": "Slávik",
+   "gainDb": -2.4,
+   "startAt": 0,
+   "lufsBefore": -18.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.385
+  },
+  {
+   "id": "sk6-bumpercars",
+   "label": "Autodróm",
+   "gainDb": 1.4,
+   "startAt": 0,
+   "lufsBefore": -19.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.684
+  },
+  {
+   "id": "sk6-brassband",
+   "label": "Dychovka",
+   "gainDb": 3,
+   "startAt": 0,
+   "lufsBefore": -21.0,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.546
+  },
+  {
+   "id": "sk6-rubberduck",
+   "label": "Gumená kačička",
+   "gainDb": -5.5,
+   "startAt": 0,
+   "lufsBefore": -15.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.383
+  },
+  {
+   "id": "sk6-musicbox",
+   "label": "Naťahovanie hracej skrinky",
+   "gainDb": 16.8,
+   "startAt": 0,
+   "lufsBefore": -38.0,
+   "lufsAfterBrowser": -19.4,
+   "samplePeakAfter": 0.958
+  },
+  {
+   "id": "sk7-espresso",
+   "label": "Espresso",
+   "gainDb": 13.1,
+   "startAt": 1.1,
+   "lufsBefore": -34.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.494
+  },
+  {
+   "id": "sk7-elevatordoor",
+   "label": "Dvere výťahu",
+   "gainDb": 8.4,
+   "startAt": 0,
+   "lufsBefore": -25.3,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.885
+  },
+  {
+   "id": "sk7-garagedoor-close",
+   "label": "Zatváranie garážovej brány",
+   "gainDb": -1.7,
+   "startAt": 0,
+   "lufsBefore": -19.3,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.593
+  },
+  {
+   "id": "sk7-freezerbox",
+   "label": "Mraznička",
+   "gainDb": 8.7,
+   "startAt": 0,
+   "lufsBefore": -24.9,
+   "lufsAfterBrowser": -22.5,
+   "samplePeakAfter": 0.969
+  },
+  {
+   "id": "sk7-toyphone",
+   "label": "Detský telefón",
+   "gainDb": 3.7,
+   "startAt": 0,
+   "lufsBefore": -21.7,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.497
+  },
+  {
+   "id": "sk7-cartraindoors",
+   "label": "Dvere vlaku",
+   "gainDb": -1.3,
+   "startAt": 0,
+   "lufsBefore": -17.6,
+   "lufsAfterBrowser": -18.4,
+   "samplePeakAfter": 0.775
+  },
+  {
+   "id": "sk7-carunlock",
+   "label": "Odomknutie auta",
+   "gainDb": 15,
+   "startAt": 0,
+   "lufsBefore": -37.6,
+   "lufsAfterBrowser": -19.7,
+   "samplePeakAfter": 0.335
+  },
+  {
+   "id": "sk7-windchime",
+   "label": "Zvonkohra vo vetre",
+   "gainDb": -3.9,
+   "startAt": 0,
+   "lufsBefore": -14.0,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.386
+  },
+  {
+   "id": "sk7-toyrattle",
+   "label": "Hrkálka",
+   "gainDb": 5.1,
+   "startAt": 0,
+   "lufsBefore": -24.1,
+   "lufsAfterBrowser": -20.3,
+   "samplePeakAfter": 0.965
+  },
+  {
+   "id": "sk7-peppergrinder",
+   "label": "Mlynček na korenie",
+   "gainDb": 13.6,
+   "startAt": 0,
+   "lufsBefore": -36.1,
+   "lufsAfterBrowser": -20.6,
+   "samplePeakAfter": 0.963
+  },
+  {
+   "id": "sk7-metalcabinet",
+   "label": "Plechová skrinka",
+   "gainDb": 12.9,
+   "startAt": 0,
+   "lufsBefore": -30.4,
+   "lufsAfterBrowser": -18.2,
+   "samplePeakAfter": 0.903
+  },
+  {
+   "id": "sk7-fountain",
+   "label": "Fontána",
+   "gainDb": 8.7,
+   "startAt": 0,
+   "lufsBefore": -26.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.902
+  },
+  {
+   "id": "sk7-flappingwindow",
+   "label": "Buchnutie okna",
+   "gainDb": 14.8,
+   "startAt": 0,
+   "lufsBefore": -37.7,
+   "lufsAfterBrowser": -22.7,
+   "samplePeakAfter": 0.964
+  },
+  {
+   "id": "sk7-toymelody",
+   "label": "Hudobná hračka",
+   "gainDb": -6,
+   "startAt": 0,
+   "lufsBefore": -12.0,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.451
+  },
+  {
+   "id": "sk7-airduster",
+   "label": "Stlačený vzduch",
+   "gainDb": -3.3,
+   "startAt": 0,
+   "lufsBefore": -17.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.602
+  },
+  {
+   "id": "sk7-coinbag",
+   "label": "Mešec mincí",
+   "gainDb": 2.2,
+   "startAt": 0,
+   "lufsBefore": -22.4,
+   "lufsAfterBrowser": -17.8,
+   "samplePeakAfter": 0.899
+  },
+  {
+   "id": "sk7-boatwharf",
+   "label": "Loď pristáva",
+   "gainDb": 9.2,
+   "startAt": 0,
+   "lufsBefore": -30.1,
+   "lufsAfterBrowser": -17.9,
+   "samplePeakAfter": 0.815
+  },
+  {
+   "id": "sk7-gasheater",
+   "label": "Plynový kotol",
+   "gainDb": 6.8,
+   "startAt": 0,
+   "lufsBefore": -26.2,
+   "lufsAfterBrowser": -21.2,
+   "samplePeakAfter": 0.94
+  },
+  {
+   "id": "sk7-budgie",
+   "label": "Andulka",
+   "gainDb": 6.6,
+   "startAt": 0,
+   "lufsBefore": -27.6,
+   "lufsAfterBrowser": -17.9,
+   "samplePeakAfter": 0.731
+  },
+  {
+   "id": "sk7-breakspaghetti",
+   "label": "Lámanie špagiet",
+   "gainDb": 4.3,
+   "startAt": 0,
+   "lufsBefore": -23.9,
+   "lufsAfterBrowser": -19.8,
+   "samplePeakAfter": 0.967
+  },
+  {
+   "id": "sk7-brushteeth",
+   "label": "Umývanie zubov",
+   "gainDb": 20.4,
+   "startAt": 0,
+   "lufsBefore": -41.3,
+   "lufsAfterBrowser": -17.9,
+   "samplePeakAfter": 0.832
+  },
+  {
+   "id": "sk7-swivelchair",
+   "label": "Vŕzgajúca stolička",
+   "gainDb": 15.2,
+   "startAt": 0,
+   "lufsBefore": -35.7,
+   "lufsAfterBrowser": -17.8,
+   "samplePeakAfter": 0.871
+  },
+  {
+   "id": "sk7-elevatorride",
+   "label": "Výťah",
+   "gainDb": 5.5,
+   "startAt": 0,
+   "lufsBefore": -23.1,
+   "lufsAfterBrowser": -18.2,
+   "samplePeakAfter": 0.919
+  },
+  {
+   "id": "sk7-hydrauliclift-down",
+   "label": "Hydraulický zdvihák",
+   "gainDb": -2.1,
+   "startAt": 0,
+   "lufsBefore": -15.8,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.572
+  },
+  {
+   "id": "sk7-inkjetprinter",
+   "label": "Atramentová tlačiareň",
+   "gainDb": 6.1,
+   "startAt": 0,
+   "lufsBefore": -24.6,
+   "lufsAfterBrowser": -20.3,
+   "samplePeakAfter": 0.96
+  },
+  {
+   "id": "sk7-potandlid",
+   "label": "Bubnovanie na hrnce",
+   "gainDb": 5,
+   "startAt": 0,
+   "lufsBefore": -24.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.947
+  },
+  {
+   "id": "sk7-musicbox2",
+   "label": "Hracia skrinka",
+   "gainDb": 1.3,
+   "startAt": 0,
+   "lufsBefore": -19.3,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.626
+  },
+  {
+   "id": "sk7-pourwine",
+   "label": "Nalievanie vína",
+   "gainDb": 15,
+   "startAt": 0,
+   "lufsBefore": -38.7,
+   "lufsAfterBrowser": -21.1,
+   "samplePeakAfter": 0.964
+  },
+  {
+   "id": "sk7-rustyclasp",
+   "label": "Hrdzavá závora na dverách",
+   "gainDb": 2.2,
+   "startAt": 0,
+   "lufsBefore": -20.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.456
+  },
+  {
+   "id": "sk7-scrubbrush",
+   "label": "Drôtená kefa",
+   "gainDb": 15.3,
+   "startAt": 0,
+   "lufsBefore": -33.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.68
+  },
+  {
+   "id": "sk7-verandadoor",
+   "label": "Posuvné dvere",
+   "gainDb": 24,
+   "startAt": 0,
+   "lufsBefore": -44.7,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.842
+  },
+  {
+   "id": "sk7-airplanesound",
+   "label": "Let lietadlom",
+   "gainDb": 13.4,
+   "startAt": 0,
+   "lufsBefore": -34.4,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.516
+  },
+  {
+   "id": "sk7-blownbottle",
+   "label": "Fúkanie do fľaše",
+   "gainDb": -6.6,
+   "startAt": 0,
+   "lufsBefore": -14.3,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.224
+  },
+  {
+   "id": "sk7-cellardoor",
+   "label": "Dvere do pivnice",
+   "gainDb": 6.7,
+   "startAt": 0,
+   "lufsBefore": -22.4,
+   "lufsAfterBrowser": -18.8,
+   "samplePeakAfter": 0.938
+  },
+  {
+   "id": "sk7-steamengine2",
+   "label": "Parný stroj",
+   "gainDb": -1.4,
+   "startAt": 0,
+   "lufsBefore": -16.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.67
+  },
+  {
+   "id": "sk7-stickytape",
+   "label": "Lepiaca páska",
+   "gainDb": 3.4,
+   "startAt": 0,
+   "lufsBefore": -24.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.774
+  },
+  {
+   "id": "sk7-streetviolin",
+   "label": "Pouličný huslista",
+   "gainDb": 6.3,
+   "startAt": 0,
+   "lufsBefore": -24.2,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.576
+  },
+  {
+   "id": "sk7-cafeteria",
+   "label": "Školská jedáleň",
+   "gainDb": -6.4,
+   "startAt": 0,
+   "lufsBefore": -11.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.268
+  },
+  {
+   "id": "sk7-vendingdrink",
+   "label": "Automat na nápoje",
+   "gainDb": -0.2,
+   "startAt": 0,
+   "lufsBefore": -17.8,
+   "lufsAfterBrowser": -18.4,
+   "samplePeakAfter": 0.821
+  },
+  {
+   "id": "sk7-pingpong",
+   "label": "Stolný tenis",
+   "gainDb": 3.4,
+   "startAt": 0,
+   "lufsBefore": -20.6,
+   "lufsAfterBrowser": -20.4,
+   "samplePeakAfter": 0.906
+  },
+  {
+   "id": "sk7-restaurant",
+   "label": "Reštaurácia",
+   "gainDb": 3.7,
+   "startAt": 0,
+   "lufsBefore": -21.6,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.704
+  },
+  {
+   "id": "sk7-toysiren",
+   "label": "Hračkárska siréna",
+   "gainDb": 3.5,
+   "startAt": 0,
+   "lufsBefore": -21.5,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.209
+  },
+  {
+   "id": "sk7-washhands",
+   "label": "Umývanie rúk",
+   "gainDb": 12.6,
+   "startAt": 0,
+   "lufsBefore": -34.2,
+   "lufsAfterBrowser": -19.0,
+   "samplePeakAfter": 0.96
+  },
+  {
+   "id": "sk7-vaporizestones",
+   "label": "Polievanie kameňov v saune",
+   "gainDb": -0.8,
+   "startAt": 0,
+   "lufsBefore": -17.1,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.771
+  },
+  {
+   "id": "sk7-toypedal",
+   "label": "Naťahovacia hračka",
+   "gainDb": 8,
+   "startAt": 0,
+   "lufsBefore": -25.9,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.902
+  },
+  {
+   "id": "sk7-feltpen",
+   "label": "Písanie fixkou",
+   "gainDb": 15,
+   "startAt": 0,
+   "lufsBefore": -35.2,
+   "lufsAfterBrowser": -20.3,
+   "samplePeakAfter": 0.804
+  },
+  {
+   "id": "sk7-fleamarket",
+   "label": "Trh v daždi",
+   "gainDb": 8.9,
+   "startAt": 0,
+   "lufsBefore": -26.9,
+   "lufsAfterBrowser": -18.0,
+   "samplePeakAfter": 0.641
+  },
+  {
+   "id": "sk8-ratchet",
+   "label": "Račňa",
+   "gainDb": 7.2,
+   "startAt": 0,
+   "lufsBefore": -25.0,
+   "lufsAfterBrowser": -18.2,
+   "samplePeakAfter": 0.938
+  },
+  {
+   "id": "sk8-spaceheater",
+   "label": "Elektrický ohrievač",
+   "gainDb": 10,
+   "startAt": 0,
+   "lufsBefore": -30.9,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.866
+  },
+  {
+   "id": "sk8-smallloco",
+   "label": "Posunovacia lokomotíva",
+   "gainDb": 3.1,
+   "startAt": 0,
+   "lufsBefore": -21.1,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.863
+  },
+  {
+   "id": "sk8-harvester",
+   "label": "Harvestor",
+   "gainDb": 0.6,
+   "startAt": 0,
+   "lufsBefore": -18.5,
+   "lufsAfterBrowser": -18.1,
+   "samplePeakAfter": 0.841
+  },
+  {
+   "id": "sk8-rustondiesel",
+   "label": "Starý dieselový motor",
+   "gainDb": 3.6,
+   "startAt": 3.5,
+   "lufsBefore": -22.8,
+   "lufsAfterBrowser": -20.3,
+   "samplePeakAfter": 0.951
+  },
+  {
+   "id": "sk8-shipordertelegraph",
+   "label": "Lodný telegraf",
+   "gainDb": 2.6,
+   "startAt": 0,
+   "lufsBefore": -20.7,
+   "lufsAfterBrowser": -18.3,
+   "samplePeakAfter": 0.83
+  },
+  {
+   "id": "sk8-blastfurnace",
+   "label": "Vysoká pec",
+   "gainDb": 15,
+   "startAt": 0,
+   "lufsBefore": -33.2,
+   "lufsAfterBrowser": -18.3,
+   "samplePeakAfter": 0.845
+  },
+  {
+   "id": "sk8-torchcutting",
+   "label": "Rezanie horákom",
+   "gainDb": 1.1,
+   "startAt": 0,
+   "lufsBefore": -22.0,
+   "lufsAfterBrowser": -17.9,
+   "samplePeakAfter": 0.479
+  }
+ ],
+ "needsReview": [
+  {
+   "id": "sk-police-siren",
+   "label": "Americká policajná siréna",
+   "reason": "duplicitný koncept s „Policajná siréna“ (sk2-policecar-siren)"
+  },
+  {
+   "id": "sk-clock-tick",
+   "label": "Tikajúce hodiny",
+   "reason": "príliš tichá nahrávka (-54.8 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -39.8 LUFS"
+  },
+  {
+   "id": "sk-phone-ring",
+   "label": "Vytáčanie čísla na telefóne",
+   "reason": "aj po normalizácii o 6.5 LU tichšie ako cieľ (−18 LUFS); krátke údery by bez agresívneho limitera nešlo zosilniť"
+  },
+  {
+   "id": "sk-helicopter",
+   "label": "Vrtuľník",
+   "reason": "príliš tichá nahrávka (-42.8 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -27.8 LUFS"
+  },
+  {
+   "id": "sk-keyboard",
+   "label": "Písanie na klávesnici",
+   "reason": "príliš tichá nahrávka (-57.6 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -33.6 LUFS"
+  },
+  {
+   "id": "commons-a-three-striped-palm-squirrel-funambulus-palmaru",
+   "label": "Veverička",
+   "reason": "nahrávka exotickej palmovej veveričky znie ako vták; laik ju nerozozná"
+  },
+  {
+   "id": "commons-zero-car-toyota-corolla-1600-gt-2-door-ae86-jyv-",
+   "label": "Rely",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -26.1 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk2-alarmclock-ring",
+   "label": "Zvonenie starého budíka",
+   "reason": "duplicitný koncept s „Budík“ (sk-alarm-clock)"
+  },
+  {
+   "id": "sk2-leafblower",
+   "label": "Fúkač na lístie",
+   "reason": "príliš tichá nahrávka (-49.3 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -34.3 LUFS"
+  },
+  {
+   "id": "sk2-cashregister-old",
+   "label": "Stará pokladňa",
+   "reason": "takmer rovnaký koncept ako „Pokladňa“ (sk2-cashregister2)"
+  },
+  {
+   "id": "sk2-dental-scaler",
+   "label": "Ultrazvukové čistenie zubov",
+   "reason": "zameniteľné so zubárskou vŕtačkou"
+  },
+  {
+   "id": "sk2-hedgetrimmer",
+   "label": "Nožnice na živý plot",
+   "reason": "úvodné ticho 4.2 s — v 7-sekundovej ukážke by hráč takmer nič nepočul"
+  },
+  {
+   "id": "sk2-keycutting",
+   "label": "Výroba kľúča",
+   "reason": "príliš tichá nahrávka (-45.4 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -30.4 LUFS"
+  },
+  {
+   "id": "sk2-mac-typing",
+   "label": "Písanie na starom počítači",
+   "reason": "duplicitný koncept s „Písanie na klávesnici“"
+  },
+  {
+   "id": "sk2-bandsaw",
+   "label": "Pásová píla",
+   "reason": "zameniteľné s ostatnými elektrickými pílami"
+  },
+  {
+   "id": "sk2-carpetbeater",
+   "label": "Vyklepávanie koberca",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -23.5 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk2-coffeeroaster",
+   "label": "Pražička kávy",
+   "reason": "priemyselný bubon; podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk2-coffeemaker-drip",
+   "label": "Prekvapkávací kávovar",
+   "reason": "príliš tichá nahrávka (-64.6 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -49.6 LUFS"
+  },
+  {
+   "id": "sk2-cracking-nuts",
+   "label": "Lúskanie orechov",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -26.7 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk2-hammerdrill",
+   "label": "Pneumatická vŕtačka",
+   "reason": "zameniteľné so zbíjačkou (sk2-pneumaticdrill2)"
+  },
+  {
+   "id": "sk2-jointer",
+   "label": "Zrovnávačka dreva",
+   "reason": "dielenský stroj bez rozpoznateľného zvuku"
+  },
+  {
+   "id": "sk2-police-whistle",
+   "label": "Policajná píšťalka",
+   "reason": "zameniteľné s píšťalkou rozhodcu"
+  },
+  {
+   "id": "sk2-shoerepair",
+   "label": "Brúsenie podrážky",
+   "reason": "brúsny stroj sa nedá určiť podľa zvuku"
+  },
+  {
+   "id": "sk2-kettle-whistling2",
+   "label": "Píšťalková kanvica",
+   "reason": "príliš tichá nahrávka (-44.6 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -29.6 LUFS"
+  },
+  {
+   "id": "sk2-car-horn-old",
+   "label": "Klaksón starého auta",
+   "reason": "duplicitný koncept s „Trúbenie auta“"
+  },
+  {
+   "id": "sk2-clockingmachine",
+   "label": "Píchačky",
+   "reason": "duplicitný koncept s „Píchacie hodiny“ (sk2-timeclock)"
+  },
+  {
+   "id": "sk2-icecreamvan",
+   "label": "Zmrzlinárske auto",
+   "reason": "severská melódia, u nás neznáma; znie ako obyčajná melódia"
+  },
+  {
+   "id": "sk2-luggagebelt",
+   "label": "Pás na batožinu",
+   "reason": "hukot dopravníka sa nedá férovo určiť"
+  },
+  {
+   "id": "sk2-polaroid",
+   "label": "Polaroid",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -23.8 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk2-vwbeetle-horn",
+   "label": "Klaksón chrobáka",
+   "reason": "rovnaký súbor ako „Trúbenie auta“ (commons-wws-volkswagenbeetle8211horn-ogg)"
+  },
+  {
+   "id": "sk2-vwbeetle-engine",
+   "label": "Motor starého auta",
+   "reason": "duplicitný koncept s „Motor auta“"
+  },
+  {
+   "id": "sk2-boxmangle",
+   "label": "Mangeľ",
+   "reason": "historický mangeľ; podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk2-eastereggdrill",
+   "label": "Vŕtanie kraslice",
+   "reason": "jemné vŕtanie sa nedá podľa zvuku spojiť s kraslicou"
+  },
+  {
+   "id": "sk2-glassblowing",
+   "label": "Fúkanie skla",
+   "reason": "hukot pece; podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk2-manualexchange",
+   "label": "Telefónna ústredňa",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk2-goldpan",
+   "label": "Ryžovanie zlata",
+   "reason": "čľapkanie vody v miske sa nedá férovo spojiť so zlatom"
+  },
+  {
+   "id": "sk2-signalhorn-old",
+   "label": "Signálny roh",
+   "reason": "zameniteľné s inými signálmi; neznámy predmet"
+  },
+  {
+   "id": "sk2-telephone-ring-old",
+   "label": "Zvonenie starého telefónu (baňa)",
+   "reason": "duplicitný koncept so „Zvonenie starého telefónu“ (sk4-teslaphone)"
+  },
+  {
+   "id": "sk2-bakery-mixer",
+   "label": "Miesiaci stroj",
+   "reason": "hukot stroja sa nedá férovo určiť"
+  },
+  {
+   "id": "sk2-bakery-oven",
+   "label": "Pekárska pec",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk2-cutlery-sort",
+   "label": "Ukladanie príborov",
+   "reason": "duplicitný koncept s „Príbory v zásuvke“"
+  },
+  {
+   "id": "sk2-nailsontile",
+   "label": "Nechty po dlaždici",
+   "reason": "0,5 s — príliš krátke na férové uhádnutie"
+  },
+  {
+   "id": "sk2-playground-swing",
+   "label": "Hojdačka",
+   "reason": "aj po normalizácii o 6.2 LU tichšie ako cieľ (−18 LUFS); krátke údery by bez agresívneho limitera nešlo zosilniť"
+  },
+  {
+   "id": "sk2-sprinkler",
+   "label": "Zavlažovač",
+   "reason": "1 s — príliš krátke na férové uhádnutie"
+  },
+  {
+   "id": "sk2-glassbreak",
+   "label": "Rozbitie skla",
+   "reason": "príliš tichá nahrávka (-46.4 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -31.4 LUFS"
+  },
+  {
+   "id": "sk2-keys-shake",
+   "label": "Štrngot kľúčov",
+   "reason": "aj po normalizácii o 6.1 LU tichšie ako cieľ (−18 LUFS); krátke údery by bez agresívneho limitera nešlo zosilniť"
+  },
+  {
+   "id": "sk2-hose-drag",
+   "label": "Ťahanie hadice",
+   "reason": "šúchanie sa nedá férovo spojiť s hadicou"
+  },
+  {
+   "id": "sk2-glass-flick",
+   "label": "Cinknutie na pohár",
+   "reason": "aj po normalizácii o 6.1 LU tichšie ako cieľ (−18 LUFS); krátke údery by bez agresívneho limitera nešlo zosilniť"
+  },
+  {
+   "id": "sk2-bin-knock",
+   "label": "Úder do kontajnera",
+   "reason": "0,5 s — príliš krátke na férové uhádnutie"
+  },
+  {
+   "id": "sk2-tallgrass-swipe",
+   "label": "Chôdza vysokou trávou",
+   "reason": "aj po normalizácii o 7.5 LU tichšie ako cieľ (−18 LUFS); krátke údery by bez agresívneho limitera nešlo zosilniť"
+  },
+  {
+   "id": "sk2-leaves-walk",
+   "label": "Chôdza po lístí",
+   "reason": "príliš tichá nahrávka (-42.4 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -27.4 LUFS"
+  },
+  {
+   "id": "sk2-woodbridge-walk",
+   "label": "Kroky po drevenom moste",
+   "reason": "aj po normalizácii o 7.1 LU tichšie ako cieľ (−18 LUFS); krátke údery by bez agresívneho limitera nešlo zosilniť"
+  },
+  {
+   "id": "sk2-metaldoor-rub",
+   "label": "Škrabanie po plechu",
+   "reason": "abstraktný zvuk trenia; nedá sa férovo určiť"
+  },
+  {
+   "id": "sk2-glassontile",
+   "label": "Položenie pohára",
+   "reason": "1,5 s — príliš krátke a nešpecifické"
+  },
+  {
+   "id": "sk2-plate-tile",
+   "label": "Posunutie taniera",
+   "reason": "krátky nešpecifický zvuk"
+  },
+  {
+   "id": "sk2-leaf-stick",
+   "label": "Úder paličkou do listu",
+   "reason": "0,4 s — príliš krátke na férové uhádnutie"
+  },
+  {
+   "id": "sk2-hose-drop",
+   "label": "Pád hadice",
+   "reason": "1 s — nešpecifický úder"
+  },
+  {
+   "id": "sk2-rocks-hit",
+   "label": "Kamene o seba",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -24.7 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk2-metalpole-hit",
+   "label": "Úder do kovovej tyče",
+   "reason": "0,5 s — príliš krátke na férové uhádnutie"
+  },
+  {
+   "id": "sk2-scissors-paper2",
+   "label": "Strihanie nožnicami",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -23.5 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk2-lighter-flick",
+   "label": "Zapaľovač",
+   "reason": "aj po normalizácii o 7.0 LU tichšie ako cieľ (−18 LUFS); krátke údery by bez agresívneho limitera nešlo zosilniť"
+  },
+  {
+   "id": "sk2-lightswitch",
+   "label": "Vypínač",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -25.3 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk2-seatbelt",
+   "label": "Zapínanie pásu",
+   "reason": "aj po normalizácii o 8.8 LU tichšie ako cieľ (−18 LUFS); krátke údery by bez agresívneho limitera nešlo zosilniť"
+  },
+  {
+   "id": "sk2-bee-buzz",
+   "label": "Bzučanie včely pri kvete",
+   "reason": "rovnaký súbor ako „Bzučanie včiel“ (commons-bee-buzzing-sound-animal-noises-opus)"
+  },
+  {
+   "id": "sk2-frogchorus",
+   "label": "Žabí koncert",
+   "reason": "rovnaký súbor ako „Kvákanie žiab“"
+  },
+  {
+   "id": "sk2-donkey-bray",
+   "label": "Hýkanie osla (2)",
+   "reason": "rovnaký súbor ako „Hýkanie osla“"
+  },
+  {
+   "id": "sk2-campfire",
+   "label": "Oheň vo vyhni",
+   "reason": "duplicitný koncept s „Praskajúci oheň“"
+  },
+  {
+   "id": "sk2-gravel-footstep",
+   "label": "Krok na štrku",
+   "reason": "0,6 s — jediný krok, duplicitné s „Chôdza po štrku“"
+  },
+  {
+   "id": "sk2-pencilsharp-el",
+   "label": "Elektrické strúhadlo (2)",
+   "reason": "duplicitný koncept s „Elektrické strúhadlo“"
+  },
+  {
+   "id": "sk2-mouseclick",
+   "label": "Klik myšou",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -25.8 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk3-alarmclock2",
+   "label": "Budík (2)",
+   "reason": "tretí budík v databáze"
+  },
+  {
+   "id": "sk3-bonfire-burn",
+   "label": "Vatra",
+   "reason": "duplicitný koncept s „Praskajúci oheň“"
+  },
+  {
+   "id": "sk3-mitresaw",
+   "label": "Pokosová píla",
+   "reason": "zameniteľné s „Kotúčová píla“"
+  },
+  {
+   "id": "sk3-crane-lift",
+   "label": "Mostový žeriav",
+   "reason": "hukot žeriava v hale sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-cashregister-electronic",
+   "label": "Elektronická pokladňa",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -24.0 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk3-christmastree-cut",
+   "label": "Rezanie vianočného stromčeka",
+   "reason": "zameniteľné s „Pílenie dreva“"
+  },
+  {
+   "id": "sk3-firehose-fill",
+   "label": "Plnenie hasičskej hadice",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-firetruck-siren2",
+   "label": "Stará hasičská siréna",
+   "reason": "tretia hasičská siréna v databáze"
+  },
+  {
+   "id": "sk3-firetruck-driverseat",
+   "label": "Jazda v hasičskom aute",
+   "reason": "prvých 7 s je iba motor; siréna až po 3:30"
+  },
+  {
+   "id": "sk3-fishingvessel",
+   "label": "Rybárska loď",
+   "reason": "23-minútová nahrávka motora; úvod sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-floralfridge",
+   "label": "Chladiaca vitrína",
+   "reason": "tichý hukot; nedá sa férovo určiť"
+  },
+  {
+   "id": "sk3-forklift",
+   "label": "Vysokozdvižný vozík",
+   "reason": "príliš tichá nahrávka (-49.0 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -25.0 LUFS"
+  },
+  {
+   "id": "sk3-hoist",
+   "label": "Banský výťah",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-icebreaker-siren",
+   "label": "Lodná siréna",
+   "reason": "zameniteľné s „Hmlová siréna“"
+  },
+  {
+   "id": "sk3-metro",
+   "label": "Metro",
+   "reason": "príliš tichá nahrávka (-41.6 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -26.6 LUFS"
+  },
+  {
+   "id": "sk3-milkingclean",
+   "label": "Umývanie dojacieho stroja",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-magneticcard",
+   "label": "Označovač lístkov",
+   "reason": "aj po normalizácii o 6.7 LU tichšie ako cieľ (−18 LUFS); krátke údery by bez agresívneho limitera nešlo zosilniť"
+  },
+  {
+   "id": "sk3-olivemill",
+   "label": "Mlyn na olivy",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-olivepress",
+   "label": "Lis na olivy",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-polishingmachine",
+   "label": "Leštička",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-waterpump",
+   "label": "Čerpadlo",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-punchingpress",
+   "label": "Lis na plech",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-turntable-rail",
+   "label": "Točňa lokomotív",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-revolvingstage",
+   "label": "Otočné javisko",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-ringpolish",
+   "label": "Leštenie šperku",
+   "reason": "zameniteľné s inými brúskami"
+  },
+  {
+   "id": "sk3-rivetingmachine",
+   "label": "Nitovačka",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-santaworkshop",
+   "label": "Vianočná dekorácia s hračkami",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-christmaswafer",
+   "label": "Lámanie oblátky",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -29.4 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk3-shipyardcrane",
+   "label": "Lodenicový žeriav",
+   "reason": "duplicitný koncept s inými žeriavmi"
+  },
+  {
+   "id": "sk3-shoesole",
+   "label": "Pribíjanie podrážky",
+   "reason": "duplicitný koncept s „Obuvník zatĺka klince“"
+  },
+  {
+   "id": "sk3-smithy-bellows",
+   "label": "Kováčsky mech",
+   "reason": "príliš tichá nahrávka (-41.9 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -26.9 LUFS"
+  },
+  {
+   "id": "sk3-steamengine-bell",
+   "label": "Parný stroj so zvoncom",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-threshing1",
+   "label": "Mlátenie cepmi",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -26.4 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk3-tumblingbarrel",
+   "label": "Otočný bubon",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-wardrobechain",
+   "label": "Šatňová reťaz v bani",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-watersmithy-hammer",
+   "label": "Dvaja kováči kujú",
+   "reason": "duplicitný koncept s „Kováč“"
+  },
+  {
+   "id": "sk3-welding-generic",
+   "label": "Zváranie (2)",
+   "reason": "duplicitný koncept so „Zváranie“"
+  },
+  {
+   "id": "sk3-wheelwright-carve",
+   "label": "Vyrezávanie dreva",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-threshing2",
+   "label": "Mlátenie cepmi (2)",
+   "reason": "duplicitný koncept s „Mlátenie cepmi“"
+  },
+  {
+   "id": "sk3-chalk-write",
+   "label": "Krieda na tabuli",
+   "reason": "duplicitný koncept s „Písanie kriedou“"
+  },
+  {
+   "id": "sk3-van-starting",
+   "label": "Štartovanie dodávky",
+   "reason": "duplicitný koncept so „Štartovanie auta“"
+  },
+  {
+   "id": "sk3-graindryer",
+   "label": "Sušička obilia",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-milkingunit",
+   "label": "Dojacia jednotka",
+   "reason": "duplicitný koncept s „Dojací stroj“"
+  },
+  {
+   "id": "sk3-achum2",
+   "label": "Klimatizácia (2)",
+   "reason": "duplicitný koncept s „Klimatizácia“"
+  },
+  {
+   "id": "sk3-canhits",
+   "label": "Búchanie do plechovky",
+   "reason": "nešpecifický úder"
+  },
+  {
+   "id": "sk3-chocolatecake",
+   "label": "Krájanie torty",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk3-chairfar",
+   "label": "Posúvanie stoličky (2)",
+   "reason": "duplicitný koncept s „Posúvanie stoličky“"
+  },
+  {
+   "id": "sk3-feetgravel",
+   "label": "Prešľapovanie v štrku",
+   "reason": "duplicitný koncept s „Chôdza po štrku“"
+  },
+  {
+   "id": "sk3-hollowlog",
+   "label": "Úder do dutého kmeňa",
+   "reason": "1 s — príliš krátke na férové uhádnutie"
+  },
+  {
+   "id": "sk3-keystree",
+   "label": "Kľúče o strom",
+   "reason": "nezmyselná situácia; nedá sa férovo určiť"
+  },
+  {
+   "id": "sk3-metaldrain",
+   "label": "Odkvap",
+   "reason": "búchanie do rúry; nedá sa férovo určiť"
+  },
+  {
+   "id": "sk3-pebblesmetal",
+   "label": "Kamienky na plechu",
+   "reason": "nešpecifický zvuk"
+  },
+  {
+   "id": "sk3-glasstile2",
+   "label": "Položenie pohára (2)",
+   "reason": "1 s — krátke a duplicitné"
+  },
+  {
+   "id": "sk3-raindrops",
+   "label": "Kvapky dažďa",
+   "reason": "duplicitný koncept s „Dážď v lese“"
+  },
+  {
+   "id": "sk3-rubbingchair",
+   "label": "Šúchanie o stoličku",
+   "reason": "nešpecifický zvuk trenia"
+  },
+  {
+   "id": "sk3-rustlingleaves",
+   "label": "Šušťanie lístia",
+   "reason": "duplicitný koncept s „Chôdza po lístí“"
+  },
+  {
+   "id": "sk3-metalslide",
+   "label": "Šmýkanie na šmykľavke",
+   "reason": "príliš tichá nahrávka (-42.4 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -27.4 LUFS"
+  },
+  {
+   "id": "sk3-shakingleaves",
+   "label": "Trasenie konárom",
+   "reason": "duplicitný koncept so šušťaním lístia"
+  },
+  {
+   "id": "sk3-stickslide",
+   "label": "Palička po šmykľavke",
+   "reason": "duplicitný koncept s „Palička po zábradlí“"
+  },
+  {
+   "id": "sk3-swipegrass",
+   "label": "Šuchnutie trávy",
+   "reason": "1 s — príliš krátke na férové uhádnutie"
+  },
+  {
+   "id": "sk3-sandalswalk",
+   "label": "Chôdza v sandáloch",
+   "reason": "duplicitný koncept s „Kroky v šľapkách“"
+  },
+  {
+   "id": "sk3-walkgrass",
+   "label": "Chôdza po tráve",
+   "reason": "duplicitný koncept s „Chôdza vysokou trávou“"
+  },
+  {
+   "id": "sk3-watermelonsmacks",
+   "label": "Búchanie do melóna",
+   "reason": "duplicitný koncept s „Klopkanie na melón“"
+  },
+  {
+   "id": "sk3-metalpolehits",
+   "label": "Údery do kovovej tyče",
+   "reason": "aj po normalizácii o 8.2 LU tichšie ako cieľ (−18 LUFS); krátke údery by bez agresívneho limitera nešlo zosilniť"
+  },
+  {
+   "id": "sk3-stairsqueak",
+   "label": "Vŕzgajúci schod",
+   "reason": "duplicitný koncept s „Vŕzgajúce schody“"
+  },
+  {
+   "id": "sk3-sortcutlery2",
+   "label": "Triedenie príborov",
+   "reason": "tretí záznam príborov"
+  },
+  {
+   "id": "sk3-stethoscope",
+   "label": "Srdce v stetoskope",
+   "reason": "duplicitný koncept s „Tlkot srdca“"
+  },
+  {
+   "id": "sk4-horseshoes-cobble",
+   "label": "Klapot kopýt",
+   "reason": "duplicitný koncept s „Fiaker“"
+  },
+  {
+   "id": "sk4-coffeesilo",
+   "label": "Kávové zrná v potrubí",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk4-filmreels",
+   "label": "Filmové cievky",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk4-filmsplicer",
+   "label": "Strih filmu",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk4-hosewagon",
+   "label": "Vozík s hadicou",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk4-hydropower",
+   "label": "Vodná elektráreň",
+   "reason": "hukot vody; nedá sa férovo určiť"
+  },
+  {
+   "id": "sk4-crossingbarrier",
+   "label": "Ručná závora",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk4-cargobelt",
+   "label": "Pás v batožinovom priestore",
+   "reason": "duplicitný koncept s „Pás na batožinu“"
+  },
+  {
+   "id": "sk4-floppydisk",
+   "label": "Disketová mechanika",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -22.4 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk4-harbourcrane",
+   "label": "Prístavný žeriav",
+   "reason": "duplicitný koncept s inými žeriavmi"
+  },
+  {
+   "id": "sk4-policevan-pass",
+   "label": "Policajné auto so sirénou",
+   "reason": "tretia policajná siréna v databáze"
+  },
+  {
+   "id": "sk4-rollerprep",
+   "label": "Tlačiarenský valec",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk4-submersiblepump",
+   "label": "Ponorné čerpadlo",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk4-super8",
+   "label": "Filmová premietačka",
+   "reason": "duplicitný koncept s „Kinoprojektor“"
+  },
+  {
+   "id": "sk4-tattoostudio",
+   "label": "Tetovacie štúdio",
+   "reason": "duplicitný koncept s „Tetovanie“"
+  },
+  {
+   "id": "sk4-turnerdrills",
+   "label": "Vŕtanie na sústruhu",
+   "reason": "duplicitný koncept so „Sústruh“"
+  },
+  {
+   "id": "sk4-walkmine",
+   "label": "Kroky v bani",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk4-waterrock",
+   "label": "Presakujúca voda v bani",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk4-windturbine2",
+   "label": "Veterná turbína (2)",
+   "reason": "duplicitný koncept s „Veterná elektráreň“"
+  },
+  {
+   "id": "sk4-anvil",
+   "label": "Údery na nákovu",
+   "reason": "duplicitný koncept s „Kováč“"
+  },
+  {
+   "id": "sk4-cardcatalog",
+   "label": "Kartotéka",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk4-warningsignal",
+   "label": "Výstražný signál",
+   "reason": "5-minútová nahrávka; úvod neobsahuje jasný signál"
+  },
+  {
+   "id": "sk4-signalwhistle",
+   "label": "Signálna píšťala",
+   "reason": "zameniteľné s píšťalkou rozhodcu"
+  },
+  {
+   "id": "sk4-firetruck-siren-inside",
+   "label": "Siréna z hasičského auta",
+   "reason": "duplicitný koncept s „Hasičské auto“"
+  },
+  {
+   "id": "sk4-vacuumfan",
+   "label": "Priemyselný ventilátor",
+   "reason": "hukot; nedá sa férovo určiť"
+  },
+  {
+   "id": "sk4-cutlerygrasp",
+   "label": "Chytenie príborov",
+   "reason": "0,5 s — príliš krátke na férové uhádnutie"
+  },
+  {
+   "id": "sk4-foldingchair",
+   "label": "Skladacia stolička",
+   "reason": "aj po normalizácii o 8.0 LU tichšie ako cieľ (−18 LUFS); krátke údery by bez agresívneho limitera nešlo zosilniť"
+  },
+  {
+   "id": "sk4-placespoon",
+   "label": "Položenie lyžice",
+   "reason": "duplicitný koncept s „Pád lyžice“"
+  },
+  {
+   "id": "sk4-stairsqueakup",
+   "label": "Vŕzgajúce schody (hore)",
+   "reason": "duplicitný koncept s „Vŕzgajúce schody“"
+  },
+  {
+   "id": "sk4-faucet",
+   "label": "Voda do drezu",
+   "reason": "duplicitný koncept s „Pustenie vody z kohútika“"
+  },
+  {
+   "id": "sk5-pigoink",
+   "label": "Chrochtanie prasaťa",
+   "reason": "0,3 s — príliš krátke na férové uhádnutie"
+  },
+  {
+   "id": "sk5-goatbleat",
+   "label": "Mečanie kôz (2)",
+   "reason": "rovnaký súbor ako „Mečanie kôz“"
+  },
+  {
+   "id": "sk5-buttonhole",
+   "label": "Stroj na gombíkové dierky",
+   "reason": "duplicitný koncept so „Šijací stroj“"
+  },
+  {
+   "id": "sk5-buttonsew",
+   "label": "Prišívanie gombíkov strojom",
+   "reason": "duplicitný koncept so „Šijací stroj“"
+  },
+  {
+   "id": "sk5-embroidery",
+   "label": "Vyšívací stroj",
+   "reason": "duplicitný koncept so „Šijací stroj“"
+  },
+  {
+   "id": "sk5-fencemaking",
+   "label": "Stroj na pletivo",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk5-leathercut",
+   "label": "Strihanie kože",
+   "reason": "duplicitný koncept so „Strihanie nožnicami“"
+  },
+  {
+   "id": "sk5-gloveshape",
+   "label": "Tvarovanie rukavice",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk5-overheadloco",
+   "label": "Visutá dráha (2)",
+   "reason": "duplicitný koncept s „Visutá dráha“"
+  },
+  {
+   "id": "sk5-ropemaking",
+   "label": "Výroba povrazu",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk5-lacepins",
+   "label": "Paličkovanie čipky",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk5-phoenixprint",
+   "label": "Starý tlačiarenský stroj",
+   "reason": "duplicitný koncept s „Tlačiarenský stroj“"
+  },
+  {
+   "id": "sk5-grafopress",
+   "label": "Tlačiarenský stroj (2)",
+   "reason": "duplicitný koncept s „Tlačiarenský stroj“"
+  },
+  {
+   "id": "sk5-ticketprint",
+   "label": "Tlač lístkov",
+   "reason": "duplicitný koncept s „Tlačiarenský stroj“"
+  },
+  {
+   "id": "sk5-teleprinter-type",
+   "label": "Písanie na ďalekopise",
+   "reason": "duplicitný koncept s „Ďalekopis“"
+  },
+  {
+   "id": "sk5-polaroidload",
+   "label": "Vkladanie filmu do polaroidu",
+   "reason": "duplicitný koncept s „Polaroid“"
+  },
+  {
+   "id": "sk5-super8plug",
+   "label": "Zapnutie premietačky",
+   "reason": "duplicitný koncept s „Kinoprojektor“"
+  },
+  {
+   "id": "sk5-super8rev",
+   "label": "Pretáčanie filmu",
+   "reason": "duplicitný koncept s „Kinoprojektor“"
+  },
+  {
+   "id": "sk5-tram-standard",
+   "label": "Jazda električkou (2)",
+   "reason": "duplicitný koncept s „Jazda električkou“"
+  },
+  {
+   "id": "sk5-trampivot",
+   "label": "Kĺb električky",
+   "reason": "duplicitný koncept s „Jazda električkou“"
+  },
+  {
+   "id": "sk5-tram4ndoors",
+   "label": "Dvere električky (2)",
+   "reason": "duplicitný koncept s „Dvere električky“"
+  },
+  {
+   "id": "sk5-vaninterior",
+   "label": "Jazda v dodávke",
+   "reason": "hukot kabíny; nedá sa férovo určiť"
+  },
+  {
+   "id": "sk5-lathe-flywheel",
+   "label": "Sústruh (2)",
+   "reason": "duplicitný koncept so „Sústruh“"
+  },
+  {
+   "id": "sk5-luthierchisel",
+   "label": "Rezbárske dláto",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk5-luthierplane",
+   "label": "Husliarsky hoblík",
+   "reason": "duplicitný koncept s „Hobľovanie“"
+  },
+  {
+   "id": "sk5-luthierjoin",
+   "label": "Hobľovanie spoja",
+   "reason": "duplicitný koncept s „Hobľovanie“"
+  },
+  {
+   "id": "sk6-alligator-hiss",
+   "label": "Syčanie aligátora",
+   "reason": "zameniteľné so syčaním hada; duplicitný koncept aligátora"
+  },
+  {
+   "id": "sk6-pelican-chick",
+   "label": "Mláďa pelikána",
+   "reason": "neznámy zvuk; nedá sa férovo určiť"
+  },
+  {
+   "id": "sk6-tundraswans",
+   "label": "Labute",
+   "reason": "zameniteľné s husami"
+  },
+  {
+   "id": "sk6-woodpecker2",
+   "label": "Ďateľ (2)",
+   "reason": "duplicitný koncept s „Ďateľ“"
+  },
+  {
+   "id": "sk6-heronfish",
+   "label": "Volavka pri love",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk7-ketchup",
+   "label": "Otváranie kečupu",
+   "reason": "skrutkovanie vrchnáka sa nedá férovo spojiť s kečupom"
+  },
+  {
+   "id": "sk7-garagedoor-open",
+   "label": "Otváranie garážovej brány",
+   "reason": "duplicitný koncept so zatváraním garážovej brány"
+  },
+  {
+   "id": "sk7-schoolbell-old2",
+   "label": "Starý školský zvonec",
+   "reason": "duplicitný koncept so „Školský zvonec“"
+  },
+  {
+   "id": "sk7-tramdoors2",
+   "label": "Dvere električky s pípaním",
+   "reason": "duplicitný koncept s „Dvere električky“"
+  },
+  {
+   "id": "sk7-deskdrawer",
+   "label": "Drevená zásuvka",
+   "reason": "duplicitný koncept s „Otvorenie zásuvky“"
+  },
+  {
+   "id": "sk7-wineglass",
+   "label": "Cinkanie pohára na víno",
+   "reason": "duplicitný koncept s „Cinknutie na pohár“"
+  },
+  {
+   "id": "sk7-snowglobe",
+   "label": "Snežítko",
+   "reason": "1,8 s — nedá sa férovo určiť"
+  },
+  {
+   "id": "sk7-retractpen",
+   "label": "Cvakanie pera",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -26.1 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk7-peelcarrot",
+   "label": "Škrabanie mrkvy",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -25.0 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk7-peelorange",
+   "label": "Lúpanie pomaranča",
+   "reason": "tiché šúchanie; nedá sa férovo určiť"
+  },
+  {
+   "id": "sk7-paperclips",
+   "label": "Sponky na papier",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -26.5 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk7-chocolatebox",
+   "label": "Otváranie bonboniéry",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -25.3 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk7-bumblebee",
+   "label": "Čmeliak",
+   "reason": "duplicitný koncept s „Bzučanie včiel“"
+  },
+  {
+   "id": "sk7-gulls-dawn",
+   "label": "Čajky",
+   "reason": "príliš tichá nahrávka (-40.2 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -25.2 LUFS"
+  },
+  {
+   "id": "sk7-dryfire",
+   "label": "Horiaca suchá tráva",
+   "reason": "duplicitný koncept s „Praskajúci oheň“"
+  },
+  {
+   "id": "sk7-catseating",
+   "label": "Jediace mačky",
+   "reason": "aj po normalizácii o 7.5 LU tichšie ako cieľ (−18 LUFS); krátke údery by bez agresívneho limitera nešlo zosilniť"
+  },
+  {
+   "id": "sk7-cutlerytable",
+   "label": "Príbory na stole",
+   "reason": "tretí záznam príborov"
+  },
+  {
+   "id": "sk7-chimingpottery",
+   "label": "Cinkanie keramiky",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk7-cameraclick",
+   "label": "Digitálny fotoaparát",
+   "reason": "príliš tichá nahrávka (-51.6 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -36.6 LUFS"
+  },
+  {
+   "id": "sk7-wharfannounce",
+   "label": "Hlásenie v prístave",
+   "reason": "2,7 s — nedá sa férovo určiť"
+  },
+  {
+   "id": "sk7-bbq",
+   "label": "Grilovanie",
+   "reason": "aj po normalizácii o 6.4 LU tichšie ako cieľ (−18 LUFS); krátke údery by bez agresívneho limitera nešlo zosilniť"
+  },
+  {
+   "id": "sk7-crackpeanuts",
+   "label": "Lúskanie arašidov",
+   "reason": "duplicitný koncept s „Lúskanie orechov“"
+  },
+  {
+   "id": "sk7-coinsjingle",
+   "label": "Cinkanie mincí",
+   "reason": "duplicitný koncept s „Mešec mincí“"
+  },
+  {
+   "id": "sk7-hydrauliclift-up",
+   "label": "Hydraulický zdvihák (hore)",
+   "reason": "duplicitný koncept s „Hydraulický zdvihák“"
+  },
+  {
+   "id": "sk7-metalbox-spring",
+   "label": "Otvorenie kovovej krabičky",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk7-oldbook",
+   "label": "Listovanie v knihe",
+   "reason": "duplicitný koncept s „Otočenie strany“"
+  },
+  {
+   "id": "sk7-sawtoiletroll",
+   "label": "Rezanie kartónovej rolky",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk7-shakegel",
+   "label": "Trasenie fľašou",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk7-sharpenpencil",
+   "label": "Strúhanie ceruzky",
+   "reason": "aj po normalizácii výrazne tichšie ako ostatné zvuky (najhlasnejší moment -23.2 LUFS); ide o krátke tiché transienty a ďalšie zosilnenie by vyžadovalo agresívny limiter"
+  },
+  {
+   "id": "sk7-slowapplause",
+   "label": "Rozbiehajúci sa potlesk",
+   "reason": "duplicitný koncept s „Potlesk“"
+  },
+  {
+   "id": "sk7-snowglobeturn",
+   "label": "Otočenie snežítka",
+   "reason": "2 s — nedá sa férovo určiť"
+  },
+  {
+   "id": "sk7-bellstrike",
+   "label": "Úder do malého zvona",
+   "reason": "duplicitný koncept s „Úder do zvona“"
+  },
+  {
+   "id": "sk7-dialtone2",
+   "label": "Tónová voľba",
+   "reason": "duplicitný koncept s „Vytáčanie čísla na telefóne“"
+  },
+  {
+   "id": "sk7-trainstation",
+   "label": "Železničná stanica",
+   "reason": "príliš tichá nahrávka (-50.6 LUFS); bezpečné zosilnenie (bez zvýraznenia šumu) dosiahne iba -35.6 LUFS"
+  },
+  {
+   "id": "sk7-huntpeck",
+   "label": "Pomalé písanie na klávesnici",
+   "reason": "duplicitný koncept s „Písanie na klávesnici“"
+  },
+  {
+   "id": "sk7-inkpen",
+   "label": "Písanie perom",
+   "reason": "duplicitný koncept s „Písanie fixkou“"
+  },
+  {
+   "id": "sk8-coalcrane",
+   "label": "Žeriav na uhlie",
+   "reason": "duplicitný koncept s inými žeriavmi"
+  },
+  {
+   "id": "sk8-containerstacker",
+   "label": "Prekladač kontajnerov",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk8-conveyorbelt",
+   "label": "Dopravníkový pás",
+   "reason": "hukot; nedá sa férovo určiť"
+  },
+  {
+   "id": "sk8-planecutter",
+   "label": "Hobľovačka",
+   "reason": "duplicitný koncept s „Hobľovanie“"
+  },
+  {
+   "id": "sk8-fireman-stoker",
+   "label": "Kurič v lokomotíve",
+   "reason": "duplicitný koncept s „Hádzanie uhlia lopatou“"
+  },
+  {
+   "id": "sk8-firetruck-1958",
+   "label": "Staré hasičské auto",
+   "reason": "štvrtá hasičská siréna v databáze"
+  },
+  {
+   "id": "sk8-flyer",
+   "label": "Spriadací stroj",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk8-francisturbine",
+   "label": "Vodná turbína",
+   "reason": "duplicitný koncept s „Vodná elektráreň“"
+  },
+  {
+   "id": "sk8-hardomini",
+   "label": "Strihací stroj",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk8-icebreakerbell",
+   "label": "Poplach na lodi",
+   "reason": "duplicitný koncept s „Lodný zvon“"
+  },
+  {
+   "id": "sk8-maudslay",
+   "label": "Historický parný stroj",
+   "reason": "duplicitný koncept s „Parný stroj“"
+  },
+  {
+   "id": "sk8-milkreceiver",
+   "label": "Zberač mlieka",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk8-minetelephone",
+   "label": "Banský telefón",
+   "reason": "duplicitný koncept so „Zvonenie starého telefónu“"
+  },
+  {
+   "id": "sk8-mortiser",
+   "label": "Dlabačka",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk8-tomos",
+   "label": "Štartovanie mopedu",
+   "reason": "duplicitný koncept s „Moped“"
+  },
+  {
+   "id": "sk8-loom2",
+   "label": "Tkáčsky stav (2)",
+   "reason": "duplicitný koncept s „Tkáčsky stav“"
+  },
+  {
+   "id": "sk8-pneumaticchainsaw",
+   "label": "Pneumatická píla",
+   "reason": "duplicitný koncept s „Motorová píla“"
+  },
+  {
+   "id": "sk8-pneumaticlamp",
+   "label": "Pneumatická lampa",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk8-rodcutter",
+   "label": "Strihanie tyčí",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk8-shaper",
+   "label": "Frézovanie dreva",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk8-sheetcutter",
+   "label": "Rezačka kartónu",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk8-forgeshovel",
+   "label": "Uhlie do vyhne",
+   "reason": "duplicitný koncept s „Hádzanie uhlia lopatou“"
+  },
+  {
+   "id": "sk8-slitmachine",
+   "label": "Rezačka plechu",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk8-smallwaves",
+   "label": "Vlny v prístave",
+   "reason": "duplicitný koncept s „Vlny na brehu“"
+  },
+  {
+   "id": "sk8-tankcleaner",
+   "label": "Čistenie nádrže",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk8-grandjunction",
+   "label": "Obrovský parný stroj",
+   "reason": "duplicitný koncept s „Parný stroj“"
+  },
+  {
+   "id": "sk8-thicknessplaner",
+   "label": "Hrúbkovačka",
+   "reason": "duplicitný koncept s „Hobľovanie“"
+  },
+  {
+   "id": "sk8-tractorursus",
+   "label": "Starý traktor",
+   "reason": "duplicitný koncept s „Traktor“"
+  },
+  {
+   "id": "sk8-oresundbridge",
+   "label": "Vlak na moste",
+   "reason": "duplicitný koncept s „Jazda vlakom“"
+  },
+  {
+   "id": "sk8-chainconveyor",
+   "label": "Reťazový dopravník",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk8-ultrasoniccleaner",
+   "label": "Ultrazvuková čistička",
+   "reason": "podľa zvuku sa nedá férovo určiť"
+  },
+  {
+   "id": "sk8-ventfan",
+   "label": "Ventilátor",
+   "reason": "hukot; nedá sa férovo určiť"
+  },
+  {
+   "id": "sk8-wireloom",
+   "label": "Tkanie drôtu",
+   "reason": "duplicitný koncept s „Tkáčsky stav“"
+  }
+ ]
+}
