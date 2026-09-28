@@ -590,13 +590,9 @@ export default function TeamQuickGame({
             >
               <section className="party-glass rounded-[1.8rem] p-5">
                 <div className="flex items-center justify-end">
-                  <span className="rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2 text-[10px] font-black text-white/45">
-                    Celkovo{" "}
-                    {options.roundsArePerParticipant
+                  <span className="rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2 text-[10px] font-black text-white/45">{`Celkovo ${options.roundsArePerParticipant
                       ? rounds * names.length
-                      : rounds}{" "}
-                    kôl
-                  </span>
+                      : rounds} kôl`}</span>
                 </div>
 
                 <div className="mt-5">

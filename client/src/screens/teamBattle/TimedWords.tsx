@@ -318,9 +318,7 @@ export default function TimedWords({
             {teamNames[teamIdx]}
           </h2>
           {/* Strana tímu je rovnaká v každej minihre — telefón nikam neputuje. */}
-          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
-            Tím {team.letter} · {team.sideLabel}
-          </p>
+          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">{`Tím ${team.letter} · ${team.sideLabel}`}</p>
         </div>
 
         <div style={{ animation: "fadeIn 0.5s ease-out 0.2s both" }}>
@@ -353,8 +351,7 @@ export default function TimedWords({
 
         {teamIdx === 1 && (
           <p className="text-xs text-white/30">
-            {teamNames[0]} získal {scores[0]}{" "}
-            {scores[0] === 1 ? "bod" : scores[0] < 5 ? "body" : "bodov"}
+            {`${teamNames[0]} získal ${scores[0]} ${scores[0] === 1 ? "bod" : scores[0] < 5 ? "body" : "bodov"}`}
           </p>
         )}
       </div>
@@ -383,9 +380,7 @@ export default function TimedWords({
             {teamNames[teamIdx]}
           </h2>
           {/* Strana tímu je rovnaká v každej minihre — telefón nikam neputuje. */}
-          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
-            Tím {team.letter} · {team.sideLabel}
-          </p>
+          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">{`Tím ${team.letter} · ${team.sideLabel}`}</p>
         </div>
 
         <div
@@ -410,8 +405,7 @@ export default function TimedWords({
 
         {teamIdx === 1 && (
           <p className="text-xs text-white/30">
-            {teamNames[0]} získal {scores[0]}{" "}
-            {scores[0] === 1 ? "bod" : scores[0] < 5 ? "body" : "bodov"}
+            {`${teamNames[0]} získal ${scores[0]} ${scores[0] === 1 ? "bod" : scores[0] < 5 ? "body" : "bodov"}`}
           </p>
         )}
 

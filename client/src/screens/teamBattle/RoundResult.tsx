@@ -41,7 +41,7 @@ export default function RoundResult({
       <main className="flex h-full flex-col fit-or-scroll overflow-hidden px-5 pb-1 pt-4 text-center">
         <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col gap-3">
           <header>
-            <PartyEyebrow>Výsledok {round.index + 1}. kola</PartyEyebrow>
+            <PartyEyebrow>{`Výsledok ${round.index + 1}. kola`}</PartyEyebrow>
             <div className="party-fit-badge mx-auto mt-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-300/20 bg-amber-400/10 text-amber-200">
               {roundWinner === null ? (
                 <Icons.users size={31} />
@@ -58,9 +58,7 @@ export default function RoundResult({
                 : `${teamNames[roundWinner]} berie kolo!`}
             </h1>
             {round.pointMultiplier > 1 && (
-              <span className="mt-3 inline-flex rounded-full border border-amber-300/20 bg-amber-400/10 px-3 py-2 text-[10px] font-black uppercase tracking-wider text-amber-300">
-                Body sa násobia ×{round.pointMultiplier}
-              </span>
+              <span className="mt-3 inline-flex rounded-full border border-amber-300/20 bg-amber-400/10 px-3 py-2 text-[10px] font-black uppercase tracking-wider text-amber-300">{`Body sa násobia ×${round.pointMultiplier}`}</span>
             )}
           </header>
 

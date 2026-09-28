@@ -228,9 +228,7 @@ export default function DrawingCanvas({
             <p className="text-[9px] font-black uppercase tracking-[0.26em] text-violet-300/70">
               Imposter kreslenie
             </p>
-            <p className="mt-0.5 text-xs font-black text-white/75">
-              Ťah {turn + 1} z {totalTurns}
-            </p>
+            <p className="mt-0.5 text-xs font-black text-white/75">{`Ťah ${turn + 1} z ${totalTurns}`}</p>
           </div>
           <span className="rounded-xl border border-white/10 bg-white/[0.06] px-3 py-2 text-[10px] font-black text-white/50">
             1 ťah

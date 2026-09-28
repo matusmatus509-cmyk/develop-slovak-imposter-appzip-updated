@@ -244,15 +244,11 @@ export default function PlayerNamesField({
                   type="button"
                   onClick={addParticipant}
                   className="w-full rounded-2xl border border-dashed border-white/15 bg-white/[0.03] py-3 text-sm font-black text-white/55 transition active:scale-95"
-                >
-                  + Pridať {isTeams ? "tím" : "hráča"}
-                </button>
+                >{`+ Pridať ${isTeams ? "tím" : "hráča"}`}</button>
               )}
 
               {!canRemove && !fixedCount && (
-                <p className="px-1 pt-1 text-[11px] font-medium text-white/35">
-                  Minimálny počet {isTeams ? "tímov" : "hráčov"} je {min}.
-                </p>
+                <p className="px-1 pt-1 text-[11px] font-medium text-white/35">{`Minimálny počet ${isTeams ? "tímov" : "hráčov"} je ${min}.`}</p>
               )}
             </div>
 

@@ -134,7 +134,7 @@ export default function Setup({
         <div className="guess-who-category-list scroll-panel">
           <div className="guess-who-picker-heading">
             <span>Viacero kategórií</span>
-            <p>Označ jednu alebo viac tém. Slovo sa vyberie z označených kategórií. {totalWords} slov celkom.</p>
+            <p>{`Označ jednu alebo viac tém. Slovo sa vyberie z označených kategórií. ${totalWords} slov celkom.`}</p>
           </div>
 
           <div className="guess-who-picker-actions">
@@ -153,9 +153,7 @@ export default function Setup({
                 : `Kategórie · ${categoryIds.length} vybraných`}
             </p>
             {visibleCategories.length === 0 ? (
-              <p className="guess-who-picker-empty">
-                Žiadna kategória nevyhovuje „{categoryQuery.trim()}“. Skús iný nápis.
-              </p>
+              <p className="guess-who-picker-empty">{`Žiadna kategória nevyhovuje „${categoryQuery.trim()}“. Skús iný nápis.`}</p>
             ) : (
               <div className="guess-who-picker-options">
                 {visibleCategories.map((cat) => {
@@ -245,7 +243,7 @@ export default function Setup({
           <section className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5">
             <div>
               <p className="text-sm font-bold">Počet podvodníkov</p>
-              <p className="text-xs text-white/50">Max {maxImpostors} pri tomto počte hráčov</p>
+              <p className="text-xs text-white/50">{`Max ${maxImpostors} pri tomto počte hráčov`}</p>
             </div>
             <Stepper
               value={Math.min(impostorCount, maxImpostors)}

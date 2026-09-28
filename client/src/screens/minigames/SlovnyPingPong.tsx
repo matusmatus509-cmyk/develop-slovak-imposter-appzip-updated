@@ -465,9 +465,7 @@ export function SlovnyPingPongGame({
                 {result.loser === 0 ? name2 : name1}
               </p>
             </div>
-            <p className="text-sm text-white/50">
-              {result.loser === 0 ? name1 : name2} nestihol/a!
-            </p>
+            <p className="text-sm text-white/50">{`${result.loser === 0 ? name1 : name2} nestihol/a!`}</p>
             {onWinner ? (
               <button
                 onClick={() => onWinner(result.loser === 0 ? 1 : 0)}

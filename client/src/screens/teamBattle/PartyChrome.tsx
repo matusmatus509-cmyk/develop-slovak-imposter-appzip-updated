@@ -231,9 +231,7 @@ export function TeamSideLegend({
                 <span className="block truncate text-xs font-black text-white">
                   {teamNames[team.index]}
                 </span>
-                <span className="block text-[9px] font-black uppercase tracking-[0.16em] text-white/40">
-                  {team.sideArrow} {team.sideLabel} telefónu
-                </span>
+                <span className="block text-[9px] font-black uppercase tracking-[0.16em] text-white/40">{`${team.sideArrow} ${team.sideLabel} telefónu`}</span>
               </span>
               {scores && (
                 <span className="shrink-0 text-xl font-black tabular-nums text-white">

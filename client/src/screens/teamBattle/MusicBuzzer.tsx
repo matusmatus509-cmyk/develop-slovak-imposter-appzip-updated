@@ -315,9 +315,7 @@ export default function MusicBuzzer({
           </span>
         )}
 
-        <p className="music-quiz-eyebrow shrink-0 rounded-full border border-fuchsia-300/25 bg-fuchsia-500/10 px-3 py-1 text-[9px] font-black uppercase tracking-[0.2em] text-fuchsia-200/90">
-          Pesnička {Math.min(questionIndex + 1, rounds)} / {rounds}
-        </p>
+        <p className="music-quiz-eyebrow shrink-0 rounded-full border border-fuchsia-300/25 bg-fuchsia-500/10 px-3 py-1 text-[9px] font-black uppercase tracking-[0.2em] text-fuchsia-200/90">{`Pesnička ${Math.min(questionIndex + 1, rounds)} / ${rounds}`}</p>
 
         <h2 className="music-quiz-title min-w-0 max-w-full break-words px-1 font-black leading-[1.03] tracking-[-0.03em] text-white">
           {headline}

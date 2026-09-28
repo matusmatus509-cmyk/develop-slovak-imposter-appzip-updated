@@ -1635,7 +1635,7 @@ export default function Battleship({ onBack }: { onBack: () => void }) {
               <p className="mt-2 text-[8px] font-black uppercase tracking-[.25em] text-cyan-300/65">
                 Bitka sa skončila
               </p>
-              <h1 className="mt-1 text-xl font-black">{winnerName} vyhráva!</h1>
+              <h1 className="mt-1 text-xl font-black">{`${winnerName} vyhráva!`}</h1>
               <p className="mx-auto mt-1 max-w-xs text-[9px] leading-relaxed text-white/42">
                 Všetkých päť súperových lodí je potopených.
               </p>

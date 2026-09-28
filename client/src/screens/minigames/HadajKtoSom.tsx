@@ -168,9 +168,7 @@ function SetupScreen({
             <p>Karty sa nebudú miešať s inou témou.</p>
           </div>
           {visibleBuiltinCategories.length === 0 && visibleCustomCategories.length === 0 ? (
-            <p className="guess-who-picker-empty">
-              Žiadna kategória nevyhovuje „{categoryQuery.trim()}“. Skús iný nápis.
-            </p>
+            <p className="guess-who-picker-empty">{`Žiadna kategória nevyhovuje „${categoryQuery.trim()}“. Skús iný nápis.`}</p>
           ) : (
             <>
               {visibleBuiltinCategories.length > 0 && (
@@ -228,7 +226,7 @@ function SetupScreen({
                           <span className="guess-who-picker-icon">{category.icon}</span>
                           <span className="guess-who-picker-copy">
                             <strong>{category.name}</strong>
-                            <small>{category.count} vlastných kariet</small>
+                            <small>{`${category.count} vlastných kariet`}</small>
                           </span>
                           <span className="guess-who-picker-check" aria-hidden="true">
                             {active ? <Icons.circleCheck size={17} /> : <Icons.chevronRight size={17} />}
@@ -304,7 +302,7 @@ function SetupScreen({
           <section className="guess-who-setting-block">
             <div className="guess-who-setting-heading">
               <span><Icons.timer size={15} /> Čas na kolo</span>
-              <strong>{timer} sekúnd</strong>
+              <strong>{`${timer} sekúnd`}</strong>
             </div>
             <div className="guess-who-time-grid">
               {[30, 45, 60, 90, 120].map((value) => (
@@ -699,10 +697,7 @@ export default function HadajKtoSom({
                 background: `${partyTeamIdentity(currentPlayer).color}33`,
                 color: partyTeamIdentity(currentPlayer).color,
               }}
-            >
-              Tím {partyTeamIdentity(currentPlayer).letter} ·{" "}
-              {partyTeamIdentity(currentPlayer).sideLabel}
-            </span>
+            >{`Tím ${partyTeamIdentity(currentPlayer).letter} · ${partyTeamIdentity(currentPlayer).sideLabel}`}</span>
           )}
           <div
             className="glass rounded-3xl p-4 text-sm text-white/60 max-w-xs leading-relaxed"
@@ -820,10 +815,7 @@ export default function HadajKtoSom({
                 {winner.correct === 1 ? "bodom" : "bodmi"}!
               </p>
             ) : (
-              <p className="text-white/50 text-sm mt-1">
-                Remíza — {bestCorrect}{" "}
-                {bestCorrect === 1 ? "bod" : "bodov"} pre všetkých
-              </p>
+              <p className="text-white/50 text-sm mt-1">{`Remíza — ${bestCorrect} ${bestCorrect === 1 ? "bod" : "bodov"} pre všetkých`}</p>
             )}
           </div>
 

@@ -84,7 +84,7 @@ export default function Statistics({ statistics, records, onBack, onClaimDailyRe
         </section>
 
         <section className="mt-4 rounded-[1.55rem] border border-amber-300/20 bg-amber-400/[.07] p-4" style={{ animation: "slideUp .5s ease-out 90ms both" }}>
-          <div className="flex items-center gap-3"><div className="min-w-0 flex-1"><h2 className="text-sm font-black">Denný bonus · +{DAILY_REWARD_XP} XP</h2><p className="mt-1 text-[9px] font-semibold text-white/38">K dispozícii raz denne</p></div><button type="button" disabled={!dailyRewardAvailable} onClick={onClaimDailyReward} className="rounded-lg bg-amber-300 px-3 py-2 text-[9px] font-black text-amber-950 disabled:bg-white/[.07] disabled:text-white/35">{dailyRewardAvailable ? "Získať" : "Získané"}</button></div>
+          <div className="flex items-center gap-3"><div className="min-w-0 flex-1"><h2 className="text-sm font-black">{`Denný bonus · +${DAILY_REWARD_XP} XP`}</h2><p className="mt-1 text-[9px] font-semibold text-white/38">K dispozícii raz denne</p></div><button type="button" disabled={!dailyRewardAvailable} onClick={onClaimDailyReward} className="rounded-lg bg-amber-300 px-3 py-2 text-[9px] font-black text-amber-950 disabled:bg-white/[.07] disabled:text-white/35">{dailyRewardAvailable ? "Získať" : "Získané"}</button></div>
         </section>
 
         <section className="mt-7" style={{ animation: "slideUp .5s ease-out 105ms both" }}>
@@ -187,7 +187,7 @@ export default function Statistics({ statistics, records, onBack, onClaimDailyRe
               <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-400/10 text-amber-300"><Icons.trophy size={20} /></span>
               <div><p className="text-[9px] font-black uppercase tracking-[.18em] text-amber-300/70">Rebríček</p><h2 className="mt-0.5 text-base font-black">Najlepšie tímy</h2></div>
             </div>
-            <span className="rounded-lg bg-white/[.055] px-2.5 py-1.5 text-[10px] font-black text-white/42">{teamWins.length} tímov</span>
+            <span className="rounded-lg bg-white/[.055] px-2.5 py-1.5 text-[10px] font-black text-white/42">{`${teamWins.length} tímov`}</span>
           </div>
           {teamWins.length === 0 ? (
             <div className="flex flex-col items-center px-6 py-9 text-center">

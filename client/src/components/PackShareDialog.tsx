@@ -74,7 +74,7 @@ export default function PackShareDialog({ collection, entries, onImport, onClose
           </div> : <p role="alert" className="mt-4 rounded-xl bg-rose-400/10 p-3 text-xs text-rose-200">{qr.error}</p>}
           <div className="mt-3 flex items-center justify-between gap-2">
             <button type="button" disabled={activeQr === 0} onClick={() => setActiveQr((index) => Math.max(0, index - 1))} className="rounded-xl bg-white/[.07] px-3 py-2 text-[10px] font-black disabled:opacity-25">← Predošlý</button>
-            <strong className="text-[10px]">QR {activeQr + 1} z {sharing.links.length}</strong>
+            <strong className="text-[10px]">{`QR ${activeQr + 1} z ${sharing.links.length}`}</strong>
             <button type="button" disabled={activeQr === sharing.links.length - 1} onClick={() => setActiveQr((index) => Math.min(sharing.links.length - 1, index + 1))} className="rounded-xl bg-white/[.07] px-3 py-2 text-[10px] font-black disabled:opacity-25">Ďalší →</button>
           </div>
           <p className="mt-2 text-center text-[9px] text-white/38">{sharing.links.length === 1 ? "Celý malý balík je v jednom QR odkaze." : `Naskenujte odkazy v poradí 1 až ${sharing.links.length}. Aplikácia časti uloží lokálne a po poslednej balík automaticky pridá.`}</p>
