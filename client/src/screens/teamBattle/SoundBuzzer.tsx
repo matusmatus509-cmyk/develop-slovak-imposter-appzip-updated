@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { soundArt } from "../../media";
 import { takePersistentItems } from "../../utils/persistentDeck";
-import { SOUND_CLUES } from "../../data/teamBattleExtras";
+import { getSoundCluesForLanguage } from "../../data/teamBattleExtras";
+import { useLanguage } from "../../i18n/LanguageProvider";
+import { deckKeyForLanguage } from "../../i18n/content";
 import { PartyBackdrop, TeamSideTag } from "./PartyChrome";
 import {
   makeEmptyScores,
@@ -45,15 +47,16 @@ export default function SoundBuzzer({
 }: QuickParticipantsProps) {
   const { playFeedback } = useFeedback();
   const soundAllowed = soundsEnabled();
+  const { language } = useLanguage();
   const deck = useMemo(
     () =>
       takePersistentItems(
-        "party:sound-buzzer",
-        SOUND_CLUES,
+        deckKeyForLanguage("party:sound-buzzer", language),
+        getSoundCluesForLanguage(language),
         rounds,
         clue => clue.label
       ),
-    [rounds]
+    [rounds, language]
   );
   const [questionIndex, setQuestionIndex] = useState(0);
   const [scores, setScores] = useState<number[]>(() =>

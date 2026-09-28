@@ -1,3 +1,6 @@
+import type { AppLanguage } from "../i18n/LanguageProvider";
+import { localizeList } from "../i18n/content";
+
 const STARTING_LETTERS = [
   "A", "B", "C", "Č", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
   "N", "O", "P", "R", "S", "Š", "T", "U", "V", "Z", "Ž",
@@ -135,3 +138,8 @@ export const PING_PONG_PROMPTS: string[] = [...new Set([
   ...QUICK_ROUNDS,
   ...ASSOCIATION_ROUNDS,
 ])].slice(0, 500);
+
+/** Zadania v jazyku hry; zadania na slovenské písmená a reálie v angličtine vypadnú. */
+export function getPingPongPromptsForLanguage(language: AppLanguage): string[] {
+  return localizeList("pingpong", PING_PONG_PROMPTS, language);
+}

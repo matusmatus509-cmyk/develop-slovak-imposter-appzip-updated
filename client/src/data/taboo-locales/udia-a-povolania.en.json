@@ -5,7 +5,7 @@
   "cards": [
     {
       "id": "taboo_sk_0151",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "teacher",
       "forbidden": [
         "school",
@@ -16,7 +16,7 @@
     },
     {
       "id": "taboo_sk_0152",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "doctor",
       "forbidden": [
         "hospital",
@@ -27,7 +27,7 @@
     },
     {
       "id": "taboo_sk_0153",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "firefighter",
       "forbidden": [
         "fire",
@@ -38,7 +38,7 @@
     },
     {
       "id": "taboo_sk_0154",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "police officer",
       "forbidden": [
         "crime",
@@ -49,7 +49,7 @@
     },
     {
       "id": "taboo_sk_0155",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "chef",
       "forbidden": [
         "kitchen",
@@ -60,7 +60,7 @@
     },
     {
       "id": "taboo_sk_0156",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "waiter",
       "forbidden": [
         "menu",
@@ -71,7 +71,7 @@
     },
     {
       "id": "taboo_sk_0157",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "hairdresser",
       "forbidden": [
         "scissors",
@@ -82,7 +82,7 @@
     },
     {
       "id": "taboo_sk_0158",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "beautician",
       "forbidden": [
         "makeup",
@@ -93,7 +93,7 @@
     },
     {
       "id": "taboo_sk_0159",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "barber",
       "forbidden": [
         "razor",
@@ -104,7 +104,7 @@
     },
     {
       "id": "taboo_sk_0160",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "journalist",
       "forbidden": [
         "article",
@@ -115,7 +115,7 @@
     },
     {
       "id": "taboo_sk_0161",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "photographer",
       "forbidden": [
         "camera",
@@ -126,7 +126,7 @@
     },
     {
       "id": "taboo_sk_0162",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "architect",
       "forbidden": [
         "plan",
@@ -137,7 +137,7 @@
     },
     {
       "id": "taboo_sk_0163",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "bricklayer",
       "forbidden": [
         "brick",
@@ -148,7 +148,7 @@
     },
     {
       "id": "taboo_sk_0164",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "engineer",
       "forbidden": [
         "project",
@@ -159,7 +159,7 @@
     },
     {
       "id": "taboo_sk_0165",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "programmer",
       "forbidden": [
         "code",
@@ -170,7 +170,7 @@
     },
     {
       "id": "taboo_sk_0166",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "accountant",
       "forbidden": [
         "invoice",
@@ -181,7 +181,7 @@
     },
     {
       "id": "taboo_sk_0167",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "banker",
       "forbidden": [
         "account",
@@ -192,7 +192,7 @@
     },
     {
       "id": "taboo_sk_0168",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "real estate agent",
       "forbidden": [
         "property",
@@ -203,7 +203,7 @@
     },
     {
       "id": "taboo_sk_0169",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "shop assistant",
       "forbidden": [
         "counter",
@@ -214,7 +214,7 @@
     },
     {
       "id": "taboo_sk_0170",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "manager",
       "forbidden": [
         "team",
@@ -225,7 +225,7 @@
     },
     {
       "id": "taboo_sk_0171",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "director",
       "forbidden": [
         "decision",
@@ -236,7 +236,7 @@
     },
     {
       "id": "taboo_sk_0172",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "politician",
       "forbidden": [
         "elections",
@@ -247,7 +247,7 @@
     },
     {
       "id": "taboo_sk_0173",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "member of parliament",
       "forbidden": [
         "parliament",
@@ -258,7 +258,7 @@
     },
     {
       "id": "taboo_sk_0174",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "president",
       "forbidden": [
         "head",
@@ -269,7 +269,7 @@
     },
     {
       "id": "taboo_sk_0175",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "lawyer",
       "forbidden": [
         "defense",
@@ -280,7 +280,7 @@
     },
     {
       "id": "taboo_sk_0176",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "farmer",
       "forbidden": [
         "field",
@@ -291,7 +291,7 @@
     },
     {
       "id": "taboo_sk_0177",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "librarian",
       "forbidden": [
         "book",
@@ -302,7 +302,7 @@
     },
     {
       "id": "taboo_sk_0178",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "artist",
       "forbidden": [
         "gallery",
@@ -313,7 +313,7 @@
     },
     {
       "id": "taboo_sk_0179",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "actor",
       "forbidden": [
         "theater",
@@ -324,7 +324,7 @@
     },
     {
       "id": "taboo_sk_0180",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "director",
       "forbidden": [
         "scene",
@@ -335,7 +335,7 @@
     },
     {
       "id": "taboo_sk_0181",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "producer",
       "forbidden": [
         "finances",
@@ -346,7 +346,7 @@
     },
     {
       "id": "taboo_sk_0182",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "musician",
       "forbidden": [
         "instrument",
@@ -357,7 +357,7 @@
     },
     {
       "id": "taboo_sk_0183",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "singer",
       "forbidden": [
         "microphone",
@@ -368,7 +368,7 @@
     },
     {
       "id": "taboo_sk_0184",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "bartender",
       "forbidden": [
         "shaker",
@@ -379,7 +379,7 @@
     },
     {
       "id": "taboo_sk_0185",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "cosmonaut",
       "forbidden": [
         "space",
@@ -390,7 +390,7 @@
     },
     {
       "id": "taboo_sk_0186",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "astronomer",
       "forbidden": [
         "star",
@@ -401,7 +401,7 @@
     },
     {
       "id": "taboo_sk_0187",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "biologist",
       "forbidden": [
         "laboratory",
@@ -412,7 +412,7 @@
     },
     {
       "id": "taboo_sk_0188",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "pharmacist",
       "forbidden": [
         "pharmacy",
@@ -423,7 +423,7 @@
     },
     {
       "id": "taboo_sk_0189",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "social worker",
       "forbidden": [
         "help",
@@ -434,7 +434,7 @@
     },
     {
       "id": "taboo_sk_0190",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "psychologist",
       "forbidden": [
         "therapy",
@@ -445,7 +445,7 @@
     },
     {
       "id": "taboo_sk_0191",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "nurse",
       "forbidden": [
         "IV",
@@ -456,7 +456,7 @@
     },
     {
       "id": "taboo_sk_0192",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "courier",
       "forbidden": [
         "package",
@@ -467,7 +467,7 @@
     },
     {
       "id": "taboo_sk_0193",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "car mechanic",
       "forbidden": [
         "engine",
@@ -478,7 +478,7 @@
     },
     {
       "id": "taboo_sk_0194",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "magician",
       "forbidden": [
         "trick",
@@ -489,7 +489,7 @@
     },
     {
       "id": "taboo_sk_0195",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "host",
       "forbidden": [
         "broadcast",
@@ -500,7 +500,7 @@
     },
     {
       "id": "taboo_sk_0436",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "coach",
       "forbidden": [
         "team",
@@ -511,7 +511,7 @@
     },
     {
       "id": "taboo_sk_0437",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "notary",
       "forbidden": [
         "signature",
@@ -522,7 +522,7 @@
     },
     {
       "id": "taboo_sk_0438",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "electrician",
       "forbidden": [
         "cable",
@@ -533,7 +533,7 @@
     },
     {
       "id": "taboo_sk_0439",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "carpenter",
       "forbidden": [
         "wood",
@@ -544,7 +544,7 @@
     },
     {
       "id": "taboo_sk_0440",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "gardener",
       "forbidden": [
         "flowers",
@@ -555,7 +555,7 @@
     },
     {
       "id": "taboo_sk_0441",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "masseur",
       "forbidden": [
         "relaxation",
@@ -566,7 +566,7 @@
     },
     {
       "id": "taboo_sk_0442",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "driver",
       "forbidden": [
         "steering wheel",
@@ -577,7 +577,7 @@
     },
     {
       "id": "taboo_sk_0443",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "king",
       "forbidden": [
         "crown",
@@ -588,7 +588,7 @@
     },
     {
       "id": "taboo_sk_0444",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "veterinarian",
       "forbidden": [
         "clinic",
@@ -599,7 +599,7 @@
     },
     {
       "id": "taboo_sk_0445",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "blacksmith",
       "forbidden": [
         "iron",
@@ -610,7 +610,7 @@
     },
     {
       "id": "taboo_sk_0446",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "scout",
       "forbidden": [
         "camp",
@@ -621,7 +621,7 @@
     },
     {
       "id": "taboo_sk_0447",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "bishop",
       "forbidden": [
         "mitre",
@@ -632,7 +632,7 @@
     },
     {
       "id": "taboo_sk_0448",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "restorer",
       "forbidden": [
         "painting",
@@ -643,7 +643,7 @@
     },
     {
       "id": "taboo_sk_0449",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "curator",
       "forbidden": [
         "gallery",
@@ -654,7 +654,7 @@
     },
     {
       "id": "taboo_sk_0450",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "analyst",
       "forbidden": [
         "data",
@@ -665,7 +665,7 @@
     },
     {
       "id": "taboo_sk_0451",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "optician",
       "forbidden": [
         "glasses",
@@ -676,7 +676,7 @@
     },
     {
       "id": "taboo_sk_0452",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "translator",
       "forbidden": [
         "language",
@@ -687,7 +687,7 @@
     },
     {
       "id": "taboo_sk_0453",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "sommelier",
       "forbidden": [
         "bottle",
@@ -698,7 +698,7 @@
     },
     {
       "id": "taboo_sk_0454",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "makeup artist",
       "forbidden": [
         "makeup",
@@ -709,7 +709,7 @@
     },
     {
       "id": "taboo_sk_0455",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "stuntman",
       "forbidden": [
         "fall",
@@ -720,7 +720,7 @@
     },
     {
       "id": "taboo_sk_0456",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "sociologist",
       "forbidden": [
         "society",
@@ -731,7 +731,7 @@
     },
     {
       "id": "taboo_sk_0457",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "meteorologist",
       "forbidden": [
         "forecast",
@@ -742,7 +742,7 @@
     },
     {
       "id": "taboo_sk_0458",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "florist",
       "forbidden": [
         "bouquet",
@@ -753,7 +753,7 @@
     },
     {
       "id": "taboo_sk_0459",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "volunteer",
       "forbidden": [
         "help",
@@ -764,7 +764,7 @@
     },
     {
       "id": "taboo_sk_0460",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "baker",
       "forbidden": [
         "flour",
@@ -775,7 +775,7 @@
     },
     {
       "id": "taboo_sk_0461",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "pilot",
       "forbidden": [
         "cockpit",
@@ -786,7 +786,7 @@
     },
     {
       "id": "taboo_sk_0462",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "dramaturge",
       "forbidden": [
         "theatre",
@@ -797,7 +797,7 @@
     },
     {
       "id": "taboo_sk_0463",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "set designer",
       "forbidden": [
         "scenery",
@@ -808,7 +808,7 @@
     },
     {
       "id": "taboo_sk_0464",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "lobbyist",
       "forbidden": [
         "influence",
@@ -819,7 +819,7 @@
     },
     {
       "id": "taboo_sk_0465",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "archaeologist",
       "forbidden": [
         "excavation",
@@ -830,7 +830,7 @@
     },
     {
       "id": "taboo_sk_0466",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "goldsmith",
       "forbidden": [
         "gold",
@@ -841,7 +841,7 @@
     },
     {
       "id": "taboo_sk_0467",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "conductor",
       "forbidden": [
         "orchestra",
@@ -852,7 +852,7 @@
     },
     {
       "id": "taboo_sk_0468",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "sound engineer",
       "forbidden": [
         "microphone",
@@ -863,7 +863,7 @@
     },
     {
       "id": "taboo_sk_0469",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "cartographer",
       "forbidden": [
         "map",
@@ -874,7 +874,7 @@
     },
     {
       "id": "taboo_sk_0470",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "economist",
       "forbidden": [
         "market",
@@ -885,7 +885,7 @@
     },
     {
       "id": "taboo_sk_0471",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "flight attendant",
       "forbidden": [
         "cabin",
@@ -896,7 +896,7 @@
     },
     {
       "id": "taboo_sk_0472",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "screenwriter",
       "forbidden": [
         "dialogue",
@@ -907,7 +907,7 @@
     },
     {
       "id": "taboo_sk_0473",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "stylist",
       "forbidden": [
         "fashion",
@@ -918,7 +918,7 @@
     },
     {
       "id": "taboo_sk_0474",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "commentator",
       "forbidden": [
         "match",
@@ -929,7 +929,7 @@
     },
     {
       "id": "taboo_sk_0475",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "spokesperson",
       "forbidden": [
         "press conference",
@@ -940,7 +940,7 @@
     },
     {
       "id": "taboo_sk_0476",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "knight",
       "forbidden": [
         "armor",
@@ -951,7 +951,7 @@
     },
     {
       "id": "taboo_sk_0477",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "calligrapher",
       "forbidden": [
         "script",
@@ -962,7 +962,7 @@
     },
     {
       "id": "taboo_sk_0478",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "anthropologist",
       "forbidden": [
         "culture",
@@ -973,7 +973,7 @@
     },
     {
       "id": "taboo_sk_0523",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "nurse",
       "forbidden": [
         "hospital",
@@ -984,7 +984,7 @@
     },
     {
       "id": "taboo_sk_0524",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "professor",
       "forbidden": [
         "university",
@@ -995,7 +995,7 @@
     },
     {
       "id": "taboo_sk_0525",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "student",
       "forbidden": [
         "exam",
@@ -1006,7 +1006,7 @@
     },
     {
       "id": "taboo_sk_0526",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "lawyer",
       "forbidden": [
         "court",
@@ -1017,7 +1017,7 @@
     },
     {
       "id": "taboo_sk_0527",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "dancer",
       "forbidden": [
         "stage",
@@ -1028,7 +1028,7 @@
     },
     {
       "id": "taboo_sk_0528",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "model",
       "forbidden": [
         "fashion",
@@ -1039,7 +1039,7 @@
     },
     {
       "id": "taboo_sk_0529",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "entrepreneur",
       "forbidden": [
         "company",
@@ -1050,7 +1050,7 @@
     },
     {
       "id": "taboo_sk_0530",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "chemist",
       "forbidden": [
         "laboratory",
@@ -1061,7 +1061,7 @@
     },
     {
       "id": "taboo_sk_0531",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "pharmacist",
       "forbidden": [
         "pharmacy",
@@ -1072,7 +1072,7 @@
     },
     {
       "id": "taboo_sk_0532",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "extra",
       "forbidden": [
         "crowd",
@@ -1083,7 +1083,7 @@
     },
     {
       "id": "taboo_sk_0533",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "childcare worker",
       "forbidden": [
         "children",
@@ -1094,7 +1094,7 @@
     },
     {
       "id": "taboo_sk_0534",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "caregiver",
       "forbidden": [
         "home",
@@ -1105,7 +1105,7 @@
     },
     {
       "id": "taboo_sk_0535",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "historian",
       "forbidden": [
         "archive",
@@ -1116,7 +1116,7 @@
     },
     {
       "id": "taboo_sk_0536",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "instructor",
       "forbidden": [
         "course",
@@ -1127,7 +1127,7 @@
     },
     {
       "id": "taboo_sk_0537",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "fisherman",
       "forbidden": [
         "rod",
@@ -1138,7 +1138,7 @@
     },
     {
       "id": "taboo_sk_0538",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "advisor",
       "forbidden": [
         "consultation",
@@ -1149,7 +1149,7 @@
     },
     {
       "id": "taboo_sk_0539",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "writer",
       "forbidden": [
         "novel",
@@ -1160,7 +1160,7 @@
     },
     {
       "id": "taboo_sk_0540",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "fashion designer",
       "forbidden": [
         "collection",
@@ -1171,7 +1171,7 @@
     },
     {
       "id": "taboo_sk_0541",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "craftsman",
       "forbidden": [
         "workshop",
@@ -1182,7 +1182,7 @@
     },
     {
       "id": "taboo_sk_0603",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "dentist",
       "forbidden": [
         "teeth",
@@ -1193,7 +1193,7 @@
     },
     {
       "id": "taboo_sk_0604",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "DJ",
       "forbidden": [
         "set",
@@ -1204,7 +1204,7 @@
     },
     {
       "id": "taboo_sk_0605",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "painter",
       "forbidden": [
         "brush",
@@ -1215,7 +1215,7 @@
     },
     {
       "id": "taboo_sk_0606",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "graphic designer",
       "forbidden": [
         "logo",
@@ -1226,7 +1226,7 @@
     },
     {
       "id": "taboo_sk_0607",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "consultant",
       "forbidden": [
         "advice",
@@ -1237,7 +1237,7 @@
     },
     {
       "id": "taboo_sk_0608",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "waiter",
       "forbidden": [
         "menu",
@@ -1248,7 +1248,7 @@
     },
     {
       "id": "taboo_sk_0609",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "reporter",
       "forbidden": [
         "article",
@@ -1259,7 +1259,7 @@
     },
     {
       "id": "taboo_sk_0610",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "psychiatrist",
       "forbidden": [
         "medication",
@@ -1270,7 +1270,7 @@
     },
     {
       "id": "taboo_sk_0611",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "secretary",
       "forbidden": [
         "office",
@@ -1281,7 +1281,7 @@
     },
     {
       "id": "taboo_sk_0612",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "glazier",
       "forbidden": [
         "glass",
@@ -1292,7 +1292,7 @@
     },
     {
       "id": "taboo_sk_0613",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "building manager",
       "forbidden": [
         "house",
@@ -1303,7 +1303,7 @@
     },
     {
       "id": "taboo_sk_0614",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "paramedic",
       "forbidden": [
         "ambulance",
@@ -1314,7 +1314,7 @@
     },
     {
       "id": "taboo_sk_0615",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "barista",
       "forbidden": [
         "coffee",
@@ -1325,7 +1325,7 @@
     },
     {
       "id": "taboo_sk_0616",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "designer",
       "forbidden": [
         "concept",
@@ -1336,7 +1336,7 @@
     },
     {
       "id": "taboo_sk_0617",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "breeder",
       "forbidden": [
         "animals",
@@ -1347,7 +1347,7 @@
     },
     {
       "id": "taboo_sk_0618",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "detective",
       "forbidden": [
         "surveillance",
@@ -1358,7 +1358,7 @@
     },
     {
       "id": "taboo_sk_0619",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "influencer",
       "forbidden": [
         "social media",
@@ -1369,7 +1369,7 @@
     },
     {
       "id": "taboo_sk_0620",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "parent",
       "forbidden": [
         "child",
@@ -1380,7 +1380,7 @@
     },
     {
       "id": "taboo_sk_0621",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "neighbor",
       "forbidden": [
         "apartment",
@@ -1391,7 +1391,7 @@
     },
     {
       "id": "taboo_sk_0622",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "retiree",
       "forbidden": [
         "pension",
@@ -1402,7 +1402,7 @@
     },
     {
       "id": "taboo_sk_0623",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "instructor",
       "forbidden": [
         "training",
@@ -1413,7 +1413,7 @@
     },
     {
       "id": "taboo_sk_0624",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "installer",
       "forbidden": [
         "tools",
@@ -1424,7 +1424,7 @@
     },
     {
       "id": "taboo_sk_0625",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "interpreter",
       "forbidden": [
         "language",
@@ -1435,7 +1435,7 @@
     },
     {
       "id": "taboo_sk_0626",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "owner",
       "forbidden": [
         "company",
@@ -1446,7 +1446,7 @@
     },
     {
       "id": "taboo_sk_0627",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "receptionist",
       "forbidden": [
         "hotel",
@@ -1457,7 +1457,7 @@
     },
     {
       "id": "taboo_sk_0699",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "surgeon",
       "forbidden": [
         "scalpel",
@@ -1468,7 +1468,7 @@
     },
     {
       "id": "taboo_sk_0700",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "butcher",
       "forbidden": [
         "counter",
@@ -1479,7 +1479,7 @@
     },
     {
       "id": "taboo_sk_0701",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "pastry chef",
       "forbidden": [
         "cake",
@@ -1490,7 +1490,7 @@
     },
     {
       "id": "taboo_sk_0702",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "winemaker",
       "forbidden": [
         "vineyard",
@@ -1501,7 +1501,7 @@
     },
     {
       "id": "taboo_sk_0703",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "carpenter",
       "forbidden": [
         "wood",
@@ -1512,7 +1512,7 @@
     },
     {
       "id": "taboo_sk_0704",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "mail carrier",
       "forbidden": [
         "letter",
@@ -1523,7 +1523,7 @@
     },
     {
       "id": "taboo_sk_0705",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "choreographer",
       "forbidden": [
         "dance",
@@ -1534,7 +1534,7 @@
     },
     {
       "id": "taboo_sk_0706",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "lifeguard",
       "forbidden": [
         "pool",
@@ -1545,7 +1545,7 @@
     },
     {
       "id": "taboo_sk_0707",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "HR manager",
       "forbidden": [
         "recruitment",
@@ -1556,7 +1556,7 @@
     },
     {
       "id": "taboo_sk_0708",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "guard",
       "forbidden": [
         "gate",
@@ -1567,7 +1567,7 @@
     },
     {
       "id": "taboo_sk_0709",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "soldier",
       "forbidden": [
         "barracks",
@@ -1578,7 +1578,7 @@
     },
     {
       "id": "taboo_sk_0710",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "sailor",
       "forbidden": [
         "ship",
@@ -1589,7 +1589,7 @@
     },
     {
       "id": "taboo_sk_0711",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "astronaut",
       "forbidden": [
         "space",
@@ -1600,7 +1600,7 @@
     },
     {
       "id": "taboo_sk_0712",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "priest",
       "forbidden": [
         "mass",
@@ -1611,7 +1611,7 @@
     },
     {
       "id": "taboo_sk_0713",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "ecologist",
       "forbidden": [
         "environment",
@@ -1622,7 +1622,7 @@
     },
     {
       "id": "taboo_sk_0714",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "mediator",
       "forbidden": [
         "dispute",
@@ -1633,7 +1633,7 @@
     },
     {
       "id": "taboo_sk_0715",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "physicist",
       "forbidden": [
         "experiment",
@@ -1644,7 +1644,7 @@
     },
     {
       "id": "taboo_sk_0716",
-      "category": "People and professions",
+      "category": "People and Professions",
       "word": "judge",
       "forbidden": [
         "verdict",

@@ -1,5 +1,8 @@
 import type { CategoryDef } from "../types";
 import { GENERATED_DRAWING_PAIRS } from "./expandedContent";
+import type { AppLanguage } from "../i18n/LanguageProvider";
+import { hasContentLocale } from "../i18n/content";
+import { localizeCategoryDefs } from "./categories";
 
 // Word database for the drawing impostor game.
 // hint is always "" — impostors receive no hint.
@@ -1493,3 +1496,23 @@ DRAWING_CATEGORIES.push({
   icon: "🖼️",
   wordPairs: GENERATED_DRAWING_PAIRS.slice(0, 1924),
 });
+// ── Lokalizácia ──────────────────────────────────────────────────────────────
+// Kresliace slová nemajú nápovedu, kľúčom mapy `i18n/content/en/drawing.json`
+// je samotné slovenské slovo.
+const LOCALIZED_DRAWING_CATEGORIES = new Map<AppLanguage, CategoryDef[]>();
+
+export function getDrawingCategories(language: AppLanguage): CategoryDef[] {
+  if (!hasContentLocale(language)) return DRAWING_CATEGORIES;
+  let localized = LOCALIZED_DRAWING_CATEGORIES.get(language);
+  if (!localized) {
+    localized = localizeCategoryDefs(
+      DRAWING_CATEGORIES,
+      "drawing",
+      language,
+      (pair) => pair.word,
+      (word) => ({ word, hint: "" }),
+    );
+    LOCALIZED_DRAWING_CATEGORIES.set(language, localized);
+  }
+  return localized;
+}

@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "en",
+  "category": "Aktivity a šport",
+  "cards": [
+    {
+      "id": "taboo_sk_0637",
+      "category": "Activities and Sports",
+      "word": "soccer",
+      "forbidden": [
+        "goal",
+        "goalkeeper",
+        "football",
+        "stadium"
+      ]
+    },
+    {
+      "id": "taboo_sk_0638",
+      "category": "Activities and Sports",
+      "word": "tennis",
+      "forbidden": [
+        "racket",
+        "serve",
+        "net",
+        "court"
+      ]
+    },
+    {
+      "id": "taboo_sk_0639",
+      "category": "Activities and Sports",
+      "word": "swimming",
+      "forbidden": [
+        "pool",
+        "swimsuit",
+        "water",
+        "stroke"
+      ]
+    },
+    {
+      "id": "taboo_sk_0640",
+      "category": "Activities and Sports",
+      "word": "running",
+      "forbidden": [
+        "track",
+        "marathon",
+        "sneakers",
+        "pace"
+      ]
+    },
+    {
+      "id": "taboo_sk_0641",
+      "category": "Activities and Sports",
+      "word": "hiking",
+      "forbidden": [
+        "backpack",
+        "trail",
+        "map",
+        "mountains"
+      ]
+    },
+    {
+      "id": "taboo_sk_0642",
+      "category": "Activities and Sports",
+      "word": "yoga",
+      "forbidden": [
+        "mat",
+        "pose",
+        "breathing",
+        "relax"
+      ]
+    },
+    {
+      "id": "taboo_sk_0643",
+      "category": "Activities and Sports",
+      "word": "boxing",
+      "forbidden": [
+        "gloves",
+        "ring",
+        "punch",
+        "fight"
+      ]
+    },
+    {
+      "id": "taboo_sk_0644",
+      "category": "Activities and Sports",
+      "word": "cycling",
+      "forbidden": [
+        "bike",
+        "pedals",
+        "race",
+        "helmet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0645",
+      "category": "Activities and Sports",
+      "word": "ice skating",
+      "forbidden": [
+        "ice",
+        "rink",
+        "glide",
+        "skates"
+      ]
+    },
+    {
+      "id": "taboo_sk_0646",
+      "category": "Activities and Sports",
+      "word": "skiing",
+      "forbidden": [
+        "slope",
+        "ski lift",
+        "snow",
+        "poles"
+      ]
+    },
+    {
+      "id": "taboo_sk_0647",
+      "category": "Activities and Sports",
+      "word": "snowboarding",
+      "forbidden": [
+        "board",
+        "snow",
+        "halfpipe",
+        "tricks"
+      ]
+    },
+    {
+      "id": "taboo_sk_0648",
+      "category": "Activities and Sports",
+      "word": "volleyball",
+      "forbidden": [
+        "net",
+        "ball",
+        "spike",
+        "set"
+      ]
+    },
+    {
+      "id": "taboo_sk_0649",
+      "category": "Activities and Sports",
+      "word": "basketball",
+      "forbidden": [
+        "hoop",
+        "ball",
+        "dribble",
+        "three-pointer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0650",
+      "category": "Activities and Sports",
+      "word": "table tennis",
+      "forbidden": [
+        "ping-pong",
+        "paddle",
+        "net",
+        "ball"
+      ]
+    },
+    {
+      "id": "taboo_sk_0651",
+      "category": "Activities and Sports",
+      "word": "skateboard",
+      "forbidden": [
+        "ramp",
+        "tricks",
+        "wheels",
+        "deck"
+      ]
+    },
+    {
+      "id": "taboo_sk_0652",
+      "category": "Activities and Sports",
+      "word": "gymnastics",
+      "forbidden": [
+        "balance beam",
+        "mat",
+        "routine",
+        "Olympics"
+      ]
+    },
+    {
+      "id": "taboo_sk_0653",
+      "category": "Activities and Sports",
+      "word": "fitness",
+      "forbidden": [
+        "gym",
+        "dumbbell",
+        "workout",
+        "shape"
+      ]
+    },
+    {
+      "id": "taboo_sk_0654",
+      "category": "Activities and Sports",
+      "word": "rock climbing",
+      "forbidden": [
+        "rope",
+        "cliff",
+        "grip",
+        "harness"
+      ]
+    },
+    {
+      "id": "taboo_sk_0655",
+      "category": "Activities and Sports",
+      "word": "dance",
+      "forbidden": [
+        "rhythm",
+        "partner",
+        "steps",
+        "music"
+      ]
+    },
+    {
+      "id": "taboo_sk_0656",
+      "category": "Activities and Sports",
+      "word": "kayaking",
+      "forbidden": [
+        "paddle",
+        "water",
+        "waves",
+        "boat"
+      ]
+    },
+    {
+      "id": "taboo_sk_0657",
+      "category": "Activities and Sports",
+      "word": "rafting",
+      "forbidden": [
+        "inflatable boat",
+        "rapids",
+        "life jacket",
+        "adrenaline"
+      ]
+    },
+    {
+      "id": "taboo_sk_0658",
+      "category": "Activities and Sports",
+      "word": "sailing",
+      "forbidden": [
+        "sail",
+        "captain",
+        "boat",
+        "wind"
+      ]
+    },
+    {
+      "id": "taboo_sk_0659",
+      "category": "Activities and Sports",
+      "word": "fishing",
+      "forbidden": [
+        "rod",
+        "bait",
+        "fish",
+        "hook"
+      ]
+    },
+    {
+      "id": "taboo_sk_0660",
+      "category": "Activities and Sports",
+      "word": "golf",
+      "forbidden": [
+        "hole",
+        "club",
+        "green",
+        "tee"
+      ]
+    },
+    {
+      "id": "taboo_sk_0661",
+      "category": "Activities and Sports",
+      "word": "bowling",
+      "forbidden": [
+        "pins",
+        "ball",
+        "lane",
+        "strike"
+      ]
+    },
+    {
+      "id": "taboo_sk_0662",
+      "category": "Activities and Sports",
+      "word": "tag",
+      "forbidden": [
+        "chase",
+        "kids",
+        "catch",
+        "it"
+      ]
+    },
+    {
+      "id": "taboo_sk_0663",
+      "category": "Activities and Sports",
+      "word": "rugby",
+      "forbidden": [
+        "oval ball",
+        "scrum",
+        "try",
+        "tackle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0664",
+      "category": "Activities and Sports",
+      "word": "paintball",
+      "forbidden": [
+        "mask",
+        "paint",
+        "hit",
+        "team"
+      ]
+    },
+    {
+      "id": "taboo_sk_0665",
+      "category": "Activities and Sports",
+      "word": "jump rope",
+      "forbidden": [
+        "skipping",
+        "handles",
+        "jump",
+        "exercise"
+      ]
+    },
+    {
+      "id": "taboo_sk_0666",
+      "category": "Activities and Sports",
+      "word": "camping",
+      "forbidden": [
+        "tent",
+        "campfire",
+        "sleeping bag",
+        "sleeping pad"
+      ]
+    },
+    {
+      "id": "taboo_sk_0667",
+      "category": "Activities and Sports",
+      "word": "picnic",
+      "forbidden": [
+        "blanket",
+        "basket",
+        "park",
+        "food"
+      ]
+    },
+    {
+      "id": "taboo_sk_0668",
+      "category": "Activities and Sports",
+      "word": "crafts",
+      "forbidden": [
+        "handmade",
+        "materials",
+        "DIY",
+        "hobby"
+      ]
+    },
+    {
+      "id": "taboo_sk_0669",
+      "category": "Activities and Sports",
+      "word": "reading",
+      "forbidden": [
+        "book",
+        "chapter",
+        "plot",
+        "relax"
+      ]
+    },
+    {
+      "id": "taboo_sk_0670",
+      "category": "Activities and Sports",
+      "word": "chess",
+      "forbidden": [
+        "piece",
+        "king",
+        "checkmate",
+        "opening"
+      ]
+    },
+    {
+      "id": "taboo_sk_0671",
+      "category": "Activities and Sports",
+      "word": "jigsaw puzzle",
+      "forbidden": [
+        "pieces",
+        "picture",
+        "fit",
+        "box"
+      ]
+    },
+    {
+      "id": "taboo_sk_0672",
+      "category": "Activities and Sports",
+      "word": "theater",
+      "forbidden": [
+        "actor",
+        "stage",
+        "director",
+        "ticket"
+      ]
+    },
+    {
+      "id": "taboo_sk_0673",
+      "category": "Activities and Sports",
+      "word": "concert",
+      "forbidden": [
+        "band",
+        "singer",
+        "audience",
+        "music"
+      ]
+    },
+    {
+      "id": "taboo_sk_0674",
+      "category": "Activities and Sports",
+      "word": "surfing",
+      "forbidden": [
+        "wave",
+        "board",
+        "ocean",
+        "balance"
+      ]
+    },
+    {
+      "id": "taboo_sk_0675",
+      "category": "Activities and Sports",
+      "word": "windsurfing",
+      "forbidden": [
+        "sail",
+        "board",
+        "wind",
+        "harness"
+      ]
+    },
+    {
+      "id": "taboo_sk_0676",
+      "category": "Activities and Sports",
+      "word": "walk",
+      "forbidden": [
+        "park",
+        "shoes",
+        "stroll",
+        "fresh air"
+      ]
+    },
+    {
+      "id": "taboo_sk_0677",
+      "category": "Activities and Sports",
+      "word": "warm-up",
+      "forbidden": [
+        "exercise",
+        "body",
+        "before",
+        "stretch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0678",
+      "category": "Activities and Sports",
+      "word": "painting",
+      "forbidden": [
+        "brush",
+        "canvas",
+        "colors",
+        "art"
+      ]
+    },
+    {
+      "id": "taboo_sk_0679",
+      "category": "Activities and Sports",
+      "word": "pottery",
+      "forbidden": [
+        "potter's wheel",
+        "clay",
+        "kiln",
+        "glaze"
+      ]
+    },
+    {
+      "id": "taboo_sk_0680",
+      "category": "Activities and Sports",
+      "word": "cooking",
+      "forbidden": [
+        "recipe",
+        "stove",
+        "spices",
+        "stir"
+      ]
+    },
+    {
+      "id": "taboo_sk_0681",
+      "category": "Activities and Sports",
+      "word": "gardening",
+      "forbidden": [
+        "seeds",
+        "fertilizer",
+        "flower bed",
+        "dig"
+      ]
+    },
+    {
+      "id": "taboo_sk_0682",
+      "category": "Activities and Sports",
+      "word": "meditation",
+      "forbidden": [
+        "calm",
+        "breathing",
+        "mind",
+        "focus"
+      ]
+    },
+    {
+      "id": "taboo_sk_0773",
+      "category": "Activities and Sports",
+      "word": "snorkeling",
+      "forbidden": [
+        "flippers",
+        "mask",
+        "sea",
+        "coral"
+      ]
+    },
+    {
+      "id": "taboo_sk_0774",
+      "category": "Activities and Sports",
+      "word": "archery",
+      "forbidden": [
+        "arrow",
+        "target",
+        "bow",
+        "aim"
+      ]
+    },
+    {
+      "id": "taboo_sk_0775",
+      "category": "Activities and Sports",
+      "word": "hockey",
+      "forbidden": [
+        "puck",
+        "ice",
+        "stick",
+        "goal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0776",
+      "category": "Activities and Sports",
+      "word": "curling",
+      "forbidden": [
+        "stone",
+        "broom",
+        "ice",
+        "sweep"
+      ]
+    },
+    {
+      "id": "taboo_sk_0777",
+      "category": "Activities and Sports",
+      "word": "billiards",
+      "forbidden": [
+        "table",
+        "cue",
+        "balls",
+        "pocket"
+      ]
+    },
+    {
+      "id": "taboo_sk_0778",
+      "category": "Activities and Sports",
+      "word": "scouting",
+      "forbidden": [
+        "camp",
+        "knots",
+        "badge",
+        "uniform"
+      ]
+    },
+    {
+      "id": "taboo_sk_0779",
+      "category": "Activities and Sports",
+      "word": "horseback riding",
+      "forbidden": [
+        "saddle",
+        "horse",
+        "stable",
+        "gallop"
+      ]
+    },
+    {
+      "id": "taboo_sk_0780",
+      "category": "Activities and Sports",
+      "word": "paragliding",
+      "forbidden": [
+        "wing",
+        "slope",
+        "wind",
+        "fly"
+      ]
+    },
+    {
+      "id": "taboo_sk_0781",
+      "category": "Activities and Sports",
+      "word": "shot put",
+      "forbidden": [
+        "athletics",
+        "circle",
+        "heavy ball",
+        "throw"
+      ]
+    },
+    {
+      "id": "taboo_sk_0782",
+      "category": "Activities and Sports",
+      "word": "squash",
+      "forbidden": [
+        "racket",
+        "wall",
+        "ball",
+        "court"
+      ]
+    },
+    {
+      "id": "taboo_sk_0783",
+      "category": "Activities and Sports",
+      "word": "hide-and-seek",
+      "forbidden": [
+        "hiding spot",
+        "count",
+        "kids",
+        "find"
+      ]
+    },
+    {
+      "id": "taboo_sk_0784",
+      "category": "Activities and Sports",
+      "word": "race",
+      "forbidden": [
+        "competition",
+        "speed",
+        "finish line",
+        "winner"
+      ]
+    },
+    {
+      "id": "taboo_sk_0785",
+      "category": "Activities and Sports",
+      "word": "trampoline",
+      "forbidden": [
+        "jump",
+        "springs",
+        "bounce",
+        "kids"
+      ]
+    },
+    {
+      "id": "taboo_sk_0786",
+      "category": "Activities and Sports",
+      "word": "fencing",
+      "forbidden": [
+        "sword",
+        "mask",
+        "touch",
+        "duel"
+      ]
+    },
+    {
+      "id": "taboo_sk_0787",
+      "category": "Activities and Sports",
+      "word": "wrestling",
+      "forbidden": [
+        "mat",
+        "hold",
+        "fight",
+        "pin"
+      ]
+    },
+    {
+      "id": "taboo_sk_0788",
+      "category": "Activities and Sports",
+      "word": "disco",
+      "forbidden": [
+        "music",
+        "lights",
+        "DJ",
+        "dance"
+      ]
+    },
+    {
+      "id": "taboo_sk_0789",
+      "category": "Activities and Sports",
+      "word": "improv",
+      "forbidden": [
+        "scene",
+        "jokes",
+        "actor",
+        "audience"
+      ]
+    },
+    {
+      "id": "taboo_sk_0790",
+      "category": "Activities and Sports",
+      "word": "sewing",
+      "forbidden": [
+        "needle",
+        "thread",
+        "machine",
+        "fabric"
+      ]
+    },
+    {
+      "id": "taboo_sk_0791",
+      "category": "Activities and Sports",
+      "word": "knitting",
+      "forbidden": [
+        "wool",
+        "needles",
+        "sweater",
+        "yarn"
+      ]
+    },
+    {
+      "id": "taboo_sk_0792",
+      "category": "Activities and Sports",
+      "word": "crocheting",
+      "forbidden": [
+        "hook",
+        "yarn",
+        "stitch",
+        "blanket"
+      ]
+    },
+    {
+      "id": "taboo_sk_0793",
+      "category": "Activities and Sports",
+      "word": "model making",
+      "forbidden": [
+        "glue",
+        "miniature",
+        "kit",
+        "paint"
+      ]
+    },
+    {
+      "id": "taboo_sk_0794",
+      "category": "Activities and Sports",
+      "word": "sculpture",
+      "forbidden": [
+        "stone",
+        "clay",
+        "chisel",
+        "statue"
+      ]
+    },
+    {
+      "id": "taboo_sk_0795",
+      "category": "Activities and Sports",
+      "word": "singing",
+      "forbidden": [
+        "microphone",
+        "note",
+        "song",
+        "voice"
+      ]
+    },
+    {
+      "id": "taboo_sk_0796",
+      "category": "Activities and Sports",
+      "word": "video games",
+      "forbidden": [
+        "controller",
+        "console",
+        "screen",
+        "gamer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0797",
+      "category": "Activities and Sports",
+      "word": "motocross",
+      "forbidden": [
+        "motorbike",
+        "dirt track",
+        "jump",
+        "mud"
+      ]
+    },
+    {
+      "id": "taboo_sk_0798",
+      "category": "Activities and Sports",
+      "word": "merry-go-round",
+      "forbidden": [
+        "carousel",
+        "fair",
+        "spin",
+        "ride"
+      ]
+    },
+    {
+      "id": "taboo_sk_0799",
+      "category": "Activities and Sports",
+      "word": "parkour",
+      "forbidden": [
+        "obstacle",
+        "city",
+        "jump",
+        "free running"
+      ]
+    },
+    {
+      "id": "taboo_sk_0800",
+      "category": "Activities and Sports",
+      "word": "paper lantern",
+      "forbidden": [
+        "light",
+        "candle",
+        "glow",
+        "evening"
+      ]
+    },
+    {
+      "id": "taboo_sk_0801",
+      "category": "Activities and Sports",
+      "word": "floorball",
+      "forbidden": [
+        "stick",
+        "goal",
+        "team",
+        "indoor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0802",
+      "category": "Activities and Sports",
+      "word": "drifting",
+      "forbidden": [
+        "car",
+        "corner",
+        "tires",
+        "sideways"
+      ]
+    },
+    {
+      "id": "taboo_sk_0803",
+      "category": "Activities and Sports",
+      "word": "origami",
+      "forbidden": [
+        "paper",
+        "fold",
+        "crane",
+        "Japan"
+      ]
+    },
+    {
+      "id": "taboo_sk_0804",
+      "category": "Activities and Sports",
+      "word": "sledding",
+      "forbidden": [
+        "sled",
+        "snow",
+        "hill",
+        "winter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0805",
+      "category": "Activities and Sports",
+      "word": "stargazing",
+      "forbidden": [
+        "telescope",
+        "night",
+        "constellation",
+        "meteor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0806",
+      "category": "Activities and Sports",
+      "word": "stand-up comedy",
+      "forbidden": [
+        "comedian",
+        "joke",
+        "stage",
+        "microphone"
+      ]
+    },
+    {
+      "id": "taboo_sk_0807",
+      "category": "Activities and Sports",
+      "word": "wine tasting",
+      "forbidden": [
+        "sommelier",
+        "flavor",
+        "sample",
+        "vineyard"
+      ]
+    },
+    {
+      "id": "taboo_sk_0808",
+      "category": "Activities and Sports",
+      "word": "sudoku",
+      "forbidden": [
+        "numbers",
+        "grid",
+        "logic",
+        "puzzle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0809",
+      "category": "Activities and Sports",
+      "word": "karaoke",
+      "forbidden": [
+        "microphone",
+        "song",
+        "lyrics",
+        "bar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0810",
+      "category": "Activities and Sports",
+      "word": "card games",
+      "forbidden": [
+        "deck",
+        "trump",
+        "dealer",
+        "poker"
+      ]
+    },
+    {
+      "id": "taboo_sk_0811",
+      "category": "Activities and Sports",
+      "word": "mahjong",
+      "forbidden": [
+        "tiles",
+        "China",
+        "rules",
+        "game"
+      ]
+    },
+    {
+      "id": "taboo_sk_0812",
+      "category": "Activities and Sports",
+      "word": "writing",
+      "forbidden": [
+        "pen",
+        "novel",
+        "paper",
+        "inspiration"
+      ]
+    },
+    {
+      "id": "taboo_sk_0813",
+      "category": "Activities and Sports",
+      "word": "blogging",
+      "forbidden": [
+        "internet",
+        "post",
+        "comments",
+        "website"
+      ]
+    },
+    {
+      "id": "taboo_sk_0814",
+      "category": "Activities and Sports",
+      "word": "scootering",
+      "forbidden": [
+        "sidewalk",
+        "brake",
+        "ride",
+        "city"
+      ]
+    },
+    {
+      "id": "taboo_sk_0815",
+      "category": "Activities and Sports",
+      "word": "escape room",
+      "forbidden": [
+        "locks",
+        "clues",
+        "team",
+        "time limit"
+      ]
+    },
+    {
+      "id": "taboo_sk_0887",
+      "category": "Activities and Sports",
+      "word": "track and field",
+      "forbidden": [
+        "runner",
+        "stadium",
+        "events",
+        "Olympics"
+      ]
+    },
+    {
+      "id": "taboo_sk_0888",
+      "category": "Activities and Sports",
+      "word": "badminton",
+      "forbidden": [
+        "racket",
+        "shuttlecock",
+        "net",
+        "court"
+      ]
+    },
+    {
+      "id": "taboo_sk_0889",
+      "category": "Activities and Sports",
+      "word": "baseball",
+      "forbidden": [
+        "bat",
+        "ball",
+        "pitcher",
+        "base"
+      ]
+    },
+    {
+      "id": "taboo_sk_0890",
+      "category": "Activities and Sports",
+      "word": "hurdles",
+      "forbidden": [
+        "track",
+        "runner",
+        "jump over",
+        "obstacle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0891",
+      "category": "Activities and Sports",
+      "word": "biathlon",
+      "forbidden": [
+        "skis",
+        "shooting",
+        "target",
+        "snow"
+      ]
+    },
+    {
+      "id": "taboo_sk_0892",
+      "category": "Activities and Sports",
+      "word": "handball",
+      "forbidden": [
+        "ball",
+        "goal",
+        "court",
+        "team"
+      ]
+    },
+    {
+      "id": "taboo_sk_0893",
+      "category": "Activities and Sports",
+      "word": "canoeing",
+      "forbidden": [
+        "paddle",
+        "river",
+        "boat",
+        "water"
+      ]
+    },
+    {
+      "id": "taboo_sk_0894",
+      "category": "Activities and Sports",
+      "word": "karate",
+      "forbidden": [
+        "kimono",
+        "belt",
+        "chop",
+        "dojo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0895",
+      "category": "Activities and Sports",
+      "word": "rope climbing",
+      "forbidden": [
+        "PE class",
+        "arms",
+        "pull",
+        "gym"
+      ]
+    },
+    {
+      "id": "taboo_sk_0896",
+      "category": "Activities and Sports",
+      "word": "Olympics",
+      "forbidden": [
+        "medal",
+        "rings",
+        "torch",
+        "athletes"
+      ]
+    },
+    {
+      "id": "taboo_sk_0897",
+      "category": "Activities and Sports",
+      "word": "relay race",
+      "forbidden": [
+        "runner",
+        "baton",
+        "team",
+        "track"
+      ]
+    },
+    {
+      "id": "taboo_sk_0898",
+      "category": "Activities and Sports",
+      "word": "skydiving",
+      "forbidden": [
+        "parachute",
+        "plane",
+        "height",
+        "jump"
+      ]
+    },
+    {
+      "id": "taboo_sk_0899",
+      "category": "Activities and Sports",
+      "word": "field hockey",
+      "forbidden": [
+        "stick",
+        "ball",
+        "field",
+        "goal"
+      ]
+    },
+    {
+      "id": "taboo_sk_0900",
+      "category": "Activities and Sports",
+      "word": "vault",
+      "forbidden": [
+        "springboard",
+        "jump",
+        "gymnastics",
+        "horse"
+      ]
+    },
+    {
+      "id": "taboo_sk_0901",
+      "category": "Activities and Sports",
+      "word": "long jump",
+      "forbidden": [
+        "takeoff",
+        "sand",
+        "runway",
+        "landing"
+      ]
+    },
+    {
+      "id": "taboo_sk_0902",
+      "category": "Activities and Sports",
+      "word": "high jump",
+      "forbidden": [
+        "bar",
+        "takeoff",
+        "mat",
+        "Fosbury"
+      ]
+    },
+    {
+      "id": "taboo_sk_0903",
+      "category": "Activities and Sports",
+      "word": "ski trip",
+      "forbidden": [
+        "snow",
+        "skis",
+        "slopes",
+        "winter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0904",
+      "category": "Activities and Sports",
+      "word": "taekwondo",
+      "forbidden": [
+        "kick",
+        "belt",
+        "Korea",
+        "fight"
+      ]
+    },
+    {
+      "id": "taboo_sk_0905",
+      "category": "Activities and Sports",
+      "word": "triathlon",
+      "forbidden": [
+        "swim",
+        "bike",
+        "run",
+        "endurance"
+      ]
+    },
+    {
+      "id": "taboo_sk_0906",
+      "category": "Activities and Sports",
+      "word": "water polo",
+      "forbidden": [
+        "pool",
+        "ball",
+        "goal",
+        "team"
+      ]
+    },
+    {
+      "id": "taboo_sk_0907",
+      "category": "Activities and Sports",
+      "word": "rowing",
+      "forbidden": [
+        "oars",
+        "boat",
+        "river",
+        "crew"
+      ]
+    },
+    {
+      "id": "taboo_sk_0908",
+      "category": "Activities and Sports",
+      "word": "discus throw",
+      "forbidden": [
+        "disc",
+        "spin",
+        "athletics",
+        "field"
+      ]
+    },
+    {
+      "id": "taboo_sk_0909",
+      "category": "Activities and Sports",
+      "word": "show jumping",
+      "forbidden": [
+        "horse",
+        "rider",
+        "fences",
+        "jump"
+      ]
+    },
+    {
+      "id": "taboo_sk_0910",
+      "category": "Activities and Sports",
+      "word": "softball",
+      "forbidden": [
+        "bat",
+        "ball",
+        "base",
+        "pitch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0911",
+      "category": "Activities and Sports",
+      "word": "checkers",
+      "forbidden": [
+        "pieces",
+        "board",
+        "diagonal",
+        "king"
+      ]
+    },
+    {
+      "id": "taboo_sk_0912",
+      "category": "Activities and Sports",
+      "word": "tic-tac-toe",
+      "forbidden": [
+        "X",
+        "O",
+        "grid",
+        "three in a row"
+      ]
+    },
+    {
+      "id": "taboo_sk_0913",
+      "category": "Activities and Sports",
+      "word": "memory game",
+      "forbidden": [
+        "pairs",
+        "cards",
+        "remember",
+        "flip"
+      ]
+    },
+    {
+      "id": "taboo_sk_0914",
+      "category": "Activities and Sports",
+      "word": "Scrabble",
+      "forbidden": [
+        "letters",
+        "words",
+        "board",
+        "points"
+      ]
+    },
+    {
+      "id": "taboo_sk_0915",
+      "category": "Activities and Sports",
+      "word": "Ludo",
+      "forbidden": [
+        "pieces",
+        "dice",
+        "home",
+        "opponent"
+      ]
+    },
+    {
+      "id": "taboo_sk_0916",
+      "category": "Activities and Sports",
+      "word": "dice",
+      "forbidden": [
+        "roll",
+        "numbers",
+        "six",
+        "cube"
+      ]
+    },
+    {
+      "id": "taboo_sk_0917",
+      "category": "Activities and Sports",
+      "word": "crossword",
+      "forbidden": [
+        "clues",
+        "letters",
+        "grid",
+        "newspaper"
+      ]
+    },
+    {
+      "id": "taboo_sk_0918",
+      "category": "Activities and Sports",
+      "word": "word search",
+      "forbidden": [
+        "letters",
+        "grid",
+        "hidden",
+        "circle"
+      ]
+    },
+    {
+      "id": "taboo_sk_0919",
+      "category": "Activities and Sports",
+      "word": "brainteaser",
+      "forbidden": [
+        "solution",
+        "logic",
+        "riddle",
+        "think"
+      ]
+    },
+    {
+      "id": "taboo_sk_0920",
+      "category": "Activities and Sports",
+      "word": "building set",
+      "forbidden": [
+        "LEGO",
+        "bricks",
+        "instructions",
+        "build"
+      ]
+    },
+    {
+      "id": "taboo_sk_0921",
+      "category": "Activities and Sports",
+      "word": "clay modeling",
+      "forbidden": [
+        "Play-Doh",
+        "shape",
+        "hands",
+        "sculpt"
+      ]
+    },
+    {
+      "id": "taboo_sk_0922",
+      "category": "Activities and Sports",
+      "word": "aerobics",
+      "forbidden": [
+        "music",
+        "exercise",
+        "rhythm",
+        "instructor"
+      ]
+    },
+    {
+      "id": "taboo_sk_0923",
+      "category": "Activities and Sports",
+      "word": "magic trick",
+      "forbidden": [
+        "magician",
+        "rabbit",
+        "hat",
+        "illusion"
+      ]
+    },
+    {
+      "id": "taboo_sk_0924",
+      "category": "Activities and Sports",
+      "word": "drawing",
+      "forbidden": [
+        "pencil",
+        "paper",
+        "sketch",
+        "crayons"
+      ]
+    },
+    {
+      "id": "taboo_sk_0925",
+      "category": "Activities and Sports",
+      "word": "dancing",
+      "forbidden": [
+        "music",
+        "steps",
+        "dance floor",
+        "party"
+      ]
+    },
+    {
+      "id": "taboo_sk_0926",
+      "category": "Activities and Sports",
+      "word": "juggling",
+      "forbidden": [
+        "balls",
+        "hands",
+        "circus",
+        "throw"
+      ]
+    },
+    {
+      "id": "taboo_sk_0927",
+      "category": "Activities and Sports",
+      "word": "mime",
+      "forbidden": [
+        "gestures",
+        "silent",
+        "actor",
+        "act out"
+      ]
+    },
+    {
+      "id": "taboo_sk_0928",
+      "category": "Activities and Sports",
+      "word": "trivia quiz",
+      "forbidden": [
+        "questions",
+        "answers",
+        "points",
+        "pub"
+      ]
+    },
+    {
+      "id": "taboo_sk_0929",
+      "category": "Activities and Sports",
+      "word": "tournament",
+      "forbidden": [
+        "opponent",
+        "round",
+        "bracket",
+        "winner"
+      ]
+    },
+    {
+      "id": "taboo_sk_0930",
+      "category": "Activities and Sports",
+      "word": "chess match",
+      "forbidden": [
+        "opponent",
+        "clock",
+        "board",
+        "grandmaster"
+      ]
+    },
+    {
+      "id": "taboo_sk_0931",
+      "category": "Activities and Sports",
+      "word": "building a model",
+      "forbidden": [
+        "kit",
+        "parts",
+        "glue",
+        "instructions"
+      ]
+    },
+    {
+      "id": "taboo_sk_0932",
+      "category": "Activities and Sports",
+      "word": "javelin throw",
+      "forbidden": [
+        "spear",
+        "athletics",
+        "run-up",
+        "distance"
+      ]
+    },
+    {
+      "id": "taboo_sk_0933",
+      "category": "Activities and Sports",
+      "word": "throwing a Frisbee",
+      "forbidden": [
+        "disc",
+        "catch",
+        "park",
+        "dog"
+      ]
+    },
+    {
+      "id": "taboo_sk_0934",
+      "category": "Activities and Sports",
+      "word": "kite flying",
+      "forbidden": [
+        "string",
+        "wind",
+        "sky",
+        "tail"
+      ]
+    },
+    {
+      "id": "taboo_sk_0935",
+      "category": "Activities and Sports",
+      "word": "riding a scooter",
+      "forbidden": [
+        "handlebars",
+        "wheels",
+        "push off",
+        "helmet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0936",
+      "category": "Activities and Sports",
+      "word": "roller skating",
+      "forbidden": [
+        "wheels",
+        "skates",
+        "rink",
+        "rollerblades"
+      ]
+    },
+    {
+      "id": "taboo_sk_0937",
+      "category": "Activities and Sports",
+      "word": "yoga class",
+      "forbidden": [
+        "mat",
+        "poses",
+        "instructor",
+        "stretch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0938",
+      "category": "Activities and Sports",
+      "word": "weightlifting",
+      "forbidden": [
+        "weights",
+        "gym",
+        "muscles",
+        "barbell"
+      ]
+    },
+    {
+      "id": "taboo_sk_0939",
+      "category": "Activities and Sports",
+      "word": "stretching",
+      "forbidden": [
+        "muscles",
+        "flexibility",
+        "splits",
+        "reach"
+      ]
+    },
+    {
+      "id": "taboo_sk_0940",
+      "category": "Activities and Sports",
+      "word": "angling",
+      "forbidden": [
+        "rod",
+        "catch",
+        "hook",
+        "lake"
+      ]
+    },
+    {
+      "id": "taboo_sk_0941",
+      "category": "Activities and Sports",
+      "word": "mushroom picking",
+      "forbidden": [
+        "forest",
+        "basket",
+        "cap",
+        "fall"
+      ]
+    },
+    {
+      "id": "taboo_sk_0942",
+      "category": "Activities and Sports",
+      "word": "bird watching",
+      "forbidden": [
+        "binoculars",
+        "wings",
+        "nest",
+        "quiet"
+      ]
+    },
+    {
+      "id": "taboo_sk_0943",
+      "category": "Activities and Sports",
+      "word": "walking the dog",
+      "forbidden": [
+        "leash",
+        "park",
+        "paw",
+        "poop bag"
+      ]
+    },
+    {
+      "id": "taboo_sk_0944",
+      "category": "Activities and Sports",
+      "word": "campfire cookout",
+      "forbidden": [
+        "flames",
+        "sausages",
+        "stick",
+        "smoke"
+      ]
+    },
+    {
+      "id": "taboo_sk_0945",
+      "category": "Activities and Sports",
+      "word": "visiting an exhibition",
+      "forbidden": [
+        "gallery",
+        "paintings",
+        "ticket",
+        "curator"
+      ]
+    },
+    {
+      "id": "taboo_sk_0946",
+      "category": "Activities and Sports",
+      "word": "watching a movie",
+      "forbidden": [
+        "cinema",
+        "screen",
+        "popcorn",
+        "plot"
+      ]
+    },
+    {
+      "id": "taboo_sk_0947",
+      "category": "Activities and Sports",
+      "word": "refereeing",
+      "forbidden": [
+        "whistle",
+        "yellow card",
+        "rules",
+        "match"
+      ]
+    }
+  ]
+}

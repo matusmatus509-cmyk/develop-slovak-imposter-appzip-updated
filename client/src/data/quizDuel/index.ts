@@ -1,5 +1,6 @@
 import type { AppLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItems } from "../../utils/persistentDeck";
+import { quizTextFor } from "../../i18n/content";
 import { QUIZ_DUEL_CLASSIC_SK } from "./classic.sk";
 import { QUIZ_DUEL_CLOSEST_SK } from "./closest.sk";
 import { QUIZ_DUEL_ESTIMATE_SK } from "./estimate.sk";
@@ -87,6 +88,15 @@ function localizableFields(question: QuizDuelQuestion): Localizable[] {
   return fields;
 }
 
+/** Anglický preklad z mapy podľa `id` — musí obsahovať všetky polia daného typu. */
+function hasEnglishMapTranslation(question: QuizDuelQuestion, language: AppLanguage): boolean {
+  const english = quizTextFor(question.id, language);
+  if (!english || !english.prompt?.trim() || !english.fact?.trim()) return false;
+  if (question.kind === "classic") return english.options?.length === 4 && english.options.every(option => option.trim());
+  if (!english.unit?.trim() || !english.display?.trim()) return false;
+  return question.kind !== "higher-lower" || Boolean(english.claimDisplay?.trim());
+}
+
 /**
  * Koľko otázok je pre daný jazyk SKUTOČNE preložených. Slovenský fallback sa
  * nikde nepočíta ako preklad — vďaka tomu je hneď vidno, čo ešte treba doplniť.
@@ -102,10 +112,12 @@ export function quizDuelLocaleCoverage(): Record<
     { translated: number; total: number }
   >;
   for (const language of languages) {
-    const translated = QUIZ_DUEL_QUESTIONS.filter(question =>
-      localizableFields(question).every(field =>
-        hasTranslation(field, language)
-      )
+    const translated = QUIZ_DUEL_QUESTIONS.filter(
+      question =>
+        hasEnglishMapTranslation(question, language) ||
+        localizableFields(question).every(field =>
+          hasTranslation(field, language)
+        )
     ).length;
     coverage[language] = { translated, total };
   }

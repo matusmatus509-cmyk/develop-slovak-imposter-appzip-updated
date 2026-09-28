@@ -1,0 +1,1657 @@
+{
+  "version": 1,
+  "locale": "en",
+  "category": "Technológie a médiá",
+  "cards": [
+    {
+      "id": "taboo_sk_1051",
+      "category": "Technology and Media",
+      "word": "touchscreen",
+      "forbidden": [
+        "tap",
+        "swipe",
+        "finger",
+        "display"
+      ]
+    },
+    {
+      "id": "taboo_sk_1052",
+      "category": "Technology and Media",
+      "word": "graphics tablet",
+      "forbidden": [
+        "stylus",
+        "drawing",
+        "pen",
+        "designer"
+      ]
+    },
+    {
+      "id": "taboo_sk_1053",
+      "category": "Technology and Media",
+      "word": "e-reader",
+      "forbidden": [
+        "Kindle",
+        "ebook",
+        "books",
+        "reading"
+      ]
+    },
+    {
+      "id": "taboo_sk_1054",
+      "category": "Technology and Media",
+      "word": "gaming laptop",
+      "forbidden": [
+        "video games",
+        "portable",
+        "graphics card",
+        "keyboard"
+      ]
+    },
+    {
+      "id": "taboo_sk_1055",
+      "category": "Technology and Media",
+      "word": "game console",
+      "forbidden": [
+        "PlayStation",
+        "Xbox",
+        "controller",
+        "TV"
+      ]
+    },
+    {
+      "id": "taboo_sk_1056",
+      "category": "Technology and Media",
+      "word": "joystick",
+      "forbidden": [
+        "lever",
+        "controller",
+        "arcade",
+        "flight simulator"
+      ]
+    },
+    {
+      "id": "taboo_sk_1057",
+      "category": "Technology and Media",
+      "word": "webcam",
+      "forbidden": [
+        "video call",
+        "camera",
+        "laptop",
+        "Zoom"
+      ]
+    },
+    {
+      "id": "taboo_sk_1058",
+      "category": "Technology and Media",
+      "word": "digital camera",
+      "forbidden": [
+        "photos",
+        "lens",
+        "zoom",
+        "pictures"
+      ]
+    },
+    {
+      "id": "taboo_sk_1059",
+      "category": "Technology and Media",
+      "word": "action camera",
+      "forbidden": [
+        "GoPro",
+        "helmet",
+        "extreme sports",
+        "waterproof"
+      ]
+    },
+    {
+      "id": "taboo_sk_1060",
+      "category": "Technology and Media",
+      "word": "smartwatch",
+      "forbidden": [
+        "wrist",
+        "Apple",
+        "fitness",
+        "notifications"
+      ]
+    },
+    {
+      "id": "taboo_sk_1061",
+      "category": "Technology and Media",
+      "word": "selfie",
+      "forbidden": [
+        "photo",
+        "phone",
+        "face",
+        "pose"
+      ]
+    },
+    {
+      "id": "taboo_sk_1062",
+      "category": "Technology and Media",
+      "word": "wireless headphones",
+      "forbidden": [
+        "Bluetooth",
+        "ears",
+        "music",
+        "earbuds"
+      ]
+    },
+    {
+      "id": "taboo_sk_1063",
+      "category": "Technology and Media",
+      "word": "microphone stand",
+      "forbidden": [
+        "mic",
+        "singer",
+        "stage",
+        "adjustable"
+      ]
+    },
+    {
+      "id": "taboo_sk_1064",
+      "category": "Technology and Media",
+      "word": "portable speaker",
+      "forbidden": [
+        "Bluetooth",
+        "music",
+        "loud",
+        "JBL"
+      ]
+    },
+    {
+      "id": "taboo_sk_1065",
+      "category": "Technology and Media",
+      "word": "projector",
+      "forbidden": [
+        "screen",
+        "wall",
+        "presentation",
+        "beam"
+      ]
+    },
+    {
+      "id": "taboo_sk_1066",
+      "category": "Technology and Media",
+      "word": "scanner",
+      "forbidden": [
+        "document",
+        "digitize",
+        "copy",
+        "flatbed"
+      ]
+    },
+    {
+      "id": "taboo_sk_1067",
+      "category": "Technology and Media",
+      "word": "copier",
+      "forbidden": [
+        "Xerox",
+        "paper",
+        "office",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "taboo_sk_1068",
+      "category": "Technology and Media",
+      "word": "external hard drive",
+      "forbidden": [
+        "backup",
+        "USB",
+        "storage",
+        "portable"
+      ]
+    },
+    {
+      "id": "taboo_sk_1069",
+      "category": "Technology and Media",
+      "word": "flash drive",
+      "forbidden": [
+        "USB",
+        "stick",
+        "storage",
+        "files"
+      ]
+    },
+    {
+      "id": "taboo_sk_1070",
+      "category": "Technology and Media",
+      "word": "memory card",
+      "forbidden": [
+        "SD",
+        "camera",
+        "storage",
+        "gigabytes"
+      ]
+    },
+    {
+      "id": "taboo_sk_1071",
+      "category": "Technology and Media",
+      "word": "hard drive",
+      "forbidden": [
+        "HDD",
+        "storage",
+        "disk",
+        "computer"
+      ]
+    },
+    {
+      "id": "taboo_sk_1072",
+      "category": "Technology and Media",
+      "word": "voice recorder",
+      "forbidden": [
+        "dictaphone",
+        "record",
+        "audio",
+        "interview"
+      ]
+    },
+    {
+      "id": "taboo_sk_1073",
+      "category": "Technology and Media",
+      "word": "thermometer",
+      "forbidden": [
+        "degrees",
+        "fever",
+        "measure",
+        "temperature"
+      ]
+    },
+    {
+      "id": "taboo_sk_1074",
+      "category": "Technology and Media",
+      "word": "ringtone",
+      "forbidden": [
+        "phone",
+        "call",
+        "melody",
+        "ringing"
+      ]
+    },
+    {
+      "id": "taboo_sk_1075",
+      "category": "Technology and Media",
+      "word": "card reader",
+      "forbidden": [
+        "SD",
+        "slot",
+        "adapter",
+        "USB"
+      ]
+    },
+    {
+      "id": "taboo_sk_1076",
+      "category": "Technology and Media",
+      "word": "antenna",
+      "forbidden": [
+        "signal",
+        "roof",
+        "TV",
+        "reception"
+      ]
+    },
+    {
+      "id": "taboo_sk_1077",
+      "category": "Technology and Media",
+      "word": "rubber stamp",
+      "forbidden": [
+        "ink",
+        "paper",
+        "approve",
+        "office"
+      ]
+    },
+    {
+      "id": "taboo_sk_1078",
+      "category": "Technology and Media",
+      "word": "digital alarm clock",
+      "forbidden": [
+        "wake up",
+        "bedside",
+        "snooze",
+        "numbers"
+      ]
+    },
+    {
+      "id": "taboo_sk_1079",
+      "category": "Technology and Media",
+      "word": "mobile data",
+      "forbidden": [
+        "carrier",
+        "plan",
+        "signal",
+        "gigabytes"
+      ]
+    },
+    {
+      "id": "taboo_sk_1080",
+      "category": "Technology and Media",
+      "word": "search engine",
+      "forbidden": [
+        "Google",
+        "keyword",
+        "results",
+        "query"
+      ]
+    },
+    {
+      "id": "taboo_sk_1081",
+      "category": "Technology and Media",
+      "word": "website",
+      "forbidden": [
+        "address",
+        "browser",
+        "domain",
+        "page"
+      ]
+    },
+    {
+      "id": "taboo_sk_1082",
+      "category": "Technology and Media",
+      "word": "link",
+      "forbidden": [
+        "click",
+        "URL",
+        "underlined",
+        "page"
+      ]
+    },
+    {
+      "id": "taboo_sk_1083",
+      "category": "Technology and Media",
+      "word": "domain",
+      "forbidden": [
+        "website",
+        "address",
+        "dot com",
+        "registration"
+      ]
+    },
+    {
+      "id": "taboo_sk_1084",
+      "category": "Technology and Media",
+      "word": "profile",
+      "forbidden": [
+        "name",
+        "picture",
+        "account",
+        "social media"
+      ]
+    },
+    {
+      "id": "taboo_sk_1085",
+      "category": "Technology and Media",
+      "word": "PIN",
+      "forbidden": [
+        "code",
+        "four digits",
+        "bank card",
+        "secret"
+      ]
+    },
+    {
+      "id": "taboo_sk_1086",
+      "category": "Technology and Media",
+      "word": "password",
+      "forbidden": [
+        "account",
+        "login",
+        "secret",
+        "characters"
+      ]
+    },
+    {
+      "id": "taboo_sk_1087",
+      "category": "Technology and Media",
+      "word": "question",
+      "forbidden": [
+        "answer",
+        "ask",
+        "quiz",
+        "why"
+      ]
+    },
+    {
+      "id": "taboo_sk_1088",
+      "category": "Technology and Media",
+      "word": "disk",
+      "forbidden": [
+        "files",
+        "computer",
+        "save",
+        "storage"
+      ]
+    },
+    {
+      "id": "taboo_sk_1089",
+      "category": "Technology and Media",
+      "word": "file",
+      "forbidden": [
+        "computer",
+        "document",
+        "save",
+        "open"
+      ]
+    },
+    {
+      "id": "taboo_sk_1090",
+      "category": "Technology and Media",
+      "word": "email",
+      "forbidden": [
+        "inbox",
+        "send",
+        "Gmail",
+        "address"
+      ]
+    },
+    {
+      "id": "taboo_sk_1091",
+      "category": "Technology and Media",
+      "word": "spam",
+      "forbidden": [
+        "junk",
+        "email",
+        "ads",
+        "inbox"
+      ]
+    },
+    {
+      "id": "taboo_sk_1092",
+      "category": "Technology and Media",
+      "word": "folder",
+      "forbidden": [
+        "computer",
+        "name",
+        "files",
+        "organize"
+      ]
+    },
+    {
+      "id": "taboo_sk_1093",
+      "category": "Technology and Media",
+      "word": "video call",
+      "forbidden": [
+        "camera",
+        "microphone",
+        "Zoom",
+        "FaceTime"
+      ]
+    },
+    {
+      "id": "taboo_sk_1094",
+      "category": "Technology and Media",
+      "word": "chat",
+      "forbidden": [
+        "message",
+        "type",
+        "online",
+        "texting"
+      ]
+    },
+    {
+      "id": "taboo_sk_1095",
+      "category": "Technology and Media",
+      "word": "emoticon",
+      "forbidden": [
+        "smiley",
+        "face",
+        "message",
+        "emoji"
+      ]
+    },
+    {
+      "id": "taboo_sk_1096",
+      "category": "Technology and Media",
+      "word": "recording",
+      "forbidden": [
+        "sound",
+        "microphone",
+        "play back",
+        "voice"
+      ]
+    },
+    {
+      "id": "taboo_sk_1097",
+      "category": "Technology and Media",
+      "word": "video clip",
+      "forbidden": [
+        "camera",
+        "film",
+        "play",
+        "YouTube"
+      ]
+    },
+    {
+      "id": "taboo_sk_1098",
+      "category": "Technology and Media",
+      "word": "signature",
+      "forbidden": [
+        "name",
+        "pen",
+        "autograph",
+        "contract"
+      ]
+    },
+    {
+      "id": "taboo_sk_1099",
+      "category": "Technology and Media",
+      "word": "virtual meeting",
+      "forbidden": [
+        "online",
+        "participants",
+        "Teams",
+        "mute"
+      ]
+    },
+    {
+      "id": "taboo_sk_1100",
+      "category": "Technology and Media",
+      "word": "Wi-Fi",
+      "forbidden": [
+        "internet",
+        "signal",
+        "router",
+        "password"
+      ]
+    },
+    {
+      "id": "taboo_sk_1101",
+      "category": "Technology and Media",
+      "word": "browser",
+      "forbidden": [
+        "Chrome",
+        "website",
+        "tabs",
+        "internet"
+      ]
+    },
+    {
+      "id": "taboo_sk_1102",
+      "category": "Technology and Media",
+      "word": "web",
+      "forbidden": [
+        "internet",
+        "www",
+        "online",
+        "pages"
+      ]
+    },
+    {
+      "id": "taboo_sk_1103",
+      "category": "Technology and Media",
+      "word": "wallpaper",
+      "forbidden": [
+        "screen",
+        "picture",
+        "background",
+        "home screen"
+      ]
+    },
+    {
+      "id": "taboo_sk_1104",
+      "category": "Technology and Media",
+      "word": "update",
+      "forbidden": [
+        "new version",
+        "download",
+        "fix",
+        "system"
+      ]
+    },
+    {
+      "id": "taboo_sk_1105",
+      "category": "Technology and Media",
+      "word": "installation",
+      "forbidden": [
+        "software",
+        "download",
+        "setup",
+        "program"
+      ]
+    },
+    {
+      "id": "taboo_sk_1106",
+      "category": "Technology and Media",
+      "word": "menu",
+      "forbidden": [
+        "options",
+        "choose",
+        "settings",
+        "list"
+      ]
+    },
+    {
+      "id": "taboo_sk_1107",
+      "category": "Technology and Media",
+      "word": "notification",
+      "forbidden": [
+        "phone",
+        "sound",
+        "message",
+        "pop-up"
+      ]
+    },
+    {
+      "id": "taboo_sk_1108",
+      "category": "Technology and Media",
+      "word": "icon",
+      "forbidden": [
+        "symbol",
+        "app",
+        "tap",
+        "home screen"
+      ]
+    },
+    {
+      "id": "taboo_sk_1109",
+      "category": "Technology and Media",
+      "word": "display",
+      "forbidden": [
+        "screen",
+        "phone",
+        "brightness",
+        "pixels"
+      ]
+    },
+    {
+      "id": "taboo_sk_1110",
+      "category": "Technology and Media",
+      "word": "debit card",
+      "forbidden": [
+        "bank",
+        "pay",
+        "chip",
+        "wallet"
+      ]
+    },
+    {
+      "id": "taboo_sk_1111",
+      "category": "Technology and Media",
+      "word": "cable",
+      "forbidden": [
+        "plug",
+        "charger",
+        "wire",
+        "connect"
+      ]
+    },
+    {
+      "id": "taboo_sk_1112",
+      "category": "Technology and Media",
+      "word": "backup",
+      "forbidden": [
+        "files",
+        "restore",
+        "save",
+        "cloud"
+      ]
+    },
+    {
+      "id": "taboo_sk_1113",
+      "category": "Technology and Media",
+      "word": "login",
+      "forbidden": [
+        "password",
+        "account",
+        "username",
+        "sign in"
+      ]
+    },
+    {
+      "id": "taboo_sk_1114",
+      "category": "Technology and Media",
+      "word": "signal",
+      "forbidden": [
+        "bars",
+        "antenna",
+        "connection",
+        "reception"
+      ]
+    },
+    {
+      "id": "taboo_sk_1115",
+      "category": "Technology and Media",
+      "word": "silent mode",
+      "forbidden": [
+        "ringing",
+        "vibrate",
+        "notifications",
+        "mute"
+      ]
+    },
+    {
+      "id": "taboo_sk_1116",
+      "category": "Technology and Media",
+      "word": "dark mode",
+      "forbidden": [
+        "black",
+        "brightness",
+        "settings",
+        "eyes"
+      ]
+    },
+    {
+      "id": "taboo_sk_1117",
+      "category": "Technology and Media",
+      "word": "news site",
+      "forbidden": [
+        "journalist",
+        "headlines",
+        "articles",
+        "online"
+      ]
+    },
+    {
+      "id": "taboo_sk_1118",
+      "category": "Technology and Media",
+      "word": "online article",
+      "forbidden": [
+        "journalist",
+        "read",
+        "website",
+        "text"
+      ]
+    },
+    {
+      "id": "taboo_sk_1119",
+      "category": "Technology and Media",
+      "word": "measurement",
+      "forbidden": [
+        "ruler",
+        "length",
+        "units",
+        "measure"
+      ]
+    },
+    {
+      "id": "taboo_sk_1120",
+      "category": "Technology and Media",
+      "word": "podcast",
+      "forbidden": [
+        "episode",
+        "listen",
+        "host",
+        "Spotify"
+      ]
+    },
+    {
+      "id": "taboo_sk_1121",
+      "category": "Technology and Media",
+      "word": "audiobook",
+      "forbidden": [
+        "narrator",
+        "listen",
+        "story",
+        "Audible"
+      ]
+    },
+    {
+      "id": "taboo_sk_1122",
+      "category": "Technology and Media",
+      "word": "broadcast",
+      "forbidden": [
+        "TV",
+        "radio",
+        "live",
+        "channel"
+      ]
+    },
+    {
+      "id": "taboo_sk_1123",
+      "category": "Technology and Media",
+      "word": "checkout",
+      "forbidden": [
+        "store",
+        "pay",
+        "cashier",
+        "receipt"
+      ]
+    },
+    {
+      "id": "taboo_sk_1124",
+      "category": "Technology and Media",
+      "word": "commercial",
+      "forbidden": [
+        "ad",
+        "television",
+        "break",
+        "brand"
+      ]
+    },
+    {
+      "id": "taboo_sk_1125",
+      "category": "Technology and Media",
+      "word": "advertisement",
+      "forbidden": [
+        "billboard",
+        "product",
+        "marketing",
+        "promotion"
+      ]
+    },
+    {
+      "id": "taboo_sk_1126",
+      "category": "Technology and Media",
+      "word": "post",
+      "forbidden": [
+        "share",
+        "Instagram",
+        "like",
+        "social media"
+      ]
+    },
+    {
+      "id": "taboo_sk_1127",
+      "category": "Technology and Media",
+      "word": "comment",
+      "forbidden": [
+        "reaction",
+        "article",
+        "discussion",
+        "reply"
+      ]
+    },
+    {
+      "id": "taboo_sk_1128",
+      "category": "Technology and Media",
+      "word": "sharing",
+      "forbidden": [
+        "send",
+        "repost",
+        "button",
+        "social media"
+      ]
+    },
+    {
+      "id": "taboo_sk_1129",
+      "category": "Technology and Media",
+      "word": "follower",
+      "forbidden": [
+        "profile",
+        "Instagram",
+        "subscribe",
+        "fans"
+      ]
+    },
+    {
+      "id": "taboo_sk_1130",
+      "category": "Technology and Media",
+      "word": "magnifying glass",
+      "forbidden": [
+        "zoom",
+        "lens",
+        "Sherlock",
+        "small"
+      ]
+    },
+    {
+      "id": "taboo_sk_1131",
+      "category": "Technology and Media",
+      "word": "social network",
+      "forbidden": [
+        "Facebook",
+        "share",
+        "feed",
+        "follow"
+      ]
+    },
+    {
+      "id": "taboo_sk_1132",
+      "category": "Technology and Media",
+      "word": "forum",
+      "forbidden": [
+        "internet",
+        "topic",
+        "thread",
+        "Reddit"
+      ]
+    },
+    {
+      "id": "taboo_sk_1133",
+      "category": "Technology and Media",
+      "word": "blog",
+      "forbidden": [
+        "posts",
+        "writer",
+        "website",
+        "diary"
+      ]
+    },
+    {
+      "id": "taboo_sk_1134",
+      "category": "Technology and Media",
+      "word": "vlog",
+      "forbidden": [
+        "video",
+        "YouTube",
+        "camera",
+        "daily life"
+      ]
+    },
+    {
+      "id": "taboo_sk_1135",
+      "category": "Technology and Media",
+      "word": "channel",
+      "forbidden": [
+        "YouTube",
+        "subscribe",
+        "videos",
+        "TV"
+      ]
+    },
+    {
+      "id": "taboo_sk_1136",
+      "category": "Technology and Media",
+      "word": "chip",
+      "forbidden": [
+        "card",
+        "door",
+        "tap",
+        "access"
+      ]
+    },
+    {
+      "id": "taboo_sk_1137",
+      "category": "Technology and Media",
+      "word": "poll",
+      "forbidden": [
+        "questions",
+        "vote",
+        "answers",
+        "survey"
+      ]
+    },
+    {
+      "id": "taboo_sk_1138",
+      "category": "Technology and Media",
+      "word": "newsletter",
+      "forbidden": [
+        "email",
+        "subscribe",
+        "weekly",
+        "inbox"
+      ]
+    },
+    {
+      "id": "taboo_sk_1139",
+      "category": "Technology and Media",
+      "word": "newsroom",
+      "forbidden": [
+        "journalist",
+        "editor",
+        "newspaper",
+        "deadline"
+      ]
+    },
+    {
+      "id": "taboo_sk_1140",
+      "category": "Technology and Media",
+      "word": "headline",
+      "forbidden": [
+        "newspaper",
+        "article",
+        "title",
+        "front page"
+      ]
+    },
+    {
+      "id": "taboo_sk_1141",
+      "category": "Technology and Media",
+      "word": "fuse",
+      "forbidden": [
+        "electricity",
+        "blow",
+        "power outage",
+        "safety"
+      ]
+    },
+    {
+      "id": "taboo_sk_1142",
+      "category": "Technology and Media",
+      "word": "code",
+      "forbidden": [
+        "programming",
+        "computer",
+        "command",
+        "developer"
+      ]
+    },
+    {
+      "id": "taboo_sk_1143",
+      "category": "Technology and Media",
+      "word": "electric scooter",
+      "forbidden": [
+        "battery",
+        "ride",
+        "Lime",
+        "kick"
+      ]
+    },
+    {
+      "id": "taboo_sk_1144",
+      "category": "Technology and Media",
+      "word": "app",
+      "forbidden": [
+        "icon",
+        "download",
+        "smartphone",
+        "install"
+      ]
+    },
+    {
+      "id": "taboo_sk_1145",
+      "category": "Technology and Media",
+      "word": "data",
+      "forbidden": [
+        "information",
+        "computer",
+        "storage",
+        "files"
+      ]
+    },
+    {
+      "id": "taboo_sk_1146",
+      "category": "Technology and Media",
+      "word": "procedure",
+      "forbidden": [
+        "steps",
+        "solution",
+        "order",
+        "process"
+      ]
+    },
+    {
+      "id": "taboo_sk_1147",
+      "category": "Technology and Media",
+      "word": "bug",
+      "forbidden": [
+        "error",
+        "glitch",
+        "crash",
+        "insect"
+      ]
+    },
+    {
+      "id": "taboo_sk_1148",
+      "category": "Technology and Media",
+      "word": "repair",
+      "forbidden": [
+        "broken",
+        "service",
+        "fix",
+        "mechanic"
+      ]
+    },
+    {
+      "id": "taboo_sk_1149",
+      "category": "Technology and Media",
+      "word": "version",
+      "forbidden": [
+        "new",
+        "number",
+        "update",
+        "software"
+      ]
+    },
+    {
+      "id": "taboo_sk_1150",
+      "category": "Technology and Media",
+      "word": "copy",
+      "forbidden": [
+        "duplicate",
+        "original",
+        "paste",
+        "backup"
+      ]
+    },
+    {
+      "id": "taboo_sk_1151",
+      "category": "Technology and Media",
+      "word": "secret",
+      "forbidden": [
+        "password",
+        "hide",
+        "privacy",
+        "don't tell"
+      ]
+    },
+    {
+      "id": "taboo_sk_1152",
+      "category": "Technology and Media",
+      "word": "protection",
+      "forbidden": [
+        "safety",
+        "lock",
+        "shield",
+        "guard"
+      ]
+    },
+    {
+      "id": "taboo_sk_1153",
+      "category": "Technology and Media",
+      "word": "antivirus",
+      "forbidden": [
+        "malware",
+        "scan",
+        "protection",
+        "computer"
+      ]
+    },
+    {
+      "id": "taboo_sk_1154",
+      "category": "Technology and Media",
+      "word": "block",
+      "forbidden": [
+        "stop",
+        "ban",
+        "social media",
+        "unfriend"
+      ]
+    },
+    {
+      "id": "taboo_sk_1155",
+      "category": "Technology and Media",
+      "word": "robot",
+      "forbidden": [
+        "machine",
+        "automatic",
+        "android",
+        "metal"
+      ]
+    },
+    {
+      "id": "taboo_sk_1156",
+      "category": "Technology and Media",
+      "word": "chatbot",
+      "forbidden": [
+        "message",
+        "AI",
+        "question",
+        "answer"
+      ]
+    },
+    {
+      "id": "taboo_sk_1157",
+      "category": "Technology and Media",
+      "word": "virtual reality",
+      "forbidden": [
+        "VR",
+        "headset",
+        "simulation",
+        "goggles"
+      ]
+    },
+    {
+      "id": "taboo_sk_1158",
+      "category": "Technology and Media",
+      "word": "sticker",
+      "forbidden": [
+        "picture",
+        "WhatsApp",
+        "sticky",
+        "peel"
+      ]
+    },
+    {
+      "id": "taboo_sk_1159",
+      "category": "Technology and Media",
+      "word": "digital map",
+      "forbidden": [
+        "GPS",
+        "route",
+        "location",
+        "zoom"
+      ]
+    },
+    {
+      "id": "taboo_sk_1160",
+      "category": "Technology and Media",
+      "word": "navigation system",
+      "forbidden": [
+        "GPS",
+        "satellite",
+        "route",
+        "car"
+      ]
+    },
+    {
+      "id": "taboo_sk_1161",
+      "category": "Technology and Media",
+      "word": "satellite",
+      "forbidden": [
+        "space",
+        "orbit",
+        "signal",
+        "Earth"
+      ]
+    },
+    {
+      "id": "taboo_sk_1162",
+      "category": "Technology and Media",
+      "word": "contactless payment",
+      "forbidden": [
+        "card",
+        "terminal",
+        "tap",
+        "bank"
+      ]
+    },
+    {
+      "id": "taboo_sk_1163",
+      "category": "Technology and Media",
+      "word": "tape measure",
+      "forbidden": [
+        "measure",
+        "length",
+        "centimeters",
+        "tool"
+      ]
+    },
+    {
+      "id": "taboo_sk_1164",
+      "category": "Technology and Media",
+      "word": "guests",
+      "forbidden": [
+        "visit",
+        "party",
+        "invite",
+        "host"
+      ]
+    },
+    {
+      "id": "taboo_sk_1165",
+      "category": "Technology and Media",
+      "word": "cashier",
+      "forbidden": [
+        "store",
+        "pay",
+        "checkout",
+        "receipt"
+      ]
+    },
+    {
+      "id": "taboo_sk_1166",
+      "category": "Technology and Media",
+      "word": "smart home",
+      "forbidden": [
+        "control",
+        "phone",
+        "lights",
+        "automatic"
+      ]
+    },
+    {
+      "id": "taboo_sk_1167",
+      "category": "Technology and Media",
+      "word": "battery",
+      "forbidden": [
+        "charge",
+        "phone",
+        "energy",
+        "power"
+      ]
+    },
+    {
+      "id": "taboo_sk_1168",
+      "category": "Technology and Media",
+      "word": "adapter",
+      "forbidden": [
+        "plug",
+        "socket",
+        "voltage",
+        "travel"
+      ]
+    },
+    {
+      "id": "taboo_sk_1169",
+      "category": "Technology and Media",
+      "word": "dispenser",
+      "forbidden": [
+        "soap",
+        "press",
+        "bathroom",
+        "liquid"
+      ]
+    },
+    {
+      "id": "taboo_sk_1170",
+      "category": "Technology and Media",
+      "word": "light switch",
+      "forbidden": [
+        "bulb",
+        "wall",
+        "turn on",
+        "flip"
+      ]
+    },
+    {
+      "id": "taboo_sk_1171",
+      "category": "Technology and Media",
+      "word": "fuse box",
+      "forbidden": [
+        "breaker",
+        "house",
+        "electricity",
+        "power cut"
+      ]
+    },
+    {
+      "id": "taboo_sk_1172",
+      "category": "Technology and Media",
+      "word": "solar panel",
+      "forbidden": [
+        "sun",
+        "roof",
+        "energy",
+        "photovoltaic"
+      ]
+    },
+    {
+      "id": "taboo_sk_1173",
+      "category": "Technology and Media",
+      "word": "lantern",
+      "forbidden": [
+        "light",
+        "paper",
+        "evening",
+        "candle"
+      ]
+    },
+    {
+      "id": "taboo_sk_1174",
+      "category": "Technology and Media",
+      "word": "instructions",
+      "forbidden": [
+        "manual",
+        "steps",
+        "read",
+        "how-to"
+      ]
+    },
+    {
+      "id": "taboo_sk_1175",
+      "category": "Technology and Media",
+      "word": "avatar",
+      "forbidden": [
+        "game",
+        "profile",
+        "character",
+        "virtual"
+      ]
+    },
+    {
+      "id": "taboo_sk_1176",
+      "category": "Technology and Media",
+      "word": "food processor",
+      "forbidden": [
+        "mix",
+        "blades",
+        "bowl",
+        "cooking"
+      ]
+    },
+    {
+      "id": "taboo_sk_1177",
+      "category": "Technology and Media",
+      "word": "digital scale",
+      "forbidden": [
+        "kilograms",
+        "weigh",
+        "display",
+        "weight"
+      ]
+    },
+    {
+      "id": "taboo_sk_1178",
+      "category": "Technology and Media",
+      "word": "fever",
+      "forbidden": [
+        "thermometer",
+        "sick",
+        "temperature",
+        "hot"
+      ]
+    },
+    {
+      "id": "taboo_sk_1179",
+      "category": "Technology and Media",
+      "word": "planner",
+      "forbidden": [
+        "date",
+        "notebook",
+        "appointment",
+        "schedule"
+      ]
+    },
+    {
+      "id": "taboo_sk_1180",
+      "category": "Technology and Media",
+      "word": "smoke",
+      "forbidden": [
+        "fire",
+        "gray",
+        "alarm",
+        "chimney"
+      ]
+    },
+    {
+      "id": "taboo_sk_1181",
+      "category": "Technology and Media",
+      "word": "doorbell",
+      "forbidden": [
+        "door",
+        "visitor",
+        "ring",
+        "button"
+      ]
+    },
+    {
+      "id": "taboo_sk_1182",
+      "category": "Technology and Media",
+      "word": "intercom",
+      "forbidden": [
+        "door",
+        "apartment",
+        "buzz",
+        "visitor"
+      ]
+    },
+    {
+      "id": "taboo_sk_1183",
+      "category": "Technology and Media",
+      "word": "alarm",
+      "forbidden": [
+        "siren",
+        "burglar",
+        "security",
+        "loud"
+      ]
+    },
+    {
+      "id": "taboo_sk_1184",
+      "category": "Technology and Media",
+      "word": "motion sensor",
+      "forbidden": [
+        "detect",
+        "light",
+        "hallway",
+        "movement"
+      ]
+    },
+    {
+      "id": "taboo_sk_1185",
+      "category": "Technology and Media",
+      "word": "online booking",
+      "forbidden": [
+        "internet",
+        "reservation",
+        "account",
+        "website"
+      ]
+    },
+    {
+      "id": "taboo_sk_1186",
+      "category": "Technology and Media",
+      "word": "electronic lock",
+      "forbidden": [
+        "door",
+        "code",
+        "unlock",
+        "keycard"
+      ]
+    },
+    {
+      "id": "taboo_sk_1187",
+      "category": "Technology and Media",
+      "word": "remote control",
+      "forbidden": [
+        "buttons",
+        "TV",
+        "batteries",
+        "channels"
+      ]
+    },
+    {
+      "id": "taboo_sk_1188",
+      "category": "Technology and Media",
+      "word": "ad blocker",
+      "forbidden": [
+        "ads",
+        "browser",
+        "extension",
+        "pop-up"
+      ]
+    },
+    {
+      "id": "taboo_sk_1189",
+      "category": "Technology and Media",
+      "word": "induction cooktop",
+      "forbidden": [
+        "pot",
+        "cook",
+        "kitchen",
+        "stove"
+      ]
+    },
+    {
+      "id": "taboo_sk_1190",
+      "category": "Technology and Media",
+      "word": "microwave",
+      "forbidden": [
+        "heat up",
+        "food",
+        "minutes",
+        "kitchen"
+      ]
+    },
+    {
+      "id": "taboo_sk_1191",
+      "category": "Technology and Media",
+      "word": "electric shaver",
+      "forbidden": [
+        "beard",
+        "face",
+        "shave",
+        "razor"
+      ]
+    },
+    {
+      "id": "taboo_sk_1192",
+      "category": "Technology and Media",
+      "word": "form",
+      "forbidden": [
+        "name",
+        "fill out",
+        "questions",
+        "paper"
+      ]
+    },
+    {
+      "id": "taboo_sk_1193",
+      "category": "Technology and Media",
+      "word": "hair dryer",
+      "forbidden": [
+        "blow-dry",
+        "hot air",
+        "bathroom",
+        "salon"
+      ]
+    },
+    {
+      "id": "taboo_sk_1194",
+      "category": "Technology and Media",
+      "word": "questionnaire",
+      "forbidden": [
+        "questions",
+        "fill out",
+        "answers",
+        "survey"
+      ]
+    },
+    {
+      "id": "taboo_sk_1195",
+      "category": "Technology and Media",
+      "word": "air purifier",
+      "forbidden": [
+        "filter",
+        "dust",
+        "room",
+        "breathe"
+      ]
+    },
+    {
+      "id": "taboo_sk_1196",
+      "category": "Technology and Media",
+      "word": "smart plug",
+      "forbidden": [
+        "electricity",
+        "phone",
+        "turn on",
+        "socket"
+      ]
+    },
+    {
+      "id": "taboo_sk_1197",
+      "category": "Technology and Media",
+      "word": "surveillance",
+      "forbidden": [
+        "camera",
+        "recording",
+        "security",
+        "CCTV"
+      ]
+    },
+    {
+      "id": "taboo_sk_1198",
+      "category": "Technology and Media",
+      "word": "printer",
+      "forbidden": [
+        "paper",
+        "ink",
+        "document",
+        "print"
+      ]
+    },
+    {
+      "id": "taboo_sk_1199",
+      "category": "Technology and Media",
+      "word": "3D model",
+      "forbidden": [
+        "plastic",
+        "layers",
+        "print",
+        "shape"
+      ]
+    },
+    {
+      "id": "taboo_sk_1200",
+      "category": "Technology and Media",
+      "word": "music",
+      "forbidden": [
+        "sound",
+        "song",
+        "headphones",
+        "radio"
+      ]
+    }
+  ]
+}

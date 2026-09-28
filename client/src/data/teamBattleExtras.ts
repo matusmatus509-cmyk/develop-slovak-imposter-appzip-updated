@@ -1,4 +1,6 @@
 import { shuffle } from "./teamBattle";
+import type { AppLanguage } from "../i18n/LanguageProvider";
+import { hasContentLocale, localizeContent, localizeList, soundTextFor } from "../i18n/content";
 import tabooCardDatabase from "./tabooCardsSk.json";
 import {
   GENERATED_FORBIDDEN_CARDS,
@@ -2797,6 +2799,25 @@ export const SOUND_CLUES: SoundClue[] = [
   ...EXPANDED_SOUND_CLUES_7,
 ];
 
+/**
+ * Zvuky v jazyku hry. Nahrávky sú rovnaké, prekladá sa len názov, kategória
+ * a alternatívne odpovede (i18n/content/en/sound.json podľa `id`).
+ */
+const SOUND_CLUES_BY_LANGUAGE = new Map<AppLanguage, SoundClue[]>();
+
+export function getSoundCluesForLanguage(language: AppLanguage): SoundClue[] {
+  if (!hasContentLocale(language)) return SOUND_CLUES;
+  let clues = SOUND_CLUES_BY_LANGUAGE.get(language);
+  if (!clues) {
+    clues = SOUND_CLUES.map((clue) => {
+      const text = soundTextFor(clue.id, language);
+      return text ? { ...clue, label: text.label, category: text.category ?? clue.category, acceptedAnswers: text.acceptedAnswers } : clue;
+    });
+    SOUND_CLUES_BY_LANGUAGE.set(language, clues);
+  }
+  return clues;
+}
+
 const LETTER_CATEGORIES = [
   "Zviera", "Jedlo", "Mesto", "Meno", "Povolanie", "Šport", "Krajina", "Rastlina",
   "Vec v kuchyni", "Vec v škole", "Vec v kúpeľni", "Značka", "Film alebo seriál", "Hudobník",
@@ -3298,3 +3319,21 @@ export const FIVE_IN_TEN_PROMPTS = [...new Set([
   ...CORE_FIVE_IN_TEN_PROMPTS,
   ...EXTRA_FIVE_IN_TEN_LIBRARY,
 ])];
+
+/** Kategórie hry „Na písmeno" v jazyku hry; kategórie bez prekladu sa vynechajú. */
+export function getLetterChallengesForLanguage(language: AppLanguage): LetterChallenge[] {
+  if (!hasContentLocale(language)) return LETTER_CHALLENGES;
+  return LETTER_CHALLENGES.flatMap((challenge) => {
+    const category = localizeContent("letter", challenge.category, language);
+    return category === null ? [] : [{ ...challenge, category }];
+  });
+}
+
+/**
+ * Zadania „Vymenuj päť…" v jazyku hry. Slovenské reálie a rýmy na slovenské
+ * slová v angličtine vypadnú (prázdny preklad v mape).
+ */
+export function getFiveInTenPromptsForLanguage(language: AppLanguage): string[] {
+  return localizeList("fiveInTen", FIVE_IN_TEN_PROMPTS, language);
+}
+

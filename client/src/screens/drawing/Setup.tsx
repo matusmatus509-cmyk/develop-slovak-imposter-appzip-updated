@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Icons } from "../../components/icons";
-import { DRAWING_CATEGORIES } from "../../data/drawingCategories";
+import { getDrawingCategories } from "../../data/drawingCategories";
 import type { GameSettings } from "../../types";
 import { Button, Shell, Stepper, TopBar } from "../../components/ui";
 import { maxImpostorsFor } from "../../utils/gameLogic";
@@ -25,6 +25,7 @@ export default function DrawingSetup({
   onStart: (settings: GameSettings) => void;
 }) {
   const { language } = useLanguage();
+  const categories = getDrawingCategories(language);
   const [view, setView] = useState<"main" | "category">("main");
   const [players, setPlayers] = useState<string[]>(() =>
     initial.playerNames.map((name) => localizeGeneratedParticipantName(name, language)),
@@ -32,7 +33,7 @@ export default function DrawingSetup({
   const [categoryIds, setCategoryIds] = useState<string[]>(
     initial.categoryIds.some((id) => id.startsWith("draw-"))
       ? initial.categoryIds
-      : DRAWING_CATEGORIES.map((c) => c.id),
+      : categories.map((c) => c.id),
   );
   const [impostorCount, setImpostorCount] = useState(initial.impostorCount);
   const [strokesPerPlayer, setStrokesPerPlayer] = useState(initial.strokesPerPlayer ?? 3);
@@ -43,8 +44,8 @@ export default function DrawingSetup({
   const maxImpostors = maxImpostorsFor(players.length);
 
   const visibleCategories = useMemo(
-    () => DRAWING_CATEGORIES.filter((category) => matchesSearch(category.name, categoryQuery)),
-    [categoryQuery],
+    () => categories.filter((category) => matchesSearch(category.name, categoryQuery)),
+    [categories, categoryQuery],
   );
 
   function toggleCategory(id: string) {
@@ -60,7 +61,7 @@ export default function DrawingSetup({
   // Tlačidlá pracujú s kategóriami viditeľnými v zozname — pri prázdnom
   // vyhľadávaní je to celý zoznam, teda pôvodné správanie.
   function selectAllCategories() {
-    const target = visibleCategories.length > 0 ? visibleCategories : DRAWING_CATEGORIES;
+    const target = visibleCategories.length > 0 ? visibleCategories : categories;
     setCategoryIds(target.map((category) => category.id));
   }
 
@@ -83,8 +84,8 @@ export default function DrawingSetup({
   }
 
   const selectedCategories = useMemo(
-    () => DRAWING_CATEGORIES.filter((c) => categoryIds.includes(c.id)),
-    [categoryIds],
+    () => categories.filter((c) => categoryIds.includes(c.id)),
+    [categories, categoryIds],
   );
 
   const totalWords = useMemo(
@@ -93,8 +94,8 @@ export default function DrawingSetup({
   );
 
   const categorySummary = useMemo(() => {
-    if (categoryIds.length === DRAWING_CATEGORIES.length)
-      return `Všetky kategórie (${DRAWING_CATEGORIES.length})`;
+    if (categoryIds.length === categories.length)
+      return `Všetky kategórie (${categories.length})`;
     if (selectedCategories.length === 0) return "Vyber kategórie";
     if (selectedCategories.length === 1) return selectedCategories[0].name;
     if (selectedCategories.length === 2)

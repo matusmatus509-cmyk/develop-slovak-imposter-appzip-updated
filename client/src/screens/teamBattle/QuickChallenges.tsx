@@ -2,9 +2,11 @@ import { useMemo, useState } from "react";
 import { takePersistentItems } from "../../utils/persistentDeck";
 import { useCountdown } from "../../hooks/useCountdown";
 import {
-  FIVE_IN_TEN_PROMPTS,
-  LETTER_CHALLENGES,
+  getFiveInTenPromptsForLanguage,
+  getLetterChallengesForLanguage,
 } from "../../data/teamBattleExtras";
+import { useLanguage } from "../../i18n/LanguageProvider";
+import { deckKeyForLanguage } from "../../i18n/content";
 import {
   CircularTimer,
   ParticipantScoreStrip,
@@ -118,15 +120,16 @@ export function LetterChallengeGame({
   const turnCount = rounds
     ? participantNames.length * rounds
     : Math.max(LETTER_TURNS, participantNames.length * 2);
+  const { language } = useLanguage();
   const deck = useMemo(
     () =>
       takePersistentItems(
-        "party:letter-challenge",
-        LETTER_CHALLENGES,
+        deckKeyForLanguage("party:letter-challenge", language),
+        getLetterChallengesForLanguage(language),
         turnCount,
         item => `${item.category}|${item.letter}`
       ),
-    [turnCount]
+    [turnCount, language]
   );
   const [turn, setTurn] = useState(0);
   const [phase, setPhase] = useState<RoundPhase>("ready");
@@ -344,10 +347,15 @@ export function FiveInTenGame({
   const turnCount = rounds
     ? participantNames.length * rounds
     : Math.max(FIVE_TURNS, participantNames.length * 2);
+  const { language } = useLanguage();
   const prompts = useMemo(
     () =>
-      takePersistentItems("party:five-in-ten", FIVE_IN_TEN_PROMPTS, turnCount),
-    [turnCount]
+      takePersistentItems(
+        deckKeyForLanguage("party:five-in-ten", language),
+        getFiveInTenPromptsForLanguage(language),
+        turnCount
+      ),
+    [turnCount, language]
   );
   const [turn, setTurn] = useState(0);
   const [phase, setPhase] = useState<RoundPhase>("ready");

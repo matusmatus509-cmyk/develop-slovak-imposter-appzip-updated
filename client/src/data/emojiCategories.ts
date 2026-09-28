@@ -1,3 +1,6 @@
+import type { AppLanguage } from "../i18n/LanguageProvider";
+import { localizeContent, localizeLabel } from "../i18n/content";
+
 export interface EmojiPuzzle {
   /** Stabilné ID drží rotáciu kariet aj po zmenách poradia v zásobe. */
   id?: string;
@@ -945,8 +948,28 @@ export const EMOJI_CATEGORIES: EmojiCategory[] = [
   { id: "sayings", title: "Príslovia a hlášky", icon: "💬", puzzles: SAYINGS },
 ];
 
-export function getEmojiCategories(includeSlovak: boolean): EmojiCategory[] {
-  if (includeSlovak) return EMOJI_CATEGORIES;
+const ENGLISH_EMOJI_CATEGORIES = EMOJI_CATEGORIES.map(category => ({
+  ...category,
+  title: localizeLabel("emoji", `cat:${category.id}`, "en"),
+  puzzles: category.puzzles.flatMap(puzzle => {
+    if (puzzle.emoji.includes("🇸🇰")) return [];
+    const answer = localizeContent("emoji", puzzle.answer, "en");
+    return answer === null ? [] : [{ ...puzzle, answer }];
+  }),
+})).filter(category => category.puzzles.length > 0);
+
+/**
+ * Slovenčina dostane celú zásobu. Angličtina má odpovede aj názvy kategórií
+ * preložené (i18n/content/en/emoji.json) a vynechá slovenské reálie. Ostatné
+ * jazyky zatiaľ len vynechajú karty so 🇸🇰.
+ */
+export function getEmojiCategories(languageOrIncludeSlovak: AppLanguage | boolean): EmojiCategory[] {
+  const language: AppLanguage =
+    typeof languageOrIncludeSlovak === "boolean"
+      ? languageOrIncludeSlovak ? "sk" : "de"
+      : languageOrIncludeSlovak;
+  if (language === "sk") return EMOJI_CATEGORIES;
+  if (language === "en") return ENGLISH_EMOJI_CATEGORIES;
   return EMOJI_CATEGORIES.map(category => ({
     ...category,
     puzzles: category.puzzles.filter(puzzle => !puzzle.emoji.includes("🇸🇰")),

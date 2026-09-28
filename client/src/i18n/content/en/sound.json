@@ -1,0 +1,2297 @@
+{
+ "commons-157763-felix-blume-a-donkey-is-braying-in-his-en": {
+  "acceptedAnswers": [
+   "donkey"
+  ],
+  "category": "Animals",
+  "label": "Donkey braying"
+ },
+ "commons-161691-felixblume-dolphin-screaming-underwater-i": {
+  "acceptedAnswers": [
+   "dolphin",
+   "dolphins underwater"
+  ],
+  "category": "Animals",
+  "label": "Dolphins"
+ },
+ "commons-255122-ylearkisto-henkiloauto-lahto-asfaltilla-a": {
+  "acceptedAnswers": [
+   "getting into a car",
+   "car leaving"
+  ],
+  "category": "Transport",
+  "label": "Driving away"
+ },
+ "commons-255126-ylearkisto-henkiloauto-tulo-asfaltilla-a-": {
+  "acceptedAnswers": [
+   "car arriving",
+   "parking a car"
+  ],
+  "category": "Transport",
+  "label": "Car pulling up"
+ },
+ "commons-ambient-sound-city-street-berlin-2026-05-17-oga": {
+  "acceptedAnswers": [
+   "traffic in town",
+   "street",
+   "cars"
+  ],
+  "category": "City",
+  "label": "City traffic"
+ },
+ "commons-autos-auf-der-bundesautobahn-23-01-ogg": {
+  "acceptedAnswers": [
+   "cars on the highway",
+   "traffic"
+  ],
+  "category": "Transport",
+  "label": "Highway"
+ },
+ "commons-autostarten-und-wegfahren-01-ogg": {
+  "acceptedAnswers": [
+   "starting a car",
+   "car driving off"
+  ],
+  "category": "Transport",
+  "label": "Car starting"
+ },
+ "commons-avertisseur-pi-tons-renault-zoe-opus": {
+  "acceptedAnswers": [
+   "electric vehicle",
+   "EV"
+  ],
+  "category": "Transport",
+  "label": "Electric car"
+ },
+ "commons-bee-buzzing-sound-animal-noises-opus": {
+  "acceptedAnswers": [
+   "bee",
+   "bees",
+   "buzzing"
+  ],
+  "category": "Animals",
+  "label": "Bees buzzing"
+ },
+ "commons-boar-grwls-1-ogg": {
+  "acceptedAnswers": [
+   "wild boar",
+   "boar"
+  ],
+  "category": "Animals",
+  "label": "Wild boar grunting"
+ },
+ "commons-ferrari-458-italia-ogg": {
+  "acceptedAnswers": [
+   "race car",
+   "Ferrari",
+   "racing car"
+  ],
+  "category": "Transport",
+  "label": "Sports car"
+ },
+ "commons-frogs-croak-calling-chorus-at-night-ogg": {
+  "acceptedAnswers": [
+   "frogs",
+   "frog chorus"
+  ],
+  "category": "Animals",
+  "label": "Frogs croaking"
+ },
+ "commons-herd-of-goats-bleating-ogg": {
+  "acceptedAnswers": [
+   "goats",
+   "goat"
+  ],
+  "category": "Animals",
+  "label": "Goats bleating"
+ },
+ "commons-jem-howls-ogg": {
+  "acceptedAnswers": [
+   "dog howl",
+   "howling dog"
+  ],
+  "category": "Animals",
+  "label": "Dog howling"
+ },
+ "commons-long-finned-pilot-whales-orig-ogg": {
+  "acceptedAnswers": [
+   "whale song",
+   "whale"
+  ],
+  "category": "Animals",
+  "label": "Whales"
+ },
+ "commons-open-corsa-e-model-2014-parking-sensor-sound-oga": {
+  "acceptedAnswers": [
+   "parking",
+   "parking assist",
+   "reversing a car"
+  ],
+  "category": "Transport",
+  "label": "Parking sensor"
+ },
+ "commons-psittacara-erythrogenys-red-masked-parakeet-wav": {
+  "acceptedAnswers": [
+   "parrot",
+   "parrot squawking"
+  ],
+  "category": "Animals",
+  "label": "Parrots"
+ },
+ "commons-purr-10-sec-loopable-ogg": {
+  "acceptedAnswers": [
+   "purring cat",
+   "purr"
+  ],
+  "category": "Animals",
+  "label": "Cat purring"
+ },
+ "commons-rufe-nachts-im-wald-ogg": {
+  "acceptedAnswers": [
+   "woods at night",
+   "owl at night"
+  ],
+  "category": "Nature",
+  "label": "Forest at night"
+ },
+ "commons-segregation-of-information-about-emotional-arous": {
+  "acceptedAnswers": [
+   "horse",
+   "neigh"
+  ],
+  "category": "Animals",
+  "label": "Horse neighing"
+ },
+ "commons-wws-volkswagenbeetle8211horn-ogg": {
+  "acceptedAnswers": [
+   "horn",
+   "honking"
+  ],
+  "category": "Transport",
+  "label": "Car horn"
+ },
+ "sk-alarm-clock": {
+  "acceptedAnswers": [
+   "alarm clock ringing",
+   "alarm"
+  ],
+  "category": "Home",
+  "label": "Alarm clock"
+ },
+ "sk-applause": {
+  "acceptedAnswers": [
+   "clapping",
+   "applauding"
+  ],
+  "category": "People",
+  "label": "Applause"
+ },
+ "sk-can-open": {
+  "acceptedAnswers": [
+   "can",
+   "opening a tin"
+  ],
+  "category": "Kitchen",
+  "label": "Opening a can"
+ },
+ "sk-cat-meow": {
+  "acceptedAnswers": [
+   "cat",
+   "meow"
+  ],
+  "category": "Animals",
+  "label": "Cat meowing"
+ },
+ "sk-church-bells": {
+  "acceptedAnswers": [
+   "bells",
+   "bells ringing"
+  ],
+  "category": "City",
+  "label": "Church bells"
+ },
+ "sk-cow": {
+  "acceptedAnswers": [
+   "cow"
+  ],
+  "category": "Animals",
+  "label": "Cow mooing"
+ },
+ "sk-dog-bark": {
+  "acceptedAnswers": [
+   "dog",
+   "barking"
+  ],
+  "category": "Animals",
+  "label": "Dog barking"
+ },
+ "sk-doorbell": {
+  "acceptedAnswers": [
+   "bell",
+   "doorbell ringing"
+  ],
+  "category": "Home",
+  "label": "Doorbell"
+ },
+ "sk-engine-idle": {
+  "acceptedAnswers": [
+   "engine running",
+   "car"
+  ],
+  "category": "Transport",
+  "label": "Car engine"
+ },
+ "sk-fire-crackle": {
+  "acceptedAnswers": [
+   "fire",
+   "campfire",
+   "fireplace"
+  ],
+  "category": "Nature",
+  "label": "Crackling fire"
+ },
+ "sk-heartbeat": {
+  "acceptedAnswers": [
+   "heart",
+   "heart pounding"
+  ],
+  "category": "People",
+  "label": "Heartbeat"
+ },
+ "sk-horses-gallop": {
+  "acceptedAnswers": [
+   "horses",
+   "gallop",
+   "horse race"
+  ],
+  "category": "Animals",
+  "label": "Galloping horses"
+ },
+ "sk-lion": {
+  "acceptedAnswers": [
+   "lion",
+   "roar"
+  ],
+  "category": "Animals",
+  "label": "Lion roaring"
+ },
+ "sk-microwave": {
+  "acceptedAnswers": [
+   "microwave oven"
+  ],
+  "category": "Kitchen",
+  "label": "Microwave"
+ },
+ "sk-rain-window": {
+  "acceptedAnswers": [
+   "rain",
+   "storm"
+  ],
+  "category": "Weather",
+  "label": "Rain on the window"
+ },
+ "sk-rooster": {
+  "acceptedAnswers": [
+   "rooster"
+  ],
+  "category": "Animals",
+  "label": "Rooster crowing"
+ },
+ "sk-sea-waves": {
+  "acceptedAnswers": [
+   "waves",
+   "sea",
+   "lake"
+  ],
+  "category": "Water",
+  "label": "Waves on the shore"
+ },
+ "sk-sheep": {
+  "acceptedAnswers": [
+   "sheep",
+   "baa"
+  ],
+  "category": "Animals",
+  "label": "Sheep bleating"
+ },
+ "sk-thunder": {
+  "acceptedAnswers": [
+   "storm",
+   "rumbling thunder"
+  ],
+  "category": "Weather",
+  "label": "Thunder"
+ },
+ "sk-train-horn": {
+  "acceptedAnswers": [
+   "train",
+   "train whistle",
+   "train honking"
+  ],
+  "category": "Transport",
+  "label": "Train horn"
+ },
+ "sk2-ac-hum": {
+  "acceptedAnswers": [
+   "AC",
+   "air conditioner humming"
+  ],
+  "category": "Home",
+  "label": "Air conditioning"
+ },
+ "sk2-airplane-chime": {
+  "acceptedAnswers": [
+   "airplane",
+   "cabin chime"
+  ],
+  "category": "Transport",
+  "label": "Airplane chime"
+ },
+ "sk2-alarmclock-wind": {
+  "acceptedAnswers": [
+   "winding a clock"
+  ],
+  "category": "Home",
+  "label": "Winding an alarm clock"
+ },
+ "sk2-angelchimes": {
+  "acceptedAnswers": [
+   "Christmas chimes",
+   "little bells"
+  ],
+  "category": "Music",
+  "label": "Angel chimes"
+ },
+ "sk2-anglegrinder": {
+  "acceptedAnswers": [
+   "grinder",
+   "disc cutter"
+  ],
+  "category": "Tools",
+  "label": "Angle grinder"
+ },
+ "sk2-automilking": {
+  "acceptedAnswers": [
+   "milking",
+   "automatic milking"
+  ],
+  "category": "Machines",
+  "label": "Milking machine"
+ },
+ "sk2-bathsplash": {
+  "acceptedAnswers": [
+   "bathing",
+   "bathtub"
+  ],
+  "category": "Water",
+  "label": "Splashing in the bath"
+ },
+ "sk2-bbq-close": {
+  "acceptedAnswers": [
+   "grill lid",
+   "barbecue"
+  ],
+  "category": "Kitchen",
+  "label": "Closing the grill lid"
+ },
+ "sk2-bellfoundry-trial": {
+  "acceptedAnswers": [
+   "bell"
+  ],
+  "category": "Music",
+  "label": "Striking a bell"
+ },
+ "sk2-bikebell": {
+  "acceptedAnswers": [
+   "bike bell"
+  ],
+  "category": "Transport",
+  "label": "Bicycle bell"
+ },
+ "sk2-brushcutter": {
+  "acceptedAnswers": [
+   "string trimmer",
+   "weed whacker"
+  ],
+  "category": "Machines",
+  "label": "Brush cutter"
+ },
+ "sk2-camerashutter": {
+  "acceptedAnswers": [
+   "camera",
+   "camera click"
+  ],
+  "category": "Technology",
+  "label": "Camera shutter"
+ },
+ "sk2-cardvalidation": {
+  "acceptedAnswers": [
+   "validating a ticket",
+   "smart card"
+  ],
+  "category": "Transport",
+  "label": "Tapping a transit card"
+ },
+ "sk2-cashregister2": {
+  "acceptedAnswers": [
+   "register opening",
+   "till"
+  ],
+  "category": "Shop",
+  "label": "Cash register"
+ },
+ "sk2-chainsaw": {
+  "acceptedAnswers": [
+   "saw",
+   "cutting wood"
+  ],
+  "category": "Tools",
+  "label": "Chainsaw"
+ },
+ "sk2-chair-drag": {
+  "acceptedAnswers": [
+   "chair",
+   "chair scraping"
+  ],
+  "category": "Home",
+  "label": "Dragging a chair"
+ },
+ "sk2-chalkboard": {
+  "acceptedAnswers": [
+   "chalk",
+   "blackboard"
+  ],
+  "category": "School",
+  "label": "Writing with chalk"
+ },
+ "sk2-cicadas": {
+  "acceptedAnswers": [
+   "summer",
+   "summer insects"
+  ],
+  "category": "Animals",
+  "label": "Cicadas"
+ },
+ "sk2-closet-open": {
+  "acceptedAnswers": [
+   "wardrobe",
+   "closet door"
+  ],
+  "category": "Home",
+  "label": "Opening a wardrobe"
+ },
+ "sk2-closet-slam": {
+  "acceptedAnswers": [
+   "closet slamming",
+   "banging the cupboard door"
+  ],
+  "category": "Home",
+  "label": "Slamming a closet door"
+ },
+ "sk2-coffeegrinder": {
+  "acceptedAnswers": [
+   "grinding coffee"
+  ],
+  "category": "Kitchen",
+  "label": "Coffee grinder"
+ },
+ "sk2-coins-moneybox": {
+  "acceptedAnswers": [
+   "piggy bank",
+   "coins"
+  ],
+  "category": "Home",
+  "label": "Coins into a piggy bank"
+ },
+ "sk2-cordlessscrew": {
+  "acceptedAnswers": [
+   "screwdriver",
+   "drill"
+  ],
+  "category": "Tools",
+  "label": "Cordless screwdriver"
+ },
+ "sk2-creakingfloors": {
+  "acceptedAnswers": [
+   "creaky floorboards",
+   "floorboards"
+  ],
+  "category": "Home",
+  "label": "Creaking floor"
+ },
+ "sk2-crossingbell": {
+  "acceptedAnswers": [
+   "crossing bell",
+   "crossing gates"
+  ],
+  "category": "Alarms and Signals",
+  "label": "Railroad crossing"
+ },
+ "sk2-crunchy-eat": {
+  "acceptedAnswers": [
+   "eating snacks",
+   "chips",
+   "biting"
+  ],
+  "category": "Kitchen",
+  "label": "Crunching"
+ },
+ "sk2-cutlery-rustle": {
+  "acceptedAnswers": [
+   "cutlery",
+   "rummaging for silverware"
+  ],
+  "category": "Kitchen",
+  "label": "Cutlery in a drawer"
+ },
+ "sk2-dentaldrill": {
+  "acceptedAnswers": [
+   "dentist",
+   "drilling teeth"
+  ],
+  "category": "Tools",
+  "label": "Dentist's drill"
+ },
+ "sk2-dial-phone-old": {
+  "acceptedAnswers": [
+   "rotary dial",
+   "old phone"
+  ],
+  "category": "Technology",
+  "label": "Dialing an old phone"
+ },
+ "sk2-door-creak": {
+  "acceptedAnswers": [
+   "creaking door",
+   "dishwasher"
+  ],
+  "category": "Kitchen",
+  "label": "Creaking dishwasher door"
+ },
+ "sk2-drawer-open": {
+  "acceptedAnswers": [
+   "drawer"
+  ],
+  "category": "Home",
+  "label": "Opening a drawer"
+ },
+ "sk2-eggtimer": {
+  "acceptedAnswers": [
+   "egg timer",
+   "ticking"
+  ],
+  "category": "Kitchen",
+  "label": "Kitchen timer"
+ },
+ "sk2-electricrazor": {
+  "acceptedAnswers": [
+   "shaving",
+   "shaver"
+  ],
+  "category": "Home",
+  "label": "Electric razor"
+ },
+ "sk2-escalator": {
+  "acceptedAnswers": [
+   "moving stairs"
+  ],
+  "category": "City",
+  "label": "Escalator"
+ },
+ "sk2-firealarm": {
+  "acceptedAnswers": [
+   "fire siren",
+   "alarm"
+  ],
+  "category": "Alarms and Signals",
+  "label": "Fire alarm"
+ },
+ "sk2-firealarm-manual": {
+  "acceptedAnswers": [
+   "alarm bell",
+   "fire bell"
+  ],
+  "category": "Alarms and Signals",
+  "label": "Fire alarm bell"
+ },
+ "sk2-firedept-bell": {
+  "acceptedAnswers": [
+   "firefighters' bell",
+   "alarm bell"
+  ],
+  "category": "Alarms and Signals",
+  "label": "Fire station bell"
+ },
+ "sk2-firetruck-siren": {
+  "acceptedAnswers": [
+   "firefighters",
+   "fire engine siren"
+  ],
+  "category": "Alarms and Signals",
+  "label": "Fire truck"
+ },
+ "sk2-fireworks-wws": {
+  "acceptedAnswers": [
+   "New Year's Eve",
+   "firecrackers"
+  ],
+  "category": "Other",
+  "label": "Fireworks"
+ },
+ "sk2-foghorn": {
+  "acceptedAnswers": [
+   "ship horn",
+   "lighthouse",
+   "ship's siren"
+  ],
+  "category": "Alarms and Signals",
+  "label": "Foghorn"
+ },
+ "sk2-frenchfries-drain": {
+  "acceptedAnswers": [
+   "fries",
+   "deep fryer"
+  ],
+  "category": "Kitchen",
+  "label": "Frying French fries"
+ },
+ "sk2-fueldispenser": {
+  "acceptedAnswers": [
+   "gas station",
+   "gas pump"
+  ],
+  "category": "Transport",
+  "label": "Filling up the tank"
+ },
+ "sk2-goldsmith-torch": {
+  "acceptedAnswers": [
+   "soldering",
+   "blowtorch"
+  ],
+  "category": "Tools",
+  "label": "Gas torch"
+ },
+ "sk2-hacksaw": {
+  "acceptedAnswers": [
+   "cutting metal",
+   "sawing"
+  ],
+  "category": "Tools",
+  "label": "Hacksaw"
+ },
+ "sk2-handcranksiren": {
+  "acceptedAnswers": [
+   "siren",
+   "crank siren"
+  ],
+  "category": "Alarms and Signals",
+  "label": "Hand-crank siren"
+ },
+ "sk2-handmilking": {
+  "acceptedAnswers": [
+   "milking a cow"
+  ],
+  "category": "Animals",
+  "label": "Milking by hand"
+ },
+ "sk2-harmonica": {
+  "acceptedAnswers": [
+   "mouth organ",
+   "blues harp"
+  ],
+  "category": "Music",
+  "label": "Harmonica"
+ },
+ "sk2-hen-egg": {
+  "acceptedAnswers": [
+   "hen",
+   "clucking"
+  ],
+  "category": "Animals",
+  "label": "Hen clucking"
+ },
+ "sk2-kettlewhistle": {
+  "acceptedAnswers": [
+   "kettle",
+   "tea kettle",
+   "boiling water"
+  ],
+  "category": "Kitchen",
+  "label": "Whistling kettle"
+ },
+ "sk2-lawnmower-old": {
+  "acceptedAnswers": [
+   "mowing the lawn",
+   "mower"
+  ],
+  "category": "Machines",
+  "label": "Lawn mower"
+ },
+ "sk2-lock-squeaky": {
+  "acceptedAnswers": [
+   "key in the lock",
+   "locking up"
+  ],
+  "category": "Home",
+  "label": "Locking the door"
+ },
+ "sk2-meatslicer": {
+  "acceptedAnswers": [
+   "slicing salami",
+   "deli slicer"
+  ],
+  "category": "Shop",
+  "label": "Meat slicer"
+ },
+ "sk2-mechkeyboard": {
+  "acceptedAnswers": [
+   "keyboard",
+   "mechanical keyboard",
+   "typing on a computer"
+  ],
+  "category": "Technology",
+  "label": "Typing on a keyboard"
+ },
+ "sk2-motorbike-exhaust": {
+  "acceptedAnswers": [
+   "motorbike"
+  ],
+  "category": "Transport",
+  "label": "Motorcycle"
+ },
+ "sk2-owlhoot": {
+  "acceptedAnswers": [
+   "owl",
+   "tawny owl"
+  ],
+  "category": "Animals",
+  "label": "Owl hooting"
+ },
+ "sk2-pageturn": {
+  "acceptedAnswers": [
+   "flipping pages",
+   "book"
+  ],
+  "category": "School",
+  "label": "Turning a page"
+ },
+ "sk2-pansclatter": {
+  "acceptedAnswers": [
+   "clattering dishes",
+   "dishes"
+  ],
+  "category": "Kitchen",
+  "label": "Pots and pans"
+ },
+ "sk2-pedestriancrossing": {
+  "acceptedAnswers": [
+   "crosswalk",
+   "crossing signal beeping"
+  ],
+  "category": "City",
+  "label": "Pedestrian crossing signal"
+ },
+ "sk2-pencilsharpener-el": {
+  "acceptedAnswers": [
+   "pencil sharpener",
+   "sharpening a pencil"
+  ],
+  "category": "School",
+  "label": "Electric pencil sharpener"
+ },
+ "sk2-pillbottle": {
+  "acceptedAnswers": [
+   "pill bottle",
+   "medicine",
+   "pills"
+  ],
+  "category": "Other",
+  "label": "Pills in a bottle"
+ },
+ "sk2-pneumaticdrill2": {
+  "acceptedAnswers": [
+   "pneumatic drill",
+   "breaking concrete"
+  ],
+  "category": "Tools",
+  "label": "Jackhammer"
+ },
+ "sk2-policecar-siren": {
+  "acceptedAnswers": [
+   "police",
+   "police car"
+  ],
+  "category": "Alarms and Signals",
+  "label": "Police siren"
+ },
+ "sk2-poultry": {
+  "acceptedAnswers": [
+   "chickens",
+   "ducks and geese",
+   "farmyard"
+  ],
+  "category": "Animals",
+  "label": "Farmyard poultry"
+ },
+ "sk2-pourtea": {
+  "acceptedAnswers": [
+   "pouring",
+   "tea"
+  ],
+  "category": "Kitchen",
+  "label": "Pouring water into a mug"
+ },
+ "sk2-quartzclock-ring": {
+  "acceptedAnswers": [
+   "wall clock",
+   "clock striking"
+  ],
+  "category": "Home",
+  "label": "Clock chiming"
+ },
+ "sk2-rainleaves": {
+  "acceptedAnswers": [
+   "rain",
+   "rain on leaves"
+  ],
+  "category": "Weather",
+  "label": "Rain in the forest"
+ },
+ "sk2-refereewhistle": {
+  "acceptedAnswers": [
+   "referee",
+   "whistle"
+  ],
+  "category": "Sports",
+  "label": "Referee's whistle"
+ },
+ "sk2-sandal-brick": {
+  "acceptedAnswers": [
+   "slippers",
+   "flip-flops",
+   "sandals"
+  ],
+  "category": "People",
+  "label": "Flip-flop footsteps"
+ },
+ "sk2-schoolbell": {
+  "acceptedAnswers": [
+   "bell ringing",
+   "end of class"
+  ],
+  "category": "School",
+  "label": "School bell"
+ },
+ "sk2-sinkdrain": {
+  "acceptedAnswers": [
+   "drain",
+   "water going down the drain"
+  ],
+  "category": "Water",
+  "label": "Sink draining"
+ },
+ "sk2-smokealarm": {
+  "acceptedAnswers": [
+   "smoke alarm",
+   "fire detector"
+  ],
+  "category": "Alarms and Signals",
+  "label": "Smoke detector"
+ },
+ "sk2-snaredrum": {
+  "acceptedAnswers": [
+   "drum",
+   "drums"
+  ],
+  "category": "Music",
+  "label": "Snare drum"
+ },
+ "sk2-spraybottle": {
+  "acceptedAnswers": [
+   "spraying",
+   "spray"
+  ],
+  "category": "Home",
+  "label": "Spray bottle"
+ },
+ "sk2-stadiumcrowd": {
+  "acceptedAnswers": [
+   "soccer game",
+   "stadium",
+   "fans cheering"
+  ],
+  "category": "Sports",
+  "label": "Stadium crowd"
+ },
+ "sk2-stairs-squeak": {
+  "acceptedAnswers": [
+   "stairs",
+   "squeaky stairs"
+  ],
+  "category": "Home",
+  "label": "Creaking stairs"
+ },
+ "sk2-steamiron": {
+  "acceptedAnswers": [
+   "ironing",
+   "iron"
+  ],
+  "category": "Home",
+  "label": "Steam iron"
+ },
+ "sk2-steamwhistle-loco": {
+  "acceptedAnswers": [
+   "train whistle",
+   "steam train whistling"
+  ],
+  "category": "Transport",
+  "label": "Steam locomotive whistle"
+ },
+ "sk2-stick-metalframe": {
+  "acceptedAnswers": [
+   "dragging a stick along a fence"
+  ],
+  "category": "City",
+  "label": "Stick along a railing"
+ },
+ "sk2-tablesaw": {
+  "acceptedAnswers": [
+   "power saw",
+   "saw"
+  ],
+  "category": "Tools",
+  "label": "Circular saw"
+ },
+ "sk2-tattoo": {
+  "acceptedAnswers": [
+   "tattoo machine"
+  ],
+  "category": "Other",
+  "label": "Getting a tattoo"
+ },
+ "sk2-ticket-vending": {
+  "acceptedAnswers": [
+   "buying a ticket",
+   "subway ticket machine"
+  ],
+  "category": "Transport",
+  "label": "Ticket machine"
+ },
+ "sk2-timeclock": {
+  "acceptedAnswers": [
+   "punch clock",
+   "clocking in"
+  ],
+  "category": "Office",
+  "label": "Time clock"
+ },
+ "sk2-toiletflush2": {
+  "acceptedAnswers": [
+   "flushing",
+   "WC",
+   "toilet"
+  ],
+  "category": "Home",
+  "label": "Toilet flushing"
+ },
+ "sk2-train-arriving": {
+  "acceptedAnswers": [
+   "train coming in",
+   "train at the station"
+  ],
+  "category": "Transport",
+  "label": "Train arriving"
+ },
+ "sk2-traindestination": {
+  "acceptedAnswers": [
+   "departure board",
+   "station board"
+  ],
+  "category": "Transport",
+  "label": "Split-flap display"
+ },
+ "sk2-typewriter": {
+  "acceptedAnswers": [
+   "typing on a typewriter"
+  ],
+  "category": "Office",
+  "label": "Typewriter"
+ },
+ "sk2-walkgravel": {
+  "acceptedAnswers": [
+   "footsteps on gravel",
+   "gravel"
+  ],
+  "category": "Nature",
+  "label": "Walking on gravel"
+ },
+ "sk2-washboard": {
+  "acceptedAnswers": [
+   "washboard",
+   "hand washing"
+  ],
+  "category": "Home",
+  "label": "Washing on a washboard"
+ },
+ "sk2-washingmachine-spin": {
+  "acceptedAnswers": [
+   "washing machine",
+   "laundry"
+  ],
+  "category": "Home",
+  "label": "Washing machine spinning"
+ },
+ "sk2-watermelon-smack": {
+  "acceptedAnswers": [
+   "watermelon",
+   "knocking on a melon"
+  ],
+  "category": "Kitchen",
+  "label": "Tapping a watermelon"
+ },
+ "sk2-watertap": {
+  "acceptedAnswers": [
+   "faucet",
+   "running water"
+  ],
+  "category": "Water",
+  "label": "Turning on the tap"
+ },
+ "sk2-woodchipper": {
+  "acceptedAnswers": [
+   "branch shredder"
+  ],
+  "category": "Machines",
+  "label": "Wood chipper"
+ },
+ "sk2-woodsaw-hand": {
+  "acceptedAnswers": [
+   "handsaw",
+   "saw"
+  ],
+  "category": "Tools",
+  "label": "Sawing wood"
+ },
+ "sk3-aircompressor": {
+  "acceptedAnswers": [
+   "compressor"
+  ],
+  "category": "Machines",
+  "label": "Air compressor"
+ },
+ "sk3-airvent": {
+  "acceptedAnswers": [
+   "HVAC",
+   "air vent"
+  ],
+  "category": "Home",
+  "label": "Ventilation"
+ },
+ "sk3-backyard": {
+  "acceptedAnswers": [
+   "yard",
+   "birds in the garden"
+  ],
+  "category": "Nature",
+  "label": "Backyard"
+ },
+ "sk3-binhits": {
+  "acceptedAnswers": [
+   "trash can"
+  ],
+  "category": "City",
+  "label": "Banging on a trash can"
+ },
+ "sk3-bladegrass": {
+  "acceptedAnswers": [
+   "blade of grass",
+   "whistling"
+  ],
+  "category": "Nature",
+  "label": "Whistling with a blade of grass"
+ },
+ "sk3-bonfire-ignite": {
+  "acceptedAnswers": [
+   "starting a fire",
+   "bonfire"
+  ],
+  "category": "Nature",
+  "label": "Lighting a bonfire"
+ },
+ "sk3-cinemaseat": {
+  "acceptedAnswers": [
+   "movie theater seat"
+  ],
+  "category": "Other",
+  "label": "Folding seat"
+ },
+ "sk3-construction": {
+  "acceptedAnswers": [
+   "building site",
+   "drilling on a building site"
+  ],
+  "category": "City",
+  "label": "Construction site"
+ },
+ "sk3-cookerhood": {
+  "acceptedAnswers": [
+   "extractor fan",
+   "kitchen exhaust fan"
+  ],
+  "category": "Kitchen",
+  "label": "Range hood"
+ },
+ "sk3-crunchyleaves": {
+  "acceptedAnswers": [
+   "leaves",
+   "crunching leaves",
+   "fall"
+  ],
+  "category": "Nature",
+  "label": "Rustling dry leaves"
+ },
+ "sk3-dialtone": {
+  "acceptedAnswers": [
+   "phone",
+   "tone in the receiver"
+  ],
+  "category": "Technology",
+  "label": "Dial tone"
+ },
+ "sk3-droppingspoon": {
+  "acceptedAnswers": [
+   "dropped spoon",
+   "teaspoon"
+  ],
+  "category": "Kitchen",
+  "label": "Dropping a spoon"
+ },
+ "sk3-forestambience": {
+  "acceptedAnswers": [
+   "forest sounds",
+   "birds in the woods"
+  ],
+  "category": "Nature",
+  "label": "Forest"
+ },
+ "sk3-gasdetector": {
+  "acceptedAnswers": [
+   "detector beeping"
+  ],
+  "category": "Alarms and Signals",
+  "label": "Gas detector"
+ },
+ "sk3-guillotine-paper": {
+  "acceptedAnswers": [
+   "paper guillotine"
+  ],
+  "category": "Office",
+  "label": "Paper cutter"
+ },
+ "sk3-handgrinder": {
+  "acceptedAnswers": [
+   "grinding nuts"
+  ],
+  "category": "Kitchen",
+  "label": "Hand grinder"
+ },
+ "sk3-handwelding": {
+  "acceptedAnswers": [
+   "welder"
+  ],
+  "category": "Tools",
+  "label": "Welding"
+ },
+ "sk3-heartmonitor": {
+  "acceptedAnswers": [
+   "hospital",
+   "ECG",
+   "monitor beeping"
+  ],
+  "category": "Technology",
+  "label": "Heart monitor"
+ },
+ "sk3-hedgetrimmer2": {
+  "acceptedAnswers": [
+   "trimming a hedge",
+   "hedge cutter"
+  ],
+  "category": "Tools",
+  "label": "Hedge trimmer"
+ },
+ "sk3-horseshoes-street": {
+  "acceptedAnswers": [
+   "horse and carriage",
+   "hooves on cobblestones"
+  ],
+  "category": "City",
+  "label": "Horse-drawn carriage"
+ },
+ "sk3-icebreaker-bell": {
+  "acceptedAnswers": [
+   "bell on a ship"
+  ],
+  "category": "Transport",
+  "label": "Ship's bell"
+ },
+ "sk3-johndeere": {
+  "acceptedAnswers": [
+   "tractor in a field"
+  ],
+  "category": "Transport",
+  "label": "Tractor"
+ },
+ "sk3-lathe-turning": {
+  "acceptedAnswers": [
+   "turning on a lathe"
+  ],
+  "category": "Machines",
+  "label": "Lathe"
+ },
+ "sk3-millstone": {
+  "acceptedAnswers": [
+   "grinding grain",
+   "millstone"
+  ],
+  "category": "Kitchen",
+  "label": "Hand quern"
+ },
+ "sk3-mopedengine": {
+  "acceptedAnswers": [
+   "small motorbike",
+   "scooter"
+  ],
+  "category": "Transport",
+  "label": "Moped"
+ },
+ "sk3-parrottalk": {
+  "acceptedAnswers": [
+   "parrot"
+  ],
+  "category": "Animals",
+  "label": "Talking parrot"
+ },
+ "sk3-petroltanker": {
+  "acceptedAnswers": [
+   "tanker truck",
+   "semi truck",
+   "lorry"
+  ],
+  "category": "Transport",
+  "label": "Truck"
+ },
+ "sk3-piledriving": {
+  "acceptedAnswers": [
+   "construction",
+   "pounding on a building site"
+  ],
+  "category": "Machines",
+  "label": "Pile driver"
+ },
+ "sk3-pokermachine": {
+  "acceptedAnswers": [
+   "one-armed bandit",
+   "fruit machine"
+  ],
+  "category": "Machines",
+  "label": "Slot machine"
+ },
+ "sk3-poolballs": {
+  "acceptedAnswers": [
+   "pool balls",
+   "billiards"
+  ],
+  "category": "Sports",
+  "label": "Playing pool"
+ },
+ "sk3-recordstore": {
+  "acceptedAnswers": [
+   "record store",
+   "vinyl records"
+  ],
+  "category": "Shop",
+  "label": "Flipping through records"
+ },
+ "sk3-reversevending": {
+  "acceptedAnswers": [
+   "returning bottles",
+   "can deposit"
+  ],
+  "category": "Shop",
+  "label": "Bottle return machine"
+ },
+ "sk3-sandblasting": {
+  "acceptedAnswers": [
+   "sandblaster",
+   "blasting"
+  ],
+  "category": "Tools",
+  "label": "Sandblasting"
+ },
+ "sk3-sewingmachine": {
+  "acceptedAnswers": [
+   "sewing"
+  ],
+  "category": "Home",
+  "label": "Sewing machine"
+ },
+ "sk3-shoebrush": {
+  "acceptedAnswers": [
+   "shining shoes",
+   "brush"
+  ],
+  "category": "Home",
+  "label": "Brushing shoes"
+ },
+ "sk3-shoenails": {
+  "acceptedAnswers": [
+   "hammering nails",
+   "hammer"
+  ],
+  "category": "Tools",
+  "label": "Cobbler hammering nails"
+ },
+ "sk3-shovelcoal": {
+  "acceptedAnswers": [
+   "shovel",
+   "coal",
+   "stoking the fire"
+  ],
+  "category": "Home",
+  "label": "Shoveling coal"
+ },
+ "sk3-signalbell": {
+  "acceptedAnswers": [
+   "bell",
+   "ringing"
+  ],
+  "category": "Alarms and Signals",
+  "label": "Signal bell"
+ },
+ "sk3-smithy-forge": {
+  "acceptedAnswers": [
+   "forging",
+   "hammer on anvil"
+  ],
+  "category": "Tools",
+  "label": "Blacksmith"
+ },
+ "sk3-steamloco-p8": {
+  "acceptedAnswers": [
+   "steam train",
+   "steam"
+  ],
+  "category": "Transport",
+  "label": "Steam locomotive"
+ },
+ "sk3-train-vienna": {
+  "acceptedAnswers": [
+   "train",
+   "traveling by train"
+  ],
+  "category": "Transport",
+  "label": "Train ride"
+ },
+ "sk3-walkwoods": {
+  "acceptedAnswers": [
+   "footsteps in the forest"
+  ],
+  "category": "Nature",
+  "label": "Walking in the woods"
+ },
+ "sk3-waterwheel": {
+  "acceptedAnswers": [
+   "water wheel",
+   "mill"
+  ],
+  "category": "Water",
+  "label": "Mill wheel"
+ },
+ "sk3-wetsponge": {
+  "acceptedAnswers": [
+   "wet sponge",
+   "blackboard"
+  ],
+  "category": "School",
+  "label": "Wiping the board with a sponge"
+ },
+ "sk3-wheelwright-plane": {
+  "acceptedAnswers": [
+   "hand plane"
+  ],
+  "category": "Tools",
+  "label": "Planing wood"
+ },
+ "sk3-windturbine": {
+  "acceptedAnswers": [
+   "wind power plant",
+   "windmill"
+  ],
+  "category": "Machines",
+  "label": "Wind turbine"
+ },
+ "sk3-woodenbarrel": {
+  "acceptedAnswers": [
+   "barrel"
+  ],
+  "category": "Other",
+  "label": "Rolling a barrel"
+ },
+ "sk3-woodenwagon": {
+  "acceptedAnswers": [
+   "cart",
+   "handcart"
+  ],
+  "category": "Other",
+  "label": "Wooden cart"
+ },
+ "sk4-bus-door": {
+  "acceptedAnswers": [
+   "bus",
+   "bus doors opening"
+  ],
+  "category": "Transport",
+  "label": "Bus doors"
+ },
+ "sk4-bus-horn": {
+  "acceptedAnswers": [
+   "bus honking",
+   "bus"
+  ],
+  "category": "Transport",
+  "label": "Bus horn"
+ },
+ "sk4-clockaccuracy": {
+  "acceptedAnswers": [
+   "ticking",
+   "watch",
+   "ticking clock"
+  ],
+  "category": "Home",
+  "label": "Watch ticking"
+ },
+ "sk4-cricket": {
+  "acceptedAnswers": [
+   "cricket chirping"
+  ],
+  "category": "Animals",
+  "label": "Cricket"
+ },
+ "sk4-dialup": {
+  "acceptedAnswers": [
+   "modem",
+   "dial-up modem"
+  ],
+  "category": "Technology",
+  "label": "Dial-up internet"
+ },
+ "sk4-dotmatrix": {
+  "acceptedAnswers": [
+   "printer",
+   "old printer"
+  ],
+  "category": "Technology",
+  "label": "Dot matrix printer"
+ },
+ "sk4-droppingrocks": {
+  "acceptedAnswers": [
+   "pebbles",
+   "gravel"
+  ],
+  "category": "Nature",
+  "label": "Pebbles pouring"
+ },
+ "sk4-fishtank": {
+  "acceptedAnswers": [
+   "aquarium",
+   "bubbles"
+  ],
+  "category": "Water",
+  "label": "Aquarium filter"
+ },
+ "sk4-forgeblower": {
+  "acceptedAnswers": [
+   "bellows",
+   "forge",
+   "blower"
+  ],
+  "category": "Tools",
+  "label": "Blacksmith's bellows"
+ },
+ "sk4-forgewater": {
+  "acceptedAnswers": [
+   "hissing",
+   "forge"
+  ],
+  "category": "Tools",
+  "label": "Water on hot coals"
+ },
+ "sk4-handmixer": {
+  "acceptedAnswers": [
+   "mixer",
+   "whisking"
+  ],
+  "category": "Kitchen",
+  "label": "Hand mixer"
+ },
+ "sk4-projector-light": {
+  "acceptedAnswers": [
+   "projector",
+   "movie theater"
+  ],
+  "category": "Technology",
+  "label": "Film projector"
+ },
+ "sk4-rabbit": {
+  "acceptedAnswers": [
+   "rabbit squeaking"
+  ],
+  "category": "Animals",
+  "label": "Rabbit"
+ },
+ "sk4-railtrolley": {
+  "acceptedAnswers": [
+   "handcar"
+  ],
+  "category": "Transport",
+  "label": "Hand-pumped rail cart"
+ },
+ "sk4-stairwell": {
+  "acceptedAnswers": [
+   "footsteps on stairs",
+   "echo"
+  ],
+  "category": "City",
+  "label": "Stairwell"
+ },
+ "sk4-steamwhistle2": {
+  "acceptedAnswers": [
+   "steamboat",
+   "ship"
+  ],
+  "category": "Transport",
+  "label": "Steamboat whistle"
+ },
+ "sk4-teslaphone": {
+  "acceptedAnswers": [
+   "old telephone",
+   "telephone"
+  ],
+  "category": "Technology",
+  "label": "Old phone ringing"
+ },
+ "sk4-tiredeflate": {
+  "acceptedAnswers": [
+   "hissing air",
+   "tire"
+  ],
+  "category": "Transport",
+  "label": "Tire deflating"
+ },
+ "sk4-towerclock": {
+  "acceptedAnswers": [
+   "clock tower",
+   "chiming"
+  ],
+  "category": "City",
+  "label": "Tower clock"
+ },
+ "sk5-accountingmachine": {
+  "acceptedAnswers": [
+   "adding machine",
+   "accounting machine"
+  ],
+  "category": "Office",
+  "label": "Mechanical calculator"
+ },
+ "sk5-bagpipes": {
+  "acceptedAnswers": [
+   "pipes",
+   "Scottish bagpipes"
+  ],
+  "category": "Music",
+  "label": "Bagpipes"
+ },
+ "sk5-beargrowl": {
+  "acceptedAnswers": [
+   "bear growling",
+   "bear cub"
+  ],
+  "category": "Animals",
+  "label": "Bear"
+ },
+ "sk5-crow": {
+  "acceptedAnswers": [
+   "crow",
+   "raven"
+  ],
+  "category": "Animals",
+  "label": "Crow cawing"
+ },
+ "sk5-cymbal": {
+  "acceptedAnswers": [
+   "cymbal crash",
+   "drums"
+  ],
+  "category": "Music",
+  "label": "Cymbal"
+ },
+ "sk5-elephant": {
+  "acceptedAnswers": [
+   "elephant"
+  ],
+  "category": "Animals",
+  "label": "Elephant trumpeting"
+ },
+ "sk5-loom": {
+  "acceptedAnswers": [
+   "weaving",
+   "weaving loom"
+  ],
+  "category": "Machines",
+  "label": "Loom"
+ },
+ "sk5-monorail": {
+  "acceptedAnswers": [
+   "hanging railway",
+   "monorail"
+  ],
+  "category": "Transport",
+  "label": "Suspended monorail"
+ },
+ "sk5-narrowgauge": {
+  "acceptedAnswers": [
+   "narrow-gauge train",
+   "little train"
+  ],
+  "category": "Transport",
+  "label": "Narrow-gauge railway"
+ },
+ "sk5-peacock": {
+  "acceptedAnswers": [
+   "peacock call"
+  ],
+  "category": "Animals",
+  "label": "Peacock"
+ },
+ "sk5-pipeorgan": {
+  "acceptedAnswers": [
+   "organ",
+   "church music"
+  ],
+  "category": "Music",
+  "label": "Church organ"
+ },
+ "sk5-rotaryprint": {
+  "acceptedAnswers": [
+   "press",
+   "printing newspapers"
+  ],
+  "category": "Machines",
+  "label": "Printing press"
+ },
+ "sk5-sparrows": {
+  "acceptedAnswers": [
+   "sparrows chirping",
+   "birdsong"
+  ],
+  "category": "Animals",
+  "label": "Sparrows"
+ },
+ "sk5-stream": {
+  "acceptedAnswers": [
+   "babbling brook",
+   "creek"
+  ],
+  "category": "Water",
+  "label": "Stream"
+ },
+ "sk5-teleprinter-auto": {
+  "acceptedAnswers": [
+   "telex"
+  ],
+  "category": "Technology",
+  "label": "Teleprinter"
+ },
+ "sk5-tram-interior": {
+  "acceptedAnswers": [
+   "tram"
+  ],
+  "category": "Transport",
+  "label": "Tram ride"
+ },
+ "sk5-tramdoors": {
+  "acceptedAnswers": [
+   "streetcar doors",
+   "doors closing"
+  ],
+  "category": "Transport",
+  "label": "Tram doors"
+ },
+ "sk5-turkey": {
+  "acceptedAnswers": [
+   "turkey gobbling",
+   "gobble"
+  ],
+  "category": "Animals",
+  "label": "Turkey"
+ },
+ "sk5-vandriving": {
+  "acceptedAnswers": [
+   "van",
+   "car passing by"
+  ],
+  "category": "Transport",
+  "label": "Van driving by"
+ },
+ "sk5-whettingtrestle": {
+  "acceptedAnswers": [
+   "sharpening",
+   "grindstone"
+  ],
+  "category": "Tools",
+  "label": "Knife sharpener"
+ },
+ "sk5-woodpecker": {
+  "acceptedAnswers": [
+   "woodpecker pecking",
+   "woodpecker on a tree"
+  ],
+  "category": "Animals",
+  "label": "Woodpecker"
+ },
+ "sk6-alligator-bellow": {
+  "acceptedAnswers": [
+   "alligator",
+   "crocodile"
+  ],
+  "category": "Animals",
+  "label": "Alligator bellowing"
+ },
+ "sk6-brassband": {
+  "acceptedAnswers": [
+   "brass music",
+   "march",
+   "parade"
+  ],
+  "category": "Music",
+  "label": "Brass band"
+ },
+ "sk6-bumpercars": {
+  "acceptedAnswers": [
+   "dodgems",
+   "amusement park"
+  ],
+  "category": "Other",
+  "label": "Bumper cars"
+ },
+ "sk6-cuckoo": {
+  "acceptedAnswers": [
+   "cuckoo calling"
+  ],
+  "category": "Animals",
+  "label": "Cuckoo"
+ },
+ "sk6-ducks-landing": {
+  "acceptedAnswers": [
+   "ducks",
+   "ducks splashing"
+  ],
+  "category": "Animals",
+  "label": "Ducks landing on water"
+ },
+ "sk6-elk-bellow": {
+  "acceptedAnswers": [
+   "deer",
+   "rutting stag"
+  ],
+  "category": "Animals",
+  "label": "Stag bellowing"
+ },
+ "sk6-geese-honking": {
+  "acceptedAnswers": [
+   "geese",
+   "goose"
+  ],
+  "category": "Animals",
+  "label": "Geese honking"
+ },
+ "sk6-loons": {
+  "acceptedAnswers": [
+   "loon call",
+   "lake at night"
+  ],
+  "category": "Animals",
+  "label": "Loons"
+ },
+ "sk6-musicbox": {
+  "acceptedAnswers": [
+   "winding",
+   "music box key"
+  ],
+  "category": "Toys",
+  "label": "Winding a music box"
+ },
+ "sk6-nightingale": {
+  "acceptedAnswers": [
+   "nightingale singing"
+  ],
+  "category": "Animals",
+  "label": "Nightingale"
+ },
+ "sk6-rattlesnake": {
+  "acceptedAnswers": [
+   "rattlesnake rattling",
+   "snake"
+  ],
+  "category": "Animals",
+  "label": "Rattlesnake"
+ },
+ "sk6-rubberduck": {
+  "acceptedAnswers": [
+   "squeaky duck",
+   "bath toy"
+  ],
+  "category": "Toys",
+  "label": "Rubber duck"
+ },
+ "sk6-wolfhowls": {
+  "acceptedAnswers": [
+   "wolf",
+   "wolves"
+  ],
+  "category": "Animals",
+  "label": "Wolves howling"
+ },
+ "sk7-airduster": {
+  "acceptedAnswers": [
+   "air duster",
+   "blowing out dust"
+  ],
+  "category": "Technology",
+  "label": "Compressed air"
+ },
+ "sk7-airplanesound": {
+  "acceptedAnswers": [
+   "airplane",
+   "airplane cabin"
+  ],
+  "category": "Transport",
+  "label": "Airplane flight"
+ },
+ "sk7-blownbottle": {
+  "acceptedAnswers": [
+   "bottle",
+   "bottle whistle"
+  ],
+  "category": "Music",
+  "label": "Blowing across a bottle"
+ },
+ "sk7-boatwharf": {
+  "acceptedAnswers": [
+   "ship docking",
+   "harbor"
+  ],
+  "category": "Transport",
+  "label": "Boat docking"
+ },
+ "sk7-breakspaghetti": {
+  "acceptedAnswers": [
+   "spaghetti",
+   "pasta"
+  ],
+  "category": "Kitchen",
+  "label": "Breaking spaghetti"
+ },
+ "sk7-brushteeth": {
+  "acceptedAnswers": [
+   "cleaning teeth",
+   "toothbrush"
+  ],
+  "category": "People",
+  "label": "Brushing teeth"
+ },
+ "sk7-budgie": {
+  "acceptedAnswers": [
+   "parakeet",
+   "budgie chirping"
+  ],
+  "category": "Animals",
+  "label": "Budgie"
+ },
+ "sk7-cafeteria": {
+  "acceptedAnswers": [
+   "cafeteria",
+   "lunchroom"
+  ],
+  "category": "School",
+  "label": "School cafeteria"
+ },
+ "sk7-cartraindoors": {
+  "acceptedAnswers": [
+   "train doors closing",
+   "train"
+  ],
+  "category": "Transport",
+  "label": "Train doors"
+ },
+ "sk7-carunlock": {
+  "acceptedAnswers": [
+   "car remote",
+   "central locking"
+  ],
+  "category": "Transport",
+  "label": "Unlocking a car"
+ },
+ "sk7-cellardoor": {
+  "acceptedAnswers": [
+   "cellar",
+   "old door"
+  ],
+  "category": "Home",
+  "label": "Cellar door"
+ },
+ "sk7-coinbag": {
+  "acceptedAnswers": [
+   "coins",
+   "jingling coins"
+  ],
+  "category": "Other",
+  "label": "Bag of coins"
+ },
+ "sk7-elevatordoor": {
+  "acceptedAnswers": [
+   "elevator closing",
+   "doors closing"
+  ],
+  "category": "City",
+  "label": "Elevator doors"
+ },
+ "sk7-elevatorride": {
+  "acceptedAnswers": [
+   "riding the elevator"
+  ],
+  "category": "City",
+  "label": "Elevator"
+ },
+ "sk7-espresso": {
+  "acceptedAnswers": [
+   "coffee machine",
+   "making coffee"
+  ],
+  "category": "Kitchen",
+  "label": "Espresso machine"
+ },
+ "sk7-feltpen": {
+  "acceptedAnswers": [
+   "marker"
+  ],
+  "category": "School",
+  "label": "Writing with a marker"
+ },
+ "sk7-flappingwindow": {
+  "acceptedAnswers": [
+   "window",
+   "closing a window"
+  ],
+  "category": "Home",
+  "label": "Window banging"
+ },
+ "sk7-fleamarket": {
+  "acceptedAnswers": [
+   "market",
+   "flea market",
+   "rain"
+  ],
+  "category": "City",
+  "label": "Market in the rain"
+ },
+ "sk7-fountain": {
+  "acceptedAnswers": [
+   "water jet",
+   "fountain in the square"
+  ],
+  "category": "Water",
+  "label": "Fountain"
+ },
+ "sk7-freezerbox": {
+  "acceptedAnswers": [
+   "opening the freezer"
+  ],
+  "category": "Home",
+  "label": "Freezer"
+ },
+ "sk7-garagedoor-close": {
+  "acceptedAnswers": [
+   "garage",
+   "garage door"
+  ],
+  "category": "Home",
+  "label": "Garage door closing"
+ },
+ "sk7-gasheater": {
+  "acceptedAnswers": [
+   "boiler",
+   "water heater"
+  ],
+  "category": "Home",
+  "label": "Gas boiler"
+ },
+ "sk7-hydrauliclift-down": {
+  "acceptedAnswers": [
+   "jack",
+   "hydraulics"
+  ],
+  "category": "Tools",
+  "label": "Hydraulic jack"
+ },
+ "sk7-inkjetprinter": {
+  "acceptedAnswers": [
+   "printer"
+  ],
+  "category": "Technology",
+  "label": "Inkjet printer"
+ },
+ "sk7-metalcabinet": {
+  "acceptedAnswers": [
+   "metal cabinet door"
+  ],
+  "category": "Home",
+  "label": "Metal cabinet"
+ },
+ "sk7-musicbox2": {
+  "acceptedAnswers": [
+   "music box playing"
+  ],
+  "category": "Toys",
+  "label": "Music box"
+ },
+ "sk7-peppergrinder": {
+  "acceptedAnswers": [
+   "grinding pepper",
+   "pepper"
+  ],
+  "category": "Kitchen",
+  "label": "Pepper grinder"
+ },
+ "sk7-pingpong": {
+  "acceptedAnswers": [
+   "ping pong"
+  ],
+  "category": "Sports",
+  "label": "Table tennis"
+ },
+ "sk7-potandlid": {
+  "acceptedAnswers": [
+   "pots",
+   "pot lid"
+  ],
+  "category": "Kitchen",
+  "label": "Drumming on pots"
+ },
+ "sk7-pourwine": {
+  "acceptedAnswers": [
+   "wine",
+   "pouring"
+  ],
+  "category": "Kitchen",
+  "label": "Pouring wine"
+ },
+ "sk7-restaurant": {
+  "acceptedAnswers": [
+   "restaurant chatter",
+   "coffee shop"
+  ],
+  "category": "City",
+  "label": "Restaurant"
+ },
+ "sk7-rustyclasp": {
+  "acceptedAnswers": [
+   "latch",
+   "bolt"
+  ],
+  "category": "Home",
+  "label": "Rusty door bolt"
+ },
+ "sk7-scrubbrush": {
+  "acceptedAnswers": [
+   "brushing",
+   "scrubbing"
+  ],
+  "category": "Tools",
+  "label": "Wire brush"
+ },
+ "sk7-steamengine2": {
+  "acceptedAnswers": [
+   "steam",
+   "steam motor"
+  ],
+  "category": "Machines",
+  "label": "Steam engine"
+ },
+ "sk7-stickytape": {
+  "acceptedAnswers": [
+   "Scotch tape",
+   "taping"
+  ],
+  "category": "Office",
+  "label": "Sticky tape"
+ },
+ "sk7-streetviolin": {
+  "acceptedAnswers": [
+   "violin",
+   "playing the violin"
+  ],
+  "category": "Music",
+  "label": "Street violinist"
+ },
+ "sk7-swivelchair": {
+  "acceptedAnswers": [
+   "swivel chair",
+   "office chair"
+  ],
+  "category": "Office",
+  "label": "Squeaky office chair"
+ },
+ "sk7-toymelody": {
+  "acceptedAnswers": [
+   "toy",
+   "Old MacDonald"
+  ],
+  "category": "Toys",
+  "label": "Musical toy"
+ },
+ "sk7-toypedal": {
+  "acceptedAnswers": [
+   "clockwork toy"
+  ],
+  "category": "Toys",
+  "label": "Wind-up toy"
+ },
+ "sk7-toyphone": {
+  "acceptedAnswers": [
+   "toy telephone"
+  ],
+  "category": "Toys",
+  "label": "Toy phone"
+ },
+ "sk7-toyrattle": {
+  "acceptedAnswers": [
+   "rattle",
+   "toy"
+  ],
+  "category": "Toys",
+  "label": "Baby rattle"
+ },
+ "sk7-toysiren": {
+  "acceptedAnswers": [
+   "toy",
+   "siren"
+  ],
+  "category": "Toys",
+  "label": "Toy siren"
+ },
+ "sk7-vaporizestones": {
+  "acceptedAnswers": [
+   "sauna",
+   "steam"
+  ],
+  "category": "Water",
+  "label": "Water on sauna stones"
+ },
+ "sk7-vendingdrink": {
+  "acceptedAnswers": [
+   "vending machine",
+   "soda machine"
+  ],
+  "category": "Shop",
+  "label": "Drink vending machine"
+ },
+ "sk7-verandadoor": {
+  "acceptedAnswers": [
+   "opening a sliding door"
+  ],
+  "category": "Home",
+  "label": "Sliding door"
+ },
+ "sk7-washhands": {
+  "acceptedAnswers": [
+   "sink",
+   "soap"
+  ],
+  "category": "People",
+  "label": "Washing hands"
+ },
+ "sk7-windchime": {
+  "acceptedAnswers": [
+   "chimes",
+   "tinkling bells"
+  ],
+  "category": "Home",
+  "label": "Wind chimes"
+ },
+ "sk8-blastfurnace": {
+  "acceptedAnswers": [
+   "ironworks",
+   "steelworks"
+  ],
+  "category": "Machines",
+  "label": "Blast furnace"
+ },
+ "sk8-harvester": {
+  "acceptedAnswers": [
+   "logging",
+   "forestry machine"
+  ],
+  "category": "Machines",
+  "label": "Forest harvester"
+ },
+ "sk8-ratchet": {
+  "acceptedAnswers": [
+   "ratchet wrench",
+   "tightening a bolt"
+  ],
+  "category": "Tools",
+  "label": "Ratchet"
+ },
+ "sk8-rustondiesel": {
+  "acceptedAnswers": [
+   "engine",
+   "diesel"
+  ],
+  "category": "Machines",
+  "label": "Old diesel engine"
+ },
+ "sk8-shipordertelegraph": {
+  "acceptedAnswers": [
+   "engine room",
+   "telegraph"
+  ],
+  "category": "Transport",
+  "label": "Engine order telegraph"
+ },
+ "sk8-smallloco": {
+  "acceptedAnswers": [
+   "locomotive",
+   "diesel locomotive"
+  ],
+  "category": "Transport",
+  "label": "Shunting locomotive"
+ },
+ "sk8-spaceheater": {
+  "acceptedAnswers": [
+   "heater",
+   "space heater"
+  ],
+  "category": "Home",
+  "label": "Electric heater"
+ },
+ "sk8-torchcutting": {
+  "acceptedAnswers": [
+   "flame",
+   "cutting metal"
+  ],
+  "category": "Tools",
+  "label": "Torch cutting"
+ }
+}

@@ -1,0 +1,1635 @@
+{
+  "version": 1,
+  "locale": "en",
+  "category": "Filmy, seriály a kultúra",
+  "cards": [
+    {
+      "id": "taboo_sk_0727",
+      "category": "Movies, TV and Culture",
+      "word": "Forrest Gump",
+      "forbidden": [
+        "running",
+        "Vietnam",
+        "box of chocolates",
+        "Tom Hanks"
+      ]
+    },
+    {
+      "id": "taboo_sk_0728",
+      "category": "Movies, TV and Culture",
+      "word": "Pulp Fiction",
+      "forbidden": [
+        "Tarantino",
+        "blood",
+        "dialogue",
+        "gangsters"
+      ]
+    },
+    {
+      "id": "taboo_sk_0729",
+      "category": "Movies, TV and Culture",
+      "word": "The Matrix",
+      "forbidden": [
+        "blue pill",
+        "red pill",
+        "simulation",
+        "Keanu"
+      ]
+    },
+    {
+      "id": "taboo_sk_0730",
+      "category": "Movies, TV and Culture",
+      "word": "Titanic",
+      "forbidden": [
+        "ship",
+        "love",
+        "iceberg",
+        "1912"
+      ]
+    },
+    {
+      "id": "taboo_sk_0731",
+      "category": "Movies, TV and Culture",
+      "word": "The Godfather",
+      "forbidden": [
+        "mafia",
+        "Don",
+        "family",
+        "Corleone"
+      ]
+    },
+    {
+      "id": "taboo_sk_0732",
+      "category": "Movies, TV and Culture",
+      "word": "Amélie",
+      "forbidden": [
+        "Paris",
+        "cafe",
+        "imagination",
+        "Audrey Tautou"
+      ]
+    },
+    {
+      "id": "taboo_sk_0733",
+      "category": "Movies, TV and Culture",
+      "word": "Parasite",
+      "forbidden": [
+        "Korea",
+        "class",
+        "housekeeper",
+        "rich"
+      ]
+    },
+    {
+      "id": "taboo_sk_0734",
+      "category": "Movies, TV and Culture",
+      "word": "Gladiator",
+      "forbidden": [
+        "Rome",
+        "arena",
+        "emperor",
+        "Russell Crowe"
+      ]
+    },
+    {
+      "id": "taboo_sk_0735",
+      "category": "Movies, TV and Culture",
+      "word": "Avatar",
+      "forbidden": [
+        "Pandora",
+        "3D",
+        "James Cameron",
+        "blue"
+      ]
+    },
+    {
+      "id": "taboo_sk_0736",
+      "category": "Movies, TV and Culture",
+      "word": "Rocky",
+      "forbidden": [
+        "boxing",
+        "ring",
+        "Adrian",
+        "Stallone"
+      ]
+    },
+    {
+      "id": "taboo_sk_0737",
+      "category": "Movies, TV and Culture",
+      "word": "The Lord of the Rings",
+      "forbidden": [
+        "hobbits",
+        "Sauron",
+        "Tolkien",
+        "Middle-earth"
+      ]
+    },
+    {
+      "id": "taboo_sk_0738",
+      "category": "Movies, TV and Culture",
+      "word": "Shrek",
+      "forbidden": [
+        "ogre",
+        "green",
+        "princess",
+        "donkey"
+      ]
+    },
+    {
+      "id": "taboo_sk_0739",
+      "category": "Movies, TV and Culture",
+      "word": "Harry Potter",
+      "forbidden": [
+        "magic",
+        "Hogwarts",
+        "broomstick",
+        "wand"
+      ]
+    },
+    {
+      "id": "taboo_sk_0740",
+      "category": "Movies, TV and Culture",
+      "word": "Black Panther",
+      "forbidden": [
+        "Marvel",
+        "Wakanda",
+        "king",
+        "vibranium"
+      ]
+    },
+    {
+      "id": "taboo_sk_0741",
+      "category": "Movies, TV and Culture",
+      "word": "Joker",
+      "forbidden": [
+        "comic",
+        "laugh",
+        "Batman",
+        "clown"
+      ]
+    },
+    {
+      "id": "taboo_sk_0742",
+      "category": "Movies, TV and Culture",
+      "word": "Casablanca",
+      "forbidden": [
+        "love",
+        "airport",
+        "Morocco",
+        "Bogart"
+      ]
+    },
+    {
+      "id": "taboo_sk_0743",
+      "category": "Movies, TV and Culture",
+      "word": "Green Book",
+      "forbidden": [
+        "racism",
+        "road trip",
+        "pianist",
+        "driver"
+      ]
+    },
+    {
+      "id": "taboo_sk_0744",
+      "category": "Movies, TV and Culture",
+      "word": "Back to the Future",
+      "forbidden": [
+        "time travel",
+        "DeLorean",
+        "Marty",
+        "Doc"
+      ]
+    },
+    {
+      "id": "taboo_sk_0745",
+      "category": "Movies, TV and Culture",
+      "word": "ticket",
+      "forbidden": [
+        "cinema",
+        "theater",
+        "box office",
+        "buy"
+      ]
+    },
+    {
+      "id": "taboo_sk_0746",
+      "category": "Movies, TV and Culture",
+      "word": "Game of Thrones",
+      "forbidden": [
+        "Iron Throne",
+        "dragons",
+        "winter",
+        "Stark"
+      ]
+    },
+    {
+      "id": "taboo_sk_0747",
+      "category": "Movies, TV and Culture",
+      "word": "Friends",
+      "forbidden": [
+        "New York",
+        "coffee shop",
+        "Ross",
+        "sitcom"
+      ]
+    },
+    {
+      "id": "taboo_sk_0748",
+      "category": "Movies, TV and Culture",
+      "word": "Breaking Bad",
+      "forbidden": [
+        "meth",
+        "chemistry teacher",
+        "blue",
+        "New Mexico"
+      ]
+    },
+    {
+      "id": "taboo_sk_0749",
+      "category": "Movies, TV and Culture",
+      "word": "Chernobyl",
+      "forbidden": [
+        "nuclear",
+        "reactor",
+        "1986",
+        "radiation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0750",
+      "category": "Movies, TV and Culture",
+      "word": "Stranger Things",
+      "forbidden": [
+        "Hawkins",
+        "'80s",
+        "Upside Down",
+        "Demogorgon"
+      ]
+    },
+    {
+      "id": "taboo_sk_0751",
+      "category": "Movies, TV and Culture",
+      "word": "Narcos",
+      "forbidden": [
+        "Colombia",
+        "drugs",
+        "cartel",
+        "Pablo Escobar"
+      ]
+    },
+    {
+      "id": "taboo_sk_0752",
+      "category": "Movies, TV and Culture",
+      "word": "Sherlock",
+      "forbidden": [
+        "detective",
+        "deduction",
+        "London",
+        "Watson"
+      ]
+    },
+    {
+      "id": "taboo_sk_0753",
+      "category": "Movies, TV and Culture",
+      "word": "The Crown",
+      "forbidden": [
+        "queen",
+        "Elizabeth",
+        "monarchy",
+        "Britain"
+      ]
+    },
+    {
+      "id": "taboo_sk_0754",
+      "category": "Movies, TV and Culture",
+      "word": "Dexter",
+      "forbidden": [
+        "serial killer",
+        "blood",
+        "forensics",
+        "double life"
+      ]
+    },
+    {
+      "id": "taboo_sk_0755",
+      "category": "Movies, TV and Culture",
+      "word": "clapperboard",
+      "forbidden": [
+        "filming",
+        "director",
+        "take",
+        "scene"
+      ]
+    },
+    {
+      "id": "taboo_sk_0756",
+      "category": "Movies, TV and Culture",
+      "word": "The Little Prince",
+      "forbidden": [
+        "planet",
+        "rose",
+        "pilot",
+        "fox"
+      ]
+    },
+    {
+      "id": "taboo_sk_0757",
+      "category": "Movies, TV and Culture",
+      "word": "1984",
+      "forbidden": [
+        "Orwell",
+        "totalitarian",
+        "Big Brother",
+        "dictatorship"
+      ]
+    },
+    {
+      "id": "taboo_sk_0758",
+      "category": "Movies, TV and Culture",
+      "word": "mystery",
+      "forbidden": [
+        "clue",
+        "investigate",
+        "secret",
+        "solve"
+      ]
+    },
+    {
+      "id": "taboo_sk_0759",
+      "category": "Movies, TV and Culture",
+      "word": "story",
+      "forbidden": [
+        "tale",
+        "character",
+        "plot",
+        "once upon a time"
+      ]
+    },
+    {
+      "id": "taboo_sk_0760",
+      "category": "Movies, TV and Culture",
+      "word": "hero",
+      "forbidden": [
+        "brave",
+        "courage",
+        "protagonist",
+        "save"
+      ]
+    },
+    {
+      "id": "taboo_sk_0761",
+      "category": "Movies, TV and Culture",
+      "word": "villain",
+      "forbidden": [
+        "evil",
+        "bad guy",
+        "hero",
+        "antagonist"
+      ]
+    },
+    {
+      "id": "taboo_sk_0762",
+      "category": "Movies, TV and Culture",
+      "word": "The Hobbit",
+      "forbidden": [
+        "journey",
+        "Tolkien",
+        "dwarves",
+        "Bilbo"
+      ]
+    },
+    {
+      "id": "taboo_sk_0763",
+      "category": "Movies, TV and Culture",
+      "word": "puppet",
+      "forbidden": [
+        "theater",
+        "hand",
+        "wooden",
+        "strings"
+      ]
+    },
+    {
+      "id": "taboo_sk_0765",
+      "category": "Movies, TV and Culture",
+      "word": "voice",
+      "forbidden": [
+        "singing",
+        "sound",
+        "speak",
+        "throat"
+      ]
+    },
+    {
+      "id": "taboo_sk_0766",
+      "category": "Movies, TV and Culture",
+      "word": "Rammstein",
+      "forbidden": [
+        "Germany",
+        "metal",
+        "fire",
+        "Du hast"
+      ]
+    },
+    {
+      "id": "taboo_sk_0767",
+      "category": "Movies, TV and Culture",
+      "word": "The Beatles",
+      "forbidden": [
+        "Liverpool",
+        "John Lennon",
+        "'60s",
+        "Paul McCartney"
+      ]
+    },
+    {
+      "id": "taboo_sk_0768",
+      "category": "Movies, TV and Culture",
+      "word": "Eurovision",
+      "forbidden": [
+        "contest",
+        "singing",
+        "Europe",
+        "winner"
+      ]
+    },
+    {
+      "id": "taboo_sk_0769",
+      "category": "Movies, TV and Culture",
+      "word": "opera",
+      "forbidden": [
+        "aria",
+        "soprano",
+        "singers",
+        "classical"
+      ]
+    },
+    {
+      "id": "taboo_sk_0770",
+      "category": "Movies, TV and Culture",
+      "word": "folklore",
+      "forbidden": [
+        "folk costume",
+        "dance",
+        "traditional",
+        "music"
+      ]
+    },
+    {
+      "id": "taboo_sk_0771",
+      "category": "Movies, TV and Culture",
+      "word": "Bratislava",
+      "forbidden": [
+        "capital",
+        "castle",
+        "Slovakia",
+        "Danube"
+      ]
+    },
+    {
+      "id": "taboo_sk_0772",
+      "category": "Movies, TV and Culture",
+      "word": "carnival",
+      "forbidden": [
+        "masks",
+        "costumes",
+        "parade",
+        "Lent"
+      ]
+    },
+    {
+      "id": "taboo_sk_0948",
+      "category": "Movies, TV and Culture",
+      "word": "comedy",
+      "forbidden": [
+        "funny",
+        "laugh",
+        "jokes",
+        "movie"
+      ]
+    },
+    {
+      "id": "taboo_sk_0949",
+      "category": "Movies, TV and Culture",
+      "word": "drama",
+      "forbidden": [
+        "theater",
+        "actors",
+        "sad",
+        "serious"
+      ]
+    },
+    {
+      "id": "taboo_sk_0950",
+      "category": "Movies, TV and Culture",
+      "word": "thriller",
+      "forbidden": [
+        "suspense",
+        "tension",
+        "movie",
+        "killer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0951",
+      "category": "Movies, TV and Culture",
+      "word": "stage scenery",
+      "forbidden": [
+        "stage",
+        "theater",
+        "backdrop",
+        "props"
+      ]
+    },
+    {
+      "id": "taboo_sk_0952",
+      "category": "Movies, TV and Culture",
+      "word": "western",
+      "forbidden": [
+        "cowboy",
+        "horse",
+        "Wild West",
+        "sheriff"
+      ]
+    },
+    {
+      "id": "taboo_sk_0953",
+      "category": "Movies, TV and Culture",
+      "word": "musical",
+      "forbidden": [
+        "singing",
+        "songs",
+        "Broadway",
+        "dance"
+      ]
+    },
+    {
+      "id": "taboo_sk_0954",
+      "category": "Movies, TV and Culture",
+      "word": "horror",
+      "forbidden": [
+        "scary",
+        "ghost",
+        "monster",
+        "fear"
+      ]
+    },
+    {
+      "id": "taboo_sk_0955",
+      "category": "Movies, TV and Culture",
+      "word": "subtitles",
+      "forbidden": [
+        "text",
+        "bottom",
+        "read",
+        "translation"
+      ]
+    },
+    {
+      "id": "taboo_sk_0956",
+      "category": "Movies, TV and Culture",
+      "word": "dubbing",
+      "forbidden": [
+        "voice",
+        "actors",
+        "translation",
+        "language"
+      ]
+    },
+    {
+      "id": "taboo_sk_0957",
+      "category": "Movies, TV and Culture",
+      "word": "book reading",
+      "forbidden": [
+        "author",
+        "audience",
+        "microphone",
+        "literature"
+      ]
+    },
+    {
+      "id": "taboo_sk_0958",
+      "category": "Movies, TV and Culture",
+      "word": "premiere",
+      "forbidden": [
+        "first",
+        "opening night",
+        "red carpet",
+        "film"
+      ]
+    },
+    {
+      "id": "taboo_sk_0959",
+      "category": "Movies, TV and Culture",
+      "word": "popcorn",
+      "forbidden": [
+        "cinema",
+        "corn",
+        "butter",
+        "salty"
+      ]
+    },
+    {
+      "id": "taboo_sk_0960",
+      "category": "Movies, TV and Culture",
+      "word": "leading role",
+      "forbidden": [
+        "star",
+        "main character",
+        "actor",
+        "cast"
+      ]
+    },
+    {
+      "id": "taboo_sk_0961",
+      "category": "Movies, TV and Culture",
+      "word": "sitcom",
+      "forbidden": [
+        "laugh track",
+        "episode",
+        "comedy",
+        "TV"
+      ]
+    },
+    {
+      "id": "taboo_sk_0962",
+      "category": "Movies, TV and Culture",
+      "word": "miniseries",
+      "forbidden": [
+        "episodes",
+        "short",
+        "limited",
+        "Netflix"
+      ]
+    },
+    {
+      "id": "taboo_sk_0963",
+      "category": "Movies, TV and Culture",
+      "word": "season one",
+      "forbidden": [
+        "pilot",
+        "episodes",
+        "show",
+        "debut"
+      ]
+    },
+    {
+      "id": "taboo_sk_0964",
+      "category": "Movies, TV and Culture",
+      "word": "plot",
+      "forbidden": [
+        "story",
+        "twist",
+        "events",
+        "conflict"
+      ]
+    },
+    {
+      "id": "taboo_sk_0965",
+      "category": "Movies, TV and Culture",
+      "word": "storyline",
+      "forbidden": [
+        "arc",
+        "subplot",
+        "narrative",
+        "thread"
+      ]
+    },
+    {
+      "id": "taboo_sk_0966",
+      "category": "Movies, TV and Culture",
+      "word": "princess",
+      "forbidden": [
+        "crown",
+        "fairy tale",
+        "castle",
+        "prince"
+      ]
+    },
+    {
+      "id": "taboo_sk_0967",
+      "category": "Movies, TV and Culture",
+      "word": "poet",
+      "forbidden": [
+        "verse",
+        "poetry",
+        "rhyme",
+        "author"
+      ]
+    },
+    {
+      "id": "taboo_sk_0968",
+      "category": "Movies, TV and Culture",
+      "word": "streaming service",
+      "forbidden": [
+        "Netflix",
+        "subscription",
+        "online",
+        "series"
+      ]
+    },
+    {
+      "id": "taboo_sk_0969",
+      "category": "Movies, TV and Culture",
+      "word": "TV show",
+      "forbidden": [
+        "channel",
+        "episode",
+        "host",
+        "broadcast"
+      ]
+    },
+    {
+      "id": "taboo_sk_0970",
+      "category": "Movies, TV and Culture",
+      "word": "the news",
+      "forbidden": [
+        "anchor",
+        "headlines",
+        "reporter",
+        "evening"
+      ]
+    },
+    {
+      "id": "taboo_sk_0971",
+      "category": "Movies, TV and Culture",
+      "word": "debate show",
+      "forbidden": [
+        "politicians",
+        "moderator",
+        "argue",
+        "studio"
+      ]
+    },
+    {
+      "id": "taboo_sk_0972",
+      "category": "Movies, TV and Culture",
+      "word": "game show",
+      "forbidden": [
+        "contestants",
+        "prizes",
+        "host",
+        "quiz"
+      ]
+    },
+    {
+      "id": "taboo_sk_0973",
+      "category": "Movies, TV and Culture",
+      "word": "kids' show",
+      "forbidden": [
+        "cartoons",
+        "children",
+        "morning",
+        "TV"
+      ]
+    },
+    {
+      "id": "taboo_sk_0974",
+      "category": "Movies, TV and Culture",
+      "word": "chanson",
+      "forbidden": [
+        "French",
+        "Piaf",
+        "singer",
+        "cabaret"
+      ]
+    },
+    {
+      "id": "taboo_sk_0975",
+      "category": "Movies, TV and Culture",
+      "word": "talent show",
+      "forbidden": [
+        "judges",
+        "audition",
+        "contestant",
+        "Got Talent"
+      ]
+    },
+    {
+      "id": "taboo_sk_0976",
+      "category": "Movies, TV and Culture",
+      "word": "reality show",
+      "forbidden": [
+        "cameras",
+        "contestants",
+        "Big Brother",
+        "drama"
+      ]
+    },
+    {
+      "id": "taboo_sk_0977",
+      "category": "Movies, TV and Culture",
+      "word": "talk show",
+      "forbidden": [
+        "host",
+        "guests",
+        "couch",
+        "late night"
+      ]
+    },
+    {
+      "id": "taboo_sk_0978",
+      "category": "Movies, TV and Culture",
+      "word": "bedtime story",
+      "forbidden": [
+        "sleep",
+        "kids",
+        "evening",
+        "read"
+      ]
+    },
+    {
+      "id": "taboo_sk_0979",
+      "category": "Movies, TV and Culture",
+      "word": "philharmonic",
+      "forbidden": [
+        "orchestra",
+        "concert hall",
+        "conductor",
+        "classical"
+      ]
+    },
+    {
+      "id": "taboo_sk_0980",
+      "category": "Movies, TV and Culture",
+      "word": "news report",
+      "forbidden": [
+        "journalist",
+        "on location",
+        "camera",
+        "reporter"
+      ]
+    },
+    {
+      "id": "taboo_sk_0981",
+      "category": "Movies, TV and Culture",
+      "word": "on-camera interview",
+      "forbidden": [
+        "questions",
+        "journalist",
+        "microphone",
+        "answers"
+      ]
+    },
+    {
+      "id": "taboo_sk_0982",
+      "category": "Movies, TV and Culture",
+      "word": "live broadcast",
+      "forbidden": [
+        "real time",
+        "TV",
+        "stream",
+        "on air"
+      ]
+    },
+    {
+      "id": "taboo_sk_0983",
+      "category": "Movies, TV and Culture",
+      "word": "archive footage",
+      "forbidden": [
+        "old",
+        "black and white",
+        "history",
+        "recording"
+      ]
+    },
+    {
+      "id": "taboo_sk_0984",
+      "category": "Movies, TV and Culture",
+      "word": "TV channel",
+      "forbidden": [
+        "remote",
+        "station",
+        "broadcast",
+        "switch"
+      ]
+    },
+    {
+      "id": "taboo_sk_0985",
+      "category": "Movies, TV and Culture",
+      "word": "TV guide",
+      "forbidden": [
+        "listings",
+        "schedule",
+        "channels",
+        "tonight"
+      ]
+    },
+    {
+      "id": "taboo_sk_0986",
+      "category": "Movies, TV and Culture",
+      "word": "novel",
+      "forbidden": [
+        "book",
+        "author",
+        "chapters",
+        "fiction"
+      ]
+    },
+    {
+      "id": "taboo_sk_0987",
+      "category": "Movies, TV and Culture",
+      "word": "short story",
+      "forbidden": [
+        "tale",
+        "author",
+        "collection",
+        "brief"
+      ]
+    },
+    {
+      "id": "taboo_sk_0988",
+      "category": "Movies, TV and Culture",
+      "word": "poem",
+      "forbidden": [
+        "verse",
+        "rhyme",
+        "poet",
+        "stanza"
+      ]
+    },
+    {
+      "id": "taboo_sk_0989",
+      "category": "Movies, TV and Culture",
+      "word": "fable",
+      "forbidden": [
+        "moral",
+        "animals",
+        "Aesop",
+        "fox"
+      ]
+    },
+    {
+      "id": "taboo_sk_0990",
+      "category": "Movies, TV and Culture",
+      "word": "fairy tale",
+      "forbidden": [
+        "once upon a time",
+        "princess",
+        "magic",
+        "Grimm"
+      ]
+    },
+    {
+      "id": "taboo_sk_0991",
+      "category": "Movies, TV and Culture",
+      "word": "legend",
+      "forbidden": [
+        "myth",
+        "hero",
+        "ancient",
+        "told"
+      ]
+    },
+    {
+      "id": "taboo_sk_0992",
+      "category": "Movies, TV and Culture",
+      "word": "comic book",
+      "forbidden": [
+        "superhero",
+        "speech bubbles",
+        "Marvel",
+        "panels"
+      ]
+    },
+    {
+      "id": "taboo_sk_0993",
+      "category": "Movies, TV and Culture",
+      "word": "band",
+      "forbidden": [
+        "music",
+        "singer",
+        "drums",
+        "concert"
+      ]
+    },
+    {
+      "id": "taboo_sk_0994",
+      "category": "Movies, TV and Culture",
+      "word": "biography",
+      "forbidden": [
+        "life",
+        "person",
+        "book",
+        "born"
+      ]
+    },
+    {
+      "id": "taboo_sk_0995",
+      "category": "Movies, TV and Culture",
+      "word": "travelogue",
+      "forbidden": [
+        "travel",
+        "journey",
+        "countries",
+        "writer"
+      ]
+    },
+    {
+      "id": "taboo_sk_0996",
+      "category": "Movies, TV and Culture",
+      "word": "encyclopedia",
+      "forbidden": [
+        "knowledge",
+        "volumes",
+        "Wikipedia",
+        "facts"
+      ]
+    },
+    {
+      "id": "taboo_sk_0997",
+      "category": "Movies, TV and Culture",
+      "word": "textbook",
+      "forbidden": [
+        "school",
+        "lesson",
+        "student",
+        "study"
+      ]
+    },
+    {
+      "id": "taboo_sk_0998",
+      "category": "Movies, TV and Culture",
+      "word": "dictionary",
+      "forbidden": [
+        "words",
+        "definitions",
+        "alphabetical",
+        "meaning"
+      ]
+    },
+    {
+      "id": "taboo_sk_0999",
+      "category": "Movies, TV and Culture",
+      "word": "diary",
+      "forbidden": [
+        "entry",
+        "date",
+        "write",
+        "secret"
+      ]
+    },
+    {
+      "id": "taboo_sk_1000",
+      "category": "Movies, TV and Culture",
+      "word": "literary character",
+      "forbidden": [
+        "book",
+        "hero",
+        "author",
+        "fictional"
+      ]
+    },
+    {
+      "id": "taboo_sk_1001",
+      "category": "Movies, TV and Culture",
+      "word": "narrator",
+      "forbidden": [
+        "tells",
+        "story",
+        "voice",
+        "first person"
+      ]
+    },
+    {
+      "id": "taboo_sk_1002",
+      "category": "Movies, TV and Culture",
+      "word": "chapter",
+      "forbidden": [
+        "book",
+        "part",
+        "section",
+        "page"
+      ]
+    },
+    {
+      "id": "taboo_sk_1003",
+      "category": "Movies, TV and Culture",
+      "word": "paragraph",
+      "forbidden": [
+        "text",
+        "indent",
+        "sentences",
+        "block"
+      ]
+    },
+    {
+      "id": "taboo_sk_1004",
+      "category": "Movies, TV and Culture",
+      "word": "heading",
+      "forbidden": [
+        "top",
+        "title",
+        "bold",
+        "text"
+      ]
+    },
+    {
+      "id": "taboo_sk_1005",
+      "category": "Movies, TV and Culture",
+      "word": "book cover",
+      "forbidden": [
+        "front",
+        "jacket",
+        "title",
+        "design"
+      ]
+    },
+    {
+      "id": "taboo_sk_1006",
+      "category": "Movies, TV and Culture",
+      "word": "publisher",
+      "forbidden": [
+        "books",
+        "print",
+        "editor",
+        "publishing house"
+      ]
+    },
+    {
+      "id": "taboo_sk_1007",
+      "category": "Movies, TV and Culture",
+      "word": "book review",
+      "forbidden": [
+        "critic",
+        "stars",
+        "opinion",
+        "rating"
+      ]
+    },
+    {
+      "id": "taboo_sk_1008",
+      "category": "Movies, TV and Culture",
+      "word": "book fair",
+      "forbidden": [
+        "stalls",
+        "publishers",
+        "exhibition",
+        "Frankfurt"
+      ]
+    },
+    {
+      "id": "taboo_sk_1009",
+      "category": "Movies, TV and Culture",
+      "word": "poetry",
+      "forbidden": [
+        "poems",
+        "verse",
+        "rhyme",
+        "poet"
+      ]
+    },
+    {
+      "id": "taboo_sk_1010",
+      "category": "Movies, TV and Culture",
+      "word": "rhyme",
+      "forbidden": [
+        "sound",
+        "end",
+        "poem",
+        "words"
+      ]
+    },
+    {
+      "id": "taboo_sk_1011",
+      "category": "Movies, TV and Culture",
+      "word": "verse",
+      "forbidden": [
+        "line",
+        "poem",
+        "stanza",
+        "rhyme"
+      ]
+    },
+    {
+      "id": "taboo_sk_1012",
+      "category": "Movies, TV and Culture",
+      "word": "chorus",
+      "forbidden": [
+        "repeat",
+        "song",
+        "verse",
+        "catchy"
+      ]
+    },
+    {
+      "id": "taboo_sk_1013",
+      "category": "Movies, TV and Culture",
+      "word": "orchestra",
+      "forbidden": [
+        "conductor",
+        "instruments",
+        "concert",
+        "symphony"
+      ]
+    },
+    {
+      "id": "taboo_sk_1014",
+      "category": "Movies, TV and Culture",
+      "word": "violin",
+      "forbidden": [
+        "strings",
+        "bow",
+        "orchestra",
+        "chin"
+      ]
+    },
+    {
+      "id": "taboo_sk_1015",
+      "category": "Movies, TV and Culture",
+      "word": "drum",
+      "forbidden": [
+        "sticks",
+        "beat",
+        "rhythm",
+        "percussion"
+      ]
+    },
+    {
+      "id": "taboo_sk_1016",
+      "category": "Movies, TV and Culture",
+      "word": "flute",
+      "forbidden": [
+        "blow",
+        "holes",
+        "woodwind",
+        "melody"
+      ]
+    },
+    {
+      "id": "taboo_sk_1017",
+      "category": "Movies, TV and Culture",
+      "word": "trumpet",
+      "forbidden": [
+        "brass",
+        "blow",
+        "mouthpiece",
+        "jazz"
+      ]
+    },
+    {
+      "id": "taboo_sk_1018",
+      "category": "Movies, TV and Culture",
+      "word": "accordion",
+      "forbidden": [
+        "bellows",
+        "keys",
+        "squeeze",
+        "polka"
+      ]
+    },
+    {
+      "id": "taboo_sk_1019",
+      "category": "Movies, TV and Culture",
+      "word": "harmonica",
+      "forbidden": [
+        "mouth",
+        "blow",
+        "blues",
+        "pocket"
+      ]
+    },
+    {
+      "id": "taboo_sk_1020",
+      "category": "Movies, TV and Culture",
+      "word": "cello",
+      "forbidden": [
+        "bow",
+        "strings",
+        "orchestra",
+        "big"
+      ]
+    },
+    {
+      "id": "taboo_sk_1021",
+      "category": "Movies, TV and Culture",
+      "word": "double bass",
+      "forbidden": [
+        "strings",
+        "jazz",
+        "orchestra",
+        "lowest"
+      ]
+    },
+    {
+      "id": "taboo_sk_1022",
+      "category": "Movies, TV and Culture",
+      "word": "tambourine",
+      "forbidden": [
+        "jingle",
+        "percussion",
+        "round",
+        "shake"
+      ]
+    },
+    {
+      "id": "taboo_sk_1023",
+      "category": "Movies, TV and Culture",
+      "word": "saxophone",
+      "forbidden": [
+        "jazz",
+        "metal",
+        "blow",
+        "reed"
+      ]
+    },
+    {
+      "id": "taboo_sk_1024",
+      "category": "Movies, TV and Culture",
+      "word": "clarinet",
+      "forbidden": [
+        "woodwind",
+        "reed",
+        "orchestra",
+        "black"
+      ]
+    },
+    {
+      "id": "taboo_sk_1025",
+      "category": "Movies, TV and Culture",
+      "word": "organ",
+      "forbidden": [
+        "church",
+        "pipes",
+        "keys",
+        "cathedral"
+      ]
+    },
+    {
+      "id": "taboo_sk_1026",
+      "category": "Movies, TV and Culture",
+      "word": "sheet music",
+      "forbidden": [
+        "notes",
+        "staff",
+        "score",
+        "read"
+      ]
+    },
+    {
+      "id": "taboo_sk_1027",
+      "category": "Movies, TV and Culture",
+      "word": "album",
+      "forbidden": [
+        "songs",
+        "tracks",
+        "record",
+        "artist"
+      ]
+    },
+    {
+      "id": "taboo_sk_1028",
+      "category": "Movies, TV and Culture",
+      "word": "single",
+      "forbidden": [
+        "song",
+        "hit",
+        "release",
+        "radio"
+      ]
+    },
+    {
+      "id": "taboo_sk_1029",
+      "category": "Movies, TV and Culture",
+      "word": "rhythm",
+      "forbidden": [
+        "tempo",
+        "beat",
+        "drums",
+        "bar"
+      ]
+    },
+    {
+      "id": "taboo_sk_1030",
+      "category": "Movies, TV and Culture",
+      "word": "music genre",
+      "forbidden": [
+        "rock",
+        "pop",
+        "jazz",
+        "style"
+      ]
+    },
+    {
+      "id": "taboo_sk_1031",
+      "category": "Movies, TV and Culture",
+      "word": "jazz",
+      "forbidden": [
+        "improvisation",
+        "saxophone",
+        "club",
+        "trumpet"
+      ]
+    },
+    {
+      "id": "taboo_sk_1032",
+      "category": "Movies, TV and Culture",
+      "word": "rock",
+      "forbidden": [
+        "guitar",
+        "band",
+        "drums",
+        "concert"
+      ]
+    },
+    {
+      "id": "taboo_sk_1033",
+      "category": "Movies, TV and Culture",
+      "word": "pop",
+      "forbidden": [
+        "hit",
+        "radio",
+        "charts",
+        "chorus"
+      ]
+    },
+    {
+      "id": "taboo_sk_1034",
+      "category": "Movies, TV and Culture",
+      "word": "opera singing",
+      "forbidden": [
+        "aria",
+        "soprano",
+        "voice",
+        "stage"
+      ]
+    },
+    {
+      "id": "taboo_sk_1035",
+      "category": "Movies, TV and Culture",
+      "word": "choir",
+      "forbidden": [
+        "sing",
+        "voices",
+        "conductor",
+        "church"
+      ]
+    },
+    {
+      "id": "taboo_sk_1036",
+      "category": "Movies, TV and Culture",
+      "word": "composer",
+      "forbidden": [
+        "notes",
+        "write",
+        "melody",
+        "Mozart"
+      ]
+    },
+    {
+      "id": "taboo_sk_1037",
+      "category": "Movies, TV and Culture",
+      "word": "bookworm",
+      "forbidden": [
+        "books",
+        "reading",
+        "library",
+        "nerd"
+      ]
+    },
+    {
+      "id": "taboo_sk_1038",
+      "category": "Movies, TV and Culture",
+      "word": "statue",
+      "forbidden": [
+        "stone",
+        "monument",
+        "marble",
+        "sculptor"
+      ]
+    },
+    {
+      "id": "taboo_sk_1039",
+      "category": "Movies, TV and Culture",
+      "word": "ballet",
+      "forbidden": [
+        "dance",
+        "tutu",
+        "pointe shoes",
+        "Swan Lake"
+      ]
+    },
+    {
+      "id": "taboo_sk_1040",
+      "category": "Movies, TV and Culture",
+      "word": "collage",
+      "forbidden": [
+        "cut",
+        "glue",
+        "pictures",
+        "magazine"
+      ]
+    },
+    {
+      "id": "taboo_sk_1041",
+      "category": "Movies, TV and Culture",
+      "word": "watercolor",
+      "forbidden": [
+        "paint",
+        "brush",
+        "wet",
+        "paper"
+      ]
+    },
+    {
+      "id": "taboo_sk_1042",
+      "category": "Movies, TV and Culture",
+      "word": "oil painting",
+      "forbidden": [
+        "canvas",
+        "brush",
+        "painter",
+        "Mona Lisa"
+      ]
+    },
+    {
+      "id": "taboo_sk_1043",
+      "category": "Movies, TV and Culture",
+      "word": "portrait",
+      "forbidden": [
+        "face",
+        "painter",
+        "pose",
+        "picture"
+      ]
+    },
+    {
+      "id": "taboo_sk_1044",
+      "category": "Movies, TV and Culture",
+      "word": "still life",
+      "forbidden": [
+        "fruit",
+        "vase",
+        "painting",
+        "bowl"
+      ]
+    },
+    {
+      "id": "taboo_sk_1045",
+      "category": "Movies, TV and Culture",
+      "word": "landscape",
+      "forbidden": [
+        "mountains",
+        "scenery",
+        "painting",
+        "nature"
+      ]
+    },
+    {
+      "id": "taboo_sk_1046",
+      "category": "Movies, TV and Culture",
+      "word": "dancer",
+      "forbidden": [
+        "ballet",
+        "stage",
+        "skirt",
+        "move"
+      ]
+    },
+    {
+      "id": "taboo_sk_1047",
+      "category": "Movies, TV and Culture",
+      "word": "figurine",
+      "forbidden": [
+        "small",
+        "shelf",
+        "porcelain",
+        "collect"
+      ]
+    },
+    {
+      "id": "taboo_sk_1048",
+      "category": "Movies, TV and Culture",
+      "word": "medal",
+      "forbidden": [
+        "award",
+        "winner",
+        "gold",
+        "Olympics"
+      ]
+    },
+    {
+      "id": "taboo_sk_1049",
+      "category": "Movies, TV and Culture",
+      "word": "gallery opening",
+      "forbidden": [
+        "exhibition",
+        "artist",
+        "wine",
+        "invitation"
+      ]
+    },
+    {
+      "id": "taboo_sk_1050",
+      "category": "Movies, TV and Culture",
+      "word": "poster",
+      "forbidden": [
+        "wall",
+        "picture",
+        "print",
+        "advertising"
+      ]
+    }
+  ]
+}

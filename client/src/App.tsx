@@ -18,10 +18,12 @@ import type {
 import {
   CATEGORIES,
   CORE_IMPOSTOR_CATEGORY_IDS,
+  getImpostorCategories,
   LEGACY_IMPOSTOR_CATEGORY_ID,
 } from "./data/categories";
-import { DRAWING_CATEGORIES } from "./data/drawingCategories";
+import { getDrawingCategories } from "./data/drawingCategories";
 import { generateRound } from "./utils/gameLogic";
+import { useLanguage } from "./i18n/LanguageProvider";
 import { generateBuzzAssignment } from "./utils/buzzLogic";
 import {
   applyPartyCompletionRecord,
@@ -436,6 +438,7 @@ function sameStringArray(left: unknown, right: string[]) {
 }
 
 export default function App() {
+  const { language } = useLanguage();
   const [screen, setScreen] = useState<Screen>("home");
   const [welcomeScreen, setWelcomeScreen] = useState<Screen | null>(null);
   const [settings, setSettings] = useLocalStorage<GameSettings>(
@@ -960,7 +963,7 @@ export default function App() {
   function startNewRound(currentSettings: GameSettings) {
     const { assignment: newAssignment, usedWords: newUsed } = generateRound(
       currentSettings,
-      CATEGORIES,
+      getImpostorCategories(language),
       usedWords
     );
     setAssignment(newAssignment);
@@ -978,7 +981,7 @@ export default function App() {
   function startDrawingRound(s: GameSettings) {
     const { assignment: a, usedWords: newUsed } = generateRound(
       s,
-      DRAWING_CATEGORIES,
+      getDrawingCategories(language),
       usedWords
     );
     setDrawingAssignment(a);

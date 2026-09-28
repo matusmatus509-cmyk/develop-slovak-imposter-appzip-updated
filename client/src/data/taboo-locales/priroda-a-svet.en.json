@@ -1,0 +1,1646 @@
+{
+  "version": 1,
+  "locale": "en",
+  "category": "Príroda a svet",
+  "cards": [
+    {
+      "id": "taboo_sk_1201",
+      "category": "Nature and the World",
+      "word": "oak",
+      "forbidden": [
+        "acorn",
+        "tree",
+        "strong",
+        "wood"
+      ]
+    },
+    {
+      "id": "taboo_sk_1202",
+      "category": "Nature and the World",
+      "word": "birch",
+      "forbidden": [
+        "tree",
+        "white",
+        "bark",
+        "silver"
+      ]
+    },
+    {
+      "id": "taboo_sk_1203",
+      "category": "Nature and the World",
+      "word": "spruce",
+      "forbidden": [
+        "Christmas tree",
+        "needles",
+        "evergreen",
+        "conifer"
+      ]
+    },
+    {
+      "id": "taboo_sk_1204",
+      "category": "Nature and the World",
+      "word": "pine",
+      "forbidden": [
+        "needles",
+        "cone",
+        "evergreen",
+        "resin"
+      ]
+    },
+    {
+      "id": "taboo_sk_1205",
+      "category": "Nature and the World",
+      "word": "maple",
+      "forbidden": [
+        "syrup",
+        "Canada",
+        "leaf",
+        "red"
+      ]
+    },
+    {
+      "id": "taboo_sk_1206",
+      "category": "Nature and the World",
+      "word": "willow",
+      "forbidden": [
+        "weeping",
+        "river",
+        "tree",
+        "branches"
+      ]
+    },
+    {
+      "id": "taboo_sk_1207",
+      "category": "Nature and the World",
+      "word": "linden",
+      "forbidden": [
+        "tree",
+        "blossom",
+        "tea",
+        "fragrant"
+      ]
+    },
+    {
+      "id": "taboo_sk_1208",
+      "category": "Nature and the World",
+      "word": "beech",
+      "forbidden": [
+        "tree",
+        "forest",
+        "smooth",
+        "gray bark"
+      ]
+    },
+    {
+      "id": "taboo_sk_1209",
+      "category": "Nature and the World",
+      "word": "chestnut",
+      "forbidden": [
+        "conker",
+        "roasted",
+        "horse",
+        "brown"
+      ]
+    },
+    {
+      "id": "taboo_sk_1210",
+      "category": "Nature and the World",
+      "word": "poplar",
+      "forbidden": [
+        "tall",
+        "tree",
+        "fluff",
+        "row"
+      ]
+    },
+    {
+      "id": "taboo_sk_1211",
+      "category": "Nature and the World",
+      "word": "shrub",
+      "forbidden": [
+        "bush",
+        "hedge",
+        "garden",
+        "trim"
+      ]
+    },
+    {
+      "id": "taboo_sk_1212",
+      "category": "Nature and the World",
+      "word": "fern",
+      "forbidden": [
+        "leaves",
+        "forest",
+        "shade",
+        "fronds"
+      ]
+    },
+    {
+      "id": "taboo_sk_1213",
+      "category": "Nature and the World",
+      "word": "moss",
+      "forbidden": [
+        "green",
+        "soft",
+        "stone",
+        "damp"
+      ]
+    },
+    {
+      "id": "taboo_sk_1214",
+      "category": "Nature and the World",
+      "word": "mushroom",
+      "forbidden": [
+        "forest",
+        "cap",
+        "grow",
+        "pick"
+      ]
+    },
+    {
+      "id": "taboo_sk_1215",
+      "category": "Nature and the World",
+      "word": "grass",
+      "forbidden": [
+        "green",
+        "lawn",
+        "mow",
+        "meadow"
+      ]
+    },
+    {
+      "id": "taboo_sk_1216",
+      "category": "Nature and the World",
+      "word": "nettle",
+      "forbidden": [
+        "sting",
+        "itch",
+        "weed",
+        "soup"
+      ]
+    },
+    {
+      "id": "taboo_sk_1217",
+      "category": "Nature and the World",
+      "word": "dandelion",
+      "forbidden": [
+        "yellow",
+        "wish",
+        "fluff",
+        "blow"
+      ]
+    },
+    {
+      "id": "taboo_sk_1218",
+      "category": "Nature and the World",
+      "word": "daisy",
+      "forbidden": [
+        "white",
+        "petals",
+        "meadow",
+        "loves me not"
+      ]
+    },
+    {
+      "id": "taboo_sk_1219",
+      "category": "Nature and the World",
+      "word": "tulip",
+      "forbidden": [
+        "Netherlands",
+        "spring",
+        "bulb",
+        "colorful"
+      ]
+    },
+    {
+      "id": "taboo_sk_1220",
+      "category": "Nature and the World",
+      "word": "daffodil",
+      "forbidden": [
+        "yellow",
+        "spring",
+        "bulb",
+        "Easter"
+      ]
+    },
+    {
+      "id": "taboo_sk_1221",
+      "category": "Nature and the World",
+      "word": "lavender",
+      "forbidden": [
+        "purple",
+        "smell",
+        "Provence",
+        "soap"
+      ]
+    },
+    {
+      "id": "taboo_sk_1222",
+      "category": "Nature and the World",
+      "word": "peony",
+      "forbidden": [
+        "pink",
+        "big",
+        "petals",
+        "bouquet"
+      ]
+    },
+    {
+      "id": "taboo_sk_1223",
+      "category": "Nature and the World",
+      "word": "violet",
+      "forbidden": [
+        "purple",
+        "small",
+        "spring",
+        "flower"
+      ]
+    },
+    {
+      "id": "taboo_sk_1224",
+      "category": "Nature and the World",
+      "word": "orchid",
+      "forbidden": [
+        "exotic",
+        "pot",
+        "flower",
+        "tropical"
+      ]
+    },
+    {
+      "id": "taboo_sk_1225",
+      "category": "Nature and the World",
+      "word": "rose",
+      "forbidden": [
+        "flower",
+        "thorns",
+        "red",
+        "smell"
+      ]
+    },
+    {
+      "id": "taboo_sk_1226",
+      "category": "Nature and the World",
+      "word": "sunflower",
+      "forbidden": [
+        "yellow",
+        "seeds",
+        "tall",
+        "oil"
+      ]
+    },
+    {
+      "id": "taboo_sk_1227",
+      "category": "Nature and the World",
+      "word": "lily of the valley",
+      "forbidden": [
+        "white",
+        "bells",
+        "May",
+        "poisonous"
+      ]
+    },
+    {
+      "id": "taboo_sk_1228",
+      "category": "Nature and the World",
+      "word": "pine needles",
+      "forbidden": [
+        "prickly",
+        "Christmas tree",
+        "spruce",
+        "evergreen"
+      ]
+    },
+    {
+      "id": "taboo_sk_1229",
+      "category": "Nature and the World",
+      "word": "pine cone",
+      "forbidden": [
+        "tree",
+        "seeds",
+        "forest",
+        "scales"
+      ]
+    },
+    {
+      "id": "taboo_sk_1230",
+      "category": "Nature and the World",
+      "word": "acorn",
+      "forbidden": [
+        "oak",
+        "squirrel",
+        "nut",
+        "cap"
+      ]
+    },
+    {
+      "id": "taboo_sk_1231",
+      "category": "Nature and the World",
+      "word": "spinach",
+      "forbidden": [
+        "green",
+        "Popeye",
+        "leaves",
+        "iron"
+      ]
+    },
+    {
+      "id": "taboo_sk_1232",
+      "category": "Nature and the World",
+      "word": "radish",
+      "forbidden": [
+        "red",
+        "small",
+        "crunchy",
+        "spicy"
+      ]
+    },
+    {
+      "id": "taboo_sk_1233",
+      "category": "Nature and the World",
+      "word": "beet",
+      "forbidden": [
+        "red",
+        "purple",
+        "borscht",
+        "root"
+      ]
+    },
+    {
+      "id": "taboo_sk_1234",
+      "category": "Nature and the World",
+      "word": "pumpkin",
+      "forbidden": [
+        "orange",
+        "Halloween",
+        "pie",
+        "carve"
+      ]
+    },
+    {
+      "id": "taboo_sk_1235",
+      "category": "Nature and the World",
+      "word": "peas",
+      "forbidden": [
+        "green",
+        "pod",
+        "small",
+        "round"
+      ]
+    },
+    {
+      "id": "taboo_sk_1236",
+      "category": "Nature and the World",
+      "word": "corn",
+      "forbidden": [
+        "cob",
+        "popcorn",
+        "yellow",
+        "kernels"
+      ]
+    },
+    {
+      "id": "taboo_sk_1237",
+      "category": "Nature and the World",
+      "word": "leek",
+      "forbidden": [
+        "onion",
+        "long",
+        "green",
+        "soup"
+      ]
+    },
+    {
+      "id": "taboo_sk_1238",
+      "category": "Nature and the World",
+      "word": "parsley",
+      "forbidden": [
+        "herb",
+        "green",
+        "garnish",
+        "curly"
+      ]
+    },
+    {
+      "id": "taboo_sk_1239",
+      "category": "Nature and the World",
+      "word": "basil",
+      "forbidden": [
+        "pesto",
+        "herb",
+        "Italian",
+        "tomato"
+      ]
+    },
+    {
+      "id": "taboo_sk_1240",
+      "category": "Nature and the World",
+      "word": "mint",
+      "forbidden": [
+        "fresh",
+        "tea",
+        "mojito",
+        "gum"
+      ]
+    },
+    {
+      "id": "taboo_sk_1241",
+      "category": "Nature and the World",
+      "word": "rosemary",
+      "forbidden": [
+        "herb",
+        "needles",
+        "lamb",
+        "potatoes"
+      ]
+    },
+    {
+      "id": "taboo_sk_1242",
+      "category": "Nature and the World",
+      "word": "dill",
+      "forbidden": [
+        "herb",
+        "pickles",
+        "fish",
+        "feathery"
+      ]
+    },
+    {
+      "id": "taboo_sk_1243",
+      "category": "Nature and the World",
+      "word": "chives",
+      "forbidden": [
+        "onion",
+        "herb",
+        "thin",
+        "sour cream"
+      ]
+    },
+    {
+      "id": "taboo_sk_1244",
+      "category": "Nature and the World",
+      "word": "grapes",
+      "forbidden": [
+        "wine",
+        "vine",
+        "bunch",
+        "raisins"
+      ]
+    },
+    {
+      "id": "taboo_sk_1245",
+      "category": "Nature and the World",
+      "word": "pear",
+      "forbidden": [
+        "fruit",
+        "green",
+        "shape",
+        "juicy"
+      ]
+    },
+    {
+      "id": "taboo_sk_1246",
+      "category": "Nature and the World",
+      "word": "plum",
+      "forbidden": [
+        "purple",
+        "pit",
+        "dumplings",
+        "prunes"
+      ]
+    },
+    {
+      "id": "taboo_sk_1247",
+      "category": "Nature and the World",
+      "word": "apricot",
+      "forbidden": [
+        "orange",
+        "pit",
+        "jam",
+        "fuzzy"
+      ]
+    },
+    {
+      "id": "taboo_sk_1248",
+      "category": "Nature and the World",
+      "word": "cherry",
+      "forbidden": [
+        "red",
+        "stem",
+        "pit",
+        "cake"
+      ]
+    },
+    {
+      "id": "taboo_sk_1249",
+      "category": "Nature and the World",
+      "word": "raspberry",
+      "forbidden": [
+        "red",
+        "bush",
+        "jam",
+        "berry"
+      ]
+    },
+    {
+      "id": "taboo_sk_1250",
+      "category": "Nature and the World",
+      "word": "blueberry",
+      "forbidden": [
+        "blue",
+        "muffin",
+        "forest",
+        "small"
+      ]
+    },
+    {
+      "id": "taboo_sk_1251",
+      "category": "Nature and the World",
+      "word": "gooseberry",
+      "forbidden": [
+        "green",
+        "sour",
+        "hairy",
+        "bush"
+      ]
+    },
+    {
+      "id": "taboo_sk_1252",
+      "category": "Nature and the World",
+      "word": "currant",
+      "forbidden": [
+        "red",
+        "black",
+        "bunches",
+        "juice"
+      ]
+    },
+    {
+      "id": "taboo_sk_1253",
+      "category": "Nature and the World",
+      "word": "kiwi",
+      "forbidden": [
+        "green",
+        "fuzzy",
+        "New Zealand",
+        "brown"
+      ]
+    },
+    {
+      "id": "taboo_sk_1254",
+      "category": "Nature and the World",
+      "word": "drizzle",
+      "forbidden": [
+        "rain",
+        "light",
+        "fine",
+        "wet"
+      ]
+    },
+    {
+      "id": "taboo_sk_1255",
+      "category": "Nature and the World",
+      "word": "rain shower",
+      "forbidden": [
+        "sudden",
+        "short",
+        "wet",
+        "umbrella"
+      ]
+    },
+    {
+      "id": "taboo_sk_1256",
+      "category": "Nature and the World",
+      "word": "storm",
+      "forbidden": [
+        "thunder",
+        "lightning",
+        "rain",
+        "wind"
+      ]
+    },
+    {
+      "id": "taboo_sk_1257",
+      "category": "Nature and the World",
+      "word": "gale",
+      "forbidden": [
+        "wind",
+        "strong",
+        "gusts",
+        "trees"
+      ]
+    },
+    {
+      "id": "taboo_sk_1258",
+      "category": "Nature and the World",
+      "word": "breeze",
+      "forbidden": [
+        "light",
+        "wind",
+        "cool",
+        "gentle"
+      ]
+    },
+    {
+      "id": "taboo_sk_1259",
+      "category": "Nature and the World",
+      "word": "fog",
+      "forbidden": [
+        "mist",
+        "gray",
+        "visibility",
+        "thick"
+      ]
+    },
+    {
+      "id": "taboo_sk_1260",
+      "category": "Nature and the World",
+      "word": "frost",
+      "forbidden": [
+        "ice crystals",
+        "white",
+        "windows",
+        "morning"
+      ]
+    },
+    {
+      "id": "taboo_sk_1261",
+      "category": "Nature and the World",
+      "word": "black ice",
+      "forbidden": [
+        "slippery",
+        "road",
+        "winter",
+        "skid"
+      ]
+    },
+    {
+      "id": "taboo_sk_1262",
+      "category": "Nature and the World",
+      "word": "hail",
+      "forbidden": [
+        "ice",
+        "balls",
+        "storm",
+        "damage"
+      ]
+    },
+    {
+      "id": "taboo_sk_1263",
+      "category": "Nature and the World",
+      "word": "heat wave",
+      "forbidden": [
+        "hot",
+        "summer",
+        "sweat",
+        "temperature"
+      ]
+    },
+    {
+      "id": "taboo_sk_1264",
+      "category": "Nature and the World",
+      "word": "drought",
+      "forbidden": [
+        "dry",
+        "no rain",
+        "desert",
+        "crops"
+      ]
+    },
+    {
+      "id": "taboo_sk_1265",
+      "category": "Nature and the World",
+      "word": "freezing cold",
+      "forbidden": [
+        "below zero",
+        "winter",
+        "ice",
+        "temperature"
+      ]
+    },
+    {
+      "id": "taboo_sk_1266",
+      "category": "Nature and the World",
+      "word": "snowdrift",
+      "forbidden": [
+        "snow",
+        "pile",
+        "wind",
+        "shovel"
+      ]
+    },
+    {
+      "id": "taboo_sk_1267",
+      "category": "Nature and the World",
+      "word": "snowflake",
+      "forbidden": [
+        "white",
+        "crystal",
+        "winter",
+        "falling"
+      ]
+    },
+    {
+      "id": "taboo_sk_1268",
+      "category": "Nature and the World",
+      "word": "avalanche",
+      "forbidden": [
+        "snow",
+        "mountain",
+        "danger",
+        "slide"
+      ]
+    },
+    {
+      "id": "taboo_sk_1269",
+      "category": "Nature and the World",
+      "word": "thaw",
+      "forbidden": [
+        "snow",
+        "melt",
+        "spring",
+        "warm"
+      ]
+    },
+    {
+      "id": "taboo_sk_1270",
+      "category": "Nature and the World",
+      "word": "cloud cover",
+      "forbidden": [
+        "overcast",
+        "gray",
+        "sky",
+        "sun"
+      ]
+    },
+    {
+      "id": "taboo_sk_1271",
+      "category": "Nature and the World",
+      "word": "sunrise",
+      "forbidden": [
+        "morning",
+        "east",
+        "dawn",
+        "sun"
+      ]
+    },
+    {
+      "id": "taboo_sk_1272",
+      "category": "Nature and the World",
+      "word": "sunset",
+      "forbidden": [
+        "evening",
+        "west",
+        "orange",
+        "sun"
+      ]
+    },
+    {
+      "id": "taboo_sk_1273",
+      "category": "Nature and the World",
+      "word": "northern lights",
+      "forbidden": [
+        "aurora",
+        "sky",
+        "Norway",
+        "green"
+      ]
+    },
+    {
+      "id": "taboo_sk_1274",
+      "category": "Nature and the World",
+      "word": "solar eclipse",
+      "forbidden": [
+        "moon",
+        "sun",
+        "dark",
+        "glasses"
+      ]
+    },
+    {
+      "id": "taboo_sk_1275",
+      "category": "Nature and the World",
+      "word": "lunar eclipse",
+      "forbidden": [
+        "moon",
+        "shadow",
+        "red",
+        "Earth"
+      ]
+    },
+    {
+      "id": "taboo_sk_1276",
+      "category": "Nature and the World",
+      "word": "comet",
+      "forbidden": [
+        "tail",
+        "space",
+        "ice",
+        "Halley"
+      ]
+    },
+    {
+      "id": "taboo_sk_1277",
+      "category": "Nature and the World",
+      "word": "steam",
+      "forbidden": [
+        "water",
+        "hot",
+        "rise",
+        "pot"
+      ]
+    },
+    {
+      "id": "taboo_sk_1278",
+      "category": "Nature and the World",
+      "word": "bubble",
+      "forbidden": [
+        "water",
+        "air",
+        "soap",
+        "pop"
+      ]
+    },
+    {
+      "id": "taboo_sk_1279",
+      "category": "Nature and the World",
+      "word": "constellation",
+      "forbidden": [
+        "stars",
+        "sky",
+        "Big Dipper",
+        "zodiac"
+      ]
+    },
+    {
+      "id": "taboo_sk_1280",
+      "category": "Nature and the World",
+      "word": "planet",
+      "forbidden": [
+        "Earth",
+        "Mars",
+        "orbit",
+        "solar system"
+      ]
+    },
+    {
+      "id": "taboo_sk_1281",
+      "category": "Nature and the World",
+      "word": "universe",
+      "forbidden": [
+        "stars",
+        "planets",
+        "rocket",
+        "dark"
+      ]
+    },
+    {
+      "id": "taboo_sk_1282",
+      "category": "Nature and the World",
+      "word": "galaxy",
+      "forbidden": [
+        "Milky Way",
+        "stars",
+        "spiral",
+        "space"
+      ]
+    },
+    {
+      "id": "taboo_sk_1283",
+      "category": "Nature and the World",
+      "word": "ravine",
+      "forbidden": [
+        "narrow",
+        "valley",
+        "steep",
+        "stream"
+      ]
+    },
+    {
+      "id": "taboo_sk_1284",
+      "category": "Nature and the World",
+      "word": "gorge",
+      "forbidden": [
+        "cliffs",
+        "narrow",
+        "river",
+        "hiking"
+      ]
+    },
+    {
+      "id": "taboo_sk_1285",
+      "category": "Nature and the World",
+      "word": "canyon",
+      "forbidden": [
+        "Arizona",
+        "deep",
+        "river",
+        "cliffs"
+      ]
+    },
+    {
+      "id": "taboo_sk_1286",
+      "category": "Nature and the World",
+      "word": "hill",
+      "forbidden": [
+        "mountain",
+        "view",
+        "climb",
+        "hiking"
+      ]
+    },
+    {
+      "id": "taboo_sk_1287",
+      "category": "Nature and the World",
+      "word": "highlands",
+      "forbidden": [
+        "hills",
+        "Scotland",
+        "upland",
+        "plateau"
+      ]
+    },
+    {
+      "id": "taboo_sk_1288",
+      "category": "Nature and the World",
+      "word": "mountain range",
+      "forbidden": [
+        "Alps",
+        "peaks",
+        "chain",
+        "Himalayas"
+      ]
+    },
+    {
+      "id": "taboo_sk_1289",
+      "category": "Nature and the World",
+      "word": "ridge",
+      "forbidden": [
+        "mountain",
+        "crest",
+        "peaks",
+        "line"
+      ]
+    },
+    {
+      "id": "taboo_sk_1290",
+      "category": "Nature and the World",
+      "word": "hillside",
+      "forbidden": [
+        "slope",
+        "steep",
+        "mountain",
+        "grass"
+      ]
+    },
+    {
+      "id": "taboo_sk_1291",
+      "category": "Nature and the World",
+      "word": "pasture",
+      "forbidden": [
+        "cows",
+        "grazing",
+        "meadow",
+        "grass"
+      ]
+    },
+    {
+      "id": "taboo_sk_1292",
+      "category": "Nature and the World",
+      "word": "stream",
+      "forbidden": [
+        "brook",
+        "water",
+        "small",
+        "flow"
+      ]
+    },
+    {
+      "id": "taboo_sk_1293",
+      "category": "Nature and the World",
+      "word": "riverbank",
+      "forbidden": [
+        "river",
+        "water",
+        "shore",
+        "fishing"
+      ]
+    },
+    {
+      "id": "taboo_sk_1294",
+      "category": "Nature and the World",
+      "word": "estuary",
+      "forbidden": [
+        "river",
+        "sea",
+        "delta",
+        "tide"
+      ]
+    },
+    {
+      "id": "taboo_sk_1295",
+      "category": "Nature and the World",
+      "word": "peninsula",
+      "forbidden": [
+        "sea",
+        "three sides",
+        "land",
+        "Italy"
+      ]
+    },
+    {
+      "id": "taboo_sk_1296",
+      "category": "Nature and the World",
+      "word": "archipelago",
+      "forbidden": [
+        "islands",
+        "sea",
+        "group",
+        "Greece"
+      ]
+    },
+    {
+      "id": "taboo_sk_1297",
+      "category": "Nature and the World",
+      "word": "coral",
+      "forbidden": [
+        "reef",
+        "colorful",
+        "fish",
+        "sea"
+      ]
+    },
+    {
+      "id": "taboo_sk_1298",
+      "category": "Nature and the World",
+      "word": "glacier",
+      "forbidden": [
+        "ice",
+        "melt",
+        "mountain",
+        "Alaska"
+      ]
+    },
+    {
+      "id": "taboo_sk_1299",
+      "category": "Nature and the World",
+      "word": "snow",
+      "forbidden": [
+        "winter",
+        "white",
+        "flakes",
+        "cold"
+      ]
+    },
+    {
+      "id": "taboo_sk_1300",
+      "category": "Nature and the World",
+      "word": "dune",
+      "forbidden": [
+        "desert",
+        "sand",
+        "Sahara",
+        "hill"
+      ]
+    },
+    {
+      "id": "taboo_sk_1301",
+      "category": "Nature and the World",
+      "word": "volcano",
+      "forbidden": [
+        "lava",
+        "mountain",
+        "eruption",
+        "fire"
+      ]
+    },
+    {
+      "id": "taboo_sk_1302",
+      "category": "Nature and the World",
+      "word": "geyser",
+      "forbidden": [
+        "hot water",
+        "Iceland",
+        "Yellowstone",
+        "spout"
+      ]
+    },
+    {
+      "id": "taboo_sk_1303",
+      "category": "Nature and the World",
+      "word": "earthquake",
+      "forbidden": [
+        "shaking",
+        "Richter",
+        "ground",
+        "tremor"
+      ]
+    },
+    {
+      "id": "taboo_sk_1304",
+      "category": "Nature and the World",
+      "word": "continent",
+      "forbidden": [
+        "Europe",
+        "Africa",
+        "map",
+        "land"
+      ]
+    },
+    {
+      "id": "taboo_sk_1305",
+      "category": "Nature and the World",
+      "word": "equator",
+      "forbidden": [
+        "line",
+        "middle",
+        "hot",
+        "hemisphere"
+      ]
+    },
+    {
+      "id": "taboo_sk_1306",
+      "category": "Nature and the World",
+      "word": "hemisphere",
+      "forbidden": [
+        "half",
+        "northern",
+        "southern",
+        "globe"
+      ]
+    },
+    {
+      "id": "taboo_sk_1307",
+      "category": "Nature and the World",
+      "word": "North Pole",
+      "forbidden": [
+        "Arctic",
+        "Santa",
+        "ice",
+        "polar bear"
+      ]
+    },
+    {
+      "id": "taboo_sk_1308",
+      "category": "Nature and the World",
+      "word": "South Pole",
+      "forbidden": [
+        "Antarctica",
+        "penguins",
+        "ice",
+        "cold"
+      ]
+    },
+    {
+      "id": "taboo_sk_1309",
+      "category": "Nature and the World",
+      "word": "Earth",
+      "forbidden": [
+        "planet",
+        "world",
+        "round",
+        "blue"
+      ]
+    },
+    {
+      "id": "taboo_sk_1310",
+      "category": "Nature and the World",
+      "word": "capital",
+      "forbidden": [
+        "country",
+        "city",
+        "government",
+        "Paris"
+      ]
+    },
+    {
+      "id": "taboo_sk_1311",
+      "category": "Nature and the World",
+      "word": "border",
+      "forbidden": [
+        "passport",
+        "customs",
+        "crossing",
+        "abroad"
+      ]
+    },
+    {
+      "id": "taboo_sk_1312",
+      "category": "Nature and the World",
+      "word": "flag",
+      "forbidden": [
+        "country",
+        "colors",
+        "pole",
+        "anthem"
+      ]
+    },
+    {
+      "id": "taboo_sk_1313",
+      "category": "Nature and the World",
+      "word": "language",
+      "forbidden": [
+        "speak",
+        "words",
+        "English",
+        "foreign"
+      ]
+    },
+    {
+      "id": "taboo_sk_1314",
+      "category": "Nature and the World",
+      "word": "nationality",
+      "forbidden": [
+        "citizenship",
+        "country",
+        "passport",
+        "origin"
+      ]
+    },
+    {
+      "id": "taboo_sk_1315",
+      "category": "Nature and the World",
+      "word": "population",
+      "forbidden": [
+        "people",
+        "inhabitants",
+        "census",
+        "number"
+      ]
+    },
+    {
+      "id": "taboo_sk_1316",
+      "category": "Nature and the World",
+      "word": "coin",
+      "forbidden": [
+        "money",
+        "metal",
+        "pay",
+        "currency"
+      ]
+    },
+    {
+      "id": "taboo_sk_1317",
+      "category": "Nature and the World",
+      "word": "globe",
+      "forbidden": [
+        "world",
+        "map",
+        "sphere",
+        "school"
+      ]
+    },
+    {
+      "id": "taboo_sk_1318",
+      "category": "Nature and the World",
+      "word": "rock",
+      "forbidden": [
+        "stone",
+        "mountain",
+        "hard",
+        "climbing"
+      ]
+    },
+    {
+      "id": "taboo_sk_1319",
+      "category": "Nature and the World",
+      "word": "national park",
+      "forbidden": [
+        "nature",
+        "protected",
+        "Yellowstone",
+        "rangers"
+      ]
+    },
+    {
+      "id": "taboo_sk_1320",
+      "category": "Nature and the World",
+      "word": "waves",
+      "forbidden": [
+        "sea",
+        "water",
+        "beach",
+        "surfing"
+      ]
+    },
+    {
+      "id": "taboo_sk_1321",
+      "category": "Nature and the World",
+      "word": "ecosystem",
+      "forbidden": [
+        "nature",
+        "balance",
+        "species",
+        "environment"
+      ]
+    },
+    {
+      "id": "taboo_sk_1322",
+      "category": "Nature and the World",
+      "word": "food",
+      "forbidden": [
+        "eat",
+        "animal",
+        "hungry",
+        "meal"
+      ]
+    },
+    {
+      "id": "taboo_sk_1323",
+      "category": "Nature and the World",
+      "word": "smog",
+      "forbidden": [
+        "air",
+        "city",
+        "gray",
+        "pollution"
+      ]
+    },
+    {
+      "id": "taboo_sk_1324",
+      "category": "Nature and the World",
+      "word": "recycling",
+      "forbidden": [
+        "plastic",
+        "bins",
+        "glass",
+        "environment"
+      ]
+    },
+    {
+      "id": "taboo_sk_1325",
+      "category": "Nature and the World",
+      "word": "wind",
+      "forbidden": [
+        "blow",
+        "air",
+        "trees",
+        "weather"
+      ]
+    },
+    {
+      "id": "taboo_sk_1326",
+      "category": "Nature and the World",
+      "word": "tree",
+      "forbidden": [
+        "forest",
+        "leaves",
+        "trunk",
+        "wood"
+      ]
+    },
+    {
+      "id": "taboo_sk_1327",
+      "category": "Nature and the World",
+      "word": "bison",
+      "forbidden": [
+        "buffalo",
+        "horns",
+        "herd",
+        "prairie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1328",
+      "category": "Nature and the World",
+      "word": "otter",
+      "forbidden": [
+        "river",
+        "swim",
+        "fish",
+        "playful"
+      ]
+    },
+    {
+      "id": "taboo_sk_1329",
+      "category": "Nature and the World",
+      "word": "jackal",
+      "forbidden": [
+        "Africa",
+        "pack",
+        "desert",
+        "wild dog"
+      ]
+    },
+    {
+      "id": "taboo_sk_1330",
+      "category": "Nature and the World",
+      "word": "grass snake",
+      "forbidden": [
+        "harmless",
+        "reptile",
+        "pond",
+        "slither"
+      ]
+    },
+    {
+      "id": "taboo_sk_1331",
+      "category": "Nature and the World",
+      "word": "viper",
+      "forbidden": [
+        "venomous",
+        "snake",
+        "bite",
+        "zigzag"
+      ]
+    },
+    {
+      "id": "taboo_sk_1332",
+      "category": "Nature and the World",
+      "word": "trout",
+      "forbidden": [
+        "fish",
+        "river",
+        "spots",
+        "fishing"
+      ]
+    },
+    {
+      "id": "taboo_sk_1333",
+      "category": "Nature and the World",
+      "word": "crayfish",
+      "forbidden": [
+        "claws",
+        "river",
+        "red",
+        "lobster"
+      ]
+    },
+    {
+      "id": "taboo_sk_1334",
+      "category": "Nature and the World",
+      "word": "woodpecker",
+      "forbidden": [
+        "peck",
+        "tree",
+        "beak",
+        "drumming"
+      ]
+    },
+    {
+      "id": "taboo_sk_1335",
+      "category": "Nature and the World",
+      "word": "raven",
+      "forbidden": [
+        "black",
+        "bird",
+        "crow",
+        "Poe"
+      ]
+    },
+    {
+      "id": "taboo_sk_1336",
+      "category": "Nature and the World",
+      "word": "chickadee",
+      "forbidden": [
+        "small",
+        "bird",
+        "feeder",
+        "black cap"
+      ]
+    },
+    {
+      "id": "taboo_sk_1337",
+      "category": "Nature and the World",
+      "word": "turkey",
+      "forbidden": [
+        "Thanksgiving",
+        "bird",
+        "gobble",
+        "roast"
+      ]
+    },
+    {
+      "id": "taboo_sk_1339",
+      "category": "Nature and the World",
+      "word": "mallard",
+      "forbidden": [
+        "duck",
+        "pond",
+        "green head",
+        "quack"
+      ]
+    },
+    {
+      "id": "taboo_sk_1340",
+      "category": "Nature and the World",
+      "word": "heron",
+      "forbidden": [
+        "long legs",
+        "bird",
+        "water",
+        "gray"
+      ]
+    },
+    {
+      "id": "taboo_sk_1341",
+      "category": "Nature and the World",
+      "word": "sparrowhawk",
+      "forbidden": [
+        "bird of prey",
+        "small",
+        "hunting",
+        "falcon"
+      ]
+    },
+    {
+      "id": "taboo_sk_1342",
+      "category": "Nature and the World",
+      "word": "hawk",
+      "forbidden": [
+        "bird of prey",
+        "talons",
+        "hunt",
+        "eagle"
+      ]
+    },
+    {
+      "id": "taboo_sk_1343",
+      "category": "Nature and the World",
+      "word": "quail",
+      "forbidden": [
+        "small bird",
+        "eggs",
+        "spotted",
+        "hunting"
+      ]
+    },
+    {
+      "id": "taboo_sk_1344",
+      "category": "Nature and the World",
+      "word": "pheasant",
+      "forbidden": [
+        "bird",
+        "long tail",
+        "hunting",
+        "colorful"
+      ]
+    },
+    {
+      "id": "taboo_sk_1345",
+      "category": "Nature and the World",
+      "word": "starfish",
+      "forbidden": [
+        "sea",
+        "five arms",
+        "star",
+        "beach"
+      ]
+    },
+    {
+      "id": "taboo_sk_1346",
+      "category": "Nature and the World",
+      "word": "sea urchin",
+      "forbidden": [
+        "spikes",
+        "sea",
+        "spiny",
+        "rocks"
+      ]
+    },
+    {
+      "id": "taboo_sk_1347",
+      "category": "Nature and the World",
+      "word": "clay",
+      "forbidden": [
+        "soil",
+        "dirt",
+        "pottery",
+        "dig"
+      ]
+    },
+    {
+      "id": "taboo_sk_1348",
+      "category": "Nature and the World",
+      "word": "orca",
+      "forbidden": [
+        "killer whale",
+        "black and white",
+        "ocean",
+        "dolphin"
+      ]
+    },
+    {
+      "id": "taboo_sk_1349",
+      "category": "Nature and the World",
+      "word": "firefly",
+      "forbidden": [
+        "glow",
+        "night",
+        "insect",
+        "light"
+      ]
+    },
+    {
+      "id": "taboo_sk_1350",
+      "category": "Nature and the World",
+      "word": "earthworm",
+      "forbidden": [
+        "soil",
+        "rain",
+        "fishing",
+        "slimy"
+      ]
+    }
+  ]
+}

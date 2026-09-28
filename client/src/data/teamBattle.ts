@@ -2,6 +2,7 @@ import { ALL_TEAM_CHARADES_WORDS } from "./charades";
 import { getCharacterCategories } from "./characters";
 import type { AppLanguage } from "../i18n/LanguageProvider";
 import { GENERATED_PANTOMIME_BY_DIFFICULTY } from "./expandedContent";
+import { localizeList } from "../i18n/content";
 
 // ── Quiz difficulty (used by Setup.tsx and the quiz round) ────────────────────
 export type QuizDifficulty = "lahke" | "tazke";
@@ -392,6 +393,11 @@ export const PANTOMIMA_WORDS_BY_DIFFICULTY: Record<PantomimaDifficulty, string[]
 
 // Šarády už nepoznajú obtiažnosť — tímy hrajú z jedného spoločného balíka,
 // každé uhádnuté slovo = 1 bod.
+/** Pantomíma v jazyku hry (i18n/content/en/pantomime.json). */
+export function getPantomimeWordsForLanguage(difficulty: PantomimaDifficulty, language: AppLanguage): string[] {
+  return localizeList("pantomime", PANTOMIMA_WORDS_BY_DIFFICULTY[difficulty], language);
+}
+
 export const SARADY_WORDS: string[] = [...ALL_TEAM_CHARADES_WORDS];
 
 // ── Hádaj kto som words (characters for team mode) ───────────────────────────

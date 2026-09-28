@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import type { GameType, PantomimaDifficulty } from "../../data/teamBattle";
 import {
-  PANTOMIMA_WORDS_BY_DIFFICULTY,
+  getPantomimeWordsForLanguage,
   PANTOMIMA_DIFFICULTY_POINTS,
   PANTOMIMA_DIFFICULTY_LABELS,
 } from "../../data/teamBattle";
 import { partyTeamIdentity } from "./teamIdentity";
 import { getCharadesWordsForLanguage } from "../../data/charades";
 import { useLanguage } from "../../i18n/LanguageProvider";
+import { deckKeyForLanguage } from "../../i18n/content";
 import { takePersistentItem } from "../../utils/persistentDeck";
 import {
   requestTiltPermission,
@@ -128,8 +129,8 @@ export default function TimedWords({
 
   function takeNextPantomimeWord(d: PantomimaDifficulty) {
     return takePersistentItem(
-      "party:pantomime:all",
-      PANTOMIMA_WORDS_BY_DIFFICULTY[d],
+      deckKeyForLanguage("party:pantomime:all", language),
+      getPantomimeWordsForLanguage(d, language),
       word => word.trim().toLocaleLowerCase("sk")
     );
   }

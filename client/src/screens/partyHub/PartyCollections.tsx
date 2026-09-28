@@ -1,9 +1,10 @@
 import { useMemo, useState } from "react";
 import { Icons } from "../../components/icons";
 import PackShareDialog from "../../components/PackShareDialog";
-import { DEFAULT_COLLECTION_ID, SEASONAL_PARTY_PACKS, getWorkshopEntryValidationError, normalizeWorkshopCollections, normalizeWorkshopEntries, type SeasonalPartyPack } from "../../data/partyContent";
+import { DEFAULT_COLLECTION_ID, getSeasonalPartyPacks, getWorkshopEntryValidationError, normalizeWorkshopCollections, normalizeWorkshopEntries, type SeasonalPartyPack } from "../../data/partyContent";
 import { PartyPackError, installPartyPack, type DecodedPartyPack } from "../../data/partyPackSharing";
 import type { WorkshopCollection, WorkshopEntry, WorkshopEntryKind } from "../../types";
+import { useLanguage } from "../../i18n/LanguageProvider";
 
 const KINDS: Array<[Exclude<WorkshopEntryKind, "word">, string]> = [
   ["truth", "Pravda"], ["dare", "Výzva"], ["never", "Nikdy som nikdy"], ["wouldRather", "Radšej by som"],
@@ -42,6 +43,8 @@ export default function PartyCollections({ collections, entries, autoImportNotic
   onCollectionsChange: (collections: WorkshopCollection[]) => void;
   onEntriesChange: (entries: WorkshopEntry[]) => void;
 }) {
+  const { language } = useLanguage();
+  const seasonalPacks = getSeasonalPartyPacks(language);
   const [collectionName, setCollectionName] = useState("");
   const [kind, setKind] = useState<Exclude<WorkshopEntryKind, "word">>("truth");
   const [text, setText] = useState("");
@@ -56,9 +59,9 @@ export default function PartyCollections({ collections, entries, autoImportNotic
   const requiresAnswer = ANSWER_KINDS.has(kind);
   const entryValidationError = getWorkshopEntryValidationError(kind, text, requiresAnswer ? answer : "");
   const filtered = useMemo(() => entries.filter((entry) => (filterCollection === "all" || entry.collectionIds.includes(filterCollection)) && (filterKind === "all" || entry.kind === filterKind)), [entries, filterCollection, filterKind]);
-  const installedSeasonalIds = useMemo(() => new Set(SEASONAL_PARTY_PACKS
+  const installedSeasonalIds = useMemo(() => new Set(seasonalPacks
     .filter((pack) => isSeasonalPackInstalled(pack, collections, entries))
-    .map((pack) => pack.id)), [collections, entries]);
+    .map((pack) => pack.id)), [collections, entries, seasonalPacks]);
 
   function createCollection() {
     const name = collectionName.trim().slice(0, 40);
@@ -143,7 +146,7 @@ export default function PartyCollections({ collections, entries, autoImportNotic
 
       <div className="mt-4 rounded-2xl border border-violet-300/15 bg-violet-400/[.06] p-3">
         <div className="flex items-center justify-between gap-3"><div><p className="premium-eyebrow text-violet-300/75">Hotové lokálne balíky</p><h3 className="mt-1 text-sm font-black">Sezónne kolekcie</h3></div><button type="button" onClick={() => setImportOpen(true)} className="rounded-xl border border-white/10 bg-white/[.07] px-3 py-2 text-[9px] font-black">Importovať PP1</button></div>
-        <div className="mt-3 grid grid-cols-2 gap-2">{SEASONAL_PARTY_PACKS.map((pack) => {
+        <div className="mt-3 grid grid-cols-2 gap-2">{seasonalPacks.map((pack) => {
           const installed = installedSeasonalIds.has(pack.id);
           return <article key={pack.id} className="rounded-xl border border-white/[.08] bg-black/15 p-3"><div className="flex items-center gap-2"><span className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-400/10 text-violet-200"><Icons.package size={16} /></span><strong className="text-[10px] leading-tight">{pack.name}</strong></div><p className="mt-2 min-h-9 text-[8px] leading-relaxed text-white/38">{pack.description}</p><p className="mt-1 text-[8px] font-bold text-white/30">{pack.entries.length} kariet · viac hier</p><button type="button" disabled={installed} onClick={() => installSeasonalPack(pack)} className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-lg bg-violet-300 py-2 text-[9px] font-black text-violet-950 disabled:bg-emerald-300/20 disabled:text-emerald-200">{installed && <Icons.circleCheck size={13} />}{installed ? "Nainštalované" : "Nainštalovať"}</button></article>;
         })}</div>

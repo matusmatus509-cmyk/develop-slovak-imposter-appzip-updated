@@ -1,6 +1,7 @@
 import { Toggle } from "../components/ui";
 import { PARTY_THEMES } from "../data/engagement";
 import { useFeedback } from "../feedback/FeedbackProvider";
+import { LANGUAGE_OPTIONS, useLanguage } from "../i18n/LanguageProvider";
 import type { FeedbackSettings, PartyTheme } from "../types";
 
 export default function Settings({ settings, musicSupported, musicBlocked, onChange, onBack }: {
@@ -11,6 +12,7 @@ export default function Settings({ settings, musicSupported, musicBlocked, onCha
   onBack: () => void;
 }) {
   const { playFeedback } = useFeedback();
+  const { language, setLanguage } = useLanguage();
   const update = <K extends keyof FeedbackSettings>(key: K, value: FeedbackSettings[K]) => onChange({ ...settings, [key]: value });
 
   return (
@@ -20,7 +22,11 @@ export default function Settings({ settings, musicSupported, musicBlocked, onCha
 
         <section className="mt-8"><h1 className="text-[2.25rem] font-black leading-none tracking-[-.045em]">Nastavte si hru</h1><p className="mt-3 max-w-[19rem] text-[11px] font-semibold leading-relaxed text-white/45">Vyberte si vzhľad a odozvu, ktorá vašej partii vyhovuje.</p></section>
 
-        <section className="mt-9 border-t border-white/10 pt-5"><h2 className="text-base font-black">Vzhľad</h2>
+        <section className="mt-9 border-t border-white/10 pt-5"><h2 className="text-base font-black">Jazyk</h2><p className="mt-2 text-[11px] font-semibold leading-relaxed text-white/42">Jazyk aplikácie aj herného obsahu.</p>
+          <div data-no-translate className="mt-3 grid grid-cols-2 gap-2" role="group" aria-label="Language">{LANGUAGE_OPTIONS.map((option) => <button key={option.code} type="button" aria-pressed={language === option.code} onClick={() => setLanguage(option.code)} className={`flex items-center gap-2 rounded-xl border px-3 py-3 text-left text-xs font-bold transition ${language === option.code ? "border-white/35 bg-white/[.07] text-white" : "border-white/[.08] bg-[#111820] text-white/58"}`}><span className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-black/20 text-[9px] font-black tracking-wide">{option.mark}</span><span className="truncate">{option.label}</span></button>)}</div>
+        </section>
+
+        <section className="mt-8 border-t border-white/10 pt-5"><h2 className="text-base font-black">Vzhľad</h2>
           <div className="mt-4 grid grid-cols-2 rounded-xl border border-white/10 bg-[#111820] p-1" role="group" aria-label="Farebný režim"><button type="button" aria-pressed={!settings.darkMode} onClick={() => update("darkMode", false)} className={`rounded-lg py-3 text-[10px] font-bold transition ${!settings.darkMode ? "bg-white text-[#0b1016]" : "text-white/42"}`}>Svetlý režim</button><button type="button" aria-pressed={settings.darkMode} onClick={() => update("darkMode", true)} className={`rounded-lg py-3 text-[10px] font-bold transition ${settings.darkMode ? "bg-[#29323d] text-white" : "text-white/42"}`}>Tmavý režim</button></div>
           <div className="mt-3 grid grid-cols-2 gap-2">{PARTY_THEMES.map((theme) => <button key={theme.id} type="button" aria-pressed={settings.partyTheme === theme.id} onClick={() => update("partyTheme", theme.id as PartyTheme)} className={`rounded-xl border p-2 text-left transition ${settings.partyTheme === theme.id ? "border-white/35 bg-white/[.07]" : "border-white/[.08] bg-[#111820]"}`}><span className="block h-9 rounded-lg" style={{ background: theme.swatch }} /><span className="mt-2 flex items-center justify-between"><strong className="text-[10px]">{theme.title}</strong>{settings.partyTheme === theme.id ? <span className="text-[8px] font-bold text-white/55">Vybrané</span> : null}</span></button>)}</div>
         </section>

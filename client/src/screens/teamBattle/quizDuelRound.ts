@@ -489,8 +489,10 @@ export function formatQuizNumber(value: number): string {
   const negative = value < 0;
   const absolute = Math.round(Math.abs(value) * 1000) / 1000;
   const [whole, fraction] = String(absolute).split(".");
-  const grouped = whole.replace(/\B(?=(\d{3})+(?!\d))/g, "\u202f");
-  const text = fraction ? `${grouped},${fraction}` : grouped;
+  // Anglické rozhranie píše čísla po anglicky (1,500.5), inak slovensky (1 500,5).
+  const english = typeof document !== "undefined" && document.documentElement.lang === "en";
+  const grouped = whole.replace(/\B(?=(\d{3})+(?!\d))/g, english ? "," : "\u202f");
+  const text = fraction ? `${grouped}${english ? "." : ","}${fraction}` : grouped;
   return negative ? `−${text}` : text;
 }
 

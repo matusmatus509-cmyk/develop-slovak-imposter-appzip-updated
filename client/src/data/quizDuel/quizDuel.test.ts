@@ -205,13 +205,36 @@ describe("filozofia tipovania (Tipni číslo a Najbližší tip)", () => {
 });
 
 describe("lokalizácia", () => {
-  it("slovenčina je kompletná a ostatné jazyky sú priznane nepreložené", () => {
+  it("slovenčina a angličtina sú kompletné, ostatné jazyky sú priznane nepreložené", () => {
     const coverage = quizDuelLocaleCoverage();
     expect(coverage.sk.translated).toBe(QUIZ_DUEL_QUESTIONS.length);
-    for (const language of ["en", "de", "es", "fr", "pt"] as const) {
+    expect(coverage.en.translated).toBe(QUIZ_DUEL_QUESTIONS.length);
+    for (const language of ["de", "es", "fr", "pt"] as const) {
       // Slovenský fallback sa nikdy nesmie počítať ako hotový preklad.
       expect(coverage[language].translated).toBe(0);
       expect(coverage[language].total).toBe(QUIZ_DUEL_QUESTIONS.length);
+    }
+  });
+
+  it("anglické otázky zachovávajú pravidlá databázy", () => {
+    const slovakOnly = /[äčďĺľňôŕšťž]/i;
+    for (const question of QUIZ_DUEL_QUESTIONS) {
+      const english = resolveQuestion(question, "en");
+      const texts = [english.prompt, english.fact, english.topicLabel];
+      if (english.kind === "classic") {
+        expect(new Set(english.options).size, question.id).toBe(4);
+        for (const option of english.options) expect(option.length, `${question.id}: ${option}`).toBeLessThanOrEqual(30);
+        texts.push(...english.options);
+      } else {
+        texts.push(english.unit, english.display);
+        if (english.kind === "higher-lower") texts.push(english.claimDisplay);
+        else expect(english.prompt.endsWith("?"), question.id).toBe(true);
+        if ((question.display as string).startsWith("približne")) {
+          expect(english.prompt.toLowerCase(), question.id).toContain("about");
+        }
+      }
+      expect(english.prompt.length, question.id).toBeLessThanOrEqual(100);
+      for (const text of texts) expect(slovakOnly.test(text), `${question.id}: ${text}`).toBe(false);
     }
   });
 
