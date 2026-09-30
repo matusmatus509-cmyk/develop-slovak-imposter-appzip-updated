@@ -19,9 +19,22 @@ const SKIP = [
 const SLOVAK = /[áäčďéíĺľňóôŕšťúýžÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽ]|(?<![\p{L}])(?:hra|hry|hru|hier|kolo|kolá|tím|tímy|hráč\p{L}*|body|bodov|nastavenia|spustiť|pokracovat|hotovo|zavrieť|pravda|vyber\p{L}*|slovo|slová|otázk\p{L}*|kategóri\p{L}*|tipni|vymenuj|nikdy|radšej|zadaj|pridaj|ulož\p{L}*|zmaž\p{L}*|odohraj|novú|nová|nový|alebo|zvuk\p{L}*|kto|kde|prečo|sekúnd|minút|späť|ďalej|ďalšie|štart|koniec|vyhral\p{L}*|remíza)(?![\p{L}])/iu;
 
 const results = new Map();
+// Voliteľný anglický zoznam slov: odhalí aj slovenské texty bez diakritiky („Pre znalcov").
+const wordListPath = process.env.I18N_WORDLIST;
+const englishWords = wordListPath ? new Set(fs.readFileSync(wordListPath, "utf8").split(/\r?\n/).map((w) => w.trim().toLowerCase())) : null;
+function looksSlovakWithoutDiacritics(core, kind) {
+  if (!englishWords || !/[a-z]{2}/i.test(core)) return false;
+  if (kind !== "jsx" && !/\s/.test(core.replace(/\{\d+\}/g, ""))) return false;
+  if (/^[a-z0-9_.:/#-]+$/i.test(core) || /[<>{}=;()]/.test(core.replace(/\{\d+\}/g, ""))) return false;
+  const words = core.replace(/\{\d+\}/g, " ").match(/[A-Za-z]{2,}/g) ?? [];
+  if (!words.length) return false;
+  const foreign = words.filter((w) => !englishWords.has(w.toLowerCase()));
+  return foreign.length >= 1 && foreign.length / words.length >= 0.4;
+}
 function add(text, file, kind) {
   const core = text.replace(/\s+/g, " ").trim();
-  if (!core || core.length < 2 || !SLOVAK.test(core)) return;
+  if (!core || core.length < 2) return;
+  if (!SLOVAK.test(core) && !looksSlovakWithoutDiacritics(core, kind)) return;
   if (kind === "template" && !/\p{L}{2,}/u.test(core.replace(/\{\d+\}/g, ""))) return;
   if (/^[\w.-]+\.(png|jpg|svg|mp3|json)$/i.test(core)) return;
   const entry = results.get(core) ?? { text: core, files: new Set(), kinds: new Set() };
@@ -33,7 +46,7 @@ function add(text, file, kind) {
 function isClassNameLike(node) {
   const parent = node.parent;
   if (parent && ts.isJsxAttribute(parent)) return /^(className|style|key|type|id|href|src|data-)/.test(parent.name.getText());
-  if (parent && ts.isPropertyAssignment(parent)) return /^(className|id|key|color|swatch|accent|icon|emoji)$/.test(parent.name.getText());
+  if (parent && ts.isPropertyAssignment(parent)) return /^(className|id|key|color|swatch|accent|icon|screen|value|kind|type)$/.test(parent.name.getText());
   return false;
 }
 

@@ -193,14 +193,14 @@ const englishPatternList = Object.entries(englishPatterns as Record<string, stri
     return { regex: new RegExp(`^${pattern}$`, "s"), target, order };
   });
 
-function translateEnglishPattern(core: string) {
+function translateEnglishPattern(core: string, depth = 0) {
   for (const { regex, target, order } of englishPatternList) {
     const match = core.match(regex);
     if (!match) continue;
     const values: Record<number, string> = {};
     order.forEach((slot, index) => {
       const value = match[index + 1];
-      values[slot] = englishDictionary[value.trim()] ?? value;
+      values[slot] = depth < 2 ? translateEnglishPhrase(value.trim(), depth + 1) ?? value : value;
     });
     return target.replace(/\{(\d+)\}/g, (_, slot: string) => values[Number(slot)] ?? "");
   }
@@ -211,15 +211,35 @@ function translateEnglishPattern(core: string) {
 const englishMisses = new Set<string>();
 if (typeof window !== "undefined") (window as unknown as { __i18nMisses?: Set<string> }).__i18nMisses = englishMisses;
 
-function translateEnglish(source: string, core: string) {
-  if (isEnglishContent(core)) return source;
+const SEGMENT_SEPARATOR = /(\s+[·•—–|]\s+)/;
+
+/** Preklad celej frázy bez poslednej záchrany po slovách; `null` = nič sa nenašlo. */
+function translateEnglishPhrase(core: string, depth: number): string | null {
+  if (isEnglishContent(core)) return core;
   const exact = englishDictionary[core];
-  if (exact) return preserveWhitespace(source, exact);
-  if (!slovakOnlySignal.test(core) && !/[áéíóúý]/i.test(core)) return source;
+  if (exact) return exact;
   const templated = translateNumericTemplate(core);
-  if (templated) return preserveWhitespace(source, templated);
-  const patterned = translateEnglishPattern(core);
-  if (patterned) return preserveWhitespace(source, patterned);
+  if (templated) return templated;
+  const patterned = translateEnglishPattern(core, depth);
+  if (patterned) return patterned;
+  // Súhrny typu „4 hráči · 90 s · bez limitu" sa skladajú z viacerých hotových fráz.
+  if (depth < 2 && SEGMENT_SEPARATOR.test(core)) {
+    const parts = core.split(SEGMENT_SEPARATOR);
+    let changed = false;
+    const translated = parts.map((part, index) => {
+      if (index % 2 === 1 || !part.trim()) return part;
+      const next = translateEnglishPhrase(part.trim(), depth + 1);
+      if (next !== null && next !== part.trim()) changed = true;
+      return next ?? part;
+    });
+    if (changed) return translated.join("");
+  }
+  return null;
+}
+
+function translateEnglish(source: string, core: string) {
+  const phrase = translateEnglishPhrase(core, 0);
+  if (phrase !== null) return phrase === core ? source : preserveWhitespace(source, phrase);
   if (!slovakOnlySignal.test(core)) return source;
   englishMisses.add(core);
   return preserveWhitespace(source, translateEnglishWords(core));
@@ -321,6 +341,16 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       fr: "Imposteur — Jeux de soirée",
       pt: "Impostor — Jogos de festa",
     }[language];
+    const description = document.querySelector('meta[name="description"]');
+    if (description) {
+      if (!description.getAttribute("data-sk")) description.setAttribute("data-sk", description.getAttribute("content") ?? "");
+      description.setAttribute(
+        "content",
+        language === "en"
+          ? "Impostor is a fun party game app: find the impostor, play Truth or Dare, Never Have I Ever, Would You Rather and more. One phone, lots of laughs!"
+          : description.getAttribute("data-sk") ?? "",
+      );
+    }
     translateTree(document.body, language);
     const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
