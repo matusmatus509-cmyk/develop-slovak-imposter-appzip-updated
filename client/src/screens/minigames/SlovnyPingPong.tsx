@@ -2,7 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { Button, Shell, TopBar } from "../../components/ui";
 import PlayerNamesField from "../../components/PlayerNamesField";
 import GameSettingsPage from "../../components/GameSettingsPage";
-import { PING_PONG_PROMPTS } from "../../data/pingPongPrompts";
+import { getPingPongPromptsForLanguage } from "../../data/pingPongPrompts";
+import type { AppLanguage } from "../../i18n/LanguageProvider";
+import { deckKeyForLanguage } from "../../i18n/content";
 import { defaultPlayerName, useLanguage } from "../../i18n/LanguageProvider";
 import { takePersistentItem } from "../../utils/persistentDeck";
 import { vibrate } from "../../utils/deviceFeedback";
@@ -12,8 +14,8 @@ import { Icons } from "../../components/icons";
 
 const PING_PONG_DECK_KEY = "ping-pong-prompts";
 
-function takePrompt() {
-  return takePersistentItem(PING_PONG_DECK_KEY, PING_PONG_PROMPTS);
+function takePrompt(language: AppLanguage) {
+  return takePersistentItem(deckKeyForLanguage(PING_PONG_DECK_KEY, language), getPingPongPromptsForLanguage(language));
 }
 
 /**
@@ -161,7 +163,8 @@ export function SlovnyPingPongGame({
   const COLOR_BOT_DARK = bottomSide.colorDark;
   // ballY: 0 = top edge, 1 = bottom edge. Start in middle.
   const [ballY, setBallY] = useState(0.5);
-  const [prompt, setPrompt] = useState(() => takePrompt());
+  const { language } = useLanguage();
+  const [prompt, setPrompt] = useState(() => takePrompt(language));
   // active = 0 → ball moves toward TOP (player 1 must answer)
   // active = 1 → ball moves toward BOTTOM (player 2 must answer)
   const [active, setActive] = useState<0 | 1>(() =>
@@ -259,7 +262,7 @@ export function SlovnyPingPongGame({
   }
 
   function restart() {
-    const newPrompt = takePrompt();
+    const newPrompt = takePrompt(language);
     const newActive: 0 | 1 = Math.random() < 0.5 ? 0 : 1;
     setPrompt(newPrompt);
     setActive(newActive);
@@ -462,9 +465,7 @@ export function SlovnyPingPongGame({
                 {result.loser === 0 ? name2 : name1}
               </p>
             </div>
-            <p className="text-sm text-white/50">
-              {result.loser === 0 ? name1 : name2} nestihol/a!
-            </p>
+            <p className="text-sm text-white/50">{`${result.loser === 0 ? name1 : name2} nestihol/a!`}</p>
             {onWinner ? (
               <button
                 onClick={() => onWinner(result.loser === 0 ? 1 : 0)}

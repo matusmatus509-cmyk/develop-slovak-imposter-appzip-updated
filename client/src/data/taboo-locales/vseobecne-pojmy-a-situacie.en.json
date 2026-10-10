@@ -1,0 +1,1646 @@
+{
+  "version": 1,
+  "locale": "en",
+  "category": "Všeobecné pojmy a situácie",
+  "cards": [
+    {
+      "id": "taboo_sk_1351",
+      "category": "Everyday Concepts and Situations",
+      "word": "joy",
+      "forbidden": [
+        "happy",
+        "smile",
+        "laugh",
+        "delight"
+      ]
+    },
+    {
+      "id": "taboo_sk_1352",
+      "category": "Everyday Concepts and Situations",
+      "word": "sadness",
+      "forbidden": [
+        "tears",
+        "cry",
+        "unhappy",
+        "blue"
+      ]
+    },
+    {
+      "id": "taboo_sk_1353",
+      "category": "Everyday Concepts and Situations",
+      "word": "shame",
+      "forbidden": [
+        "embarrassed",
+        "blush",
+        "guilt",
+        "red face"
+      ]
+    },
+    {
+      "id": "taboo_sk_1354",
+      "category": "Everyday Concepts and Situations",
+      "word": "envy",
+      "forbidden": [
+        "green",
+        "want",
+        "covet",
+        "what others have"
+      ]
+    },
+    {
+      "id": "taboo_sk_1355",
+      "category": "Everyday Concepts and Situations",
+      "word": "jealousy",
+      "forbidden": [
+        "partner",
+        "suspicious",
+        "possessive",
+        "cheating"
+      ]
+    },
+    {
+      "id": "taboo_sk_1356",
+      "category": "Everyday Concepts and Situations",
+      "word": "disappointment",
+      "forbidden": [
+        "expectations",
+        "let down",
+        "sad",
+        "fail"
+      ]
+    },
+    {
+      "id": "taboo_sk_1357",
+      "category": "Everyday Concepts and Situations",
+      "word": "enthusiasm",
+      "forbidden": [
+        "excited",
+        "eager",
+        "passion",
+        "energy"
+      ]
+    },
+    {
+      "id": "taboo_sk_1358",
+      "category": "Everyday Concepts and Situations",
+      "word": "relief",
+      "forbidden": [
+        "phew",
+        "finally",
+        "sigh",
+        "stress"
+      ]
+    },
+    {
+      "id": "taboo_sk_1359",
+      "category": "Everyday Concepts and Situations",
+      "word": "tension",
+      "forbidden": [
+        "stress",
+        "nervous",
+        "suspense",
+        "tight"
+      ]
+    },
+    {
+      "id": "taboo_sk_1360",
+      "category": "Everyday Concepts and Situations",
+      "word": "uncertainty",
+      "forbidden": [
+        "doubt",
+        "unsure",
+        "maybe",
+        "unknown"
+      ]
+    },
+    {
+      "id": "taboo_sk_1361",
+      "category": "Everyday Concepts and Situations",
+      "word": "satisfaction",
+      "forbidden": [
+        "content",
+        "happy",
+        "pleased",
+        "fulfilled"
+      ]
+    },
+    {
+      "id": "taboo_sk_1362",
+      "category": "Everyday Concepts and Situations",
+      "word": "loneliness",
+      "forbidden": [
+        "alone",
+        "nobody",
+        "isolated",
+        "friends"
+      ]
+    },
+    {
+      "id": "taboo_sk_1363",
+      "category": "Everyday Concepts and Situations",
+      "word": "gratitude",
+      "forbidden": [
+        "thank you",
+        "grateful",
+        "appreciate",
+        "thanks"
+      ]
+    },
+    {
+      "id": "taboo_sk_1364",
+      "category": "Everyday Concepts and Situations",
+      "word": "pride",
+      "forbidden": [
+        "proud",
+        "achievement",
+        "parents",
+        "accomplishment"
+      ]
+    },
+    {
+      "id": "taboo_sk_1365",
+      "category": "Everyday Concepts and Situations",
+      "word": "injustice",
+      "forbidden": [
+        "unfair",
+        "wronged",
+        "victim",
+        "justice"
+      ]
+    },
+    {
+      "id": "taboo_sk_1366",
+      "category": "Everyday Concepts and Situations",
+      "word": "despair",
+      "forbidden": [
+        "hopeless",
+        "lost",
+        "give up",
+        "cry"
+      ]
+    },
+    {
+      "id": "taboo_sk_1367",
+      "category": "Everyday Concepts and Situations",
+      "word": "curiosity",
+      "forbidden": [
+        "curious",
+        "questions",
+        "cat",
+        "want to know"
+      ]
+    },
+    {
+      "id": "taboo_sk_1368",
+      "category": "Everyday Concepts and Situations",
+      "word": "calm",
+      "forbidden": [
+        "quiet",
+        "relaxed",
+        "peaceful",
+        "serene"
+      ]
+    },
+    {
+      "id": "taboo_sk_1369",
+      "category": "Everyday Concepts and Situations",
+      "word": "nervousness",
+      "forbidden": [
+        "anxious",
+        "stress",
+        "jittery",
+        "sweating"
+      ]
+    },
+    {
+      "id": "taboo_sk_1370",
+      "category": "Everyday Concepts and Situations",
+      "word": "embarrassment",
+      "forbidden": [
+        "awkward",
+        "blush",
+        "red",
+        "cringe"
+      ]
+    },
+    {
+      "id": "taboo_sk_1371",
+      "category": "Everyday Concepts and Situations",
+      "word": "hope",
+      "forbidden": [
+        "wish",
+        "future",
+        "faith",
+        "better"
+      ]
+    },
+    {
+      "id": "taboo_sk_1372",
+      "category": "Everyday Concepts and Situations",
+      "word": "doubt",
+      "forbidden": [
+        "unsure",
+        "question",
+        "believe",
+        "hesitate"
+      ]
+    },
+    {
+      "id": "taboo_sk_1373",
+      "category": "Everyday Concepts and Situations",
+      "word": "admiration",
+      "forbidden": [
+        "admire",
+        "respect",
+        "idol",
+        "wow"
+      ]
+    },
+    {
+      "id": "taboo_sk_1374",
+      "category": "Everyday Concepts and Situations",
+      "word": "courage",
+      "forbidden": [
+        "brave",
+        "fear",
+        "hero",
+        "bold"
+      ]
+    },
+    {
+      "id": "taboo_sk_1375",
+      "category": "Everyday Concepts and Situations",
+      "word": "patience",
+      "forbidden": [
+        "wait",
+        "calm",
+        "time",
+        "impatient"
+      ]
+    },
+    {
+      "id": "taboo_sk_1376",
+      "category": "Everyday Concepts and Situations",
+      "word": "compassion",
+      "forbidden": [
+        "sympathy",
+        "empathy",
+        "pity",
+        "suffering"
+      ]
+    },
+    {
+      "id": "taboo_sk_1377",
+      "category": "Everyday Concepts and Situations",
+      "word": "nostalgia",
+      "forbidden": [
+        "past",
+        "memories",
+        "old times",
+        "childhood"
+      ]
+    },
+    {
+      "id": "taboo_sk_1378",
+      "category": "Everyday Concepts and Situations",
+      "word": "surprise",
+      "forbidden": [
+        "unexpected",
+        "wow",
+        "party",
+        "shock"
+      ]
+    },
+    {
+      "id": "taboo_sk_1379",
+      "category": "Everyday Concepts and Situations",
+      "word": "disgust",
+      "forbidden": [
+        "gross",
+        "yuck",
+        "ew",
+        "vomit"
+      ]
+    },
+    {
+      "id": "taboo_sk_1380",
+      "category": "Everyday Concepts and Situations",
+      "word": "concentration",
+      "forbidden": [
+        "focus",
+        "attention",
+        "think",
+        "quiet"
+      ]
+    },
+    {
+      "id": "taboo_sk_1381",
+      "category": "Everyday Concepts and Situations",
+      "word": "greeting",
+      "forbidden": [
+        "hello",
+        "wave",
+        "hi",
+        "meet"
+      ]
+    },
+    {
+      "id": "taboo_sk_1382",
+      "category": "Everyday Concepts and Situations",
+      "word": "handshake",
+      "forbidden": [
+        "greeting",
+        "business",
+        "deal",
+        "grip"
+      ]
+    },
+    {
+      "id": "taboo_sk_1383",
+      "category": "Everyday Concepts and Situations",
+      "word": "hug",
+      "forbidden": [
+        "arms",
+        "embrace",
+        "squeeze",
+        "cuddle"
+      ]
+    },
+    {
+      "id": "taboo_sk_1384",
+      "category": "Everyday Concepts and Situations",
+      "word": "compliment",
+      "forbidden": [
+        "nice",
+        "praise",
+        "flattery",
+        "beautiful"
+      ]
+    },
+    {
+      "id": "taboo_sk_1385",
+      "category": "Everyday Concepts and Situations",
+      "word": "criticism",
+      "forbidden": [
+        "negative",
+        "feedback",
+        "critic",
+        "complain"
+      ]
+    },
+    {
+      "id": "taboo_sk_1386",
+      "category": "Everyday Concepts and Situations",
+      "word": "praise",
+      "forbidden": [
+        "good job",
+        "well done",
+        "compliment",
+        "reward"
+      ]
+    },
+    {
+      "id": "taboo_sk_1387",
+      "category": "Everyday Concepts and Situations",
+      "word": "promise",
+      "forbidden": [
+        "pinky",
+        "keep",
+        "word",
+        "swear"
+      ]
+    },
+    {
+      "id": "taboo_sk_1388",
+      "category": "Everyday Concepts and Situations",
+      "word": "agreement",
+      "forbidden": [
+        "deal",
+        "compromise",
+        "contract",
+        "sign"
+      ]
+    },
+    {
+      "id": "taboo_sk_1389",
+      "category": "Everyday Concepts and Situations",
+      "word": "compromise",
+      "forbidden": [
+        "middle",
+        "both sides",
+        "give and take",
+        "meet halfway"
+      ]
+    },
+    {
+      "id": "taboo_sk_1390",
+      "category": "Everyday Concepts and Situations",
+      "word": "request",
+      "forbidden": [
+        "ask",
+        "please",
+        "favor",
+        "plead"
+      ]
+    },
+    {
+      "id": "taboo_sk_1391",
+      "category": "Everyday Concepts and Situations",
+      "word": "task",
+      "forbidden": [
+        "job",
+        "homework",
+        "assignment",
+        "to-do"
+      ]
+    },
+    {
+      "id": "taboo_sk_1392",
+      "category": "Everyday Concepts and Situations",
+      "word": "invitation",
+      "forbidden": [
+        "party",
+        "invite",
+        "card",
+        "RSVP"
+      ]
+    },
+    {
+      "id": "taboo_sk_1393",
+      "category": "Everyday Concepts and Situations",
+      "word": "rejection",
+      "forbidden": [
+        "no",
+        "refuse",
+        "turn down",
+        "dumped"
+      ]
+    },
+    {
+      "id": "taboo_sk_1394",
+      "category": "Everyday Concepts and Situations",
+      "word": "reconciliation",
+      "forbidden": [
+        "make up",
+        "apologize",
+        "forgive",
+        "peace"
+      ]
+    },
+    {
+      "id": "taboo_sk_1395",
+      "category": "Everyday Concepts and Situations",
+      "word": "goodbye",
+      "forbidden": [
+        "farewell",
+        "bye",
+        "leave",
+        "wave"
+      ]
+    },
+    {
+      "id": "taboo_sk_1396",
+      "category": "Everyday Concepts and Situations",
+      "word": "introducing yourself",
+      "forbidden": [
+        "name",
+        "hello",
+        "new",
+        "nice to meet you"
+      ]
+    },
+    {
+      "id": "taboo_sk_1397",
+      "category": "Everyday Concepts and Situations",
+      "word": "getting acquainted",
+      "forbidden": [
+        "introduce",
+        "new",
+        "meet",
+        "friends"
+      ]
+    },
+    {
+      "id": "taboo_sk_1398",
+      "category": "Everyday Concepts and Situations",
+      "word": "meeting",
+      "forbidden": [
+        "participants",
+        "schedule",
+        "place",
+        "agenda"
+      ]
+    },
+    {
+      "id": "taboo_sk_1399",
+      "category": "Everyday Concepts and Situations",
+      "word": "personal space",
+      "forbidden": [
+        "close",
+        "bubble",
+        "distance",
+        "respect"
+      ]
+    },
+    {
+      "id": "taboo_sk_1400",
+      "category": "Everyday Concepts and Situations",
+      "word": "phone call",
+      "forbidden": [
+        "ring",
+        "talk",
+        "dial",
+        "hello"
+      ]
+    },
+    {
+      "id": "taboo_sk_1401",
+      "category": "Everyday Concepts and Situations",
+      "word": "effort",
+      "forbidden": [
+        "try",
+        "work hard",
+        "want",
+        "result"
+      ]
+    },
+    {
+      "id": "taboo_sk_1402",
+      "category": "Everyday Concepts and Situations",
+      "word": "discussion",
+      "forbidden": [
+        "talk",
+        "opinions",
+        "topic",
+        "debate"
+      ]
+    },
+    {
+      "id": "taboo_sk_1403",
+      "category": "Everyday Concepts and Situations",
+      "word": "debate",
+      "forbidden": [
+        "arguments",
+        "TV",
+        "politics",
+        "opponent"
+      ]
+    },
+    {
+      "id": "taboo_sk_1404",
+      "category": "Everyday Concepts and Situations",
+      "word": "argument",
+      "forbidden": [
+        "fight",
+        "shout",
+        "angry",
+        "words"
+      ]
+    },
+    {
+      "id": "taboo_sk_1405",
+      "category": "Everyday Concepts and Situations",
+      "word": "answer",
+      "forbidden": [
+        "question",
+        "reply",
+        "respond",
+        "correct"
+      ]
+    },
+    {
+      "id": "taboo_sk_1406",
+      "category": "Everyday Concepts and Situations",
+      "word": "advice",
+      "forbidden": [
+        "tip",
+        "suggest",
+        "should",
+        "help"
+      ]
+    },
+    {
+      "id": "taboo_sk_1407",
+      "category": "Everyday Concepts and Situations",
+      "word": "warning",
+      "forbidden": [
+        "danger",
+        "careful",
+        "sign",
+        "alert"
+      ]
+    },
+    {
+      "id": "taboo_sk_1408",
+      "category": "Everyday Concepts and Situations",
+      "word": "behavior",
+      "forbidden": [
+        "manners",
+        "people",
+        "rules",
+        "polite"
+      ]
+    },
+    {
+      "id": "taboo_sk_1409",
+      "category": "Everyday Concepts and Situations",
+      "word": "distrust",
+      "forbidden": [
+        "suspicious",
+        "doubt",
+        "betrayal",
+        "lie"
+      ]
+    },
+    {
+      "id": "taboo_sk_1410",
+      "category": "Everyday Concepts and Situations",
+      "word": "beginning",
+      "forbidden": [
+        "start",
+        "first",
+        "open",
+        "intro"
+      ]
+    },
+    {
+      "id": "taboo_sk_1411",
+      "category": "Everyday Concepts and Situations",
+      "word": "end",
+      "forbidden": [
+        "finish",
+        "last",
+        "over",
+        "done"
+      ]
+    },
+    {
+      "id": "taboo_sk_1412",
+      "category": "Everyday Concepts and Situations",
+      "word": "break",
+      "forbidden": [
+        "pause",
+        "rest",
+        "between",
+        "stop"
+      ]
+    },
+    {
+      "id": "taboo_sk_1413",
+      "category": "Everyday Concepts and Situations",
+      "word": "kindness",
+      "forbidden": [
+        "help",
+        "nice",
+        "good",
+        "people"
+      ]
+    },
+    {
+      "id": "taboo_sk_1414",
+      "category": "Everyday Concepts and Situations",
+      "word": "calendar",
+      "forbidden": [
+        "date",
+        "month",
+        "plan",
+        "year"
+      ]
+    },
+    {
+      "id": "taboo_sk_1415",
+      "category": "Everyday Concepts and Situations",
+      "word": "priority",
+      "forbidden": [
+        "important",
+        "urgent",
+        "order",
+        "first"
+      ]
+    },
+    {
+      "id": "taboo_sk_1416",
+      "category": "Everyday Concepts and Situations",
+      "word": "decision",
+      "forbidden": [
+        "choice",
+        "option",
+        "consider",
+        "consequence"
+      ]
+    },
+    {
+      "id": "taboo_sk_1417",
+      "category": "Everyday Concepts and Situations",
+      "word": "choice",
+      "forbidden": [
+        "alternative",
+        "pick",
+        "option",
+        "decide"
+      ]
+    },
+    {
+      "id": "taboo_sk_1418",
+      "category": "Everyday Concepts and Situations",
+      "word": "opportunity",
+      "forbidden": [
+        "chance",
+        "take",
+        "moment",
+        "possibility"
+      ]
+    },
+    {
+      "id": "taboo_sk_1419",
+      "category": "Everyday Concepts and Situations",
+      "word": "coincidence",
+      "forbidden": [
+        "unexpected",
+        "chance",
+        "luck",
+        "fate"
+      ]
+    },
+    {
+      "id": "taboo_sk_1420",
+      "category": "Everyday Concepts and Situations",
+      "word": "habit",
+      "forbidden": [
+        "routine",
+        "repeat",
+        "daily",
+        "learned"
+      ]
+    },
+    {
+      "id": "taboo_sk_1421",
+      "category": "Everyday Concepts and Situations",
+      "word": "routine",
+      "forbidden": [
+        "habit",
+        "daily",
+        "regular",
+        "repeat"
+      ]
+    },
+    {
+      "id": "taboo_sk_1422",
+      "category": "Everyday Concepts and Situations",
+      "word": "memory",
+      "forbidden": [
+        "past",
+        "remember",
+        "photo",
+        "experience"
+      ]
+    },
+    {
+      "id": "taboo_sk_1423",
+      "category": "Everyday Concepts and Situations",
+      "word": "experience",
+      "forbidden": [
+        "practice",
+        "lived",
+        "learn",
+        "skills"
+      ]
+    },
+    {
+      "id": "taboo_sk_1424",
+      "category": "Everyday Concepts and Situations",
+      "word": "lesson",
+      "forbidden": [
+        "learn",
+        "mistake",
+        "moral",
+        "school"
+      ]
+    },
+    {
+      "id": "taboo_sk_1425",
+      "category": "Everyday Concepts and Situations",
+      "word": "challenge",
+      "forbidden": [
+        "overcome",
+        "courage",
+        "test",
+        "difficult"
+      ]
+    },
+    {
+      "id": "taboo_sk_1426",
+      "category": "Everyday Concepts and Situations",
+      "word": "goal",
+      "forbidden": [
+        "achieve",
+        "target",
+        "plan",
+        "success"
+      ]
+    },
+    {
+      "id": "taboo_sk_1427",
+      "category": "Everyday Concepts and Situations",
+      "word": "success",
+      "forbidden": [
+        "win",
+        "result",
+        "joy",
+        "achieve"
+      ]
+    },
+    {
+      "id": "taboo_sk_1428",
+      "category": "Everyday Concepts and Situations",
+      "word": "worry",
+      "forbidden": [
+        "problem",
+        "anxious",
+        "think",
+        "family"
+      ]
+    },
+    {
+      "id": "taboo_sk_1429",
+      "category": "Everyday Concepts and Situations",
+      "word": "progress",
+      "forbidden": [
+        "improvement",
+        "development",
+        "forward",
+        "move ahead"
+      ]
+    },
+    {
+      "id": "taboo_sk_1430",
+      "category": "Everyday Concepts and Situations",
+      "word": "delay",
+      "forbidden": [
+        "late",
+        "wait",
+        "postpone",
+        "problem"
+      ]
+    },
+    {
+      "id": "taboo_sk_1431",
+      "category": "Everyday Concepts and Situations",
+      "word": "waiting",
+      "forbidden": [
+        "patience",
+        "line",
+        "delay",
+        "minutes"
+      ]
+    },
+    {
+      "id": "taboo_sk_1432",
+      "category": "Everyday Concepts and Situations",
+      "word": "return",
+      "forbidden": [
+        "come back",
+        "home",
+        "trip",
+        "back"
+      ]
+    },
+    {
+      "id": "taboo_sk_1433",
+      "category": "Everyday Concepts and Situations",
+      "word": "change",
+      "forbidden": [
+        "new",
+        "different",
+        "unexpected",
+        "plan"
+      ]
+    },
+    {
+      "id": "taboo_sk_1434",
+      "category": "Everyday Concepts and Situations",
+      "word": "address",
+      "forbidden": [
+        "house",
+        "street",
+        "city",
+        "write"
+      ]
+    },
+    {
+      "id": "taboo_sk_1435",
+      "category": "Everyday Concepts and Situations",
+      "word": "first impression",
+      "forbidden": [
+        "look",
+        "meeting",
+        "opinion",
+        "beginning"
+      ]
+    },
+    {
+      "id": "taboo_sk_1436",
+      "category": "Everyday Concepts and Situations",
+      "word": "second chance",
+      "forbidden": [
+        "fix",
+        "again",
+        "opportunity",
+        "forgiveness"
+      ]
+    },
+    {
+      "id": "taboo_sk_1437",
+      "category": "Everyday Concepts and Situations",
+      "word": "work meeting",
+      "forbidden": [
+        "colleagues",
+        "agenda",
+        "minutes",
+        "discussion"
+      ]
+    },
+    {
+      "id": "taboo_sk_1438",
+      "category": "Everyday Concepts and Situations",
+      "word": "job interview",
+      "forbidden": [
+        "work",
+        "questions",
+        "candidate",
+        "employer"
+      ]
+    },
+    {
+      "id": "taboo_sk_1439",
+      "category": "Everyday Concepts and Situations",
+      "word": "packing",
+      "forbidden": [
+        "suitcase",
+        "things",
+        "trip",
+        "clothes"
+      ]
+    },
+    {
+      "id": "taboo_sk_1440",
+      "category": "Everyday Concepts and Situations",
+      "word": "promotion",
+      "forbidden": [
+        "career",
+        "higher",
+        "position",
+        "boss"
+      ]
+    },
+    {
+      "id": "taboo_sk_1441",
+      "category": "Everyday Concepts and Situations",
+      "word": "salary",
+      "forbidden": [
+        "wage",
+        "money",
+        "employer",
+        "month"
+      ]
+    },
+    {
+      "id": "taboo_sk_1442",
+      "category": "Everyday Concepts and Situations",
+      "word": "reward",
+      "forbidden": [
+        "bonus",
+        "money",
+        "praise",
+        "earned"
+      ]
+    },
+    {
+      "id": "taboo_sk_1443",
+      "category": "Everyday Concepts and Situations",
+      "word": "commitment",
+      "forbidden": [
+        "promise",
+        "responsibility",
+        "dedication",
+        "obligation"
+      ]
+    },
+    {
+      "id": "taboo_sk_1444",
+      "category": "Everyday Concepts and Situations",
+      "word": "support",
+      "forbidden": [
+        "help",
+        "together",
+        "encourage",
+        "back"
+      ]
+    },
+    {
+      "id": "taboo_sk_1445",
+      "category": "Everyday Concepts and Situations",
+      "word": "attendance",
+      "forbidden": [
+        "present",
+        "absent",
+        "register",
+        "roll call"
+      ]
+    },
+    {
+      "id": "taboo_sk_1446",
+      "category": "Everyday Concepts and Situations",
+      "word": "desk",
+      "forbidden": [
+        "office",
+        "computer",
+        "drawer",
+        "chair"
+      ]
+    },
+    {
+      "id": "taboo_sk_1447",
+      "category": "Everyday Concepts and Situations",
+      "word": "dream",
+      "forbidden": [
+        "sleep",
+        "wish",
+        "night",
+        "imagine"
+      ]
+    },
+    {
+      "id": "taboo_sk_1448",
+      "category": "Everyday Concepts and Situations",
+      "word": "toast",
+      "forbidden": [
+        "glasses",
+        "cheers",
+        "speech",
+        "champagne"
+      ]
+    },
+    {
+      "id": "taboo_sk_1449",
+      "category": "Everyday Concepts and Situations",
+      "word": "division of labor",
+      "forbidden": [
+        "tasks",
+        "teamwork",
+        "share",
+        "responsibilities"
+      ]
+    },
+    {
+      "id": "taboo_sk_1450",
+      "category": "Everyday Concepts and Situations",
+      "word": "idea",
+      "forbidden": [
+        "thought",
+        "creative",
+        "new",
+        "lightbulb"
+      ]
+    },
+    {
+      "id": "taboo_sk_1451",
+      "category": "Everyday Concepts and Situations",
+      "word": "solution",
+      "forbidden": [
+        "problem",
+        "answer",
+        "idea",
+        "solve"
+      ]
+    },
+    {
+      "id": "taboo_sk_1452",
+      "category": "Everyday Concepts and Situations",
+      "word": "reaction",
+      "forbidden": [
+        "response",
+        "opinion",
+        "comment",
+        "respond"
+      ]
+    },
+    {
+      "id": "taboo_sk_1453",
+      "category": "Everyday Concepts and Situations",
+      "word": "presentation",
+      "forbidden": [
+        "slides",
+        "projector",
+        "audience",
+        "PowerPoint"
+      ]
+    },
+    {
+      "id": "taboo_sk_1454",
+      "category": "Everyday Concepts and Situations",
+      "word": "note",
+      "forbidden": [
+        "write",
+        "text",
+        "paper",
+        "reminder"
+      ]
+    },
+    {
+      "id": "taboo_sk_1455",
+      "category": "Everyday Concepts and Situations",
+      "word": "meeting minutes",
+      "forbidden": [
+        "write",
+        "notes",
+        "points",
+        "secretary"
+      ]
+    },
+    {
+      "id": "taboo_sk_1456",
+      "category": "Everyday Concepts and Situations",
+      "word": "order",
+      "forbidden": [
+        "goods",
+        "customer",
+        "delivery",
+        "purchase"
+      ]
+    },
+    {
+      "id": "taboo_sk_1457",
+      "category": "Everyday Concepts and Situations",
+      "word": "refund",
+      "forbidden": [
+        "store",
+        "money back",
+        "receipt",
+        "defective"
+      ]
+    },
+    {
+      "id": "taboo_sk_1458",
+      "category": "Everyday Concepts and Situations",
+      "word": "receipt",
+      "forbidden": [
+        "purchase",
+        "checkout",
+        "price",
+        "paper"
+      ]
+    },
+    {
+      "id": "taboo_sk_1459",
+      "category": "Everyday Concepts and Situations",
+      "word": "discount",
+      "forbidden": [
+        "cheaper",
+        "price",
+        "sale",
+        "percent"
+      ]
+    },
+    {
+      "id": "taboo_sk_1460",
+      "category": "Everyday Concepts and Situations",
+      "word": "budget",
+      "forbidden": [
+        "money",
+        "expenses",
+        "plan",
+        "savings"
+      ]
+    },
+    {
+      "id": "taboo_sk_1461",
+      "category": "Everyday Concepts and Situations",
+      "word": "savings",
+      "forbidden": [
+        "save",
+        "money",
+        "expenses",
+        "piggy bank"
+      ]
+    },
+    {
+      "id": "taboo_sk_1462",
+      "category": "Everyday Concepts and Situations",
+      "word": "loan",
+      "forbidden": [
+        "bank",
+        "borrow",
+        "money",
+        "interest"
+      ]
+    },
+    {
+      "id": "taboo_sk_1463",
+      "category": "Everyday Concepts and Situations",
+      "word": "sibling",
+      "forbidden": [
+        "brother",
+        "sister",
+        "childhood",
+        "together"
+      ]
+    },
+    {
+      "id": "taboo_sk_1464",
+      "category": "Everyday Concepts and Situations",
+      "word": "grandparent",
+      "forbidden": [
+        "grandma",
+        "grandpa",
+        "grandchild",
+        "age"
+      ]
+    },
+    {
+      "id": "taboo_sk_1465",
+      "category": "Everyday Concepts and Situations",
+      "word": "cousin",
+      "forbidden": [
+        "aunt",
+        "uncle",
+        "family",
+        "relative"
+      ]
+    },
+    {
+      "id": "taboo_sk_1467",
+      "category": "Everyday Concepts and Situations",
+      "word": "classmate",
+      "forbidden": [
+        "school",
+        "class",
+        "desk",
+        "teacher"
+      ]
+    },
+    {
+      "id": "taboo_sk_1468",
+      "category": "Everyday Concepts and Situations",
+      "word": "colleague",
+      "forbidden": [
+        "work",
+        "office",
+        "team",
+        "coworker"
+      ]
+    },
+    {
+      "id": "taboo_sk_1469",
+      "category": "Everyday Concepts and Situations",
+      "word": "friendship",
+      "forbidden": [
+        "buddy",
+        "trust",
+        "together",
+        "loyalty"
+      ]
+    },
+    {
+      "id": "taboo_sk_1470",
+      "category": "Everyday Concepts and Situations",
+      "word": "partnership",
+      "forbidden": [
+        "couple",
+        "relationship",
+        "trust",
+        "together"
+      ]
+    },
+    {
+      "id": "taboo_sk_1471",
+      "category": "Everyday Concepts and Situations",
+      "word": "marriage",
+      "forbidden": [
+        "wedding",
+        "ring",
+        "husband",
+        "wife"
+      ]
+    },
+    {
+      "id": "taboo_sk_1472",
+      "category": "Everyday Concepts and Situations",
+      "word": "breakup",
+      "forbidden": [
+        "end",
+        "relationship",
+        "sad",
+        "ex"
+      ]
+    },
+    {
+      "id": "taboo_sk_1473",
+      "category": "Everyday Concepts and Situations",
+      "word": "engagement",
+      "forbidden": [
+        "ring",
+        "propose",
+        "wedding",
+        "love"
+      ]
+    },
+    {
+      "id": "taboo_sk_1474",
+      "category": "Everyday Concepts and Situations",
+      "word": "baby",
+      "forbidden": [
+        "child",
+        "parents",
+        "stroller",
+        "diaper"
+      ]
+    },
+    {
+      "id": "taboo_sk_1475",
+      "category": "Everyday Concepts and Situations",
+      "word": "tradition",
+      "forbidden": [
+        "family",
+        "custom",
+        "holiday",
+        "repeat"
+      ]
+    },
+    {
+      "id": "taboo_sk_1476",
+      "category": "Everyday Concepts and Situations",
+      "word": "family dinner",
+      "forbidden": [
+        "table",
+        "food",
+        "plate",
+        "together"
+      ]
+    },
+    {
+      "id": "taboo_sk_1477",
+      "category": "Everyday Concepts and Situations",
+      "word": "cleaning",
+      "forbidden": [
+        "dust",
+        "vacuum",
+        "broom",
+        "tidy"
+      ]
+    },
+    {
+      "id": "taboo_sk_1478",
+      "category": "Everyday Concepts and Situations",
+      "word": "groceries",
+      "forbidden": [
+        "store",
+        "cart",
+        "price",
+        "shopping"
+      ]
+    },
+    {
+      "id": "taboo_sk_1479",
+      "category": "Everyday Concepts and Situations",
+      "word": "lost keys",
+      "forbidden": [
+        "search",
+        "lock",
+        "pocket",
+        "door"
+      ]
+    },
+    {
+      "id": "taboo_sk_1480",
+      "category": "Everyday Concepts and Situations",
+      "word": "first day at work",
+      "forbidden": [
+        "new",
+        "nervous",
+        "colleagues",
+        "job"
+      ]
+    },
+    {
+      "id": "taboo_sk_1481",
+      "category": "Everyday Concepts and Situations",
+      "word": "day off",
+      "forbidden": [
+        "relax",
+        "couch",
+        "rest",
+        "free"
+      ]
+    },
+    {
+      "id": "taboo_sk_1482",
+      "category": "Everyday Concepts and Situations",
+      "word": "unexpected guest",
+      "forbidden": [
+        "door",
+        "doorbell",
+        "visit",
+        "surprise"
+      ]
+    },
+    {
+      "id": "taboo_sk_1483",
+      "category": "Everyday Concepts and Situations",
+      "word": "repair shop",
+      "forbidden": [
+        "fix",
+        "technician",
+        "warranty",
+        "broken"
+      ]
+    },
+    {
+      "id": "taboo_sk_1484",
+      "category": "Everyday Concepts and Situations",
+      "word": "trip",
+      "forbidden": [
+        "travel",
+        "family",
+        "nature",
+        "vacation"
+      ]
+    },
+    {
+      "id": "taboo_sk_1485",
+      "category": "Everyday Concepts and Situations",
+      "word": "weekend",
+      "forbidden": [
+        "Saturday",
+        "Sunday",
+        "free",
+        "plans"
+      ]
+    },
+    {
+      "id": "taboo_sk_1486",
+      "category": "Everyday Concepts and Situations",
+      "word": "waking up early",
+      "forbidden": [
+        "alarm clock",
+        "bed",
+        "morning",
+        "sleep"
+      ]
+    },
+    {
+      "id": "taboo_sk_1487",
+      "category": "Everyday Concepts and Situations",
+      "word": "relaxing evening",
+      "forbidden": [
+        "couch",
+        "TV",
+        "calm",
+        "tea"
+      ]
+    },
+    {
+      "id": "taboo_sk_1488",
+      "category": "Everyday Concepts and Situations",
+      "word": "pause",
+      "forbidden": [
+        "break",
+        "rest",
+        "time",
+        "stop"
+      ]
+    },
+    {
+      "id": "taboo_sk_1489",
+      "category": "Everyday Concepts and Situations",
+      "word": "family album",
+      "forbidden": [
+        "photos",
+        "pages",
+        "memories",
+        "childhood"
+      ]
+    },
+    {
+      "id": "taboo_sk_1490",
+      "category": "Everyday Concepts and Situations",
+      "word": "pet",
+      "forbidden": [
+        "dog",
+        "cat",
+        "feed",
+        "care"
+      ]
+    },
+    {
+      "id": "taboo_sk_1491",
+      "category": "Everyday Concepts and Situations",
+      "word": "justice",
+      "forbidden": [
+        "fair",
+        "law",
+        "court",
+        "equal"
+      ]
+    },
+    {
+      "id": "taboo_sk_1492",
+      "category": "Everyday Concepts and Situations",
+      "word": "gift",
+      "forbidden": [
+        "surprise",
+        "wrapped",
+        "birthday",
+        "give"
+      ]
+    },
+    {
+      "id": "taboo_sk_1493",
+      "category": "Everyday Concepts and Situations",
+      "word": "respect",
+      "forbidden": [
+        "esteem",
+        "polite",
+        "opinion",
+        "behavior"
+      ]
+    },
+    {
+      "id": "taboo_sk_1494",
+      "category": "Everyday Concepts and Situations",
+      "word": "decency",
+      "forbidden": [
+        "manners",
+        "respectful",
+        "behavior",
+        "proper"
+      ]
+    },
+    {
+      "id": "taboo_sk_1495",
+      "category": "Everyday Concepts and Situations",
+      "word": "politeness",
+      "forbidden": [
+        "please",
+        "thank you",
+        "courtesy",
+        "rude"
+      ]
+    },
+    {
+      "id": "taboo_sk_1496",
+      "category": "Everyday Concepts and Situations",
+      "word": "privacy",
+      "forbidden": [
+        "personal data",
+        "secret",
+        "door",
+        "protection"
+      ]
+    },
+    {
+      "id": "taboo_sk_1497",
+      "category": "Everyday Concepts and Situations",
+      "word": "rule",
+      "forbidden": [
+        "follow",
+        "society",
+        "ban",
+        "law"
+      ]
+    },
+    {
+      "id": "taboo_sk_1498",
+      "category": "Everyday Concepts and Situations",
+      "word": "freedom",
+      "forbidden": [
+        "choice",
+        "rights",
+        "independence",
+        "liberty"
+      ]
+    },
+    {
+      "id": "taboo_sk_1499",
+      "category": "Everyday Concepts and Situations",
+      "word": "equality",
+      "forbidden": [
+        "fairness",
+        "same",
+        "rights",
+        "chance"
+      ]
+    },
+    {
+      "id": "taboo_sk_1500",
+      "category": "Everyday Concepts and Situations",
+      "word": "help",
+      "forbidden": [
+        "support",
+        "hand",
+        "need",
+        "assist"
+      ]
+    }
+  ]
+}

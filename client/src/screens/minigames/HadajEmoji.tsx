@@ -40,7 +40,7 @@ export default function HadajEmoji({
     [customSignature]
   );
   const categories = useMemo(() => {
-    const bundled = getEmojiCategories(language === "sk");
+    const bundled = getEmojiCategories(language);
     return customPuzzles.length
       ? [
           ...bundled,

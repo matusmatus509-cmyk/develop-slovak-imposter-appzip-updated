@@ -1,4 +1,6 @@
 import type { CategoryDef } from "../types";
+import type { AppLanguage } from "../i18n/LanguageProvider";
+import { hasContentLocale, localizeContent, localizeLabel } from "../i18n/content";
 import { CORE_IMPOSTOR_EXPANSIONS } from "./impostorCoreExpansions";
 import { THEMED_IMPOSTOR_CATEGORIES } from "./impostorThemedCategories";
 
@@ -1167,3 +1169,52 @@ export const LEGACY_IMPOSTOR_CATEGORY_ID = "situacie";
 // Tematické zásoby (Minecraft, Brawl Stars, Marvel…) žijú vo vlastnom súbore,
 // aby tento zostal čitateľný. Pridávajú sa na koniec zoznamu.
 CATEGORIES.push(...THEMED_IMPOSTOR_CATEGORIES);
+
+// ── Lokalizácia ──────────────────────────────────────────────────────────────
+// Slovenské páry sú zdroj pravdy. Anglická verzia sa skladá z mapy
+// `i18n/content/en/impostor.json` (kľúč „slovo|nápoveda"); páry bez anglického
+// ekvivalentu (slovenské mestá, osobnosti…) sa v angličtine vynechajú.
+const LOCALIZED_IMPOSTOR_CATEGORIES = new Map<AppLanguage, CategoryDef[]>();
+
+export function localizeCategoryDefs(
+  categories: CategoryDef[],
+  domain: "impostor" | "drawing",
+  language: AppLanguage,
+  keyOf: (pair: CategoryDef["wordPairs"][number]) => string,
+  fromTranslation: (translated: string) => CategoryDef["wordPairs"][number],
+): CategoryDef[] {
+  if (!hasContentLocale(language)) return categories;
+  return categories.map((category) => {
+    const seen = new Set<string>();
+    const wordPairs: CategoryDef["wordPairs"] = [];
+    for (const pair of category.wordPairs) {
+      const translated = localizeContent(domain, keyOf(pair), language);
+      if (translated === null) continue;
+      const localized = translated === keyOf(pair) ? pair : fromTranslation(translated);
+      const key = localized.word.trim().toLocaleLowerCase("en");
+      if (seen.has(key)) continue;
+      seen.add(key);
+      wordPairs.push(localized);
+    }
+    return { ...category, name: localizeLabel(domain, `cat:${category.id}`, language), wordPairs };
+  });
+}
+
+export function getImpostorCategories(language: AppLanguage): CategoryDef[] {
+  if (!hasContentLocale(language)) return CATEGORIES;
+  let localized = LOCALIZED_IMPOSTOR_CATEGORIES.get(language);
+  if (!localized) {
+    localized = localizeCategoryDefs(
+      CATEGORIES,
+      "impostor",
+      language,
+      (pair) => `${pair.word}|${pair.hint}`,
+      (translated) => {
+        const [word, hint = ""] = translated.split("|");
+        return { word, hint };
+      },
+    );
+    LOCALIZED_IMPOSTOR_CATEGORIES.set(language, localized);
+  }
+  return localized;
+}

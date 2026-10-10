@@ -319,10 +319,7 @@ function PassAndPlay({
               <ModeIcon size={42} />
             </div>
           )}
-          <p className="mt-6 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">
-            {turn === 0 ? "Začína" : "Na rade je"} • kolo{" "}
-            {Math.floor(turn / participantNames.length) + 1}/{rounds}
-          </p>
+          <p className="mt-6 text-[10px] font-black uppercase tracking-[0.25em] text-white/35">{`${turn === 0 ? "Začína" : "Na rade je"} • kolo ${Math.floor(turn / participantNames.length) + 1}/${rounds}`}</p>
           <h2
             className="mt-2 flex items-center justify-center gap-2.5 text-4xl font-black"
             style={{ color: participantColor }}
@@ -338,9 +335,7 @@ function PassAndPlay({
             {participantNames[participant]}
           </h2>
           {participantSide && (
-            <p className="mt-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
-              {participantSide} — platí celú hru
-            </p>
+            <p className="mt-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">{`${participantSide} — platí celú hru`}</p>
           )}
           <section
             className={`party-glass mt-5 w-full max-w-sm rounded-[1.8rem] p-5 ${mode === "pesnicka" ? "song-instruction-card" : ""}`}
@@ -360,9 +355,7 @@ function PassAndPlay({
               </div>
             )}
             {turn > 0 && (
-              <p className="mt-3 text-xs font-bold text-white/30">
-                Aktuálne skóre: {scores[participant]} bodov
-              </p>
+              <p className="mt-3 text-xs font-bold text-white/30">{`Aktuálne skóre: ${scores[participant]} bodov`}</p>
             )}
           </section>
           <button
@@ -371,9 +364,7 @@ function PassAndPlay({
             // Gradient predtým mieša farbu tímu s akcentom hry, takže tlačidlo
             // patrilo obom a ani jednému. Tlačidlo je akcia tímu na rade.
             style={{ background: participantColor }}
-          >
-            Spustiť {timeSeconds} sekúnd
-          </button>
+          >{`Spustiť ${timeSeconds} sekúnd`}</button>
         </main>
       </PartyBackdrop>
     );
@@ -461,9 +452,7 @@ function PassAndPlay({
         className={`exit-slot-gap relative z-10 m-3 flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/[0.055] px-4 py-3 backdrop-blur-xl ${mode === "pesnicka" ? "song-round-header" : ""}`}
       >
         <div className="min-w-0 text-left">
-          <p className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">
-            Hrá {participantLabel}
-          </p>
+          <p className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">{`Hrá ${participantLabel}`}</p>
           <p
             className="flex min-w-0 items-center gap-1.5 text-base font-black"
             style={{ color: participantColor }}
@@ -546,9 +535,7 @@ function PassAndPlay({
               <div className="mt-4 flex justify-center gap-2">
                 <span
                   className={`rounded-full border px-3 py-1.5 text-[9px] font-black uppercase tracking-wider ${songAwards.title ? "border-emerald-300/40 bg-emerald-400/15 text-emerald-200" : "border-white/10 bg-white/[0.04] text-white/30"}`}
-                >
-                  Názov {songAwards.title ? "✓" : "+1"}
-                </span>
+                >{`Názov ${songAwards.title ? "✓" : "+1"}`}</span>
                 <span
                   className={`rounded-full border px-3 py-1.5 text-[9px] font-black uppercase tracking-wider ${songAwards.artist ? "border-emerald-300/40 bg-emerald-400/15 text-emerald-200" : "border-white/10 bg-white/[0.04] text-white/30"}`}
                 >

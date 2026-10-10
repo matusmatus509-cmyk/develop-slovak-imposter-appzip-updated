@@ -1,3 +1,4 @@
+import type { AppLanguage } from "../i18n/LanguageProvider";
 import type {
   CustomContentGame,
   WorkshopCollection,
@@ -138,6 +139,98 @@ export const SEASONAL_PARTY_PACKS: SeasonalPartyPack[] = [
     ],
   },
 ];
+
+/** Anglické sezónne balíčky — samostatné kolekcie, aby sa nemiešali so slovenskými. */
+export const SEASONAL_PARTY_PACKS_EN: SeasonalPartyPack[] = [
+  {
+    id: "christmas-en",
+    name: "Christmas Spirit",
+    icon: "🎄",
+    color: "#22c55e",
+    description: "Traditions, carols, presents and wintry charades.",
+    entries: [
+      { kind: "truth", text: "Which Christmas tradition matters most to you, and why?" },
+      { kind: "truth", text: "What present made you happiest as a kid?" },
+      { kind: "dare", text: "Sing or hum the chorus of a well-known Christmas carol." },
+      { kind: "dare", text: "Act out unwrapping a present that totally surprised you." },
+      { kind: "never", text: "Never have I ever eaten Christmas cookies before the holidays started." },
+      { kind: "wouldRather", text: "Would you rather decorate the tree all day", answer: "Would you rather bake cookies all day" },
+      { kind: "emoji", text: "🎄⭐🎁", answer: "Christmas tree and presents" },
+      { kind: "quiz", text: "What is the four-week period before Christmas called?", answer: "Advent" },
+      { kind: "quiz", text: "What date is Christmas Eve?", answer: "December 24" },
+      { kind: "person", text: "Santa carrying way too many presents" },
+      { kind: "charade", text: "Decorating the Christmas tree" },
+      { kind: "charade", text: "Building a snowman" },
+    ],
+  },
+  {
+    id: "halloween-en",
+    name: "Halloween Night",
+    icon: "🎃",
+    color: "#f97316",
+    description: "Spooky-fun questions, characters and guessing.",
+    entries: [
+      { kind: "truth", text: "Which movie or story scared you the most as a kid?" },
+      { kind: "truth", text: "What costume would you pick if you had an unlimited budget?" },
+      { kind: "dare", text: "Make up a three-sentence scary story with a happy ending." },
+      { kind: "dare", text: "Walk around the room like a clumsy zombie." },
+      { kind: "never", text: "Never have I ever been scared by my own reflection in the dark." },
+      { kind: "wouldRather", text: "Would you rather spend the night in an old castle", answer: "Would you rather walk through a forest at night" },
+      { kind: "emoji", text: "👻🏚️🌕", answer: "Haunted house under a full moon" },
+      { kind: "quiz", text: "Which vegetable is most often carved into a Halloween lantern?", answer: "Pumpkin" },
+      { kind: "quiz", text: "What date is Halloween?", answer: "October 31" },
+      { kind: "person", text: "A vampire who's afraid of the dark" },
+      { kind: "charade", text: "Carving a pumpkin" },
+      { kind: "charade", text: "Spooky ghost" },
+    ],
+  },
+  {
+    id: "valentine-en",
+    name: "Valentine's Party",
+    icon: "💝",
+    color: "#fb7185",
+    description: "Sweet questions for couples and friends, no awkward moments.",
+    entries: [
+      { kind: "truth", text: "What quality makes someone a good friend or partner, in your opinion?" },
+      { kind: "truth", text: "What small gesture always makes your day better?" },
+      { kind: "dare", text: "Give the person on your right a sincere, specific compliment." },
+      { kind: "dare", text: "Come up with a slogan for the best friendship in the world." },
+      { kind: "never", text: "Never have I ever sent a message to the wrong person." },
+      { kind: "wouldRather", text: "Would you rather get a handmade present", answer: "Would you rather share an adventure together" },
+      { kind: "emoji", text: "🍝🕯️💬", answer: "Candlelit dinner" },
+      { kind: "quiz", text: "Which holiday is celebrated on February 14?", answer: "Valentine's Day" },
+      { kind: "quiz", text: "Which organ symbolizes love?", answer: "The heart" },
+      { kind: "person", text: "Cupid with his arrows all tangled up" },
+      { kind: "charade", text: "Writing a love note" },
+      { kind: "charade", text: "Cooking dinner" },
+    ],
+  },
+  {
+    id: "new-year-en",
+    name: "New Year's Kickoff",
+    icon: "🎆",
+    color: "#a78bfa",
+    description: "Memories, resolutions, countdowns and celebrations.",
+    entries: [
+      { kind: "truth", text: "Which moment from the past year are you proudest of?" },
+      { kind: "truth", text: "What new thing would you like to try next year?" },
+      { kind: "dare", text: "Give a ten-second New Year's toast to the whole group." },
+      { kind: "dare", text: "Act out celebrating midnight without saying a word." },
+      { kind: "never", text: "Never have I ever fallen asleep before the midnight countdown." },
+      { kind: "wouldRather", text: "Would you rather celebrate at a big party", answer: "Would you rather ring in the new year at a quiet cabin" },
+      { kind: "emoji", text: "🕛🥂🎆", answer: "Midnight on New Year's Eve" },
+      { kind: "quiz", text: "How many months are in a calendar year?", answer: "12" },
+      { kind: "quiz", text: "What is the last day of the year called?", answer: "New Year's Eve" },
+      { kind: "person", text: "A host counting down the last ten seconds of the year" },
+      { kind: "charade", text: "Opening a bottle" },
+      { kind: "charade", text: "New Year's resolution" },
+    ],
+  },
+];
+
+export function getSeasonalPartyPacks(language: AppLanguage): SeasonalPartyPack[] {
+  return language === "en" ? SEASONAL_PARTY_PACKS_EN : SEASONAL_PARTY_PACKS;
+}
 
 function cleanString(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().replace(/\s+/g, " ").slice(0, maxLength) : "";

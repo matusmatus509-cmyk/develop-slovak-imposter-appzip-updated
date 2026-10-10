@@ -1172,12 +1172,12 @@
     {
       "id": "taboo_sk_0567",
       "category": "Food and Drinks",
-      "word": "halušky",
+      "word": "potato dumplings",
       "forbidden": [
+        "gnocchi",
         "bryndza",
-        "potatoes",
-        "traditional",
-        "dish"
+        "boiled",
+        "dough"
       ]
     },
     {

@@ -142,7 +142,7 @@ function SetupScreen({
         <div className="guess-who-category-list scroll-panel">
           <div className="guess-who-picker-heading">
             <span>Viacero kategórií</span>
-            <p>Označ témy, z ktorých sa majú slová losovať. {ALL_SOLO_CHARADES_WORDS.length} slov celkom.</p>
+            <p>{`Označ témy, z ktorých sa majú slová losovať. ${ALL_SOLO_CHARADES_WORDS.length} slov celkom.`}</p>
           </div>
 
           <div className="guess-who-picker-actions">
@@ -161,9 +161,7 @@ function SetupScreen({
                 : `Kategórie · ${categoryIds.length} vybraných`}
             </p>
             {visibleCategories.length === 0 ? (
-              <p className="guess-who-picker-empty">
-                Žiadna kategória nevyhovuje „{categoryQuery.trim()}“. Skús iný nápis.
-              </p>
+              <p className="guess-who-picker-empty">{`Žiadna kategória nevyhovuje „${categoryQuery.trim()}“. Skús iný nápis.`}</p>
             ) : (
               <div className="guess-who-picker-options">
                 {visibleCategories.map((id) => {
@@ -243,7 +241,7 @@ function SetupScreen({
             <strong>{categorySummary}</strong>
           </span>
           <span className="guess-who-field-meta">
-            <small>{categoryCount} vybraných</small>
+            <small>{`${categoryCount} vybraných`}</small>
             <Icons.chevronRight size={18} />
           </span>
         </button>
@@ -260,7 +258,7 @@ function SetupScreen({
           <section className="guess-who-setting-block">
             <div className="guess-who-setting-heading">
               <span><Icons.timer size={15} /> Čas na kolo</span>
-              <strong>{timerSecs} sekúnd</strong>
+              <strong>{`${timerSecs} sekúnd`}</strong>
             </div>
             <div className="guess-who-time-grid">
               {[30, 45, 60, 90, 120].map((t) => (

@@ -95,7 +95,7 @@ export default function RoundIntro({
     return (
       <PartyBackdrop>
         <main className="flex h-full flex-col items-center justify-center px-6 text-center">
-          <PartyEyebrow>Kolo {round.index + 1}</PartyEyebrow>
+          <PartyEyebrow>{`Kolo ${round.index + 1}`}</PartyEyebrow>
           <div className="mt-10 flex h-20 w-20 items-center justify-center rounded-2xl border border-white/12 bg-white/[.05] text-white">
             <RoundIcon size={38} />
           </div>
@@ -125,9 +125,7 @@ export default function RoundIntro({
       <main className="flex h-full flex-col fit-or-scroll overflow-hidden px-5 pb-1 pt-4">
         <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col gap-3">
           <header className="text-center">
-            <PartyEyebrow>
-              Kolo {round.index + 1} z {totalRounds}
-            </PartyEyebrow>
+            <PartyEyebrow>{`Kolo ${round.index + 1} z ${totalRounds}`}</PartyEyebrow>
             <div className="mx-auto mt-5 flex max-w-xs gap-1.5">
               {Array.from({ length: totalRounds }, (_, index) => (
                 <span
@@ -170,12 +168,8 @@ export default function RoundIntro({
               {GAME_DESC[round.game]}
             </p>
             <div className="mt-5 flex justify-center gap-2">
-              <span className="rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2 text-[10px] font-black uppercase tracking-wider text-white/55">
-                {round.timeSeconds} sekúnd
-              </span>
-              <span className="rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2 text-[10px] font-black uppercase tracking-wider text-white/55">
-                ×{round.pointMultiplier} body
-              </span>
+              <span className="rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2 text-[10px] font-black uppercase tracking-wider text-white/55">{`${round.timeSeconds} sekúnd`}</span>
+              <span className="rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2 text-[10px] font-black uppercase tracking-wider text-white/55">{`×${round.pointMultiplier} body`}</span>
             </div>
           </section>
 

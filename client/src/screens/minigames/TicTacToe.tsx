@@ -293,7 +293,7 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
             >
               <Icons.chevronLeft size={19} />
             </button>
-            <PartyEyebrow>Kolo {round}</PartyEyebrow>
+            <PartyEyebrow>{`Kolo ${round}`}</PartyEyebrow>
             <div className="exit-slot-spacer" />
           </header>
 
@@ -341,9 +341,7 @@ export default function TicTacToe({ onBack }: { onBack: () => void }) {
             </button>
             <p
               className={`text-[8px] font-black uppercase tracking-[.22em] ${starter === "X" ? "text-cyan-200/70" : "text-fuchsia-200/70"}`}
-            >
-              Začína: {names[starter]}
-            </p>
+            >{`Začína: ${names[starter]}`}</p>
             <h1 className="mt-0.5 text-lg font-black">
               {result === "draw"
                 ? "Remíza"

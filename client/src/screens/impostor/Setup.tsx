@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { CATEGORIES } from "../../data/categories";
+import { getImpostorCategories } from "../../data/categories";
 import type { GameSettings } from "../../types";
 import { Button, Shell, Stepper, Toggle, TopBar } from "../../components/ui";
 import { Icons } from "../../components/icons";
@@ -35,6 +35,7 @@ export default function Setup({
   onStart: (settings: GameSettings) => void;
 }) {
   const { language } = useLanguage();
+  const categories = getImpostorCategories(language);
   const [view, setView] = useState<"main" | "category">("main");
   const [players, setPlayers] = useState<string[]>(() =>
     initial.playerNames.map((name) => localizeGeneratedParticipantName(name, language)),
@@ -54,8 +55,8 @@ export default function Setup({
   const maxImpostors = maxImpostorsFor(players.length);
 
   const visibleCategories = useMemo(
-    () => CATEGORIES.filter((category) => matchesSearch(category.name, categoryQuery)),
-    [categoryQuery],
+    () => categories.filter((category) => matchesSearch(category.name, categoryQuery)),
+    [categories, categoryQuery],
   );
 
   function toggleCategory(id: string) {
@@ -71,7 +72,7 @@ export default function Setup({
   // Tlačidlá pracujú s kategóriami viditeľnými v zozname — pri prázdnom
   // vyhľadávaní je to celý zoznam, teda pôvodné správanie.
   function selectAllCategories() {
-    const target = visibleCategories.length > 0 ? visibleCategories : CATEGORIES;
+    const target = visibleCategories.length > 0 ? visibleCategories : categories;
     setCategoryIds(target.map((category) => category.id));
   }
 
@@ -94,8 +95,8 @@ export default function Setup({
   }
 
   const selectedCategories = useMemo(
-    () => CATEGORIES.filter((c) => categoryIds.includes(c.id)),
-    [categoryIds],
+    () => categories.filter((c) => categoryIds.includes(c.id)),
+    [categories, categoryIds],
   );
 
   const noHintRecommendedCategories = selectedCategories.filter((category) =>
@@ -114,7 +115,7 @@ export default function Setup({
   );
 
   const categorySummary = useMemo(() => {
-    if (categoryIds.length === CATEGORIES.length) return `Všetky kategórie (${CATEGORIES.length})`;
+    if (categoryIds.length === categories.length) return `Všetky kategórie (${categories.length})`;
     if (selectedCategories.length === 0) return "Vyber kategórie";
     if (selectedCategories.length === 1) return selectedCategories[0].name;
     if (selectedCategories.length === 2)
@@ -133,7 +134,7 @@ export default function Setup({
         <div className="guess-who-category-list scroll-panel">
           <div className="guess-who-picker-heading">
             <span>Viacero kategórií</span>
-            <p>Označ jednu alebo viac tém. Slovo sa vyberie z označených kategórií. {totalWords} slov celkom.</p>
+            <p>{`Označ jednu alebo viac tém. Slovo sa vyberie z označených kategórií. ${totalWords} slov celkom.`}</p>
           </div>
 
           <div className="guess-who-picker-actions">
@@ -152,9 +153,7 @@ export default function Setup({
                 : `Kategórie · ${categoryIds.length} vybraných`}
             </p>
             {visibleCategories.length === 0 ? (
-              <p className="guess-who-picker-empty">
-                Žiadna kategória nevyhovuje „{categoryQuery.trim()}“. Skús iný nápis.
-              </p>
+              <p className="guess-who-picker-empty">{`Žiadna kategória nevyhovuje „${categoryQuery.trim()}“. Skús iný nápis.`}</p>
             ) : (
               <div className="guess-who-picker-options">
                 {visibleCategories.map((cat) => {
@@ -244,7 +243,7 @@ export default function Setup({
           <section className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5">
             <div>
               <p className="text-sm font-bold">Počet podvodníkov</p>
-              <p className="text-xs text-white/50">Max {maxImpostors} pri tomto počte hráčov</p>
+              <p className="text-xs text-white/50">{`Max ${maxImpostors} pri tomto počte hráčov`}</p>
             </div>
             <Stepper
               value={Math.min(impostorCount, maxImpostors)}

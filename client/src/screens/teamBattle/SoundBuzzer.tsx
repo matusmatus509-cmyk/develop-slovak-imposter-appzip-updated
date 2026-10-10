@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { soundArt } from "../../media";
 import { takePersistentItems } from "../../utils/persistentDeck";
-import { SOUND_CLUES } from "../../data/teamBattleExtras";
+import { getSoundCluesForLanguage } from "../../data/teamBattleExtras";
+import { useLanguage } from "../../i18n/LanguageProvider";
+import { deckKeyForLanguage } from "../../i18n/content";
 import { PartyBackdrop, TeamSideTag } from "./PartyChrome";
 import {
   makeEmptyScores,
@@ -14,6 +16,7 @@ import {
 import { useFeedback } from "../../feedback/FeedbackProvider";
 import { soundsEnabled } from "../../utils/deviceFeedback";
 import { Icons } from "../../components/icons";
+import { startSoundClue } from "../../utils/soundClueAudio";
 
 type Phase =
   | { type: "question" }
@@ -44,15 +47,16 @@ export default function SoundBuzzer({
 }: QuickParticipantsProps) {
   const { playFeedback } = useFeedback();
   const soundAllowed = soundsEnabled();
+  const { language } = useLanguage();
   const deck = useMemo(
     () =>
       takePersistentItems(
-        "party:sound-buzzer",
-        SOUND_CLUES,
+        deckKeyForLanguage("party:sound-buzzer", language),
+        getSoundCluesForLanguage(language),
         rounds,
         clue => clue.label
       ),
-    [rounds]
+    [rounds, language]
   );
   const [questionIndex, setQuestionIndex] = useState(0);
   const [scores, setScores] = useState<number[]>(() =>
@@ -64,11 +68,14 @@ export default function SoundBuzzer({
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const stopTimerRef = useRef<number | null>(null);
+  /** Zvýši sa pri každom zastavení — oneskorene spustený zvuk sa tak zahodí. */
+  const playTokenRef = useRef(0);
   const clue = deck[questionIndex];
   const playerWord = gameMode === "teams" ? "tím" : "hráč";
   const participantWord = gameMode === "teams" ? "Tím" : "Hráč";
 
   function stopAudio(nextStatus: AudioStatus = "ready") {
+    playTokenRef.current += 1;
     if (stopTimerRef.current !== null)
       window.clearTimeout(stopTimerRef.current);
     stopTimerRef.current = null;
@@ -146,20 +153,35 @@ export default function SoundBuzzer({
       return;
     }
 
-    const audio = new Audio(clue.audioUrl);
-    audio.preload = "auto";
-    audio.volume = 0.9;
-    audioRef.current = audio;
-    audio.addEventListener(
-      "ended",
-      () => {
-        audioRef.current = null;
-        setAudioStatus("ready");
-      },
-      { once: true }
-    );
+    const token = playTokenRef.current;
     try {
-      await audio.play();
+      // Hlasitosť sa vyrovnáva podľa offline merania (clue.gainDb) cez Web
+      // Audio; ak to prehliadač alebo server nedovolí, prehrá sa bez korekcie.
+      const { audio, context } = await startSoundClue(
+        clue.audioUrl,
+        clue.gainDb,
+        clue.startAt
+      );
+      if (token !== playTokenRef.current) {
+        audio.pause();
+        if (context) void context.close();
+        return;
+      }
+      audioRef.current = audio;
+      audioContextRef.current = context;
+      audio.addEventListener(
+        "ended",
+        () => {
+          if (audioRef.current !== audio) return;
+          audioRef.current = null;
+          if (audioContextRef.current) {
+            void audioContextRef.current.close();
+            audioContextRef.current = null;
+          }
+          setAudioStatus("ready");
+        },
+        { once: true }
+      );
       setPlayed(true);
       setAudioStatus("playing");
       stopTimerRef.current = window.setTimeout(
@@ -235,7 +257,9 @@ export default function SoundBuzzer({
           : "Zvuk môžeš prehrať aj viackrát"
         : phase.type === "buzzed"
           ? `${participantWord} povie odpoveď nahlas`
-          : "";
+          : clue.acceptedAnswers?.length
+            ? `Platí aj: ${clue.acceptedAnswers.slice(0, 3).join(", ")}`
+            : "";
 
   /**
    * Render funkcie, nie vnorené komponenty: vnorený komponent by pri každom

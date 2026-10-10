@@ -90,9 +90,7 @@ export default function Setup({
             <Icons.timer size={19} />
           </span>
           <div>
-            <p className="text-sm font-bold">
-              Tajný čas: {BUZZ_TARGET_MIN_SECONDS} – {BUZZ_TARGET_MAX_SECONDS} s
-            </p>
+            <p className="text-sm font-bold">{`Tajný čas: ${BUZZ_TARGET_MIN_SECONDS} – ${BUZZ_TARGET_MAX_SECONDS} s`}</p>
             <p className="text-xs text-white/50">
               Vylosuje sa jedno presné číslo na dve desatinné miesta, napríklad
               5,77 s. Dostanú ho všetci okrem podvodníka.

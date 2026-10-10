@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import type { GameType, PantomimaDifficulty } from "../../data/teamBattle";
 import {
-  PANTOMIMA_WORDS_BY_DIFFICULTY,
+  getPantomimeWordsForLanguage,
   PANTOMIMA_DIFFICULTY_POINTS,
   PANTOMIMA_DIFFICULTY_LABELS,
 } from "../../data/teamBattle";
 import { partyTeamIdentity } from "./teamIdentity";
 import { getCharadesWordsForLanguage } from "../../data/charades";
 import { useLanguage } from "../../i18n/LanguageProvider";
+import { deckKeyForLanguage } from "../../i18n/content";
 import { takePersistentItem } from "../../utils/persistentDeck";
 import {
   requestTiltPermission,
@@ -128,8 +129,8 @@ export default function TimedWords({
 
   function takeNextPantomimeWord(d: PantomimaDifficulty) {
     return takePersistentItem(
-      "party:pantomime:all",
-      PANTOMIMA_WORDS_BY_DIFFICULTY[d],
+      deckKeyForLanguage("party:pantomime:all", language),
+      getPantomimeWordsForLanguage(d, language),
       word => word.trim().toLocaleLowerCase("sk")
     );
   }
@@ -317,9 +318,7 @@ export default function TimedWords({
             {teamNames[teamIdx]}
           </h2>
           {/* Strana tímu je rovnaká v každej minihre — telefón nikam neputuje. */}
-          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
-            Tím {team.letter} · {team.sideLabel}
-          </p>
+          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">{`Tím ${team.letter} · ${team.sideLabel}`}</p>
         </div>
 
         <div style={{ animation: "fadeIn 0.5s ease-out 0.2s both" }}>
@@ -352,8 +351,7 @@ export default function TimedWords({
 
         {teamIdx === 1 && (
           <p className="text-xs text-white/30">
-            {teamNames[0]} získal {scores[0]}{" "}
-            {scores[0] === 1 ? "bod" : scores[0] < 5 ? "body" : "bodov"}
+            {`${teamNames[0]} získal ${scores[0]} ${scores[0] === 1 ? "bod" : scores[0] < 5 ? "body" : "bodov"}`}
           </p>
         )}
       </div>
@@ -382,9 +380,7 @@ export default function TimedWords({
             {teamNames[teamIdx]}
           </h2>
           {/* Strana tímu je rovnaká v každej minihre — telefón nikam neputuje. */}
-          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
-            Tím {team.letter} · {team.sideLabel}
-          </p>
+          <p className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-white/35">{`Tím ${team.letter} · ${team.sideLabel}`}</p>
         </div>
 
         <div
@@ -409,8 +405,7 @@ export default function TimedWords({
 
         {teamIdx === 1 && (
           <p className="text-xs text-white/30">
-            {teamNames[0]} získal {scores[0]}{" "}
-            {scores[0] === 1 ? "bod" : scores[0] < 5 ? "body" : "bodov"}
+            {`${teamNames[0]} získal ${scores[0]} ${scores[0] === 1 ? "bod" : scores[0] < 5 ? "body" : "bodov"}`}
           </p>
         )}
 

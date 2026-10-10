@@ -149,7 +149,7 @@ export default function IbaNepravda({ onBack }: { onBack: () => void }) {
 
             <div className="only-lies-failure-score">
               <strong>{streak}</strong>
-              <span>zvládnutých {questionsLabel(streak)}</span>
+              <span>{`zvládnutých ${questionsLabel(streak)}`}</span>
             </div>
 
             <Button fullWidth onClick={restart} className="only-lies-failure-action">

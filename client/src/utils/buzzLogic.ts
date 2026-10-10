@@ -37,9 +37,14 @@ export function generateBuzzAssignment(settings: BuzzSettings): BuzzAssignment {
   };
 }
 
-/** Nameraný čas so slovenskou desatinnou čiarkou, napr. „5,81 s“. */
+/** Desatinný oddeľovač podľa jazyka rozhrania: angličtina bodka, inak čiarka. */
+function decimalSeparator() {
+  return typeof document !== "undefined" && document.documentElement.lang === "en" ? "." : ",";
+}
+
+/** Nameraný čas so slovenskou desatinnou čiarkou, napr. „5,81 s“ (v angličtine „5.81 s“). */
 export function formatBuzzTime(seconds: number) {
-  return `${seconds.toFixed(2).replace(".", ",")} s`;
+  return `${seconds.toFixed(2).replace(".", decimalSeparator())} s`;
 }
 
 /** Hranica rozsahu bez zbytočnej nuly: 5 → „5“, 5,5 → „5,5“. */
@@ -47,7 +52,7 @@ export function formatBuzzBound(seconds: number) {
   return seconds
     .toFixed(1)
     .replace(/\.0$/, "")
-    .replace(".", ",");
+    .replace(".", decimalSeparator());
 }
 
 /** Rozsah pre podvodníka, napr. „5 – 7 s“. */

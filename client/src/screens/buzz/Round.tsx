@@ -84,9 +84,7 @@ export default function Round({
 
       <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-7 text-center">
         <div className="flex flex-col items-center gap-2.5" style={{ animation: "fadeIn 0.4s ease-out" }}>
-          <span className="rounded-full border border-white/10 bg-white/[.06] px-3 py-1 text-[10px] font-black uppercase tracking-[.2em] text-white/45">
-            Hráč {index + 1} z {settings.playerNames.length}
-          </span>
+          <span className="rounded-full border border-white/10 bg-white/[.06] px-3 py-1 text-[10px] font-black uppercase tracking-[.2em] text-white/45">{`Hráč ${index + 1} z ${settings.playerNames.length}`}</span>
           <div className="flex items-center gap-2.5">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-amber-500 text-xs font-black">
               {name.slice(0, 2).toUpperCase()}

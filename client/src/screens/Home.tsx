@@ -4,7 +4,7 @@ import { getLevelInfo, normalizeStatistics } from "../utils/gameStats";
 import { Icons } from "../components/icons";
 /** Dizajnové pravidlo: verná GitHub aplikácia; mediálne súbory sú presunuté výhradne do hostovaného úložiska. */
 import { appBackground, imposterArt, minigamesArt, partyModeArt } from "../media";
-import { type AppLanguage, useLanguage } from "../i18n/LanguageProvider";
+import { LANGUAGE_OPTIONS, useLanguage } from "../i18n/LanguageProvider";
 import type { PlayableGame } from "../data/engagement";
 
 const SECTIONS: Array<{
@@ -19,14 +19,7 @@ const SECTIONS: Array<{
   { screen: "minigames-menu", title: "Minihry", description: "Krátke hry, keď chcete začať hneď.", image: minigamesArt, accent: "#06b6d4" },
 ];
 
-const LANGUAGES: { code: AppLanguage; mark: string; label: string }[] = [
-  { code: "sk", mark: "SK", label: "Slovenčina" },
-  { code: "en", mark: "EN", label: "English" },
-  { code: "de", mark: "DE", label: "Deutsch" },
-  { code: "es", mark: "ES", label: "Español" },
-  { code: "fr", mark: "FR", label: "Français" },
-  { code: "pt", mark: "PT", label: "Português" },
-];
+const LANGUAGES = LANGUAGE_OPTIONS;
 
 export default function Home({ onNavigate, statistics, onSettings }: { onNavigate: (screen: Screen) => void; statistics: GameStatistics; onSettings: () => void; favoriteGames: PlayableGame[]; onToggleFavorite: (id: string) => void }) {
   const { language, setLanguage } = useLanguage();

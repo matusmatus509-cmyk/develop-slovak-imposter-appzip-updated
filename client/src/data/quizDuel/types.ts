@@ -1,4 +1,5 @@
 import type { AppLanguage } from "../../i18n/LanguageProvider";
+import { quizTextFor } from "../../i18n/content";
 
 /**
  * ── Lokalizácia ─────────────────────────────────────────────────────────────
@@ -54,6 +55,28 @@ export const QUIZ_DUEL_TOPICS = {
 } as const;
 
 export type QuizDuelTopic = keyof typeof QUIZ_DUEL_TOPICS;
+
+/** Anglické názvy tém (ostatné jazyky zatiaľ používajú DOM slovník). */
+export const QUIZ_DUEL_TOPIC_LABELS_EN: Record<QuizDuelTopic, string> = {
+  zvierata: "Animals",
+  telo: "Human Body",
+  technika: "Technology",
+  internet: "Internet",
+  jedlo: "Food and Drink",
+  vesmir: "Space",
+  priroda: "Nature",
+  cestovanie: "Travel",
+  film: "Movies and Games",
+  sport: "Sports",
+  peniaze: "Money",
+  rekordy: "Records",
+  bizar: "Bizarre Facts",
+  zivot: "Everyday Life",
+};
+
+export function quizDuelTopicLabel(topic: QuizDuelTopic, language: AppLanguage): string {
+  return language === "en" ? QUIZ_DUEL_TOPIC_LABELS_EN[topic] : QUIZ_DUEL_TOPICS[topic].label;
+}
 
 // ── Typy kôl ─────────────────────────────────────────────────────────────────
 
@@ -222,13 +245,17 @@ export function resolveQuestion(
   language: AppLanguage
 ): ResolvedQuizDuelQuestion {
   const topic = QUIZ_DUEL_TOPICS[question.topic];
+  // Anglický preklad žije v samostatnej mape podľa `id` (i18n/content/en/quiz.json).
+  const english = quizTextFor(question.id, language);
+  const text = (value: Localizable, translated: string | undefined) =>
+    translated ?? resolveText(value, language);
   const base: ResolvedBase = {
     id: question.id,
     topic: question.topic,
-    topicLabel: `${topic.emoji} ${topic.label}`,
+    topicLabel: `${topic.emoji} ${quizDuelTopicLabel(question.topic, language)}`,
     difficulty: question.difficulty,
-    prompt: resolveText(question.prompt, language),
-    fact: resolveText(question.fact, language),
+    prompt: text(question.prompt, english?.prompt),
+    fact: text(question.fact, english?.fact),
     source: question.source,
     asOf: question.asOf,
   };
@@ -237,7 +264,7 @@ export function resolveQuestion(
     return {
       ...base,
       kind: "classic",
-      options: question.options.map((option) => resolveText(option, language)) as [
+      options: question.options.map((option, index) => text(option, english?.options?.[index])) as [
         string,
         string,
         string,
@@ -249,8 +276,8 @@ export function resolveQuestion(
 
   const numeric: ResolvedNumericCore = {
     value: question.value,
-    unit: resolveText(question.unit, language),
-    display: resolveText(question.display, language),
+    unit: text(question.unit, english?.unit),
+    display: text(question.display, english?.display),
   };
 
   if (question.kind === "higher-lower") {
@@ -259,7 +286,7 @@ export function resolveQuestion(
       ...numeric,
       kind: "higher-lower",
       claim: question.claim,
-      claimDisplay: resolveText(question.claimDisplay, language),
+      claimDisplay: text(question.claimDisplay, english?.claimDisplay),
     };
   }
 
