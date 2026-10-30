@@ -5840,3 +5840,91 @@ html[data-theme="light"] .ui-pre-caption h1 { color: #fff; }
     transition: none;
   }
 }
+
+/* Party studio: shared surfaces, clear controls and a celebratory finale. */
+.party-mode-experience {
+  --pm-accent: #a99aff;
+  --pm-cta-ink: #fff;
+}
+.party-mode-experience .party-backdrop {
+  background: radial-gradient(ellipse at 15% 0%, #30214b 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 65%, #132c42 0%, transparent 55%), #090d1b;
+}
+.party-mode-experience .party-glass,
+.party-mode-experience .party-scoreboard {
+  border: 1px solid rgba(191,197,255,.18);
+  background: linear-gradient(135deg, rgba(43,47,75,.88), rgba(16,22,39,.94));
+  box-shadow: 0 16px 40px -24px #000, inset 0 1px 0 #ffffff0d;
+  border-radius: 24px;
+}
+.party-mode-experience .party-cta,
+.party-mode-experience button[class*="from-violet-600"] {
+  background: linear-gradient(115deg, #7964e8, #ad67d7);
+  color: white;
+  border: 1px solid #d9caff40;
+  box-shadow: 0 10px 30px -12px #a987ff99;
+  min-height: 52px;
+  text-transform: none;
+  letter-spacing: .015em;
+}
+.party-setup-screen .party-setup-hero { border-radius: 26px; border: 1px solid #d9caff26; }
+.party-setup-screen .party-setup-title { letter-spacing: -.045em; line-height: 1.08; }
+.party-section-label { margin: 0 0 8px; font-size: 11px; font-weight: 700; color: #c7c9df; letter-spacing: .04em; }
+.party-setup-screen .party-setup-choice {
+  position: relative;
+  border: 1px solid #bbc3e325;
+  border-radius: 20px;
+  background: #171d30;
+  transition: background .2s, border-color .2s, transform .2s;
+}
+.party-setup-screen .party-setup-choice[aria-pressed="true"] {
+  background: linear-gradient(135deg, #3d315e, #24233e);
+  border-color: #b9a5ff;
+  box-shadow: inset 0 0 0 1px #b9a5ff30, 0 8px 25px -16px #b9a5ff;
+}
+.party-setup-choice[aria-pressed="true"]::after {
+  content: '✓'; position: absolute; top: 10px; right: 12px;
+  color: #e2d7ff; font-weight: 800;
+}
+.party-setup-screen .party-setup-choice small { color: #bac0d4; line-height: 1.4; }
+.party-setup-screen .party-setup-row { border-radius: 20px; }
+.settings-studio { background: radial-gradient(ellipse at top, #24233f, #0c1220 65%); }
+.settings-studio > header, .settings-studio > div { width: 100%; max-width: 640px; margin-inline: auto; }
+.settings-studio .ui-panel { border-radius: 24px; border: 1px solid #ffffff18; background: #192136; box-shadow: 0 16px 36px -26px #000; }
+.settings-studio .ui-setting { padding-block: 18px; }
+.settings-studio .ui-setting-name { color: #f3f1ff; font-size: 14px; }
+.settings-studio .ui-setting-note, .settings-studio .ui-panel-sub { color: #aeb8ce; line-height: 1.6; }
+.settings-studio .ui-seg { padding: 5px; border-radius: 16px; background: #0d1426; gap: 5px; }
+.settings-studio .ui-seg-opt { min-height: 48px; border-radius: 12px; color: #bdc6dd; }
+.settings-studio .ui-seg-opt[aria-pressed="true"] { background: #a99aff; color: #161329; box-shadow: 0 4px 14px #0003; }
+.party-mode-experience button:focus-visible, .settings-studio button:focus-visible {
+  outline: 3px solid #d1c7ff; outline-offset: 4px;
+}
+.party-mode-experience .party-timer { filter: drop-shadow(0 6px 18px #0004); }
+.party-mode-experience .party-winner-name { font-size: clamp(1.8rem, 8vw, 3rem); }
+.party-finale .party-winner-trophy { isolation: isolate; }
+.party-finale .party-winner-trophy.is-celebrating { animation: trophyArrival .85s cubic-bezier(.18,.8,.25,1.2) both; }
+.party-finale .party-winner-trophy::after {
+  content: ''; position: absolute; inset: -14px; border: 1px solid #ffd78155;
+  border-radius: 50%; box-shadow: 0 0 45px #ffc24720;
+}
+.party-finale .party-podium.winner { background: linear-gradient(155deg, #40344b, #1b2438); border-color: #e7bc67 !important; }
+@keyframes trophyArrival {
+  0% { transform: scale(.65) rotate(-12deg); opacity: .3; }
+  65% { transform: scale(1.1) rotate(5deg); }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+@media (hover: hover) {
+  .party-setup-choice:hover { transform: translateY(-2px); }
+  .party-mode-experience .party-cta:hover { filter: brightness(1.12); }
+}
+@media (max-height: 740px) {
+  .party-section-label { margin-bottom: 5px; }
+  .party-setup-screen .party-setup-hero { min-height: 90px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .party-confetti { display: none; }
+  .party-mode-experience *, .party-mode-experience *::before, .party-mode-experience *::after {
+    animation: none !important; transition: none !important;
+  }
+}

@@ -92,7 +92,7 @@ export default function TeamBattleSetup({
 
   /** Voľby pravidiel — obsah podstránky `Pravidlá kôl`. */
   const ruleControls = (
-    <div className="ui ui-party">
+    <div className="ui ui-party party-rules">
       <section className="ui-panel">
         <div className="ui-panel-head">
           <h2 className="ui-panel-title">Tempo bitky</h2>
@@ -104,7 +104,7 @@ export default function TeamBattleSetup({
               <span className="ui-setting-name">Rýchle výzvy na tím</span>
               <span className="ui-setting-value">{quickRounds}×</span>
             </div>
-            <div className="ui-seg ui-seg-4" role="group">
+            <div className="ui-seg ui-seg-4" role="group" aria-label="Počet výziev">
               {QUICK_ROUND_OPTIONS.map(value => (
                 <button
                   key={value}
@@ -124,7 +124,7 @@ export default function TeamBattleSetup({
               <span className="ui-setting-name">Čas časovaných hier</span>
               <span className="ui-setting-value">{timeSeconds} s</span>
             </div>
-            <div className="ui-seg ui-seg-4" role="group">
+            <div className="ui-seg ui-seg-4" role="group" aria-label="Čas kola">
               {TIME_OPTIONS.map(value => (
                 <button
                   key={value}
@@ -150,7 +150,7 @@ export default function TeamBattleSetup({
                 {quizDifficulty === "lahke" ? "Ľahšia" : "Ťažšia"}
               </span>
             </div>
-            <div className="ui-seg ui-seg-2" role="group">
+            <div className="ui-seg ui-seg-2" role="group" aria-label="Náročnosť kvízu">
               {(
                 [
                   { value: "lahke", label: "Ľahšia", note: "Známe fakty" },
@@ -268,6 +268,7 @@ export default function TeamBattleSetup({
             </p>
 
             <section aria-label="Zostava hier" className="shrink-0">
+              <p className="party-section-label">Ako zostavíme večer?</p>
               <div className="grid grid-cols-2 gap-2.5">
                 <button
                   type="button"

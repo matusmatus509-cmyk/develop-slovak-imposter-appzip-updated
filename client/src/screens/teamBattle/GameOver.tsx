@@ -10,7 +10,7 @@ import { useFeedback } from "../../feedback/FeedbackProvider";
 function Confetti() {
   const pieces = useMemo(
     () =>
-      Array.from({ length: 28 }, (_, index) => ({
+      Array.from({ length: 48 }, (_, index) => ({
         id: index,
         left: `${Math.random() * 100}%`,
         delay: `${Math.random() * 1.2}s`,
@@ -28,7 +28,7 @@ function Confetti() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-20 overflow-hidden"
+      className="party-confetti pointer-events-none fixed inset-0 z-40 overflow-hidden"
       aria-hidden="true"
     >
       {pieces.map(piece => (
@@ -115,7 +115,7 @@ export default function GameOver({
   }, [isDraw]);
 
   return (
-    <PartyBackdrop>
+    <PartyBackdrop className="party-finale">
       {celebrating && !isDraw && <Confetti />}
       <main className="relative z-30 flex h-full flex-col fit-or-scroll overflow-hidden px-5 pb-3 pt-5 text-center">
         <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col items-center">
@@ -141,7 +141,7 @@ export default function GameOver({
               {isDraw ? "Dokonalá remíza" : "Víťaz Party mode"}
             </p>
             <h1
-              className="party-winner-name mt-2 text-4xl font-black tracking-tight text-white"
+              className="party-winner-name break-words mt-2 text-4xl font-black tracking-tight text-white"
               style={
                 !isDraw
                   ? {
@@ -156,7 +156,7 @@ export default function GameOver({
             <p className="mt-2 text-sm text-white/45">
               {isDraw
                 ? "Dnes ste boli dokonale vyrovnaní."
-                : `Vyhráva o ${difference} ${difference === 1 ? "bod" : "bodov"}.`}
+                : `Vyhráva o ${difference} ${difference === 1 ? "bod" : difference >= 2 && difference <= 4 ? "body" : "bodov"}.`}
             </p>
           </section>
 

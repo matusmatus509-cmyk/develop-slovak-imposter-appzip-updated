@@ -79,7 +79,7 @@ export default function GameSettingsPage({
         </span>
         <span className="min-w-0 flex-1">
           <strong className="block text-sm font-black text-white">{title}</strong>
-          <small className="mt-0.5 block truncate text-[11px] font-medium text-white/45">
+          <small className="mt-0.5 block text-[11px] font-medium text-white/45">
             {summary}
           </small>
         </span>
@@ -94,7 +94,7 @@ export default function GameSettingsPage({
       {open &&
         createPortal(
           <div
-            className="fixed inset-0 z-[300] flex flex-col bg-[#080b10] text-white"
+            className="settings-studio fixed inset-0 z-[300] flex flex-col bg-[#080b10] text-white"
             role="dialog"
             aria-modal="true"
             aria-label={title}
