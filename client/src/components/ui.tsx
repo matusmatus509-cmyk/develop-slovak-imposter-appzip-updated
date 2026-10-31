@@ -1,3 +1,4 @@
+import { useId } from "react";
 import type { ButtonHTMLAttributes, ReactNode, SVGProps } from "react";
 import { Icons, type IconsType } from "./icons";
 import { designTokens } from "../utils/designTokens";
@@ -312,7 +313,7 @@ export function Button({
           size={size === "sm" ? 16 : size === "md" ? 18 : 20}
         />
       )}
-      <span style={{ whiteSpace: "nowrap" }}>{children}</span>
+      <span style={{ whiteSpace: "normal", lineHeight: 1.25 }}>{children}</span>
       {!loading && rightIcon && (
         <Icon
           name={rightIcon}
@@ -339,6 +340,7 @@ export function Chip({
       type="button"
       onClick={onClick}
       disabled={!onClick}
+      aria-pressed={active}
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-all active:scale-95",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080b10]",
@@ -381,7 +383,7 @@ export function Toggle({
       disabled={disabled}
       aria-pressed={checked}
       className={cn(
-        "flex w-full items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5 text-left transition-all",
+        "app-toggle flex w-full items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5 text-left transition-all",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#080b10]",
         disabled && "opacity-50 cursor-not-allowed"
       )}
@@ -422,7 +424,7 @@ export function Stepper({
   label,
 }: StepperProps) {
   return (
-    <div className="flex items-center gap-4">
+    <div className="app-stepper flex items-center gap-4">
       {label && (
         <span className="text-sm font-bold text-white/70 uppercase tracking-wider min-w-[100px]">
           {label}
@@ -431,6 +433,7 @@ export function Stepper({
       <div className="flex items-center gap-3">
         <button
           type="button"
+          aria-label={label ? `${label}: znížiť` : "Znížiť počet"}
           onClick={() => !disabled && onChange(Math.max(min, value - 1))}
           disabled={disabled || value <= min}
           className={cn(
@@ -446,6 +449,7 @@ export function Stepper({
         </span>
         <button
           type="button"
+          aria-label={label ? `${label}: zvýšiť` : "Zvýšiť počet"}
           onClick={() => !disabled && onChange(Math.min(max, value + 1))}
           disabled={disabled || value >= max}
           className={cn(
@@ -536,7 +540,8 @@ export function Input({
   id,
   ...props
 }: InputProps) {
-  const inputId = id || `input-${Math.random().toString(36).slice(2, 9)}`;
+  const generatedId = useId();
+  const inputId = id || generatedId;
   const errorId = `${inputId}-error`;
   const helperId = `${inputId}-helper`;
 

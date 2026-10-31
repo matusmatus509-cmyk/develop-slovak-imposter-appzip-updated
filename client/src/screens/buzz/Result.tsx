@@ -25,7 +25,7 @@ export default function Result({
   const impostorName = settings.playerNames[assignment.impostorIndex];
 
   return (
-    <Shell>
+    <Shell className="result-studio">
       <TopBar title="Odhalenie" onBack={onHome} />
 
       <div className="min-h-0 flex-1 overflow-y-auto pb-2">

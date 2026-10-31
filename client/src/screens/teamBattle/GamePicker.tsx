@@ -126,6 +126,17 @@ export default function TeamBattleGamePicker({
           </p>
         </header>
 
+        {count > 0 && (
+          <section className="party-playlist" aria-label="Poradie hier">
+            <div className="party-playlist-heading"><strong>Váš herný večer</strong><span>{count} / {ALL_GAMES.length}</span></div>
+            <ol>{selectedGames.map((game, index) => <li key={game}>
+              <span className="party-playlist-number">{index + 1}</span>
+              <span className="party-playlist-name">{GAME_LABELS[game]}{index === count - 1 && count > 1 && <small>Finále ×3</small>}</span>
+              <button type="button" disabled={index === 0} aria-label={`Posunúť skôr: ${GAME_LABELS[game]}`} onClick={() => setSelectedGames(current => { const next = [...current]; [next[index - 1], next[index]] = [next[index], next[index - 1]]; return next; })}>↑</button>
+              <button type="button" aria-label={`Odstrániť ${GAME_LABELS[game]}`} onClick={() => toggleGame(game)}><Icons.x size={15} /></button>
+            </li>)}</ol>
+          </section>
+        )}
         <div className="ui-grid" aria-label="Výber minihier do Party modu">
           {ALL_GAMES.map((game, index) => {
             const order = selectedGames.indexOf(game);

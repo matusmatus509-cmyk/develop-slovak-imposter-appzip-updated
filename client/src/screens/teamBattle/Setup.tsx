@@ -48,7 +48,7 @@ export interface TeamBattleSetupDraft {
 
 /** Akcent akcií Party modu (modrá) a jeho protipól (červená) — pozri CSS
  * `.party-mode-experience` premenné `--pm-accent` / `--pm-rival`. */
-const PARTY_ACCENT = "#4f9bff";
+const PARTY_ACCENT = "#b5a0ff";
 const QUICK_ROUND_OPTIONS = [1, 2, 3, 4] as const;
 const TIME_OPTIONS = [30, 45, 60, 90] as const;
 

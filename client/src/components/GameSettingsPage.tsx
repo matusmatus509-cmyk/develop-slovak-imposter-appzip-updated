@@ -1,4 +1,5 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useDialogSurface } from "../hooks/useDialogSurface";
+import { useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { Icon, type IconsType } from "./icons";
 
@@ -47,14 +48,7 @@ export default function GameSettingsPage({
 
   // Kým je stránka otvorená, pozadie sa nesmie skrolovať — inak sa obrazovka
   // pod ňou posúva pod prstom pri ovládaní volieb.
-  useEffect(() => {
-    if (!open) return;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previous;
-    };
-  }, [open]);
+  const dialogRef = useDialogSurface(open, () => setOpen(false));
 
   return (
     <>
@@ -64,7 +58,7 @@ export default function GameSettingsPage({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`flex w-full items-center gap-3 rounded-[1.35rem] p-4 text-left transition active:scale-[.99] ${className}`}
+        className={`settings-summary flex w-full items-center gap-3 rounded-[1.35rem] p-4 text-left transition active:scale-[.99] ${className}`}
         style={{
           border: "1px solid rgba(255,255,255,.1)",
           background:
@@ -95,6 +89,7 @@ export default function GameSettingsPage({
         createPortal(
           <div
             className="settings-studio fixed inset-0 z-[300] flex flex-col bg-[#080b10] text-white"
+            ref={dialogRef}
             role="dialog"
             aria-modal="true"
             aria-label={title}

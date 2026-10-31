@@ -1,17 +1,8 @@
+import Celebration from "../../components/Celebration";
 import type { GameSettings, RoundAssignment } from "../../types";
 import { Icons } from "../../components/icons";
 import { Button, Shell, TopBar } from "../../components/ui";
 import { cn } from "../../utils/designTokens";
-
-const CONFETTI_COLORS = [
-  "#a855f7",
-  "#ec4899",
-  "#f97316",
-  "#06b6d4",
-  "#22c55e",
-  "#eab308",
-  "#3b82f6",
-];
 
 export default function DrawingResult({
   settings,
@@ -32,37 +23,14 @@ export default function DrawingResult({
   const playersWon =
     votedIndex !== null && assignment.impostorIndexes.includes(votedIndex);
 
-  const confetti = Array.from({ length: 30 }, (_, i) => ({
-    left: `${(i * 3.3) % 100}%`,
-    delay: `${(i % 10) * 0.12}s`,
-    duration: `${1.8 + (i % 5) * 0.4}s`,
-    color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
-    size: 8 + (i % 4) * 3,
-  }));
+
 
   return (
-    <Shell>
+    <Shell className="result-studio">
       <TopBar title="Výsledok" onBack={onHome} />
 
       {/* Confetti overlay when impostor caught */}
-      {playersWon && (
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          {confetti.map((c, i) => (
-            <span
-              key={i}
-              className="confetti-piece"
-              style={{
-                left: c.left,
-                width: `${c.size}px`,
-                height: `${c.size}px`,
-                background: c.color,
-                borderRadius: i % 2 === 0 ? "9999px" : "2px",
-                animation: `confettiFall ${c.duration} linear ${c.delay} forwards`,
-              }}
-            />
-          ))}
-        </div>
-      )}
+      {playersWon && <Celebration />}
 
       <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
         <div

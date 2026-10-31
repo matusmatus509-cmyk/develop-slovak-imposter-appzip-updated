@@ -1,4 +1,5 @@
-import type { CSSProperties } from "react";
+import { translateText, useLanguage } from "../i18n/LanguageProvider";
+import { useState, type CSSProperties } from "react";
 import type { Screen } from "../types";
 import type { IconsType } from "../components/icons";
 import { Icon, Icons } from "../components/icons";
@@ -66,7 +67,15 @@ export default function GameMenu({ title, subtitle, games, onBack, onNavigate, f
   favoriteIds: string[];
   onToggleFavorite: (id: string) => void;
 }) {
+  const { language } = useLanguage();
   const isMinigamesMenu = title === "Minihry";
+  const [query, setQuery] = useState("");
+  const [favoritesOnly, setFavoritesOnly] = useState(false);
+  const normalize = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase();
+  const visibleGames = games.filter(game => {
+    const id = PLAYABLE_GAMES.find(item => item.screen === game.screen)?.id ?? game.screen;
+    return (!favoritesOnly || favoriteIds.includes(id)) && normalize(`${game.title} ${game.description} ${translateText(game.title, language)} ${translateText(game.description, language)}`).includes(normalize(query.trim()));
+  });
 
   if (!isMinigamesMenu) {
     return (
@@ -138,8 +147,20 @@ export default function GameMenu({ title, subtitle, games, onBack, onNavigate, f
         <b className="minigame-count-pill" aria-label={`${games.length} hier`}>{games.length} hier</b>
       </header>
 
+      <div className="lounge-catalog-tools">
+        <label className="lounge-search">
+          <Icons.search size={19} aria-hidden="true" />
+          <input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Nájsť hru" aria-label="Nájsť hru" />
+        </label>
+        <div className="lounge-filter-row" role="group" aria-label="Výber hier">
+          <button type="button" aria-pressed={!favoritesOnly} onClick={() => setFavoritesOnly(false)}>Všetky hry</button>
+          <button type="button" aria-pressed={favoritesOnly} onClick={() => setFavoritesOnly(true)}><Icons.heart size={15} /> Obľúbené</button>
+          <span aria-live="polite">{visibleGames.length} / {games.length}</span>
+        </div>
+      </div>
+      {visibleGames.length === 0 && <div className="lounge-empty"><Icons.search size={28} /><h2>Žiadne hry</h2><p>Skúste iný názov alebo zobrazte všetky hry.</p><button type="button" onClick={() => { setQuery(""); setFavoritesOnly(false); }}>Všetky hry</button></div>}
       <div className="minigame-polish-grid pb-6" aria-label="Výber minihier">
-        {games.map((game, index) => {
+        {visibleGames.map((game, index) => {
           const welcome = GAME_WELCOMES[game.screen];
           const accent = MINIGAME_ACCENTS[game.screen] ?? welcome?.accent ?? "#94a3b8";
           const isFavorite = favoriteIds.includes(game.screen);

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useDialogSurface } from "../hooks/useDialogSurface";
+import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Icons } from "./icons";
 
@@ -103,14 +104,7 @@ export default function PlayerNamesField({
 
   // Kým je stránka otvorená, pozadie sa nesmie skrolovať — inak sa obrazovka
   // pod ňou posúva pod prstom pri písaní mien.
-  useEffect(() => {
-    if (!open) return;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previous;
-    };
-  }, [open]);
+  const dialogRef = useDialogSurface(open, () => setOpen(false));
 
   function changeName(index: number, value: string) {
     onChange(names.map((name, nameIndex) => (nameIndex === index ? value : name)));
@@ -146,7 +140,7 @@ export default function PlayerNamesField({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`flex w-full items-center gap-3 rounded-[1.35rem] p-4 text-left transition active:scale-[.99] ${className}`}
+        className={`settings-summary flex w-full items-center gap-3 rounded-[1.35rem] p-4 text-left transition active:scale-[.99] ${className}`}
         style={{
           border: "1px solid rgba(255,255,255,.1)",
           background:
@@ -161,7 +155,7 @@ export default function PlayerNamesField({
         </span>
         <span className="min-w-0 flex-1">
           <strong className="block text-sm font-black text-white">{title}</strong>
-          <small className="mt-0.5 block truncate text-[11px] font-medium text-white/45">
+          <small className="mt-0.5 block text-[11px] font-medium text-white/45">
             {detail}
           </small>
         </span>
@@ -176,7 +170,8 @@ export default function PlayerNamesField({
       {open &&
         createPortal(
           <div
-            className="fixed inset-0 z-[300] flex flex-col bg-[#080b10] text-white"
+            className="settings-studio fixed inset-0 z-[300] flex flex-col bg-[#080b10] text-white"
+            ref={dialogRef}
             role="dialog"
             aria-modal="true"
             aria-label={isTeams ? "Názvy tímov" : "Mená hráčov"}
@@ -223,6 +218,7 @@ export default function PlayerNamesField({
                       onChange={event => changeName(index, event.target.value)}
                       placeholder={placeholderFor?.(index)}
                       maxLength={maxLength}
+                      aria-label={`${isTeams ? "Tím" : "Hráč"} ${index + 1}`}
                       className="min-w-0 flex-1 border-0 bg-transparent text-base font-black text-white outline-none placeholder:font-bold placeholder:text-white/25"
                     />
                     {canRemove && (

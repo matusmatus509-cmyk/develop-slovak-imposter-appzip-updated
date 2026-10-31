@@ -1,3 +1,4 @@
+import Celebration from "../../components/Celebration";
 import { useEffect } from "react";
 import { Icons } from "../../components/icons";
 import type { GameSettings, RoundAssignment } from "../../types";
@@ -33,26 +34,11 @@ export default function Result({
   }, [playersWon, playFeedback]);
 
   return (
-    <Shell>
+    <Shell className="result-studio">
       <TopBar title="Výsledok kola" onBack={onHome} />
 
       {/* Confetti for playersWon */}
-      {playersWon && (
-        <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="confetti-piece"
-              style={{
-                left: `${Math.random() * 100}%`,
-                background: ["#f97316", "#ec4899", "#a855f7", "#22c55e", "#fbbf24"][i % 5],
-                animationDuration: `${2 + Math.random() * 2}s`,
-                animationDelay: `${Math.random() * 0.5}s`,
-              }}
-            />
-          ))}
-        </div>
-      )}
+      {playersWon && <Celebration />}
 
       <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
         <div

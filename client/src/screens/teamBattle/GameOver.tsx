@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import Celebration from "../../components/Celebration";
+import { useEffect, useState } from "react";
 import { Icons } from "../../components/icons";
 import {
   PARTY_TEAM_COLORS,
@@ -7,54 +8,12 @@ import {
 import { PartyBackdrop, PartyEyebrow } from "./PartyChrome";
 import { useFeedback } from "../../feedback/FeedbackProvider";
 
-function Confetti() {
-  const pieces = useMemo(
-    () =>
-      Array.from({ length: 48 }, (_, index) => ({
-        id: index,
-        left: `${Math.random() * 100}%`,
-        delay: `${Math.random() * 1.2}s`,
-        // Zlatá identita Party modu, jej tmavší odtieň a obe tímové farby —
-        // nič, čo by na obrazovke nemalo význam.
-        color: ["#ffc247", "#ff9f1c", "#f4f7fb", "#3b82f6", "#ef4444"][
-          index % 5
-        ],
-        size: `${5 + Math.random() * 8}px`,
-        duration: `${1.9 + Math.random() * 1.1}s`,
-        rotate: `${Math.random() * 180}deg`,
-      })),
-    []
-  );
-
-  return (
-    <div
-      className="party-confetti pointer-events-none fixed inset-0 z-40 overflow-hidden"
-      aria-hidden="true"
-    >
-      {pieces.map(piece => (
-        <span
-          key={piece.id}
-          className="absolute -top-6 rounded-sm"
-          style={{
-            left: piece.left,
-            width: piece.size,
-            height: `calc(${piece.size} * 1.7)`,
-            background: piece.color,
-            rotate: piece.rotate,
-            animation: `confettiFall ${piece.duration} linear ${piece.delay} both`,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
 function useAnimatedScores(scores: [number, number], started: boolean) {
   const [displayScores, setDisplayScores] = useState<[number, number]>([0, 0]);
 
   useEffect(() => {
     if (!started) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (document.documentElement.dataset.animations === "reduced" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setDisplayScores(scores);
       return;
     }
@@ -116,7 +75,7 @@ export default function GameOver({
 
   return (
     <PartyBackdrop className="party-finale">
-      {celebrating && !isDraw && <Confetti />}
+      {celebrating && !isDraw && <Celebration />}
       <main className="relative z-30 flex h-full flex-col fit-or-scroll overflow-hidden px-5 pb-3 pt-5 text-center">
         <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col items-center">
           <PartyEyebrow>Výsledky Party mode</PartyEyebrow>
