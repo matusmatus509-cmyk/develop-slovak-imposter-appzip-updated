@@ -121,37 +121,8 @@ button:disabled { cursor: not-allowed; }
 .app-screen-frame .app-topbar, .lounge-catalog-tools { animation: studio-enter .35s var(--studio-ease) both; }
 @keyframes studio-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Home: a featured Party invitation and two compact doors into the catalogue. */
-.home-screen { background: var(--studio-bg); }
-.home-screen > img { opacity: .18; }
-.home-screen .lounge-home-content { max-width: 560px; height: 100dvh; min-height: 620px; padding-inline: 22px; overflow: visible; }
-.lounge-home-content > div:first-child { border: 0; min-height: 44px; }
-.lounge-brand { display: flex; align-items: center; gap: 9px; font-size: 12px; letter-spacing: .13em; }
-.lounge-brand > span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 12px; background: #b5a0ff20; color: #c6b6ff; }
 .lounge-menu-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--studio-line); border-radius: 14px; color: var(--studio-muted); font-size: 12px; }
 .lounge-kicker { display: block; margin-bottom: 10px; color: #c5b4ff; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-.home-screen .home-heading { margin-top: clamp(18px,3vh,32px); }
-.home-screen .home-heading h1 { max-width: 320px; font-size: clamp(28px,7vw,38px); line-height: 1.08; }
-.home-screen .home-heading > p:last-child { color: var(--studio-muted); font-size: 12px; line-height: 1.5; }
-.lounge-modes { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1.3fr 1fr; gap: 12px; flex: 1; min-height: 310px; margin-top: 22px; }
-.home-screen .lounge-mode { position: relative; isolation: isolate; min-width: 0; overflow: hidden; border: 1px solid var(--studio-line); border-radius: 24px; background: var(--studio-panel); text-align: left; box-shadow: 0 14px 35px -24px #000; }
-.home-screen .lounge-mode-featured { grid-column: 1 / -1; border-color: #b49bff55; }
-.lounge-mode > img { opacity: .8; object-position: 50% 38%; }
-.lounge-mode:not(.lounge-mode-featured) > img { opacity: .5; }
-.lounge-mode > span.absolute { background: linear-gradient(0deg,#0d1123 0%,#0d11239c 55%,#0d112310 100%); }
-.lounge-mode-featured > span.absolute { background: linear-gradient(90deg,#17152ef5,#17152e66 70%,#17152e20); }
-.lounge-mode-copy { position: absolute; inset: 16px; display: flex; flex-direction: column; justify-content: end; }
-.lounge-mode-featured .lounge-mode-copy { inset: 22px; justify-content: center; max-width: 70%; }
-.lounge-mode-copy > strong { font-size: 22px; line-height: 1.1; }
-.lounge-mode-featured .lounge-mode-copy > strong { font-size: 32px; }
-.lounge-mode-copy > span:not(.lounge-mode-badge) { font-size: 11px; color: #c7cce0; max-width: 95%; }
-.lounge-mode-badge { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; font-size: 10px; font-weight: 700; color: #deceff; }
-.lounge-mode-arrow { position: absolute; right: 18px; top: 18px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: #fff; background: #ffffff18; border: 1px solid #ffffff24; }
-.lounge-mode-featured .lounge-mode-arrow { top: auto; bottom: 22px; width: 42px; height: 42px; background: #b5a0ff; color: #17132c; }
-.home-screen .lounge-home-nav { background: #171e32; border-color: var(--studio-line); border-radius: 20px; margin-top: 16px; }
-.lounge-home-nav > button { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; color: #d3d9e8; }
-.lounge-home-nav > button > span { font-size: 10px; }
-.lounge-drawer { background: var(--studio-panel); overflow-y: auto; padding-top: max(24px, env(safe-area-inset-top)); padding-bottom: max(24px, env(safe-area-inset-bottom)); }
 
 /* Catalogue: readable titles, useful filters and generous touch targets. */
 .lounge-catalog-tools { margin: 0 0 20px; }
@@ -242,22 +213,14 @@ button:disabled { cursor: not-allowed; }
   .settings-screen > div { max-width: 600px; }
 }
 @media (max-width: 360px) {
-  .home-screen .lounge-home-content { padding-inline: 16px; }
-  .lounge-mode-copy { inset: 12px; }
-  .lounge-mode-copy > strong { font-size: 19px; }
-  .lounge-mode-copy > span:not(.lounge-mode-badge) { font-size: 10px; }
   .minigame-polish-shell .minigame-polish-copy h2 { font-size: 14px; }
   .settings-screen .lounge-settings-panel { padding: 14px !important; }
 }
 @media (max-height: 700px) {
-  .home-screen .lounge-home-content { min-height: 580px; }
-  .home-screen .home-heading { margin-top: 12px; }
-  .lounge-modes { margin-top: 14px; min-height: 280px; }
   .lounge-kicker { margin-bottom: 6px; }
 }
 @media (hover: hover) {
-  .lounge-mode:hover, .minigame-polish-card:hover, .ui-tile:hover { transform: translateY(-3px); }
-  .lounge-mode:hover { border-color: #b5a0ff88; }
+  .minigame-polish-card:hover, .ui-tile:hover { transform: translateY(-3px); }
   .app-button:hover:not(:disabled) { filter: brightness(1.1); }
 }
 html[data-animations="reduced"] .party-confetti { display: none; }
@@ -288,16 +251,8 @@ html[data-animations="reduced"] .result-celebration { display: none; }
 .game-welcome .game-welcome-stat p:first-child { color: #aeb9cf; }
 .game-welcome .game-welcome-description { color: #c2c9da; }
 .game-welcome .game-welcome-details > button { border-radius: 18px; }
-html[data-theme="light"] .home-screen .lounge-mode-copy,
-html[data-theme="light"] .home-screen .lounge-mode-copy :is(strong,span),
-html[data-theme="light"] .home-screen .lounge-mode-arrow { color: #f5f3ff !important; }
-html[data-theme="light"] .home-screen .lounge-mode-arrow { background: #39304e; }
-html[data-theme="light"] .home-screen .lounge-home-nav { background: #ffffffd9; border-color: #27345120; }
-html[data-theme="light"] .home-screen .lounge-home-nav > button { color: #343d55; }
 html[data-theme="light"] .lounge-kicker { color: #7253ba; }
 html[data-theme="light"] .lounge-menu-button { color: #414b63; border-color: #27345130; background: #ffffff88; }
-html[data-theme="light"] .home-screen .home-heading > p:last-child { color: #56617a !important; }
-html[data-theme="light"] .home-screen .lounge-drawer { background: #f3f2fa; color: #242b40; }
 html[data-theme="light"] .settings-screen .lounge-settings-panel { background: #ffffffcf; border-color: #27345120; }
 html[data-theme="light"] .settings-screen .lounge-settings-panel > div { background: #f4f3fa !important; }
 html[data-theme="light"] .settings-screen .lounge-settings-panel p,
@@ -327,7 +282,3 @@ html:not([data-theme="light"]) .ui {
   --ui-r: 1rem;
   --ui-r-lg: 1.4rem;
 }
-html[data-theme="light"] .home-screen > img { opacity: .04; }
-html[data-theme="light"] .home-screen > div.pointer-events-none { display: none; }
-html[data-theme="light"] .home-screen .lounge-mode { background: #111827 !important; }
-html[data-theme="light"] .home-screen .lounge-mode-featured > img { opacity: .85; }
